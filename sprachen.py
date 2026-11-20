@@ -909,6 +909,37 @@ TEXTE = {
 "set.konto_weg_google": "Zur Sicherheit kann Google gleich noch einmal nach deinem Konto fragen.",
 "set.konto_weg_fertig": "Dein Konto ist gelöscht.",
 "set.konto_weg_teil": "Dein Lernstand im Konto ist gelöscht, das Konto selbst noch nicht. Melde dich noch einmal an und lösche es dann, oder schreib uns.",
+
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Die Fassungen mit _ios
+# nimmt t() auf iOS statt der gewoehnlichen (Richtlinie 2.3.10: keine
+# andere Plattform nennen; auf dem iPhone ist Apple der Verkaeufer). Die
+# uebrigen Schluessel hier braucht nur iOS: Mit Apple anmelden (Titel wie
+# Apples eigener Knopf, aus appleid.auth.js abgelesen), Spaeter,
+# Kaeufe wiederherstellen, Anzeige melden.
+"voll.kein_store_ios": "App Store antwortet nicht. Zum Wiederholen tippen.",
+"voll.gesperrt_ios": "Abo pausiert. Zahlung in deinem Apple Account prüfen.",
+"voll.wechsel_text_ios": "Apple bucht {preis} sofort ab und erstattet dir den Rest deines bezahlten Monats anteilig.",
+"voll.hinweis_ios": "Abgebucht wird über deinen Apple Account. Das Abo verlängert sich automatisch um den gewählten Zeitraum, wenn du nicht spätestens 24 Stunden vor dessen Ende kündigst. Kündigen kannst du jederzeit unter „Abo verwalten“ oder in den Einstellungen deines Geräts unter deinem Namen → Abonnements.",
+"set.konto_weg_frage_ios": "Konto wirklich löschen? Dein ganzer Lernstand ist danach weg. Ein Abo läuft bei Apple weiter – kündige es extra unter „Abo verwalten“.",
+"bew.text_ios": "Eine Bewertung im App Store hilft anderen, Zmaj zu finden. Und wenn dir etwas fehlt, sag es uns.",
+"set.ben_gesperrt_ios": "Benachrichtigungen sind für Zmaj in den Einstellungen deines Geräts ausgeschaltet.",
+"konto.fehler_mail_pw_ios": "E-Mail oder Passwort stimmt nicht. Hast du dich mit Apple oder Google angemeldet? Dann tippe auf diesen Knopf.",
+"konto.fehler_email_da_ios": "Für diese Adresse gibt es schon ein Konto. Melde dich an – mit Passwort, mit Apple oder mit Google.",
+# Nach dem Abmelden und nach "Konto loeschen" (Ajdin 15.11.2026, "1 ja"):
+# Auf dem iPhone geht es auch ohne Konto weiter ("Spaeter", Richtlinie
+# 5.1.1(v)), und genau dort prueft Apple das Loeschen. "um weiterzulernen"
+# klang, als muesste man sich anmelden. Android bleibt bei der Pflicht.
+"anm.text_abgemeldet_ios": "Melde dich an, damit dein Lernstand gesichert wird.",
+"anm.apple": "Mit Apple anmelden",
+"anm.spaeter": "Später",
+"konto.fehler_apple": "Die Anmeldung mit Apple hat nicht geklappt. Versuch es noch einmal oder nimm deine E-Mail.",
+"set.konto_weg_apple": "Zur Sicherheit fragt Apple gleich noch einmal nach deinem Account.",
+"voll.wiederherstellen": "Käufe wiederherstellen",
+"voll.wiederhergestellt": "Dein Abo ist wieder da.",
+"voll.nichts_gefunden": "Kein Abo gefunden.",
+"werbung.melden": "Anzeige melden",
+"werbung.melden_text": "Diese Anzeige war unpassend. Was war zu sehen?",
+"werbung.melden_wann": "Zeitpunkt und Art der Anzeige:",
 },
 
 # ===========================================================================
@@ -1613,6 +1644,33 @@ TEXTE = {
 "set.konto_weg_google": "For security, Google may ask for your account once more.",
 "set.konto_weg_fertig": "Your account has been deleted.",
 "set.konto_weg_teil": "Your progress in the account has been deleted, but not the account itself yet. Sign in again and delete it, or write to us.",
+
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Die Fassungen mit _ios
+# nimmt t() auf iOS statt der gewoehnlichen (Richtlinie 2.3.10: keine
+# andere Plattform nennen; auf dem iPhone ist Apple der Verkaeufer). Die
+# uebrigen Schluessel hier braucht nur iOS: Mit Apple anmelden (Titel wie
+# Apples eigener Knopf, aus appleid.auth.js abgelesen), Spaeter,
+# Kaeufe wiederherstellen, Anzeige melden.
+"voll.kein_store_ios": "The App Store is not responding. Tap to try again.",
+"voll.gesperrt_ios": "Subscription on hold. Check your payment in your Apple Account.",
+"voll.wechsel_text_ios": "Apple charges {preis} straight away and refunds the rest of your paid month on a pro-rata basis.",
+"voll.hinweis_ios": "Payment is charged to your Apple Account. The subscription renews automatically for the period you chose unless you cancel at least 24 hours before it ends. You can cancel at any time under “Manage subscription” or in your device’s Settings under your name → Subscriptions.",
+"set.konto_weg_frage_ios": "Really delete your account? All your progress will be gone. A subscription keeps running with Apple – cancel it separately under “Manage subscription”.",
+"bew.text_ios": "A rating on the App Store helps others find Zmaj. And if something is missing, let us know.",
+"set.ben_gesperrt_ios": "Notifications for Zmaj are turned off in your device settings.",
+"konto.fehler_mail_pw_ios": "Email or password is wrong. Did you sign in with Apple or Google? Then tap that button.",
+"konto.fehler_email_da_ios": "There is already an account for this address. Sign in – with your password, with Apple or with Google.",
+"anm.text_abgemeldet_ios": "Sign in so your progress is backed up.",
+"anm.apple": "Sign in with Apple",
+"anm.spaeter": "Later",
+"konto.fehler_apple": "Signing in with Apple did not work. Try again or use your email.",
+"set.konto_weg_apple": "For security, Apple will ask for your account once more.",
+"voll.wiederherstellen": "Restore purchases",
+"voll.wiederhergestellt": "Your subscription is back.",
+"voll.nichts_gefunden": "No subscription found.",
+"werbung.melden": "Report ad",
+"werbung.melden_text": "This ad was inappropriate. What did it show?",
+"werbung.melden_wann": "Time and type of the ad:",
 },
 
 # ===========================================================================
@@ -2315,6 +2373,33 @@ TEXTE = {
 "set.konto_weg_google": "Güvenlik için Google hesabını bir kez daha sorabilir.",
 "set.konto_weg_fertig": "Hesabın silindi.",
 "set.konto_weg_teil": "Hesaptaki ilerlemen silindi, ama hesabın kendisi henüz silinmedi. Tekrar giriş yapıp sil ya da bize yaz.",
+
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Die Fassungen mit _ios
+# nimmt t() auf iOS statt der gewoehnlichen (Richtlinie 2.3.10: keine
+# andere Plattform nennen; auf dem iPhone ist Apple der Verkaeufer). Die
+# uebrigen Schluessel hier braucht nur iOS: Mit Apple anmelden (Titel wie
+# Apples eigener Knopf, aus appleid.auth.js abgelesen), Spaeter,
+# Kaeufe wiederherstellen, Anzeige melden.
+"voll.kein_store_ios": "App Store yanıt vermiyor. Tekrar denemek için dokun.",
+"voll.gesperrt_ios": "Abonelik askıya alındı. Ödemeni Apple Hesabı'nda kontrol et.",
+"voll.wechsel_text_ios": "Apple {preis} tutarını hemen tahsil eder ve ödediğin ayın kalan kısmını orantılı olarak iade eder.",
+"voll.hinweis_ios": "Ödeme Apple Hesabın üzerinden alınır. Abonelik, bitiminden en az 24 saat önce iptal etmezsen seçtiğin süre kadar otomatik olarak yenilenir. İstediğin zaman “Aboneliği yönet” bölümünden ya da cihazının Ayarlar'ında adına dokunup Abonelikler'den iptal edebilirsin.",
+"set.konto_weg_frage_ios": "Hesap gerçekten silinsin mi? Tüm ilerlemen kaybolur. Abonelik Apple'da devam eder – onu ayrıca “Aboneliği yönet” bölümünden iptal et.",
+"bew.text_ios": "App Store'daki bir değerlendirme, başkalarının Zmaj'ı bulmasına yardım eder. Bir şey eksikse bize söyle.",
+"set.ben_gesperrt_ios": "Zmaj bildirimleri cihazının ayarlarında kapalı.",
+"konto.fehler_mail_pw_ios": "E-posta ya da parola yanlış. Apple ya da Google ile mi giriş yapmıştın? O zaman o düğmeye dokun.",
+"konto.fehler_email_da_ios": "Bu adres için zaten bir hesap var. Giriş yap – parolanla, Apple ile ya da Google ile.",
+"anm.text_abgemeldet_ios": "İlerlemenin yedeklenmesi için giriş yap.",
+"anm.apple": "Apple ile Giriş Yap",
+"anm.spaeter": "Daha sonra",
+"konto.fehler_apple": "Apple ile giriş olmadı. Tekrar dene ya da e-postanı kullan.",
+"set.konto_weg_apple": "Güvenlik için Apple hesabını bir kez daha soracak.",
+"voll.wiederherstellen": "Satın alımları geri yükle",
+"voll.wiederhergestellt": "Aboneliğin geri geldi.",
+"voll.nichts_gefunden": "Abonelik bulunamadı.",
+"werbung.melden": "Reklamı bildir",
+"werbung.melden_text": "Bu reklam uygunsuzdu. Ne gösteriliyordu?",
+"werbung.melden_wann": "Reklamın zamanı ve türü:",
 },
 
 # ===========================================================================
@@ -3017,6 +3102,33 @@ TEXTE = {
 "set.konto_weg_google": "Av säkerhetsskäl kan Google fråga efter ditt konto en gång till.",
 "set.konto_weg_fertig": "Ditt konto är raderat.",
 "set.konto_weg_teil": "Din utveckling i kontot är raderad, men inte själva kontot än. Logga in igen och radera det, eller skriv till oss.",
+
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Die Fassungen mit _ios
+# nimmt t() auf iOS statt der gewoehnlichen (Richtlinie 2.3.10: keine
+# andere Plattform nennen; auf dem iPhone ist Apple der Verkaeufer). Die
+# uebrigen Schluessel hier braucht nur iOS: Mit Apple anmelden (Titel wie
+# Apples eigener Knopf, aus appleid.auth.js abgelesen), Spaeter,
+# Kaeufe wiederherstellen, Anzeige melden.
+"voll.kein_store_ios": "App Store svarar inte. Tryck för att försöka igen.",
+"voll.gesperrt_ios": "Prenumerationen är pausad. Kontrollera betalningen i ditt Apple-konto.",
+"voll.wechsel_text_ios": "Apple drar {preis} direkt och betalar tillbaka resten av din betalda månad proportionellt.",
+"voll.hinweis_ios": "Betalningen dras från ditt Apple-konto. Prenumerationen förnyas automatiskt med den period du har valt, om du inte säger upp den senast 24 timmar innan den löper ut. Du kan säga upp den när som helst under ”Hantera prenumeration” eller i enhetens Inställningar under ditt namn → Prenumerationer.",
+"set.konto_weg_frage_ios": "Vill du verkligen radera kontot? All din utveckling försvinner. En prenumeration fortsätter hos Apple – säg upp den separat under ”Hantera prenumeration”.",
+"bew.text_ios": "Ett betyg i App Store hjälper andra att hitta Zmaj. Och om du saknar något, säg till.",
+"set.ben_gesperrt_ios": "Aviseringar för Zmaj är avstängda i enhetens inställningar.",
+"konto.fehler_mail_pw_ios": "E-post eller lösenord stämmer inte. Loggade du in med Apple eller Google? Tryck då på den knappen.",
+"konto.fehler_email_da_ios": "Det finns redan ett konto för den här adressen. Logga in – med lösenord, med Apple eller med Google.",
+"anm.text_abgemeldet_ios": "Logga in så att din utveckling säkerhetskopieras.",
+"anm.apple": "Logga in med Apple",
+"anm.spaeter": "Senare",
+"konto.fehler_apple": "Inloggningen med Apple fungerade inte. Försök igen eller använd din e-post.",
+"set.konto_weg_apple": "Av säkerhetsskäl frågar Apple efter ditt konto en gång till.",
+"voll.wiederherstellen": "Återställ köp",
+"voll.wiederhergestellt": "Din prenumeration är tillbaka.",
+"voll.nichts_gefunden": "Ingen prenumeration hittades.",
+"werbung.melden": "Rapportera annons",
+"werbung.melden_text": "Den här annonsen var olämplig. Vad visade den?",
+"werbung.melden_wann": "Tidpunkt och typ av annons:",
 },
 
 # ===========================================================================
@@ -3717,6 +3829,33 @@ TEXTE = {
 "set.konto_weg_google": "Voor de veiligheid kan Google zo nog een keer naar je account vragen.",
 "set.konto_weg_fertig": "Je account is verwijderd.",
 "set.konto_weg_teil": "Je voortgang in het account is verwijderd, het account zelf nog niet. Log opnieuw in en verwijder het, of schrijf ons.",
+
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Die Fassungen mit _ios
+# nimmt t() auf iOS statt der gewoehnlichen (Richtlinie 2.3.10: keine
+# andere Plattform nennen; auf dem iPhone ist Apple der Verkaeufer). Die
+# uebrigen Schluessel hier braucht nur iOS: Mit Apple anmelden (Titel wie
+# Apples eigener Knopf, aus appleid.auth.js abgelesen), Spaeter,
+# Kaeufe wiederherstellen, Anzeige melden.
+"voll.kein_store_ios": "De App Store reageert niet. Tik om opnieuw te proberen.",
+"voll.gesperrt_ios": "Abonnement gepauzeerd. Controleer je betaling in je Apple Account.",
+"voll.wechsel_text_ios": "Apple schrijft {preis} meteen af en betaalt de rest van je betaalde maand naar verhouding terug.",
+"voll.hinweis_ios": "De betaling loopt via je Apple Account. Het abonnement wordt automatisch verlengd met de gekozen periode, tenzij je uiterlijk 24 uur voor het einde opzegt. Je kunt op elk moment opzeggen via ‘Abonnement beheren’ of in de Instellingen van je apparaat onder je naam → Abonnementen.",
+"set.konto_weg_frage_ios": "Account echt verwijderen? Al je voortgang is daarna weg. Een abonnement loopt bij Apple door – zeg het apart op via ‘Abonnement beheren’.",
+"bew.text_ios": "Een beoordeling in de App Store helpt anderen Zmaj te vinden. En mis je iets, laat het ons weten.",
+"set.ben_gesperrt_ios": "Meldingen voor Zmaj staan uit in de instellingen van je apparaat.",
+"konto.fehler_mail_pw_ios": "E-mail of wachtwoord klopt niet. Heb je met Apple of Google ingelogd? Tik dan op die knop.",
+"konto.fehler_email_da_ios": "Voor dit adres bestaat al een account. Log in – met je wachtwoord, met Apple of met Google.",
+"anm.text_abgemeldet_ios": "Log in zodat er een back-up van je voortgang wordt gemaakt.",
+"anm.apple": "Log in met Apple",
+"anm.spaeter": "Later",
+"konto.fehler_apple": "Inloggen met Apple is niet gelukt. Probeer het nog eens of gebruik je e-mail.",
+"set.konto_weg_apple": "Voor de veiligheid vraagt Apple zo nog een keer naar je account.",
+"voll.wiederherstellen": "Aankopen herstellen",
+"voll.wiederhergestellt": "Je abonnement is terug.",
+"voll.nichts_gefunden": "Geen abonnement gevonden.",
+"werbung.melden": "Advertentie melden",
+"werbung.melden_text": "Deze advertentie was ongepast. Wat was er te zien?",
+"werbung.melden_wann": "Tijdstip en soort advertentie:",
 },
 
 # ===========================================================================
@@ -4417,6 +4556,33 @@ TEXTE = {
 "set.konto_weg_google": "Av sikkerhetshensyn kan Google spørre etter kontoen din én gang til.",
 "set.konto_weg_fertig": "Kontoen din er slettet.",
 "set.konto_weg_teil": "Framgangen din i kontoen er slettet, men ikke selve kontoen ennå. Logg inn igjen og slett den, eller skriv til oss.",
+
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Die Fassungen mit _ios
+# nimmt t() auf iOS statt der gewoehnlichen (Richtlinie 2.3.10: keine
+# andere Plattform nennen; auf dem iPhone ist Apple der Verkaeufer). Die
+# uebrigen Schluessel hier braucht nur iOS: Mit Apple anmelden (Titel wie
+# Apples eigener Knopf, aus appleid.auth.js abgelesen), Spaeter,
+# Kaeufe wiederherstellen, Anzeige melden.
+"voll.kein_store_ios": "App Store svarer ikke. Trykk for å prøve igjen.",
+"voll.gesperrt_ios": "Abonnementet er satt på pause. Sjekk betalingen i Apple-kontoen din.",
+"voll.wechsel_text_ios": "Apple trekker {preis} med en gang og betaler tilbake resten av den betalte måneden din forholdsmessig.",
+"voll.hinweis_ios": "Betalingen trekkes fra Apple-kontoen din. Abonnementet fornyes automatisk for den valgte perioden hvis du ikke sier det opp senest 24 timer før den utløper. Du sier opp når som helst under «Administrer abonnementet» eller i Innstillinger på enheten under navnet ditt → Abonnementer.",
+"set.konto_weg_frage_ios": "Vil du virkelig slette kontoen? All framgangen din forsvinner. Et abonnement fortsetter hos Apple – si det opp separat under «Administrer abonnementet».",
+"bew.text_ios": "En vurdering i App Store hjelper andre å finne Zmaj. Og savner du noe, si ifra.",
+"set.ben_gesperrt_ios": "Varsler for Zmaj er slått av i innstillingene på enheten.",
+"konto.fehler_mail_pw_ios": "E-post eller passord stemmer ikke. Logget du inn med Apple eller Google? Trykk da på den knappen.",
+"konto.fehler_email_da_ios": "Det finnes allerede en konto for denne adressen. Logg inn – med passord, med Apple eller med Google.",
+"anm.text_abgemeldet_ios": "Logg inn, så sikkerhetskopieres framgangen din.",
+"anm.apple": "Logg på med Apple",
+"anm.spaeter": "Senere",
+"konto.fehler_apple": "Innloggingen med Apple gikk ikke. Prøv igjen eller bruk e-posten din.",
+"set.konto_weg_apple": "Av sikkerhetshensyn spør Apple etter kontoen din én gang til.",
+"voll.wiederherstellen": "Gjenopprett kjøp",
+"voll.wiederhergestellt": "Abonnementet ditt er tilbake.",
+"voll.nichts_gefunden": "Fant ikke noe abonnement.",
+"werbung.melden": "Rapporter annonse",
+"werbung.melden_text": "Denne annonsen var upassende. Hva viste den?",
+"werbung.melden_wann": "Tidspunkt og type annonse:",
 },
 
 # ===========================================================================
@@ -5118,6 +5284,33 @@ TEXTE = {
 "set.konto_weg_google": "Af sikkerhedshensyn kan Google spørge efter din konto én gang til.",
 "set.konto_weg_fertig": "Din konto er slettet.",
 "set.konto_weg_teil": "Din fremgang på kontoen er slettet, men ikke selve kontoen endnu. Log ind igen og slet den, eller skriv til os.",
+
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Die Fassungen mit _ios
+# nimmt t() auf iOS statt der gewoehnlichen (Richtlinie 2.3.10: keine
+# andere Plattform nennen; auf dem iPhone ist Apple der Verkaeufer). Die
+# uebrigen Schluessel hier braucht nur iOS: Mit Apple anmelden (Titel wie
+# Apples eigener Knopf, aus appleid.auth.js abgelesen), Spaeter,
+# Kaeufe wiederherstellen, Anzeige melden.
+"voll.kein_store_ios": "App Store svarer ikke. Tryk for at prøve igen.",
+"voll.gesperrt_ios": "Abonnementet er sat på pause. Tjek betalingen i din Apple-konto.",
+"voll.wechsel_text_ios": "Apple trækker {preis} med det samme og refunderer resten af din betalte måned forholdsmæssigt.",
+"voll.hinweis_ios": "Beløbet trækkes via din Apple-konto. Abonnementet fornyes automatisk for den valgte periode, medmindre du opsiger senest 24 timer før den udløber. Du kan opsige når som helst under »Administrer abonnement« eller i enhedens Indstillinger under dit navn → Abonnementer.",
+"set.konto_weg_frage_ios": "Vil du virkelig slette kontoen? Al din fremgang er væk bagefter. Et abonnement fortsætter hos Apple – opsig det separat under »Administrer abonnement«.",
+"bew.text_ios": "En bedømmelse i App Store hjælper andre med at finde Zmaj. Og mangler du noget, så sig til.",
+"set.ben_gesperrt_ios": "Notifikationer for Zmaj er slået fra i enhedens indstillinger.",
+"konto.fehler_mail_pw_ios": "E-mail eller adgangskode passer ikke. Loggede du ind med Apple eller Google? Så tryk på den knap.",
+"konto.fehler_email_da_ios": "Der findes allerede en konto til denne adresse. Log ind – med adgangskode, med Apple eller med Google.",
+"anm.text_abgemeldet_ios": "Log ind, så din fremgang bliver sikkerhedskopieret.",
+"anm.apple": "Log ind med Apple",
+"anm.spaeter": "Senere",
+"konto.fehler_apple": "Login med Apple lykkedes ikke. Prøv igen, eller brug din e-mail.",
+"set.konto_weg_apple": "Af sikkerhedshensyn spørger Apple efter din konto én gang til.",
+"voll.wiederherstellen": "Gendan køb",
+"voll.wiederhergestellt": "Dit abonnement er tilbage.",
+"voll.nichts_gefunden": "Intet abonnement fundet.",
+"werbung.melden": "Rapportér annonce",
+"werbung.melden_text": "Denne annonce var upassende. Hvad viste den?",
+"werbung.melden_wann": "Tidspunkt og type annonce:",
 },
 
 # ===========================================================================
@@ -5818,9 +6011,876 @@ TEXTE = {
 "set.konto_weg_google": "Par sécurité, Google peut te redemander ton compte.",
 "set.konto_weg_fertig": "Ton compte a été supprimé.",
 "set.konto_weg_teil": "Ta progression dans le compte a été supprimée, mais pas encore le compte lui-même. Reconnecte-toi et supprime-le, ou écris-nous.",
+
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Die Fassungen mit _ios
+# nimmt t() auf iOS statt der gewoehnlichen (Richtlinie 2.3.10: keine
+# andere Plattform nennen; auf dem iPhone ist Apple der Verkaeufer). Die
+# uebrigen Schluessel hier braucht nur iOS: Mit Apple anmelden (Titel wie
+# Apples eigener Knopf, aus appleid.auth.js abgelesen), Spaeter,
+# Kaeufe wiederherstellen, Anzeige melden.
+"voll.kein_store_ios": "L'App Store ne répond pas. Touche pour réessayer.",
+"voll.gesperrt_ios": "Abonnement suspendu. Vérifie ton paiement dans ton compte Apple.",
+"voll.wechsel_text_ios": "Apple prélève {preis} tout de suite et te rembourse au prorata le reste de ton mois déjà payé.",
+"voll.hinweis_ios": "Le paiement est débité sur ton compte Apple. L'abonnement se renouvelle automatiquement pour la durée choisie, sauf si tu le résilies au moins 24 heures avant la fin de la période. Tu résilies à tout moment via « Gérer l'abonnement » ou dans les Réglages de ton appareil, sous ton nom → Abonnements.",
+"set.konto_weg_frage_ios": "Supprimer vraiment le compte ? Toute ta progression sera perdue. Un abonnement continue chez Apple – résilie-le à part via « Gérer l'abonnement ».",
+"bew.text_ios": "Une note sur l'App Store aide d'autres personnes à trouver Zmaj. Et s'il te manque quelque chose, dis-le-nous.",
+"set.ben_gesperrt_ios": "Les notifications de Zmaj sont désactivées dans les réglages de ton appareil.",
+"konto.fehler_mail_pw_ios": "L'e-mail ou le mot de passe est incorrect. Tu utilises Apple ou Google pour te connecter ? Alors touche ce bouton.",
+"konto.fehler_email_da_ios": "Un compte existe déjà pour cette adresse. Connecte-toi – avec ton mot de passe, avec Apple ou avec Google.",
+"anm.text_abgemeldet_ios": "Connecte-toi pour que ta progression soit sauvegardée.",
+"anm.apple": "Connexion avec Apple",
+"anm.spaeter": "Plus tard",
+"konto.fehler_apple": "La connexion avec Apple n'a pas marché. Réessaie ou utilise ton e-mail.",
+"set.konto_weg_apple": "Par sécurité, Apple va te redemander ton compte.",
+"voll.wiederherstellen": "Restaurer les achats",
+"voll.wiederhergestellt": "Ton abonnement est de retour.",
+"voll.nichts_gefunden": "Aucun abonnement trouvé.",
+"werbung.melden": "Signaler l'annonce",
+"werbung.melden_text": "Cette annonce n'était pas appropriée. Que montrait-elle ?",
+"werbung.melden_wann": "Moment et type de l'annonce :",
 },
 
 }
+
+
+# ===========================================================================
+#  RECHTSTEXTE FUER iPHONE UND iPAD (30.10.2026, iOS_Plan.md 3.6)
+# ===========================================================================
+# Auf iOS ist Apple der Verkaeufer, es gibt kein Google Play, keine
+# Android-Sicherung und keinen Play Store - und Apple lehnt Apps ab, die
+# andere Plattformen nennen (Richtlinie 2.3.10). texte() baut daraus
+# set.agb_text_ios und set.datenschutz_text_ios: dieselben Texte wie fuer
+# Android, nur diese Saetze ausgetauscht, und der Abschnitt zum Abo
+# (set.dsgvo_abo) ganz durch den iOS-Abschnitt ersetzt. "werbung" kommt
+# nur, wenn Werbung laeuft (WERBUNG_LAEUFT): der Satz zu Apples Frage nach
+# dem Tracking (App-Tracking-Transparenz). "werbung_aus" kommt nur ohne
+# Werbung: dann steht set.dsgvo_werbung_aus im Text, und auch der fragt fuer
+# Android "beim Play Store" nach dem "Google-Konto" (30.10.2026).
+#
+# Der Anmeldeschluessel liegt auf iOS im Schluesselbund (ZmajAnmeldung.swift,
+# synchronisierbar ueber den iCloud-Schluesselbund). Der bleibt beim Loeschen
+# der App erhalten, und "Speicher leeren" gibt es auf iOS nicht - darum
+# tauschen die Abschnitte 8 und 10 hier ihre Saetze dazu aus (30.10.2026).
+#
+# Zum Schluss sucht ios_rechtstexte() nach IOS_FREMDE_WOERTER: Bleibt eines
+# stehen (etwa weil fuer Android ein Abschnitt dazukam, fuer den es noch
+# keinen iOS-Satz gibt), bricht texte() ab, statt still Google Play zu
+# zeigen.
+#
+# Jeder alte Satz muss genau einmal im Text stehen, sonst bricht texte()
+# ab (Muster wie formular_einfuegen). Wer also einen Rechtstext fuer
+# Android aendert, merkt sofort, dass die iOS-Fassung mit muss - die Tests
+# laufen sonst nicht durch. Den Wortlaut prueft Ajdin oder ein Anwalt.
+# Verkaeufer: Apple Distribution International Ltd. (Cork), laut Apples
+# Media Services Terms der Haendler fuer App-Store-Kaeufe in der EU.
+#
+# Der Stand am Ende (Pruefbericht 1.4, S22): Bis zum 16.11.2026 erbten die
+# iOS-Fassungen den Stand der Android-Texte, auch wenn sich nur ein Satz hier
+# geaendert hatte - nach ce3a178 (13.11.) zeigten sie "06.11." und "01.11.".
+# Wer an IOS_RECHT etwas aendert, setzt hier den Tag ("TT.MM.JJJJ"). Es gilt
+# der spaetere von beiden, in jeder Sprache in deren Schreibweise
+# (stand_setzen()); ein neuerer Stand fuer Android geht also mit.
+# 16.11.2026: Datenschutz ohne App-Set-ID (S23) und mit dem Satz, dass
+# Google die Werbedaten nach denselben Regeln verarbeitet. Nutzungsbedingungen: Mit
+# 1.4 kam der Satz zur aerztlichen Aufklaerung (S30, fuer Android Stand
+# 14.11.) auch in die iOS-Fassung - sie entsteht aus set.agb_text, nur die
+# Saetze in IOS_RECHT[code]["agb"] werden getauscht, und keiner davon
+# beruehrt Punkt 2. Fuer das iPhone ist das eine neue Fassung vom 16.11.
+IOS_STAND = {"agb": "16.11.2026", "datenschutz": "16.11.2026"}
+IOS_RECHT = {
+    'de': {
+        'agb': [
+            ('Die erste Lektion geht ohne; danach meldest du dich mit Google oder mit E-Mail und Passwort an.',
+             'Die erste Lektion geht ohne; danach meldest du dich mit Apple, mit Google oder mit E-Mail und Passwort an.'),
+            ('Für den Kauf der Vollversion brauchst du ein Google-Konto.',
+             'Für den Kauf der Vollversion brauchst du einen Apple Account.'),
+            ('Sie hängt an deinem Google-Konto und ist auf einem neuen Gerät von selbst wieder da.',
+             'Sie hängt an deinem Apple Account und kommt auf einem neuen Gerät mit „Käufe wiederherstellen“ zurück.'),
+            ('Eine Verbindung brauchen die Anmeldung, die Sicherung in deinem Konto, Werbung, Käufe und die Frage an den Play Store, ob deine Vollversion läuft.',
+             'Eine Verbindung brauchen die Anmeldung, die Sicherung in deinem Konto, Werbung, Käufe und die Frage an den App Store, ob deine Vollversion läuft.'),
+            ('Preis und Zeitraum zeigt dir die App, bevor du kaufst, und Google noch einmal in seinem Kauffenster.',
+             'Preis und Zeitraum zeigt dir die App, bevor du kaufst, und Apple noch einmal in seinem Kauffenster.'),
+            ('Abgeschlossen wird das Abonnement über den Google Play Store; Verkäufer ist dort Google Commerce Limited, 70 Sir John Rogerson’s Quay, Dublin 2, D02 R296, Irland.',
+             'Abgeschlossen wird das Abonnement über den App Store; Verkäufer ist dort Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland.'),
+            ('Es hängt an dem Google-Konto, mit dem du kaufst – nicht am Gerät; über die Google-Familienmediathek lässt es sich nicht teilen.',
+             'Es hängt an dem Apple Account, mit dem du kaufst – nicht am Gerät; über die Familienfreigabe lässt es sich nicht teilen.'),
+            ('Geht eine Zahlung schief, bleibt die Vollversion zunächst noch aktiv; danach sperrt Google das Abonnement, und Werbung und die normale Zahl an Leben sind zurück.',
+             'Geht eine Zahlung schief, bleibt die Vollversion zunächst noch aktiv; danach sperrt Apple das Abonnement, und Werbung und die normale Zahl an Leben sind zurück.'),
+            ('Eine Preiserhöhung kündigt Google dir mindestens 30 Tage vorher an; je nach Art der Erhöhung musst du ihr zustimmen, sonst endet das Abonnement zum Ende des bezahlten Zeitraums.',
+             'Eine Preiserhöhung kündigt Apple dir vorher an; je nach Art der Erhöhung musst du ihr zustimmen, sonst endet das Abonnement zum Ende des bezahlten Zeitraums.'),
+            ('<b>Kündigung:</b> Du kündigst jederzeit in deinem Google-Konto oder in der App unter „Abo verwalten“.',
+             '<b>Kündigung:</b> Du kündigst jederzeit in den Einstellungen deines Geräts unter deinem Namen → Abonnements oder in der App unter „Abo verwalten“, spätestens 24 Stunden vor Ende des Zeitraums – sonst verlängert es sich noch einmal.'),
+            (' Beim Jahresabo bietet dir Google in Deutschland zusätzlich an, sofort zu kündigen – dann endet die Vollversion sofort und du bekommst den Rest anteilig zurück.',
+             ''),
+            ('Wir haben die Vollversion bei Google ausdrücklich als Dienst eingestuft – deshalb bleibt dir das Recht auch dann, wenn du sie schon benutzt hast.',
+             'Dieses Recht bleibt dir auch dann, wenn du die Vollversion schon benutzt hast.'),
+            ('Am einfachsten widerrufst du über Google Play; dort läuft auch die Erstattung.',
+             'Am einfachsten widerrufst du bei Apple unter reportaproblem.apple.com; dort läuft auch die Erstattung.'),
+            # Konto (Patch b, nach Ajdins Ja): Auf iOS gibt es "Spaeter"
+            # (anmSpaeterHeute), das Konto sichert den Lernstand. Fuer
+            # Android bleibt "Zum Lernen" richtig, dort ist es Pflicht.
+            ('Zum Lernen brauchst du ein Konto bei Zmaj.',
+             'Damit dein Lernstand gesichert wird, brauchst du ein Konto bei Zmaj.'),
+        ],
+        'datenschutz': [
+            # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
+            # Bewertungskarte gibt es auf iOS nicht, und "Konto bei Google" nennt
+            # keinen Kaufweg.
+            ('Tippst du beim Feedback in den Einstellungen oder bei „Verbesserung vorschlagen“ auf „Senden“, schickt die App',
+             'Tippst du beim Feedback in den Einstellungen auf „Senden“, schickt die App'),
+            ('Ein Skript in unserem Google-Konto (Google Apps Script)',
+             'Ein Skript in unserem Konto bei Google (Google Apps Script)'),
+            ('Für den Kauf der Vollversion brauchst du außerdem ein Google-Konto – das gehört zu Google, nicht zu uns; mehr dazu in Abschnitt 7.',
+             'Für den Kauf der Vollversion brauchst du außerdem einen Apple Account – der gehört zu Apple, nicht zu uns; mehr dazu in Abschnitt 7.'),
+            ('<b>Androids eigene Sicherung:</b> Hast du sie in deinem Google-Konto eingeschaltet, nimmt Android die Daten der App dort mit, damit sie beim Handywechsel erhalten bleiben.',
+             '<b>iCloud-Backup:</b> Hast du es eingeschaltet, nimmt dein Gerät die Daten der App dort mit, damit sie beim Gerätewechsel erhalten bleiben.'),
+            ('Das macht Android, nicht die App, und wir haben darauf keinen Zugriff.',
+             'Das macht Apple, nicht die App, und wir haben darauf keinen Zugriff.'),
+            ('Meldest du dich mit Google an, übergibt Google zusätzlich deinen Namen und die Adresse deines Profilbilds; die App zeigt beides nicht an und nutzt es nicht.',
+             'Meldest du dich mit Google an, übergibt Google zusätzlich deinen Namen und die Adresse deines Profilbilds; die App zeigt beides nicht an und nutzt es nicht. Meldest du dich mit Apple an, übergibt Apple eine Kennung und deine E-Mail-Adresse – auf Wunsch eine Weiterleitungsadresse von Apple („E-Mail-Adresse verbergen“) – und beim ersten Mal deinen Namen; die App nutzt den Namen nicht.'),
+            ('<b>Handywechsel:</b> Damit du auf einem neuen Handy angemeldet bleibst, legt die App einen Anmeldeschlüssel in ihren Daten ab, die Androids eigene Sicherung mitnimmt, und einen Wiederherstellungsschlüssel, der nur die Kennung deines Kontos enthält, bei den Google-Diensten auf deinem Gerät. Beim Abmelden und beim Löschen des Kontos löscht die App beide.',
+             '<b>Gerätewechsel:</b> Damit du auf einem neuen Gerät angemeldet bleibst, legt die App einen Anmeldeschlüssel im Schlüsselbund deines Geräts ab; ist der iCloud-Schlüsselbund eingeschaltet, kommt er auf dein neues Gerät mit. Beim Abmelden und beim Löschen des Kontos löscht die App ihn, und bei einem Konto mit „Mit Apple anmelden“ widerruft sie beim Löschen auch die Anmeldung bei Apple.'),
+            ('Tippst du auf „Zmaj bewerten“, öffnet sich Google Play.',
+             'Tippst du auf „Zmaj bewerten“, öffnet sich der App Store.'),
+            ('Was du dort schreibst, ist öffentlich und wird von Google verarbeitet, nicht von uns.',
+             'Was du dort schreibst, ist öffentlich und wird von Apple verarbeitet, nicht von uns.'),
+            ('<b>Dabei kann die Aufnahme an den Hersteller deines Geräts oder Browsers übertragen werden</b>, in der Regel Google.',
+             '<b>Dabei kann die Aufnahme an den Hersteller deines Geräts oder Browsers übertragen werden</b>, in der Regel Apple.'),
+            ('Eine Kopie in Androids eigener Sicherung bleibt in deinem Google-Konto, bis du sie dort löschst oder Google sie verfallen lässt.',
+             'Eine Kopie in deinem iCloud-Backup bleibt dort, bis du sie löschst.'),
+            ('Googles Abrechnungen über die Vollversion – Beträge und Länder, nicht wer gekauft hat – müssen wir als Buchungsbeleg acht Jahre aufbewahren; das verlangt das Steuerrecht (§ 147 AO).',
+             'Apples Abrechnungen über die Vollversion – Beträge und Länder, nicht wer gekauft hat – müssen wir als Buchungsbeleg acht Jahre aufbewahren; das verlangt das Steuerrecht (§ 147 AO).'),
+            ('Eine Kopie in Androids eigener Sicherung löschst du in deinem Google-Konto.',
+             'Eine Kopie in deinem iCloud-Backup löschst du in den iCloud-Einstellungen deines Geräts.'),
+            ('Ein laufendes Abonnement endet dadurch nicht; das kündigst du in deinem Google-Konto.',
+             'Ein laufendes Abonnement endet dadurch nicht; das kündigst du in den Einstellungen deines Geräts unter deinem Namen → Abonnements.'),
+            ('Auf deinem Gerät: solange die App installiert ist.',
+             'Auf deinem Gerät: solange die App installiert ist; der Anmeldeschlüssel im Schlüsselbund auch darüber hinaus, bis du dich in der App abmeldest oder dort das Konto löschst.'),
+            ('Die Daten auf dem Gerät löschst du auch, indem du die App löschst oder ihren Speicher leerst.',
+             'Die Daten auf dem Gerät löschst du auch, indem du die App löschst – bis auf den Anmeldeschlüssel im Schlüsselbund: Der bleibt erhalten, bei eingeschaltetem iCloud-Schlüsselbund auch auf deinen anderen Geräten, bis du dich in der App abmeldest oder dort das Konto löschst. Installierst du die App neu, bist du mit ihm gleich wieder angemeldet.'),
+            # Konto (Patch b): Abschnitt 2 und 3 wie in den Nutzungsbedingungen.
+            ('Zum Lernen in der App brauchst du ein <b>Konto bei Zmaj</b>;',
+             'Damit dein Lernstand gesichert wird, brauchst du ein <b>Konto bei Zmaj</b>;'),
+            ('Das Konto ist Voraussetzung für die Nutzung der App;',
+             'Das Konto ist Voraussetzung für die Sicherung deines Lernstands;'),
+        ],
+        'werbung': [
+            # App-Set-ID (S23, Android 1.4, Ajdin 15.11.2026: "ja"): Die
+            # gibt es nur auf Android. Googles Angaben fuer iOS nennen an
+            # der Stelle "app- or developer-bounded device identifiers",
+            # also bleibt die Erklaerung in Klammern und nur der Name geht
+            # (Release\Datenschutz_S23_Entwurf.md, 16.11.2026).
+            ('die App-Set-ID (eine Kennung, die nur für die Apps eines Anbieters gilt),',
+             'eine Kennung, die nur für die Apps eines Anbieters gilt,'),
+            # Absturzberichte (Patch a, nach Ajdins Ja): Googles Angaben fuer
+            # iOS fuehren sie als eigene Datenart (nicht nutzerbezogen),
+            # die fuer Android nicht. Darum nur hier.
+            ('Startzeit, Hänger und Energieverbrauch.',
+             'Startzeit, Hänger und Energieverbrauch, dazu Absturzberichte ohne Bezug zu dir.'),
+            # Fremde Dienste (Ajdin 15.11.2026, Fragen 15.11. Nr. 2: "2 ja"):
+            # Apple will in der Erklaerung lesen, dass wer Daten bekommt,
+            # sie genauso schuetzt. Beim Konto steht das schon (Firebase als
+            # Auftragsverarbeiter), bei der Werbung fehlte es. Gesucht wird
+            # nur das Ende des Satzes "Google verwendet all das ...": dessen
+            # Anfang ist die Spur von werbung_texte.py (tests/test_richten.py).
+            ('ihre Reichweite zu messen und Betrug zu erkennen.',
+             'ihre Reichweite zu messen und Betrug zu erkennen. Google verarbeitet die Daten für uns nach denselben Regeln wie in dieser Erklärung.'),
+            ('<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen.',
+             '<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen. Auf iPhone und iPad fragt danach Apple, ob die App dich über Apps und Websites anderer Firmen hinweg verfolgen darf (App-Tracking-Transparenz); nur mit deinem Ja bekommt Google die Werbe-ID. Ändern kannst du das jederzeit in den Einstellungen deines Geräts unter Datenschutz & Sicherheit → Tracking.'),
+        ],
+        'werbung_aus': [
+            ('Von sich aus spricht die App nur mit Firebase für dein Konto (Abschnitt 3) und fragt beim Play Store nach, ob für dein Google-Konto eine Vollversion läuft – siehe unten.',
+             'Von sich aus spricht die App nur mit Firebase für dein Konto (Abschnitt 3) und fragt beim App Store nach, ob für deinen Apple Account eine Vollversion läuft – siehe unten.'),
+        ],
+        'abo': '<b>Vollversion (Abo):</b> Für den Kauf brauchst du einen Apple Account. Verkäufer ist Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland. Apple verarbeitet deine Konto- und Zahlungsdaten in eigener Verantwortung; was Apple damit macht, steht in Apples Datenschutzrichtlinie: apple.com/legal/privacy<br>Die App fragt über den App Store auf deinem Gerät nach, ob dein Abo läuft: bei jedem Start, bei jeder Rückkehr in die App, wenn du das Fenster für die Vollversion öffnest und wenn du auf „Käufe wiederherstellen“ tippst. Auf deinem Gerät merkt sie sich nur, ob es aktiv ist. Wir erfahren davon nur die Antwort: ja oder nein.<br>Deine Zahlungsdaten bekommen wir nie zu sehen; Apple gibt sie nicht an Entwickler weiter. In Apples Abrechnung sehen wir Beträge und Länder, nicht wer gekauft hat.<br>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO: Die Abfrage ist nötig, damit wir dir die Vollversion geben können, die du nach unseren Nutzungsbedingungen bekommst. Der Kaufvertrag selbst kommt zwischen dir und Apple zustande.',
+    },
+    'en': {
+        'agb': [
+            ('The first lesson works without one; after that you sign in with Google or with email and password.',
+             'The first lesson works without one; after that you sign in with Apple, with Google or with email and password.'),
+            ('To buy the full version you need a Google account.',
+             'To buy the full version you need an Apple Account.'),
+            ('it belongs to your Google account and comes back on a new device by itself.',
+             'it belongs to your Apple Account and comes back on a new device with “Restore purchases”.'),
+            ('A connection is needed for signing in, the backup in your account, advertising, purchases and asking the Play Store whether your full version is running.',
+             'A connection is needed for signing in, the backup in your account, advertising, purchases and asking the App Store whether your full version is running.'),
+            ('The app shows you the price and the term before you buy, and Google shows them again in its purchase window.',
+             'The app shows you the price and the term before you buy, and Apple shows them again in its purchase window.'),
+            ('The subscription is taken out through the Google Play Store; the seller there is Google Commerce Limited, 70 Sir John Rogerson’s Quay, Dublin 2, D02 R296, Ireland.',
+             'The subscription is taken out through the App Store; the seller there is Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Ireland.'),
+            ("It is tied to the Google account you buy it with – not to the device; it cannot be shared through Google's Family Library.",
+             'It is tied to the Apple Account you buy it with – not to the device; it cannot be shared through Family Sharing.'),
+            ('If a payment fails, the full version stays active at first; after that Google suspends the subscription, and the advertising and the normal number of hearts are back.',
+             'If a payment fails, the full version stays active at first; after that Apple suspends the subscription, and the advertising and the normal number of hearts are back.'),
+            ('Google announces a price increase at least 30 days in advance; depending on the kind of increase you have to agree to it, otherwise the subscription ends at the end of the period you have paid for.',
+             'Apple announces a price increase in advance; depending on the kind of increase you have to agree to it, otherwise the subscription ends at the end of the period you have paid for.'),
+            ('<b>Cancellation:</b> You can cancel at any time in your Google account or in the app under “Manage subscription”.',
+             '<b>Cancellation:</b> You can cancel at any time in your device’s Settings under your name → Subscriptions or in the app under “Manage subscription”, at the latest 24 hours before the end of the period – otherwise it renews once more.'),
+            (' For the yearly subscription Google in Germany also offers you the option of cancelling straight away – the full version then ends at once and you get the rest back pro rata.',
+             ''),
+            ('With Google we have expressly classified the full version as a service – so the right stays with you even if you have already used it.',
+             'This right stays with you even if you have already used the full version.'),
+            ('The easiest way to withdraw is through Google Play; the refund is handled there too.',
+             'The easiest way to withdraw is through Apple at reportaproblem.apple.com; the refund is handled there too.'),
+            ('To learn you need a Zmaj account.',
+             'So that your progress is backed up, you need a Zmaj account.'),
+        ],
+        'datenschutz': [
+            # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
+            # Bewertungskarte gibt es auf iOS nicht, und "Konto bei Google" nennt
+            # keinen Kaufweg.
+            ('When you tap “Send” under Feedback in the settings or under “Suggest an improvement”, the app',
+             'When you tap “Send” under Feedback in the settings, the app'),
+            ('A script in our Google account (Google Apps Script)',
+             'A script in our account with Google (Google Apps Script)'),
+            ('To buy the full version you also need a Google account – that one belongs to Google, not to us; more on this in section 7.',
+             'To buy the full version you also need an Apple Account – that one belongs to Apple, not to us; more on this in section 7.'),
+            ("<b>Android's own backup:</b> If you have turned it on in your Google account, Android includes the app's data there so that it survives a phone change.",
+             "<b>iCloud Backup:</b> If you have turned it on, your device includes the app's data there so that it survives a change of device."),
+            ('Android does this, not the app, and we have no access to it.',
+             'Apple does this, not the app, and we have no access to it.'),
+            ('If you sign in with Google, Google also passes on your name and the address of your profile picture; the app does not show or use either.',
+             'If you sign in with Google, Google also passes on your name and the address of your profile picture; the app does not show or use either. If you sign in with Apple, Apple passes on an identifier and your email address – if you like, a forwarding address from Apple (“Hide My Email”) – and, the first time, your name; the app does not use the name.'),
+            ("<b>Switching phones:</b> So that you stay signed in on a new phone, the app keeps a sign-in key in its data, which Android's own backup takes along, and a restore key that contains only your account identifier with the Google services on your device. When you sign out or delete your account, the app deletes both.",
+             "<b>Switching devices:</b> So that you stay signed in on a new device, the app keeps a sign-in key in your device's keychain; if iCloud Keychain is turned on, it comes along to your new device. When you sign out or delete your account, the app deletes it, and for an account using “Sign in with Apple” it also revokes the sign-in with Apple when you delete the account."),
+            ('If you tap “Rate Zmaj”, Google Play opens.',
+             'If you tap “Rate Zmaj”, the App Store opens.'),
+            ('What you write there is public and is processed by Google, not by us.',
+             'What you write there is public and is processed by Apple, not by us.'),
+            ('<b>In the process the recording may be transmitted to the maker of your device or browser</b>, usually Google.',
+             '<b>In the process the recording may be transmitted to the maker of your device or browser</b>, usually Apple.'),
+            ("A copy in Android's own backup stays in your Google account until you delete it there or Google lets it expire.",
+             'A copy in your iCloud Backup stays there until you delete it.'),
+            ("Google's statements for the full version – amounts and countries, not who bought it – must be kept as accounting records for eight years; tax law requires this (§ 147 AO).",
+             "Apple's statements for the full version – amounts and countries, not who bought it – must be kept as accounting records for eight years; tax law requires this (§ 147 AO)."),
+            ("A copy in Android's own backup is deleted in your Google account.",
+             "A copy in your iCloud Backup is deleted in your device's iCloud settings."),
+            ('A running subscription does not end with this; you cancel it in your Google account.',
+             "A running subscription does not end with this; you cancel it in your device's Settings under your name → Subscriptions."),
+            ('On your device: as long as the app is installed.',
+             'On your device: as long as the app is installed; the sign-in key in the keychain also beyond that, until you sign out in the app or delete the account there.'),
+            ('You can also delete the data on the device by deleting the app or clearing its storage.',
+             'You can also delete the data on the device by deleting the app – except for the sign-in key in the keychain: it stays, with iCloud Keychain turned on also on your other devices, until you sign out in the app or delete the account there. If you reinstall the app, the key signs you straight back in.'),
+            ('To learn in the app you need a <b>Zmaj account</b>;',
+             'So that your progress is backed up, you need a <b>Zmaj account</b>;'),
+            ('The account is required to use the app;',
+             'The account is required for backing up your progress;'),
+        ],
+        'werbung': [
+            ('the app set ID (an identifier that only applies to the apps of one developer),',
+             'an identifier that only applies to the apps of one developer,'),
+            ('start-up time, freezes and battery use.',
+             'start-up time, freezes and battery use, plus crash reports that are not linked to you.'),
+            ('measure their reach and detect fraud.',
+             'measure their reach and detect fraud. Google processes the data for us under the same rules as in this privacy policy.'),
+            ('<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests.',
+             "<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests. On iPhone and iPad, Apple then asks whether the app may track you across apps and websites owned by other companies (App Tracking Transparency); only if you say yes does Google receive the advertising ID. You can change this at any time in your device's Settings under Privacy & Security → Tracking."),
+        ],
+        'werbung_aus': [
+            ('On its own, the app only talks to Firebase for your account (section 3) and asks the Play Store whether a full version is running for your Google account – see below.',
+             'On its own, the app only talks to Firebase for your account (section 3) and asks the App Store whether a full version is running for your Apple Account – see below.'),
+        ],
+        'abo': "<b>Full version (subscription):</b> To buy it you need an Apple Account. The seller is Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Ireland. Apple processes your account and payment data under its own responsibility; what Apple does with it is set out in Apple's privacy policy: apple.com/legal/privacy<br>The app asks the App Store on your device whether your subscription is running: each time it starts, each time you return to the app, when you open the window for the full version and when you tap “Restore purchases”. On your device it only remembers whether it is active. All we learn is the answer: yes or no.<br>We never see your payment data; Apple does not pass it on to developers. In Apple's statements we see amounts and countries, not who bought.<br>The legal basis is Art. 6(1)(b) GDPR: the check is necessary so that we can give you the full version you get under our terms of use. The purchase contract itself is between you and Apple.",
+    },
+    'tr': {
+        'agb': [
+            ('İlk ders hesapsız olur; sonra Google ile ya da e-posta ve parolayla giriş yaparsın.',
+             'İlk ders hesapsız olur; sonra Apple ile, Google ile ya da e-posta ve parolayla giriş yaparsın.'),
+            ('Tam sürümü satın almak için bir Google hesabı gerekir.',
+             'Tam sürümü satın almak için bir Apple Hesabı gerekir.'),
+            ('Google hesabına bağlıdır ve yeni bir cihazda kendiliğinden geri gelir.',
+             'Apple Hesabına bağlıdır ve yeni bir cihazda “Satın alımları geri yükle” ile geri gelir.'),
+            ("Bağlantı; giriş, hesabındaki yedek, reklamlar, satın almalar ve tam sürümünün etkin olup olmadığını Play Store'a sormak için gerekir.",
+             "Bağlantı; giriş, hesabındaki yedek, reklamlar, satın almalar ve tam sürümünün etkin olup olmadığını App Store'a sormak için gerekir."),
+            ('Fiyatı ve süreyi satın almadan önce sana uygulama gösterir, bir kez de Google kendi satın alma penceresinde gösterir.',
+             'Fiyatı ve süreyi satın almadan önce sana uygulama gösterir, bir kez de Apple kendi satın alma penceresinde gösterir.'),
+            ("Abonelik Google Play Store üzerinden yapılır; oradaki satıcı Google Commerce Limited, 70 Sir John Rogerson’s Quay, Dublin 2, D02 R296, İrlanda'dır.",
+             "Abonelik App Store üzerinden yapılır; oradaki satıcı Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, İrlanda'dır."),
+            ('Abonelik, satın alırken kullandığın Google hesabına bağlıdır – cihaza değil; Google Play Aile Kitaplığı üzerinden paylaşılamaz.',
+             'Abonelik, satın alırken kullandığın Apple Hesabına bağlıdır – cihaza değil; Aile Paylaşımı üzerinden paylaşılamaz.'),
+            ('Bir ödeme aksarsa tam sürüm bir süre daha etkin kalır; ardından Google aboneliği durdurur, reklamlar ve normal can sayısı geri gelir.',
+             'Bir ödeme aksarsa tam sürüm bir süre daha etkin kalır; ardından Apple aboneliği durdurur, reklamlar ve normal can sayısı geri gelir.'),
+            ('Bir zam olursa Google bunu sana en az 30 gün önceden bildirir; zammın türüne göre onay vermen gerekebilir, yoksa abonelik ödediğin dönemin sonunda biter.',
+             'Bir zam olursa Apple bunu sana önceden bildirir; zammın türüne göre onay vermen gerekebilir, yoksa abonelik ödediğin dönemin sonunda biter.'),
+            ('<b>İptal:</b> Aboneliği istediğin zaman Google hesabından ya da uygulamada “Aboneliği yönet” bölümünden iptal edersin.',
+             "<b>İptal:</b> Aboneliği istediğin zaman cihazının Ayarlar'ında adına dokunup Abonelikler'den ya da uygulamada “Aboneliği yönet” bölümünden, dönemin bitiminden en geç 24 saat önce iptal edersin – yoksa bir kez daha yenilenir."),
+            (" Yıllık abonelikte Google, Almanya'da ayrıca hemen iptal etme imkânı sunar – o zaman tam sürüm hemen biter ve kalanı orantılı olarak geri alırsın.",
+             ''),
+            ("Tam sürümü Google'da açıkça hizmet olarak tanımladık – bu yüzden onu kullanmaya başlamış olsan da hakkın devam eder.",
+             'Tam sürümü kullanmaya başlamış olsan da bu hakkın devam eder.'),
+            ('En kolayı Google Play üzerinden caymaktır; geri ödeme de orada yapılır.',
+             'En kolayı Apple üzerinden, reportaproblem.apple.com adresinde caymaktır; geri ödeme de orada yapılır.'),
+            ('Öğrenmek için bir Zmaj hesabına ihtiyacın var.',
+             'İlerlemenin yedeklenmesi için bir Zmaj hesabına ihtiyacın var.'),
+        ],
+        'datenschutz': [
+            # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
+            # Bewertungskarte gibt es auf iOS nicht, und "Konto bei Google" nennt
+            # keinen Kaufweg.
+            ('Ayarlarda Geri bildirim bölümünde ya da “İyileştirme öner”de “Gönder”e dokunduğunda',
+             'Ayarlarda Geri bildirim bölümünde “Gönder”e dokunduğunda'),
+            ('Google hesabımızdaki bir betik (Google Apps Script) mesajı',
+             "Google'daki hesabımızda bulunan bir betik (Google Apps Script) mesajı"),
+            ("Tam sürümü satın almak için ayrıca bir Google hesabı gerekir – o Google'a aittir, bize değil; ayrıntılar 7.",
+             "Tam sürümü satın almak için ayrıca bir Apple Hesabı gerekir – o Apple'a aittir, bize değil; ayrıntılar 7."),
+            ("<b>Android'in kendi yedeklemesi:</b> Bunu Google hesabında açtıysan, Android telefon değiştirdiğinde kaybolmasın diye uygulamanın verilerini oraya da yedekler.",
+             '<b>iCloud Yedekleme:</b> Bunu açtıysan, cihazın değiştirdiğinde kaybolmasın diye cihazın uygulamanın verilerini oraya da yedekler.'),
+            ('Bunu uygulama değil Android yapar ve bizim buna erişimimiz yoktur.',
+             'Bunu uygulama değil Apple yapar ve bizim buna erişimimiz yoktur.'),
+            ('Google ile giriş yaparsan Google ayrıca adını ve profil resminin adresini iletir; uygulama ikisini de göstermez ve kullanmaz.',
+             "Google ile giriş yaparsan Google ayrıca adını ve profil resminin adresini iletir; uygulama ikisini de göstermez ve kullanmaz. Apple ile giriş yaparsan Apple bir kimlik ve e-posta adresini iletir – istersen Apple'ın bir yönlendirme adresini (“E-postamı Gizle”) – ve ilk seferde adını; uygulama adını kullanmaz."),
+            ("<b>Telefon değiştirme:</b> Yeni telefonda da girişli kalman için uygulama, Android'in kendi yedeklemesinin de aldığı verilerine bir giriş anahtarı, cihazındaki Google hizmetlerine de yalnızca hesap kimliğini içeren bir geri yükleme anahtarı koyar. Çıkış yaptığında ve hesabını sildiğinde uygulama ikisini de siler.",
+             "<b>Cihaz değiştirme:</b> Yeni cihazda da girişli kalman için uygulama, cihazının anahtar zincirine bir giriş anahtarı koyar; iCloud Anahtar Zinciri açıksa bu anahtar yeni cihazına da gelir. Çıkış yaptığında ve hesabını sildiğinde uygulama onu siler; “Apple ile Giriş Yap” kullanan bir hesap silinirken Apple'daki girişi de geri alır."),
+            ("“Zmaj'ı değerlendir”e dokunursan Google Play açılır.",
+             "“Zmaj'ı değerlendir”e dokunursan App Store açılır."),
+            ('Orada yazdıkların herkese açıktır ve bizim tarafımızdan değil, Google tarafından işlenir.',
+             'Orada yazdıkların herkese açıktır ve bizim tarafımızdan değil, Apple tarafından işlenir.'),
+            ("<b>Bu sırada kayıt, cihazının ya da tarayıcının üreticisine aktarılabilir</b>, bu genellikle Google'dır.",
+             "<b>Bu sırada kayıt, cihazının ya da tarayıcının üreticisine aktarılabilir</b>, bu genellikle Apple'dır."),
+            ("Android'in kendi yedeklemesindeki bir kopya, onu oradan silene ya da Google süresini doldurana kadar Google hesabında kalır.",
+             "iCloud Yedekleme'deki bir kopya, onu silene kadar orada kalır."),
+            ('Tam sürümle ilgili Google hesap dökümlerini – kimin aldığını değil, tutarları ve ülkeleri – muhasebe belgesi olarak sekiz yıl saklamak zorundayız; bunu vergi hukuku istiyor (§ 147 AO).',
+             'Tam sürümle ilgili Apple hesap dökümlerini – kimin aldığını değil, tutarları ve ülkeleri – muhasebe belgesi olarak sekiz yıl saklamak zorundayız; bunu vergi hukuku istiyor (§ 147 AO).'),
+            ("Android'in kendi yedeklemesindeki bir kopyayı Google hesabından silersin.",
+             "iCloud Yedekleme'deki bir kopyayı cihazının iCloud ayarlarından silersin."),
+            ('Devam eden bir abonelik bununla sona ermez; onu Google hesabından iptal edersin.',
+             "Devam eden bir abonelik bununla sona ermez; onu cihazının Ayarlar'ında adına dokunup Abonelikler'den iptal edersin."),
+            ('Cihazında: uygulama yüklü olduğu sürece.',
+             'Cihazında: uygulama yüklü olduğu sürece; anahtar zincirindeki giriş anahtarı ise bundan sonra da, uygulamada çıkış yapana ya da hesabını orada silene kadar.'),
+            ('Cihazdaki verileri uygulamayı silerek ya da depolamasını temizleyerek de silebilirsin.',
+             'Cihazdaki verileri uygulamayı silerek de silebilirsin – anahtar zincirindeki giriş anahtarı hariç: O, uygulamada çıkış yapana ya da hesabını orada silene kadar kalır; iCloud Anahtar Zinciri açıksa diğer cihazlarında da. Uygulamayı yeniden yüklersen bu anahtarla hemen yeniden girişli olursun.'),
+            ('Uygulamada öğrenmek için bir <b>Zmaj hesabına</b> ihtiyacın var;',
+             'İlerlemenin yedeklenmesi için bir <b>Zmaj hesabına</b> ihtiyacın var;'),
+            ('Hesap, uygulamayı kullanmanın ön koşuludur;',
+             'Hesap, ilerlemenin yedeklenmesinin ön koşuludur;'),
+        ],
+        'werbung': [
+            ('uygulama seti kimliğini (yalnızca aynı geliştiricinin uygulamalarında geçerli bir kimlik),',
+             'yalnızca aynı geliştiricinin uygulamalarında geçerli bir kimliği,'),
+            ('başlatma süresi, takılmalar ve pil tüketimi.',
+             'başlatma süresi, takılmalar ve pil tüketimi; ayrıca seninle ilişkilendirilmeyen çökme raporları.'),
+            ('erişimi ölçmek ve dolandırıcılığı tespit etmek için kullanır.',
+             'erişimi ölçmek ve dolandırıcılığı tespit etmek için kullanır. Google verileri bizim için bu gizlilik politikasındaki kuralların aynısına göre işler.'),
+            ('<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar.',
+             "<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar. iPhone ve iPad'de ardından Apple, uygulamanın seni başka şirketlerin uygulama ve web sitelerinde izleyip izleyemeyeceğini sorar (Uygulama İzleme Şeffaflığı); Google reklam kimliğini yalnızca sen evet dersen alır. Bunu istediğin zaman cihazının Ayarlar'ında Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin."),
+        ],
+        'werbung_aus': [
+            ("Uygulama kendiliğinden yalnızca hesabın için Firebase'e (3. bölüm) bağlanır ve Play Store'a, Google hesabın için bir tam sürüm olup olmadığını sorar – aşağıya bak.",
+             "Uygulama kendiliğinden yalnızca hesabın için Firebase'e (3. bölüm) bağlanır ve App Store'a, Apple Hesabın için bir tam sürüm olup olmadığını sorar – aşağıya bak."),
+        ],
+        'abo': "<b>Tam sürüm (abonelik):</b> Satın almak için bir Apple Hesabı gerekir. Satıcı, Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, İrlanda'dır. Apple hesap ve ödeme verilerini kendi sorumluluğunda işler; Apple'ın bunlarla ne yaptığı Apple'ın gizlilik politikasında yazar: apple.com/legal/privacy<br>Uygulama, aboneliğinin etkin olup olmadığını cihazındaki App Store'a sorar: her açılışta, uygulamaya her dönüşünde, tam sürüm penceresini açtığında ve “Satın alımları geri yükle”ye dokunduğunda. Cihazında yalnızca etkin olup olmadığını hatırlar. Biz bundan yalnızca cevabı öğreniriz: evet ya da hayır.<br>Ödeme verilerini hiçbir zaman görmeyiz; Apple bunları geliştiricilere vermez. Apple'ın hesap dökümlerinde tutarları ve ülkeleri görürüz, kimin satın aldığını değil.<br>Hukuki dayanak GDPR md. 6/1-b'dir: Bu sorgu, kullanım koşullarımıza göre sana vermemiz gereken tam sürümü verebilmemiz için gereklidir. Satın alma sözleşmesi ise seninle Apple arasında kurulur.",
+    },
+    'sv': {
+        'agb': [
+            ('Den första lektionen går utan; sedan loggar du in med Google eller med e-post och lösenord.',
+             'Den första lektionen går utan; sedan loggar du in med Apple, med Google eller med e-post och lösenord.'),
+            ('För att köpa fullversionen behöver du ett Google-konto.',
+             'För att köpa fullversionen behöver du ett Apple-konto.'),
+            ('den är kopplad till ditt Google-konto och kommer tillbaka av sig själv på en ny enhet.',
+             'den är kopplad till ditt Apple-konto och kommer tillbaka på en ny enhet med ”Återställ köp”.'),
+            ('En anslutning krävs för inloggningen, säkerhetskopian i ditt konto, reklam, köp och frågan till Google Play om din fullversion är aktiv.',
+             'En anslutning krävs för inloggningen, säkerhetskopian i ditt konto, reklam, köp och frågan till App Store om din fullversion är aktiv.'),
+            ('Pris och löptid visar appen innan du köper, och Google en gång till i sitt köpfönster.',
+             'Pris och löptid visar appen innan du köper, och Apple en gång till i sitt köpfönster.'),
+            ('Prenumerationen tecknas via Google Play-butiken; säljare där är Google Commerce Limited, 70 Sir John Rogerson’s Quay, Dublin 2, D02 R296, Irland.',
+             'Prenumerationen tecknas via App Store; säljare där är Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland.'),
+            ('Den hör till det Google-konto du köper med – inte till enheten; via Googles familjebibliotek går den inte att dela.',
+             'Den hör till det Apple-konto du köper med – inte till enheten; via Familjedelning går den inte att dela.'),
+            ('Misslyckas en betalning är fullversionen kvar till att börja med; därefter spärrar Google prenumerationen, och reklamen och det vanliga antalet hjärtan är tillbaka.',
+             'Misslyckas en betalning är fullversionen kvar till att börja med; därefter spärrar Apple prenumerationen, och reklamen och det vanliga antalet hjärtan är tillbaka.'),
+            ('Google meddelar en prishöjning minst 30 dagar i förväg; beroende på vilken sorts höjning det är måste du godkänna den, annars upphör prenumerationen när den betalda perioden tar slut.',
+             'Apple meddelar en prishöjning i förväg; beroende på vilken sorts höjning det är måste du godkänna den, annars upphör prenumerationen när den betalda perioden tar slut.'),
+            ('<b>Uppsägning:</b> Du säger upp prenumerationen när du vill i ditt Google-konto eller i appen under ”Hantera prenumeration”.',
+             '<b>Uppsägning:</b> Du säger upp prenumerationen när du vill i enhetens Inställningar under ditt namn → Prenumerationer eller i appen under ”Hantera prenumeration”, senast 24 timmar innan perioden tar slut – annars förnyas den en gång till.'),
+            (' Vid årsprenumeration erbjuder Google i Tyskland dessutom att säga upp med omedelbar verkan – då upphör fullversionen genast och du får tillbaka pengarna för den tid som återstår.',
+             ''),
+            ('Vi har uttryckligen registrerat fullversionen hos Google som en tjänst – därför har du kvar ångerrätten även om du redan har använt fullversionen.',
+             'Ångerrätten har du kvar även om du redan har använt fullversionen.'),
+            ('Enklast ångrar du dig via Google Play; där sker också återbetalningen.',
+             'Enklast ångrar du dig hos Apple på reportaproblem.apple.com; där sker också återbetalningen.'),
+            ('För att lära dig behöver du ett Zmaj-konto.',
+             'För att dina framsteg ska säkerhetskopieras behöver du ett Zmaj-konto.'),
+        ],
+        'datenschutz': [
+            # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
+            # Bewertungskarte gibt es auf iOS nicht, und "Konto bei Google" nennt
+            # keinen Kaufweg.
+            ('Trycker du på ”Skicka” under Synpunkter i inställningarna eller under ”Föreslå en förbättring” skickar',
+             'Trycker du på ”Skicka” under Synpunkter i inställningarna skickar'),
+            ('Ett skript i vårt Google-konto (Google Apps Script)',
+             'Ett skript i vårt konto hos Google (Google Apps Script)'),
+            ('För att köpa fullversionen behöver du dessutom ett Google-konto – det hör till Google, inte till oss; mer om det i avsnitt 7.',
+             'För att köpa fullversionen behöver du dessutom ett Apple-konto – det hör till Apple, inte till oss; mer om det i avsnitt 7.'),
+            ('<b>Androids egen säkerhetskopiering:</b> Har du slagit på den i ditt Google-konto tar Android med appens data dit, så att den finns kvar när du byter telefon.',
+             '<b>iCloud-säkerhetskopiering:</b> Har du slagit på den tar din enhet med appens data dit, så att den finns kvar när du byter enhet.'),
+            ('Det gör Android, inte appen, och vi har ingen åtkomst till den.',
+             'Det gör Apple, inte appen, och vi har ingen åtkomst till den.'),
+            ('Loggar du in med Google lämnar Google dessutom över ditt namn och adressen till din profilbild; appen visar och använder inget av det.',
+             'Loggar du in med Google lämnar Google dessutom över ditt namn och adressen till din profilbild; appen visar och använder inget av det. Loggar du in med Apple lämnar Apple över en identifierare och din e-postadress – om du vill en vidarebefordringsadress från Apple (”Dölj min e-post”) – och första gången ditt namn; appen använder inte namnet.'),
+            ('<b>Byta telefon:</b> För att du ska förbli inloggad på en ny telefon lägger appen en inloggningsnyckel i sina data, som Androids egen säkerhetskopiering tar med, och en återställningsnyckel, som bara innehåller ditt kontos identifierare, hos Googles tjänster på din enhet. När du loggar ut och när du raderar kontot raderar appen båda.',
+             '<b>Byta enhet:</b> För att du ska förbli inloggad på en ny enhet lägger appen en inloggningsnyckel i enhetens nyckelring; är iCloud-nyckelring påslagen följer den med till din nya enhet. När du loggar ut och när du raderar kontot raderar appen den, och för ett konto med ”Logga in med Apple” återkallar den då också inloggningen hos Apple.'),
+            ('Trycker du på ”Betygsätt Zmaj” öppnas Google Play.',
+             'Trycker du på ”Betygsätt Zmaj” öppnas App Store.'),
+            ('Det du skriver där är offentligt och behandlas av Google, inte av oss.',
+             'Det du skriver där är offentligt och behandlas av Apple, inte av oss.'),
+            ('<b>Då kan inspelningen överföras till tillverkaren av din enhet eller webbläsare</b>, i regel Google.',
+             '<b>Då kan inspelningen överföras till tillverkaren av din enhet eller webbläsare</b>, i regel Apple.'),
+            ('En kopia i Androids egen säkerhetskopiering ligger kvar i ditt Google-konto tills du raderar den där eller Google låter den löpa ut.',
+             'En kopia i din iCloud-säkerhetskopia ligger kvar där tills du raderar den.'),
+            ('Googles avräkningar för fullversionen – belopp och länder, inte vem som har köpt – måste vi spara som bokföringsunderlag i åtta år; det kräver skattelagstiftningen (§ 147 AO).',
+             'Apples avräkningar för fullversionen – belopp och länder, inte vem som har köpt – måste vi spara som bokföringsunderlag i åtta år; det kräver skattelagstiftningen (§ 147 AO).'),
+            ('En kopia i Androids egen säkerhetskopiering raderar du i ditt Google-konto.',
+             'En kopia i din iCloud-säkerhetskopia raderar du i enhetens iCloud-inställningar.'),
+            ('En pågående prenumeration upphör inte av det; den säger du upp i ditt Google-konto.',
+             'En pågående prenumeration upphör inte av det; den säger du upp i enhetens Inställningar under ditt namn → Prenumerationer.'),
+            ('På din enhet: så länge appen är installerad.',
+             'På din enhet: så länge appen är installerad; inloggningsnyckeln i nyckelringen även därefter, tills du loggar ut i appen eller raderar kontot där.'),
+            ('Uppgifterna på enheten raderar du också genom att avinstallera appen eller tömma dess lagring.',
+             'Uppgifterna på enheten raderar du också genom att avinstallera appen – utom inloggningsnyckeln i nyckelringen: den finns kvar, med iCloud-nyckelring påslagen även på dina andra enheter, tills du loggar ut i appen eller raderar kontot där. Installerar du om appen är du tack vare den direkt inloggad igen.'),
+            ('För att lära dig i appen behöver du ett <b>Zmaj-konto</b>;',
+             'För att dina framsteg ska säkerhetskopieras behöver du ett <b>Zmaj-konto</b>;'),
+            ('Kontot är en förutsättning för att använda appen;',
+             'Kontot är en förutsättning för att dina framsteg ska säkerhetskopieras;'),
+        ],
+        'werbung': [
+            ('app set-id:t (en identifierare som bara gäller för appar från samma utvecklare),',
+             'en identifierare som bara gäller för appar från samma utvecklare,'),
+            ('starttid, hängningar och batteriförbrukning.',
+             'starttid, hängningar och batteriförbrukning, dessutom kraschrapporter som inte är kopplade till dig.'),
+            ('mäta deras räckvidd och upptäcka bedrägerier.',
+             'mäta deras räckvidd och upptäcka bedrägerier. Google behandlar uppgifterna åt oss enligt samma regler som i den här integritetspolicyn.'),
+            ('<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen.',
+             '<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen. På iPhone och iPad frågar Apple sedan om appen får spåra dig i appar och på webbplatser som tillhör andra företag (App Tracking Transparency); bara om du svarar ja får Google annons-id:t. Du kan ändra det när som helst i enhetens Inställningar under Integritet och säkerhet → Spårning.'),
+        ],
+        'werbung_aus': [
+            ('På eget initiativ kontaktar appen bara Firebase för ditt konto (avsnitt 3) och frågar Google Play om det finns en aktiv fullversion för ditt Google-konto – se nedan.',
+             'På eget initiativ kontaktar appen bara Firebase för ditt konto (avsnitt 3) och frågar App Store om det finns en aktiv fullversion för ditt Apple-konto – se nedan.'),
+        ],
+        'abo': '<b>Fullversion (prenumeration):</b> För köpet behöver du ett Apple-konto. Säljare är Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland. Apple behandlar dina konto- och betalningsuppgifter på eget ansvar; vad Apple gör med dem står i Apples integritetspolicy: apple.com/legal/privacy<br>Appen frågar App Store på din enhet om din prenumeration är aktiv: vid varje start, varje gång du kommer tillbaka till appen, när du öppnar fönstret för fullversionen och när du trycker på ”Återställ köp”. På din enhet kommer den bara ihåg om den är aktiv. Vi får bara veta svaret: ja eller nej.<br>Dina betalningsuppgifter ser vi aldrig; Apple lämnar inte ut dem till utvecklare. I Apples avräkningar ser vi belopp och länder, inte vem som har köpt.<br>Rättslig grund är art. 6.1 b GDPR: förfrågan behövs för att vi ska kunna ge dig den fullversion du får enligt våra användarvillkor. Själva köpeavtalet ingås mellan dig och Apple.',
+    },
+    'nl': {
+        'agb': [
+            ('De eerste les gaat zonder; daarna log je in met Google of met e-mail en wachtwoord.',
+             'De eerste les gaat zonder; daarna log je in met Apple, met Google of met e-mail en wachtwoord.'),
+            ('Voor de aankoop van de volledige versie heb je een Google-account nodig.',
+             'Voor de aankoop van de volledige versie heb je een Apple Account nodig.'),
+            ('die is gekoppeld aan je Google-account en is op een nieuw apparaat vanzelf terug.',
+             'die is gekoppeld aan je Apple Account en komt op een nieuw apparaat terug met ‘Aankopen herstellen’.'),
+            ('Een verbinding is nodig voor het inloggen, de back-up in je account, reclame, aankopen en de vraag aan de Play Store of je volledige versie loopt.',
+             'Een verbinding is nodig voor het inloggen, de back-up in je account, reclame, aankopen en de vraag aan de App Store of je volledige versie loopt.'),
+            ('Prijs en periode laat de app je zien voordat je koopt, en Google nog een keer in zijn koopvenster.',
+             'Prijs en periode laat de app je zien voordat je koopt, en Apple nog een keer in zijn koopvenster.'),
+            ('Het abonnement sluit je af via de Google Play Store; verkoper is daar Google Commerce Limited, 70 Sir John Rogerson’s Quay, Dublin 2, D02 R296, Ierland.',
+             'Het abonnement sluit je af via de App Store; verkoper is daar Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Ierland.'),
+            ('Het hangt aan het Google-account waarmee je koopt – niet aan het apparaat; via de Google Play-gezinsbibliotheek is het niet te delen.',
+             'Het hangt aan het Apple Account waarmee je koopt – niet aan het apparaat; via Delen met gezin is het niet te delen.'),
+            ('Gaat een betaling mis, dan blijft de volledige versie eerst nog actief; daarna blokkeert Google het abonnement en zijn de reclame en het gewone aantal levens terug.',
+             'Gaat een betaling mis, dan blijft de volledige versie eerst nog actief; daarna blokkeert Apple het abonnement en zijn de reclame en het gewone aantal levens terug.'),
+            ('Een prijsverhoging kondigt Google minstens 30 dagen van tevoren aan; afhankelijk van het soort verhoging moet je ermee instemmen, anders eindigt het abonnement aan het einde van de betaalde periode.',
+             'Een prijsverhoging kondigt Apple van tevoren aan; afhankelijk van het soort verhoging moet je ermee instemmen, anders eindigt het abonnement aan het einde van de betaalde periode.'),
+            ('<b>Opzeggen:</b> je zegt op elk moment op in je Google-account of in de app onder ‘Abonnement beheren’.',
+             '<b>Opzeggen:</b> je zegt op elk moment op in de Instellingen van je apparaat onder je naam → Abonnementen of in de app onder ‘Abonnement beheren’, uiterlijk 24 uur voor het einde van de periode – anders wordt het nog een keer verlengd.'),
+            (' Bij het jaarabonnement biedt Google je in Duitsland bovendien aan om meteen op te zeggen – dan eindigt de volledige versie direct en krijg je de rest naar rato terug.',
+             ''),
+            ('Wij hebben de volledige versie bij Google uitdrukkelijk als dienst aangemerkt – daarom houd je dat recht ook als je die al gebruikt hebt.',
+             'Dat recht houd je ook als je de volledige versie al gebruikt hebt.'),
+            ('Het eenvoudigst herroep je via Google Play; daar loopt ook de terugbetaling.',
+             'Het eenvoudigst herroep je bij Apple via reportaproblem.apple.com; daar loopt ook de terugbetaling.'),
+            ('Om te leren heb je een Zmaj-account nodig.',
+             'Voor de back-up van je voortgang heb je een Zmaj-account nodig.'),
+        ],
+        'datenschutz': [
+            # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
+            # Bewertungskarte gibt es auf iOS nicht, und "Konto bei Google" nennt
+            # keinen Kaufweg.
+            ('Tik je in de instellingen bij Feedback of bij ‘Verbetering voorstellen’ op ‘Versturen’, dan',
+             'Tik je in de instellingen bij Feedback op ‘Versturen’, dan'),
+            ('Een script in ons Google-account (Google Apps Script)',
+             'Een script in ons account bij Google (Google Apps Script)'),
+            ('Voor de aankoop van de volledige versie heb je daarnaast een Google-account nodig – dat hoort bij Google, niet bij ons; meer daarover in punt 7.',
+             'Voor de aankoop van de volledige versie heb je daarnaast een Apple Account nodig – dat hoort bij Apple, niet bij ons; meer daarover in punt 7.'),
+            ('<b>De eigen back-up van Android:</b> Heb je die in je Google-account aangezet, dan neemt Android de gegevens van de app daarin mee, zodat ze bij een nieuwe telefoon bewaard blijven.',
+             '<b>iCloud-reservekopie:</b> Heb je die aangezet, dan neemt je apparaat de gegevens van de app daarin mee, zodat ze bij een nieuw apparaat bewaard blijven.'),
+            ('Dat doet Android, niet de app, en wij hebben daar geen toegang toe.',
+             'Dat doet Apple, niet de app, en wij hebben daar geen toegang toe.'),
+            ('Log je in met Google, dan geeft Google daarnaast je naam en het adres van je profielfoto door; de app toont en gebruikt geen van beide.',
+             'Log je in met Google, dan geeft Google daarnaast je naam en het adres van je profielfoto door; de app toont en gebruikt geen van beide. Log je in met Apple, dan geeft Apple een ID en je e-mailadres door – als je wilt een doorstuuradres van Apple (‘Verberg mijn e-mailadres’) – en de eerste keer je naam; de app gebruikt de naam niet.'),
+            ('<b>Van telefoon wisselen:</b> Zodat je op een nieuwe telefoon ingelogd blijft, legt de app een inlogsleutel in haar gegevens, die de eigen back-up van Android meeneemt, en een herstelsleutel die alleen de ID van je account bevat bij de Google-diensten op je apparaat. Bij het uitloggen en bij het verwijderen van het account verwijdert de app beide.',
+             '<b>Van apparaat wisselen:</b> Zodat je op een nieuw apparaat ingelogd blijft, legt de app een inlogsleutel in de sleutelhanger van je apparaat; staat de iCloud-sleutelhanger aan, dan gaat die mee naar je nieuwe apparaat. Bij het uitloggen en bij het verwijderen van het account verwijdert de app die sleutel, en bij een account met ‘Log in met Apple’ trekt ze bij het verwijderen ook de inlog bij Apple in.'),
+            ('Tik je op ‘Zmaj beoordelen’, dan opent Google Play.',
+             'Tik je op ‘Zmaj beoordelen’, dan opent de App Store.'),
+            ('Wat je daar schrijft, is openbaar en wordt door Google verwerkt, niet door ons.',
+             'Wat je daar schrijft, is openbaar en wordt door Apple verwerkt, niet door ons.'),
+            ('<b>Daarbij kan de opname naar de maker van je apparaat of browser worden gestuurd</b>, meestal Google.',
+             '<b>Daarbij kan de opname naar de maker van je apparaat of browser worden gestuurd</b>, meestal Apple.'),
+            ('Een kopie in de eigen back-up van Android blijft in je Google-account tot je die daar verwijdert of Google haar laat verlopen.',
+             'Een kopie in je iCloud-reservekopie blijft daar tot je die verwijdert.'),
+            ('De afrekeningen van Google voor de volledige versie – bedragen en landen, niet wie heeft gekocht – moeten we als boekhoudbewijs acht jaar bewaren; dat eist het belastingrecht (§ 147 AO).',
+             'De afrekeningen van Apple voor de volledige versie – bedragen en landen, niet wie heeft gekocht – moeten we als boekhoudbewijs acht jaar bewaren; dat eist het belastingrecht (§ 147 AO).'),
+            ('Een kopie in de eigen back-up van Android wis je in je Google-account.',
+             'Een kopie in je iCloud-reservekopie wis je in de iCloud-instellingen van je apparaat.'),
+            ('Een lopend abonnement eindigt daardoor niet; dat zeg je op in je Google-account.',
+             'Een lopend abonnement eindigt daardoor niet; dat zeg je op in de Instellingen van je apparaat onder je naam → Abonnementen.'),
+            ('Op je apparaat: zolang de app geïnstalleerd is.',
+             'Op je apparaat: zolang de app geïnstalleerd is; de inlogsleutel in de sleutelhanger ook daarna, tot je in de app uitlogt of daar het account verwijdert.'),
+            ('De gegevens op het apparaat wis je ook door de app te verwijderen of de opslag ervan te wissen.',
+             'De gegevens op het apparaat wis je ook door de app te verwijderen – behalve de inlogsleutel in de sleutelhanger: die blijft bewaard, met de iCloud-sleutelhanger aan ook op je andere apparaten, tot je in de app uitlogt of daar het account verwijdert. Installeer je de app opnieuw, dan ben je daarmee meteen weer ingelogd.'),
+            ('Om in de app te leren heb je een <b>Zmaj-account</b> nodig;',
+             'Voor de back-up van je voortgang heb je een <b>Zmaj-account</b> nodig;'),
+            ('Het account is een voorwaarde om de app te gebruiken;',
+             'Het account is een voorwaarde voor de back-up van je voortgang;'),
+        ],
+        'werbung': [
+            ('de app set-ID (een ID die alleen geldt voor de apps van één ontwikkelaar),',
+             'een ID die alleen geldt voor de apps van één ontwikkelaar,'),
+            ('opstarttijd, haperingen en batterijverbruik.',
+             'opstarttijd, haperingen en batterijverbruik, plus crashrapporten die niet aan jou gekoppeld zijn.'),
+            ('hun bereik te meten en fraude op te sporen.',
+             'hun bereik te meten en fraude op te sporen. Google verwerkt de gegevens voor ons volgens dezelfde regels als in deze privacyverklaring.'),
+            ('<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden.',
+             '<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden. Op iPhone en iPad vraagt Apple daarna of de app je mag volgen in apps en op websites van andere bedrijven (App Tracking Transparency); alleen als je ja zegt, krijgt Google de advertentie-ID. Je kunt dat altijd wijzigen in de Instellingen van je apparaat onder Privacy en beveiliging → Tracking.'),
+        ],
+        'werbung_aus': [
+            ('Uit zichzelf maakt de app alleen verbinding met Firebase voor je account (punt 3) en vraagt ze bij de Play Store na of er voor je Google-account een volledige versie actief is – zie hieronder.',
+             'Uit zichzelf maakt de app alleen verbinding met Firebase voor je account (punt 3) en vraagt ze bij de App Store na of er voor je Apple Account een volledige versie actief is – zie hieronder.'),
+        ],
+        'abo': '<b>Volledige versie (abonnement):</b> Voor de aankoop heb je een Apple Account nodig. Verkoper is Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Ierland. Apple verwerkt je account- en betaalgegevens onder eigen verantwoordelijkheid; wat Apple ermee doet, staat in het privacybeleid van Apple: apple.com/legal/privacy<br>De app vraagt via de App Store op je apparaat na of je abonnement loopt: bij elke start, bij elke terugkeer in de app, als je het venster voor de volledige versie opent en als je op ‘Aankopen herstellen’ tikt. Op je apparaat onthoudt ze alleen of het actief is. Wij krijgen alleen het antwoord: ja of nee.<br>Je betaalgegevens krijgen we nooit te zien; Apple geeft ze niet door aan ontwikkelaars. In de afrekeningen van Apple zien we bedragen en landen, niet wie heeft gekocht.<br>De rechtsgrond is artikel 6, lid 1, onder b AVG: de navraag is nodig om je de volledige versie te kunnen geven die je volgens onze gebruiksvoorwaarden krijgt. De koopovereenkomst zelf komt tot stand tussen jou en Apple.',
+    },
+    'nb': {
+        'agb': [
+            ('Den første leksjonen går uten; deretter logger du inn med Google eller med e-post og passord.',
+             'Den første leksjonen går uten; deretter logger du inn med Apple, med Google eller med e-post og passord.'),
+            ('For å kjøpe fullversjonen trenger du en Google-konto.',
+             'For å kjøpe fullversjonen trenger du en Apple-konto.'),
+            ('Den hører til Google-kontoen din og kommer tilbake av seg selv på en ny enhet.',
+             'Den hører til Apple-kontoen din og kommer tilbake på en ny enhet med «Gjenopprett kjøp».'),
+            ('En forbindelse trengs for innloggingen, sikkerhetskopien i kontoen din, annonser, kjøp og spørsmålet til Play-butikken om fullversjonen din er aktiv.',
+             'En forbindelse trengs for innloggingen, sikkerhetskopien i kontoen din, annonser, kjøp og spørsmålet til App Store om fullversjonen din er aktiv.'),
+            ('Pris og periode viser appen deg før du kjøper, og Google viser det en gang til i kjøpsvinduet sitt.',
+             'Pris og periode viser appen deg før du kjøper, og Apple viser det en gang til i kjøpsvinduet sitt.'),
+            ('Abonnementet tegnes gjennom Google Play Store; selger der er Google Commerce Limited, 70 Sir John Rogerson’s Quay, Dublin 2, D02 R296, Irland.',
+             'Abonnementet tegnes gjennom App Store; selger der er Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland.'),
+            ('Det er knyttet til Google-kontoen du kjøper med – ikke til enheten; det kan ikke deles gjennom Google Play-familiebiblioteket.',
+             'Det er knyttet til Apple-kontoen du kjøper med – ikke til enheten; det kan ikke deles gjennom Familiedeling.'),
+            ('Går en betaling galt, er fullversjonen aktiv en stund til; deretter sperrer Google abonnementet, og annonsene og det vanlige antallet liv er tilbake.',
+             'Går en betaling galt, er fullversjonen aktiv en stund til; deretter sperrer Apple abonnementet, og annonsene og det vanlige antallet liv er tilbake.'),
+            ('Google varsler deg om en prisøkning minst 30 dager i forveien; alt etter hva slags økning det er, må du godta den, ellers tar abonnementet slutt ved utgangen av den betalte perioden.',
+             'Apple varsler deg om en prisøkning på forhånd; alt etter hva slags økning det er, må du godta den, ellers tar abonnementet slutt ved utgangen av den betalte perioden.'),
+            ('<b>Oppsigelse:</b> Du sier opp når som helst i Google-kontoen din eller i appen under «Administrer abonnementet».',
+             '<b>Oppsigelse:</b> Du sier opp når som helst i Innstillinger på enheten under navnet ditt → Abonnementer eller i appen under «Administrer abonnementet», senest 24 timer før perioden er over – ellers fornyes det én gang til.'),
+            (' I Tyskland gir Google deg ved årsabonnement i tillegg mulighet til å si opp med en gang – da tar fullversjonen slutt straks, og du får resten forholdsmessig tilbake.',
+             ''),
+            ('Vi har uttrykkelig registrert fullversjonen hos Google som en tjeneste – derfor beholder du retten også når du allerede har brukt den.',
+             'Denne retten beholder du også når du allerede har brukt fullversjonen.'),
+            ('Enklest angrer du gjennom Google Play; refusjonen går også den veien.',
+             'Enklest angrer du hos Apple på reportaproblem.apple.com; refusjonen går også den veien.'),
+            ('For å lære trenger du en Zmaj-konto.',
+             'For at framgangen din skal sikkerhetskopieres, trenger du en Zmaj-konto.'),
+        ],
+        'datenschutz': [
+            # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
+            # Bewertungskarte gibt es auf iOS nicht, und "Konto bei Google" nennt
+            # keinen Kaufweg.
+            ('Trykker du på «Send» under Tilbakemelding i innstillingene eller under «Foreslå en forbedring», sender',
+             'Trykker du på «Send» under Tilbakemelding i innstillingene, sender'),
+            ('Et skript i Google-kontoen vår (Google Apps Script)',
+             'Et skript i kontoen vår hos Google (Google Apps Script)'),
+            ('For å kjøpe fullversjonen trenger du i tillegg en Google-konto – den hører til Google, ikke til oss; mer om det i avsnitt 7.',
+             'For å kjøpe fullversjonen trenger du i tillegg en Apple-konto – den hører til Apple, ikke til oss; mer om det i avsnitt 7.'),
+            ('<b>Androids egen sikkerhetskopiering:</b> Har du slått den på i Google-kontoen din, tar Android med appens data dit, slik at de blir med når du bytter telefon.',
+             '<b>iCloud-sikkerhetskopi:</b> Har du slått den på, tar enheten din med appens data dit, slik at de blir med når du bytter enhet.'),
+            ('Det gjør Android, ikke appen, og vi har ikke tilgang til den.',
+             'Det gjør Apple, ikke appen, og vi har ikke tilgang til den.'),
+            ('Logger du inn med Google, gir Google i tillegg videre navnet ditt og adressen til profilbildet ditt; appen viser og bruker ingen av delene.',
+             'Logger du inn med Google, gir Google i tillegg videre navnet ditt og adressen til profilbildet ditt; appen viser og bruker ingen av delene. Logger du inn med Apple, gir Apple videre en identifikator og e-postadressen din – om du vil en videresendingsadresse fra Apple («Skjul e-posten min») – og første gang navnet ditt; appen bruker ikke navnet.'),
+            ('<b>Bytte telefon:</b> For at du skal forbli innlogget på en ny telefon, legger appen en innloggingsnøkkel i dataene sine, som Androids egen sikkerhetskopiering tar med, og en gjenopprettingsnøkkel som bare inneholder ID-en til kontoen din, hos Googles tjenester på enheten din. Når du logger ut og når du sletter kontoen, sletter appen begge.',
+             '<b>Bytte enhet:</b> For at du skal forbli innlogget på en ny enhet, legger appen en innloggingsnøkkel i nøkkelringen på enheten din; er iCloud-nøkkelring slått på, blir den med til den nye enheten. Når du logger ut og når du sletter kontoen, sletter appen den, og for en konto med «Logg på med Apple» trekker den da også tilbake innloggingen hos Apple.'),
+            ('Trykker du på «Vurder Zmaj», åpnes Google Play.',
+             'Trykker du på «Vurder Zmaj», åpnes App Store.'),
+            ('Det du skriver der, er offentlig og behandles av Google, ikke av oss.',
+             'Det du skriver der, er offentlig og behandles av Apple, ikke av oss.'),
+            ('<b>Da kan opptaket bli overført til produsenten av enheten eller nettleseren din</b>, som regel Google.',
+             '<b>Da kan opptaket bli overført til produsenten av enheten eller nettleseren din</b>, som regel Apple.'),
+            ('En kopi i Androids egen sikkerhetskopiering blir liggende i Google-kontoen din til du sletter den der eller Google lar den utløpe.',
+             'En kopi i iCloud-sikkerhetskopien din blir liggende der til du sletter den.'),
+            ('Googles oppgjør for fullversjonen – beløp og land, ikke hvem som har kjøpt – må vi oppbevare som regnskapsbilag i åtte år; det krever skatteretten (§ 147 AO).',
+             'Apples oppgjør for fullversjonen – beløp og land, ikke hvem som har kjøpt – må vi oppbevare som regnskapsbilag i åtte år; det krever skatteretten (§ 147 AO).'),
+            ('En kopi i Androids egen sikkerhetskopiering sletter du i Google-kontoen din.',
+             'En kopi i iCloud-sikkerhetskopien din sletter du i iCloud-innstillingene på enheten.'),
+            ('Et løpende abonnement tar ikke slutt av det; det sier du opp i Google-kontoen din.',
+             'Et løpende abonnement tar ikke slutt av det; det sier du opp i Innstillinger på enheten under navnet ditt → Abonnementer.'),
+            ('På enheten din: så lenge appen er installert.',
+             'På enheten din: så lenge appen er installert; innloggingsnøkkelen i nøkkelringen også etter det, til du logger ut i appen eller sletter kontoen der.'),
+            ('Dataene på enheten sletter du også ved å slette appen eller tømme lagringen dens.',
+             'Dataene på enheten sletter du også ved å slette appen – bortsett fra innloggingsnøkkelen i nøkkelringen: den blir liggende, med iCloud-nøkkelring slått på også på de andre enhetene dine, til du logger ut i appen eller sletter kontoen der. Installerer du appen på nytt, er du dermed straks innlogget igjen.'),
+            ('For å lære i appen trenger du en <b>Zmaj-konto</b>;',
+             'For at framgangen din skal sikkerhetskopieres, trenger du en <b>Zmaj-konto</b>;'),
+            ('Kontoen er en forutsetning for å bruke appen;',
+             'Kontoen er en forutsetning for sikkerhetskopien av framgangen din;'),
+        ],
+        'werbung': [
+            ('app set-ID-en (en ID som bare gjelder for appene fra én utvikler),',
+             'en ID som bare gjelder for appene fra én utvikler,'),
+            ('oppstartstid, heng og batteriforbruk.',
+             'oppstartstid, heng og batteriforbruk, i tillegg krasjrapporter som ikke er knyttet til deg.'),
+            ('måle rekkevidden deres og oppdage svindel.',
+             'måle rekkevidden deres og oppdage svindel. Google behandler opplysningene for oss etter de samme reglene som i denne personvernerklæringen.'),
+            ('<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine.',
+             '<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine. På iPhone og iPad spør Apple deretter om appen får spore deg på tvers av apper og nettsteder som tilhører andre selskaper (Gjennomsiktighet for appsporing); bare hvis du sier ja, får Google annonse-ID-en. Du kan endre det når som helst i Innstillinger på enheten under Personvern og sikkerhet → Sporing.'),
+        ],
+        'werbung_aus': [
+            ('Av seg selv kontakter appen bare Firebase for kontoen din (avsnitt 3) og spør Play-butikken om det finnes en aktiv fullversjon for Google-kontoen din – se nedenfor.',
+             'Av seg selv kontakter appen bare Firebase for kontoen din (avsnitt 3) og spør App Store om det finnes en aktiv fullversjon for Apple-kontoen din – se nedenfor.'),
+        ],
+        'abo': '<b>Fullversjon (abonnement):</b> For å kjøpe trenger du en Apple-konto. Selger er Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland. Apple behandler konto- og betalingsdataene dine på eget ansvar; hva Apple gjør med dem, står i Apples personvernerklæring: apple.com/legal/privacy<br>Appen spør App Store på enheten din om abonnementet ditt er aktivt: ved hver oppstart, hver gang du kommer tilbake til appen, når du åpner vinduet for fullversjonen og når du trykker på «Gjenopprett kjøp». På enheten husker den bare om det er aktivt. Vi får bare vite svaret: ja eller nei.<br>Betalingsdataene dine får vi aldri se; Apple gir dem ikke videre til utviklere. I Apples oppgjør ser vi beløp og land, ikke hvem som har kjøpt.<br>Rettslig grunnlag er artikkel 6 nr. 1 bokstav b i personvernforordningen: Forespørselen er nødvendig for at vi skal kunne gi deg fullversjonen som du får etter bruksvilkårene våre. Selve kjøpsavtalen inngås mellom deg og Apple.',
+    },
+    'da': {
+        'agb': [
+            ('Den første lektion kan klares uden; derefter logger du ind med Google eller med e-mail og adgangskode.',
+             'Den første lektion kan klares uden; derefter logger du ind med Apple, med Google eller med e-mail og adgangskode.'),
+            ('Til købet af den fulde version skal du bruge en Google-konto.',
+             'Til købet af den fulde version skal du bruge en Apple-konto.'),
+            ('Den er knyttet til din Google-konto og kommer af sig selv tilbage på en ny enhed.',
+             'Den er knyttet til din Apple-konto og kommer tilbage på en ny enhed med »Gendan køb«.'),
+            ('En forbindelse kræves til login, sikkerhedskopien på din konto, reklamer, køb og spørgsmålet til Play Butik, om din fulde version løber.',
+             'En forbindelse kræves til login, sikkerhedskopien på din konto, reklamer, køb og spørgsmålet til App Store, om din fulde version løber.'),
+            ('Prisen og perioden viser appen dig, før du køber, og Google viser dem én gang til i sit købsvindue.',
+             'Prisen og perioden viser appen dig, før du køber, og Apple viser dem én gang til i sit købsvindue.'),
+            ('Abonnementet tegnes gennem Google Play Butik; sælger er dér Google Commerce Limited, 70 Sir John Rogerson’s Quay, Dublin 2, D02 R296, Irland.',
+             'Abonnementet tegnes gennem App Store; sælger er dér Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland.'),
+            ('Det følger den Google-konto, du køber med – ikke enheden; gennem Google Play Familiesamling kan det ikke deles.',
+             'Det følger den Apple-konto, du køber med – ikke enheden; gennem Familiedeling kan det ikke deles.'),
+            ('Går en betaling galt, er den fulde version aktiv et stykke tid endnu; derefter spærrer Google abonnementet, og reklamerne og det normale antal liv er tilbage.',
+             'Går en betaling galt, er den fulde version aktiv et stykke tid endnu; derefter spærrer Apple abonnementet, og reklamerne og det normale antal liv er tilbage.'),
+            ('En prisstigning varsler Google mindst 30 dage i forvejen; alt efter stigningens art skal du sige ja til den, ellers ophører abonnementet ved udgangen af den betalte periode.',
+             'En prisstigning varsler Apple på forhånd; alt efter stigningens art skal du sige ja til den, ellers ophører abonnementet ved udgangen af den betalte periode.'),
+            ('<b>Opsigelse:</b> Du kan opsige når som helst i din Google-konto eller i appen under »Administrer abonnement«.',
+             '<b>Opsigelse:</b> Du kan opsige når som helst i enhedens Indstillinger under dit navn → Abonnementer eller i appen under »Administrer abonnement«, senest 24 timer før periodens udløb – ellers fornyes det én gang til.'),
+            (' Ved årsabonnementer tilbyder Google i Tyskland desuden, at du kan opsige med det samme – så ophører den fulde version straks, og du får resten forholdsmæssigt tilbage.',
+             ''),
+            ('Vi har udtrykkeligt registreret den fulde version hos Google som en tjeneste – derfor beholder du retten, også selv om du allerede har brugt den.',
+             'Den ret beholder du, også selv om du allerede har brugt den fulde version.'),
+            ('Nemmest fortryder du gennem Google Play; dér foregår refusionen også.',
+             'Nemmest fortryder du hos Apple på reportaproblem.apple.com; dér foregår refusionen også.'),
+            ('For at lære skal du bruge en Zmaj-konto.',
+             'For at din fremgang kan sikkerhedskopieres, skal du bruge en Zmaj-konto.'),
+        ],
+        'datenschutz': [
+            # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
+            # Bewertungskarte gibt es auf iOS nicht, und "Konto bei Google" nennt
+            # keinen Kaufweg.
+            ('Trykker du på »Send« under Feedback i indstillingerne eller under »Foreslå en forbedring«, sender',
+             'Trykker du på »Send« under Feedback i indstillingerne, sender'),
+            ('Et script i vores Google-konto (Google Apps Script)',
+             'Et script i vores konto hos Google (Google Apps Script)'),
+            ('Til købet af den fulde version skal du desuden bruge en Google-konto – den hører til Google, ikke til os; mere om det i afsnit 7.',
+             'Til købet af den fulde version skal du desuden bruge en Apple-konto – den hører til Apple, ikke til os; mere om det i afsnit 7.'),
+            ('<b>Androids egen sikkerhedskopiering:</b> Har du slået den til i din Google-konto, gemmer Android også appens data dér, så de bliver bevaret, når du skifter telefon.',
+             '<b>iCloud-sikkerhedskopiering:</b> Har du slået den til, gemmer din enhed også appens data dér, så de bliver bevaret, når du skifter enhed.'),
+            ('Det gør Android, ikke appen, og vi har ikke adgang til den.',
+             'Det gør Apple, ikke appen, og vi har ikke adgang til den.'),
+            ('Logger du ind med Google, giver Google desuden dit navn og adressen til dit profilbillede videre; appen viser og bruger ingen af delene.',
+             'Logger du ind med Google, giver Google desuden dit navn og adressen til dit profilbillede videre; appen viser og bruger ingen af delene. Logger du ind med Apple, giver Apple et id og din e-mailadresse videre – hvis du vil, en videresendelsesadresse fra Apple (»Skjul min e-mail«) – og første gang dit navn; appen bruger ikke navnet.'),
+            ('<b>Skifte telefon:</b> For at du forbliver logget ind på en ny telefon, lægger appen en loginnøgle i sine data, som Androids egen sikkerhedskopiering tager med, og en gendannelsesnøgle, som kun indeholder din kontos id, hos Googles tjenester på din enhed. Når du logger ud, og når du sletter kontoen, sletter appen begge.',
+             '<b>Skifte enhed:</b> For at du forbliver logget ind på en ny enhed, lægger appen en loginnøgle i din enheds nøglering; er iCloud-nøglering slået til, kommer den med over på din nye enhed. Når du logger ud, og når du sletter kontoen, sletter appen den, og for en konto med »Log ind med Apple« tilbagekalder den så også login hos Apple.'),
+            ('Trykker du på »Bedøm Zmaj«, åbner Google Play.',
+             'Trykker du på »Bedøm Zmaj«, åbner App Store.'),
+            ('Det, du skriver der, er offentligt og bliver behandlet af Google, ikke af os.',
+             'Det, du skriver der, er offentligt og bliver behandlet af Apple, ikke af os.'),
+            ('<b>Optagelsen kan i den forbindelse blive sendt til producenten af din enhed eller din browser</b>, som regel Google.',
+             '<b>Optagelsen kan i den forbindelse blive sendt til producenten af din enhed eller din browser</b>, som regel Apple.'),
+            ('En kopi i Androids egen sikkerhedskopiering bliver liggende på din Google-konto, indtil du sletter den dér, eller Google lader den udløbe.',
+             'En kopi i din iCloud-sikkerhedskopi bliver liggende dér, indtil du sletter den.'),
+            ('Googles afregninger for den fulde version – beløb og lande, ikke hvem der har købt – skal vi opbevare som regnskabsbilag i otte år; det kræver skatteretten (§ 147 AO).',
+             'Apples afregninger for den fulde version – beløb og lande, ikke hvem der har købt – skal vi opbevare som regnskabsbilag i otte år; det kræver skatteretten (§ 147 AO).'),
+            ('En kopi i Androids egen sikkerhedskopiering sletter du på din Google-konto.',
+             'En kopi i din iCloud-sikkerhedskopi sletter du i enhedens iCloud-indstillinger.'),
+            ('Et løbende abonnement ophører ikke af den grund; det opsiger du på din Google-konto.',
+             'Et løbende abonnement ophører ikke af den grund; det opsiger du i enhedens Indstillinger under dit navn → Abonnementer.'),
+            ('På din enhed: så længe appen er installeret.',
+             'På din enhed: så længe appen er installeret; loginnøglen i nøgleringen også derefter, indtil du logger ud i appen eller sletter kontoen dér.'),
+            ('Dataene på enheden sletter du også ved at slette appen eller rydde dens lagrede data.',
+             'Dataene på enheden sletter du også ved at slette appen – bortset fra loginnøglen i nøgleringen: den bliver liggende, med iCloud-nøglering slået til også på dine andre enheder, indtil du logger ud i appen eller sletter kontoen dér. Installerer du appen igen, er du dermed straks logget ind igen.'),
+            ('For at lære i appen skal du bruge en <b>Zmaj-konto</b>;',
+             'For at din fremgang kan sikkerhedskopieres, skal du bruge en <b>Zmaj-konto</b>;'),
+            ('Kontoen er en forudsætning for at bruge appen;',
+             'Kontoen er en forudsætning for sikkerhedskopien af din fremgang;'),
+        ],
+        'werbung': [
+            ("app set-id'et (et id, der kun gælder for apps fra samme udvikler),",
+             'et id, der kun gælder for apps fra samme udvikler,'),
+            ('opstartstid, hængninger og batteriforbrug.',
+             'opstartstid, hængninger og batteriforbrug, desuden nedbrudsrapporter, der ikke er knyttet til dig.'),
+            ('måle deres rækkevidde og opdage svindel.',
+             'måle deres rækkevidde og opdage svindel. Google behandler oplysningerne for os efter de samme regler som i denne privatlivspolitik.'),
+            ('<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser.',
+             "<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser. På iPhone og iPad spørger Apple derefter, om appen må spore dig på tværs af apps og websteder, der tilhører andre virksomheder (Gennemsigtighed i appsporing); kun hvis du siger ja, får Google annonce-id'et. Du kan til enhver tid ændre det i enhedens Indstillinger under Anonymitet & sikkerhed → Sporing."),
+        ],
+        'werbung_aus': [
+            ('Af sig selv kontakter appen kun Firebase til din konto (afsnit 3) og spørger Play Butik, om der er en aktiv fuld version på din Google-konto – se nedenfor.',
+             'Af sig selv kontakter appen kun Firebase til din konto (afsnit 3) og spørger App Store, om der er en aktiv fuld version på din Apple-konto – se nedenfor.'),
+        ],
+        'abo': '<b>Fuld version (abonnement):</b> Til købet skal du bruge en Apple-konto. Sælger er Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland. Apple behandler dine konto- og betalingsdata på eget ansvar; hvad Apple gør med dem, står i Apples privatlivspolitik: apple.com/legal/privacy<br>Appen spørger App Store på din enhed, om dit abonnement løber: ved hver start, hver gang du vender tilbage til appen, når du åbner vinduet for den fulde version, og når du trykker på »Gendan køb«. På din enhed husker den kun, om det er aktivt. Vi får kun svaret at vide: ja eller nej.<br>Dine betalingsdata ser vi aldrig; Apple giver dem ikke videre til udviklere. I Apples afregninger ser vi beløb og lande, ikke hvem der har købt.<br>Retsgrundlaget er artikel 6, stk. 1, litra b i databeskyttelsesforordningen: Forespørgslen er nødvendig, for at vi kan give dig den fulde version, du får efter vores brugsvilkår. Selve købsaftalen indgås mellem dig og Apple.',
+    },
+    'fr': {
+        'agb': [
+            ('La première leçon se fait sans ; ensuite, tu te connectes avec Google ou avec une adresse e-mail et un mot de passe.',
+             'La première leçon se fait sans ; ensuite, tu te connectes avec Apple, avec Google ou avec une adresse e-mail et un mot de passe.'),
+            ('Pour acheter la version complète, il te faut un compte Google.',
+             'Pour acheter la version complète, il te faut un compte Apple.'),
+            ("elle est liée à ton compte Google et revient d'elle-même sur un nouvel appareil.",
+             'elle est liée à ton compte Apple et revient sur un nouvel appareil avec « Restaurer les achats ».'),
+            ('Une connexion est nécessaire pour la connexion au compte, la sauvegarde dans ton compte, la publicité, les achats et la vérification auprès du Play Store, pour savoir si ta version complète est active.',
+             "Une connexion est nécessaire pour la connexion au compte, la sauvegarde dans ton compte, la publicité, les achats et la vérification auprès de l'App Store, pour savoir si ta version complète est active."),
+            ("Elle est développée sur notre temps libre\xa0; il n'est pas promis qu'elle continue d'être entretenue ni qu'elle reste proposée sur le Play Store.",
+             "Elle est développée sur notre temps libre\xa0; il n'est pas promis qu'elle continue d'être entretenue ni qu'elle reste proposée sur l'App Store."),
+            ("Le prix et la durée te sont indiqués par l'application avant l'achat, puis une seconde fois par Google dans sa fenêtre de paiement.",
+             "Le prix et la durée te sont indiqués par l'application avant l'achat, puis une seconde fois par Apple dans sa fenêtre de paiement."),
+            ("L'abonnement est conclu via le Google Play Store\xa0; le vendeur y est Google Commerce Limited, 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Irlande.",
+             "L'abonnement est conclu via l'App Store ; le vendeur y est Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irlande."),
+            ("Il est lié au compte Google avec lequel tu achètes – pas à l'appareil\xa0; il ne peut pas être partagé via la bibliothèque famille Google Play.",
+             "Il est lié au compte Apple avec lequel tu achètes – pas à l'appareil ; il ne peut pas être partagé via le Partage familial."),
+            ("Si un paiement échoue, la version complète reste d'abord active\xa0; ensuite Google suspend l'abonnement, et la publicité et le nombre normal de vies reviennent.",
+             "Si un paiement échoue, la version complète reste d'abord active\xa0; ensuite Apple suspend l'abonnement, et la publicité et le nombre normal de vies reviennent."),
+            ("Google t'annonce toute hausse de prix au moins 30 jours à l'avance\xa0; selon le type de hausse, tu dois l'accepter, sinon l'abonnement prend fin à la fin de la période payée.",
+             "Apple t'annonce toute hausse de prix à l'avance ; selon le type de hausse, tu dois l'accepter, sinon l'abonnement prend fin à la fin de la période payée."),
+            ("<b>Résiliation\xa0:</b> tu résilies à tout moment dans ton compte Google ou dans l'application sous « Gérer l'abonnement ».",
+             "<b>Résiliation :</b> tu résilies à tout moment dans les Réglages de ton appareil, sous ton nom → Abonnements, ou dans l'application sous « Gérer l'abonnement », au plus tard 24 heures avant la fin de la période – sinon il se renouvelle une fois de plus."),
+            (" Pour l'abonnement annuel, Google te propose en plus, en Allemagne, de résilier immédiatement – la version complète prend alors fin aussitôt et le reste t'est remboursé au prorata.",
+             ''),
+            ("Nous avons expressément déclaré la version complète comme un service auprès de Google – c'est pourquoi tu conserves ce droit même si tu l'as déjà utilisée.",
+             'Tu conserves ce droit même si tu as déjà utilisé la version complète.'),
+            ("Le plus simple est de te rétracter via Google Play\xa0; c'est là que se fait aussi le remboursement.",
+             "Le plus simple est de te rétracter auprès d'Apple sur reportaproblem.apple.com ; c'est là que se fait aussi le remboursement."),
+            ('Pour apprendre, il te faut un compte Zmaj.',
+             'Pour que ta progression soit sauvegardée, il te faut un compte Zmaj.'),
+        ],
+        'datenschutz': [
+            # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
+            # Bewertungskarte gibt es auf iOS nicht, und "Konto bei Google" nennt
+            # keinen Kaufweg.
+            ("Si tu touches « Envoyer » sous Commentaires dans les réglages ou sous « Proposer une amélioration », l'application",
+             "Si tu touches « Envoyer » sous Commentaires dans les réglages, l'application"),
+            ("Un script de notre compte Google (Google Apps Script)",
+             "Un script de notre compte chez Google (Google Apps Script)"),
+            ('Pour acheter la version complète, il te faut en plus un compte Google – il appartient à Google, pas à nous ; plus de détails à la section 7.',
+             'Pour acheter la version complète, il te faut en plus un compte Apple – il appartient à Apple, pas à nous ; plus de détails à la section 7.'),
+            ("<b>La sauvegarde d'Android\xa0:</b> si tu l'as activée dans ton compte Google, Android y inclut les données de l'application pour qu'elles survivent à un changement de téléphone.",
+             "<b>La sauvegarde iCloud :</b> si tu l'as activée, ton appareil y inclut les données de l'application pour qu'elles survivent à un changement d'appareil."),
+            ("C'est Android qui le fait, pas l'application, et nous n'y avons pas accès.",
+             "C'est Apple qui le fait, pas l'application, et nous n'y avons pas accès."),
+            ("Si tu te connectes avec Google, Google transmet en plus ton nom et l'adresse de ta photo de profil ; l'application n'affiche et n'utilise ni l'un ni l'autre.",
+             "Si tu te connectes avec Google, Google transmet en plus ton nom et l'adresse de ta photo de profil ; l'application n'affiche et n'utilise ni l'un ni l'autre. Si tu te connectes avec Apple, Apple transmet un identifiant et ton adresse e-mail – si tu le souhaites, une adresse de relais d'Apple (« Masquer mon adresse e-mail ») – et, la première fois, ton nom ; l'application n'utilise pas le nom."),
+            ("<b>Changement de téléphone :</b> Pour que tu restes connecté·e sur un nouveau téléphone, l'application place une clé de connexion dans ses données, que la sauvegarde d'Android emporte, et une clé de restauration, qui ne contient que l'identifiant de ton compte, auprès des services Google de ton appareil. À la déconnexion et à la suppression du compte, l'application supprime les deux.",
+             "<b>Changement d'appareil :</b> Pour que tu restes connecté·e sur un nouvel appareil, l'application place une clé de connexion dans le trousseau de ton appareil ; si le trousseau iCloud est activé, elle te suit sur ton nouvel appareil. À la déconnexion et à la suppression du compte, l'application la supprime, et pour un compte utilisant « Connexion avec Apple », elle révoque aussi la connexion auprès d'Apple lors de la suppression."),
+            ("Si tu touches « Noter Zmaj », Google Play s'ouvre.",
+             "Si tu touches « Noter Zmaj », l'App Store s'ouvre."),
+            ('Ce que tu y écris est public et traité par Google, pas par nous.',
+             'Ce que tu y écris est public et traité par Apple, pas par nous.'),
+            ("<b>L'enregistrement peut alors être transmis au fabricant de ton appareil ou de ton navigateur</b>, en règle générale Google.",
+             "<b>L'enregistrement peut alors être transmis au fabricant de ton appareil ou de ton navigateur</b>, en règle générale Apple."),
+            ("Une copie dans la sauvegarde d'Android reste dans ton compte Google jusqu'à ce que tu l'y supprimes ou que Google la laisse expirer.",
+             "Une copie dans ta sauvegarde iCloud y reste jusqu'à ce que tu la supprimes."),
+            ("Les relevés de Google pour la version complète – montants et pays, pas l'identité de l'acheteur – doivent être conservés huit ans comme pièces comptables ; le droit fiscal l'exige (§ 147 AO).",
+             "Les relevés d'Apple pour la version complète – montants et pays, pas l'identité de l'acheteur – doivent être conservés huit ans comme pièces comptables ; le droit fiscal l'exige (§ 147 AO)."),
+            ("Une copie dans la sauvegarde d'Android se supprime dans ton compte Google.",
+             'Une copie dans ta sauvegarde iCloud se supprime dans les réglages iCloud de ton appareil.'),
+            ('Un abonnement en cours ne prend pas fin pour autant ; tu le résilies dans ton compte Google.',
+             'Un abonnement en cours ne prend pas fin pour autant ; tu le résilies dans les Réglages de ton appareil, sous ton nom → Abonnements.'),
+            ("Sur ton appareil : tant que l'application est installée.",
+             "Sur ton appareil : tant que l'application est installée ; la clé de connexion dans le trousseau, même au-delà, jusqu'à ce que tu te déconnectes dans l'application ou que tu y supprimes le compte."),
+            ("Tu peux aussi effacer les données de l'appareil en supprimant l'application ou en vidant sa mémoire.",
+             "Tu peux aussi effacer les données de l'appareil en supprimant l'application – sauf la clé de connexion dans le trousseau : elle reste, sur tes autres appareils aussi si le trousseau iCloud est activé, jusqu'à ce que tu te déconnectes dans l'application ou que tu y supprimes le compte. Si tu réinstalles l'application, cette clé te reconnecte aussitôt."),
+            ("Pour apprendre dans l'application, il te faut un <b>compte Zmaj</b> ;",
+             'Pour que ta progression soit sauvegardée, il te faut un <b>compte Zmaj</b> ;'),
+            ("Le compte est une condition pour utiliser l'application ;",
+             'Le compte est une condition pour sauvegarder ta progression ;'),
+        ],
+        'werbung': [
+            ("l'identifiant App Set (un identifiant valable uniquement pour les applis d'un même développeur),",
+             "un identifiant valable uniquement pour les applis d'un même développeur,"),
+            ('temps de démarrage, blocages et consommation de batterie.',
+             'temps de démarrage, blocages et consommation de batterie, ainsi que des rapports de plantage qui ne sont pas liés à toi.'),
+            ('mesurer leur portée et détecter la fraude.',
+             'mesurer leur portée et détecter la fraude. Google traite les données pour nous selon les mêmes règles que celles de cette politique de confidentialité.'),
+            ("<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt.",
+             "<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt. Sur iPhone et iPad, Apple te demande ensuite si l'application peut te suivre dans les apps et sur les sites web d'autres entreprises (transparence du suivi des apps) ; Google ne reçoit l'identifiant publicitaire que si tu dis oui. Tu peux le modifier à tout moment dans les Réglages de ton appareil, sous Confidentialité et sécurité → Suivi."),
+        ],
+        'werbung_aus': [
+            ("D'elle-même, l'application contacte seulement Firebase pour ton compte (section 3) et interroge le Play Store pour savoir si une version complète est active pour ton compte Google – voir ci-dessous.",
+             "D'elle-même, l'application contacte seulement Firebase pour ton compte (section 3) et interroge l'App Store pour savoir si une version complète est active pour ton compte Apple – voir ci-dessous."),
+        ],
+        'abo': "<b>Version complète (abonnement) :</b> Pour l'achat, il te faut un compte Apple. Le vendeur est Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irlande. Apple traite tes données de compte et de paiement sous sa propre responsabilité ; ce qu'Apple en fait figure dans la politique de confidentialité d'Apple : apple.com/legal/privacy<br>L'application demande à l'App Store de ton appareil si ton abonnement est actif : à chaque démarrage, à chaque retour dans l'application, quand tu ouvres la fenêtre de la version complète et quand tu touches « Restaurer les achats ». Sur ton appareil, elle retient seulement s'il est actif. Nous n'apprenons que la réponse : oui ou non.<br>Nous ne voyons jamais tes données de paiement ; Apple ne les transmet pas aux développeurs. Dans les relevés d'Apple, nous voyons des montants et des pays, pas l'identité de l'acheteur.<br>La base juridique est l'art. 6, paragraphe 1, point b du RGPD : cette vérification est nécessaire pour pouvoir te fournir la version complète à laquelle tu as droit selon nos conditions d'utilisation. Le contrat d'achat lui-même est conclu entre toi et Apple.",
+    },
+}
+
+
+def _genau_einmal(text, alt, neu, wo):
+    """Ersetzt alt durch neu und bricht ab, wenn alt nicht genau einmal
+    dasteht."""
+    if text.count(alt) != 1:
+        raise ValueError("iOS-Rechtstext %s: '%s...' steht %d-mal da statt einmal."
+                         % (wo, alt[:60], text.count(alt)))
+    return text.replace(alt, neu)
+
+
+# Woerter, die in den iOS-Rechtstexten nie stehen duerfen (Richtlinie
+# 2.3.10): andere Plattformen und Google als Kaufweg, in allen 8 Sprachen.
+# "Google" allein bleibt erlaubt - Anmeldung mit Google und AdMob gibt es
+# auch auf iOS. tests/test_ios.py prueft mit eigener, gleicher Liste alle
+# iOS-Texte. 30.10.2026
+IOS_FREMDE_WOERTER = (
+    "Google Play", "Play Store", "Play-butikk", "Play Butik", "Android",
+    "Google-Konto", "Google account", "Google hesab", "Google-konto",
+    "compte Google", "Google-account", "Google Commerce",
+    "Familienmediathek", "Family Library",
+    # Die App-Set-ID gibt es nur auf Android (S23, 16.11.2026).
+    "App-Set-ID", "app set ID", "app set-id", "app set-ID", "App Set", "uygulama seti",
+)
+
+
+def _ohne_fremde_plattform(text, wo, erlaubt=()):
+    """Bricht ab, wenn in einem iOS-Text noch ein Wort aus
+    IOS_FREMDE_WOERTER steht. Die Absaetze in erlaubt zaehlen nicht mit:
+    Der zum Kontaktformular nennt "unser Google-Konto" (Google Apps Script,
+    ein Dienstleister fuer uns) - das ist keine Plattform und auf iOS
+    richtig."""
+    for absatz in erlaubt:
+        text = text.replace(absatz, "")
+    for wort in IOS_FREMDE_WOERTER:
+        i = text.find(wort)
+        if i >= 0:
+            raise ValueError("iOS-Rechtstext %s nennt noch '%s': ...%s..."
+                             % (wo, wort, text[max(0, i - 60):i + len(wort) + 20]))
+
+
+def ios_rechtstexte(code, zusammen, erlaubt=()):
+    """Setzt set.agb_text_ios und set.datenschutz_text_ios in zusammen,
+    aus den fertigen Texten fuer Android (siehe IOS_RECHT). Nur mit
+    Pflichtkonto - die Web-Demo hat keine iOS-Fassung, und die iOS-App hat
+    immer ein Konto. erlaubt: siehe _ohne_fremde_plattform()."""
+    r = IOS_RECHT.get(code) or IOS_RECHT[GRUNDSPRACHE]
+    agb = zusammen["set.agb_text"]
+    for alt, neu in r["agb"]:
+        agb = _genau_einmal(agb, alt, neu, code + " agb")
+    ds = _genau_einmal(zusammen["set.datenschutz_text"], zusammen["set.dsgvo_abo"],
+                       r["abo"], code + " abo")
+    werbung = r["werbung"] if WERBUNG_LAEUFT else r["werbung_aus"]
+    for alt, neu in r["datenschutz"] + werbung:
+        ds = _genau_einmal(ds, alt, neu, code + " datenschutz")
+    _ohne_fremde_plattform(agb, code + " agb", erlaubt)
+    _ohne_fremde_plattform(ds, code + " datenschutz", erlaubt)
+    zusammen["set.agb_text_ios"] = _ios_stand(agb, "agb")
+    zusammen["set.datenschutz_text_ios"] = _ios_stand(ds, "datenschutz")
+
+
+def _ios_stand(text, teil):
+    """Der Stand am Ende der iOS-Fassung: IOS_STAND[teil] oder der Stand der
+    Android-Fassung, je nachdem, welcher spaeter ist (stand_setzen())."""
+    import re
+    if not re.fullmatch(r"\d{2}\.\d{2}\.\d{4}", IOS_STAND.get(teil) or ""):
+        raise ValueError("IOS_STAND['%s'] in sprachen.py: Tag als 'TT.MM.JJJJ' setzen." % teil)
+    return stand_setzen(text, IOS_STAND[teil])
 
 
 def texte(code):
@@ -5874,6 +6934,10 @@ def texte(code):
     zusammen["set.datenschutz_text"] = zusammen["set.datenschutz_text"].replace(
         "{werbung_abschnitt}",
         zusammen.get(schluessel, "") + "<br>" + zusammen.get("set.dsgvo_abo", ""))
+    # Die Fassung fuer iPhone und iPad (30.10.2026), siehe IOS_RECHT.
+    if KONTO_PFLICHT:
+        ios_rechtstexte(code, zusammen,
+                        erlaubt=(absatz_formular,) if KONTAKT_FORMULAR else ())
     return zusammen
 
 

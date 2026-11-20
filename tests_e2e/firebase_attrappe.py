@@ -11,6 +11,9 @@ Rechner. Sie kann, was die App braucht:
     E-Mail-Aufzaehlung: falsche Adresse und falsches Passwort heissen
     beide INVALID_LOGIN_CREDENTIALS,
   - mit Google anmelden (accounts:signInWithIdp, Token "google-probe"),
+  - mit Apple anmelden (signInWithIdp, Token "apple-probe", nonce
+    "nonce-probe") und Apples Token widerrufen (v2 accounts:revokeToken),
+    seit 30.10.2026 fuer die iOS-Fassung,
   - Mails anstossen (accounts:sendOobCode, PASSWORD_RESET und VERIFY_EMAIL;
     der Kopf X-Firebase-Locale wird mitgeschrieben),
   - den Ausweis erneuern (securetoken), auf Wunsch mit TOKEN_EXPIRED oder
@@ -120,6 +123,10 @@ class Attrappe:
         self.schreib_abbruch = None
         self.abbruch = False
         self.n = 0
+        # Mit Apple anmelden (iOS, 30.10.2026): Token "apple-probe" mit dem
+        # rohen nonce "nonce-probe"; widerrufen sammelt accounts:revokeToken.
+        self.widerrufen = []
+        self.widerruf_fehler = None
         # Feedback ueber das Formular (01.11.2026). Ohne anonym_neu bleibt
         # die anonyme Anmeldung, wie die Tests vom 19.10. sie kennen: das
         # Probekonto UID. Mit anonym_neu bekommt jede eine eigene uid
@@ -241,8 +248,16 @@ class Attrappe:
             neu = "id-2" if uid == UID else self._ausweis(uid)
             return antwort(200, {"id_token": neu, "refresh_token": form["refresh_token"][0], "expires_in": "3600",
                                  "user_id": uid, "project_id": "1"})
+        if teile.path == "/v2/accounts:revokeToken":
+            self.widerrufen.append(daten)
+            if self.widerruf_fehler:
+                return fehler(self.widerruf_fehler)
+            if daten.get("idToken") not in self.gueltig:
+                return fehler("INVALID_ID_TOKEN")
+            return antwort(200, {})
         if teile.path == "/v1/accounts:signInWithIdp":
-            if daten.get("postBody") != "id_token=google-probe&providerId=google.com":
+            if daten.get("postBody") not in ("id_token=google-probe&providerId=google.com",
+                                             "id_token=apple-probe&providerId=apple.com&nonce=nonce-probe"):
                 return fehler("INVALID_IDP_RESPONSE")
             self.google_n += 1
             neu = "id-g%d" % self.google_n

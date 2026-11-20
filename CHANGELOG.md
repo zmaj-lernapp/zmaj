@@ -220,6 +220,37 @@ are in the Play Store listing. Format:
   recordings that only the store version contains (`ton_nur_emir.json`,
   words w2521–w2671, sentences w2672–w2821); the web demo, the dataset and
   the Anki decks have no audio for them.
+- The iPhone and iPad page is up to date with 1.3 (6.11.2026, branch `ios-web`): all new
+  vocabulary, feedback through the contact form, the ad switch for subscribers, tablets and
+  the audio path, and the iOS terms and privacy policy follow the wording of 1.3. The hidden
+  section "At the dentist" does not exist there: the build leaves out its content and audio,
+  and the switch from an account stays in the saved progress without showing anything
+  (App Review Guideline 2.5.19). Android is unchanged.
+- Groundwork for the iPhone and iPad app (30.10.2026, branch `ios-web`):
+  one platform switch (`PLATTFORM`: `android`, `ios` or `web`, decided once
+  in the small script in the page head). On iOS only: the back button in
+  the header (there is no system back key), the page respects the notch
+  and home indicator (`viewport-fit=cover` plus `env(safe-area-inset-*)`),
+  interface texts without Google Play or Android (`<key>_ios` in all eight
+  languages, and iOS versions of the terms and the privacy policy with
+  Apple as the seller), "Sign in with Apple" next to Google (Firebase
+  `signInWithIdp` with nonce; deleting the account revokes Apple's token
+  first), "Later" on the sign-in page (once a day), the subscription box
+  with Apple's required details, "Restore purchases" and "Manage
+  subscription" via Apple, Apple's own rating prompt instead of the rating
+  card, "Report ad" after full-screen ads and in the settings, App
+  Tracking Transparency after Google's consent form, iOS test ad units,
+  no vibration switch, no hidden switches, no in-app updates.
+  `app_bauen.py --ios` builds the content for the iOS shell (AAC audio,
+  `npx cap sync ios`), `--ios --ci` without anything private for the cloud
+  build. Android behaves exactly as before.
+- Demo run for the iOS cloud check (30.10.2026, stage A8):
+  `app_bauen.py --ios --ci --vorfuehrung` adds `vorfuehrung_ios.js` to the
+  cloud build only. On the second start in the simulator the page opens
+  the learning path, a lesson, the settings, the subscription box and the
+  sign-in page by itself and names each screen in the log, so the shell's
+  workflow can take screenshots. Never part of a store build; the switch
+  only works together with `--ci`.
 - Spaced review of learned words (Leitner box, decided on 28.10.2026):
   every word you know has a level with a fixed interval of 1, 3, 7, 14, 30,
   90 or 180 days. A right answer moves it up one level, also before the

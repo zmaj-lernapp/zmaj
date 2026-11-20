@@ -215,6 +215,14 @@ def playwright_sitzung():
 
 
 @pytest.fixture(scope="session")
+def pw(playwright_sitzung):
+    """Dieselbe Sitzung unter dem Namen, den test_ios_ton.py (15.11.2026)
+    benutzt: Es holt sich WebKit mit pw.webkit. Seit dem 1.4-Merge
+    (16.11.2026) gibt es nur noch ein sync_playwright(), playwright_sitzung."""
+    return playwright_sitzung
+
+
+@pytest.fixture(scope="session")
 def browser(playwright_sitzung):
     chromium = os.environ.get("ZMAJ_CHROMIUM") or None
     b = playwright_sitzung.chromium.launch(executable_path=chromium)

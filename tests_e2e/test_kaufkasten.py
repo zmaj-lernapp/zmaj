@@ -152,3 +152,55 @@ def test_kaufen_und_abbrechen_gehen_weiter(browser, basis, heute_stand):
         assert seite.fehler == []
     finally:
         ctx.close()
+
+
+# iPhone (13.11.2026, Merge von 1.3 in ios-web): Auf iOS stehen im Kaufkasten
+# zusaetzlich Nutzungsbedingungen, Datenschutz und "Kaeufe wiederherstellen"
+# (Richtlinie 3.1.2). Die Zeile rollt mit dem Inhalt, fest am Rand stehen nur
+# die Knoepfe. Sie darf also weder den Kaufknopf aus dem Bild schieben noch
+# unter den festen Knoepfen verschwinden. 375x667 ist das kleinste iPhone, das
+# iOS 16.4 kann (iPhone 8, SE 2. und 3. Generation), 440x956 das 17 Pro Max.
+PLUGIN_IOS = PLUGIN.replace(
+    "window.Capacitor = {Plugins: {",
+    "window.Capacitor = {getPlatform: () => 'ios', Plugins: {App: {addListener: async () => ({remove(){}})},").replace(
+    "kaufen: async (a) =>",
+    "verwalten: async () => ({ok: true}), wiederherstellen: async () => ({ok: true, aktiv: false}),\n  kaufen: async (a) =>")
+
+LINKS_IOS = """() => {
+  const box = document.querySelector('.nachfrage .nachfragebox');
+  const b = box.getBoundingClientRect();
+  const f = document.querySelector('.kaufknoepfe').getBoundingClientRect();
+  return ['aboAgb', 'aboDs', 'aboWh'].map(id => {
+    const el = document.getElementById(id); const r = el.getBoundingClientRect();
+    const x = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    return {id, text: el.textContent, trifft: !!x && (x === el || el.contains(x)),
+            frei: r.bottom <= f.top + 0.5 && r.top >= b.top - 0.5};
+  });
+}"""
+
+
+@pytest.mark.parametrize("breite,hoehe", [(375, 667), (390, 844), (440, 956)])
+@pytest.mark.parametrize("sprache", ["de", "fr"])
+def test_kaufkasten_auf_dem_iphone(browser, basis, heute_stand, breite, hoehe, sprache):
+    ctx = browser.new_context(viewport={"width": breite, "height": hoehe}, locale="de-DE",
+                              service_workers="block")
+    ctx.add_init_script(PLUGIN_IOS.replace("GRATIS", "'P7D'"))
+    seite = Seite(ctx.new_page(), basis)
+    try:
+        seite.starten(sprache=sprache, stand=heute_stand())
+        assert seite.js("() => IST_IOS") is True
+        seite.js("() => document.getElementById('vorspann').click()")
+        seite.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
+        seite.js("() => vollKaufOeffnen()")
+        seite.page.wait_for_selector("#aboKauf")
+        m = seite.js(LAGE)
+        assert m["kauf"] and m["zu"] and m["preis"] and m["gratisDa"], m
+        assert not m["breit"], m
+        # Ans Ende gerollt: alle drei Links ganz frei ueber den festen Knoepfen
+        seite.js("() => { const b = document.querySelector('.nachfrage .nachfragebox'); b.scrollTop = b.scrollHeight; }")
+        links = seite.js(LINKS_IOS)
+        assert all(x["text"] and x["trifft"] and x["frei"] for x in links), links
+        assert seite.js(LAGE)["kauf"] is True
+        assert seite.fehler == []
+    finally:
+        ctx.close()

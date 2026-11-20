@@ -1,0 +1,1003 @@
+# -*- coding: utf-8 -*-
+"""iPhone und iPad (30.10.2026, iOS_Plan.md 3.5-3.7 und 3.9).
+
+Die Seite ist dieselbe wie auf Android; was auf iOS anders ist, haengt an
+EINER Weiche (PLATTFORM). Hier geprueft, was ohne Browser geht: die Weiche
+selbst, die _ios-Texte in allen acht Sprachen (Richtlinie 2.3.10: keine
+andere Plattform nennen), die Rechtstexte fuer iOS und app_bauen.py --ios.
+Das Verhalten im Browser pruefen tests_e2e/test_ios.py.
+"""
+import io
+import json
+import os
+import re
+import shutil
+import subprocess
+
+import pytest
+
+# Was auf iOS nirgends stehen darf - in keiner der acht Sprachen.
+VERBOTEN = re.compile(r"Google Play|Play Store|Play-butikk|Play Butik|Android|Google-Konto|Google account"
+                      r"|Google hesab|Google-konto|compte Google|Google-account|Google Commerce"
+                      r"|Familienmediathek|Family Library"
+                      r"|App-Set-ID|app set ID|app set-id|app set-ID|App Set|uygulama seti")
+
+
+def _ohne_formular(text, code):
+    """Der Absatz zum Kontaktformular (KONTAKT_FORMULAR, seit 31.10.2026 an)
+    nennt "unser Google-Konto" - das ist Google Apps Script, ein Dienstleister
+    fuer uns, und keine Plattform. Dieselbe Ausnahme macht der Bau
+    (_ohne_fremde_plattform)."""
+    import sprachen
+    absatz = sprachen.TEXTE[code].get("set.dsgvo_formular") or sprachen.TEXTE["de"]["set.dsgvo_formular"]
+    return text.replace(absatz, "")
+
+
+# ------------------------------------------------------------------ Weiche ---
+def test_plattform_an_einer_stelle(index_html):
+    """Entschieden wird einmal, im Skript im Kopf; das grosse Skript liest es
+    nur. Sonst ruft niemand getPlatform() auf."""
+    assert index_html.count("window.ZMAJ_PLATTFORM = ") == 1
+    assert index_html.count("const PLATTFORM = ") == 1
+    kopf = index_html[:index_html.index("<style>")]
+    # getPlatform nur im Kopf (Aufruf, typeof-Pruefung, Kommentare)
+    assert index_html.count("getPlatform") == kopf.count("getPlatform") > 0
+    assert "C.getPlatform()" in kopf
+    # Capacitor ohne getPlatform (alte Huelle, die Browsertests) heisst Android.
+    assert "(C.Plugins ? 'android' : 'web')" in kopf
+
+
+def test_viewport_fit_nur_auf_ios(index_html):
+    """viewport-fit=cover nur fuer iOS - Android bleibt, wie es war."""
+    zeile = re.search(r'<meta name="viewport"[^>]*>', index_html).group(0)
+    assert "viewport-fit" not in zeile
+    assert "viewport-fit=cover" in index_html[:index_html.index("<style>")]
+    assert 'html[data-plattform="ios"] body{' in index_html
+    assert "env(safe-area-inset-top" in index_html
+
+
+def test_ios_weichen_im_skript(index_html):
+    """Die Stellen aus iOS_Plan.md 3.5, jede an der Weiche."""
+    for stueck in (
+        "const geraeteZurueck = () => PLATTFORM === 'android'",   # Zurueck-Knopf
+        "const hasTTS = !IST_IOS",                                # keine iOS-Stimme statt Emir
+        "const canBuzz = !IST_IOS",                               # Vibration
+        "(IST_IOS && T[key + '_ios'] !== undefined)",             # Texte
+        "const ADMOB_ID = IST_IOS ? ADMOB_ID_IOS : ADMOB_ID_ANDROID;",
+        "const updPlugin = () => (!IST_IOS",                      # kein ZmajUpdate
+        "if(!IST_IOS){\r\n    dauerVollVerdrahten();",            # versteckte Schalter
+        "if(IST_IOS) appleBewertung(); else zeigeBewertung();",   # keine eigene Karte
+    ):
+        assert stueck.replace("\r\n", "\n") in index_html.replace("\r\n", "\n"), stueck
+
+
+# ------------------------------------------------------------------ Texte ---
+def _ios_schluessel():
+    import sprachen
+    return sorted(k for k in sprachen.TEXTE["de"] if k.endswith("_ios"))
+
+
+def test_ios_texte_in_allen_sprachen(sprachcodes):
+    """Jede _ios-Fassung gibt es in allen acht Sprachen selbst (nicht nur
+    ueber den deutschen Rueckfall), und zu jeder die gewoehnliche."""
+    import sprachen
+    schluessel = _ios_schluessel()
+    assert len(schluessel) >= 9
+    for code in sprachcodes:
+        for k in schluessel:
+            assert sprachen.TEXTE[code].get(k), (code, k)
+            assert k[:-4] in sprachen.TEXTE["de"], k
+
+
+def test_neue_ios_texte_in_allen_sprachen(sprachcodes):
+    import sprachen
+    for k in ("anm.apple", "anm.spaeter", "konto.fehler_apple", "set.konto_weg_apple",
+              "voll.wiederherstellen", "voll.wiederhergestellt", "voll.nichts_gefunden",
+              "werbung.melden", "werbung.melden_text", "werbung.melden_wann"):
+        for code in sprachcodes:
+            assert sprachen.TEXTE[code].get(k), (code, k)
+
+
+def test_apple_knopf_heisst_wie_bei_apple(sprachcodes):
+    """Die Titel aus Apples eigenem Knopf (appleid.auth.js, je Sprache,
+    abgelesen am 30.10.2026). App Review lehnt eigene Uebersetzungen ab."""
+    import sprachen
+    soll = {"de": "Mit Apple anmelden", "en": "Sign in with Apple", "tr": "Apple ile Giriş Yap",
+            "sv": "Logga in med Apple", "nl": "Log in met Apple", "nb": "Logg på med Apple",
+            "da": "Log ind med Apple", "fr": "Connexion avec Apple"}
+    assert sorted(soll) == sorted(sprachcodes)
+    for code, titel in soll.items():
+        assert sprachen.TEXTE[code]["anm.apple"] == titel, code
+
+
+def test_ios_texte_nennen_keine_andere_plattform(sprachcodes):
+    """Richtlinie 2.3.10. Auch die Rechtstexte fuer iOS."""
+    import sprachen
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        for k, v in t.items():
+            if k.endswith("_ios"):
+                v = _ohne_formular(v, code)
+                m = VERBOTEN.search(v)
+                assert not m, (code, k, v[max(0, m.start() - 60):m.end() + 20])
+
+
+def test_ios_platzhalter_wie_im_original(sprachcodes):
+    """{preis}, {anbieter} und HTML wie in der gewoehnlichen Fassung."""
+    import sprachen
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        for k, v in t.items():
+            if not k.endswith("_ios"):
+                continue
+            original = t[k[:-4]]
+            assert sorted(re.findall(r"\{\w+\}", v)) == sorted(re.findall(r"\{\w+\}", original)), (code, k)
+
+
+def test_ios_rechtstexte(sprachcodes):
+    """Nutzungsbedingungen und Datenschutz fuer iOS: Apple verkauft, kein
+    Google Play, und alles andere wie fuer Android."""
+    import sprachen
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        for k in ("set.agb_text_ios", "set.datenschutz_text_ios"):
+            assert "Apple Distribution International" in t[k], (code, k)
+            assert t[k].count("<b>") == t[k[:-4]].count("<b>"), (code, k)
+        assert "reportaproblem.apple.com" in t["set.agb_text_ios"], code
+        # die App-Tracking-Transparenz, weil Werbung laeuft
+        assert "Apple" in t["set.datenschutz_text_ios"].split("AdMob", 1)[1], code
+
+
+def test_ios_feedback_wie_es_auf_ios_ist(sprachcodes):
+    """Stand 1.3: Der Feedback-Absatz der Erklaerung gilt auch auf iOS (Formular
+    ueber Firebase, Rueckfall Mailprogramm). Die Bewertungskarte mit ihrem Knopf
+    "Verbesserung vorschlagen" gibt es dort aber nicht (Entscheidung 11), also
+    nennt ihn nur die Android-Fassung. Das Skript bei Google steht in beiden."""
+    import sprachen
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        knopf = t["bew.vorschlag"]
+        android, ios = t["set.datenschutz_text"], t["set.datenschutz_text_ios"]
+        assert knopf in android, (code, knopf)
+        assert knopf not in ios, (code, knopf)
+        assert ios.count("Google Apps Script") == android.count("Google Apps Script") == 2, code
+        assert ios.count("Firebase") == android.count("Firebase"), code
+
+
+def test_android_rechtstexte_bleiben_wie_in_1_3(sprachcodes):
+    """Die iOS-Saetze aendern nur die _ios-Fassungen: In den gewoehnlichen Texten
+    steht weiter der Wortlaut fuer Android."""
+    import sprachen
+    t = sprachen.texte("de")
+    assert "Tippst du beim Feedback in den Einstellungen oder bei „Verbesserung vorschlagen“" in t["set.datenschutz_text"]
+    assert "Ein Skript in unserem Google-Konto (Google Apps Script) leitet" in t["set.datenschutz_text"]
+    assert "Google Commerce Limited" in t["set.datenschutz_text"]
+    for code in sprachcodes:
+        assert "Apple" not in sprachen.texte(code)["set.datenschutz_text"], code
+
+
+def test_ios_rechtstexte_brechen_ab_wenn_android_sich_aendert(monkeypatch):
+    """Aendert jemand einen Satz fuer Android, steht der alte Satz fuer iOS
+    nicht mehr da - texte() bricht dann ab, statt still Google Play zu
+    zeigen."""
+    import sprachen
+    alt, _ = sprachen.IOS_RECHT["de"]["agb"][0]
+    roh = dict(sprachen.TEXTE["de"])
+    roh["set.agb_text"] = roh["set.agb_text"].replace(alt, alt.replace("Google", "Gugel"))
+    monkeypatch.setitem(sprachen.TEXTE, "de", roh)
+    with pytest.raises(ValueError):
+        sprachen.texte("de")
+
+
+def test_ios_rechtstexte_ohne_werbung(monkeypatch, sprachcodes):
+    """Ohne Werbung (WERBUNG_LAEUFT = False) steht set.dsgvo_werbung_aus in
+    der Erklaerung. Auch der nennt fuer iOS den App Store, nicht den Play
+    Store und das Google-Konto. 30.10.2026"""
+    import sprachen
+    monkeypatch.setattr(sprachen, "WERBUNG_LAEUFT", False)
+    for code in sprachcodes:
+        ds = _ohne_formular(sprachen.texte(code)["set.datenschutz_text_ios"], code)
+        m = VERBOTEN.search(ds)
+        assert not m, (code, ds[max(0, m.start() - 60):m.end() + 20])
+        for _, neu in sprachen.IOS_RECHT[code]["werbung_aus"]:
+            assert neu in ds, code
+
+def test_ios_datenschutz_nennt_absturzberichte(sprachcodes):
+    """Patch a: Googles Angaben fuer iOS fuehren Absturzberichte als eigene
+    Datenart, die fuer Android nicht. Nur die iOS-Fassung nennt sie."""
+    import sprachen
+    neu = {"de": "Absturzberichte", "en": "crash reports", "tr": "çökme raporları",
+           "sv": "kraschrapporter", "nl": "crashrapporten", "nb": "krasjrapporter",
+           "da": "nedbrudsrapporter", "fr": "rapports de plantage"}
+    assert sorted(neu) == sorted(sprachcodes)
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        assert t["set.datenschutz_text_ios"].count(neu[code]) == 1, code
+        assert neu[code] not in t["set.datenschutz_text"], code
+
+
+# S23 (Android 1.4, Ajdin 15.11.2026): Fuer Android nennt die Erklaerung die
+# App-Set-ID. Die gibt es auf dem iPhone nicht; dort bleibt nur die
+# Erklaerung, die in Android in Klammern steht (16.11.2026).
+APP_SET_ID = re.compile(r"app[- ]set[- ]?id|identifiant App Set|uygulama seti", re.I)
+KENNUNG_IOS = {"de": "die Werbe-ID deines Geräts, eine Kennung, die nur für die Apps eines Anbieters gilt, deine IP-Adresse,",
+               "en": "your device's advertising ID, an identifier that only applies to the apps of one developer, your IP address,",
+               "tr": "cihazının reklam kimliğini, yalnızca aynı geliştiricinin uygulamalarında geçerli bir kimliği, IP adresini,",
+               "sv": "din enhets annons-id, en identifierare som bara gäller för appar från samma utvecklare, din IP-adress,",
+               "nl": "de advertentie-ID van je apparaat, een ID die alleen geldt voor de apps van één ontwikkelaar, je IP-adres,",
+               "nb": "enhetens annonse-ID, en ID som bare gjelder for appene fra én utvikler, IP-adressen din,",
+               "da": "din enheds annoncerings-id, et id, der kun gælder for apps fra samme udvikler, din IP-adresse,",
+               "fr": "l'identifiant publicitaire de ton appareil, un identifiant valable uniquement pour les applis "
+                     "d'un même développeur, ton adresse IP,"}
+
+
+def test_ios_datenschutz_ohne_app_set_id(sprachcodes):
+    """In keiner Sprache steht in der iOS-Erklaerung die App-Set-ID, die
+    Kennung selbst bleibt beschrieben. Android nennt sie weiter."""
+    import sprachen
+    assert sorted(KENNUNG_IOS) == sorted(sprachcodes)
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        ios = t["set.datenschutz_text_ios"]
+        assert not APP_SET_ID.search(ios), (code, APP_SET_ID.search(ios))
+        assert ios.count(KENNUNG_IOS[code]) == 1, code
+        assert len(APP_SET_ID.findall(t["set.datenschutz_text"])) == 1, code
+
+
+def test_ios_datenschutz_app_set_id_bricht_ab(monkeypatch):
+    """Fehlt das Paar, bricht texte() ab, statt still die App-Set-ID zu zeigen
+    (IOS_FREMDE_WOERTER)."""
+    import sprachen
+    for code in ("de", "en", "tr", "fr"):
+        roh = dict(sprachen.IOS_RECHT[code])
+        roh["werbung"] = [p for p in roh["werbung"] if not APP_SET_ID.search(p[0])]
+        assert len(roh["werbung"]) == len(sprachen.IOS_RECHT[code]["werbung"]) - 1, code
+        monkeypatch.setitem(sprachen.IOS_RECHT, code, roh)
+        with pytest.raises(ValueError, match="(?i)app.?set|uygulama seti"):
+            sprachen.texte(code)
+
+
+# Fragen 15.11.2026 Nr. 2 (Ajdin: "2 ja"): Apple will in der Erklaerung
+# lesen, dass ein fremder Dienst die Daten genauso schuetzt. Beim Konto steht
+# es (Auftragsverarbeiter), bei der Werbung nun auch - nur auf iOS.
+GOOGLE_REGELN = {
+    "de": "Google verarbeitet die Daten für uns nach denselben Regeln wie in dieser Erklärung.",
+    "en": "Google processes the data for us under the same rules as in this privacy policy.",
+    "tr": "Google verileri bizim için bu gizlilik politikasındaki kuralların aynısına göre işler.",
+    "sv": "Google behandlar uppgifterna åt oss enligt samma regler som i den här integritetspolicyn.",
+    "nl": "Google verwerkt de gegevens voor ons volgens dezelfde regels als in deze privacyverklaring.",
+    "nb": "Google behandler opplysningene for oss etter de samme reglene som i denne personvernerklæringen.",
+    "da": "Google behandler oplysningerne for os efter de samme regler som i denne privatlivspolitik.",
+    "fr": "Google traite les données pour nous selon les mêmes règles que celles de cette politique de confidentialité.",
+}
+
+
+def test_ios_datenschutz_google_nach_denselben_regeln(sprachcodes, monkeypatch):
+    """Der Satz steht im Absatz zur Werbung, direkt hinter dem, wofuer Google
+    die Daten nutzt, einmal und nur in der iOS-Fassung. Ohne Werbung gibt es
+    den Absatz nicht, dann auch den Satz nicht."""
+    import sprachen
+    assert sorted(GOOGLE_REGELN) == sorted(sprachcodes)
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        ios = t["set.datenschutz_text_ios"]
+        assert ios.count(GOOGLE_REGELN[code]) == 1, code
+        werbung = [a for a in ios.split("<br>") if "AdMob" in a and GOOGLE_REGELN[code] in a]
+        assert len(werbung) == 1 and werbung[0].endswith(GOOGLE_REGELN[code]), code
+        assert GOOGLE_REGELN[code] not in t["set.datenschutz_text"], code
+    monkeypatch.setattr(sprachen, "WERBUNG_LAEUFT", False)
+    for code in sprachcodes:
+        assert GOOGLE_REGELN[code] not in sprachen.texte(code)["set.datenschutz_text_ios"], code
+
+
+# Pruefbericht 1.4, S22: eigener Stand der iOS-Fassungen (IOS_STAND).
+# Seit 19.11.2026 (Android 1.4, Abschnitt 3 „Wie oft“) gilt der spaetere
+# Stand der Android-Fassung, IOS_STAND bleibt beim 16.11. (stand_setzen).
+STAND_DS_IOS = {"de": "Stand: 19.11.2026", "en": "Last updated: November 19, 2026",
+                "tr": "Son güncelleme: 19.11.2026", "sv": "Senast uppdaterad: 19.11.2026",
+                "nl": "Laatst bijgewerkt: 19 november 2026", "nb": "Sist oppdatert: 19.11.2026",
+                "da": "Senest opdateret: 19.11.2026", "fr": "Dernière mise à jour : 19.11.2026"}
+
+
+def _stand(text):
+    return re.findall(r"<i>([^<]*)</i>$", text)
+
+
+def test_ios_datenschutz_stand(sprachcodes):
+    import sprachen
+    assert sorted(STAND_DS_IOS) == sorted(sprachcodes)
+    assert sprachen.IOS_STAND["datenschutz"] == "16.11.2026"
+    for code in sprachcodes:
+        assert _stand(sprachen.texte(code)["set.datenschutz_text_ios"]) == [STAND_DS_IOS[code]], code
+
+
+def test_ios_stand_nimmt_den_spaeteren(monkeypatch):
+    """IOS_STAND frueher als der Stand fuer Android: es bleibt der fuer
+    Android. Spaeter: der von IOS_STAND. Ohne gueltigen Tag: Abbruch."""
+    import sprachen
+    android = _stand(sprachen.texte("de")["set.datenschutz_text"])
+    monkeypatch.setitem(sprachen.IOS_STAND, "datenschutz", "01.01.2026")
+    assert _stand(sprachen.texte("de")["set.datenschutz_text_ios"]) == android
+    monkeypatch.setitem(sprachen.IOS_STAND, "datenschutz", "24.12.2026")
+    monkeypatch.setitem(sprachen.IOS_STAND, "agb", "24.12.2026")
+    t = sprachen.texte("en")
+    assert _stand(t["set.datenschutz_text_ios"]) == ["Last updated: December 24, 2026"]
+    assert _stand(t["set.agb_text_ios"]) == ["Last updated: December 24, 2026"]
+    assert _stand(sprachen.texte("nl")["set.agb_text_ios"]) == ["Laatst bijgewerkt: 24.12.2026"]
+    # Android bleibt, wie es ist
+    assert _stand(sprachen.texte("de")["set.datenschutz_text"]) == android
+    monkeypatch.setitem(sprachen.IOS_STAND, "agb", "")
+    with pytest.raises(ValueError, match="IOS_STAND"):
+        sprachen.texte("de")
+
+
+STAND_AGB_IOS = {"de": "Stand: 16.11.2026", "en": "Last updated: November 16, 2026",
+                 "tr": "Son güncelleme: 16.11.2026", "sv": "Senast uppdaterad: 16.11.2026",
+                 "nl": "Laatst bijgewerkt: 16.11.2026", "nb": "Sist oppdatert: 16.11.2026",
+                 "da": "Senest opdateret: 16.11.2026", "fr": "Dernière mise à jour : 16.11.2026"}
+
+
+def test_ios_agb_mit_s30(sprachcodes):
+    """S30 aus 1.4 (Ajdin 14.11.2026: "ja mach"): Auch die iOS-Nutzungs-
+    bedingungen sagen in Punkt 2, dass die App keine aerztliche Aufklaerung
+    ersetzt, und nennen bei den heiklen Leveln die Gesundheit - in allen
+    acht Sprachen, ohne den Zahnarzt-Teil zu verraten. Stand fuer iOS
+    16.11.2026 (IOS_STAND), fuer Android bleibt der 14.11.2026."""
+    import sprachen
+    from test_nutzungsbedingungen_s30 import PUNKT2
+    assert sorted(PUNKT2) == sorted(sprachcodes) == sorted(STAND_AGB_IOS)
+    assert sprachen.IOS_STAND["agb"] == "16.11.2026"
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        punkt2 = t["set.agb_text_ios"].split("<b>2.")[1].split("<b>3.")[0]
+        assert punkt2 == t["set.agb_text"].split("<b>2.")[1].split("<b>3.")[0], code
+        for teil in PUNKT2[code]:
+            assert teil in punkt2, (code, teil)
+        assert not re.search(r"zahn|tooth|dental|diş hekim|tandarts|tandlæge|tandlege|tandläkare|dentiste",
+                             punkt2, re.I), code
+        assert _stand(t["set.agb_text_ios"]) == [STAND_AGB_IOS[code]], code
+        assert _stand(t["set.agb_text"])[0].endswith(("14.11.2026", "November 14, 2026")), code
+
+
+def test_ios_rechtstexte_brechen_ab_bei_fremder_plattform(monkeypatch):
+    """Fehlt fuer einen Android-Satz der iOS-Ersatz, bricht texte() ab,
+    statt still den Play Store zu nennen (IOS_FREMDE_WOERTER)."""
+    import sprachen
+    roh = dict(sprachen.IOS_RECHT["de"])
+    roh["werbung_aus"] = []
+    monkeypatch.setitem(sprachen.IOS_RECHT, "de", roh)
+    monkeypatch.setattr(sprachen, "WERBUNG_LAEUFT", False)
+    with pytest.raises(ValueError, match="Play Store"):
+        sprachen.texte("de")
+
+
+def test_ios_fremde_woerter_wie_im_test():
+    """Die Liste in sprachen.py und die Suche hier finden dieselben Woerter."""
+    import sprachen
+    for wort in sprachen.IOS_FREMDE_WOERTER:
+        assert VERBOTEN.search(wort), wort
+
+
+# Der Anmeldeschluessel liegt auf iOS im Schluesselbund und bleibt beim
+# Loeschen der App erhalten (ZmajAnmeldung.swift, kSecAttrSynchronizable);
+# "Speicher leeren" gibt es auf iOS nicht. 30.10.2026
+SCHLUESSELBUND = {"de": "Schlüsselbund", "en": "keychain", "tr": "anahtar zincir",
+                  "sv": "nyckelring", "nl": "sleutelhanger", "nb": "nøkkelring",
+                  "da": "nøglering", "fr": "trousseau"}
+SPEICHER_LEEREN = {"de": "Speicher leerst", "en": "clearing its storage",
+                   "tr": "depolamasını temizle", "sv": "tömma dess lagring",
+                   "nl": "opslag ervan te wissen", "nb": "tømme lagringen",
+                   "da": "rydde dens lagrede data", "fr": "vidant sa mémoire"}
+
+
+def test_ios_datenschutz_schluesselbund_beim_loeschen(sprachcodes):
+    """Abschnitt 8 (Speicherdauer) und 10 (Loeschen) nennen den
+    Schluesselbund; die Android-Saetze zum Speicherleeren stehen fuer iOS
+    nicht mehr da, fuer Android schon."""
+    import sprachen
+    assert sorted(SCHLUESSELBUND) == sorted(sprachcodes) == sorted(SPEICHER_LEEREN)
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        abschnitte = t["set.datenschutz_text_ios"].split("<br><br>")
+        for nr in ("8", "10"):
+            gefunden = [a for a in abschnitte if a.startswith("<b>%s." % nr)]
+            assert len(gefunden) == 1, (code, nr)
+            assert SCHLUESSELBUND[code] in gefunden[0], (code, nr)
+        assert SPEICHER_LEEREN[code] not in t["set.datenschutz_text_ios"], code
+        assert SPEICHER_LEEREN[code] in t["set.datenschutz_text"], code
+
+def test_ios_konto_sichert_den_lernstand(sprachcodes):
+    """Patch b: Auf iOS gibt es "Spaeter", das Konto sichert den Lernstand.
+    Nutzungsbedingungen und Erklaerung (Abschnitt 2 und 3) sagen das, die
+    Android-Texte sagen weiter, dass man zum Lernen ein Konto braucht."""
+    import sprachen
+    r = sprachen.IOS_RECHT
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        alt, neu = r[code]["agb"][-1]
+        assert neu in t["set.agb_text_ios"] and alt not in t["set.agb_text_ios"], code
+        assert alt in t["set.agb_text"], code
+        for alt, neu in r[code]["datenschutz"][-2:]:
+            assert neu in t["set.datenschutz_text_ios"], (code, neu)
+            assert alt not in t["set.datenschutz_text_ios"], (code, alt)
+            assert alt in t["set.datenschutz_text"], (code, alt)
+
+
+# Nach dem Abmelden und nach "Konto loeschen" (Ajdin 15.11.2026, Fragen
+# 15.11. Nr. 1: "1 ja"): auf iOS wie in den Rechtstexten, Android bleibt.
+ABGEMELDET = {
+    "de": ("Melde dich an, damit dein Lernstand gesichert wird.", "Melde dich an, um weiterzulernen."),
+    "en": ("Sign in so your progress is backed up.", "Sign in to keep learning."),
+    "tr": ("İlerlemenin yedeklenmesi için giriş yap.", "Öğrenmeye devam etmek için giriş yap."),
+    "sv": ("Logga in så att din utveckling säkerhetskopieras.", "Logga in för att fortsätta lära dig."),
+    "nl": ("Log in zodat er een back-up van je voortgang wordt gemaakt.", "Log in om verder te leren."),
+    "nb": ("Logg inn, så sikkerhetskopieres framgangen din.", "Logg inn for å lære videre."),
+    "da": ("Log ind, så din fremgang bliver sikkerhedskopieret.", "Log ind for at lære videre."),
+    "fr": ("Connecte-toi pour que ta progression soit sauvegardée.", "Connecte-toi pour continuer à apprendre."),
+}
+
+
+def test_ios_nach_abmelden_sichert_das_konto(sprachcodes):
+    import sprachen
+    assert sorted(ABGEMELDET) == sorted(sprachcodes)
+    for code in sprachcodes:
+        ios, android = ABGEMELDET[code]
+        assert sprachen.TEXTE[code]["anm.text_abgemeldet_ios"] == ios, code
+        assert sprachen.TEXTE[code]["anm.text_abgemeldet"] == android, code
+
+
+def test_ios_keine_rechtstexte_ohne_konto(monkeypatch):
+    """Die Web-Demo (ohne Pflichtkonto) hat keine iOS-Fassung."""
+    import sprachen
+    monkeypatch.setattr(sprachen, "KONTO_PFLICHT", False)
+    assert "set.agb_text_ios" not in sprachen.texte("de")
+
+
+def test_html_kennt_die_neuen_schluessel(index_html):
+    for k in ("anm.apple", "anm.spaeter", "konto.fehler_apple", "voll.wiederherstellen",
+              "werbung.melden", "set.konto_weg_apple"):
+        assert k in index_html, k
+
+
+# ------------------------------------------------------------- Bauskript ---
+def test_schalter_ios():
+    import app_bauen
+    assert app_bauen.schalter_lesen(["--ios"]) == {"--ios"}
+    assert app_bauen.schalter_lesen(["--ios", "--ci", "--huelle=x"]) == {"--ios", "--ci", "--huelle=x"}
+    for falsch in (["--ios", "--aab"], ["--ios", "--pflicht"], ["--ci"], ["--huelle=x"],
+                   ["--ios", "--huelle="], ["--ios", "--hülle=x"]):
+        with pytest.raises(SystemExit):
+            app_bauen.schalter_lesen(falsch)
+
+
+def test_ios_huelle_standard_und_schalter(tmp_path, monkeypatch):
+    import app_bauen
+    monkeypatch.delenv("ZMAJ_HUELLE_IOS", raising=False)
+    assert app_bauen.ios_huelle({"--ios"}) == os.path.join(os.path.dirname(app_bauen.HIER), "zmaj-huelle-ios")
+    assert app_bauen.ios_huelle({"--ios", "--huelle=%s" % tmp_path}) == str(tmp_path)
+    monkeypatch.setenv("ZMAJ_HUELLE_IOS", str(tmp_path / "x"))
+    assert app_bauen.ios_huelle({"--ios"}) == str(tmp_path / "x")
+
+
+def test_ton_schluessel_mit_codec():
+    """Opus behaelt seinen alten Namen (kein Android-Bau wandelt neu um), AAC
+    hat einen eigenen."""
+    import app_bauen
+    h = "cd" * 32
+    assert app_bauen.ton_schluessel(h, "g01.mp3") == h[:32] + "-24k"
+    assert app_bauen.ton_schluessel(h, "g01.mp3", "aac") == h[:32] + "-32k-aac"
+    assert app_bauen.ton_schluessel(h, "w0001.mp3", "aac").startswith(h[:32] + "-32k-aac-a")
+    assert app_bauen.TON_CODECS["aac"]["endung"] == ".m4a"
+
+
+def test_ton_index_auf_m4a():
+    import app_bauen
+    index = {"toene": [{"key": "a", "datei": "w0001.mp3"}, {"key": "b", "datei": "g01.mp3"}]}
+    assert app_bauen.ton_index_umschreiben(index, ".m4a") == 2
+    assert [e["datei"] for e in index["toene"]] == ["w0001.m4a", "g01.m4a"]
+
+
+def _ffmpeg():
+    import app_bauen
+    return app_bauen.ffmpeg_finden()
+
+
+def test_ton_nach_aac_mit_zwischenspeicher(tmp_path):
+    """Echte Umwandlung nach AAC (.m4a), mono 32 kbit/s, und beim zweiten
+    Mal kommt alles aus dem Zwischenspeicher."""
+    import app_bauen
+    ffmpeg = _ffmpeg()
+    if not ffmpeg or not os.path.isfile(ffmpeg):
+        pytest.skip("ffmpeg fehlt")
+    audio = tmp_path / "audio"
+    audio.mkdir()
+    for name, hz in (("w0001.mp3", 440), ("g01.mp3", 660)):
+        subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y", "-f", "lavfi",
+                        "-i", "sine=frequency=%d:duration=1" % hz, "-ar", "24000", "-ac", "1",
+                        "-b:a", "48k", str(audio / name)], check=True)
+    roh = {n: (audio / n).read_bytes() for n in ("w0001.mp3", "g01.mp3")}
+    (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+        {"key": "eins", "datei": "w0001.mp3"}, {"key": "g", "datei": "g01.mp3"}]}), encoding="utf-8")
+    zwischen = tmp_path / "zwischen"
+    app_bauen.ton_verkleinern(str(audio), ffmpeg=ffmpeg, zwischen=str(zwischen), codec="aac")
+    assert sorted(os.listdir(audio)) == ["g01.m4a", "index.json", "w0001.m4a"]
+    index = json.loads((audio / "index.json").read_text(encoding="utf-8"))
+    assert [e["datei"] for e in index["toene"]] == ["w0001.m4a", "g01.m4a"]
+    assert (audio / "w0001.m4a").read_bytes()[4:8] == b"ftyp"
+    gespeichert = sorted(os.listdir(zwischen))
+    assert len(gespeichert) == 2 and all(n.endswith(".m4a") for n in gespeichert)
+    zeiten = {n: os.path.getmtime(os.path.join(zwischen, n)) for n in gespeichert}
+    # Zweiter Lauf mit denselben MP3s: nichts wird neu umgewandelt.
+    for n in os.listdir(audio):
+        os.remove(os.path.join(audio, n))
+    for n, b in roh.items():
+        (audio / n).write_bytes(b)
+    (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+        {"key": "eins", "datei": "w0001.mp3"}, {"key": "g", "datei": "g01.mp3"}]}), encoding="utf-8")
+    app_bauen.ton_verkleinern(str(audio), ffmpeg=ffmpeg, zwischen=str(zwischen), codec="aac")
+    assert {n: os.path.getmtime(os.path.join(zwischen, n)) for n in os.listdir(zwischen)} == zeiten
+
+
+def test_xcconfig_lesen(tmp_path):
+    import app_bauen
+    p = tmp_path / "ios_zugang.xcconfig"
+    p.write_text("// Kommentar\n#include? \"x\"\nZMAJ_A = 1 // dahinter\nZMAJ_LEER =\nkaputt\n", encoding="utf-8")
+    assert app_bauen.xcconfig_lesen(str(p)) == {"ZMAJ_A": "1", "ZMAJ_LEER": ""}
+    assert app_bauen.xcconfig_lesen(str(tmp_path / "fehlt")) == {}
+
+
+def _kopie(tmp_path, wurzel):
+    kopie = tmp_path / "www" / "index.html"
+    kopie.parent.mkdir()
+    shutil.copyfile(os.path.join(wurzel, "web", "index.html"), str(kopie))
+    return kopie
+
+
+def test_ios_zugang_einsetzen(tmp_path, wurzel):
+    import app_bauen
+    kopie = _kopie(tmp_path, wurzel)
+    zugang = tmp_path / "ios_zugang.xcconfig"
+    # Erfunden, nur in der Form echt.
+    inter, lohn = "ca-app-pub-1111111111111111/2222222222", "ca-app-pub-1111111111111111/3333333333"
+    zugang.write_text("ZMAJ_ADMOB_INTERSTITIAL = %s\nZMAJ_ADMOB_BELOHNT = %s\nZMAJ_APPLE_APP_ID = 1234567890\n"
+                      % (inter, lohn), encoding="utf-8")
+    assert app_bauen.ios_zugang_einsetzen(str(kopie), str(zugang)) == [
+        "ZMAJ_ADMOB_INTERSTITIAL", "ZMAJ_ADMOB_BELOHNT", "ZMAJ_APPLE_APP_ID"]
+    text = kopie.read_bytes().decode("utf-8")
+    assert "interstitial: '%s'" % inter in text and "belohnt:      '%s'" % lohn in text
+    assert "const APPLE_APP_ID = '1234567890';" in text
+    # die Android-Bloecke bleiben, wie sie sind
+    assert "ca-app-pub-9105747905460295/9764395638" in text
+    # Quelle unveraendert
+    quelle = io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    assert app_bauen.IOS_APPLE_ID_ZEILE in quelle
+
+
+def test_ios_zugang_ohne_datei_bleibt_test(tmp_path, wurzel):
+    import app_bauen
+    kopie = _kopie(tmp_path, wurzel)
+    vorher = kopie.read_bytes()
+    assert app_bauen.ios_zugang_einsetzen(str(kopie), str(tmp_path / "fehlt.xcconfig")) == []
+    assert kopie.read_bytes() == vorher
+
+
+@pytest.mark.parametrize("inhalt", [
+    "ZMAJ_ADMOB_INTERSTITIAL = ca-app-pub-1111111111111111~2222222222\n"
+    "ZMAJ_ADMOB_BELOHNT = ca-app-pub-1111111111111111/3333333333\n",       # App-ID statt Block
+    "ZMAJ_ADMOB_INTERSTITIAL = ca-app-pub-1111111111111111/2222222222\n",   # nur einer
+    "ZMAJ_APPLE_APP_ID = id123\n",
+])
+def test_ios_zugang_falsche_form_bricht_ab(tmp_path, wurzel, inhalt):
+    import app_bauen
+    kopie = _kopie(tmp_path, wurzel)
+    vorher = kopie.read_bytes()
+    zugang = tmp_path / "ios_zugang.xcconfig"
+    zugang.write_text(inhalt, encoding="utf-8")
+    with pytest.raises(SystemExit):
+        app_bauen.ios_zugang_einsetzen(str(kopie), str(zugang))
+    assert kopie.read_bytes() == vorher
+
+
+def test_ios_zugang_nie_in_web(wurzel, tmp_path):
+    import app_bauen
+    with pytest.raises(SystemExit):
+        app_bauen.ios_zugang_einsetzen(os.path.join(wurzel, "web", "index.html"), str(tmp_path / "x"))
+
+
+def test_kein_dauer_pruefwert_auf_ios(tmp_path, wurzel):
+    import app_bauen
+    kopie = _kopie(tmp_path, wurzel)
+    app_bauen.dauer_platzhalter_pruefen(str(kopie))          # Platzhalter: in Ordnung
+    text = kopie.read_bytes().decode("utf-8").replace("__DAUER_PRUEFWERT__", "a" * 64)
+    kopie.write_bytes(text.encode("utf-8"))
+    with pytest.raises(SystemExit):
+        app_bauen.dauer_platzhalter_pruefen(str(kopie))
+
+
+def _zahnarzt_kopie(tmp_path):
+    """Eine kleine Kopie www/ mit einer Aufnahme nur fuer Beim Zahnarzt und einer
+    aus dem Lernpfad, Eintraege wie von emir_drueber()."""
+    import ton_bauen
+    nur_er = sorted({p["key"] for p in ton_bauen.sammle()} - {p["key"] for p in ton_bauen.sammle(mit_zahnarzt=False)})
+    lernpfad = ton_bauen.sammle(mit_zahnarzt=False)[0]["key"]
+    www = tmp_path / "www"
+    (www / "inhalt").mkdir(parents=True)
+    (www / "audio").mkdir()
+    for code in ("de", "fr"):
+        (www / "inhalt" / (code + ".json")).write_text(json.dumps(
+            {"kategorien": [{"id": "k"}], "zahnarzt": {"sektion": {"id": "zahnarzt"}, "kategorien": [{"id": "z"}]}}),
+            encoding="utf-8")
+    (www / "inhalt" / "liste.json").write_text(json.dumps([{"code": "de"}]), encoding="utf-8")
+    toene = [{"key": lernpfad, "datei": "w00001.mp3", "text": "bleibt"}] + [
+        {"key": k, "datei": "w%05d.mp3" % (5206 + i), "text": k, "stimme": "emir"} for i, k in enumerate(nur_er)]
+    for e in toene:
+        (www / "audio" / e["datei"]).write_bytes(b"x" * 10)
+    (www / "audio" / "index.json").write_text(json.dumps({"version": 1, "toene": toene}), encoding="utf-8")
+    return www, nur_er
+
+
+def test_zahnarzt_kommt_nicht_in_den_ios_bau(tmp_path):
+    """Richtlinie 2.5.19: nichts Schlafendes im Paket. Weder der Inhalt noch die
+    Aufnahmen des Teils, und alles andere bleibt."""
+    import app_bauen
+    www, nur_er = _zahnarzt_kopie(tmp_path)
+    assert len(nur_er) >= 100
+    assert app_bauen.ios_zahnarzt_entfernen(str(www)) == (2, len(nur_er))
+    for code in ("de", "fr"):
+        assert json.loads((www / "inhalt" / (code + ".json")).read_text(encoding="utf-8")) == {"kategorien": [{"id": "k"}]}
+    assert json.loads((www / "inhalt" / "liste.json").read_text(encoding="utf-8")) == [{"code": "de"}]
+    assert sorted(os.listdir(str(www / "audio"))) == ["index.json", "w00001.mp3"]
+    index = json.loads((www / "audio" / "index.json").read_text(encoding="utf-8"))
+    assert [e["datei"] for e in index["toene"]] == ["w00001.mp3"]
+    # Ein zweiter Lauf findet nichts mehr und aendert nichts.
+    assert app_bauen.ios_zahnarzt_entfernen(str(www)) == (0, 0)
+
+
+def test_zahnarzt_nimmt_nur_der_ios_bau_heraus(wurzel):
+    """Nur ios_bauen() nimmt ihn heraus, und ton_bauen.sammle() zaehlt ihn weiter
+    mit: Die vergebenen Nummern und die Android-Fassung bleiben."""
+    import ton_bauen
+    quelle = io.open(os.path.join(wurzel, "app_bauen.py"), encoding="utf-8").read()
+    assert quelle.count("ios_zahnarzt_entfernen(www)") == 2     # die Funktion und ihr einziger Aufruf
+    aufruf = quelle.index("    ios_zahnarzt_entfernen(www)\n")
+    assert quelle.index("def ios_bauen(") < aufruf < quelle.index("def main(argv=None)")
+    assert len(ton_bauen.sammle()) > len(ton_bauen.sammle(mit_zahnarzt=False))
+
+
+def test_zahnarzt_entfernen_nie_in_web(wurzel):
+    import app_bauen
+    with pytest.raises(SystemExit):
+        app_bauen.ios_zahnarzt_entfernen(os.path.join(wurzel, "web"))
+
+
+def test_zahnarzt_auf_ios_aus(index_html):
+    """Die Weiche in ladeDaten(): Auf iOS bleibt ZA leer, auch mit Inhalt. Und das
+    Wort haengt an dauerVollVerdrahten(), das init() dort nicht einhaengt."""
+    assert "ZA = (!IST_IOS && d.zahnarzt && d.zahnarzt.sektion" in index_html
+    init = index_html[index_html.index("async function init(){"):]
+    assert re.search(r"if\(!IST_IOS\)\{\s+dauerVollVerdrahten\(\);", init)
+    assert index_html.count("dauerVollVerdrahten();") == 1
+
+
+def _ios_huelle(tmp_path):
+    h = tmp_path / "zmaj-huelle-ios"
+    (h / "ios" / "App" / "App.xcodeproj").mkdir(parents=True)
+    (h / "ios" / "App" / "App.xcodeproj" / "project.pbxproj").write_text(
+        "MARKETING_VERSION = 1.1;\nMARKETING_VERSION = 1.1;\n", encoding="utf-8")
+    return h
+
+
+def _ablauf(monkeypatch, wurzel):
+    """ios_bauen() mit aufgezeichneten Schritten statt echter Arbeit."""
+    import app_bauen
+    aufrufe = []
+
+    def merke(name):
+        def f(*args, **kwargs):
+            aufrufe.append((name, args, kwargs))
+        return f
+
+    for name in ("pruefen", "emir_drueber", "cloud_einsetzen", "ios_zugang_einsetzen", "ton_verkleinern",
+                 "capacitor", "testwerbung_einschalten", "ios_zahnarzt_entfernen",
+                 # Android-Schritte, die auf iOS nie laufen duerfen
+                 "dauer_einsetzen", "versionsnummer_hochzaehlen", "plugins_flicken", "debug_apk",
+                 "freigabe_aab", "versionsname_lesen", "versionsname_anheben", "anmeldung_pruefen"):
+        monkeypatch.setattr(app_bauen, name, merke(name))
+
+    def kopieren(www=None):
+        aufrufe.append(("kopieren", (www,), {}))
+        os.makedirs(www, exist_ok=True)
+        shutil.copyfile(os.path.join(wurzel, "web", "index.html"), os.path.join(www, "index.html"))
+
+    monkeypatch.setattr(app_bauen, "kopieren", kopieren)
+    return aufrufe
+
+
+def test_ios_bauen_ablauf(tmp_path, monkeypatch, wurzel):
+    import app_bauen
+    h = _ios_huelle(tmp_path)
+    aufrufe = _ablauf(monkeypatch, wurzel)
+    www = app_bauen.main(["--ios", "--huelle=%s" % h])
+    namen = [a[0] for a in aufrufe]
+    assert www == os.path.join(str(h), "www")
+    assert namen == ["pruefen", "kopieren", "emir_drueber", "cloud_einsetzen", "ios_zugang_einsetzen",
+                     "ios_zahnarzt_entfernen", "ton_verkleinern", "capacitor"]
+    ton = aufrufe[namen.index("ton_verkleinern")]
+    assert ton[2] == {"zwischen": os.path.join(str(h), ".ton_aac"), "codec": "aac"}
+    assert aufrufe[namen.index("capacitor")][1] == ("ios", str(h))
+    assert aufrufe[namen.index("emir_drueber")][1] == (www, os.path.join(str(h), "audio_emir"))
+    text = io.open(os.path.join(www, "index.html"), encoding="utf-8").read()
+    assert "const APP_VERSION = '1.1';" in text
+
+
+def test_ios_bauen_ci_ohne_geheimes(tmp_path, monkeypatch, wurzel):
+    import app_bauen
+    h = _ios_huelle(tmp_path)
+    aufrufe = _ablauf(monkeypatch, wurzel)
+    app_bauen.main(["--ios", "--ci", "--huelle=%s" % h])
+    namen = [a[0] for a in aufrufe]
+    assert namen == ["pruefen", "kopieren", "ios_zahnarzt_entfernen", "ton_verkleinern"]
+    text = io.open(os.path.join(str(h), "www", "index.html"), encoding="utf-8").read()
+    assert "const CLOUD_AN = false;" in text and "const APP_VERSION = '1.1-test';" in text
+
+
+def test_ios_bauen_ohne_huelle(tmp_path, monkeypatch, wurzel):
+    import app_bauen
+    _ablauf(monkeypatch, wurzel)
+    with pytest.raises(SystemExit):
+        app_bauen.main(["--ios", "--huelle=%s" % (tmp_path / "gibt-es-nicht")])
+
+
+# ----------------------------------------------------------- Vorfuehrung ---
+# Stufe A8 (30.10.2026): Im Cloud-Pruefbau oeffnet die Seite ihre Schirme von
+# selbst, damit ios-pruefung.yml sie fotografieren kann. Das darf nie in
+# einen Store-Bau geraten.
+def test_schalter_vorfuehrung_nur_im_cloud_bau():
+    import app_bauen
+    assert app_bauen.schalter_lesen(["--ios", "--ci", "--vorfuehrung"]) == {"--ios", "--ci", "--vorfuehrung"}
+    for falsch in (["--vorfuehrung"], ["--ios", "--vorfuehrung"], ["--aab", "--vorfuehrung"]):
+        with pytest.raises(SystemExit):
+            app_bauen.schalter_lesen(falsch)
+
+
+def test_vorfuehrung_einsetzen(tmp_path, wurzel):
+    import app_bauen
+    kopie = _kopie(tmp_path, wurzel)
+    www = str(kopie.parent)
+    app_bauen.keine_vorfuehrung(www)                       # die Quelle: frei davon
+    app_bauen.vorfuehrung_einsetzen(www)
+    text = kopie.read_bytes().decode("utf-8")
+    assert os.path.isfile(os.path.join(www, "vorfuehrung.js"))
+    # Als erstes Skript, vor der Plattform-Weiche im Kopf.
+    assert text.index('<script src="vorfuehrung.js"></script>') < text.index("window.ZMAJ_PLATTFORM = ")
+    assert "const CLOUD_AN = true;" in text and "const CLOUD_AN = false;" not in text
+    assert "const CLOUD_PROJEKT = 'zmaj-vorfuehrung';" in text
+    assert "__CLOUD_" not in text and "__DAUER_PRUEFWERT__" in text
+    with pytest.raises(SystemExit):
+        app_bauen.keine_vorfuehrung(www)
+    with pytest.raises(SystemExit):                        # zweimal geht nicht
+        app_bauen.vorfuehrung_einsetzen(www)
+
+
+def test_vorfuehrung_nie_in_web(wurzel):
+    import app_bauen
+    with pytest.raises(SystemExit):
+        app_bauen.vorfuehrung_einsetzen(os.path.join(wurzel, "web"))
+    assert not os.path.exists(os.path.join(wurzel, "web", "vorfuehrung.js"))
+
+
+def test_vorfuehrung_ohne_netz_und_ohne_schluessel(wurzel):
+    """AGENTS.md Regel 6: kein Netz. Und kein Text, der wie ein Schluessel
+    aussieht (GitHubs Geheimnis-Suche)."""
+    text = io.open(os.path.join(wurzel, "vorfuehrung_ios.js"), encoding="utf-8").read()
+    assert "://" not in text
+    assert not re.search(r"AIza[0-9A-Za-z_-]{35}", text)
+    quelle = io.open(os.path.join(wurzel, "app_bauen.py"), encoding="utf-8").read()
+    assert not re.search(r"AIza[0-9A-Za-z_-]{35}", quelle)
+
+
+def test_ios_bauen_mit_und_ohne_vorfuehrung(tmp_path, monkeypatch, wurzel):
+    import app_bauen
+    h = _ios_huelle(tmp_path)
+    _ablauf(monkeypatch, wurzel)
+    app_bauen.main(["--ios", "--ci", "--vorfuehrung", "--huelle=%s" % h])
+    www = os.path.join(str(h), "www")
+    assert os.path.isfile(os.path.join(www, "vorfuehrung.js"))
+    text = io.open(os.path.join(www, "index.html"), encoding="utf-8").read()
+    assert 'src="vorfuehrung.js"' in text
+    # Der naechste Bau ohne Schalter kopiert neu: nichts davon bleibt.
+    shutil.rmtree(www)
+    app_bauen.main(["--ios", "--ci", "--huelle=%s" % h])
+    assert not os.path.exists(os.path.join(www, "vorfuehrung.js"))
+
+
+# ------------------------------------------- Befunde aus Cloud-Lauf 8 ---
+def test_ton_auf_ios_ohne_http_status(index_html):
+    """Capacitor iOS liefert Tondateien mit status 0 aus (keine
+    HTTPURLResponse). pufferLaden() nimmt sie auf iOS trotzdem - sonst lief
+    kein Wort ueber WebAudio. Nur auf iOS, Android bleibt bei ok."""
+    assert index_html.count("if(!a.ok && !(IST_IOS && a.status === 0)) throw new Error('HTTP ' + a.status);") == 1
+
+
+def test_grund_unter_der_statusleiste_nur_auf_ios(index_html):
+    """Beim Scrollen lief Text unter Uhr und Dynamic Island durch. Der
+    Streifen gilt nur mit data-plattform="ios"."""
+    i = index_html.index('html[data-plattform="ios"] body::before{')
+    regel = index_html[i:index_html.index("}", i)]
+    assert "env(safe-area-inset-top" in regel and "position:fixed" in regel
+    assert "body::before" not in index_html.replace('html[data-plattform="ios"] body::before', "")
+
+
+# ------------------------------- iPhone-Ton und Breite (15.11.2026) ---
+# Befund am iPhone 11 (iOS 16.6.1, TestFlight 1.3 Build 3): nie Ton, und die
+# Seite rechts angeschnitten. Das Verhalten im Browser pruefen
+# tests_e2e/test_ios_ton.py; hier, dass die Stellen an der Weiche stehen.
+def _funktion(index_html, kopf):
+    """Der Rumpf einer Funktion oberster Ebene, bis zur naechsten."""
+    text = index_html.replace("\r\n", "\n")
+    i = text.index(kopf)
+    return text[i:text.index("\n}\n", i) + 2]
+
+
+def test_ios_viewport_sperrt_den_fokus_zoom(index_html):
+    """maximum-scale=1.0 nur auf iOS: dort zoomt WKWebView sonst beim Antippen
+    eines Felds unter 16 px und bleibt so stehen. Seit dem 15.11.2026 auch
+    minimum-scale=1.0 und user-scalable=no gegen den Doppeltipp-Zoom.
+    Android: wie vorher."""
+    kopf = index_html[:index_html.index("<style>")]
+    assert ("'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,"
+            " user-scalable=no, viewport-fit=cover'") in kopf
+    zeile = re.search(r'<meta name="viewport"[^>]*>', index_html).group(0)
+    assert "maximum-scale" not in zeile and "user-scalable" not in zeile
+    # user-scalable steht nur in dieser einen Zeile fuer iOS
+    code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S)
+    assert code.count("user-scalable") == 1
+
+
+def test_ios_eingabefelder_16px(index_html):
+    """16 px in allen .field-Feldern auf iOS, 15 px bleibt die Regel fuer alle."""
+    assert ('html[data-plattform="ios"] input.field, html[data-plattform="ios"] textarea.field,'
+            ' html[data-plattform="ios"] select.field{font-size:16px}') in index_html
+    assert "input.field,textarea.field,select.field,button.field{" in index_html
+    regel = index_html[index_html.index("input.field,textarea.field,select.field,button.field{"):]
+    assert "font-size:15px" in regel[:regel.index("}")]
+
+
+def test_ios_kein_audiokontext_ohne_fingertipp(index_html):
+    """Der AudioContext entsteht auf iOS nur in tonEntsperren() (tonInGeste),
+    und das Vorwaermen laesst iOS aus, bevor es etwas anlegt."""
+    kontext = _funktion(index_html, "function tonKontext(){")
+    assert kontext.index("if(IST_IOS && !tonInGeste) return null;") < kontext.index("new Kontext(")
+    assert index_html.count("new Kontext(") == 2 and index_html.count("tonInGeste = true;") == 1
+    entsperren = _funktion(index_html, "function tonEntsperren(e){")
+    assert "tonInGeste = true;" in entsperren and "finally { tonInGeste = false; }" in entsperren
+    assert "if(!e || !e.isTrusted) return;" in entsperren
+    assert "q.buffer = c.createBuffer(1, 1, c.sampleRate);" in entsperren
+    vorwaermen = _funktion(index_html, "function tonVorwaermen(){")
+    assert vorwaermen.index("if(IST_IOS) return;") < vorwaermen.index("tonKontext();")
+
+
+def test_ios_tipp_horcher_vor_jedem_klick(index_html):
+    """Capture-Phase, damit der Ton entsperrt ist, bevor der Klick ein Wort
+    spricht - und nur auf iOS."""
+    text = index_html.replace("\r\n", "\n")
+    block = text[text.index("if(IST_IOS){\n  ['touchend', 'pointerup', 'click'].forEach(n =>"):]
+    block = block[:block.index("\n}\n")]
+    assert "document.addEventListener(n, tonEntsperren, {capture: true, passive: true})" in block
+    assert text.count("tonEntsperren, {capture") == 1
+
+
+def test_ios_audiosession_erst_im_tipp_und_ab_ios_17(index_html):
+    """'playback' steht nur noch in tonSitzung(), und dort erst nach der
+    Pruefung auf iOS 17. Beim Laden des Skripts setzt niemand mehr etwas."""
+    code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S)       # ohne Kommentare
+    assert len(re.findall(r"\.type\s*=\s*'playback'", code)) == 1
+    assert code.count("navigator.audioSession") == 1                 # const s = navigator.audioSession;
+    sitzung = _funktion(index_html, "function tonSitzung(){")
+    assert sitzung.index("if(!IOS_AB_17)") < sitzung.index("s.type = 'playback'")
+    assert "if(!s){" in sitzung
+    assert "const IOS_AB_17 = IOS_FASSUNG ? IOS_FASSUNG >= 17 : typeof Set.prototype.union === 'function';" in index_html
+    assert "/(?:iPhone|CPU) OS (\\d+)_/" in index_html
+
+
+def test_resume_bei_jedem_zustand_ausser_running_und_closed(index_html):
+    """Auch bei WebKits 'interrupted'. Bis zum 15.11.2026 nur bei 'suspended'."""
+    rumpf = _funktion(index_html, "function sound(kind){")
+    assert "if(actx.state !== 'running' && actx.state !== 'closed'){" in rumpf
+    assert "const p = actx.resume(); if(p && p.catch) p.catch(()=>{});" in rumpf
+    assert "state==='suspended'" not in index_html
+    assert "if(actx.state !== 'running'){ tonWecken(actx, 'wort'); return false; }" in index_html
+
+
+def test_ios_toter_kontext_raeumt_die_alte_uhr_ab(index_html):
+    """Geschlossen wird mit allem, was auf seiner Uhr steht. Und ein Wort laeuft
+    auf iOS nur mit nachweislich laufender Uhr ueber WebAudio."""
+    weg = _funktion(index_html, "function tonWeg(wo){")
+    for stueck in ("waStopp();", "actx = null;", "rueckTon = null; tonNull = null;", "alt.close()"):
+        assert stueck in weg, stueck
+    spielen = _funktion(index_html, "function pufferSpielen(text, fertig, wann){")
+    assert spielen.index("if(IST_IOS && !tonFuerWoerter()) return false;") < spielen.index("createBufferSource()")
+    uhr = _funktion(index_html, "function tonUhrLesen(){")
+    assert "document.hidden" in uhr and "if(ct - u.ct < UHR_MIN) return 'tot';" in uhr
+
+
+def test_ios_abgelehntes_play_wird_nicht_verschluckt(index_html):
+    """Auf iOS gibt es keine Computerstimme: eine Ablehnung kommt ins
+    Ton-Protokoll, und spielerFrei faellt zurueck."""
+    sprich = _funktion(index_html, "function sprichMitSpieler(text, fertig, rate){")
+    assert "if(IST_IOS && !(e && e.name === 'AbortError')) spielerAbgelehnt(e, datei);" in sprich
+    abgelehnt = _funktion(index_html, "function spielerAbgelehnt(e, wo){")
+    assert "spielerFrei = false;" in abgelehnt and "tonMerken(" in abgelehnt
+
+
+# ------------------------- Zurueck in der App, kein Zoom (15.11.2026) ---
+# Befund am iPhone 11 (iOS 27.2.1, Build 3): nach dem Hintergrund kein Ton
+# mehr, und der Doppeltipp zoomt ohne Weg zurueck. Das Verhalten pruefen
+# tests_e2e/test_ios_ton.py; hier, dass die Stellen an der Weiche stehen.
+def _ios_block(index_html):
+    text = index_html.replace("\r\n", "\n")
+    block = text[text.index("if(IST_IOS){\n  ['touchend', 'pointerup', 'click'].forEach(n =>"):]
+    return block[:block.index("\n}\n")]
+
+
+def test_ios_kein_doppeltipp_zoom(index_html):
+    """touch-action: manipulation an allen Elementen, nur auf iOS und ohne
+    Gewicht (:where). Sonst setzt die App nirgends touch-action."""
+    regel = ':where(html[data-plattform="ios"], html[data-plattform="ios"] *){touch-action:manipulation}'
+    assert index_html.count(regel) == 1
+    code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S).replace(regel, "")
+    assert "touch-action" not in code and "touchAction" not in code
+
+
+def test_ios_rueckkehr_horcher(index_html):
+    """Sichtbar, 'resume' und 'appStateChange' rufen tonZurueck(), nur auf iOS;
+    inaktiv und 'pause' halten die Uhr-Probe an."""
+    block = _ios_block(index_html)
+    assert "if(!document.hidden) tonZurueck('sichtbar');" in block
+    assert "if(!document.hidden && actx) tonBaldPruefen('zurueck');" not in index_html
+    for stueck in ("appHoeren('appStateChange', d => {",
+                   "if(d && d.isActive === false) tonWirdInaktiv('inaktiv');",
+                   "else if(d && d.isActive === true) tonZurueck('aktiv');",
+                   "appHoeren('pause', () => tonWirdInaktiv('im Hintergrund'));",
+                   "appHoeren('resume', () => tonZurueck('im Vordergrund'));",
+                   "if(appP && typeof appP.addListener === 'function'){"):
+        assert stueck in block, stueck
+    code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S)
+    assert code.count("tonZurueck(") == 1 + 3                 # die Funktion und drei Aufrufe im Block
+    assert code.count("addListener('appStateChange'") == 0 and code.count("appHoeren(") == 3
+
+
+def test_ios_rueckkehr_weckt_verwirft_und_entsperrt(index_html):
+    """Laeuft der Kontext nicht: das bestellte Wort weg, fortsetzen, und nach
+    RUECKKEHR_MS schliessen, wenn er dann noch steht. Laeuft er: die
+    Wanduhr-Probe. In jedem Fall spielt der naechste Tipp neu an."""
+    z = _funktion(index_html, "function tonZurueck(wo){")
+    assert "tonFrei = null; spielerFrei = false;" in z and "tonInaktiv = false;" in z
+    assert z.index("if(c.state === 'running'){ tonBaldPruefen('zurueck'); return; }") < z.index("waStopp();")
+    assert z.index("waStopp();") < z.index("tonWecken(c, 'zurueck');") < z.index("setTimeout(")
+    assert "if(nr !== tonRueckkehr || c !== actx || document.hidden || tonInaktiv) return;" in z
+    assert "if(c.state !== 'running') tonWeg('zurueck, ' + c.state);" in z
+    assert "}, RUECKKEHR_MS);" in z and "const RUECKKEHR_MS = 1000;" in index_html
+    assert "new Kontext(" not in z                            # neu angelegt wird nur im Tipp
+
+
+def test_ios_inaktiv_zaehlt_die_uhr_nicht(index_html):
+    uhr = _funktion(index_html, "function tonUhrLesen(){")
+    assert "c.state !== 'running' || document.hidden || tonInaktiv){ tonUhr = null; return 'unklar'; }" in uhr
+    entsperren = _funktion(index_html, "function tonEntsperren(e){")
+    assert entsperren.index("if(!e || !e.isTrusted) return;") < entsperren.index("tonInaktiv = false;")
+    assert "tonInaktiv = true;" in _funktion(index_html, "function tonWirdInaktiv(wo){")
+
+
+def test_ios_geschichte_von_aussen_angehalten(index_html):
+    """Haelt das System den spieler an, waehrend eine Geschichte vorliest:
+    Stelle merken und noch einmal pause(), damit WebKit nicht von selbst
+    weiterspielt. Nur auf iOS; das Ende der Aufnahme zaehlt nicht."""
+    text = index_html.replace("\r\n", "\n")
+    horcher = text[text.index("spieler.addEventListener('pause', ()=>{\n"):]
+    horcher = horcher[:horcher.index("\n});\n")]
+    assert horcher.index("if(!spieler.paused || pausiert) return;") < horcher.index(
+        "if(IST_IOS && laeuftVor) tonVonAussenAngehalten();") < horcher.index("knopfZurueck();")
+    aussen = _funktion(index_html, "function tonVonAussenAngehalten(){")
+    assert aussen.index("if(spieler.ended || (d && t >= d - 0.25)) return;") < aussen.index("geschichteStelle =")
+    assert aussen.index("geschichteStelle =") < aussen.index("spieler.pause();")

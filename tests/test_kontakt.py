@@ -157,7 +157,10 @@ def test_einschalten_aendert_nur_impressum_und_datenschutz(schalter, sprachcodes
             an = sprachen.texte(code)
             assert set(aus) == set(an), code
             anders = {k for k in aus if aus[k] != an[k]}
-            soll = {"set.impressum_text", "set.datenschutz_text"} if pflicht else {"set.impressum_text"}
+            # Die iOS-Fassung (set.datenschutz_text_ios, 30.10.2026) entsteht aus
+            # der Erklaerung mit Konto und bekommt den Absatz deshalb mit.
+            soll = ({"set.impressum_text", "set.datenschutz_text", "set.datenschutz_text_ios"}
+                    if pflicht else {"set.impressum_text"})
             assert anders == soll, (code, pflicht, anders)
             roh = sprachen.TEXTE[code]
             assert an["set.impressum_text"] == roh["set.impressum_text_mit_formular"], code
