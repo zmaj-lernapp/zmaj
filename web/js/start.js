@@ -520,6 +520,19 @@ async function zurueckTaste(){
   if(backTarget){ backTarget(); return; }
   const P = window.Capacitor && window.Capacitor.Plugins;
   if(!P || !P.App) return;                       // am PC nichts zu schliessen
+  /* Startseite auf Android (1.5, Optimierung Punkt 7, Ajdin 20.11.2026):
+     die Taste legt die App weg wie die Home-Taste, ohne Rueckfrage. Beim
+     naechsten Oeffnen ist sie sofort da, solange Android sie im Speicher
+     haelt. Das macht Android seit Fassung 12 auch bei anderen Apps so.
+     Gesichert wird vorher wie beim Beenden; der Wechsel in den Hintergrund
+     sichert ausserdem ueber visibilitychange (cloud_seiten.js). Speichern
+     darf das Weglegen nicht verhindern, daher try. Die Karte zum
+     Pflicht-Update oben beendet weiter. */
+  if(PLATTFORM === 'android' && typeof P.App.minimizeApp === 'function'){
+    try{ await saveProgress(); }catch(e){}
+    P.App.minimizeApp();
+    return;
+  }
   if(await frage(t('beenden.frage'), t('beenden.text'),
                  t('beenden.ja'), t('beenden.nein'))){
     await saveProgress();
