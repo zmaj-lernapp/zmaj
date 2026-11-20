@@ -54,6 +54,19 @@ def _ffmpeg():
     return f
 
 
+def _inhalt(code, text):
+    """Eine kleine Inhaltsdatei in der Form von inhalt_bauen.py. web/inhalt/
+    ist erzeugt und nicht im Git (auf GitHub laeuft pytest vor inhalt_bauen.py),
+    darum legt der Test sie selbst an."""
+    return json.dumps({
+        "sektionen": [{"id": "a1", "titel": text}],
+        "maskottchen": ["zmaj-frei.png", "zmaj-jubel.png", "zmaj-traurig.png", "zmaj.json",
+                        "zmajz-fes.json", "zmajz-krone.json", "haut/gold/", "haut/skelett/"],
+        "sprache": code,
+        "texte": {"weiter": text},
+    }, ensure_ascii=False, separators=(",", ":"))
+
+
 def _www_mit_standbildern(tmp_path, wurzel):
     """Eine kleine Kopie: die drei echten Standbilder, zwei Inhaltsdateien und
     liste.json, wie kopieren() sie nach www/ legt."""
@@ -63,10 +76,34 @@ def _www_mit_standbildern(tmp_path, wurzel):
     for n in ("zmaj-frei", "zmaj-jubel", "zmaj-traurig"):
         shutil.copyfile(os.path.join(wurzel, "web", "maskottchen", n + ".png"),
                         str(www / "maskottchen" / (n + ".png")))
-    for code in ("de", "tr"):
-        shutil.copyfile(os.path.join(wurzel, "web", "inhalt", code + ".json"), str(www / "inhalt" / (code + ".json")))
-    shutil.copyfile(os.path.join(wurzel, "web", "inhalt", "liste.json"), str(www / "inhalt" / "liste.json"))
+    for code, text in (("de", "Weiter – Übung"), ("tr", "Devam – Alıştırma")):
+        (www / "inhalt" / (code + ".json")).write_text(_inhalt(code, text), encoding="utf-8")
+    (www / "inhalt" / "liste.json").write_text(json.dumps({
+        "version": 1, "grundsprache": "de",
+        "sprachen": [{"code": "de", "name": "Deutsch"}, {"code": "tr", "name": "Türkçe"}],
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
     return www
+
+
+def test_standbilder_test_braucht_kein_erzeugtes_web_inhalt(tmp_path, wurzel, monkeypatch):
+    """Auf GitHub gibt es web/inhalt/ beim Testlauf noch nicht. Die Kopie darf
+    nichts daraus lesen."""
+    import builtins
+    offen, kopie = builtins.open, shutil.copyfile
+    gesperrt = os.path.normcase(os.path.join(wurzel, "web", "inhalt"))
+
+    def pruefen(pfad):
+        if os.path.normcase(os.path.abspath(str(pfad))).startswith(gesperrt):
+            raise FileNotFoundError(pfad)
+
+    monkeypatch.setattr(builtins, "open", lambda p, *a, **k: (pruefen(p), offen(p, *a, **k))[1])
+    monkeypatch.setattr(shutil, "copyfile", lambda q, z, *a, **k: (pruefen(q), kopie(q, z, *a, **k))[1])
+    www = _www_mit_standbildern(tmp_path, wurzel)
+    monkeypatch.undo()
+    for code in ("de", "tr"):
+        daten = json.load(io.open(str(www / "inhalt" / (code + ".json")), encoding="utf-8"))
+        assert daten["maskottchen"][:3] == ["zmaj-frei.png", "zmaj-jubel.png", "zmaj-traurig.png"]
+    assert "maskottchen" not in json.load(io.open(str(www / "inhalt" / "liste.json"), encoding="utf-8"))
 
 
 def test_standbilder_werden_webp(tmp_path, wurzel):
