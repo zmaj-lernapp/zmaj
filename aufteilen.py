@@ -34,8 +34,10 @@ wird dort geprueft:
     TEILE_ERWARTET stimmt (G7),
   - Dateinamen: nur a-z und _, kein "vorfuehrung", nichts, was app_bauen.py
     beim Kopieren weglaesst (G8),
-  - in den CSS-Teilen bekommt jede relative url( ein ../ (G1), und
-    app_quelle.css_zurueck() macht das genau rueckgaengig,
+  - in den CSS-Teilen bekommt jede relative url( ein ../ (G1, jede
+    Schreibweise, mit oder ohne Leerraum und Anfuehrungszeichen), und
+    app_quelle.css_zurueck() macht das genau rueckgaengig; @import und
+    image-set( im Stil brechen ab (die kennt css_hin() nicht),
   - die Vorwaerts-Pruefung (PLAN 2.4, ../werkzeuge/aufteilung/vorwaerts.js
     mit dem TypeScript-Parser der Huelle): keine Anweisung braucht beim
     Laden etwas aus einer spaeteren Datei (ausser den bekannten, siehe
@@ -299,6 +301,10 @@ def planen(alt, schnitte_js=None, schnitte_css=None):
     teile = []
     for name, an, ab in _grenzen(zeilen, stil[0], stil[1], schnitte_css, "Stil"):
         roh = "".join(zeilen[an:ab])
+        fremd = app_quelle.ADRESSE_OHNE_URL.search(roh)
+        if fremd:
+            raise Abbruch("css/%s.css: %s... kennt css_hin() nicht (nur url(...)); in css/ zeigte die Adresse ins Leere"
+                          % (name, fremd.group(0)))
         text = app_quelle.css_hin(roh)
         if app_quelle.css_zurueck(text) != roh:
             raise Abbruch("css/%s.css: url(...) laesst sich nicht eindeutig umschreiben (steht schon ../ darin?)" % name)

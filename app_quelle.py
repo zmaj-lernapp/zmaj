@@ -40,10 +40,15 @@ NAME = r"[a-z]+(?:_[a-z]+)*"
 STIL_ZEILE = re.compile(r'<link rel="stylesheet" href="(css/' + NAME + r'\.css)">')
 SKRIPT_ZEILE = re.compile(r'<script src="(js/' + NAME + r'\.js)"></script>')
 
-# Relative Adressen im Stil: nicht #..., data:, http(s):, /... und nicht
-# schon ../ (dann waere der Rueckweg nicht eindeutig).
-_URL_HIN = re.compile(r"""url\((['"]?)(?!#|data:|https?:|/|\.\./)""")
-_URL_ZURUECK = re.compile(r"""url\((['"]?)\.\./""")
+# Der Anfang jeder Adresse im Stil: url( in jeder Schreibweise (URL(, Url(),
+# danach Leerraum und ein Anfuehrungszeichen, beides wahlweise. Nicht mitten
+# in einem Namen (my-url( ist keine Adresse). Gruppe 1 endet genau dort, wo
+# die Adresse selbst anfaengt - dort setzt css_hin() "../" ein, und dort
+# nimmt css_zurueck() es wieder weg. Sonst wird kein Byte angefasst.
+_URL_ANFANG = re.compile(r"""(?<![\w-])([uU][rR][lL]\([ \t\r\n\f]*(['"]?))""")
+# Nicht relativ: leer (url() oder url('')), #..., /... und //..., und alles
+# mit einem Schema (data:, http:, https:, blob:, in jeder Schreibweise).
+_NICHT_RELATIV = re.compile(r"""[)'"#/]|[A-Za-z][A-Za-z0-9+.-]*:""")
 
 
 def _datei(web, name):
@@ -69,14 +74,43 @@ def _teil(zeile):
     return None
 
 
+def _adressen(stil):
+    """Die Stellen, an denen eine Adresse im Stil anfaengt."""
+    return [m.end(1) for m in _URL_ANFANG.finditer(stil)]
+
+
 def css_hin(stil):
-    """Fuer eine Datei unter css/: jeder relativen url( ein ../ voran."""
-    return _URL_HIN.sub(lambda m: "url(" + m.group(1) + "../", stil)
+    """Fuer eine Datei unter css/: jeder relativen Adresse ein ../ voran.
+
+    Eine Adresse, die schon mit ../ beginnt, bleibt; dann ist der Rueckweg
+    nicht eindeutig, und aufteilen.py bricht ab (es vergleicht
+    css_zurueck(css_hin(x)) mit x)."""
+    aus, vorher = [], 0
+    for i in _adressen(stil):
+        if stil.startswith("../", i) or _NICHT_RELATIV.match(stil, i):
+            continue
+        aus.append(stil[vorher:i])
+        aus.append("../")
+        vorher = i
+    aus.append(stil[vorher:])
+    return "".join(aus)
 
 
 def css_zurueck(stil):
-    """Der Rueckweg von css_hin()."""
-    return _URL_ZURUECK.sub(lambda m: "url(" + m.group(1), stil)
+    """Der Rueckweg von css_hin(): an jeder Adresse ein fuehrendes ../ weg."""
+    aus, vorher = [], 0
+    for i in _adressen(stil):
+        if stil.startswith("../", i):
+            aus.append(stil[vorher:i])
+            vorher = i + 3
+    aus.append(stil[vorher:])
+    return "".join(aus)
+
+
+# Adressen im Stil, die nicht in url( stehen: @import "x" und image-set("x").
+# css_hin() kennt sie nicht; in einer Datei unter css/ zeigten sie ins Leere.
+# Heute gibt es keine; aufteilen.py bricht ab, wenn eine dazukommt.
+ADRESSE_OHNE_URL = re.compile(r"@import\b|(?<![\w-])(?:-webkit-)?image-set\(", re.I)
 
 
 def lesen(web):

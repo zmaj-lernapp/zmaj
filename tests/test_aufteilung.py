@@ -37,7 +37,7 @@ NAME = re.compile(app_quelle.NAME + r"\.(?:js|css)")
 # Jeder Verweis auf einen Teil, auch einer, den app_quelle nicht erkennt
 # (Grossbuchstaben, Unterordner, andere Schreibweise des Tags).
 JEDER_VERWEIS = re.compile(r"""(?:src|href)\s*=\s*["']?((?:\./)?(?:js|css)/[^"'\s>]*)""", re.I)
-URL = re.compile(r"""url\(\s*(['"]?)([^'")]*)\1\s*\)""")
+URL = re.compile(r"""(?<![\w-])url\(\s*(['"]?)([^'")]*)\1\s*\)""", re.I)
 
 
 def _lesen(pfad):
@@ -308,7 +308,8 @@ def test_stil_adressen_hin_und_zurueck():
     (404, gemessen in Chrome und WebKit). Der Schnitt setzt darum ../ davor,
     app_quelle.lesen() nimmt es zurueck; das muss genau umkehrbar sein."""
     stil = _stil(app_quelle.lesen(WEB))
-    assert "url(../" not in stil and "url('../" not in stil and 'url("../' not in stil
+    assert not [i for i in app_quelle._adressen(stil) if stil.startswith("../", i)]
+    assert len(app_quelle._adressen(stil)) == len(URL.findall(stil)) >= 5
     assert app_quelle.css_zurueck(app_quelle.css_hin(stil)) == stil
     hin = app_quelle.css_hin(stil)
     for m in URL.finditer(stil):
@@ -318,6 +319,54 @@ def test_stil_adressen_hin_und_zurueck():
         if _relativ(m.group(2)):
             assert m.group(2).startswith("../"), m.group(0)
     assert "url(#sternGold)" in hin
+
+
+def test_stil_ohne_adressen_ausserhalb_von_url():
+    """css_hin() kennt nur url(...). @import "x" und image-set("x") loesten
+    in einer Datei unter css/ ebenfalls gegen css/ auf und zeigten ins
+    Leere. Heute gibt es keine; kommt eine dazu, muss css_hin() sie lernen
+    (aufteilen.py bricht dann ab)."""
+    stile = [_stil(app_quelle.lesen(WEB))] + [_lesen(os.path.join(WEB, t)) for t in TEILE if t.startswith("css/")]
+    for stil in stile:
+        assert not app_quelle.ADRESSE_OHNE_URL.search(stil), app_quelle.ADRESSE_OHNE_URL.search(stil).group(0)
+    for probe in ('@import "a.css";', "@IMPORT url(a.css);", '.a{background:image-set("a.webp" 1x)}',
+                  ".a{background:-webkit-image-set(url(a.webp) 1x)}", ".a{background:IMAGE-SET('a.webp' 1x)}"):
+        assert app_quelle.ADRESSE_OHNE_URL.search(probe), probe
+    for probe in (".my-image-set(x)", ".a{content:'importiert'}", ".import{}"):
+        assert not app_quelle.ADRESSE_OHNE_URL.search(probe), probe
+
+
+@pytest.mark.parametrize("alt, neu", [
+    ("a{b:url(x.webp)}", "a{b:url(../x.webp)}"),
+    ("a{b:URL(x.webp)}", "a{b:URL(../x.webp)}"),
+    ("a{b:Url( x.webp )}", "a{b:Url( ../x.webp )}"),
+    ("a{b:url(  'x.webp')}", "a{b:url(  '../x.webp')}"),
+    ('a{b:url(\t"sym/x.webp" )}', 'a{b:url(\t"../sym/x.webp" )}'),
+    ("a{b:url(\r\n  x.webp)}", "a{b:url(\r\n  ../x.webp)}"),
+    ("a{b:url(' x.webp')}", "a{b:url('../ x.webp')}"),
+    # bleibt: in die Seite, absolut, mit Schema, leer, kein url(
+    ("a{fill:url(#stern)} b{fill:URL( #stern)}", None),
+    ("a{b:url(/x.webp)} c{b:url(//cdn/x)} d{b:url( 'https://x/y')}", None),
+    ("a{b:url(DATA:image/png;base64,AA)} c{b:Url( blob:x)} d{b:url(HTTP://x)}", None),
+    ("a{b:url()} c{b:url( )} d{b:url('')} e{b:url( \"\" )}", None),
+    ("a{b:my-url(x)} c{b:xurl(x)} d{content:'url'}", None),
+])
+def test_stil_adressen_jede_schreibweise(alt, neu):
+    """css_hin und css_zurueck sind genau Umkehrungen: jede Schreibweise
+    von url(, Leerraum und Anfuehrungszeichen wahlweise, und ausser dem
+    eingesetzten ../ bleibt jedes Byte, wie es war (Byte-Probe 2.3)."""
+    neu = alt if neu is None else neu
+    assert app_quelle.css_hin(alt) == neu
+    assert app_quelle.css_zurueck(neu) == alt
+    assert app_quelle.css_zurueck(app_quelle.css_hin(alt + alt)) == alt + alt
+
+
+def test_stil_adressen_schon_mit_punkten_nicht_eindeutig():
+    """Steht schon ../ da (in jeder Schreibweise), waere der Rueckweg nicht
+    eindeutig: hin und zurueck ergeben nicht das Alte, und aufteilen.py
+    bricht ab."""
+    for alt in ("a{b:url(../x.webp)}", "a{b:URL( '../x.webp')}", 'a{b:url(\t"../x")}'):
+        assert app_quelle.css_zurueck(app_quelle.css_hin(alt)) != alt, alt
 
 
 @geteilt

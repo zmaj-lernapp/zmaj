@@ -149,6 +149,11 @@ def test_zeilenkarte(tmp_path, klein):
     (lambda z: [x.replace("const TEILE_ERWARTET = 2;", "const TEILE_ERWARTET = 3;") for x in z], "TEILE_ERWARTET"),
     (lambda z: [x.replace("  .a{background:url(symbole/x.webp)}", "  .a{background:url(../x.webp)}") for x in z],
      "url"),
+    (lambda z: [x.replace("  .a{background:url(symbole/x.webp)}", "  .a{background:URL( '../x.webp')}") for x in z],
+     "url"),
+    (lambda z: [x.replace("  .a{background:url(symbole/x.webp)}", '  @import "x.css";') for x in z], "@import"),
+    (lambda z: [x.replace("  .a{background:url(symbole/x.webp)}", '  .a{background:image-set("x.webp" 1x)}')
+                for x in z], "image-set("),
     (lambda z: [x for x in z if x != "init();"], "init();"),
     (lambda z: z[:5] + ["<style>"] + z[5:], "<style>"),
     (lambda z: z[:2] + ['<script src="js/alt.js"></script>'] + z[2:], "schon geteilt"),
