@@ -170,7 +170,10 @@ def wurzelordner(tmp_path_factory):
     shutil.copytree(app, gehaertet)
     pfad = os.path.join(gehaertet, "index.html")
     html = io.open(pfad, encoding="utf-8", newline="").read()
-    if "const nurTexte = x =>" not in html:          # sonst schon in web/ geschrieben
+    # Gesucht wird in der ganzen App (app_quelle): seit 1.5 kann der Code in
+    # gehaertet/js stehen, und sonst fiele die ganze Suite an dieser Stelle aus.
+    import app_quelle
+    if "const nurTexte = x =>" not in app_quelle.lesen(gehaertet):   # sonst schon in web/ geschrieben
         html, fehler = import_richten.anwenden(html)
         assert not fehler, fehler
         io.open(pfad, "w", encoding="utf-8", newline="").write(html)
@@ -256,6 +259,15 @@ class Seite:
         page.on("pageerror", lambda e: self.fehler.append(str(e)))
         page.on("request", lambda r: None if r.url.startswith((basis, "data:", "blob:"))
                 else self.fremd.append(r.url))
+        # Ein Skript oder Stilblatt der App, das nicht kommt (404), wirft selbst
+        # keinen pageerror: ein fehlendes Stilblatt bliebe ganz still, ein
+        # fehlendes Skript zeigte nur Folgefehler. Seit die App in web/js und
+        # web/css geteilt sein kann (1.5), steht so etwas darum hier in
+        # fehler. Nur Skripte und Stilblaetter vom eigenen Server: /leer (siehe
+        # starten) und /api/... antworten absichtlich mit 404.
+        page.on("response", lambda r: self.fehler.append("HTTP %d %s" % (r.status, r.url))
+                if r.status >= 400 and r.url.startswith(basis)
+                and r.request.resource_type in ("script", "stylesheet") else None)
         # mailto: und andere fremde Schemata haelt die SCHEMA_SPERRE an; als
         # Anfrage kommen sie dann nicht mehr an, deshalb meldet sie sie hier.
         page.expose_binding("__zmajSchemaMelden", lambda quelle, url: self.fremd.append(url))

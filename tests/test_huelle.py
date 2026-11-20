@@ -8,6 +8,12 @@ import os
 import pytest
 
 
+def _quelle(wurzel):
+    """Die ganze App, auch wenn sie in web/js geteilt ist (app_quelle)."""
+    import app_quelle
+    return app_quelle.lesen(os.path.join(wurzel, "web")).replace("\r\n", "\n")
+
+
 def test_umgebungsvariable_geht_vor(tmp_path):
     import huelle
     assert huelle.ordner({"ZMAJ_HUELLE": str(tmp_path)}, str(tmp_path / "x")) == str(tmp_path)
@@ -41,7 +47,7 @@ def test_testwerbung_nur_in_der_kopie(tmp_path, wurzel):
     """--testwerbung schaltet in der Paket-Kopie auf Testanzeigen; die Quelle
     muss den Anker genau einmal haben, sonst bricht der Bau ab. 10.10.2026."""
     import app_bauen
-    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    quelle = _quelle(wurzel)
     assert quelle.count(app_bauen.TESTWERBUNG_AUS) == 1
     kopie = tmp_path / "index.html"
     kopie.write_text("a\n" + app_bauen.TESTWERBUNG_AUS + "\nb\n", encoding="utf-8")
@@ -179,7 +185,7 @@ def test_main_reicht_pflicht_durch(monkeypatch):
 # setzt den Pruefwert aus der privaten Huelle ein.
 def test_dauer_quelle_hat_nur_den_platzhalter(wurzel):
     import app_bauen
-    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    quelle = _quelle(wurzel)
     assert quelle.count(app_bauen.DAUER_PLATZHALTER) == 1
     assert "DAUER_WORT" not in quelle
 
@@ -216,7 +222,7 @@ def test_dauer_pruefwert_wie_in_der_app(wurzel):
     import shutil
     import subprocess
     import dauer_wort_setzen as d
-    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    quelle = _quelle(wurzel)
     assert "const DAUER_SALZ = '%s';" % d.SALZ in quelle
     assert "const DAUER_RUNDEN = %d;" % d.RUNDEN in quelle
     assert re.search(r"const w = wort\.trim\(\)\.toLowerCase\(\);", quelle)

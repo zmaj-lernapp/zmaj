@@ -40,8 +40,8 @@ BP = beschriften.BP
 
 
 def _app():
-    with open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8") as f:
-        return f.read()
+    import app_quelle   # die ganze App, auch wenn sie in web/js geteilt ist
+    return app_quelle.lesen(os.path.join(WURZEL, "web")).replace("\r\n", "\n")
 
 NBSP = " "
 

@@ -43,6 +43,13 @@ Der alte Weg unten funktioniert weiter, macht aber nur Deutsch und noch
 die alte Bildfolge (02-lernpfad, 04-auswahl, 05-richtig). Fuer den Store
 bilder_playwright.py nehmen.
 
+VERALTET seit 1.5 (20.11.2026): Ist die App in web/js und web/css geteilt,
+liefert "python -m http.server" diese Dateien ohne "no-store" aus, und das
+dauerhafte Chrome auf Port 9444 behaelt alte Fassungen im Zwischenspeicher
+(der Zusatz ?neu= in bilder_machen.sh hilft nur fuer index.html). Ausserdem
+lehnt dieser Server bei vielen Dateien auf einmal Verbindungen ab. Wer den
+alten Weg trotzdem nimmt: vorher das Profil "$TEMP/zmaj_chrome" loeschen.
+
 
 SO GEHT ES (Git Bash, im Projektordner)
 --------------------------------------

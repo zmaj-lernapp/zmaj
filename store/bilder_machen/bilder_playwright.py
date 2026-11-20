@@ -33,6 +33,7 @@ import json
 import os
 import re
 import socketserver
+import sys
 import threading
 import time
 
@@ -738,10 +739,31 @@ def erfolge_ids():
     Meldung stand je nach Rechner noch auf Bild 1 (Probe 16.11.2026). Ein
     neues Abzeichen truege ausserdem den roten Punkt am Profilknopf. Darum
     gelten fuer die Bilder alle Abzeichen als gesehen; die App bleibt, wie
-    sie ist."""
-    with open(os.path.join(WEB, "index.html"), encoding="utf-8") as f:
-        m = ERFOLGE_LISTE.search(f.read())
-    return re.findall(r"\{\s*id:\s*'([^']+)'", m.group(1)) if m else []
+    sie ist.
+
+    Gelesen wird die ganze App ueber app_quelle.lesen(): Seit 1.5 kann
+    ERFOLGE in einer Datei unter web/js stehen, und index.html allein
+    lieferte dann still eine leere Liste - auf den Bildern stuende wieder die
+    Meldung. Findet sich nichts, bricht das Skript darum ab (20.11.2026)."""
+    if WURZEL not in sys.path:
+        sys.path.insert(0, WURZEL)
+    import app_quelle
+    m = ERFOLGE_LISTE.search(app_quelle.lesen(WEB))
+    ids = re.findall(r"\{\s*id:\s*'([^']+)'", m.group(1)) if m else []
+    if not ids:
+        raise SystemExit("ERFOLGE nicht gefunden (web/index.html, web/js) - ohne die Liste "
+                         "zeigten die Bilder die Meldung zu neuen Abzeichen.")
+    return ids
+
+
+class Dateiserver(socketserver.ThreadingTCPServer):
+    """Warteschlange 128 statt 5, wie der Server der Browser-Tests
+    (tests_e2e/conftest.py, test_dateiserver.py vom 22.10.2026). Seit 1.5
+    holt die App beim Start rund 50 Dateien mehr (web/js, web/css) fast
+    gleichzeitig; was ueber fuenf hinaus wartet, lehnt Windows ab, und ein
+    abgelehntes Skript macht die App kaputt (Gegenpruefung G6)."""
+    request_queue_size = 128
+    daemon_threads = True
 
 
 def server_starten():
@@ -750,7 +772,7 @@ def server_starten():
         def log_message(self, *args):
             pass
     handler = functools.partial(Leise, directory=WEB)
-    srv = socketserver.ThreadingTCPServer(("127.0.0.1", 0), handler)
+    srv = Dateiserver(("127.0.0.1", 0), handler)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     return srv, "http://127.0.0.1:%d" % srv.server_address[1]
 

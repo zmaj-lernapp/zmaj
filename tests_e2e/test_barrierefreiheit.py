@@ -89,7 +89,9 @@ def seite_basis(tmp_path_factory):
     demo_bauen.main(["--ziel", ziel])
     pfad = os.path.join(ziel, "index.html")
     html = io.open(pfad, encoding="utf-8", newline="").read()
-    if barrierefreiheit_richten.KENNUNG not in html:
+    # In der ganzen App suchen (app_quelle): seit 1.5 kann der Stil in css/ stehen.
+    import app_quelle
+    if barrierefreiheit_richten.KENNUNG not in app_quelle.lesen(ziel):
         neu, fehler = barrierefreiheit_richten.anwenden(html)
         assert not fehler, fehler
         io.open(pfad, "w", encoding="utf-8", newline="").write(neu)

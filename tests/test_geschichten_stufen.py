@@ -40,8 +40,8 @@ THEMEN = ("Kinderbuch", "Einfach", "Mittel", "Fortgeschritten", "Amtssprache")
 
 
 def _html(wurzel):
-    with io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8") as f:
-        return f.read().replace("\r\n", "\n")
+    import app_quelle   # die ganze App, auch wenn sie in web/js geteilt ist
+    return app_quelle.lesen(os.path.join(wurzel, "web")).replace("\r\n", "\n")
 
 
 def test_stufe_fuer_stufe_von_leicht_nach_schwer(alle_daten):

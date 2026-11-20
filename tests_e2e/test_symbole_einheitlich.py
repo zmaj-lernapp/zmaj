@@ -22,18 +22,18 @@ Geprueft wird hier im Browser:
     Geschichte), in allen acht Sprachen.
 """
 import datetime
-import io
 import os
 import re
 
+import app_quelle
 import pytest
 from conftest import WURZEL, Seite
 
 # Fuer die goldene Flamme (365 Tage) muss die Uhr spaeter stehen: eine Serie
-# reicht nie vor APP_START zurueck (wie in test_flamme.py).
-with io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8") as _f:
-    APP_START = datetime.date.fromisoformat(
-        re.search(r"const APP_START = '(\d{4}-\d{2}-\d{2})';", _f.read()).group(1))
+# reicht nie vor APP_START zurueck (wie in test_flamme.py). Aus der ganzen
+# App (app_quelle): seit 1.5 kann APP_START in web/js stehen.
+APP_START = datetime.date.fromisoformat(re.search(
+    r"const APP_START = '(\d{4}-\d{2}-\d{2})';", app_quelle.lesen(os.path.join(WURZEL, "web"))).group(1))
 SPAETER = APP_START + datetime.timedelta(days=400)
 
 

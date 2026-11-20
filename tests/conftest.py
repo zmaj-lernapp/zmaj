@@ -45,6 +45,10 @@ def grunddaten_vor_umzug(grunddaten):
 
 @pytest.fixture(scope="session")
 def index_html(wurzel):
-    """web/index.html, wie sie im Repository liegt (Zeilenenden unverändert)."""
-    import io
-    return io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8", newline="").read()
+    """web/index.html, wie sie im Repository liegt (Zeilenenden unverändert).
+
+    Über app_quelle.lesen(): Ist die App in web/js und web/css geteilt (1.5,
+    Release/Aufteilung/PLAN.md), stehen die Teile hier wieder an ihrer
+    Stelle - Byte für Byte die alte Einzeldatei. Ungeteilt ist es die Datei."""
+    import app_quelle
+    return app_quelle.lesen(os.path.join(wurzel, "web"))

@@ -11,17 +11,18 @@ die Loesung nicht verraten - also kein Platzhalter wie {wort}, anders als
 task.fast und task.falsch. Der Ablauf selbst steht in
 tests_e2e/test_tippfehler.py.
 """
-import io
 import os
 import re
 
+import app_quelle
 import sprachen
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def _html():
-    return io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8").read()
+    # die ganze App, auch wenn sie in web/js geteilt ist
+    return app_quelle.lesen(os.path.join(WURZEL, "web")).replace("\r\n", "\n")
 
 
 def test_hinweis_in_allen_acht_sprachen(sprachcodes):

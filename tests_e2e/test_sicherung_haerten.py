@@ -21,18 +21,18 @@ spricht ihre deutsche Antwort nicht mehr mit bosnischer Stimme, und im
 tuerkischen Menue bleibt der bosnische Antwortknopf "Sarajevo" bosnisch.
 """
 import datetime
-import io
 import json
 import os
 import re
 
+import app_quelle
 import pytest
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-with io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8") as _f:
-    APP_START = datetime.date.fromisoformat(
-        re.search(r"const APP_START = '(\d{4}-\d{2}-\d{2})';", _f.read()).group(1))
+# Aus der ganzen App (app_quelle): seit 1.5 kann APP_START in web/js stehen.
+APP_START = datetime.date.fromisoformat(re.search(
+    r"const APP_START = '(\d{4}-\d{2}-\d{2})';", app_quelle.lesen(os.path.join(WURZEL, "web"))).group(1))
 
 # Alles, was nach dem Einlesen zaehlt, in einem Blick.
 ZUSTAND = """() => ({

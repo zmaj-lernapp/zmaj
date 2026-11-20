@@ -51,11 +51,11 @@ Seit dem 22.10.2026 (unten ab "Stufen"):
 """
 import base64
 import datetime
-import io
 import json
 import os
 import re
 
+import app_quelle
 import pytest
 from conftest import WURZEL, Seite
 
@@ -563,10 +563,10 @@ def test_aufbau_bleibt_im_rahmen(browser, basis, heute_stand):
 # test_sicherung_haerten.py (Date.now steht, Zeitgeber laufen). Eine echte
 # Lektion laeuft damit nicht: DURCHSPIELEN wartet mit Date.now - die Tests
 # mit Lektion bleiben bei der Uhr des Rechners und der Schwelle 30.
+# Aus der ganzen App (app_quelle): seit 1.5 kann APP_START in web/js stehen.
 
-with io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8") as _f:
-    APP_START = datetime.date.fromisoformat(
-        re.search(r"const APP_START = '(\d{4}-\d{2}-\d{2})';", _f.read()).group(1))
+APP_START = datetime.date.fromisoformat(re.search(
+    r"const APP_START = '(\d{4}-\d{2}-\d{2})';", app_quelle.lesen(os.path.join(WURZEL, "web"))).group(1))
 SPAETER = APP_START + datetime.timedelta(days=400)
 
 # Der Farbfilter je Stufe und die Farbe ihres stillen Scheins, so wie Chrome

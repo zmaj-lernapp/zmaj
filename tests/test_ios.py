@@ -569,7 +569,8 @@ def test_ios_zugang_einsetzen(tmp_path, wurzel):
     # die Android-Bloecke bleiben, wie sie sind
     assert "ca-app-pub-9105747905460295/9764395638" in text
     # Quelle unveraendert
-    quelle = io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    import app_quelle   # die ganze App, auch wenn sie in web/js geteilt ist
+    quelle = app_quelle.lesen(os.path.join(wurzel, "web"))
     assert app_bauen.IOS_APPLE_ID_ZEILE in quelle
 
 
