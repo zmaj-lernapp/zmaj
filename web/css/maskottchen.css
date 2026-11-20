@@ -1,0 +1,164 @@
+  /* ---------- Maskottchen ---------- */
+  /* Maskottchen: Bild aus web/maskottchen (wenn vorhanden), sonst Vektor. Bewegung per CSS. */
+  .zmaj{width:136px; height:136px; flex:0 0 auto; filter:drop-shadow(0 6px 8px rgba(0,0,0,.28))}
+  .celebrate .zmaj{width:180px; height:180px}
+  .zmaj>img,.zmaj>svg,.zmaj-anim{width:100%; height:100%; display:block; object-fit:contain; transform-origin:50% 100%}
+  .zmaj-anim svg{display:block}
+  .zmaj.idle>img,.zmaj.idle>svg{animation:zIdle 3.2s ease-in-out infinite}
+  .zmaj.cheer>img,.zmaj.cheer>svg{animation:zCheer 1.1s cubic-bezier(.34,1.56,.64,1)}
+  .zmaj.sad>img,.zmaj.sad>svg{animation:zSad 3.4s ease-in-out infinite; filter:saturate(.75)}
+  .zmaj.ok>img,.zmaj.ok>svg{animation:zPop .55s cubic-bezier(.34,1.56,.64,1)}
+  .zmaj.no>img,.zmaj.no>svg{animation:zShake .5s ease-in-out}
+  /* Der Lektionskasten, festgelegt von Ajdin am 01.10.2026 nach drei
+     Vorschauen:
+     - oben eine Reihe: Herz, dann die Fortschrittspunkte, "viel besser
+       sichtbar" (.kastenkopf);
+     - darunter der Drache, groesser und in der Mitte;
+     - keine Anweisungszeile mehr ("Was bedeutet ...", "Was heisst auf
+       Bosnisch ..."). Was zu tun ist, sieht man an der Aufgabe selbst; nur
+       die Schreibaufgabe sagt es im Eingabefeld, sonst waere offen, in
+       welcher Sprache. Die Zeile bleibt im HTML - font-size:0 blendet den
+       Text aus, die Marken "Neues Wort", "Wiederholung", "Nochmal" (.rep)
+       bleiben sichtbar;
+     - der Kasten richtet sich nach dem Inhalt: wenig Inhalt, kleiner
+       Kasten; viel Inhalt, grosser Kasten. Ein Versuch mit immer gleicher
+       Hoehe liess bei Schreib- und Lueckenaufgaben und auf dem Ergebnis
+       eine grosse leere Flaeche - Ajdin am 01.10.2026: "am besten machen
+       wir den kasten dynamisch".
+     Rueckmeldung, Loesung und Weiter stehen nach der Antwort zusammen
+     direkt unter der Aufgabe (.antwortfeld, gebaut in weiterBeiTipp).
+     Gilt fuer Lektion, Wiederholen-Runde (beide #lesson), Level-Test
+     (#test) und Einstufung (#einstufungView).
+     Bis zum 19.10.2026 galt ein Teil davon nur fuer #lesson: der Level-Test
+     hatte keinen Drachen, kein Herz, kleinere Schrift und einen eigenen
+     Abstand unter den Punkten, die Einstufung dazu noch die
+     Anweisungszeile und keinen .kastenkopf. Im Test standen die
+     Antwortknoepfe dadurch 140 px hoeher als in der Lektion, in der
+     Einstufung bis zu 65 px - eine Testerin: "im Test sind die Knoepfe viel
+     hoeher als in der normalen Level-Umgebung". Seitdem bauen alle drei
+     ihren Kasten gleich (Kopfzeile, Drache .zmaj.mini, Aufgabenfeld), und
+     jede Regel hier nennt alle drei Orte ausgeschrieben: #lesson X,
+     #test X, #einstufungView X bzw. #lBody, #tBody, #eBody.
+     Ausgeschrieben, weil Chrome und die Android-WebView die kuerzere
+     Schreibweise mit der Pseudoklasse "is" erst ab Version 88 kennen.
+     Aeltere WebViews (die App laeuft ab Android 7) verwerfen eine Regel mit
+     unbekanntem Selektor ganz - samt dem Teil fuer die Lektion. Und nicht
+     ueber eine gemeinsame Klasse, weil erst die Kennung (#...) der Regel
+     ihr Gewicht gibt: mit einer Klasse wuerden z. B.
+     .options.waagrecht .opt und .opt.long die Regeln hier in der Lektion
+     ueberstimmen. tests_e2e/test_layout_test.py misst die Gleichheit nach. */
+  .zmaj.mini{width:120px; height:120px; margin:2px auto 6px; filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
+  #lesson .card, #test .card, #einstufungView .card{padding-top:16px}
+  .antwortfeld{margin-top:12px}
+  .antwortfeld .feedback{margin-top:0}
+  .antwortfeld .weiterbox{margin-top:10px}
+  /* Nur die Aufgabenzeile aus kick(), nicht jede .kicker: der Level-Test
+     haengt "Alle Levels geschafft" ebenfalls als .kicker an. */
+  #lesson .kicker.aufgabe, #test .kicker.aufgabe, #einstufungView .kicker.aufgabe{font-size:0; letter-spacing:0; margin:0 0 8px; min-height:0}
+  /* Die Marken ("Neues Wort", "Wiederholung: <Level>", "Noch einmal")
+     stehen nebeneinander, solange sie in die Zeile passen. Passen sie nicht,
+     bricht die zweite um - und weil die Zeile selbst wegen font-size:0 keine
+     Hoehe hat, lag sie bis zum 12.11.2026 ohne jeden Abstand direkt unter der
+     ersten. Auf Ajdins S21 (360 Punkte breit) ueberlappten so "Wiederholung:
+     Wetter & Natur" und "Noch einmal" (Bildschirmfoto vom 11.11.2026). Bei
+     langen Levelnamen, 320 Punkten oder grosser Schrift bricht schon die
+     erste Marke in sich um.
+     Darum hat jede Marke 6 px Rand oben und je 4 px links und rechts: zwei
+     in einer Zeile stehen 8 px auseinander wie vorher, umgebrochene 6 px
+     untereinander, und jede Zeile bleibt mittig. Die -6 px an der Zeile
+     (.mitmarke, gesetzt in kick() und bei "Neues Wort") heben den Rand der
+     ersten Zeile wieder auf: mit einer Zeile Marken steht alles genau da,
+     wo es vorher stand. Ueber eine Klasse und nicht ueber :has(), das
+     aeltere WebViews nicht kennen (siehe oben).
+     border-radius in em statt 99px: eine Marke ueber zwei, drei Zeilen wird
+     ein Rechteck mit runden Ecken statt eines Ovals, in dessen Rundung die
+     Woerter am Rand hineinragten. Eine einzeilige bleibt ganz rund - 1.1em
+     ist mehr als ihre halbe Hoehe, auch bei grosser Schrift.
+     letter-spacing:0 oben an der Zeile: der ausgeblendete Text davor
+     ("Was heisst auf Bosnisch ... · ") hatte trotz font-size:0 die .4px
+     Sperrung von .kicker je Buchstabe, rund 11 px Breite. Er schob die Marke
+     um die Haelfte aus der Mitte und nahm ihr in der Zeile Platz weg.
+     tests_e2e/test_marken.py misst das in allen Sprachen nach. */
+  #lesson .kicker.aufgabe.mitmarke, #test .kicker.aufgabe.mitmarke, #einstufungView .kicker.aufgabe.mitmarke{margin-top:-6px}
+  #lesson .kicker.aufgabe .rep, #test .kicker.aufgabe .rep, #einstufungView .kicker.aufgabe .rep{font-size:13px; margin:6px 4px 0; border-radius:1.1em}
+  /* Nach der Antwort ist "Gerade nicht hoeren, ueberspringen" ohne Sinn und
+     kostet nur Hoehe. #eBody fehlt hier mit Absicht: Test und Einstufung
+     rufen renderTask mit noSkip, dort gibt es kein .skip (19.10.2026). */
+  #lBody:has(.weiterbox) > .skip, #tBody:has(.weiterbox) > .skip{display:none}
+  #lBody > .feedback, #tBody > .feedback, #eBody > .feedback{margin-top:10px}
+  /* Vor der Antwort ist die Rueckmeldung leer und wandert danach ohnehin
+     ins Antwortfeld - ihr Platz in der Aufgabe waere nur Luecke. */
+  #lBody > .feedback:empty, #tBody > .feedback:empty, #eBody > .feedback:empty{display:none}
+  #lesson .options, #test .options, #einstufungView .options{margin-top:12px}
+  .antwortfeld .loesung{margin-top:8px; padding-top:7px; padding-bottom:7px}
+  #lesson .listen.bigplay, #test .listen.bigplay, #einstufungView .listen.bigplay{width:84px; height:84px; font-size:34px}
+  /* Gemessen am 01.10.2026: Ajdins S21 hat in der App 360 x 726 Punkte.
+     Mit dem grossen Drachen rutschte Weiter dort bei der Hoeraufgabe nach
+     der Antwort unter den Bildrand. */
+  @media (max-height:820px){ #lesson .zmaj.mini, #test .zmaj.mini, #einstufungView .zmaj.mini{width:100px; height:100px} }
+  .type-input::placeholder{font-family:var(--font-ui); font-size:17px; font-weight:700}
+  #lesson .prompt, #test .prompt, #einstufungView .prompt{font-size:29px}
+  #lesson .prompt.long, #test .prompt.long, #einstufungView .prompt.long{font-size:22px}
+  #lesson .opt, #test .opt, #einstufungView .opt{font-size:21px; padding:14px 10px}
+  #lesson .opt.long, #test .opt.long, #einstufungView .opt.long{font-size:16px}
+  /* Bis 19.10.2026 stand hier "#test .kastenkopf{margin-bottom:18px}" -
+     ein Ausgleich dafuer, dass dem Test der Drache fehlte. Mit Drache ist
+     der Abstand derselbe wie in der Lektion. */
+  .kastenkopf{display:flex; align-items:center; gap:10px; margin-bottom:10px}
+  .kastenkopf .tbar{flex:1; min-width:0; margin:0; gap:4px}
+  .kastenkopf .tbar i{height:14px; background:var(--line); background:color-mix(in srgb, var(--ink) 16%, transparent)}
+  .kastenkopf .tbar i.intro{background:var(--muted); background:color-mix(in srgb, var(--ink) 42%, transparent)}
+  .kastenkopf .tbar i.skip{background:var(--muted); opacity:.6}
+  .kastenkopf .tbar i.ok{background:var(--good)}
+  .kastenkopf .tbar i.no{background:var(--bad)}
+  .kastenkopf .tbar i.cur{background:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); box-shadow:0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent)}
+  .kastenherz{display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; white-space:nowrap;
+    font:800 20px var(--font-ui); color:var(--bad); background:var(--bg); border:2px solid var(--line);
+    border-radius:99px; padding:2px 12px 2px 9px}
+  .kastenherz b{color:var(--ink)}
+  .kastenherz.zero{border-color:var(--bad)}
+  .kastenherz:empty{display:none}
+  /* Die Einstufung kostet keine Leben und zeigt deshalb kein Herz. Die
+     Pille bestimmt aber die Hoehe der Kopfzeile (37 statt 14 px), und ohne
+     sie stuende alles darunter hoeher als in der Lektion. Darum steht dort
+     eine unsichtbare Pille mit derselben Klasse: renderLives() fuellt sie
+     wie das echte Herz, sie ist also auch bei grosser Systemschrift genau
+     so hoch - aber null breit, damit die Punkte die ganze Zeile bekommen,
+     und -10 px gleichen den Abstand (gap) aus. 19.10.2026.
+     Der Level-Test hatte bis zum selben Abend auch nur diese Pille; seit er
+     Leben kostet, traegt er das echte Herz (#tHerz) wie die Lektion. */
+  .kastenherz.platzhalter{visibility:hidden; width:0; padding-left:0; padding-right:0;
+    border-left:0; border-right:0; margin-right:-10px; overflow:hidden}
+  /* Auf Ergebnis und "Keine Leben mehr" ist die Punktreihe leer, und die
+     Leben stehen dort ohnehin gross in der Auswertung - ohne die Reihe
+     staende das Herz doppelt da. */
+  .kastenkopf:has(> .tbar:empty){display:none}
+  .card{position:relative}
+  @keyframes zIdle{0%,100%{transform:translateY(0) rotate(0) scale(1)}35%{transform:translateY(-5px) rotate(-1.5deg) scale(1.02)}70%{transform:translateY(-2px) rotate(1.2deg) scale(1.01)}}
+  @keyframes zCheer{0%,100%{transform:translateY(0) rotate(0) scale(1)}30%{transform:translateY(-16px) rotate(-6deg) scale(1.06)}60%{transform:translateY(-4px) rotate(5deg) scale(1.03)}}
+  @keyframes zSad{0%,100%{transform:translateY(3px) rotate(-3deg) scale(.97)}50%{transform:translateY(5px) rotate(-5deg) scale(.96)}}
+  @keyframes zPop{0%{transform:scale(1)}40%{transform:scale(1.22) rotate(-4deg)}70%{transform:scale(.96) rotate(3deg)}100%{transform:scale(1)}}
+  @keyframes zShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px) rotate(-4deg)}40%{transform:translateX(6px) rotate(4deg)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+  /* Die Begruessung auf der Anmeldeseite (30.10.2026): der Drache steht frei
+     auf dem Grund wie oben im Lernpfad, daneben eine Sprechblase in den
+     Farben der Karten, hell wie dunkel. Vorher ein Kasten mit Verlauf und
+     schraeger gelber Flaeche aus der ersten Fassung - Ajdin: "das
+     hintergrund ist auch alt vom anmelden da wo der drache ist". */
+  .hero{
+    display:flex; align-items:center; gap:12px; color:var(--ink);
+    margin-bottom:14px; position:relative;
+  }
+  /* display:block hebt das flex der allgemeinen .bubble-Regel auf. Sonst
+     stünden Gruß und Erklärung nebeneinander statt untereinander - am
+     Handy werden daraus zwei viel zu schmale Spalten. */
+  .hero .bubble{
+    display:block; background:var(--surface); color:var(--ink); border:2px solid var(--line);
+    border-radius:var(--radius); padding:12px 14px;
+    font-weight:800; font-size:15px; position:relative; flex:1; z-index:1; min-height:0;
+  }
+  /* Spitze zum Drachen: aussen in der Randfarbe, innen in der Flaeche */
+  .hero .bubble::before, .hero .bubble::after{content:''; position:absolute; top:22px; border:9px solid transparent; border-left:0}
+  .hero .bubble::before{left:-11px; border-right-color:var(--line)}
+  .hero .bubble::after{left:-8px; border-right-color:var(--surface)}
+  .hero .bubble small{display:block; font-weight:600; color:var(--muted); margin-top:4px; font-size:13px}
+

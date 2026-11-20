@@ -1,0 +1,112 @@
+  /* ---- Einstufung und Wiederholen ----
+     Die Einstufung benutzt die Karten der Vollversionswahl, Wiederholen
+     die grosse Zahl der Wegmarke - nichts Neues erfunden. */
+  .einstbox .celebrate{margin-bottom:0}
+  .einstbox .zmaj{width:110px; height:110px}
+  .einstbox .einstwahl{justify-content:center; text-align:center}
+  .topfzahl{font-family:var(--font-ui); font-weight:800; font-size:48px; line-height:1;
+    letter-spacing:-1px; color:var(--primary); text-align:center; margin:16px 0 2px}
+  .topfwort{text-align:center; font-weight:800; color:var(--muted); font-size:13px; margin-bottom:4px}
+  .topfleer{font-size:14px; line-height:1.6; color:var(--muted); margin-top:12px}
+
+  /* ---- Stern: eine Aufgabe markieren (19.10.2026) ----
+     Ajdins Wahl aus dem Entwurf vom 19.10.2026: Variante 1 "Ring". Rund,
+     die Form der runden Knoepfe oben. Leer ein Umriss in --muted, markiert
+     ein Goldring und ein Goldstern (Verlauf #sternGold) mit dunklerem
+     Goldrand. Aus dem Entwurf:
+       - Goldrand hell #B07D00: 3,28:1 auf dem hellgoldenen Grund #FFF4C2;
+       - dunkel liegt der markierte Knopf auf --surface statt auf dem
+         olivfarbenen --accent-soft. Das laeuft ueber --an-grund, am Knopf
+         selbst gesetzt, damit --surface die Sektionsfarbe mitnimmt;
+       - Trefferflaeche 48 x 48 ueber ::before (absolut positioniert zaehlt
+         es ab der Innenkante, die 2 px Rand sind drin): beim 40-px-Knopf
+         inset -6px, beim 44-px-Knopf bis zum 26.10.2026 -4px;
+       - der Stern im 24-px-svg ist 22,3 x 21,7 px (56 % der Knopfhoehe,
+         bis zum 26.10.2026 28 px im 44-px-Knopf); die viewBox liegt um
+         seinen Flaechenschwerpunkt, so sitzt er optisch in der Mitte
+         (nachgemessen < 0,5 Geraetepixel, tests_e2e/test_stern.py);
+       - beim Antippen ploppt er kurz auf (.pop), nicht bei reduzierter
+         Bewegung und nicht mit dem Schalter "Animationen" aus.
+     Wo er stand:
+       - 19.10. bis 26.10.2026 unten rechts in der Leiste unter der Karte,
+         gegenueber von "Lektion abbrechen", im Material dieses Knopfes.
+         Bei grossen Kachelbaenken lag die Leiste unter dem Bildrand
+         (360 x 726, die groesste Bank: 58 px darunter);
+       - am 26.10.2026 oben rechts neben dem Drachen. Ajdin: "den stern
+         markieren knopf kannst du oben rechts neben den drachen hinmachen
+         weil er zu schlecht sichtbar war". Dafuer stand der Drache in einer
+         Huelle (.zmajreihe), der Knopf darin absolut, 44 x 44, senkrecht
+         auf der Drachenmitte - erst buendig am Innenrand der Karte, abends
+         mittig im freien Platz rechts vom Drachen (Ajdins Kreis im
+         Bildschirmfoto).
+     Seit dem 26.10.2026 spaet steht er in der Kopfzeile der Karte
+     (.kastenkopf), rechts neben den Fortschrittspunkten, auf einer Linie
+     mit der Herz-Pille. Ajdin ueber die Lage neben dem Drachen: "im moment
+     steht es so mitten im nirgendwo"; nach Vorschaubildern: "nimm A".
+     Oben ist er vor jeder Antwort im Bild. Die Huelle um den Drachen ist
+     wieder weg - Lektion, Test und Einstufung bauen ihre Karte gleich.
+       - im Fluss der Flex-Zeile hinter .tbar: flex 0 0 auto, 40 x 40,
+         10 px Abstand (gap der Zeile), rechte Kante am Innenrand der Karte.
+         position:relative nur fuer ::before. Der Balken (flex 1) wird um
+         50 px schmaler, bei 360 px von 209 auf 159 px;
+       - die Zeile bleibt so hoch wie die Herz-Pille (35 px, wie vorher):
+         der Knopf zaehlt mit margin -20px oben und unten fuer ihre Hoehe
+         nicht mit und steht durch align-items:center trotzdem genau auf
+         ihrer Mitte. So steht alles darunter auf den Pixel wie vorher und
+         wie in der Einstufung, die keinen Stern hat - bei jeder
+         Schriftgroesse (tests_e2e/test_layout_test.py). Der Knopf ragt
+         2,5 px ueber und unter die Zeile, die Trefferflaeche 6,5 px: oben
+         ist das Polster der Karte (24 px), unten der Abstand zum Drachen
+         (10 + 2 px);
+       - versteckt (hidden, eine Aufgabe ohne Kennung) haelt er seinen
+         Platz: display:flex mit visibility:hidden - mit !important, sonst
+         gewinnt die allgemeine Regel [hidden]{display:none !important}
+         weiter unten. Ohne das spraenge der Balken bei jedem Wechsel um
+         50 px. visibility:hidden nimmt ihn auch aus der Tab-Reihenfolge
+         und dem Vorlesebaum, und er faengt keine Tipps ab. Auf Ergebnis
+         und "Keine Leben mehr" ist die ganze Kopfzeile weg (siehe
+         .kastenkopf oben);
+       - Flaeche --bg und Rand --line wie die Herz-Pille links. Mit
+         --surface waere er auf der Karte (selbst --surface) nur ein
+         duenner Ring. Der leere Stern (--muted) hat auf --bg in allen neun
+         Sektionen hell mindestens 4,6:1, dunkel 8,2:1;
+       - er ueberdeckt weder Herz, Punkte, Drache noch Aufgabe
+         (tests_e2e/test_stern.py).
+     Die Leiste unter der Karte hat nur "abbrechen" und den leeren
+     Platzhalter, wie vor dem 19.10.2026 und wie in der Einstufung.
+     Kein :has() und kein :is() - siehe oben bei .zmaj.mini. */
+  :root{--stern-gold-hell:#FFD84D; --stern-gold-tief:#F5B400; --stern-rand:#B07D00}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700} }
+  :root[data-theme="dark"]{--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700}
+  .kastenkopf .stern{--an-grund:var(--accent-soft)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .kastenkopf .stern{--an-grund:var(--surface)} }
+  :root[data-theme="dark"] .kastenkopf .stern{--an-grund:var(--surface)}
+  .kastenkopf .stern{position:relative; flex:0 0 auto; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0; margin:-20px 0; font:inherit; cursor:pointer; color:var(--muted); -webkit-tap-highlight-color:transparent; transition:transform .12s, background-color .15s, border-color .15s, box-shadow .12s}
+  .kastenkopf .stern[hidden]{display:flex !important; visibility:hidden}   /* Platz halten, der Balken springt nicht; !important gegen [hidden] weiter unten */
+  .kastenkopf .stern::before{content:''; position:absolute}
+  .kastenkopf .stern svg{display:block; flex:none; overflow:visible; pointer-events:none}
+  .sternsym{overflow:visible}
+  .sternsym path{fill:none; stroke:currentColor; stroke-linejoin:round}
+  .sternsym.an path{fill:url(#sternGold); stroke:var(--stern-rand)}
+  .kastenkopf .stern:focus-visible{outline:3px solid var(--primary); outline-offset:3px}
+  @keyframes sternPop{0%{transform:scale(1)} 45%{transform:scale(1.22)} 100%{transform:scale(1)}}
+  .kastenkopf .stern.pop svg{animation:sternPop .28s ease-out}
+  @media (prefers-reduced-motion: reduce){ .kastenkopf .stern.pop svg{animation:none} }
+  .kastenkopf .stern.v1{width:40px; height:40px; border-radius:50%; border:2px solid var(--line); background:var(--bg)}
+  .kastenkopf .stern.v1::before{inset:-6px}   /* ab Innenkante 36 px: 48 x 48 */
+  .kastenkopf .stern.v1[aria-pressed="true"]{border-color:var(--accent); background:var(--an-grund)}
+  .kastenkopf .stern.v1:active{transform:scale(.92)}
+
+  /* ---- Wiederholen: der Kasten "Markiert" (19.10.2026) ----
+     Unter dem Kasten fuer Fehler, der bleibt, wie er ist. Gebaut genau wie
+     er (siehe topfKasten und sternKasten): .section, h2, .desc, .topfzahl,
+     .topfwort, .row mit .btn.know - gleiche Schrift, Abstaende, Knopf und
+     Hoehe. Neu ist nur der kleine Stern vor dem Titel, 22 px, gold, sobald
+     etwas markiert ist, und im leeren Kasten der 17-px-Stern im Satz.
+     Beide sitzen auf der Mitte der Versalhoehe (gemessen ueber die
+     Schriftmetrik von Nunito 800 18 px bzw. 14 px): top -1px im Titel,
+     vertical-align -3.5px im Satz, die Zeilenhoehe bleibt. */
+  #sternBox h2{display:flex; align-items:center; gap:7px}
+  #sternBox h2 .sternsym{flex:none; color:var(--muted); position:relative; top:-1px}
+  .topfleer .sternsym{display:inline-block; vertical-align:-3.5px; margin:0 1px; color:var(--muted)}
+

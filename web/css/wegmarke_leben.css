@@ -1,0 +1,339 @@
+  /* ---- Wegmarke ----
+     Dieselbe Huelle wie die Nachfrage, nur mit einer sehr grossen Zahl.
+     Bewusst nichts Neues erfunden: ein zweiter Overlay-Bau waere eine
+     zweite Stelle, an der man den Abstand zum Rand pflegen muesste. */
+  .wegmarkebox{max-width:320px}
+  .wegmarkebox .celebrate{margin-bottom:0}
+  .wegmarkebox .zmaj{width:120px; height:120px}
+  .wegzahl{font-family:var(--font-ui); font-weight:800; font-size:64px; line-height:1;
+    letter-spacing:-2px; color:var(--accent); margin:2px 0 0}
+  .wegwort{font-weight:800; font-size:15px; color:var(--ink); margin:0 0 10px}
+  /* Die Schnipsel fallen ueber den ganzen Bildschirm, nicht nur ueber die
+     Karte - deshalb position:fixed und nicht absolute.
+     Sie werden nur dann ueberhaupt erzeugt, wenn Bewegung an ist: die Regel
+     .no-anim * {animation:none} wuerde sie sonst als bunte Punkte oben am
+     Rand einfrieren lassen, und das saehe aus wie ein Fehler. */
+  .schnipsel{position:fixed; top:-18px; width:9px; height:14px; border-radius:2px;
+    pointer-events:none; animation:schnipselFall linear forwards}
+  @keyframes schnipselFall{
+    from{transform:translateY(-20px) rotate(0deg); opacity:1}
+    to{transform:translateY(104vh) rotate(720deg); opacity:.15}
+  }
+  /* Vorspann: das Studio-Zeichen beim Start.
+     Er steht schon im HTML und nicht erst im Skript – sonst sähe man beim
+     Laden erst eine leere Seite und danach das Logo.
+     z-index 900: unter Einwilligung und Nachfrage (1000), damit die beim
+     ersten Start darüber liegen können und nicht dahinter festhängen.
+     Die Notaus-Animation blendet ihn nach zehn Sekunden von selbst weg –
+     falls das Skript gar nicht erst anläuft, bleibt niemand hier stehen. */
+  #vorspann{position:fixed; inset:0; z-index:900; background:#060C20;
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    transition:opacity .45s ease; animation:vorspannNotaus .6s ease 10s forwards}
+  #vorspann svg{width:min(320px,74vw); height:auto; display:block}
+  #vorspann.weg{opacity:0; pointer-events:none}
+  @keyframes vorspannNotaus{to{opacity:0; visibility:hidden}}
+  /* Der Ablauf des Vorspanns. Zeiten in Sekunden:
+       0,00–0,45  der Kopf kommt
+       0,48–0,86  das Maul holt Luft
+       0,70–1,75  Feuerstrahl nach rechts, dann zurück
+       1,22–1,84  der Name wird von links nach rechts freigelegt
+       1,28–2,23  er glüht von Gold auf Weiß aus
+     Danach steht das Bild, bis vorspannWeg() es ausblendet. */
+  #vsKopf{transform-box:view-box; transform-origin:136px 97px;
+    animation:vsKopfAuf .45s cubic-bezier(.2,.8,.3,1) both}
+  @keyframes vsKopfAuf{from{opacity:0; transform:scale(.9) translateY(6px)} to{opacity:1; transform:none}}
+  #vsGlut{transform-box:view-box; transform-origin:248px 138px;
+    animation:vsGlut .38s ease-out .48s both}
+  @keyframes vsGlut{0%{opacity:0; transform:scale(.2)} 55%{opacity:.95; transform:scale(1.15)} 100%{opacity:0; transform:scale(.5)}}
+  #vsFeuer{transform-box:view-box; transform-origin:246px 138px; opacity:0;
+    animation:vsFeuer 1.05s ease-in-out .7s both}
+  @keyframes vsFeuer{
+    0%  {transform:scaleX(.04) scaleY(.45); opacity:0}
+    10% {transform:scaleX(.40) scaleY(1.05); opacity:1}
+    28% {transform:scaleX(1)   scaleY(.95); opacity:1}
+    46% {transform:scaleX(.93) scaleY(1.07); opacity:1}
+    62% {transform:scaleX(.99) scaleY(.92); opacity:1}
+    78% {transform:scaleX(.70) scaleY(.85); opacity:.85}
+    100%{transform:scaleX(.05) scaleY(.35); opacity:0}}
+  /* Jede Zunge zuckt fuer sich. Die Takte sind absichtlich krumm
+     (.27s bis .47s) - liefen sie im Gleichschritt, saehe es aus
+     wie ein pulsierender Ballon und nicht wie Feuer. */
+  .vsZunge{transform-box:fill-box; transform-origin:0 50%;
+    animation:vsLecken .36s ease-in-out infinite alternate}
+  @keyframes vsLecken{
+    from{transform:scaleX(.80) scaleY(.86)}
+    to{transform:scaleX(1.07) scaleY(1.14)}
+  }
+  #vsZ1{animation-duration:.37s; animation-delay:0s}
+  #vsZ2{animation-duration:.43s; animation-delay:-.11s}
+  #vsZ3{animation-duration:.31s; animation-delay:-.05s}
+  #vsZ4{animation-duration:.47s; animation-delay:-.19s}
+  #vsZ5{animation-duration:.34s; animation-delay:-.08s}
+  #vsZ6{animation-duration:.41s; animation-delay:-.23s}
+  #vsZ7{animation-duration:.29s; animation-delay:-.15s}
+  #vsZ8{animation-duration:.39s; animation-delay:-.02s}
+  #vsZ9{animation-duration:.33s; animation-delay:-.17s}
+  #vsZ10{animation-duration:.27s; animation-delay:-.09s}
+  #vsZ11{animation-duration:.36s; animation-delay:-.21s}
+  #vsZ12{animation-duration:.45s; animation-delay:-.28s}
+  @keyframes vsFunkeFlug{
+    0%{opacity:0; transform:translate(0,0) scale(.4)}
+    20%{opacity:.9}
+    100%{opacity:0; transform:translate(120px,-30px) scale(.15)}
+  }
+  .vsFunke{transform-box:view-box; opacity:0;
+    animation:vsFunkeFlug 1.3s ease-out infinite}
+  #vsFk2{animation-delay:-.4s}
+  #vsFk3{animation-delay:-.8s}
+  #vsFk4{animation-delay:-1.2s}
+  #vsFk5{animation-delay:-.6s}
+  /* Das Maul geht auf, kurz bevor die Flamme kommt, und schliesst sich,
+     wenn sie weg ist. Scharnier ist der hintere Maulwinkel. */
+  #vsKiefer{transform-box:view-box; transform-origin:150px 142px;
+    animation:vsMaul 1.45s ease-in-out .55s both}
+  @keyframes vsMaul{
+    0%{transform:rotate(0deg)}
+    14%{transform:rotate(12deg)}
+    55%{transform:rotate(9deg)}
+    78%{transform:rotate(11deg)}
+    100%{transform:rotate(0deg)}}
+  #vsName{clip-path:url(#vsFrei)}
+  #vsFrei rect{transform-box:view-box; transform-origin:290px 0;
+    animation:vsFrei .62s cubic-bezier(.3,.7,.3,1) 1.22s both}
+  @keyframes vsFrei{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+  #vsText{animation:vsGluehen .95s ease-out 1.28s both}
+  @keyframes vsGluehen{0%{fill:#F5C400} 55%{fill:#FFE682} 100%{fill:#FFFFFF}}
+  /* Wer keine Bewegung will, bekommt sofort das Endbild. */
+  @media (prefers-reduced-motion:reduce){
+    #vsKopf,#vsGlut,#vsFeuer,#vsKiefer,#vsFrei rect,#vsText,
+    .vsZunge,.vsFunke{animation:none}
+    #vsGlut,#vsFeuer{opacity:0}
+    #vsText{fill:#FFFFFF}
+  }
+  .kontoform{display:grid; gap:10px; margin-top:16px}
+  .kontoform .btn{margin-top:4px}
+  .feldhinweis{font-size:12px; color:var(--muted); margin:-6px 0 0}
+  /* Ein eigenes display: (flex, grid, block) schlägt das eingebaute
+     display:none des hidden-Merkmals. Deshalb hier einmal verbindlich –
+     sonst bleiben ausgeblendete Zeilen sichtbar. */
+  [hidden]{display:none !important}
+  .ankreuz{display:flex; align-items:center; gap:9px; font-size:14px; cursor:pointer; padding:2px 0}
+  .ankreuz input{width:18px; height:18px; accent-color:var(--primary); cursor:pointer; flex:0 0 auto}
+  /* Hinweis auf den Spam-Ordner: Bei einem neuen Absender landen die
+     ersten Mails oft dort. Das muss auffallen, sonst sucht man vergebens.
+     Seit 29.10.2026 ein kurzer Satz (konto.spam_kurz) statt drei: Ajdin
+     fand Bestaetigungs- und Passwort-Mail im Spam-Ordner seines Gmail, und
+     er will kurze Texte. Steht auch auf der Karte nach "Konto anlegen". */
+  .spamhinweis{margin-top:4px; padding:10px 12px; border-radius:12px;
+    background:var(--surface); border:1px solid var(--line);
+    font-size:13px; line-height:1.5; color:var(--muted)}
+  .kontowechsel{margin-top:14px; display:grid; gap:8px}
+  .kontowechsel .btn{width:100%}
+  /* Pflicht-Anmeldung (28.10.2026). Der Google-Knopf nach Googles
+     Markenregeln fuer "Sign in with Google": weisser Grund, Rand #747775,
+     Schrift #1F1F1F, das "G" unveraendert in seinen Farben. Auch im
+     dunklen Modus hell - die Regeln erlauben dort die neutrale Fassung,
+     eigene Farben nicht. */
+  .anmwahl{display:grid; gap:10px; margin-top:16px}
+  .googleknopf{display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+    min-height:48px; padding:10px 16px; border:1px solid #747775; border-radius:14px;
+    background:#FFFFFF; color:#1F1F1F; font-family:Roboto, Arial, sans-serif; font-size:15px;
+    font-weight:500; letter-spacing:.25px; cursor:pointer}
+  .googleknopf img{width:20px; height:20px; flex:none}
+  .googleknopf:disabled{opacity:.6; cursor:default}
+  .googleknopf:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+  /* "Mit Apple anmelden" (30.10.2026, nur iOS, Entscheidung 6b). Nach
+     Apples Gestaltungsregeln fuer eigene Knoepfe (Human Interface
+     Guidelines, Sign in with Apple): Apple-Logo und Titel in Schwarz auf
+     Weiss oder Weiss auf Schwarz, Systemschrift, mindestens so gross und so
+     weit oben wie der Google-Knopf (Richtlinie 4.8 verlangt eine
+     gleichwertige Wahl). Im hellen Modus schwarz, im dunklen weiss - beides
+     ist erlaubt, und so hebt er sich jeweils vom Grund ab.
+     Das Logo ist das Zeichen U+F8FF der Systemschrift: Apple liefert es auf
+     iPhone und iPad selbst aus, die App bringt kein eigenes Bild mit. Auf
+     anderen Geraeten erscheint der Knopf nicht (appleMoeglich). */
+  .appleknopf{display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+    min-height:48px; padding:10px 16px; border:1px solid #000000; border-radius:14px;
+    background:#000000; color:#FFFFFF;
+    font-family:-apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size:17px;
+    font-weight:600; letter-spacing:-.2px; cursor:pointer}
+  .appleknopf .applelogo{font-size:19px; line-height:1; margin-top:-2px}
+  .appleknopf:disabled{opacity:.6; cursor:default}
+  .appleknopf:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+  :root[data-theme="dark"] .appleknopf{background:#FFFFFF; color:#000000; border-color:#FFFFFF}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .appleknopf{background:#FFFFFF; color:#000000; border-color:#FFFFFF}
+  }
+  .anmrecht{margin-top:2px; font-size:13px}
+  .anmrecht summary{cursor:pointer; color:var(--muted); font-weight:700; padding:6px 0}
+  input.field,textarea.field,select.field,button.field{
+    font-family:inherit; font-size:15px; padding:11px 12px; border:2px solid var(--line); border-radius:12px; background:var(--surface); color:var(--ink); width:100%;
+  }
+  /* Der Knopf der Reiterwahl (Laden, Sprache) zeigt den Fokus nur ueber
+     :focus-visible (15.11.2026, Offen-Liste 5b): am Android-Handy bekommt
+     ein angetippter Knopf den Fokus, und der Rand blieb danach blau. Die
+     Eingabefelder behalten :focus, dort steht ja der Cursor. Zwei Regeln:
+     eine alte WebView, die :focus-visible nicht kennt, verwirft sonst die
+     ganze Regel samt den Feldern. */
+  input.field:focus,textarea.field:focus,select.field:focus{outline:none; border-color:var(--primary)}
+  button.field:focus-visible{outline:none; border-color:var(--primary)}
+  /* iPhone: Eingabefelder mit mindestens 16 px Schrift (15.11.2026). Darunter
+     zoomt WKWebView beim Antippen auf 16/Schriftgroesse (15 px: +6,8 %) und
+     bleibt so stehen, rechts fehlten dann rund 11 Punkte (iPhone 11). Die
+     erste Sicherung ist maximum-scale=1.0 im Kopf. Die Felder in den
+     Lektionen sind groesser (.type-input, .blank-input). Android zoomt nicht
+     und behaelt 15 px; button.field (#langKopf) zoomt nie. */
+  html[data-plattform="ios"] input.field, html[data-plattform="ios"] textarea.field, html[data-plattform="ios"] select.field{font-size:16px}
+  /* iPhone: kein Doppeltipp-Zoom (15.11.2026, Build 3: "wenn ich doppel tippe
+     dann zoomt die app rein aber kann nicht wieder zurück zoomen"). Die erste
+     Sicherung ist der Viewport im Kopf (user-scalable=no, min = max = 1).
+     manipulation laesst Wischen und Blaettern, nimmt aber den Doppeltipp
+     weg - und ein schneller zweiter Tipp ist dann ein zweiter Klick, wie auf
+     Android. An allen Elementen, nicht nur an html: touch-action erbt nicht
+     ueber einen Kasten mit eigenem Bildlauf hinweg (WebKit beginnt dort neu).
+     :where haelt die Regel ohne Gewicht, eine eigene touch-action an einem
+     Element ginge also vor. Android: keine Regel, wie vorher. */
+  :where(html[data-plattform="ios"], html[data-plattform="ios"] *){touch-action:manipulation}
+
+  /* ---------- Leben ---------- */
+  /* Schmal genug, um in eine Ecke zu passen: nur so breit wie ihr Inhalt.
+     Aufgeklappt wächst sie um die Wartezeit, sonst bleibt sie ein Knopf. */
+  /* Herzen links, Muenzen rechts, auf einer Linie. Die Muenzzahl stand
+     vorher nur als Satz im Laden - man sah sie also nirgends, wo sie
+     interessiert. Ajdin am 18.09.2026. */
+  /* Sitzt jetzt in der Kopfzeile, deshalb kein eigener Abstand nach unten
+     und keine Ausrichtung nach rechts mehr - das macht .hbtns. */
+  /* display:contents loest den Kasten auf: Herzen und Muenzen werden damit
+     selbst zu Feldern des Rasters oben, statt gemeinsam in einem Kasten zu
+     sitzen. Nur so kann die eine links und die andere mittig stehen. Der
+     Kasten bleibt trotzdem, weil die Ansichten ihn zum Ein- und Ausblenden
+     brauchen ($('kopfLeiste').style.display). */
+  .kopfleiste{display:contents}
+  header .livesbar{grid-column:1; justify-self:start}
+  header .muenzbar{grid-column:2; justify-self:center}
+  /* Passen Herzen, Muenzen und Knoepfe nicht mehr in eine Zeile (sehr
+     grosse Systemschrift), stehen die Muenzen darunter in der Mitte.
+     Vorher schoben sich die Pillen uebereinander. Die Klasse setzt
+     kopfEng(). 06.10.2026, siehe .wrap. */
+  header.eng{grid-template-columns:1fr 1fr}
+  header.eng .muenzbar{grid-column:1 / -1; grid-row:2}
+  header.eng .hbtns{grid-column:2}
+  /* Im engen Kopf steht die Muenzpille direkt unter den Herzen. Der
+     Leben-Hinweis haengt dann am ganzen Kopf statt an der Herzpille, sonst
+     laege er genau ueber den Muenzen - bei 0 Leben, wo man sie braucht.
+     Gefunden bei der Pruefung am 06.10.2026. */
+  header.eng{position:relative}
+  header.eng .livesbar{position:static}
+  /* Die Zuruecktaste nur als Pfeil (16.11.2026, Offen-Liste 9). Auf dem
+     iPhone steht sie mit in der Leiste (es hat keine Zuruecktaste, siehe
+     setzeZurueck), im Browser ebenso. Seit dem Profilknopf passte die
+     Leiste mit "← Geschichten" oder "← Lernpfad" nicht mehr in eine
+     Zeile, die Muenzen rutschten allein in die zweite - in der Geschichte
+     auch bei 440 Punkten in de, sv, nb und da (Pruefer der App-Store-
+     Bilder). Passt sie mit dem Wort nicht, setzt kopfEng() header.knapp:
+     die Taste wird ein runder 38-px-Knopf mit dem Pfeil wie Laden, Profil
+     und Zahnrad; das Wort steht weiter darin (Schrift 0, fuer
+     Bildschirmleser auch im aria-label). Wo das Wort passt, bleibt alles
+     wie vorher. !important, weil die Tests grosse Schrift mit
+     style.fontSize an jedem Element nachstellen.
+     Tippflaeche 48 hoch und 46 breit: links teilt sie sich die 4 px
+     Luecke mit dem Zahnrad wie die anderen Knoepfe, rechts reicht sie
+     6 px in den Seitenrand (16 px). tests_e2e/test_kopfleiste.py
+     Nur die Farben gleiten (.back hat transition:.15s fuer alles): kopfEng()
+     nimmt knapp zum Messen kurz weg. Glitten Schrift und Polster mit, maesse
+     es die halb verwandelte Taste, und bei jedem renderLives() finge der
+     Uebergang neu an - die Schrift blieb dann bei 11,5 px stehen und ragte
+     26 px ueber den Rand (gefunden mit test_erfolge.py, ohne "weniger
+     Bewegung"). */
+  .hbtns #btnBack{transition-property:border-color, color, background-color}
+  header.knapp #btnBack{width:38px; padding-left:0; padding-right:0; position:relative; font-size:0 !important}
+  header.knapp #btnBack::before{content:"←"; font-size:20px; line-height:34px}
+  header.knapp #btnBack::after{content:""; position:absolute; top:-7px; bottom:-7px; left:-4px; right:-8px}
+  /* Alles in der Kopfzeile gleich hoch. Vorher: Herzen 42 Punkte, Muenzen 36,
+     Knoepfe 37 - mittig ausgerichtet, aber sichtbar verschieden gross, und
+     genau das machte die Zeile unruhig. Ajdin am 18.09.2026. */
+  header .livesbar, header .muenzbar, .hbtns .back{
+    height:38px; box-sizing:border-box; padding-top:0; padding-bottom:0;
+    display:inline-flex; align-items:center;
+  }
+  /* Gleich viel Luft links wie rechts. Die alte Polsterung war schief
+     (4 links, 8 rechts) - das stammte aus der Zeit, als rechts im selben
+     Feld noch die Wartezeit stand. Gemessen waren es 6 zu 10 Punkte.
+     Ajdin am 18.09.2026. */
+  /* 29.10.2026: 3 und 6 statt 6 und 8 - eine Zeile, siehe header. */
+  header .livesbar{padding-left:3px; padding-right:3px}
+  header .livesbar .herz{padding-top:0; padding-bottom:0; padding-left:6px; padding-right:6px; position:relative}
+  /* Das Herz ist der Knopf in der Pille, aber nur so hoch wie seine
+     Schrift: 49 x 23 px zum Tippen, obwohl die Pille 38 hoch ist
+     (Pruefung 29.10.2026). Wie bei .nursymbol eine unsichtbare Flaeche
+     darueber, 48 px hoch und bis an den Rand der Pille (3 Polster +
+     2 Rand). Verschoben wird dadurch nichts. */
+  header .livesbar .herz::after{content:""; position:absolute; left:-5px; right:-5px; top:calc(50% - 24px); height:48px}
+  /* 29.10.2026: Polster 9 statt 12, Luecke 4 statt 6 - eine Zeile, siehe header. */
+  .muenzbar{
+    display:inline-flex; align-items:center; gap:4px;
+    background:var(--surface); border:2px solid var(--line); border-radius:99px;
+    padding:5px 9px; font:800 15px var(--font-ui); color:var(--accent-dark);
+  }
+  .muenzbar b{color:var(--ink)}
+  /* KM - konvertibilna marka, die Waehrung in Bosnien. Ajdins Einfall am
+     18.09.2026: dann heisst das Geld in der App so wie das Geld in dem Land,
+     um das es die ganze Zeit geht. Kleiner und leiser als die Zahl, damit
+     die Zahl die Hauptsache bleibt. */
+  /* Ohne opacity und in --accent-text: mit .7 auf Gelb waren es 1,8:1 (hell)
+     und 3,8:1 (dunkel). Leiser als die Zahl bleibt KM durch die Groesse. */
+  .km{font-size:.78em; font-weight:800; letter-spacing:.3px; color:var(--accent-text)}
+  /* Der Weg zu Googles Einwilligungsfenster ist jetzt der Schalter selbst -
+     ein Tipp darauf oeffnet es. Damit ist Googles Forderung nach einem Weg
+     dorthin erfuellt, ohne ein zweites Bedienelement. */
+  .livesbar{
+    display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:2px solid var(--line);
+    border-radius:99px; padding:3px 8px 3px 4px; font-size:13px; color:var(--muted); font-weight:700;
+    width:auto; min-width:0;
+    position:relative;          /* Bezugspunkt fuer den Hinweis darunter */
+  }
+  /* Die Wartezeit haengt UNTER der Herzpille, nicht daneben.
+     Vorher stand sie in derselben Zeile; der Kopf ist aber ein Raster mit
+     drei festen Spalten, und die Pille wuchs damit unter die Muenzen und
+     Knoepfe, die spaeter im Quelltext stehen und darueber gemalt werden.
+     Gemeldet am 24.09.2026.
+     position:absolute nimmt sie aus der Zeile: die Herzpille bleibt
+     aufgeklappt genauso breit wie zugeklappt, das Raster ruehrt sich
+     nicht, und der Inhalt darunter rutscht nicht weg.
+     pointer-events:none, weil sie ueber der Karte darunter schwebt und
+     dort keinen Tipp abfangen soll. */
+  .livesbar .info{
+    position:absolute; top:calc(100% + 4px); left:0; z-index:5;
+    background:var(--surface); border:2px solid var(--line); border-radius:99px;
+    box-shadow:0 2px 0 var(--line); padding:2px 10px;
+    font-size:11.5px; line-height:16px; font-weight:700;
+    max-width:calc(100vw - 40px);
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    pointer-events:none;
+  }
+  .livesbar .herz{
+    display:inline-flex; align-items:center; gap:5px; background:none; border:0; cursor:pointer;
+    font:inherit; font-size:17px; color:var(--bad); padding:3px 8px; border-radius:99px;
+  }
+  .livesbar .herz b{font-size:15px; color:var(--ink)}
+  @media (hover:hover) and (pointer:fine){ .livesbar .herz:hover{background:var(--primary-soft)} }
+  .livesbar.premium .herz{color:var(--accent-dark)}
+  .livesbar.zero{border-color:var(--bad)}
+  /* Bei null Leben steht der Hinweis dauerhaft (renderLives: zeigen =
+     livesInfoAn || n === 0). Dann traegt er denselben roten Rand wie die
+     Pille darueber, damit beide als ein Stueck zu lesen sind. */
+  .livesbar.zero .info{border-color:var(--bad)}
+  /* Pruefbericht 1.4, S17: Steht der Hinweis dauerhaft da (0 Leben), rueckt
+     auf der Startseite die Reihe mit Serie und Drache unter ihn. Er haengt
+     28 px unter der 38 px hohen Herzpille (4 Abstand + 24 hoch, dazu 2 px
+     Schatten), die Reihe stand nur 17 px darunter - in da und nl, wo der
+     Satz unter der Serie zwei Zeilen hat und der Block oben anliegt, lag er
+     11 px ueber der Seriezahl. 17 px mehr lassen 4 px Luft. Im engen Kopf
+     haengt er am ganzen Kopf (header.eng, siehe dort), dort braucht es 20.
+     Nur bei 0 Leben: der angetippte Hinweis bei vollen Leben ist kurz da und
+     soll nichts verschieben (siehe .livesbar .info). body.lebenLeer setzt
+     renderLives(). Polster statt Rand: ein Rand oben fiele mit dem Abstand
+     ueber der Startseite zusammen und schoebe nur 3 px. */
+  body.lebenLeer #pfad .obenreihe{padding-top:17px}
+  body.lebenLeer header.eng ~ main #pfad .obenreihe{padding-top:20px}
+

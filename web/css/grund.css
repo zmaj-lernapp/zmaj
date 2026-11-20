@@ -1,0 +1,155 @@
+  /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
+  :root{
+    --bg:#D1D5FA; --surface:#F6F7FE; --ink:#0F1E4D; --muted:#585A77;
+    --primary:#4049A5; --primary-dark:#31387D; --primary-soft:#D1D5FA;
+    --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
+    --primary-fill:#9EA3E0; --primary-fill-dark:#6F77D2; --on-fill:#0F1E4D;
+    --line:#CBCEEB; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    /* Serienschutz (24.10.2026, siehe .schutzplaetze): Rand und Schrift
+       des Eises, Rand der Meldung "gerissen", Grund der zwei Plaetze und
+       der Filter fuer ein Schild, das noch nicht da ist. --eis-text liegt
+       auf jedem der neun Sektionsgruende bei mindestens 5,1:1. */
+    --eis-rand:#A6D1F1; --eis-text:#12507F; --bad-rand:#F1B2AC;
+    --schutz-platz:rgba(255,255,255,.5); --schutz-blass:grayscale(1) opacity(.38);
+    /* Nur fuer Schrift. --good, --bad und --accent-dark sind auch Flaechen
+       und Raender, dort reichen 3:1 und dort stimmen sie. Als Schrift auf
+       der Flaeche lagen sie bei 3,2 / 4,1 / 2,3:1 statt 4,5:1 - axe am
+       04.10.2026, barrierefreiheit_richten.py. */
+    --good-text:#188049; --bad-text:#D0352C; --accent-text:#876A00;
+    /* Noch dunkler fuer Schrift direkt auf dem Seitengrund (29.10.2026):
+       Passwortliste und Zeile unter "Konto anlegen" stehen nicht auf
+       einer Karte, sondern auf --bg. Dort hatten --good-text und
+       --bad-text nur 3,4:1, auf den Gruenden der Sektionen 2 und 4 sogar
+       3,0:1 (axe color-contrast). Diese beiden liegen auf allen neun
+       Sektionsgruenden bei mindestens 4,76:1. */
+    --good-text-grund:#0E5E33; --bad-text-grund:#9A241D;
+    /* Eine Farbe je Sektion, neun Stueck. Vorher war jede Ueberschrift
+       blau und jeder Balken gelb, dadurch standen auf dem Lernpfad nach
+       Farbton nur vier Toene.
+       Drei Farbtoene sind belegt und bleiben frei: Gruen 148 heisst
+       "richtig", Rot 3 heisst "falsch", Gelb 48 ist der Akzent. Mit 26 Grad
+       Abstand um jeden bleibt der Bogen von 175 bis 336 Grad, und darauf
+       liegen die neun Toene mit 20 Grad Abstand. Sektion 1 behaelt das Blau
+       der App und der Fahne, danach geht es den Bogen hinauf und am Ende
+       herum.
+       Weil 20 Grad allein zu wenig sind, um zwei Nachbarn auf einer grossen
+       Flaeche zu unterscheiden, ist bei jeder zweiten Sektion der Grund eine
+       Stufe kraeftiger. Dadurch unterscheiden sich Nachbarn in Farbton UND
+       Helligkeit.
+       Hier sind die Toene dunkler als in der dunklen Fassung, sonst leuchten
+       sie auf Weiss. */
+    --sek1:#4049A5; --sek1-dunkel:#30377C; --sek1-sanft:#D1D4FA; --sek1-grund:#D1D4FA; --sek1-flaeche:#F6F6FE; --sek1-linie:#CBCEEB; --sek1-matt:#585A77; --sek1-fuell:#9EA3E0; --sek1-fuell-dunkel:#6F77D2;   /* Blau */
+    --sek2:#5B40A5; --sek2-dunkel:#45307C; --sek2-sanft:#D0C2F4; --sek2-grund:#D0C2F4; --sek2-flaeche:#F8F6FE; --sek2-linie:#D4CBEB; --sek2-matt:#564F6C; --sek2-fuell:#AC9ADF; --sek2-fuell-dunkel:#866BD0;   /* Indigo */
+    --sek3:#7D40A5; --sek3-dunkel:#5E307C; --sek3-sanft:#EAD1FA; --sek3-grund:#EAD1FA; --sek3-flaeche:#FBF6FE; --sek3-linie:#DFCBEB; --sek3-matt:#695776; --sek3-fuell:#C69EE0; --sek3-fuell-dunkel:#AA6FD2;   /* Violett */
+    --sek4:#7F3384; --sek4-dunkel:#58245B; --sek4-sanft:#EABAEE; --sek4-grund:#EABAEE; --sek4-flaeche:#FDF6FE; --sek4-linie:#E9CBEB; --sek4-matt:#644C66; --sek4-fuell:#D58BDA; --sek4-fuell-dunkel:#C55CCC;   /* Purpur */
+    --sek5:#973B7E; --sek5-dunkel:#6F2B5D; --sek5-sanft:#F9CDED; --sek5-grund:#F9CDED; --sek5-flaeche:#FEF6FC; --sek5-linie:#EBCBE3; --sek5-matt:#73556B; --sek5-fuell:#DE96CB; --sek5-fuell-dunkel:#CF68B3;   /* Magenta */
+    --sek6:#8C3658; --sek6-dunkel:#63273F; --sek6-sanft:#EFBED1; --sek6-grund:#EFBED1; --sek6-flaeche:#FEF6F9; --sek6-linie:#EBCBD8; --sek6-matt:#694D58; --sek6-fuell:#DD92B1; --sek6-fuell-dunkel:#CE648F;   /* Rose */
+    --sek7:#296A65; --sek7-dunkel:#19413E; --sek7-sanft:#BAE8E4; --sek7-grund:#BAE8E4; --sek7-flaeche:#F6FEFD; --sek7-linie:#CBEBE9; --sek7-matt:#4C6665; --sek7-fuell:#58CAC1; --sek7-fuell-dunkel:#37AEA4;   /* Petrol */
+    --sek8:#295A6A; --sek8-dunkel:#193741; --sek8-sanft:#AED4E0; --sek8-grund:#AED4E0; --sek8-flaeche:#F6FCFE; --sek8-linie:#CBE3EB; --sek8-matt:#46595F; --sek8-fuell:#64B4CE; --sek8-fuell-dunkel:#3B9BBA;   /* Tuerkis */
+    --sek9:#395F93; --sek9-dunkel:#29456A; --sek9-sanft:#C8DCF9; --sek9-grund:#C8DCF9; --sek9-flaeche:#F6F9FE; --sek9-linie:#CBD9EB; --sek9-matt:#545F71; --sek9-fuell:#96B4DE; --sek9-fuell-dunkel:#6893CF;   /* Himmelblau */
+    --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
+    --radius:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
+      --good-text:#55CE8A; --bad-text:#FF9E98; --accent-text:#DFB31F;   /* siehe oben, 04.10.2026 */
+      --good-text-grund:#55CE8A; --bad-text-grund:#FF9E98;   /* dunkel reicht es schon (7,7:1), 29.10.2026 */
+      --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
+      --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
+      --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
+      --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --eis-rand:#34608C; --eis-text:#93CFFF; --bad-rand:#77404C;   /* Serienschutz, siehe oben */
+      --schutz-platz:rgba(255,255,255,.05); --schutz-blass:grayscale(1) brightness(.8) opacity(.42);
+      --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD; --sek1-fuell:#8F95DC; --sek1-fuell-dunkel:#686FBB;   /* Blau */
+      --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD; --sek2-fuell:#A38FDC; --sek2-fuell-dunkel:#7E68BB;   /* Indigo */
+      --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD; --sek3-fuell:#BD8FDC; --sek3-fuell-dunkel:#9A68BB;   /* Violett */
+      --sek4:#D487D9; --sek4-dunkel:#B261B8; --sek4-sanft:#532956; --sek4-grund:#271528; --sek4-flaeche:#4C2C4E; --sek4-linie:#69416C; --sek4-matt:#CAADCD; --sek4-fuell:#D487D9; --sek4-fuell-dunkel:#B261B8;   /* Purpur */
+      --sek5:#D987C3; --sek5-dunkel:#B861A1; --sek5-sanft:#56294A; --sek5-grund:#281523; --sek5-flaeche:#4E2C45; --sek5-linie:#6C4161; --sek5-matt:#CDADC4; --sek5-fuell:#D987C3; --sek5-fuell-dunkel:#B861A1;   /* Magenta */
+      --sek6:#DA8BAB; --sek6-dunkel:#B96486; --sek6-sanft:#56293B; --sek6-grund:#28151D; --sek6-flaeche:#4E2C3A; --sek6-linie:#6C4152; --sek6-matt:#CDADBA; --sek6-fuell:#DA8BAB; --sek6-fuell-dunkel:#B96486;   /* Rose */
+      --sek7:#87D9D2; --sek7-dunkel:#61B8B1; --sek7-sanft:#295652; --sek7-grund:#152827; --sek7-flaeche:#2C4E4B; --sek7-linie:#416C69; --sek7-matt:#ADCDCA; --sek7-fuell:#87D9D2; --sek7-fuell-dunkel:#61B8B1;   /* Petrol */
+      --sek8:#87C5D9; --sek8-dunkel:#61A2B8; --sek8-sanft:#294B56; --sek8-grund:#152328; --sek8-flaeche:#2C464E; --sek8-linie:#41626C; --sek8-matt:#ADC5CD; --sek8-fuell:#87C5D9; --sek8-fuell-dunkel:#61A2B8;   /* Tuerkis */
+      --sek9:#87A9D9; --sek9-dunkel:#6185B8; --sek9-sanft:#293C56; --sek9-grund:#151D28; --sek9-flaeche:#2C3A4E; --sek9-linie:#41536C; --sek9-matt:#ADBACD; --sek9-fuell:#87A9D9; --sek9-fuell-dunkel:#6185B8;   /* Himmelblau */
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
+    --good-text:#55CE8A; --bad-text:#FF9E98; --accent-text:#DFB31F;   /* siehe oben, 04.10.2026 */
+    --good-text-grund:#55CE8A; --bad-text-grund:#FF9E98;   /* dunkel reicht es schon (7,7:1), 29.10.2026 */
+    --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
+    --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
+    --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
+      --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --eis-rand:#34608C; --eis-text:#93CFFF; --bad-rand:#77404C;   /* Serienschutz, siehe oben */
+      --schutz-platz:rgba(255,255,255,.05); --schutz-blass:grayscale(1) brightness(.8) opacity(.42);
+    --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD; --sek1-fuell:#8F95DC; --sek1-fuell-dunkel:#686FBB;   /* Blau */
+    --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD; --sek2-fuell:#A38FDC; --sek2-fuell-dunkel:#7E68BB;   /* Indigo */
+    --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD; --sek3-fuell:#BD8FDC; --sek3-fuell-dunkel:#9A68BB;   /* Violett */
+    --sek4:#D487D9; --sek4-dunkel:#B261B8; --sek4-sanft:#532956; --sek4-grund:#271528; --sek4-flaeche:#4C2C4E; --sek4-linie:#69416C; --sek4-matt:#CAADCD; --sek4-fuell:#D487D9; --sek4-fuell-dunkel:#B261B8;   /* Purpur */
+    --sek5:#D987C3; --sek5-dunkel:#B861A1; --sek5-sanft:#56294A; --sek5-grund:#281523; --sek5-flaeche:#4E2C45; --sek5-linie:#6C4161; --sek5-matt:#CDADC4; --sek5-fuell:#D987C3; --sek5-fuell-dunkel:#B861A1;   /* Magenta */
+    --sek6:#DA8BAB; --sek6-dunkel:#B96486; --sek6-sanft:#56293B; --sek6-grund:#28151D; --sek6-flaeche:#4E2C3A; --sek6-linie:#6C4152; --sek6-matt:#CDADBA; --sek6-fuell:#DA8BAB; --sek6-fuell-dunkel:#B96486;   /* Rose */
+    --sek7:#87D9D2; --sek7-dunkel:#61B8B1; --sek7-sanft:#295652; --sek7-grund:#152827; --sek7-flaeche:#2C4E4B; --sek7-linie:#416C69; --sek7-matt:#ADCDCA; --sek7-fuell:#87D9D2; --sek7-fuell-dunkel:#61B8B1;   /* Petrol */
+    --sek8:#87C5D9; --sek8-dunkel:#61A2B8; --sek8-sanft:#294B56; --sek8-grund:#152328; --sek8-flaeche:#2C464E; --sek8-linie:#41626C; --sek8-matt:#ADC5CD; --sek8-fuell:#87C5D9; --sek8-fuell-dunkel:#61A2B8;   /* Tuerkis */
+    --sek9:#87A9D9; --sek9-dunkel:#6185B8; --sek9-sanft:#293C56; --sek9-grund:#151D28; --sek9-flaeche:#2C3A4E; --sek9-linie:#41536C; --sek9-matt:#ADBACD; --sek9-fuell:#87A9D9; --sek9-fuell-dunkel:#6185B8;   /* Himmelblau */
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--font-ui); font-weight:500;
+    -webkit-font-smoothing:antialiased; line-height:1.5;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:16px 16px 48px;
+  }
+  .wrap{width:100%; max-width:540px}
+  /* iPhone und iPad (30.10.2026, iOS_Plan.md 3.5): die Seite liegt dort
+     unter Statusleiste, Notch und Home-Leiste. Im ersten Simulatorbild
+     lagen Herz und Zahnrad unter der Uhr. Die Raender kommen aus
+     env(safe-area-inset-*) - die gibt es nur mit viewport-fit=cover, und
+     das setzt das Skript im Kopf nur auf iOS. Android und Browser sehen
+     diese Regeln nie (data-plattform). Querformat auf dem iPad und dem
+     iPhone: links und rechts mindestens so viel wie die Notch braucht. */
+  html[data-plattform="ios"] body{
+    padding-top:calc(16px + env(safe-area-inset-top, 0px));
+    padding-bottom:calc(48px + env(safe-area-inset-bottom, 0px));
+    padding-left:max(16px, env(safe-area-inset-left, 0px));
+    padding-right:max(16px, env(safe-area-inset-right, 0px));
+  }
+  /* Kein Gummiband-Ziehen ueber den Rand hinaus und kein Markieren beim
+     langen Druecken: beides verraet auf dem iPhone sofort die Webseite
+     (Richtlinie 4.2). Eingabefelder bleiben markierbar. */
+  html[data-plattform="ios"]{overscroll-behavior:none; -webkit-text-size-adjust:100%}
+  html[data-plattform="ios"] body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none}
+  html[data-plattform="ios"] input, html[data-plattform="ios"] textarea{-webkit-user-select:text; user-select:text}
+  /* Grund unter der Statusleiste (30.10.2026, Cloud-Lauf 8): Beim
+     Scrollen lief der Text unter Uhr und Dynamic Island durch - im Bild
+     der Einstellungen stand "Feedback" mitten in der Uhrzeit. Ein Streifen
+     in der Hoehe des oberen Rands, in der Farbe des Grunds (also auch in
+     der Farbe der Sektion), deckt das ab. Unter dem Vorspann (900) und
+     allen Ebenen (ab 950), die ihren Rand selbst halten. */
+  html[data-plattform="ios"] body::before{
+    content:''; position:fixed; top:0; left:0; right:0; z-index:890;
+    height:env(safe-area-inset-top, 0px); background:var(--bg); pointer-events:none;
+  }
+  /* Grosse Systemschrift. Android vergroessert in der App jede Schrift
+     mit (Einstellungen > Schriftgroesse), Kaesten und Abstaende in px
+     aber nicht. Ab 115 % passten die drei Reiter nicht mehr in ihre
+     Zeile, ab 130 % auch Antwortknoepfe und Knopfreihen - die Seite
+     wurde breiter als der Bildschirm und liess sich seitlich schieben.
+     Gefunden bei der Pruefung am 06.10.2026.
+     Was nicht mehr nebeneinander passt, rutscht jetzt in die naechste
+     Zeile: Reiter, Tagesaufgaben und Knopfreihen per flex-wrap,
+     Antwortknoepfe und Kopf per Skript (renderChoice, kopfEng).
+     break-word ist nur der letzte Ausweg fuer ein Wort, das allein
+     breiter ist als sein Kasten. Bei normaler Schrift greift all das
+     nur dort, wo vorher schon etwas ueber den Rand ragte. */
+  .wrap{overflow-wrap:break-word}
+  /* Der Stern trifft alles - auch den Vorspann. Dessen Notaus-Animation
+     muss aber bleiben: sie ist der einzige Weg, das Logo wegzunehmen,
+     wenn das Skript nicht anlaeuft. Deshalb :not(#vorspann). */
+  .no-anim *:not(#vorspann){transition:none!important; animation:none!important}
+  /* Wer die Bewegung abschaltet, bekommt dasselbe Endbild wie bei der
+     Systemeinstellung - sonst bleibt die Glut als gelber Fleck vor der
+     Schnauze stehen. Gemeldet am 23.09.2026. */
+  .no-anim #vsGlut, .no-anim #vsFeuer{opacity:0}
+  .no-anim #vsText{fill:#FFFFFF}
+
