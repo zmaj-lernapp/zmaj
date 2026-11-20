@@ -48,10 +48,12 @@ KURZ = r"""
 
 # Jeder echte Klick mit Zeitstempel - als Skript vor der App, damit dieser
 # Horcher vor der Sperre der App laeuft und auch abgewiesene Klicks sieht.
+# i: welche Aufgabe stand, als der Klick ankam.
 KLICKS_MITSCHREIBEN = r"""
 window.__klicks = [];
 window.addEventListener('click', e => {
-  if(e.isTrusted) window.__klicks.push({zeit: e.timeStamp, detail: e.detail});
+  if(e.isTrusted) window.__klicks.push({zeit: e.timeStamp, detail: e.detail,
+                                        i: typeof Lx !== 'undefined' && Lx ? Lx.i : null});
 }, true);
 """
 
@@ -142,6 +144,9 @@ def _in_der_sperrzeit(versuch, mal=4):
     gemessen = []
     for _ in range(mal):
         g, rest = versuch()
+        if g is None:                                 # zweiter Tipp kam vor der neuen Aufgabe an
+            gemessen.append("zu frueh")
+            continue
         if g < 298:
             return rest
         gemessen.append(round(g))
@@ -193,13 +198,26 @@ def test_doppeltipp_nach_letzter_wortkarte_kostet_kein_leben(handy, abstand):
 
 def test_doppeltipp_ueberspringt_keine_wortkarte(handy):
     """Wortkarte -> Wortkarte: Weiter liegt an derselben Stelle. Ohne Sperre zog
-    der zweite Tipp die zweite Karte ungesehen vorbei (16 von 16 in der Suche)."""
+    der zweite Tipp die zweite Karte ungesehen vorbei (16 von 16 in der Suche).
+    Weil Weiter an derselben Stelle bleibt, kommen beide Tipps direkt
+    hintereinander, ohne Warten und Nachmessen dazwischen. Ueber _doppeltipp
+    lag der zweite Tipp in WebKit immer 360-480 ms nach dem ersten und damit
+    hinter der Sperre (Pruefung vom 20.11.2026)."""
     s = handy
 
     def versuch():
         s.js(LEKTION, [["intro", 0], ["intro", 1], ["intro", 2], ["mc", 0]])
         weiter = _mitte(s, "#lBody #xNext")
-        return _doppeltipp(s, (weiter["x"], weiter["y"]), "#lBody #xNext", 150, neu_i=1)
+        vorher = len(s.js("() => window.__klicks"))
+        s.page.touchscreen.tap(weiter["x"], weiter["y"])
+        s.page.touchscreen.tap(weiter["x"], weiter["y"])
+        s.page.wait_for_function("(n) => window.__klicks.length >= n", arg=vorher + 2, timeout=4000)
+        k = s.js("() => window.__klicks")[vorher:vorher + 2]
+        assert all(x["detail"] > 0 for x in k), k
+        assert k[0]["i"] == 0, k
+        if k[1]["i"] != 1:                            # zweite Karte stand noch nicht
+            return None, None
+        return k[1]["zeit"] - k[0]["zeit"], None
 
     _in_der_sperrzeit(versuch)
     s.page.wait_for_timeout(500)
