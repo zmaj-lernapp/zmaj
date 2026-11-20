@@ -10612,12 +10612,15 @@ function aboMeldung(d){
 /* aboGeaendert vor skripteDa (20.11.2026, Aufteilung): Die Huelle liefert
    die beim Abgleich aufbewahrte Meldung (retainUntilConsumed), sobald der
    Horcher haengt. In der ungeteilten Datei lief sie fruehestens nach dem
-   ganzen Skript, also nach dem Teil von init(), der ohne Warten laeuft.
-   Geteilt kann sie zwischen zwei Dateien kommen, noch vor init(): dann
-   schrieben vollversionMerken() und renderLives(), bevor vollversionLaden()
-   und dauerVollLaden() gelaufen sind, und im Fehlerfall (teileFehlen) auch.
-   Darum wird sie bis dahin nur gemerkt (die letzte zaehlt) und gleich nach
-   dem Aufruf init() nachgereicht, siehe aboFruehNachholen() bei init(). */
+   ganzen Skript. Geteilt kann sie zwischen zwei Dateien kommen, noch vor
+   init(), und im Fehlerfall (teileFehlen) auch. Darum wird sie bis
+   skripteDa nur gemerkt (die letzte zaehlt) und erst in nachAnmeldung()
+   gleich nach loadProgress() nachgereicht: dann haben vollversionLaden()
+   und dauerVollLaden() premium schon gesetzt, und aboMeldung() vergleicht
+   mit dem echten Stand. Startet die App nicht, wird sie nie verarbeitet.
+   Ungeteilt ist aboFrueh immer leer. Eine Meldung nach skripteDa laeuft
+   wie bisher sofort - auch vor loadProgress(); das heilt vollAbgleichen()
+   am Ende von init(). */
 let aboFrueh = null;
 function aboFruehNachholen(){
   const f = aboFrueh; aboFrueh = null;
@@ -11124,7 +11127,7 @@ async function nachAnmeldung(info){
   profil = info.name || '';
   premium = !!info.premium;
   kontoMail = info.email || '';
-  await loadProgress(); syncLives(); pruefeSchutz();
+  await loadProgress(); aboFruehNachholen(); syncLives(); pruefeSchutz();   // aboFrueh: nach vollversionLaden()
   if(altenFortschrittUmschreiben() | funkelnUmzug()) saveProgress();
   /* Pflicht-Anmeldung (28.10.2026): Sitzung mit der Kopie in der Huelle
      abgleichen und einmal nach einem Restore-Schluessel fragen. Ohne
@@ -19464,13 +19467,6 @@ function teileFehlen(){
   }catch(x){}
   throw new Error('Zmaj startet nicht: ' + fehler);
 }
-/* Eine Abo-Meldung, die vor skripteDa kam (siehe aboFrueh), direkt nach
-   init(): Ein Microtask laeuft erst, wenn dieses Skript ganz durch ist -
-   also nach dem Teil von init(), der ohne Warten laeuft, und vor allem,
-   worauf init() wartet. Startet die App nicht (teileFehlen), bleibt
-   skripteDa falsch, und die Meldung wird nicht verarbeitet. Ungeteilt
-   ist aboFrueh hier immer leer. 20.11.2026 */
-queueMicrotask(()=>{ if(skripteDa) aboFruehNachholen(); });
 if(teileDa !== TEILE_ERWARTET) teileFehlen();
 skripteDa = true;
 init();

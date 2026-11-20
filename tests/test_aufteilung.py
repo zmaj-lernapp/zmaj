@@ -512,9 +512,10 @@ def test_horcher_warten_auf_den_start():
 def test_fruehe_abo_meldung_wartet_auf_init():
     """aboGeaendert kann geteilt vor init() kommen (die Huelle liefert die
     aufbewahrte Meldung sofort nach). Bis skripteDa wird sie nur gemerkt,
-    die letzte zaehlt; ein Microtask, angemeldet vor der Probe der Teile in
-    start.js, reicht sie nach dem Aufruf init() nach - nicht, wenn die App
-    nicht startet. Im Browser: tests_e2e/test_aufteilung.py (Nachpruefung 4b)."""
+    die letzte zaehlt; nachAnmeldung() reicht sie gleich nach loadProgress()
+    nach, also nach vollversionLaden() - nicht, wenn die App nicht startet.
+    Im Browser: tests_e2e/test_aufteilung.py (Nachpruefung 4b und deren
+    Nachpruefung)."""
     ganz = app_quelle.lesen(WEB).replace("\r\n", "\n")
     horcher = ganz[ganz.index("\n(function aboHorchen(){"):]
     horcher = horcher[:horcher.index("\n})();")]
@@ -524,10 +525,15 @@ def test_fruehe_abo_meldung_wartet_auf_init():
             "    aboMeldung(d);\n  });") in horcher
     assert "vollversionMerken" not in horcher and "renderLives" not in horcher
     assert ganz.count("\nlet aboFrueh = null;") == 1
+    # Nachgereicht erst nach loadProgress(), das vollversionLaden() aufruft.
+    # Der Microtask am Ende von start.js lief vor loadProgress(), weil init()
+    # vorher auf sandboxPruefen() wartet (Nachpruefung von 4b, 20.11.2026).
+    assert re.findall(r"\baboFruehNachholen\(\);", ganz) == ["aboFruehNachholen();"]
+    assert "  await loadProgress(); aboFruehNachholen(); syncLives(); pruefeSchutz();" in ganz
+    lade = ganz[ganz.index("\nasync function loadProgress(){"):]
+    lade = lade[:lade.index("\n}\n")]
+    assert "vollversionLaden(roh); standGeladen = true;" in lade
+    assert "queueMicrotask" not in ganz
     ende = ganz[:ganz.rindex("</script>")].rstrip("\n").splitlines()
-    nachholen = "queueMicrotask(()=>{ if(skripteDa) aboFruehNachholen(); });"
-    assert ganz.count(nachholen) == 1
-    stelle = ende.index(nachholen)
-    assert stelle < len(ende) - 3 and ende[-3:][0].startswith("if(teileDa !== TEILE_ERWARTET)")
-    # in derselben Datei wie init(), also nach dem Anker von start.js
-    assert ganz.rindex("/* ---- Init ---- */") < ganz.index(nachholen)
+    assert ende[-3].startswith("if(teileDa !== TEILE_ERWARTET)")
+    assert ende[-2:] == ["skripteDa = true;", "init();"]

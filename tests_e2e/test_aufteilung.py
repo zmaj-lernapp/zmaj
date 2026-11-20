@@ -69,46 +69,70 @@ def test_fehlt_ein_teil_startet_die_app_nicht(seite, basis, heute_stand, wurzelo
 # Die Huelle liefert die aufbewahrte Meldung aboGeaendert (retainUntilConsumed),
 # sobald der Horcher haengt. Geteilt kann das zwischen zwei Dateien sein, noch
 # vor init(). Die Attrappe ruft den Horcher darum gleich beim Anhaengen auf -
-# frueher geht es nicht. Jedes Schreiben von zmaj_voll wird mit skripteDa
-# mitgeschrieben.
+# frueher geht es nicht. Jedes Schreiben von zmaj_voll wird mit skripteDa und
+# standGeladen mitgeschrieben. stand() antwortet "unbekannt", damit
+# vollAbgleichen() am Ende von init() nichts glattzieht, was die fruehe
+# Meldung falsch gemacht haette. zmaj_voll steht vorher auf VORHER (oder fehlt).
 FRUEHES_ABO = """(() => {
+  const AKTIV = %s, VORHER = %s;
   window.__voll = [];
   const setzen = Storage.prototype.setItem;
+  if(VORHER !== null && location.pathname.endsWith('/index.html')) setzen.call(localStorage, 'zmaj_voll', VORHER);
   Storage.prototype.setItem = function(k, v){
     if(k === 'zmaj_voll'){
-      let da = 'unbekannt';
-      try{ da = skripteDa; }catch(e){}
-      window.__voll.push([v, da]);
+      let da = 'unbekannt', geladen = 'unbekannt';
+      try{ da = skripteDa; geladen = standGeladen; }catch(e){}
+      window.__voll.push([v, da, geladen]);
     }
     return setzen.call(this, k, v);
   };
+  window.__abgefragt = 0;
   window.Capacitor = {Plugins: {ZmajAbo: {
-    stand: async () => ({bekannt: true, aktiv: true, gesperrt: false, plan: 'jahr', probe: false}),
+    stand: async () => { window.__abgefragt++; return {bekannt: false}; },
     preise: async () => ({ok: true, plaene: []}),
     addListener: (name, f) => {
-      if(name === 'aboGeaendert') f({aktiv: true, gesperrt: false, plan: 'jahr'});
+      if(name === 'aboGeaendert') f({aktiv: AKTIV, gesperrt: false, plan: AKTIV ? 'jahr' : null});
       return {remove(){}};
     },
   }}};
 })();"""
 
 
-def test_fruehe_abo_meldung_erst_nach_init(motor, basis, heute_stand):
-    """Kommt aboGeaendert vor skripteDa, wird es gemerkt und gleich nach dem
-    Aufruf init() verarbeitet - wie in der ungeteilten Datei, wo die Meldung
-    fruehestens nach dem ganzen Skript ankam. Vorher schrieb
-    vollversionMerken() zmaj_voll, noch bevor vollversionLaden() lief
-    (Nachpruefung 4b, 20.11.2026)."""
+def fruehes_abo(aktiv=True, vorher=None):
+    return FRUEHES_ABO % (json.dumps(aktiv), json.dumps(vorher))
+
+
+# aktiv, zmaj_voll vorher, erwartete Schreibvorgaenge [Wert, skripteDa, standGeladen], premium danach.
+# Der zweite Fall ist der aus der Nachpruefung: zmaj_voll steht noch auf '1',
+# Google meldet "nicht aktiv". Lief die Meldung vor vollversionLaden(), war
+# premium noch falsch, es wurde nichts geschrieben, und vollversionLaden()
+# machte danach aus der '1' wieder die Vollversion.
+FRUEHE_FAELLE = [
+    (True, None, [["0", True, False], ["1", True, True]], True),
+    (False, "1", [["0", True, True]], False),
+    (True, "0", [["1", True, True]], True),
+]
+
+
+@pytest.mark.parametrize("aktiv,vorher,geschrieben,premium", FRUEHE_FAELLE,
+                         ids=["neu_aktiv", "abgelaufen", "gekauft"])
+def test_fruehe_abo_meldung_erst_nach_vollversion_laden(motor, basis, heute_stand,
+                                                         aktiv, vorher, geschrieben, premium):
+    """Kommt aboGeaendert vor skripteDa, wird es gemerkt und erst in
+    nachAnmeldung() gleich nach loadProgress() verarbeitet, also nachdem
+    vollversionLaden() und dauerVollLaden() premium gesetzt haben. Vorher
+    schrieb vollversionMerken() zmaj_voll, noch bevor vollversionLaden()
+    lief (Nachpruefung 4b); der Microtask nach init() aus d64d846 lief
+    ebenfalls davor, weil init() zuerst auf sandboxPruefen() wartet
+    (Nachpruefung von 4b, 20.11.2026)."""
     ctx = motor.new_context(viewport={"width": 360, "height": 640}, locale="de-DE", service_workers="block")
     try:
-        ctx.add_init_script(FRUEHES_ABO)
+        ctx.add_init_script(fruehes_abo(aktiv, vorher))
         s = Seite(ctx.new_page(), basis)
         s.starten(stand=heute_stand())
-        s.page.wait_for_function("() => window.__voll.length > 0 && premium === true", timeout=15000)
-        voll = s.js("() => window.__voll")
-        assert voll[0] == ["1", True], voll
-        assert all(da is True for _, da in voll), voll
-        assert s.js("() => [aboFrueh, localStorage.getItem('zmaj_voll')]") == [None, "1"]
+        s.page.wait_for_function("() => window.__abgefragt > 0", timeout=15000)
+        assert s.js("() => window.__voll") == geschrieben
+        assert s.js("() => [aboFrueh, premium, localStorage.getItem('zmaj_voll')]") == [None, premium, geschrieben[-1][0]]
         assert s.fehler == [] and s.fremd == []
     finally:
         ctx.close()
@@ -126,7 +150,7 @@ def test_fruehe_abo_meldung_nicht_wenn_die_app_nicht_startet(seite, basis, heute
     art = "text/html" if datei[0].endswith(".html") else "text/javascript"
     seite.page.route("**/app/" + datei[0], lambda r: r.fulfill(
         status=200, content_type=art + "; charset=utf-8", body=text))
-    seite.page.add_init_script(FRUEHES_ABO)
+    seite.page.add_init_script(fruehes_abo())
     seite.page.goto(basis + "/leer")
     seite.js("""s => { localStorage.clear(); localStorage.setItem('zmaj_stand', s);
         localStorage.setItem('zmaj_sprache', 'de'); }""", json.dumps(heute_stand()))
