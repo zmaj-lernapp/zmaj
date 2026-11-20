@@ -308,8 +308,15 @@ function cloudFirestore(projekt, schluessel){
       const f = (await r.json()).fields || {};
       return (f.rev && f.rev.stringValue) || '';
     },
+    /* 20.11.2026 (Optimierung Punkt 4): Ohne Maske schickt Firestore auf
+       das PATCH das ganze Dokument zurueck - beim Vollstand rund 0,9 MB,
+       die niemand liest, die aber Datenvolumen und das Ausgangs-Kontingent
+       verbrauchen. mask.fieldPaths=rev ist die Antwortmaske (laut Doku die
+       Felder, die zurueckkommen): zurueck kommt nur rev. NICHT updateMask.fieldPaths - das
+       hiesse "nur rev schreiben", daten bliebe alt, und die Sicherung waere
+       still veraltet. Geschrieben wird weiter das ganze Dokument. */
     async speichern(m, dok){
-      await senden(dokument(m.uid), {method: 'PATCH',
+      await senden(dokument(m.uid) + '?mask.fieldPaths=rev', {method: 'PATCH',
         headers: Object.assign({'Content-Type': 'application/json'}, await mitAusweis(m)),
         body: JSON.stringify({fields: {daten: {stringValue: dok.text}, rev: {stringValue: dok.rev}}})});
       return true;

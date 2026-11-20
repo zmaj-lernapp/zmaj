@@ -95,6 +95,18 @@ def test_regeln_nur_das_eigene_dokument(wurzel):
     assert "hasOnly(['daten', 'rev'])" in code
 
 
+def test_schreiben_mit_antwortmaske_nicht_mit_updatemask(index_html):
+    """20.11.2026 (Optimierung Punkt 4): Das PATCH fragt mit der
+    Antwortmaske mask.fieldPaths=rev nur rev zurueck statt des ganzen
+    Dokuments. updateMask hiesse "nur rev schreiben" - daten bliebe alt.
+    Das Verhalten pruefen tests_e2e/test_cloud_antwortmaske.py."""
+    speichern = re.search(r"async speichern\(m, dok\)\{.*?\n    \},", index_html, re.S).group(0)
+    assert "senden(dokument(m.uid) + '?mask.fieldPaths=rev', {method: 'PATCH'," in speichern
+    assert "fields: {daten: {stringValue: dok.text}, rev: {stringValue: dok.rev}}" in speichern
+    # Nirgends in der App eine Adresse mit updateMask (nur der Kommentar nennt es).
+    assert not re.search(r"['\"`][^'\"`\n]*updateMask", index_html)
+
+
 def test_rev_ohne_geraetekennung(index_html):
     """28.10.2026: In der Cloud liegt keine Geraete-ID - rev ist ein
     Zufallswert je Schreiben (cloudRev)."""

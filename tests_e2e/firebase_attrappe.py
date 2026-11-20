@@ -18,7 +18,10 @@ Rechner. Sie kann, was die App braucht:
     der Kopf X-Firebase-Locale wird mitgeschrieben),
   - den Ausweis erneuern (securetoken), auf Wunsch mit TOKEN_EXPIRED oder
     einem 503,
-  - je Konto ein Dokument users/{uid} lesen, schreiben, loeschen,
+  - je Konto ein Dokument users/{uid} lesen, schreiben, loeschen, beim
+    Lesen und Schreiben mit der Antwortmaske mask.fieldPaths und beim
+    Schreiben mit updateMask.fieldPaths (nur diese Felder schreiben) - beide
+    wie Firestore (20.11.2026),
   - Konten loeschen, auch mit CREDENTIAL_TOO_OLD_LOGIN_AGAIN,
   - und auf Wunsch jede Anfrage abbrechen wie ohne Netz (abbruch).
 Seit 01.11.2026 dazu das Feedback der App ueber das Kontaktformular
@@ -145,6 +148,10 @@ class Attrappe:
         # Je einmal scheitern, siehe oben (Pruefbefund 17.11.2026).
         self.maske_fehler = []
         self.token_fehler_folge = []
+        # Je Schreiben (PATCH) von users/{uid} (20.11.2026, Optimierung
+        # Punkt 4): die rohe Query, mask.fieldPaths, updateMask.fieldPaths
+        # (je None, wenn nicht gesetzt) und der Koerper der Antwort.
+        self.schreiben = []
 
     # Das Dokument des Probekontos UID - so lesen es die Tests vom 19.10.
     @property
@@ -334,12 +341,36 @@ class Attrappe:
                     felder = {k: v for k, v in felder.items() if k in maske}
                 return antwort(200, {"fields": felder} if felder else {})
             if art == "PATCH":
+                # Zwei aehnliche Parameter wie bei Firestore (20.11.2026,
+                # geprueft_netz.md B1): updateMask.fieldPaths schreibt NUR die
+                # genannten Felder (fehlt eins im Koerper, ist es weg), alle
+                # anderen bleiben, wie sie sind. mask.fieldPaths aendert am
+                # Schreiben nichts, es bestimmt nur, welche Felder die
+                # Antwort enthaelt. Ohne beide: ganz ersetzen, alles zurueck.
+                abfrage = urllib.parse.parse_qs(teile.query)
+                maske = abfrage.get("mask.fieldPaths")
+                schreibmaske = abfrage.get("updateMask.fieldPaths")
+                eintrag = {"query": teile.query, "mask": maske, "updateMask": schreibmaske, "antwort": None}
+                self.schreiben.append(eintrag)
                 if self.schreib_abbruch == "verloren":
                     return route.abort()
-                self.doks[uid] = json.loads(request.post_data)["fields"]
+                neu = json.loads(request.post_data)["fields"]
+                if schreibmaske is None:
+                    felder = neu
+                else:
+                    felder = dict(self.doks.get(uid) or {})
+                    for feld in schreibmaske:
+                        if feld in neu:
+                            felder[feld] = neu[feld]
+                        else:
+                            felder.pop(feld, None)
+                self.doks[uid] = felder
                 if self.schreib_abbruch == "angekommen":
                     return route.abort()
-                return antwort(200, {"fields": self.doks[uid]})
+                if maske is not None:
+                    felder = {k: v for k, v in felder.items() if k in maske}
+                eintrag["antwort"] = {"fields": felder} if felder else {}
+                return antwort(200, eintrag["antwort"])
             if art == "DELETE":
                 if self.dok_fehler:
                     return antwort(503, {"error": {"code": 503, "status": "UNAVAILABLE"}})
