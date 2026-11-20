@@ -1061,9 +1061,11 @@ VARIANTEN = [
      "b": "kuvati",
      "gilt": ["kochen:kuhati"],
      "beleg": "K2 20.11.2026, Stück 2: bestehend.json Tabelle 2d"},
+    # Beim Wort „Kuham večeru“ gilt kuvam seit dem 21.11.2026 über die ganze Wendung
+    # (ganz unten): dort hatte „kuham večeru“ schon Paare, die das Wort zuerst besetzten.
     {"a": "kuham",
      "b": "kuvam",
-     "gilt": ["ich koche abendessen:Kuham večeru", "Poslije posla ___ večeru."],
+     "gilt": ["Poslije posla ___ večeru."],
      "beleg": "K2 20.11.2026, Stück 2: bestehend.json Tabelle 2d"},
     {"a": "ponekad",
      "b": "katkad",
@@ -1735,9 +1737,12 @@ VARIANTEN = [
      "b": "lozovača",
      "gilt": ["traubenbrand:loza"],
      "beleg": "K2 20.11.2026, Stück 1: Standardname des Getränks"},
+    # Bei „Das Auto des Vaters“ gilt automobil seit dem 21.11.2026 über die ganzen
+    # Wendungen auto oca und očev auto (ganz unten): beide haben dort schon Paare (kola oca,
+    # očeva kola), die die Wörter zuerst besetzten.
     {"a": {"sg": ("auto", "auta", "autu", "auto", "autom", "autu")},
      "b": {"sg": ("automobil", "automobila", "automobilu", "automobil", "automobilom", "automobilu")},
-     "gilt": ["auto:auto", "ich habe ein auto:Imam auto", "das auto des vaters:auto oca", "im auto:u autu", "mit dem auto:autom", "Putujemo ___."],
+     "gilt": ["auto:auto", "ich habe ein auto:Imam auto", "im auto:u autu", "mit dem auto:autom", "Putujemo ___."],
      "beleg": "K2 20.11.2026, Stück 1: alle_woerter: automobil = Automobil"},
     {"a": "drvo",
      "b": "stablo",
@@ -4961,10 +4966,14 @@ VARIANTEN = [
      "gilt": ["kommunizieren:komunicirati"],
      "beleg": "Ajdin 20.11.2026: ja (S-irati-8). K2 Stück 8: RBJ komunicirati / komunikovati"},
     # --- Ajdin K2, 20.11.2026: Sammelfrage S-futur ja ---
-    {"a": "uzet ću",
-     "b": "uzeću",
+    # Uzeću ovo und Nazvaću te als ganze Wendung, wie auf der Karte (Nachtrag 21.11.2026):
+    # Bis dahin standen hier „uzet ću“ und „nazvat ću“ allein. An beiden Wörtern hat aber
+    # die ganze Wendung schon Paare (Ovo ću uzeti, Ja ću te nazvati), und zusatz() nimmt
+    # die längere Form zuerst - die kurze kam nie zum Zug, „Uzeću ovo“ blieb falsch.
+    {"a": "uzet ću ovo",
+     "b": "uzeću ovo",
      "gilt": ["ich nehme das:Uzet ću ovo"],
-     "beleg": "Ajdin 20.11.2026: ja (S-futur). serbische Futurschreibung (Pravopis srpskog jezika: radiću), Karte S-futur"},
+     "beleg": "Ajdin 20.11.2026: ja (S-futur). serbische Futurschreibung (Pravopis srpskog jezika: radiću), Karte S-futur; ganze Wendung seit 21.11.2026"},
     {"a": "radit ću",
      "b": "radiću",
      "gilt": ["ich werde arbeiten:Radit ću"],
@@ -4977,10 +4986,10 @@ VARIANTEN = [
      "b": "učiću",
      "gilt": ["ich werde lernen:Učit ću"],
      "beleg": "Ajdin 20.11.2026: ja (S-futur). serbische Futurschreibung (Pravopis srpskog jezika: radiću), Karte S-futur"},
-    {"a": "nazvat ću",
-     "b": "nazvaću",
+    {"a": "nazvat ću te",
+     "b": "nazvaću te",
      "gilt": ["ich werde dich anrufen:Nazvat ću te"],
-     "beleg": "Ajdin 20.11.2026: ja (S-futur). serbische Futurschreibung (Pravopis srpskog jezika: radiću), Karte S-futur"},
+     "beleg": "Ajdin 20.11.2026: ja (S-futur). serbische Futurschreibung (Pravopis srpskog jezika: radiću), Karte S-futur; ganze Wendung seit 21.11.2026"},
     {"a": "pokušat ću",
      "b": "pokušaću",
      "gilt": ["ich werde es versuchen:Pokušat ću"],
@@ -5037,6 +5046,36 @@ VARIANTEN = [
      "b": "rezervirati",
      "gilt": ["reservieren:rezervisati"],
      "beleg": "Ajdin 20.11.2026: ja (S-irati-5). kroatisch"},
+    # --- Nachtrag 21.11.2026 (Gegenprüfung K2): übernommene Paare, die an einer Stelle
+    # nicht griffen. Dort hat die ganze Wendung schon eigene Paare (Ko je zabio gol?,
+    # perilica posuđa, Spremam večeru, kola oca, očeva kola, pored toga), und zusatz() nimmt
+    # die längere Form vor der kürzeren - ko -> tko, suđe -> posuđe, kuham -> kuvam,
+    # auto -> automobil und osim -> sem kamen dort nie zum Zug. Deshalb die ganze Wendung,
+    # nur an dieser Stelle. Sonst gelten die kurzen Paare weiter wie oben.
+    {"a": "ko je dao gol",
+     "b": "tko je dao gol",
+     "gilt": ["wer hat das tor geschossen?:Ko je dao gol?"],
+     "beleg": "K2 20.11.2026, Stück 2: ko -> tko (bestehend.json Tabelle 2d) an der ganzen Wendung, Nachtrag 21.11.2026"},
+    {"a": "mašina za suđe",
+     "b": "mašina za posuđe",
+     "gilt": ["spülmaschine:mašina za suđe"],
+     "beleg": "K2 20.11.2026, Stück 2: suđe -> posuđe (https://en.wiktionary.org/wiki/posuđe) an der ganzen Wendung, Nachtrag 21.11.2026"},
+    {"a": "kuham večeru",
+     "b": "kuvam večeru",
+     "gilt": ["ich koche abendessen:Kuham večeru"],
+     "beleg": "K2 20.11.2026, Stück 2: kuham -> kuvam (bestehend.json Tabelle 2d) an der ganzen Wendung, Nachtrag 21.11.2026"},
+    {"a": "auto oca",
+     "b": "automobil oca",
+     "gilt": ["das auto des vaters:auto oca"],
+     "beleg": "K2 20.11.2026, Stück 1: auto -> automobil an der ganzen Wendung, Nachtrag 21.11.2026"},
+    {"a": "očev auto",
+     "b": "očev automobil",
+     "gilt": ["das auto des vaters:auto oca"],
+     "beleg": "K2 20.11.2026, Stück 1: auto -> automobil am \"auch\" „očev auto“, Nachtrag 21.11.2026"},
+    {"a": "osim toga",
+     "b": "sem toga",
+     "gilt": ["außerdem:osim toga"],
+     "beleg": "K2 20.11.2026, Stück 6: osim -> sem (https://en.wiktionary.org/wiki/sem; Ajdin 20.11.2026: Sammelfrage S-F6-B1 ja) an der ganzen Wendung, Nachtrag 21.11.2026"},
 ]
 
 # Antworten mit einer Form, die mehrere Fälle sein kann, die verschiedene b

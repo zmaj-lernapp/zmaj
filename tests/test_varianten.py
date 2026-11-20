@@ -159,8 +159,9 @@ WOERTER = {
     "er hat einen hund:On ima psa": ["On ima kuče"],
     # Fragen vom 15.11.2026 (Ajdin abends, 9a bis 9i, Offen-Liste 5d)
     "mit dem auto:autom": ["kolima", "automobilom"],
-    # nicht „očev kola“ aus dem "auch"; „očeva kola“ seit den Fragen vom 16.11.2026 (8a)
-    "das auto des vaters:auto oca": ["kola oca", "očeva kola"],
+    # nicht „očev kola“ aus dem "auch"; „očeva kola“ seit den Fragen vom 16.11.2026 (8a);
+    # automobil oca und očev automobil seit dem 21.11.2026 (K2 auto -> automobil, ganze Wendung)
+    "das auto des vaters:auto oca": ["kola oca", "automobil oca", "očeva kola", "očev automobil"],
     "geld abheben:podići novac": ["podići pare"],
     "geld einzahlen:uplatiti novac": ["uplatiti pare"],
     "wir suchen die straße:Tražimo ulicu": ["Tražimo sokak"],
@@ -218,7 +219,7 @@ WOERTER = {
     "einkaufszentrum:tržni centar": ["trgovački centar", "šoping centar"],
     "kasse:kasa": ["blagajna"],
     "kleidung:odjeća": ["roba"],
-    "ich nehme das:Uzet ću ovo": ["Ovo ću uzeti", "Ja ću uzeti ovo", "Uzet ću to"],
+    "ich nehme das:Uzet ću ovo": ["Ovo ću uzeti", "Ja ću uzeti ovo", "Uzet ću to", "Uzeću ovo"],   # S-futur, seit 21.11.
     "geradeaus:pravo": ["ravno"],
     "bahnhof / haltestelle:stanica": ["stajalište", "kolodvor"],
     "wie viel kostet das?:Koliko košta?": ["Koliko to košta?", "Koliko ovo košta?"],
@@ -350,7 +351,7 @@ WOERTER = {
     "bildschirm:ekran": ["zaslon"],
     "tastatur:tastatura": ["tipkovnica"],
     "fotografieren:slikati": ["fotografisati", "fotografirati"],
-    "spülmaschine:mašina za suđe": ["perilica posuđa", "mašina za pranje suđa"],
+    "spülmaschine:mašina za suđe": ["perilica posuđa", "mašina za pranje suđa", "mašina za posuđe"],   # seit 21.11.
     "mikrowelle:mikrovalna": ["mikrotalasna", "mikrovalna pećnica"],
     "wasserkocher:kuhalo za vodu": ["kuvalo za vodu", "čajnik"],
     "föhn:fen": ["sušilo za kosu", "fen za kosu"],
@@ -392,7 +393,7 @@ WOERTER = {
     "ich werde kommen:Doći ću": ["Ja ću doći"],
     "wir werden sehen:Vidjet ćemo": ["Mi ćemo vidjeti", "Vidjećemo"],
     "ich werde lernen:Učit ću": ["Ja ću učiti", "Učiću"],
-    "ich werde dich anrufen:Nazvat ću te": ["Ja ću te nazvati"],
+    "ich werde dich anrufen:Nazvat ću te": ["Ja ću te nazvati", "Nazvaću te"],   # S-futur, seit 21.11.
     "ich möchte reisen:Želim putovati": ["Želim da putujem"],
     "ich werde es versuchen:Pokušat ću": ["Probat ću", "Ja ću pokušati", "Pokušaću"],
     "ich muss arbeiten:Moram raditi": ["Moram da radim"],
@@ -411,7 +412,7 @@ WOERTER = {
     "sich sorgen machen:brinuti se": ["sekirati se"],
     "zähne putzen:prati zube": ["četkati zube"],
     "kochen:kuhati": ["kuvati"],
-    "ich koche abendessen:Kuham večeru": ["Spremam večeru", "Pravim večeru"],
+    "ich koche abendessen:Kuham večeru": ["Spremam večeru", "Pravim večeru", "Kuvam večeru"],   # seit 21.11.
     "einkaufen gehen:ići u kupovinu": ["ići u nabavku"],
     "wäsche waschen:prati veš": ["prati rublje"],
     "jeden tag:svaki dan": ["svakog dana", "svakodnevno"],
@@ -598,7 +599,8 @@ WOERTER = {
     "spiel (match):utakmica": ["meč"],
     "mannschaft:ekipa": ["momčad"],
     "tor (treffer):gol": ["pogodak"],
-    "wer hat das tor geschossen?:Ko je dao gol?": ["Ko je zabio gol?", "Ko je postigao gol?"],
+    "wer hat das tor geschossen?:Ko je dao gol?": ["Ko je zabio gol?", "Ko je postigao gol?",
+                                                   "Tko je dao gol?"],   # seit 21.11.
     "üben / trainieren:vježbati": ["trenirati"],
     "theater:pozorište": ["kazalište"],
     "reservieren:rezervisati": ["rezervirati"],
@@ -709,7 +711,7 @@ WOERTER = {
     "doch (gehoben):no": ["ali"],
     "noch (weder … noch):niti": ["ni"],
     "daher:stoga": ["zato", "zbog toga"],
-    "außerdem:osim toga": ["pored toga", "uz to"],
+    "außerdem:osim toga": ["pored toga", "uz to", "sem toga"],   # seit 21.11.
     "bevor:prije nego što": ["prije no što"],
     "daraufhin:potom": ["zatim", "nakon toga"],
     "zugleich:ujedno": ["istovremeno"],
@@ -1289,8 +1291,9 @@ def test_kennungen_der_gefaehrlichen_paare():
 SAETZE_DRITTE_RUNDE = {"auto": ["ich habe ein auto:Imam auto"],
                        "novac": ["geld abheben:podići novac", "geld einzahlen:uplatiti novac"]}
 # K2 (Ajdin K2, 20.11.2026): automobil zählt an den auto-Stellen mit, auch nur mit
-# Kennungen (auto, Imam auto, u autu, autom, „Putujemo ___.“).
-K2_DAZU = {"auto": ["automobil"], "autom": ["automobilom"]}
+# Kennungen (auto, Imam auto, u autu, autom, „Putujemo ___.“). Bei „Das Auto des Vaters“
+# seit dem 21.11.2026 über die ganze Wendung: automobil oca (und očev automobil).
+K2_DAZU = {"auto": ["automobil"], "autom": ["automobilom"], "auto oca": ["automobil oca"]}
 
 
 def test_dasselbe_paar_zweimal_ist_ein_befund(monkeypatch):
@@ -1808,7 +1811,8 @@ def test_fragen_16_11_paare(grunddaten):
     assert p["gilt"] == ["das auto des vaters:auto oca"]
     assert p["beleg"].startswith("Fragen 16.11.2026, 8a/8b")
     assert _z(["očev auto"], True) == ([], [])
-    assert _z(["očev auto"], True, kennung="das auto des vaters:auto oca") == (["očeva kola"], [])
+    # očev automobil seit dem 21.11.2026 (K2 auto -> automobil am "auch", eigenes Paar)
+    assert _z(["očev auto"], True, kennung="das auto des vaters:auto oca") == (["očeva kola", "očev automobil"], [])
     assert not [k for k in paare if "ujelo" in k[1] or "ujeo" in k[0]]
     # štene -> kuče seit K2 (Ajdin K2, 20.11.2026, V1-104): nur beim Welpen, „kuce ist nur
     # welpe kein ausgewachsener hund“.
@@ -1907,3 +1911,109 @@ def test_k2_neins_bleiben_falsch_in_matches(node_k2):
     falsch = {k: v for k, v in node_k2.items() if v != "no"}
     assert falsch == {}
     assert len(node_k2) == len(GEGEN_K2)
+
+
+# --- K2 Nachtrag (21.11.2026, Gegenprüfung): Ja-Formen, die eine längere Wendung verdeckte ---
+# An sieben Stellen hatte die ganze Wendung schon eigene Paare (Ovo ću uzeti, Ko je zabio
+# gol?, kola oca ...). zusatz() nimmt längere Formen zuerst, das kürzere Paar kam dort nie
+# zum Zug: „Uzeću ovo“ (Ajdin K2, S-futur: ja) war beim Tippen weiter falsch. Jetzt steht
+# dort die ganze Wendung als eigenes Paar (varianten.py, S-futur und ganz unten).
+K2_VERDECKT = [
+    ("w", "ich nehme das:Uzet ću ovo", "Uzeću ovo"),                      # S-futur
+    ("w", "ich werde dich anrufen:Nazvat ću te", "Nazvaću te"),           # S-futur
+    ("w", "wer hat das tor geschossen?:Ko je dao gol?", "Tko je dao gol?"),   # ko -> tko
+    ("w", "spülmaschine:mašina za suđe", "mašina za posuđe"),             # suđe -> posuđe
+    ("w", "ich koche abendessen:Kuham večeru", "Kuvam večeru"),           # kuham -> kuvam
+    ("w", "das auto des vaters:auto oca", "automobil oca"),               # auto -> automobil
+    ("w", "das auto des vaters:auto oca", "očev automobil"),              #   am "auch" „očev auto“
+    ("w", "außerdem:osim toga", "sem toga"),                              # osim -> sem
+]
+# Bleibt falsch: die halbe Wendung, andere Formen, und die Wendungen an anderen Stellen.
+GEGEN_K2_VERDECKT = [
+    ("w", "ich nehme das:Uzet ću ovo", "Uzeću"),
+    ("w", "ich werde dich anrufen:Nazvat ću te", "Nazvaću"),
+    ("w", "ich werde arbeiten:Radit ću", "Uzeću ovo"),
+    ("w", "wer hat das tor geschossen?:Ko je dao gol?", "Tko"),
+    ("w", "ich koche abendessen:Kuham večeru", "Kuvam"),
+    ("l", "Poslije posla ___ večeru.", "kuvam večeru"),
+    ("w", "das auto des vaters:auto oca", "automobil"),
+    ("w", "das auto des vaters:auto oca", "očeva automobil"),
+    ("w", "das auto des vaters:auto oca", "automobil očev"),
+    ("w", "auto:auto", "automobil oca"),
+    ("w", "ich habe ein auto:Imam auto", "Imam očev automobil"),
+    ("w", "außerdem:osim toga", "sem"),
+    ("w", "außer:osim", "sem toga"),
+]
+
+
+@pytest.fixture(scope="module")
+def node_k2_verdeckt(index_html, grunddaten):
+    return _node_ja_und_gegen(index_html, grunddaten, K2_VERDECKT, GEGEN_K2_VERDECKT)
+
+
+def test_k2_verdeckte_ja_formen_zaehlen_jetzt(node_k2_verdeckt):
+    falsch = {k: v for k, v in node_k2_verdeckt.items()
+              if k[0] != "gegen" and v != ("no" if k[-1] == "vorher" else "ok")}
+    assert falsch == {}
+    assert len([k for k in node_k2_verdeckt if k[0] != "gegen"]) == 2 * len(K2_VERDECKT)
+
+
+def test_k2_verdeckte_ja_formen_nichts_anderes_wird_richtig(node_k2_verdeckt):
+    falsch = {k: v for k, v in node_k2_verdeckt.items() if k[0] == "gegen" and v != "no"}
+    assert falsch == {}
+    assert len([k for k in node_k2_verdeckt if k[0] == "gegen"]) == len(GEGEN_K2_VERDECKT)
+
+
+def test_k2_verdeckt_ganze_wendung_nur_an_ihrer_stelle():
+    """Die Paare für die ganze Wendung gelten nur am einen Wort. Die kurzen Paare
+    gelten sonst weiter wie vorher (ko -> tko überall), die S-futur-Paare gibt es
+    nur noch als ganze Wendung, wie auf Ajdins Karte („Uzet ću ovo → Uzeću ovo“)."""
+    stellen = {("uzet ću ovo", "uzeću ovo"): "ich nehme das:Uzet ću ovo",
+               ("nazvat ću te", "nazvaću te"): "ich werde dich anrufen:Nazvat ću te",
+               ("ko je dao gol", "tko je dao gol"): "wer hat das tor geschossen?:Ko je dao gol?",
+               ("mašina za suđe", "mašina za posuđe"): "spülmaschine:mašina za suđe",
+               ("kuham večeru", "kuvam večeru"): "ich koche abendessen:Kuham večeru",
+               ("auto oca", "automobil oca"): "das auto des vaters:auto oca",
+               ("očev auto", "očev automobil"): "das auto des vaters:auto oca",
+               ("osim toga", "sem toga"): "außerdem:osim toga"}
+    gefunden = {(p["a"], p["b"]): p["gilt"] for p in varianten.VARIANTEN
+                if isinstance(p["a"], str) and (p["a"], p["b"]) in stellen}
+    assert gefunden == {k: [v] for k, v in stellen.items()}
+    for (a, b), kennung in stellen.items():
+        mehr, probleme = _z([a], True, kennung=kennung)
+        assert b in mehr and probleme == [], (a, mehr)
+    assert not [p for p in varianten.VARIANTEN if p["a"] in ("uzet ću", "nazvat ću")]
+    assert _z(["Ko je tu"], True) == (["Tko je tu"], [])            # ko -> tko sonst überall
+    assert _z(["osim toga"], True) == (["sem toga"], [])             # osim -> sem auch
+
+
+def test_kein_paar_wird_von_einer_laengeren_wendung_verdeckt(grunddaten):
+    """Was ein Paar allein an einer Stelle richtig macht, zählt dort auch mit allen
+    Paaren zusammen. zusatz() nimmt die längere Form zuerst - hat die ganze Wendung ein
+    eigenes Paar, kommt ein kürzeres dort nicht zum Zug. Bis zum 21.11.2026 war das an
+    den sieben Stellen aus K2_VERDECKT so. Schlägt das hier an, braucht die ganze Wendung
+    ein eigenes Paar mit der Kennung der Stelle."""
+    idx = varianten.index()
+    je_paar = {}
+    for form, liste in idx.items():
+        for nr, ziele in liste:
+            je_paar.setdefault(nr, {})[form] = [(nr, ziele)]
+    stellen = [(True, w["id"], varianten._antworten(w.get("bs"), w.get("auch")), w.get("auch_var", []))
+               for w in _woerter(grunddaten) if varianten.tippbar(str(w["bs"]))]
+    stellen += [(False, s["text"], varianten._antworten(s.get("answer"), s.get("auch")), s.get("auch_var", []))
+                for s in grunddaten["saetze"]]
+    woerter = [{m.group(0).lower() for a in st[2] for m in varianten.WORT.finditer(a)} for st in stellen]
+    verdeckt, geprueft = [], 0
+    for nr, p in enumerate(varianten.VARIANTEN):
+        einzel = je_paar.get(nr, {})
+        anfang = {f.split(" ")[0] for f in einzel}
+        for (wort, kennung, antworten, auch_var), da in zip(stellen, woerter):
+            if not anfang & da or (isinstance(p["gilt"], list) and kennung not in p["gilt"]):
+                continue
+            geprueft += 1
+            allein, _ = varianten.zusatz(antworten, kennung, wort, fall=varianten.FALL.get(kennung), idx=einzel)
+            schon = {x.lower() for x in antworten + list(auch_var)}
+            verdeckt += [(varianten._erste(p["a"]), varianten._erste(p["b"]), kennung, x)
+                         for x in allein if x.lower() not in schon]
+    assert geprueft > 1000
+    assert verdeckt == []
