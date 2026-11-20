@@ -141,14 +141,21 @@ ALLE_EINTRAEGE = r"""
 """
 
 
+# K2 (Ajdin K2, 20.11.2026, varianten.py): zajam und pozajmica zaehlen beim Tippen
+# fureinander, beide heissen „Darlehen“. In der Auswahl bleiben sie gesperrt.
+BEIM_TIPPEN_GLEICH = {frozenset(("darlehen / anleihe:zajam", "darlehen (privat):pozajmica"))}
+
+
 @pytest.mark.parametrize("wort, anderes", GESPERRT)
 def test_gesperrte_paare_nie_in_derselben_auswahl(seite, heute_stand, wort, anderes):
     seite.starten(stand=heute_stand())
+    gleich = frozenset((wort, anderes)) in BEIM_TIPPEN_GLEICH
     for a, b in ((wort, anderes), (anderes, wort)):
         e = seite.js(AUSWAHL, [a, b, 200])
         assert e["gesehen"] == 0, (a, b, e)
-        # Gesperrt heisst nicht gleichwertig: beim Tippen aendert sich nichts.
-        assert e["geschwister"] and not e["annehmbar"], (a, b, e)
+        # Gesperrt heisst nicht gleichwertig: beim Tippen aendert sich nichts
+        # (ausser bei BEIM_TIPPEN_GLEICH).
+        assert e["geschwister"] and e["annehmbar"] == gleich, (a, b, e)
     assert seite.fehler == []
 
 
@@ -156,13 +163,14 @@ def test_gesperrte_paare_nie_in_derselben_auswahl(seite, heute_stand, wort, ande
 def test_cao_nie_neben_hallo_und_zaehlt_dort(seite, heute_stand, hallo):
     """Pruefbericht 1.4, B5 (F16 ja): Ćao ist auch „Hallo“. Bei Merhaba und seit dem
     14.11.2026 auch bei Zdravo steht es im "auch": nie in derselben Auswahl, beim Tippen
-    richtig. Ćao selbst ("Tschüss") nimmt weder Merhaba noch Zdravo."""
+    richtig. Ćao selbst ("Tschüss") nimmt Merhaba nicht, Zdravo seit K2 schon (Ajdin
+    K2, 20.11.2026, Karte V1-77 „ja“, varianten.py)."""
     seite.starten(stand=heute_stand())
     hin = seite.js(AUSWAHL, [hallo, "tschüss:Ćao", 200])
     her = seite.js(AUSWAHL, ["tschüss:Ćao", hallo, 200])
     assert hin["gesehen"] == 0 and her["gesehen"] == 0, (hin, her)
     assert hin["geschwister"] and her["geschwister"], (hin, her)
-    assert hin["annehmbar"] and not her["annehmbar"], (hin, her)
+    assert hin["annehmbar"] and her["annehmbar"] == (hallo == "hallo (neutral, überall):Zdravo"), (hin, her)
     assert seite.fehler == []
 
 
