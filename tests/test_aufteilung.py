@@ -33,7 +33,7 @@ import app_quelle  # noqa: E402
 
 TEILE = app_quelle.dateien(WEB)[1:]
 geteilt = pytest.mark.skipif(not TEILE, reason="web/index.html ist noch nicht geteilt")
-NAME = re.compile(r"[a-z0-9_]+\.(?:js|css)")
+NAME = re.compile(app_quelle.NAME + r"\.(?:js|css)")
 # Jeder Verweis auf einen Teil, auch einer, den app_quelle nicht erkennt
 # (Grossbuchstaben, Unterordner, andere Schreibweise des Tags).
 JEDER_VERWEIS = re.compile(r"""(?:src|href)\s*=\s*["']?((?:\./)?(?:js|css)/[^"'\s>]*)""", re.I)
@@ -94,13 +94,35 @@ def test_jeder_teil_geladen_und_keiner_uebrig():
 
 @geteilt
 def test_dateinamen_nur_klein_und_ohne_vorfuehrung():
-    """Nur ASCII-Kleinbuchstaben, Ziffern und _. Kein Name mit "vorfuehrung":
+    """Nur ASCII-Kleinbuchstaben und _ dazwischen, keine Ziffern (PLAN 1.5,
+    app_quelle.NAME). Kein Name mit "vorfuehrung":
     keine_vorfuehrung() (app_bauen.py --ios) sucht das Wort irgendwo in
     index.html und braeche jeden Store-Bau ab (G8)."""
     for teil in TEILE:
         name = teil.split("/", 1)[1]
         assert NAME.fullmatch(name), teil
         assert "vorfuehrung" not in name, teil
+
+
+@pytest.mark.parametrize("name", ["ton2", "Ton", "_kern", "ton_", "ton__abspielen", "ton-alt", "ton.alt"])
+def test_eine_namensregel_ueberall(tmp_path, name):
+    """PLAN 1.5: Werkzeug (aufteilen.NAME), Leser (app_quelle) und dieser
+    Test haben dieselbe Regel. Ein Teil, den jemand von Hand mit Ziffer
+    anlegt (js/ton2.js), gilt fuer app_quelle nicht als Teil - und der
+    Vergleich aller Verweise in test_jeder_teil_geladen_... schlaegt an."""
+    import aufteilen
+    for gut in [n for n, _ in aufteilen.SCHNITTE_JS + aufteilen.SCHNITTE_CSS]:
+        assert NAME.fullmatch(gut + ".js") and aufteilen.NAME.fullmatch(gut), gut
+    assert not NAME.fullmatch(name + ".js") and not aufteilen.NAME.fullmatch(name)
+    for zeile in ('<script src="js/%s.js"></script>' % name, '<link rel="stylesheet" href="css/%s.css">' % name):
+        assert app_quelle._teil(zeile) is None, zeile
+    web = tmp_path / "web"
+    (web / "js").mkdir(parents=True)
+    (web / "js" / ("%s.js" % name)).write_bytes(b"var a = 1;\n")
+    html = '<html><body>\n<script src="js/%s.js"></script>\n</body></html>\n' % name
+    (web / "index.html").write_bytes(html.encode("utf-8"))
+    assert app_quelle.dateien(str(web)) == ["index.html"]
+    assert [m.group(1) for m in JEDER_VERWEIS.finditer(html)] == ["js/%s.js" % name]
 
 
 @geteilt

@@ -30,8 +30,15 @@ import io
 import os
 import re
 
-STIL_ZEILE = re.compile(r'<link rel="stylesheet" href="(css/[a-z0-9_]+\.css)">')
-SKRIPT_ZEILE = re.compile(r'<script src="(js/[a-z0-9_]+\.js)"></script>')
+# Dateinamen der Teile (PLAN 1.5, G8): nur ASCII-Kleinbuchstaben, "_" nur
+# dazwischen (nicht am Anfang: app_bauen RAUS_PRAEFIX), keine Ziffern (die
+# Reihenfolge steht nur in index.html), keine Grossbuchstaben (die Assets
+# von Android und iOS unterscheiden sie). Dieselbe Regel in aufteilen.py und
+# tests/test_aufteilung.py. Ein Verweis, der nicht passt (js/ton2.js), gilt
+# hier nicht als Teil; test_aufteilung meldet ihn dann.
+NAME = r"[a-z]+(?:_[a-z]+)*"
+STIL_ZEILE = re.compile(r'<link rel="stylesheet" href="(css/' + NAME + r'\.css)">')
+SKRIPT_ZEILE = re.compile(r'<script src="(js/' + NAME + r'\.js)"></script>')
 
 # Relative Adressen im Stil: nicht #..., data:, http(s):, /... und nicht
 # schon ../ (dann waere der Rueckweg nicht eindeutig).

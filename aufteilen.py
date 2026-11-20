@@ -129,8 +129,9 @@ SCHNITTE_CSS = [
 ZAEHLER = "var teileDa = (teileDa || 0) + 1;"
 TEILE_ERWARTET = re.compile(r"^const TEILE_ERWARTET = (\d+);\r?$", re.M)
 # Nur Kleinbuchstaben und _ dazwischen: keine Ziffern (PLAN 1.5), kein _ am
-# Anfang (app_bauen RAUS_PRAEFIX), keine Grossbuchstaben (G8).
-NAME = re.compile(r"[a-z]+(?:_[a-z]+)*")
+# Anfang (app_bauen RAUS_PRAEFIX), keine Grossbuchstaben (G8). Die Regel steht
+# in app_quelle.NAME, damit Werkzeug, Leser und Tests dieselbe haben.
+NAME = re.compile(app_quelle.NAME)
 
 # Was die Vorwaerts-Pruefung heute findet und warum es bleibt (PLAN 2.4):
 # (Datei, Anfang der Anweisung, gebrauchter Name).
