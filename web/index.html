@@ -10600,17 +10600,36 @@ async function vollWahlZeigen(){
     vollZeileZeigen();
   });
 }
+function aboMeldung(d){
+  const aktiv = !!(d && d.aktiv);
+  if(aktiv !== premium){ vollversionMerken(aktiv); renderLives(); }
+  aboStoerung = false;
+  aboGesperrt = !!(d && d.gesperrt) && !aktiv;   // siehe vollAbgleichenJetzt()
+  aboPlanSetzen(d);
+  vollZeileZeigen();
+  if(aktiv && d && d.neu){ vollMeldung(t('voll.gekauft')); sound('wegmarke'); }
+}
+/* aboGeaendert vor skripteDa (20.11.2026, Aufteilung): Die Huelle liefert
+   die beim Abgleich aufbewahrte Meldung (retainUntilConsumed), sobald der
+   Horcher haengt. In der ungeteilten Datei lief sie fruehestens nach dem
+   ganzen Skript, also nach dem Teil von init(), der ohne Warten laeuft.
+   Geteilt kann sie zwischen zwei Dateien kommen, noch vor init(): dann
+   schrieben vollversionMerken() und renderLives(), bevor vollversionLaden()
+   und dauerVollLaden() gelaufen sind, und im Fehlerfall (teileFehlen) auch.
+   Darum wird sie bis dahin nur gemerkt (die letzte zaehlt) und gleich nach
+   dem Aufruf init() nachgereicht, siehe aboFruehNachholen() bei init(). */
+let aboFrueh = null;
+function aboFruehNachholen(){
+  const f = aboFrueh; aboFrueh = null;
+  if(f) aboMeldung(f.d);
+}
 /* Meldungen aus dem Plugin. Einmal beim Laden anhängen. */
 (function aboHorchen(){
   const P = aboPlugin(); if(!P || !P.addListener) return;
   P.addListener('aboGeaendert', d => {
-    const aktiv = !!(d && d.aktiv);
-    if(aktiv !== premium){ vollversionMerken(aktiv); renderLives(); }
-    aboStoerung = false;
-    aboGesperrt = !!(d && d.gesperrt) && !aktiv;   // siehe vollAbgleichenJetzt()
-    aboPlanSetzen(d);
-    vollZeileZeigen();
-    if(aktiv && d && d.neu){ vollMeldung(t('voll.gekauft')); sound('wegmarke'); }
+    if(!skripteDa){ aboFrueh = {d}; return; }
+    aboFrueh = null;
+    aboMeldung(d);
   });
   P.addListener('kaufAbgebrochen', ()=>{ vollMeldung(t('voll.abgebrochen')); vollZeileZeigen(); });
   P.addListener('kaufFehler', ()=>{ vollMeldung(t('voll.fehler')); vollZeileZeigen(); });
@@ -19445,6 +19464,13 @@ function teileFehlen(){
   }catch(x){}
   throw new Error('Zmaj startet nicht: ' + fehler);
 }
+/* Eine Abo-Meldung, die vor skripteDa kam (siehe aboFrueh), direkt nach
+   init(): Ein Microtask laeuft erst, wenn dieses Skript ganz durch ist -
+   also nach dem Teil von init(), der ohne Warten laeuft, und vor allem,
+   worauf init() wartet. Startet die App nicht (teileFehlen), bleibt
+   skripteDa falsch, und die Meldung wird nicht verarbeitet. Ungeteilt
+   ist aboFrueh hier immer leer. 20.11.2026 */
+queueMicrotask(()=>{ if(skripteDa) aboFruehNachholen(); });
 if(teileDa !== TEILE_ERWARTET) teileFehlen();
 skripteDa = true;
 init();

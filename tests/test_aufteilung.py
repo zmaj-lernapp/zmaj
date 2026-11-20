@@ -507,3 +507,27 @@ def test_horcher_warten_auf_den_start():
     assert ("matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', "
             "()=>{ if(skripteDa) zmajeAnpassen(); });") in ganz
     assert ganz.count(".addEventListener('change', ()=>zmajeAnpassen())") == 0
+
+
+def test_fruehe_abo_meldung_wartet_auf_init():
+    """aboGeaendert kann geteilt vor init() kommen (die Huelle liefert die
+    aufbewahrte Meldung sofort nach). Bis skripteDa wird sie nur gemerkt,
+    die letzte zaehlt; ein Microtask, angemeldet vor der Probe der Teile in
+    start.js, reicht sie nach dem Aufruf init() nach - nicht, wenn die App
+    nicht startet. Im Browser: tests_e2e/test_aufteilung.py (Nachpruefung 4b)."""
+    ganz = app_quelle.lesen(WEB).replace("\r\n", "\n")
+    horcher = ganz[ganz.index("\n(function aboHorchen(){"):]
+    horcher = horcher[:horcher.index("\n})();")]
+    assert ("  P.addListener('aboGeaendert', d => {\n"
+            "    if(!skripteDa){ aboFrueh = {d}; return; }\n"
+            "    aboFrueh = null;\n"
+            "    aboMeldung(d);\n  });") in horcher
+    assert "vollversionMerken" not in horcher and "renderLives" not in horcher
+    assert ganz.count("\nlet aboFrueh = null;") == 1
+    ende = ganz[:ganz.rindex("</script>")].rstrip("\n").splitlines()
+    nachholen = "queueMicrotask(()=>{ if(skripteDa) aboFruehNachholen(); });"
+    assert ganz.count(nachholen) == 1
+    stelle = ende.index(nachholen)
+    assert stelle < len(ende) - 3 and ende[-3:][0].startswith("if(teileDa !== TEILE_ERWARTET)")
+    # in derselben Datei wie init(), also nach dem Anker von start.js
+    assert ganz.rindex("/* ---- Init ---- */") < ganz.index(nachholen)

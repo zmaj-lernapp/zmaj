@@ -64,3 +64,74 @@ def test_fehlt_ein_teil_startet_die_app_nicht(seite, basis, heute_stand, wurzelo
         document.dispatchEvent(new Event('visibilitychange')); }""")
     seite.page.wait_for_timeout(300)
     assert json.loads(seite.js("() => localStorage.getItem('zmaj_stand')")) == stand
+
+
+# Die Huelle liefert die aufbewahrte Meldung aboGeaendert (retainUntilConsumed),
+# sobald der Horcher haengt. Geteilt kann das zwischen zwei Dateien sein, noch
+# vor init(). Die Attrappe ruft den Horcher darum gleich beim Anhaengen auf -
+# frueher geht es nicht. Jedes Schreiben von zmaj_voll wird mit skripteDa
+# mitgeschrieben.
+FRUEHES_ABO = """(() => {
+  window.__voll = [];
+  const setzen = Storage.prototype.setItem;
+  Storage.prototype.setItem = function(k, v){
+    if(k === 'zmaj_voll'){
+      let da = 'unbekannt';
+      try{ da = skripteDa; }catch(e){}
+      window.__voll.push([v, da]);
+    }
+    return setzen.call(this, k, v);
+  };
+  window.Capacitor = {Plugins: {ZmajAbo: {
+    stand: async () => ({bekannt: true, aktiv: true, gesperrt: false, plan: 'jahr', probe: false}),
+    preise: async () => ({ok: true, plaene: []}),
+    addListener: (name, f) => {
+      if(name === 'aboGeaendert') f({aktiv: true, gesperrt: false, plan: 'jahr'});
+      return {remove(){}};
+    },
+  }}};
+})();"""
+
+
+def test_fruehe_abo_meldung_erst_nach_init(motor, basis, heute_stand):
+    """Kommt aboGeaendert vor skripteDa, wird es gemerkt und gleich nach dem
+    Aufruf init() verarbeitet - wie in der ungeteilten Datei, wo die Meldung
+    fruehestens nach dem ganzen Skript ankam. Vorher schrieb
+    vollversionMerken() zmaj_voll, noch bevor vollversionLaden() lief
+    (Nachpruefung 4b, 20.11.2026)."""
+    ctx = motor.new_context(viewport={"width": 360, "height": 640}, locale="de-DE", service_workers="block")
+    try:
+        ctx.add_init_script(FRUEHES_ABO)
+        s = Seite(ctx.new_page(), basis)
+        s.starten(stand=heute_stand())
+        s.page.wait_for_function("() => window.__voll.length > 0 && premium === true", timeout=15000)
+        voll = s.js("() => window.__voll")
+        assert voll[0] == ["1", True], voll
+        assert all(da is True for _, da in voll), voll
+        assert s.js("() => [aboFrueh, localStorage.getItem('zmaj_voll')]") == [None, "1"]
+        assert s.fehler == [] and s.fremd == []
+    finally:
+        ctx.close()
+
+
+def test_fruehe_abo_meldung_nicht_wenn_die_app_nicht_startet(seite, basis, heute_stand, wurzelordner):
+    """Fehlt ein Teil (teileFehlen), startet die App nicht und speichert
+    nichts - auch nicht die Vollversion aus einer fruehen Abo-Meldung."""
+    app = os.path.join(wurzelordner, "app")
+    datei = [d for d in app_quelle.dateien(app)
+             if "const TEILE_ERWARTET = 34;" in io.open(os.path.join(app, d), encoding="utf-8").read()]
+    assert len(datei) == 1, datei
+    text = io.open(os.path.join(app, datei[0]), encoding="utf-8", newline="").read()
+    text = text.replace("const TEILE_ERWARTET = 34;", "const TEILE_ERWARTET = 35;")
+    art = "text/html" if datei[0].endswith(".html") else "text/javascript"
+    seite.page.route("**/app/" + datei[0], lambda r: r.fulfill(
+        status=200, content_type=art + "; charset=utf-8", body=text))
+    seite.page.add_init_script(FRUEHES_ABO)
+    seite.page.goto(basis + "/leer")
+    seite.js("""s => { localStorage.clear(); localStorage.setItem('zmaj_stand', s);
+        localStorage.setItem('zmaj_sprache', 'de'); }""", json.dumps(heute_stand()))
+    seite.page.goto(basis + "/app/index.html")
+    seite.page.wait_for_function("() => document.getElementById('err').style.display === 'block'", timeout=15000)
+    seite.page.wait_for_timeout(500)
+    assert seite.js("() => [window.__voll, localStorage.getItem('zmaj_voll'), skripteDa]") == [[], None, False]
+    assert any("Zmaj startet nicht: App-Teile: 34 von 35" in f for f in seite.fehler), seite.fehler
