@@ -72,7 +72,9 @@ AUCH = {
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {"prsa": "grudi", "propisati": "prepisati", "rendgen": "rentgen", "izabrati": "odabrati",
-                "cjenkati se": "pogađati se"}
+                "cjenkati se": "pogađati se",
+                # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karten V5-3 und V5-4 „nein“)
+                "moždani udar": "šlog", "modrica": "masnica"}
 
 # Paare im Paket (beide Woerter neu)
 PAARE_IM_PAKET = {"vratiti": "vraćati", "izabrati": "birati", "potrošiti": "trošiti", "zaraditi": "zarađivati",

@@ -67,7 +67,9 @@ AUCH = {
 AUCH_SPAETER = {"Kuda idete na ljetovanje?": ["Gdje idete na ljetovanje?"]}
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
-ZAEHLT_NICHT = {"ruksak": "ranac", "poljoprivrednik": "seljak"}
+ZAEHLT_NICHT = {"ruksak": "ranac", "poljoprivrednik": "seljak",
+                # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karten V5-21 und V5-54 „nein“)
+                "vrtić": "obdanište", "praznik": "blagdan"}
 
 PAARE = {"ponoviti": "ponavljati", "zapamtiti": "pamtiti"}
 # Das Gegenstueck ist seit Paket 8 (06.11.2026) da, "partner" steht an beiden Woertern

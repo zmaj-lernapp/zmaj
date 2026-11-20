@@ -84,6 +84,9 @@ PRUEFBERICHT_AUCH = {"spojiti": ["povezati"]}
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
     "proizlaziti": ["proizilaziti"], "proizaći": ["proizići"],
+    # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V8-81 „nein“); položaj ist als
+    # eigenes Wort die Lage
+    "pozicija": ["položaj"],
 }
 
 # Partner je Wort, wie im Paket.

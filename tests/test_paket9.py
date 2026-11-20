@@ -106,6 +106,8 @@ PRUEFBERICHT_AUCH = {
 ZAEHLT_NICHT = {
     "određen": ["određeni"], "ukupan": ["ukupni"], "potpun": ["potpuni"], "vlastit": ["sopstven"],
     "konačan": ["konačni"], "privatan": ["privatni"], "stran": ["strani"], "nazad": ["natrag"],
+    # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V5-82 „nein“)
+    "vanjski": ["spoljna", "spoljni", "spoljno"],
 }
 
 # Partner je Wort, wie im Paket.

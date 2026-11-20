@@ -72,6 +72,8 @@ ZAEHLT_NICHT = {
     # sadržavati ist seit Paket 19 (07.11.2026) das Gegenstueck zu sadržati (Ajdin, 06.11.2026)
     "učestvovati": ["sudjelovati"], "prijeći": ["preći"],
     "skrivati": ["sakrivati"], "naviknuti se": ["navići se"], "pakovati": ["pakirati"],
+    # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V4-32 „nein“)
+    "ljutiti se": ["nervirati se"],
 }
 
 # Partner je Wort, wie im Paket.

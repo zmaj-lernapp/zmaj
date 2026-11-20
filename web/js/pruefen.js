@@ -29,8 +29,10 @@ const ZAHL_EINER = ['nula','jedan','dva','tri','četiri','pet','šest','sedam','
 const ZAHL_ZEHNER = {2:'dvadeset', 3:'trideset', 4:'četrdeset', 5:'pedeset',
                      6:'šezdeset', 7:'sedamdeset', 8:'osamdeset', 9:'devedeset'};
 const ZAHL_GROSS  = {100:'sto', 200:'dvjesto', 1000:'hiljada'};
-/* Weibliche und saechliche Formen, und das kroatische tisuca fuer tausend. */
-const ZAHL_SONDER = {jedna:1, jedno:1, dvije:2, dvoje:2, tisuca:1000};
+/* Weibliche und saechliche Formen, und das kroatische tisuca fuer tausend.
+   dvjesta neben dvjesto fuer zweihundert seit K2 (Ajdin K2, 20.11.2026): beide
+   Schreibungen sind ueblich, dvjesto die haeufigere (spoznaja.unze.ba/article/32). */
+const ZAHL_SONDER = {jedna:1, jedno:1, dvije:2, dvoje:2, tisuca:1000, dvjesta:200};
 
 function zahlAlsWort(n){
   if(!Number.isInteger(n) || n < 0) return null;

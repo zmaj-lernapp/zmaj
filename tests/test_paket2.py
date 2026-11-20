@@ -97,6 +97,10 @@ AUCH_EXTRA = {"shvatati": ["shvaćati"], "sačekati": ["pričekati"], "objesiti"
 # Pruefbericht 1.4, V3 (14.11.2026): ein Beispielsatz nimmt beim Tippen auch kada.
 # Die Kennung bleibt (tests/test_pruefbericht14_antworten.py).
 SATZ_AUCH = {"Kad se ženiš?": ["Kada se ženiš?"]}
+# K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karten V3-86 und V4-33 „nein“): diese Formen
+# zaehlen beim Tippen NICHT. uključivati ist ein eigenes Wort mit eigener Bedeutung.
+ZAEHLT_NICHT = {"Sretno!": ["Srećno!"], "paliti": ["uključivati"]}
+EIGENES_WORT = {"uključivati": "einschalten / einbeziehen"}
 
 # Das Gegenstueck jedes neuen Verbs. Steht es in Paket 1 oder der App, hat
 # es seit Paket 2 umgekehrt auch "partner".
@@ -353,3 +357,16 @@ def test_norwegisch_putzen_und_waschen(alle_daten):
     w = {x["bs"]: x["de"] for x in _alle(alle_daten["nb"])}
     assert w["oprati"] == "vaske"
     assert w["počistiti"] == w["čistiti"] == "gjøre rent"
+
+
+@pytest.mark.parametrize("wort, form", sorted((w, f) for w, l in ZAEHLT_NICHT.items() for f in l))
+def test_was_ajdin_ausgeschlossen_hat_zaehlt_nicht(grunddaten, wort, form):
+    """Beim Tippen zaehlt das Wort, sein "auch", "auch_var" (varianten.py) und jedes
+    andere Wort mit derselben Bedeutung (annehmbar() in web/index.html). Die Form darf
+    in keinem davon stehen; als eigenes Wort mit anderer Bedeutung darf es sie geben."""
+    w = {x["bs"]: x for x in _neu(grunddaten)}[wort]
+    assert form not in w.get("auch", []) + w.get("auch_var", []) and form not in w["bs"].split(" / ")
+    assert w.get("partner") != form
+    treffer = [x for x in _alle(grunddaten) if form in x["bs"].split(" / ") or form in x.get("auch", [])]
+    assert [x["de"] for x in treffer] == ([EIGENES_WORT[form]] if form in EIGENES_WORT else []), form
+    assert w["de"] != EIGENES_WORT.get(form)
