@@ -372,3 +372,62 @@ def test_start_py_speichert_skripte_und_stil_nicht_zwischen():
     finally:
         srv.shutdown()
         srv.server_close()
+
+
+# ---------------------------------------------------------------------------
+# 9. Laden in Teilen: showErfolge, skripteDa, teileDa (PLAN 2.4, 4, G3, G7)
+# ---------------------------------------------------------------------------
+def test_kein_vorwaertsverweis_beim_laden():
+    """PLAN 2.4: showErfolge steht in einer spaeteren Datei. Als Wert
+    uebergeben warf die Zeile nach dem Schnitt beim Laden."""
+    ganz = app_quelle.lesen(WEB)
+    assert "addEventListener('click', showErfolge)" not in ganz
+    assert ganz.count("$('erfolgLeiste').addEventListener('click', ()=>showErfolge());") == 1
+
+
+def test_teile_zaehlen_sich_bis_zum_start():
+    """Am Ende jedes Teils (ausser dem letzten) genau eine Zaehlzeile (var teileDa = ...) auf
+    oberster Ebene, direkt vor dem naechsten Abschnittskommentar; vor init()
+    die Probe gegen TEILE_ERWARTET, dann skripteDa (G7)."""
+    ganz = app_quelle.lesen(WEB)
+    zeilen = ganz.splitlines()
+    zaehler = [i for i, z in enumerate(zeilen) if z.startswith("var teileDa = (teileDa || 0) + 1;")]
+    erwartet = int(re.search(r"^const TEILE_ERWARTET = (\d+);\r?$", ganz, re.M).group(1))
+    assert len(zaehler) == erwartet == 34
+    assert all(zeilen[i + 1].startswith("/* ") for i in zaehler)
+    assert ganz.count("\nlet skripteDa = false;") == 1 and ganz.count("\nvar teileDa = 0;") == 1
+    assert ganz.index("\nvar teileDa = 0;") < ganz.index("\n" + zeilen[zaehler[0]])
+    # Nie let/const teileDa: das vertruege sich nicht mit den var-Zeilen.
+    assert not re.search(r"\b(let|const)\s+teileDa\b", ganz)
+    ende = ganz[:ganz.rindex("</script>")].rstrip("\r\n").splitlines()
+    assert ende[-3:] == ["if(teileDa !== TEILE_ERWARTET) teileFehlen();", "skripteDa = true;", "init();"]
+    assert ganz.count("skripteDa = true;") == 1
+
+
+@geteilt
+def test_jeder_teil_endet_mit_seinem_zaehler():
+    js = _js_teile()
+    assert len(js) == 34 + 1
+    for teil in js[:-1]:
+        letzte = _lesen(os.path.join(WEB, teil)).rstrip("\r\n").splitlines()[-1]
+        assert letzte.startswith("var teileDa = (teileDa || 0) + 1;"), teil
+    assert "var teileDa = (teileDa || 0) + 1;" not in _lesen(os.path.join(WEB, js[-1]))
+    assert "\nvar teileDa = 0;" in _lesen(os.path.join(WEB, js[0]))
+
+
+def test_horcher_warten_auf_den_start():
+    """Horcher, die beim Laden angemeldet werden und in spaetere Dateien
+    greifen, tun vor skripteDa nichts (PLAN 4 und G3): Lernzeit, Cloud
+    (sichtbar, online, offline), Updates (status, sichtbar), Drache."""
+    ganz = app_quelle.lesen(WEB).replace("\r\n", "\n")
+    lern = re.search(r"\ndocument\.addEventListener\('visibilitychange', \(\)=>\{\n  if\(!skripteDa\) return;"
+                     r"[^\n]*\n  if\(document\.hidden\)\{\n    /\* Eine vorgelesene Geschichte", ganz)
+    assert lern, "Lernzeit"
+    assert re.search(r"if\(CLOUD_AN\)\{\n  document\.addEventListener\('visibilitychange', \(\)=>\{\n"
+                     r"    if\(!skripteDa\) return;", ganz), "Cloud sichtbar"
+    assert "window.addEventListener('online', ()=>{ netzWeg = false; if(skripteDa) torPruefen(); });" in ganz
+    assert re.search(r"window\.addEventListener\('offline', \(\)=>\{\n    if\(!skripteDa\) return;", ganz)
+    assert "if(d && d.geladen){ updGeladen = true; if(skripteDa) updNachreichen(); }" in ganz
+    assert "  if(!skripteDa || document.hidden || !updBereit) return;" in ganz
+    beob = ganz[ganz.index("\nnew MutationObserver(()=>{"):]
+    assert "  if(!skripteDa) return;" in beob[:beob.index("mountZmaj")]

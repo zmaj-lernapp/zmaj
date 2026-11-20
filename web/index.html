@@ -3238,6 +3238,25 @@ const APPLE_APP_ID = '__APPLE_ID__';
 </script>
 <script>
 /* Der Inhalt kommt aus vokabeln.py, grammatik.py und geschichten.py – hier muss nichts geändert werden. */
+/* Alles geladen? (20.11.2026, Release/Aufteilung/PLAN.md 4 und G3, G7)
+   Das Skript kann in Dateien unter js/ geteilt sein. Zwischen zwei Dateien
+   kann der Browser andere Aufgaben ausfuehren (in WebKit gemessen): ein
+   Horcher, der beim Laden angemeldet wird, koennte dann feuern, bevor die
+   Dateien mit seinen Funktionen da sind. Die Horcher, die in spaetere
+   Dateien greifen, fragen darum zuerst skripteDa. Es wird direkt vor init()
+   wahr; danach ist alles wie in der ungeteilten Datei.
+   teileDa zaehlt die Teile, die ganz durchgelaufen sind: am Ende jedes
+   Teils steht die Zeile "var teileDa = (teileDa || 0) + 1;". Wirft ein Teil
+   beim Laden, fehlt seine Zeile, und die App startet nicht mit halbem
+   Zustand, sondern zeigt einen Fehler (teileFehlen, ganz unten). Ungeteilt
+   zaehlt es einfach bis TEILE_ERWARTET.
+   Bewusst var und nicht let/teileDa++: Tests schneiden Stuecke aus dem
+   Skript und lassen sie in node laufen (test_haekchen, test_varianten, ...).
+   Endet so ein Stueck an einer Teilgrenze, enthaelt es die Zeile, aber nicht
+   diese hier - mit var ist das kein ReferenceError, und ueber mehrere
+   Skripte hinweg darf var dieselbe Bindung wieder nennen. */
+let skripteDa = false;
+var teileDa = 0;
 /* Wo die App laeuft: 'android', 'ios' oder 'web'. Entschieden wird es EIN
    Mal, im kleinen Skript im Kopf (ZMAJ_PLATTFORM), damit Stil und Skript
    nie verschieden antworten. Alles, was iPhone und iPad anders machen,
@@ -3365,6 +3384,7 @@ try{
   });
 }catch(e){}
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== WERBUNG ===================
    Hier steht nur die Logik: wann Werbung kommt und was sie bewirkt.
    Angezeigt wird bisher ein Platzhalter – sobald die App im Store ist,
@@ -4045,6 +4065,7 @@ async function sandboxPruefen(){
 /* Ob die Sperren gerade ausgesetzt sind: ?alle=1 oder die Sandbox. */
 const allesOffen = () => ALLE_FREI || SANDBOX;
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---------------- Sprache ----------------
    Alle Texte der Oberfläche kommen vom Server aus sprachen.py.
    t('schluessel')            einfacher Text
@@ -4171,6 +4192,7 @@ let known = new Set(), passed = new Set(), read = new Set(), days = new Set();
 let gewusstGeladen = false;
 let frost = new Set();    // Tage, die ein Serienschutz gerettet hat
 let tagwerk = {};         // Tag -> Zähler, z.B. {'2026-09-14': {auf:23, ric:18}}
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Fundament für die Wegmarken (19.09.2026) ----
    gefeiert = schon gefeierte Wegmarken, z. B. "tage100". Ohne das feiert
               die App dieselbe Marke bei jedem Neuladen wieder.
@@ -4383,6 +4405,7 @@ const istZa = x => typeof x === 'string' && x.startsWith(ZA_VORN);
 const ohneZa = menge => { let n = 0; menge.forEach(x => { if(!istZa(x)) n++; }); return n; };
 const imZa = () => CATEGORIES.length > 0 && catIdx >= CATEGORIES.length;
 const levelNach = i => i < CATEGORIES.length ? CATEGORIES[i] : zaLevel()[i - CATEGORIES.length];
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Stufen-Reiter (13.11.2026) ----
    Der Lernpfad steht in Reitern je Stufe: A1, A2, B1, B2 und C1, das noch
    leer ist ("bald"). Ajdin am 08.11.2026: "wir machen am besten alle
@@ -4743,6 +4766,7 @@ const strip = s => s.toLowerCase().replace(/đ/g,'d').normalize('NFD').replace(/
    war ein zweiter Fehler. Der Hinweis kam dann nicht. */
 const clean = s => strip(s).trim().replace(/[.!?…]+$/,'').replace(/[,-]/g,' ').replace(/\s+/g,' ').trim();
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---------- Gesprochenes vergleichen ----------
    Die Erkennung schreibt, was sie hoert, nach den Regeln der Sprache, die
    das Geraet gerade kann - und Bosnisch kann es meist nicht. Aus "noć"
@@ -5418,6 +5442,7 @@ function fastRichtig(eingabe, antworten){
    siehe tippHinweis(). */
 const DOPPELT_MS = 1000;
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Maskottchen Zmaj (Drache, wie die Nationalelf „Zmajevi“) ---- */
 let MASCOT = new Set();   // Dateien in web/maskottchen
 /* Reihenfolge: 1. Lottie-Animation zmaj.json (Skelett, Keyframes, echte Bewegung)
@@ -6092,6 +6117,10 @@ function mountZmaj(el, mood, vorgabe){
   }).catch(()=>{ el._laedt = false; });
 }
 new MutationObserver(()=>{
+  /* Laeuft nach jeder geladenen Datei, nicht erst nach init(). Vor dem Start
+     gibt es nichts einzuhaengen; was dabei entsteht, haengt der naechste Lauf
+     ein (alle .zmaj-anim ohne _anim). 20.11.2026 */
+  if(!skripteDa) return;
   if(window.lottie && lottie.getRegisteredAnimations) lottie.getRegisteredAnimations().forEach(a => {
     if(a.wrapper && !a.wrapper.isConnected){ try{ a.destroy(); }catch(e){} }
   });
@@ -6165,6 +6194,7 @@ function zmajSvg(mood='happy'){
     + teile(FIGUR) + teile(gesicht) + '</svg>').replace(/%([a-z])/g, (m, c) => FARBE[c] || m);
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Einstellungen: Töne, Vibration, Animationen ---- */
 const pref = (k, def) => { try{ const v=localStorage.getItem(k); return v===null ? def : v==='an'; }catch(e){ return def; } };
 let soundOn = pref('zmaj_sound', true), haptikOn = pref('zmaj_haptik', true), animOn = pref('zmaj_anim', true);
@@ -6474,6 +6504,7 @@ $('swWerbung').addEventListener('click', async ()=>{
 });
 applyAnim();
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Fortschritt: mit dem Python-Server abgleichen ---- */
 /* Eine Zahl wie Muenzen oder Rekord: endlich, nicht negativ, ganz - sonst
    0 (17.10.2026). */
@@ -7025,6 +7056,7 @@ function standZusammenfuehren(a, b, cloudVorher, erstesMal){
      standUebernehmen() etwa die einstufung des alten Stands wieder ein. */
   return JSON.parse(JSON.stringify(m));
 }
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Die Vollversion ----
    Sie gehoert nicht in den Lernstand. Vorher stand sie dort, und damit
    wanderte sie durch die Sicherungsdatei: wer eine fremde Sicherung einlas,
@@ -7445,6 +7477,7 @@ async function saveProgress(){
     return r.ok;
   }catch(e){ return false; }
 }
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Wegmarken ----
    Was gefeiert wird. Ajdin hat am 18.09.2026 aus vier Möglichkeiten nur die
    Lerntage gewählt - Wörter, Level und Geschichten bleiben bewusst draußen.
@@ -8133,6 +8166,7 @@ function questsHeute(){
 const questStand = id => (tagwerk[today()] || {})[id] || 0;
 const questFertig = q => questStand(q.id) >= q.ziel;
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Lernzeit ----
    Gezählt wird NUR, während wirklich an einer Lektion, einem Test oder einer
    Geschichte gearbeitet wird – und nur zwischen zwei beantworteten Aufgaben.
@@ -8174,6 +8208,7 @@ setInterval(uhrTakt, 10000);
 // sonst zählt jede AdMob-Anzeige und jedes Sperren Minuten dazu.
 let uhrWarAn = false;
 document.addEventListener('visibilitychange', ()=>{
+  if(!skripteDa) return;   // Start noch nicht fertig, siehe skripteDa
   if(document.hidden){
     /* Eine vorgelesene Geschichte merkt sich die Stelle - wie beim Antippen
        eines Wortes. stilleBitte() dreht currentTime auf null, und nach dem
@@ -8773,7 +8808,10 @@ function renderHero(){
   profilPunkt();   // Erfolge: seit 14.11.2026 statt der Leiste nur der rote Punkt
   renderQuests();
 }
-$('erfolgLeiste').addEventListener('click', showErfolge);
+/* Als Pfeil, nicht als Wert: showErfolge() steht weiter unten. Ist das Skript
+   in Dateien geteilt, gibt es kein Heben ueber Dateigrenzen - die Zeile warf
+   dann beim Laden (Release/Aufteilung/PLAN.md 2.4). 20.11.2026 */
+$('erfolgLeiste').addEventListener('click', ()=>showErfolge());
 /* Die drei Tagesaufgaben. Absichtlich ohne Warnung und ohne Rot, wenn eine
    nicht geschafft ist: ein ausgelassener Tag soll nichts kosten. */
 function renderQuests(){
@@ -8816,6 +8854,7 @@ function questZeilen(){
   return zeilen + (alle ? '<div class="feedback ok"><b>'+t('quest.alle')+'</b></div>' : '');
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Sprachausgabe: eigene Aufnahme (web/audio) vor Computerstimme ---- */
 /* hasTTS    = das Geraet hat eine Computerstimme. In der Android-App ist das
                 meist NICHT so - die System-WebView kennt speechSynthesis nicht.
@@ -9326,6 +9365,7 @@ function spaeterSprechen(text, ms, ok){
   if(pufferSpielen(text, null, wann)) return;
   setTimeout(()=>{ if(marke === tonMarke) speak(text); }, ms);
 }
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Wann das Wort kommt (22.10.2026) ----
    Ajdin: "der sprecher sagt viel zu spaet die woerter oder saetze die
    muessen frueher kommen man wartet zu lange bis er anfaengt". Nach einer
@@ -9968,6 +10008,7 @@ const vorlesbar = text => !!audioDatei(text) || (hasTTS && !!pickVoice());
    stehen, falls die Zeile je zurueckkommt - sie muss das Fehlen des
    Kastens nur vertragen. */
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== SPRACHE =================== */
 /* Die Lerninhalte kommen je nach Sprache anders vom Server zurück, deshalb
    wird beim Umschalten alles neu geholt. Was noch nicht übersetzt ist,
@@ -10202,6 +10243,7 @@ function frageWort(titel, text){
 }
 
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ===================== Die Vollversion als Abo =====================
    Gekauft wird bei Google, nicht bei uns. Das eigene Plugin ZmajAbo spricht
    mit der Play-Abrechnung; warum selbst geschrieben und welche Fallen darin
@@ -10762,6 +10804,7 @@ function rechtstextZeigen(art){
   kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== ANMELDUNG =================== */
 /* Fünf Zustände in einer Maske:
      'anmelden'   E-Mail oder Benutzername + Passwort + angemeldet bleiben
@@ -11264,6 +11307,7 @@ function altenFortschrittUmschreiben(){
 // dort steht auch das Abmelden. (Bis 29.10.2026 stand der Name darin.)
 $('btnProfil').addEventListener('click', async ()=>{ await saveProgress(); showKonto(); });
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== EINSTELLUNGEN =================== */
 /* Konto und Einstellungen sind zwei getrennte Seiten: hinter dem
    Benutzerknopf steht alles zur Person, hinter dem Zahnrad alles zum Gerät. */
@@ -11356,6 +11400,7 @@ function showSettings(){
   benSchalterZeigen();
   renderLangSel();
 }
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Laden ----
    Münzen kommen aus den Tagesaufgaben. Die Vollversion gibt es hier
    ausdrücklich NICHT: `premium` darf der Browser nie setzen, der Server holt
@@ -11583,6 +11628,7 @@ $('btnSettings').addEventListener('click', async ()=>{
 });
 $('setLogout').addEventListener('click', abmelden);
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Passwort ändern ---- */
 $('setPwAuf').addEventListener('click', ()=>{
   const f=$('pwForm'); const auf = f.style.display==='none';
@@ -11768,6 +11814,7 @@ $('sichDatei').addEventListener('change', async e=>{
   if(datei) await sicherungEinlesen(datei);
 });
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== CLOUD-SICHERUNG UND ANMELDUNG ===================
    19.10.2026 vorbereitet, seit 28.10.2026 (v109) die Pflicht-Anmeldung.
    Ajdin am 18.10.2026: "dann machen wir firebase". Am 26./27.10.2026: die
@@ -12562,6 +12609,7 @@ async function cloudLoeschen(adapter = cloudAdapter(), optionen){
   }finally{ cloudLaeuft = false; }
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Die Huelle: Plugin ZmajAnmeldung ----
    Google (Credential Manager), die Kopie der Sitzung und die
    Restore-Schluessel fuer den Handywechsel, siehe ZmajAnmeldung.java in
@@ -12975,6 +13023,7 @@ function cloudSpeicherAdapter(ablage){
   };
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Das Tor: ohne Anmeldung geht es nach der 1. Lektion nicht weiter ----
    28.10.2026, Ajdin am 27.10.: "nach der 1. Lektion, wie bei Duolingo".
    Wer noch nichts gelernt hat, lernt ohne Konto. Wer etwas gelernt hat
@@ -13431,16 +13480,19 @@ async function cloudKontoLoeschen(passwort){
    und holt ein verlorenes Schreiben nach ('vorn', siehe cloudAbgleich). */
 if(CLOUD_AN){
   document.addEventListener('visibilitychange', ()=>{
+    if(!skripteDa) return;   // Start noch nicht fertig, siehe skripteDa
     if(document.hidden){ cloudAbgleich('pause'); return; }
     torPruefen();
     cloudAbgleich('vorn');
   });
-  window.addEventListener('online', ()=>{ netzWeg = false; torPruefen(); });
+  window.addEventListener('online', ()=>{ netzWeg = false; if(skripteDa) torPruefen(); });
   window.addEventListener('offline', ()=>{
+    if(!skripteDa) return;   // Start noch nicht fertig, siehe skripteDa
     if(cloudModus() && sichtbar('profileView') && !cloudMerker()) $('anmOffline').hidden = false;
   });
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ===== Zmaj bewerten und empfehlen (Einstellungen, Ueber die App) =====
    07.10.2026. Bewerten geht hier gleich in den Play Store und nicht ueber
    Googles Fenster in der App: das hat ein Kontingent und kommt oft gar
@@ -13583,6 +13635,7 @@ $('fbSend').addEventListener('click', async ()=>{
   }catch(e){ feedbackPerMail(text); }
 });
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== STARTSEITE =================== */
 /* Zurueck aus einem Level soll dort landen, wo man im Lernpfad war, sonst
    scrollt man in einer langen Sektion nach jedem Zurueck neu hinunter
@@ -13928,6 +13981,7 @@ function showPath(){
   geschenkNachreichen();
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== GESCHICHTEN-PFAD =================== */
 /* ---- Stufen wie im Lernpfad (17.11.2026, Offen-Liste 7) ----
    Ajdin: "lass sie auch in 1.4 rein machen das da steht amtssprache lass
@@ -14313,6 +14367,7 @@ function showStoryQ(s, qi, right){
   });
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== LEVEL =================== */
 function openLevel(i){
   if(anmeldungSperre()) return;
@@ -14445,6 +14500,7 @@ function renderExplain(parts){
   }).join('');
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== AUFGABEN-BAUSTEINE =================== */
 /* Zwei Vokabeln koennen in einer Oberflaechensprache dieselbe Uebersetzung
    haben: auf Daenisch heissen majka und mama beide "mor", auf Franzoesisch
@@ -15374,6 +15430,7 @@ function renderTask(task, body, done, opts={}){
   }
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== LEKTION =================== */
 let Lx = null;
 /* ---- Lueckensaetze nur mit Woertern, die schon dran waren ----
@@ -16416,6 +16473,7 @@ $('lQuit').addEventListener('click', async ()=>{
   saveProgress(); lektionVerlassen();
 });
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== LEVEL-TEST =================== */
 let Tx = null;
 function buildTest(){
@@ -17077,6 +17135,7 @@ function sprungZurueck(){
   showHome();
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== WIEDERHOLEN ===================
    Der Sammeltopf fuer falsch Beantwortetes - der zweite Wunsch der Tester
    vom 24.09.2026: gezielt wiederholen, ohne sich durch Gekonntes zu
@@ -17865,6 +17924,7 @@ function karteiKasten(){
   vollZeileHorchen('karteiVoll');
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== BEWERTUNG ===================
    Festgelegt von Ajdin am 30.09.2026: eine Karte mit zwei Wegen - bei
    Google Play bewerten oder eine Verbesserung vorschlagen -, und leise
@@ -18001,6 +18061,7 @@ function zeigeVorschlag(){
   setTimeout(()=>{ const f = kasten.querySelector('#bwText'); if(f) f.focus(); }, 50);
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== BENACHRICHTIGUNGEN ===================
    Festgelegt von Ajdin am 30.09.2026: drei Arten, jede einzeln
    abschaltbar - die taegliche Erinnerung um 19 Uhr, die Warnung um 20 Uhr,
@@ -18510,6 +18571,7 @@ function kartenNachreichen(){
 /* Seit 13.11.2026 auch der Sprung-Test, der in derselben Ansicht laeuft */
 const Ex_laeuft = () => !!(((Ex && !Ex.fertig) || (Sx && !Sx.fertig)) && sichtbar('einstufungView'));
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* =================== UPDATES AUS GOOGLE PLAY ===================
    10.10.2026, Ajdin: "ja mach sanft mit schalter und wenn es schwere
    sicherheitslücken oder andere schwere fehler gibt dann mach pflicht".
@@ -18805,7 +18867,9 @@ function updSperreWeg(){
   if(!P || !P.addListener) return;
   try{
     Promise.resolve(P.addListener('status', d => {
-      if(d && d.geladen){ updGeladen = true; updNachreichen(); }
+      /* Kommt die Meldung, bevor alle Teile geladen sind: merken, die Leiste
+         zeigt updBeimStart() danach (skripteDa, 20.11.2026). */
+      if(d && d.geladen){ updGeladen = true; if(skripteDa) updNachreichen(); }
     })).catch(()=>{});
   }catch(e){}
 })();
@@ -18813,7 +18877,7 @@ function updSperreWeg(){
    und nach einem angefangenen Pflicht-Update gesehen wird. Steht ein
    Pflicht-Update aus, jedes Mal, sonst einmal je Minute. */
 document.addEventListener('visibilitychange', ()=>{
-  if(document.hidden || !updBereit) return;
+  if(!skripteDa || document.hidden || !updBereit) return;
   if(updPflichtOffen || Date.now() - updZuletzt >= UPD_ABSTAND_MS) updPruefen(false);
   else updNachreichen();
 });
@@ -18824,6 +18888,7 @@ function updBeimStart(){
   updPruefen(false);
 }
 
+var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben
 /* ---- Init ---- */
 /* =================== VORSPANN ===================
    Das Studio-Zeichen steht, bis die App wirklich bereit ist – aber
@@ -19358,6 +19423,29 @@ async function zurueckTaste(){
   if(P && P.App && P.App.addListener) P.App.addListener('backButton', zurueckTaste);
 })();
 
+/* Alle Teile da (G7)? TEILE_ERWARTET = Zahl der Zaehlzeilen (var teileDa = ...) - eine je
+   Teil vor diesem. Fehlt eine, ist ein Teil beim Laden ausgefallen: dann
+   nicht starten (kein halber Zustand, nichts speichern), sondern den
+   Fehler zeigen und laut werfen. t() nur in try, ohne $ und vorspannWeg():
+   die koennen gerade die sein, die fehlen. 20.11.2026 */
+const TEILE_ERWARTET = 34;
+function teileFehlen(){
+  const fehler = 'App-Teile: ' + teileDa + ' von ' + TEILE_ERWARTET;
+  try{
+    const v = document.getElementById('vorspann');
+    if(v) v.style.display = 'none';
+    const p = document.getElementById('pfad');
+    if(p) p.style.display = 'none';
+    const e = document.getElementById('err');
+    e.style.display = 'block';
+    try{ e.innerHTML = t('err.server', {fehler}); }
+    catch(x){ e.textContent = 'Zmaj konnte nicht starten. Bitte die App schließen und neu öffnen. '
+                              + '/ Zmaj could not start. Please close the app and open it again. (' + fehler + ')'; }
+  }catch(x){}
+  throw new Error('Zmaj startet nicht: ' + fehler);
+}
+if(teileDa !== TEILE_ERWARTET) teileFehlen();
+skripteDa = true;
 init();
 </script>
 </body>
