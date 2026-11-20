@@ -1,0 +1,106 @@
+  /* ---------- Tagesaufgaben ---------- */
+  .quests{margin:0 0 12px; padding:10px 12px; border:2px solid var(--line); border-radius:14px; background:var(--surface)}
+  .qkopf{display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; color:var(--muted); margin-bottom:6px}
+  .qkopf .muenzen{color:var(--ink)}
+  /* Die Tagesaufgaben standen bis zum 26.09.2026 als Liste untereinander,
+     mit Haken, Zahl und einem duennen Balken je Zeile. Jetzt sind es drei
+     Ringe, der Stil dafuer steht weiter unten bei .qringe. Die alten
+     Regeln sind hier entfernt, es gab kein Element mehr dazu. */
+  .qalle{margin-top:6px; font-size:12px; font-weight:800; color:var(--good-text)}
+  /* ---------- Erfolge (13.11.2026) ----------
+     Ajdin, Fragen 8a, 9b, 10a: 18 Abzeichen, still sichtbar an drei Orten -
+     Leiste oben im Profil (.erfolgleiste, bis 14.11.2026 auf der
+     Startseite), die ganze Wand dahinter (.abzwand), ruhige Zeile am Ende
+     einer Lektion (.erfolgzeile). Auf der Startseite traegt nur der
+     Profilknopf einen roten Punkt (#btnProfil.neu). Kein Konfetti, das
+     bleibt den Lerntagen.
+     Ein Abzeichen ist ein Ring (.abzring) mit Bild und Zahl. Die Farbe
+     gehoert der Kette (--ef, k-<kette>), bei der Flamme der Stufe (t-blau,
+     t-lila, t-gold); das gemalte Bild (web/erfolge) gehoert dem Abzeichen.
+     --ef-text ist die Schrift auf --ef: auf den Sektionsfarben, die hell
+     dunkel und dunkel hell sind, dieselbe Regel wie --on-primary. Offen
+     heisst grau (.aus), neu und noch nicht angesehen ein roter Punkt (.neu). */
+  .abzring{--ef:var(--accent); --ef-text:var(--on-accent);
+           position:relative; flex:none; width:50px; height:50px; border-radius:50%;
+           border:3px solid var(--ef); background:var(--primary-soft); display:grid; place-items:center}
+  .abzring.k-woerter{--ef:var(--sek7); --ef-text:var(--on-primary)}
+  .abzring.k-stufen{--ef:var(--sek3); --ef-text:var(--on-primary)}
+  .abzring.k-lesen{--ef:var(--sek5); --ef-text:var(--on-primary)}
+  .abzring.k-kopf{--ef:var(--sek2); --ef-text:var(--on-primary)}
+  .abzring.t-blau{--ef:#4D9BFF; --ef-text:#0B1330}
+  .abzring.t-lila{--ef:#B07CFF; --ef-text:#0B1330}
+  .abzring.t-gold{--ef:#EBC45C; --ef-text:#0B1330}
+  .abzbild{width:64%; height:64%; display:grid; place-items:center; font-weight:900; font-size:18px; line-height:1; color:var(--ef)}
+  .abzbild img{width:100%; height:100%; object-fit:contain; display:block;
+               -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
+  /* Die Flamme in der Farbe ihrer Stufe - dieselben Filter wie
+     .flamme.stufe-blau usw. oben, ohne deren Schein. Bewusst nicht die
+     Klasse .flamme: die gehoert der laufenden Serie (flammeZeigen). */
+  .abzbild img.ton-blau{filter:hue-rotate(190deg) saturate(1.35)}
+  .abzbild img.ton-lila{filter:hue-rotate(245deg) saturate(1.45)}
+  .abzbild img.ton-gold{filter:saturate(.45) brightness(1.3)}
+  .abzzahl{position:absolute; left:50%; bottom:-9px; transform:translateX(-50%); min-width:22px;
+           padding:1px 6px; border-radius:99px; background:var(--ef); color:var(--ef-text);
+           font-size:10px; font-weight:900; line-height:1.4; white-space:nowrap; text-align:center}
+  .abzring.aus{border-color:var(--line)}
+  .abzring.aus .abzbild{filter:grayscale(1); opacity:.45}
+  /* Die Zahl auf offenen Abzeichen in der Schriftfarbe statt grau: --muted
+     auf --line hatte 4,27 bis 4,32 : 1, unter den 4,5 : 1 fuer kleine
+     Schrift (Pruefbericht 1.4, S19). Leiser als bei verdienten bleibt sie
+     durch die graue Pille. */
+  .abzring.aus .abzzahl{background:var(--line); color:var(--ink)}
+  .abzring.neu::after{content:''; position:absolute; top:-3px; right:-3px; width:12px; height:12px;
+                      border-radius:50%; background:var(--bad); border:2px solid var(--surface)}
+  /* Die Wand im Profil: je Gruppe eine Ueberschrift und ein Raster, das bei
+     360 px fuenf Abzeichen nebeneinander fasst und bei grosser Schrift
+     umbricht. */
+  .abzkopf{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .abzstand{font-size:13px; font-weight:800; color:var(--muted); white-space:nowrap}
+  .abzgruppe{padding:6px 0 4px}
+  .abzgruppe + .abzgruppe{border-top:1px solid var(--line)}
+  .abzgruppe h3{font-family:var(--font-ui); font-size:13px; font-weight:800; color:var(--muted); margin:6px 0 8px}
+  .abzwand{display:grid; grid-template-columns:repeat(auto-fill, minmax(52px, 1fr)); gap:12px 4px}
+  .abz{display:flex; flex-direction:column; align-items:center; min-width:0; padding:0; margin:0;
+       border:0; background:none; color:var(--ink); font:inherit; cursor:pointer}
+  .abz .abzring{margin-bottom:11px}
+  .abz:focus-visible{outline:none}
+  .abz:focus-visible .abzring{outline:3px solid var(--primary); outline-offset:2px}
+  /* Lange Namen ("Bombengedächtnis", Ajdin 13.11.2026) brechen an weichen
+     Trennstrichen (U+00AD in sprachen.py) statt mitten im Wort. Die 2 px
+     links und rechts leiht sich der Name aus dem Spaltenabstand: bei 360 px
+     ist eine Spalte 55 px breit, "gedächtnis" braucht 57 px. */
+  .abzname{font-size:11px; font-weight:800; line-height:1.2; text-align:center; overflow-wrap:anywhere; margin:0 -2px}
+  .abz.offen .abzname{color:var(--muted)}
+  .abzbalken{display:block; width:44px; max-width:100%; height:5px; border-radius:99px; background:var(--primary-soft); overflow:hidden; margin-top:4px}
+  .abzbalken i{display:block; height:100%; background:var(--accent)}
+  .abzweit{font-size:10px; font-weight:700; color:var(--muted); margin-top:2px; white-space:nowrap}
+  .abzinfo{font-size:13px; font-weight:700; color:var(--ink); line-height:1.4; margin:10px 0 4px}
+  .abzinfo:empty{margin:0}
+  /* Die Leiste oben im Profil (bis 14.11.2026 auf der Startseite unter
+     "Weitermachen"): die drei neuesten Abzeichen und "7 von 18", ein Tipp
+     oeffnet die Wand. Im Kartenstil der Tagesaufgaben. hidden muss hier
+     ausdruecklich stehen, sonst gewinnt display:flex. */
+  .erfolgleiste{display:flex; align-items:center; gap:10px; width:100%; margin:0 0 12px; padding:9px 12px;
+                border:2px solid var(--line); border-radius:14px; background:var(--surface); color:var(--ink);
+                font:inherit; text-align:left; cursor:pointer}
+  .erfolgleiste[hidden]{display:none}
+  .erfolgleiste .eltext{flex:1; min-width:0}
+  .erfolgleiste .elkopf{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+  .erfolgleiste .elstand{display:block; font-size:16px; font-weight:800}
+  .erfolgleiste .elbilder{display:flex; gap:6px; flex:none}
+  .erfolgleiste .abzring, .erfolgzeile .abzring{width:36px; height:36px; border-width:2px}
+  .erfolgleiste .abzbild, .erfolgzeile .abzbild{font-size:13px}
+  .erfolgleiste .elpfeil{flex:none; font-size:22px; line-height:1; font-weight:800; color:var(--muted)}
+  /* Der rote Punkt am Profilknopf (14.11.2026, Ajdin: "ja roter punkt ist
+     gut"): ein Abzeichen, das in der Wand noch nicht zu sehen war. Wie
+     .abzring.neu, nur etwas kleiner. ::before, weil ::after schon die
+     unsichtbare Tippflaeche ist (.hbtns .back.nursymbol::after). */
+  #btnProfil.neu::before{content:''; position:absolute; top:-3px; right:-3px; width:11px; height:11px;
+                         border-radius:50%; background:var(--bad); border:2px solid var(--surface); pointer-events:none}
+  /* Die ruhige Zeile am Ende einer Lektion, eines Tests, einer Runde oder
+     einer Geschichte. Gruen wie die Zeilen der Tagesaufgaben, ohne Ton. */
+  .erfolgzeile{display:flex; align-items:center; gap:10px; margin-top:14px; padding:10px 12px; text-align:left;
+               border:2px solid var(--line); border-radius:14px; background:var(--surface)}
+  .erfolgzeile .ezbilder{display:flex; gap:4px; flex:none}
+  .erfolgzeile .ezt{font-size:14px; font-weight:800; color:var(--good-text); line-height:1.3}
+  .erfolgzeile .ezs{display:block; font-size:12px; font-weight:700; color:var(--muted)}
