@@ -25,16 +25,53 @@ const lueckeTeile = s => ' ' + strip(String(s || '')).split(/[^a-z0-9]+/).filter
    und je Form nur einmal. */
 const _zahlJeForm = new Map();
 const zahlDerForm = f => { if(!_zahlJeForm.has(f)) _zahlJeForm.set(f, zahlWert(f)); return _zahlJeForm.get(f); };
+/* Die Formen eines Wortes einmal je Wort gerechnet (Optimierung 1.5, Punkt 9,
+   20.11.2026): gesehenFormen() laeuft bei jedem Lektionsstart zweimal ueber
+   alle gewussten Woerter, das waren je 45-60 ms bei 4-facher Drossel. Gemerkt
+   wird am Wort selbst (WeakMap): Nach ladeDaten() sind es neue Wort-Objekte,
+   und die App aendert ein Wort nie, nachdem es geladen ist. */
+const _lueckeFormenJeWort = new WeakMap();
+function lueckeFormenVon(w){
+  let l = _lueckeFormenJeWort.get(w);
+  if(!l){
+    l = [];
+    [w.bs, ...(w.auch || [])].forEach(x => String(x).split(' / ').forEach(f => {
+      const teile = lueckeTeile(f);
+      if(teile.trim()) l.push(teile);
+    }));
+    _lueckeFormenJeWort.set(w, l);
+  }
+  return l;
+}
 function gesehenFormen(ids){
   const formen = [];
   CATEGORIES.forEach(c => c.words.forEach(w => {
-    if(!ids.has(w.id)) return;
-    [w.bs, ...(w.auch || [])].forEach(x => String(x).split(' / ').forEach(f => {
-      const teile = lueckeTeile(f);
-      if(teile.trim()) formen.push(teile);
-    }));
+    if(ids.has(w.id)) lueckeFormenVon(w).forEach(f => formen.push(f));
   }));
   return {formen, zahlen: null};
+}
+/* Schneller nachgeschlagen (Optimierung 1.5, Punkt 9, 20.11.2026). Bis dahin
+   lief jede Antwort jedes Kandidaten-Satzes ueber alle gesehenen Formen
+   (g.formen.some(f => f.includes(kern) && satz.includes(f))). Im spaeten
+   Level mit vollem Stand sind das gut 10.000 Formen mal alle Saetze der
+   frueheren, bestandenen Level: 265-378 ms bei 4-facher Drossel
+   (Release/Optimierung_2026-11-20, geprueft_laufzeit.md, Befund 3).
+   Dieselbe Frage andersherum: Eine Form steht genau dann im fertigen Satz
+   (satz.includes(f)), wenn sie eine zusammenhaengende Folge seiner Wort-
+   Teile ist - beide sind ' teil teil ', mit genau einem Leerzeichen
+   dazwischen und am Rand. Also werden nur diese Folgen des Satzes (bis zur
+   Laenge der laengsten Form) in einer Menge der Formen nachgesehen, und
+   f.includes(kern) gilt wie vorher. Das Ergebnis ist dasselbe, Satz fuer
+   Satz: tests_e2e/test_lektion_schneller.py vergleicht es mit der alten
+   Schleife ueber alle 297 Level. Menge und Laenge entstehen erst beim
+   ersten Gebrauch, wie g.zahlen. */
+function lueckeFormMenge(g){
+  if(!g.menge){
+    g.menge = new Set(g.formen);
+    g.laengste = 0;
+    g.formen.forEach(f => { const n = f.trim().split(' ').length; if(n > g.laengste) g.laengste = n; });
+  }
+  return g.menge;
 }
 function lueckeGesehen(s, g){
   return String(s.answer).split(' / ').some(a => {
@@ -44,7 +81,16 @@ function lueckeGesehen(s, g){
       if(g.zahlen.has(z)) return true;
     }
     const kern = lueckeTeile(a), satz = lueckeTeile(s.text.replace('___', a));
-    return !!kern.trim() && g.formen.some(f => f.includes(kern) && satz.includes(f));
+    if(!kern.trim()) return false;
+    const menge = lueckeFormMenge(g), w = satz.trim().split(' ');
+    for(let i = 0; i < w.length; i++){
+      let f = ' ';
+      for(let j = i; j < w.length && j - i < g.laengste; j++){
+        f += w[j] + ' ';
+        if(menge.has(f) && f.includes(kern)) return true;
+      }
+    }
+    return false;
   });
 }
 function lueckenFuerLektion(ids){
@@ -199,18 +245,41 @@ function kachelAblenker(s, anzahl){
    gut jeder dritten Lektion war eine der Satzaufgaben nur Abschreiben
    ("Drago ___ je." und "Drago mi je."). Gefunden im Review am 14.10.2026. */
 const lueckeFertig = s => String(s.answer).split(' / ').map(a => kachelNorm(String(s.text).replace('___', a.trim())));
+const kachelTeileVon = w => kachelFormen(w).flatMap(f => lueckeTeile(f).trim().split(' ')).filter(Boolean);
+/* Zu jedem Wort-Teil der erste Level, in dem er vorkommt (Optimierung 1.5,
+   Punkt 9, 20.11.2026). Bis dahin baute kachelnFuerLektion() bei jedem
+   Lektionsstart "vorher" neu, die Teile aller Woerter aller frueheren Level:
+   im Level 277 rund 7.500 Woerter, 186-210 ms bei 4-facher Drossel
+   (geprueft_laufzeit.md, Befund 3). Ein Teil war "vorher" genau dann, wenn
+   sein erster Level vor catIdx liegt - das gilt fuer jeden Level, also
+   reicht ein Verzeichnis je Inhalt. Neu gebaut wird es, sobald sich die
+   Woerter aendern: andere CATEGORIES (Sprachwechsel, ladeDaten()) oder ein
+   Wort mehr oder weniger in einem Level, wie bei wortIndex(). Woerter selbst
+   aendert die App nie. */
+let _kachelErstes = null;
+function kachelErsterLevel(){
+  let n = 0;
+  for(const c of CATEGORIES) n += c.words.length;
+  const alt = _kachelErstes;
+  if(alt && alt.kat === CATEGORIES && alt.n === n) return alt.erstes;
+  const erstes = new Map();
+  CATEGORIES.forEach((k, i) => k.words.forEach(w => kachelTeileVon(w).forEach(x => { if(!erstes.has(x)) erstes.set(x, i); })));
+  _kachelErstes = {kat: CATEGORIES, n, erstes};
+  return erstes;
+}
 function kachelnFuerLektion(ids, belegt){
   if(imZa()) return [];     // Beim Zahnarzt: keine Kacheln, und keine aus dem Lernpfad
   const c = cur();
-  const teileVon = w => kachelFormen(w).flatMap(f => lueckeTeile(f).trim().split(' ')).filter(Boolean);
-  const hier = new Set(c.words.flatMap(teileVon));
-  const vorher = new Set(CATEGORIES.slice(0, catIdx).flatMap(k => k.words.flatMap(teileVon)));
+  const hier = new Set(c.words.flatMap(kachelTeileVon));
+  const erstes = kachelErsterLevel();
+  /* Wie frueher new Set(CATEGORIES.slice(0, catIdx).flatMap(...)).has(x). */
+  const vorher = x => { const i = erstes.get(x); return i !== undefined && i < catIdx; };
   const gesehen = new Set(gesehenFormen(ids).formen.flatMap(f => f.trim().split(' ')));
   /* grund: Grundformen gebeugter Kacheln ("kahvu" -> "kahva"). Auch sie
      muessen in dieser Lektion schon dran gewesen sein, sonst kaeme der Satz
      vor seinem Wort. */
   const bereit = s => kachelRoh(s.bs).concat(s.grund || []).every(k => lueckeTeile(k).trim().split(' ').filter(Boolean)
-    .every(x => !hier.has(x) || gesehen.has(x) || vorher.has(x)));
+    .every(x => !hier.has(x) || gesehen.has(x) || vorher(x)));
   const schon = new Set(), out = [];
   const nimm = liste => shuffle(liste.slice()).forEach(s => {
     const k = kachelNorm(s.bs);
