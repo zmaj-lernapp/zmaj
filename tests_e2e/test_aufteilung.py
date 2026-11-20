@@ -135,3 +135,17 @@ def test_fruehe_abo_meldung_nicht_wenn_die_app_nicht_startet(seite, basis, heute
     seite.page.wait_for_timeout(500)
     assert seite.js("() => [window.__voll, localStorage.getItem('zmaj_voll'), skripteDa]") == [[], None, False]
     assert any("Zmaj startet nicht: App-Teile: 34 von 35" in f for f in seite.fehler), seite.fehler
+
+
+@pytest.mark.parametrize("datei", ["schriften.css", "lottie.min.js"])
+def test_abgelehnte_datei_steht_in_fehler(seite, basis, datei):
+    """G5 ganz: Ein Stilblatt oder Skript vom eigenen Server, das gar keine
+    Antwort bekommt (abgelehnt wie beim Fehler mit der Warteschlange, G6),
+    meldet kein "response" mit Status - nur "requestfailed". Auch das muss
+    in fehler stehen. Geteilt gilt dasselbe fuer jede Datei unter js/ und css/."""
+    seite.page.route("**/app/" + datei, lambda r: r.abort("connectionrefused"))
+    seite.page.goto(basis + "/app/index.html")
+    seite.page.wait_for_timeout(300)
+    gescheitert = [f for f in seite.fehler if f.startswith("Anfrage gescheitert") and f.endswith("/app/" + datei)]
+    assert len(gescheitert) == 1, seite.fehler
+    assert "ERR_CONNECTION_REFUSED" in gescheitert[0] or "refused" in gescheitert[0].lower(), gescheitert

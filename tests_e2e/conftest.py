@@ -268,6 +268,17 @@ class Seite:
         page.on("response", lambda r: self.fehler.append("HTTP %d %s" % (r.status, r.url))
                 if r.status >= 400 and r.url.startswith(basis)
                 and r.request.resource_type in ("script", "stylesheet") else None)
+        # Und eines, das gar keine Antwort bekommt: abgelehnt
+        # (net::ERR_CONNECTION_REFUSED, G6) oder abgebrochen. Das kommt nicht
+        # bei "response" an, sondern nur hier. Auch net::ERR_ABORTED zaehlt:
+        # page.goto wartet auf "load", also auf alle Skripte und Stilblaetter,
+        # bevor ein Test weiter navigiert. Gemessen am 20.11.2026 an der
+        # geteilten App (351 Tests mit den meisten Seitenwechseln, Chromium
+        # und WebKit, dann die ganze Suite): kein abgebrochenes Skript oder
+        # Stilblatt. Schliesst ein Test die Seite mitten im Laden, landet die
+        # Meldung nach seinen Pruefungen und stoert nicht.
+        page.on("requestfailed", lambda r: self.fehler.append("Anfrage gescheitert (%s) %s" % (r.failure, r.url))
+                if r.url.startswith(basis) and r.resource_type in ("script", "stylesheet") else None)
         # mailto: und andere fremde Schemata haelt die SCHEMA_SPERRE an; als
         # Anfrage kommen sie dann nicht mehr an, deshalb meldet sie sie hier.
         page.expose_binding("__zmajSchemaMelden", lambda quelle, url: self.fremd.append(url))
