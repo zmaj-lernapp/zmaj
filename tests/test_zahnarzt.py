@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Der versteckte Teil Beim Zahnarzt (06.11.2026): der Inhalt.
 
-Eine Zahnaerztin will mit Patienten reden koennen, die nur Bosnisch
+Gedacht fuer Praxisteams, die mit Patienten reden wollen, die nur Bosnisch
 sprechen. Bosnisch und Deutsch stehen genau so in Release\\Wortschatz\\paket_zahnarzt.json,
 von Ajdin am 06.11.2026 durchgesehen. Hier steht, was beim Einbau festgelegt wurde:
 

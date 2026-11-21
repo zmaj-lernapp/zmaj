@@ -184,7 +184,7 @@ function rectFaktor(){
   return rectMitZoom ? 1 : GROSS;
 }
 /* ---- Beim Zahnarzt (06.11.2026) ----
-   Eine Zahnaerztin will mit Patienten reden koennen, die nur
+   Gedacht fuer Praxisteams, die mit Patienten reden wollen, die nur
    Bosnisch sprechen. Ajdin: "das interssiert 1% der menschen", also versteckt:
    siebenmal auf die Versionszeile, dann das Wort ZA_WORT (dauerVollVerdrahten).
    Es schaltet nichts Bezahltes frei und darf deshalb hier stehen.

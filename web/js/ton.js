@@ -201,7 +201,7 @@ function fuerStimme(text){
    laesst er sich nur in den Geschichten, und wer dort einmal 0,75x waehlte,
    hoerte den Sprecher danach in allen Lektionen langsam, ohne zu wissen warum
    und ohne Knopf dafuer. Dazu fiel der schnelle Weg ueber WebAudio weg (siehe
-   "Wann das Wort kommt, Teil 2"). Gefunden bei Ajdins Frau, Ajdin: "das muessen
+   "Wann das Wort kommt, Teil 2"). Gefunden bei einer Testerin, Ajdin: "das muessen
    wir fixen das es nur auf das lesen sich beziehen muss".
    Seitdem gilt tempo nur noch beim Vorlesen einer Geschichte: showStory() gibt
    es an sprichMitSpieler() weiter, auch fuer die Computerstimme am PC. Alles

@@ -155,7 +155,7 @@ def test_tonkontext_nimmt_playback_und_faellt_zurueck(index_html):
                                 "gemeldet": ["neu"]}
 
 
-# Das Tempo (05.11.2026): bei Ajdins Frau stand es aus einer Geschichte auf
+# Das Tempo (05.11.2026): bei einer Testerin stand es aus einer Geschichte auf
 # 0,75x, und der Sprecher war dadurch in allen Lektionen langsam. Es gilt jetzt
 # nur noch beim Vorlesen einer Geschichte.
 def test_tempo_liest_nur_das_vorlesen_der_geschichte(index_html):
