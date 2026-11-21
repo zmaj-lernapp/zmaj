@@ -15,7 +15,10 @@ Geprueft in Chromium und - wenn Playwright es auf dem Rechner hat - in WebKit:
     und nicht ueber die Leiste hinaus - in allen acht Sprachen, auf dem
     iPhone (html[data-plattform="ios"]) und auf dem Tablet (html.gross);
   - im Reiter Wiederholen steht "Heute faellig" oben;
-  - nach einer Runde und beim Wechsel des Kartei-Tags um 4 Uhr zaehlt er neu.
+  - nach einer Runde und beim Wechsel des Kartei-Tags um 4 Uhr zaehlt er neu;
+  - bei grosser Systemschrift (115, 130, 150 und 200 %) gehoert er sichtbar
+    zu "Wiederholen", auch wenn die Leiste umbricht, und liegt auf keiner
+    Schrift und keinem Bild (Pruefung 21.11.2026).
 """
 import datetime
 import os
@@ -23,6 +26,7 @@ import re
 
 import pytest
 from conftest import Seite
+from test_flamme import SCHRIFT
 from test_ios import HUELLE
 from test_kartei import ANTWORT, WOERTER, _heute, _kartei_datum, _uhr
 
@@ -272,6 +276,76 @@ def test_iphone_und_tablet(motor, basis, heute_stand, art):
         seite.page.click("#modeTopf")
         assert seite.js("() => document.getElementById('topfHome').firstElementChild.id") == "karteiBox"
         _geometrie_ok(seite.js(LAGE))
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
+# Wem gehoert der Zaehler, und liegt er auf etwas? Abstand seiner Mitte zum
+# Schriftzug jedes Reiters, dazu jede Schrift und jedes Bild, das er
+# ueberdeckt, und wie weit er in den Kasten ueber der Leiste ragt.
+WEM = r"""() => {
+  const z = document.getElementById('faelligZahl'), zr = z.getBoundingClientRect();
+  const leiste = document.querySelector('.mode[role="tablist"]'), btns = [...leiste.querySelectorAll('button')];
+  const zx = (zr.left + zr.right) / 2, zy = (zr.top + zr.bottom) / 2;
+  const weit = q => Math.hypot(Math.max(q.left - zx, 0, zx - q.right), Math.max(q.top - zy, 0, zy - q.bottom));
+  const text = b => { const r = document.createRange(); r.selectNodeContents(b.querySelector('[data-t]'));
+                      return r.getBoundingClientRect(); };
+  const flaeche = q => Math.max(0, Math.min(zr.right, q.right) - Math.max(zr.left, q.left)) *
+                       Math.max(0, Math.min(zr.bottom, q.bottom) - Math.max(zr.top, q.top));
+  const drauf = [];
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  for(let n; (n = w.nextNode());){
+    if(!n.textContent.trim() || z.contains(n) || !n.parentElement.getClientRects().length) continue;
+    const r = document.createRange(); r.selectNodeContents(n);
+    for(const q of r.getClientRects()) if(flaeche(q) > 0.25) drauf.push(n.textContent.trim().slice(0, 30));
+  }
+  document.querySelectorAll('img').forEach(i => {
+    if(i.getClientRects().length && flaeche(i.getBoundingClientRect()) > 0.25) drauf.push(i.getAttribute('src'));
+  });
+  const vor = leiste.previousElementSibling.getBoundingClientRect();
+  return {sichtbar: !z.hidden && !!z.offsetWidth, naechster: btns.map(b => [b.id, weit(text(b))]).sort((a, b) => a[1] - b[1])[0][0],
+          drauf, inVor: vor.bottom - zr.top, umbruch: new Set(btns.map(b => Math.round(b.getBoundingClientRect().top))).size > 1,
+          ueber: btns.map(b => b.scrollWidth - b.clientWidth), seiteB: document.scrollingElement.scrollWidth, innenB: innerWidth};
+}"""
+
+
+@pytest.mark.parametrize("art,breite", [("chromium", 320), ("chromium", 360), ("chromium", 412), ("webkit", 360)])
+def test_grosse_systemschrift(browser, basis, heute_stand, request, art, breite):
+    """Pruefung vom 21.11.2026: Ab etwa 115 % Systemschrift (Android) bricht
+    die Leiste um, und "Wiederholen" steht allein in der zweiten Zeile ueber
+    die ganze Breite. Der Zaehler hing am Rand des Reiters und sass dann
+    rechts unter "Geschichten", ab 150 % auf dessen Schrift; bei 412 px und
+    150 % ragte er auf Niederlaendisch und Franzoesisch 2,7 px in den Kasten
+    "Heute". Jetzt haengt er am Schriftzug, und die Abstaende wachsen mit.
+    Normale Schrift (100 %) gehoert dazu: dort darf sich nichts aendern,
+    das prueft _geometrie_ok wie in den Tests oben."""
+    motor = browser if art == "chromium" else request.getfixturevalue("webkit")
+    ctx = motor.new_context(viewport={"width": breite, "height": 800}, locale="de-DE", service_workers="block")
+    seite = Seite(ctx.new_page(), basis)
+    try:
+        _starten(seite, heute_stand, 12)
+        seite.js("() => { const v = document.getElementById('vorspann'); if(v) v.click(); }")
+        seite.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
+        umbrueche, schlecht = 0, []
+        for code in ("de", "en", "tr", "sv", "nl", "nb", "da", "fr"):
+            seite.js("async (c) => { await setzeSprache(c); }", code)
+            for faktor in (1, 1.15, 1.3, 1.5, 2):
+                # jedes Mal von der Schrift der App aus, nicht von der schon vergroesserten
+                seite.js("() => { document.querySelectorAll('body *').forEach(e => e.style.fontSize = ''); "
+                         "homeMode = 'words'; showHome(); }")
+                if faktor != 1:
+                    seite.js(SCHRIFT, faktor)
+                else:
+                    _geometrie_ok(seite.js(LAGE))
+                m = seite.js(WEM)
+                assert m["sichtbar"], (code, faktor)
+                umbrueche += m["umbruch"]
+                if (m["naechster"] != "modeTopf" or m["drauf"] or m["inVor"] > 0
+                        or max(m["ueber"]) > 0 or m["seiteB"] > m["innenB"]):
+                    schlecht.append((code, faktor, m))
+        assert schlecht == [], schlecht
+        assert umbrueche >= 8, umbrueche    # sonst prueft der Test den Umbruch gar nicht
         assert seite.fehler == []
     finally:
         ctx.close()

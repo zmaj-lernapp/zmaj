@@ -419,8 +419,11 @@
       <button role="tab" id="modeStories" aria-selected="false"><img class="sym" src="symbole/geschichten.webp" alt="" aria-hidden="true"> <span data-t="tab.geschichten"></span></button>
       <!-- Der rote Zaehler (O10, 20.11.2026) zeigt, wie viele Woerter heute
            faellig sind. Zahl und Name fuer den Bildschirmleser setzt
-           faelligZaehler(). -->
-      <button role="tab" id="modeTopf" aria-selected="false"><img class="sym" src="symbole/wiederholen.webp" alt="" aria-hidden="true"> <span data-t="tab.wiederholen"></span><span class="zaehler" id="faelligZahl" aria-hidden="true" hidden></span></button>
+           faelligZaehler(). Er haengt am Schriftzug (.anker), nicht am
+           Rand des Reiters: bei grosser Schrift steht der Reiter allein in
+           der zweiten Zeile, und am Rand sass der Zaehler dann unter
+           "Geschichten" (Pruefung 21.11.2026). -->
+      <button role="tab" id="modeTopf" aria-selected="false"><img class="sym" src="symbole/wiederholen.webp" alt="" aria-hidden="true"> <span class="anker"><span data-t="tab.wiederholen"></span><span class="zaehler" id="faelligZahl" aria-hidden="true" hidden></span></span></button>
     </div>
     <div id="wordsHome">
       <!-- Die Stufen-Reiter A1 bis C1 (13.11.2026). Leiste und Karte

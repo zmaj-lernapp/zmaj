@@ -410,11 +410,28 @@
      nicht ueber den Reiter: sonst waere der Reiter breiter als sein Platz
      (scrollWidth, tests_e2e/test_symbole.py).
      Masse in em: die grosse Systemschrift vergroessert ihn mit, und die
-     Zahl passt immer hinein. Sein unterer Rand sitzt fest 10 px unter der
-     Oberkante des Reiters, da, wo die Zeile der Schrift beginnt (Polster
-     oben 10 px); groesser wird er nach oben. Mit top:-7px reichte er bei
-     360 px 2,8 px in diese Zeile und fast an die Oberlaenge von "h" und
-     "l" in "Wiederholen" (gemessen in allen acht Sprachen, 21.11.2026).
+     Zahl passt immer hinein. Sein unterer Rand sitzt auf der Zeile der
+     Schrift (Polster oben 10 px); groesser wird er nach oben. Mit
+     top:-7px reichte er bei 360 px 2,8 px in diese Zeile und fast an die
+     Oberlaenge von "h" und "l" in "Wiederholen" (gemessen in allen acht
+     Sprachen, 21.11.2026).
+     Er haengt am Schriftzug (.anker), rechtsbuendig mit dessen Ende, nicht
+     am Rand des Reiters (Pruefung 21.11.2026): ab etwa 115 % Systemschrift
+     bricht die Leiste um, "Wiederholen" steht allein in der zweiten Zeile
+     ueber die ganze Breite, und am Rand sass der Zaehler dann rechts unter
+     "Geschichten", ab 150 % auf dessen Schrift. Am Schriftzug ragt er nie
+     ueber den Reiter hinaus, denn der Schriftzug ist schmaler als der
+     Reiter. Bei normaler Schrift rueckt er dadurch um die Luft neben dem
+     Wort nach links (Deutsch 360 px: 4 px).
+     Ist er zu sehen, wachsen der Abstand zwischen den Zeilen der Leiste
+     (row-gap gilt nur dort) und der Abstand nach oben mit der Schrift mit,
+     damit er bei 150 und 200 % weder die Schrift der Zeile darueber noch
+     den Kasten "Heute" erreicht. Er ist 1,8 x 11 px hoch, das sind bei
+     16 px Grundschrift 1,24 em der Leiste; 1.25em - 16px laesst ueber den
+     20 px Polster zur Schrift darueber immer gut 4 px Luft, 1.25em - 13px
+     oben mindestens 2 px (der Abstand oben faellt mit den 12 px von
+     .quests zusammen). Bei normaler Schrift greifen beide nicht: es
+     bleibt bei 6 und 12 px, die Leiste sieht aus wie vorher.
      Rot ist --zaehler, der Ton von --bad-text hell; mit weisser Schrift
      4,97:1, darum dunkel dieselbe Farbe (--bad hell hat mit Weiss nur
      4,4:1, --bad-text dunkel ist rosa). Der Rand in --surface trennt ihn
@@ -422,8 +439,9 @@
      pointer-events:none: was ueber den Reiter hinausragt, faengt keine
      Tipps ab. */
   :root{--zaehler:#D0352C; --auf-zaehler:#FFFFFF}
-  .mode button{position:relative}
-  .mode .zaehler{position:absolute; bottom:calc(100% - 10px); right:0; min-width:1.8em; height:1.8em; padding:0 .4em;
+  .mode .anker{position:relative; display:inline-block}
+  .mode[role="tablist"]:has(.zaehler:not([hidden])){row-gap:max(6px, calc(1.25em - 16px)); margin-top:max(0px, calc(1.25em - 13px))}
+  .mode .zaehler{position:absolute; bottom:100%; right:0; min-width:1.8em; height:1.8em; padding:0 .4em;
                  display:flex; align-items:center; justify-content:center;
                  border-radius:99px; border:2px solid var(--surface); background:var(--zaehler); color:var(--auf-zaehler);
                  font-size:11px; font-weight:900; line-height:1; font-variant-numeric:tabular-nums; pointer-events:none}
