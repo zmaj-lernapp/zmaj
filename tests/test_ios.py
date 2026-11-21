@@ -480,13 +480,18 @@ def test_ios_huelle_standard_und_schalter(tmp_path, monkeypatch):
 
 
 def test_ton_schluessel_mit_codec():
-    """Opus behaelt seinen alten Namen (kein Android-Bau wandelt neu um), AAC
-    hat einen eigenen."""
+    """Opus behaelt die Form seines alten Namens (ohne "-opus"), AAC hat einen
+    eigenen. Seit 1.5 hat Opus 20k und auf Android ein anderes Wort-Kennzeichen
+    (TON_ENDE); der AAC-Name eines Worts bleibt genau der von vorher:
+    "a21b9cac2" tragen die Dateien in .ton_aac der iOS-Huelle, so wandelt der
+    naechste iOS-Bau nichts neu um."""
     import app_bauen
     h = "cd" * 32
-    assert app_bauen.ton_schluessel(h, "g01.mp3") == h[:32] + "-24k"
+    assert app_bauen.ton_schluessel(h, "g01.mp3") == h[:32] + "-20k"
     assert app_bauen.ton_schluessel(h, "g01.mp3", "aac") == h[:32] + "-32k-aac"
-    assert app_bauen.ton_schluessel(h, "w0001.mp3", "aac").startswith(h[:32] + "-32k-aac-a")
+    assert app_bauen.ton_schluessel(h, "w0001.mp3", "aac") == h[:32] + "-32k-aac-a21b9cac2"
+    assert app_bauen.ton_schluessel(h, "w0001.mp3").startswith(h[:32] + "-20k-a")
+    assert not app_bauen.ton_schluessel(h, "w0001.mp3").endswith("21b9cac2")
     assert app_bauen.TON_CODECS["aac"]["endung"] == ".m4a"
 
 

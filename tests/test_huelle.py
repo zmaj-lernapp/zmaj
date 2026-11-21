@@ -291,12 +291,74 @@ def test_ton_verkleinern_mit_ffmpeg(tmp_path):
 # woerter oder saetze"): ton_verkleinern() kuerzt sie bei Woertern und
 # Saetzen auf rund 30 ms, die Geschichten bleiben, wie sie sind.
 def test_ton_filter_nur_fuer_woerter():
+    """Seit 1.5 (Optimierung Punkt 8) kuerzt der Filter auf Android auch das
+    Ende (TON_ENDE). Auf iOS (AAC) bleibt es bei TON_ANFANG."""
     import app_bauen
-    assert app_bauen.ton_filter("w0001.mp3") == app_bauen.TON_ANFANG
+    assert app_bauen.ton_filter("w0001.mp3") == app_bauen.TON_ANFANG + "," + app_bauen.TON_ENDE
+    assert app_bauen.ton_filter("w0001.mp3", "opus") == app_bauen.ton_filter("w0001.mp3")
+    assert app_bauen.ton_filter("w0001.mp3", "aac") == app_bauen.TON_ANFANG
     assert "silenceremove" in app_bauen.TON_ANFANG and "start_periods=1" in app_bauen.TON_ANFANG
-    assert "stop_periods" not in app_bauen.TON_ANFANG          # das Ende bleibt dran
+    assert "stop_periods" not in app_bauen.TON_ANFANG + app_bauen.TON_ENDE
     for name in ("g01.mp3", "g12.mp3", "index.json", "w001.mp3"):
         assert app_bauen.ton_filter(name) is None, name
+        assert app_bauen.ton_filter(name, "aac") is None, name
+
+
+def test_ton_ende_wie_in_der_hoerprobe():
+    """Genau der Filter, den Ajdin am 20.11.2026 blind und mit Bluetooth
+    abgehoert hat (Release/Hoerprobe_Ton_2026-11-20/_skript/hoerprobe_machen.py:
+    ENDE = "areverse," + ANF.replace("0.03", "0.15") + ",areverse", 20k).
+    Wer hier die Schwelle oder die 150 ms aendert, braucht eine neue Hoerprobe."""
+    import app_bauen
+    assert app_bauen.TON_ENDE == ("areverse," + app_bauen.TON_ANFANG.replace(
+        "start_silence=0.03", "start_silence=0.15") + ",areverse")
+    assert app_bauen.TON_ENDE == ("areverse,silenceremove=start_periods=1:start_threshold=-65dB"
+                                  ":start_silence=0.15:detection=peak:window=0.001,areverse")
+    assert app_bauen.TON_BITRATE == app_bauen.TON_CODECS["opus"]["bitrate"] == "20k"
+    assert app_bauen.TON_CODECS["aac"]["bitrate"] == "32k"            # iOS bleibt
+
+
+def test_ton_ffmpeg_schalter(tmp_path, monkeypatch):
+    """Was ton_verkleinern() wirklich an ffmpeg gibt, ohne ffmpeg: Woerter auf
+    Android mit Anfang und Ende und 20k, Geschichten ohne Filter mit 20k
+    (nur die Bitrate, ihre Wortzeiten zaehlen ab Dateianfang), auf iOS
+    Woerter nur mit dem Anfang und 32k wie vor 1.5."""
+    import json
+    import subprocess
+    import app_bauen
+    aufrufe = []
+
+    def run(cmd, **kw):
+        aufrufe.append(cmd)
+        with open(cmd[-1], "wb") as f:              # die Zieldatei, wie ffmpeg sie schriebe
+            f.write(b"ton")
+        return subprocess.CompletedProcess(cmd, 0, b"", b"")
+    monkeypatch.setattr(app_bauen.subprocess, "run", run)
+    ffmpeg = tmp_path / "ffmpeg.exe"
+    ffmpeg.write_bytes(b"")
+    for codec in ("opus", "aac"):
+        audio = tmp_path / ("audio_" + codec)
+        audio.mkdir()
+        for name in ("w0001.mp3", "g01.mp3"):
+            (audio / name).write_bytes(name.encode("ascii") * 40)
+        (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+            {"key": "eins", "datei": "w0001.mp3"}, {"key": "g", "datei": "g01.mp3"}]}),
+            encoding="utf-8")
+        app_bauen.ton_verkleinern(str(audio), ffmpeg=str(ffmpeg),
+                                  zwischen=str(tmp_path / ("zwischen_" + codec)), codec=codec)
+    je = {}
+    for c in aufrufe:
+        quelle = c[c.index("-i") + 1]
+        codec = os.path.basename(os.path.dirname(quelle))[len("audio_"):]
+        je[codec, os.path.basename(quelle)] = c[c.index("-i") + 2:-1]   # alles zwischen Quelle und Ziel
+    opus = ["-ac", "1", "-c:a", "libopus", "-vbr", "on", "-application", "audio", "-b:a", "20k"]
+    aac = ["-ac", "1", "-c:a", "aac", "-movflags", "+faststart", "-b:a", "32k"]
+    assert je == {
+        ("opus", "w0001.mp3"): ["-af", app_bauen.TON_ANFANG + "," + app_bauen.TON_ENDE] + opus,
+        ("opus", "g01.mp3"): opus,
+        ("aac", "w0001.mp3"): ["-af", app_bauen.TON_ANFANG] + aac,
+        ("aac", "g01.mp3"): aac,
+    }, je
 
 
 def test_ton_schluessel_kennt_den_filter(monkeypatch):
@@ -305,9 +367,12 @@ def test_ton_schluessel_kennt_den_filter(monkeypatch):
     import app_bauen
     h = "ab" * 32
     wort, geschichte = app_bauen.ton_schluessel(h, "w0001.mp3"), app_bauen.ton_schluessel(h, "g01.mp3")
-    assert geschichte == h[:32] + "-24k"
+    assert geschichte == h[:32] + "-20k"
     assert wort.startswith(geschichte + "-a") and wort != geschichte
     monkeypatch.setattr(app_bauen, "TON_ANFANG", app_bauen.TON_ANFANG.replace("0.03", "0.06"))
+    assert app_bauen.ton_schluessel(h, "w0001.mp3") != wort
+    monkeypatch.undo()
+    monkeypatch.setattr(app_bauen, "TON_ENDE", app_bauen.TON_ENDE.replace("0.15", "0.2"))
     assert app_bauen.ton_schluessel(h, "w0001.mp3") != wort
 
 
@@ -361,7 +426,45 @@ def test_ton_verkleinern_kuerzt_den_anfang(tmp_path):
     ende = max(i for i, x in enumerate(wort) if abs(x) > 1000) / 48.0
     assert ende - _einsatz_ms(wort) >= 1480, ende
     namen = sorted(os.listdir(zwischen))
-    assert len(namen) == 2 and sum(1 for n in namen if "-24k-a" in n) == 1, namen
+    assert len(namen) == 2 and sum(1 for n in namen if "-20k-a" in n) == 1, namen
+
+
+def test_ton_verkleinern_kuerzt_das_ende_nur_auf_android(tmp_path):
+    """1.5 (Optimierung Punkt 8, Hoerprobe 20.11.2026): Hinter dem letzten
+    Laut bleiben bei Woertern und Saetzen auf Android 150 ms Stille statt
+    0,6 s. Der Laut selbst bleibt ganz, der Sinus laeuft volle 1,0 s. Die
+    Geschichte behaelt ihr Ende (Wortzeiten, Mitlesen), und auf iOS (AAC)
+    bleibt auch beim Wort das Ende wie vor 1.5."""
+    import json
+    import shutil
+    import subprocess
+    import app_bauen
+    ffmpeg = os.environ.get("ZMAJ_FFMPEG") or (
+        app_bauen.FFMPEG if os.path.isfile(app_bauen.FFMPEG) else shutil.which("ffmpeg"))
+    if not ffmpeg:
+        pytest.skip("ffmpeg fehlt")
+    erg = {}
+    for codec, endung in (("opus", ".ogg"), ("aac", ".m4a")):
+        audio = tmp_path / codec
+        audio.mkdir()
+        for name in ("w0001.mp3", "g01.mp3"):
+            subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y", "-f", "lavfi",
+                            "-i", "sine=frequency=440:duration=1", "-af", "apad=pad_dur=0.6",
+                            "-ar", "24000", "-ac", "1", "-b:a", "48k", str(audio / name)], check=True)
+        (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+            {"key": "eins", "datei": "w0001.mp3"}, {"key": "g1", "datei": "g01.mp3"}]}),
+            encoding="utf-8")
+        app_bauen.ton_verkleinern(str(audio), ffmpeg=ffmpeg, zwischen=str(tmp_path / ("z" + codec)),
+                                  codec=codec)
+        for name in ("w0001", "g01"):
+            x = _pcm(ffmpeg, audio / (name + endung))
+            laut = [i for i, v in enumerate(x) if abs(v) > 1000]
+            erg[codec, name] = ((laut[-1] - laut[0]) / 48.0, (len(x) - 1 - laut[-1]) / 48.0)
+    ton, stille = erg["opus", "w0001"]
+    assert ton >= 990 and 140 <= stille <= 200, erg
+    for schluessel in (("opus", "g01"), ("aac", "w0001"), ("aac", "g01")):
+        ton, stille = erg[schluessel]
+        assert ton >= 990 and stille >= 570, (schluessel, erg)
 
 
 def test_ton_verkleinern_neue_aufnahme_unter_altem_namen(tmp_path):

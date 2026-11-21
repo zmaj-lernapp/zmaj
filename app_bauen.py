@@ -395,14 +395,26 @@ def anmeldung_pruefen(schalter, datei=None):
 
 # Tonspur im Paket als Opus statt MP3 (12.10.2026). Die 2.332 MP3s mit
 # 48 kbit/s machten 17,5 von 25,3 MB des AAB aus; Opus mit 24 kbit/s klingt
-# bei Sprache mindestens gleich gut und ist halb so gross. Nur die Kopie in
+# bei Sprache mindestens gleich gut und ist halb so gross (seit 1.5 20 kbit/s,
+# siehe TON_BITRATE). Nur die Kopie in
 # www/audio wird umgewandelt - web/audio bleibt MP3 fuer Web-Demo,
 # Datensatz und Anki. Der Zwischenspeicher in der Huelle haelt jede
 # umgewandelte Datei unter dem Hash ihrer MP3, damit nicht jeder Bau alle
 # Dateien neu durch ffmpeg schickt.
 FFMPEG = os.path.join(os.path.dirname(HUELLE), "werkzeuge", "ffmpeg", "bin", "ffmpeg.exe")
 TON_ZWISCHENSPEICHER = os.path.join(HUELLE, ".ton_opus")
-TON_BITRATE = "24k"
+# 20 statt 24 kbit/s seit 1.5 (Optimierung Punkt 8, zusammen mit TON_ENDE).
+# Blinde Hoerprobe am 20.11.2026, 14 Woerter und Saetze (Enden auf ć, č, š,
+# j, l, lj, eine Frage, lange Saetze): Ajdin "beide hoeren sich auf dem
+# laptop gleich an", dann mit Bluetooth-Kopfhoerern "hab es mit bluthoth
+# getestet passt". Die Bitrate allein spart 15,9 % (50 Emir-Aufnahmen).
+# Sie gilt fuer alles, was nach Opus geht, auch fuer die Geschichten. Deren
+# Wortzeiten "w" verschiebt das nicht: Pre-Skip 312 Samples wie bei 24k,
+# Laenge und Versatz auf das Sample gleich, nachgemessen an allen 32 am
+# 21.11.2026. iOS (AAC) hat seine eigene Bitrate in TON_CODECS.
+# Die Bitrate steckt im Schluessel des Zwischenspeichers (ton_schluessel()),
+# der naechste Bau wandelt also einmal alles neu um.
+TON_BITRATE = "20k"
 # iPhone und iPad (30.10.2026, iOS_Plan.md Entscheidung 5): AAC-LC als .m4a,
 # mono, 32 kbit/s. Ogg/Opus spielt WebKit erst ab iOS 18.4, und zu
 # decodeAudioData mit Opus ist dort ein Fehler offen - genau darueber laufen
@@ -410,7 +422,7 @@ TON_BITRATE = "24k"
 # Je Codec: Endung, Bitrate und die ffmpeg-Schalter. Der Zwischenspeicher
 # fuer AAC liegt in der iOS-Huelle (.ton_aac), siehe ios_bauen().
 TON_CODECS = {
-    "opus": {"endung": ".ogg", "bitrate": "24k",
+    "opus": {"endung": ".ogg", "bitrate": TON_BITRATE,
              "ffmpeg": ["-c:a", "libopus", "-vbr", "on", "-application", "audio"]},
     "aac": {"endung": ".m4a", "bitrate": "32k",
             "ffmpeg": ["-c:a", "aac", "-movflags", "+faststart"]},
@@ -452,8 +464,7 @@ def ffmpeg_finden():
 # die Kante also oft schon am Rauschen, und es wird weniger gekuerzt (im
 # Median 112 ms) - lieber das als ein Stueck vom Laut. Das betrifft im
 # Paket nur die zwei Goran-Woerter ohne Emir und wer ohne audio_emir baut.
-# Das Ende bleibt unberuehrt: der Nachlauf kam am 06.10.2026 gegen
-# abgeschnittene Wortenden hinein.
+# Das Ende kuerzt seit 1.5 TON_ENDE, aber nur auf Android (siehe dort).
 # Nur Woerter und Saetze (w####.mp3, wie EMIR_DATEI). Die Geschichten
 # nicht: ihre Wortzeiten "w" in index.json zaehlen ab Dateianfang, das
 # Mitlesen liefe sonst um den geschnittenen Betrag hinterher.
@@ -464,11 +475,37 @@ def ffmpeg_finden():
 TON_ANFANG = ("silenceremove=start_periods=1:start_threshold=-65dB:start_silence=0.03"
               ":detection=peak:window=0.001")
 
+# Stille am Ende kuerzen (1.5, Optimierung Punkt 8, zusammen mit TON_BITRATE
+# 20k). Nach dem letzten Laut lagen bei Emir im Median 0,59 s Stille: der
+# Nachlauf vom 06.10.2026 (emir_lauf.py, apad=pad_dur=0.5). Er kam damals
+# gegen abgeschnittene Wortenden hinein, die eigentliche Ursache war aber
+# der Punkt hinter dem Wort. In der App haengt am Ende des Tons nichts
+# (onended in ton.js und ton_abspielen.js), der Hoeren-Knopf ist nur rund
+# 0,4 s frueher wieder frei. Darum dieselbe vorsichtige Regel wie vorn,
+# nur rueckwaerts: was in 1 ms ueber -65 dB ausschlaegt (Spitze), zaehlt
+# als Laut, und danach bleiben 150 ms Stille stehen.
+# Freigabe nach der blinden Hoerprobe vom 20.11.2026, auch mit Bluetooth
+# (Ajdin: "hab es mit bluthoth getestet passt"), siehe TON_BITRATE.
+# Nachgemessen am 21.11.2026 an 50 Emir-Aufnahmen, Quelle gegen Ergebnis:
+# gekuerzt im Median 0,44 s (0,35 bis 0,51), der lauteste weggeschnittene
+# Wert hat -90 dBFS, und das Wortende ist auch nach Opus auf die
+# Millisekunde dasselbe (silencedetect -50 dB, 20k mit und ohne TON_ENDE).
+# silenceremove setzt rueckwaerts an der Kante zur stehengelassenen Stille
+# ein paar Samples um, alle leiser als -57 dBFS; die Stimme davor bleibt
+# samplegleich. Die Dateien werden mit Bitrate zusammen 24 % kleiner.
+# iOS nicht: AAC wird damit nur 1,2 % kleiner (Pruefung 20.11.2026), und
+# ton_filter() laesst dort alles wie vor 1.5, auch den Schluessel in .ton_aac.
+TON_ENDE = ("areverse,silenceremove=start_periods=1:start_threshold=-65dB:start_silence=0.15"
+            ":detection=peak:window=0.001,areverse")
 
-def ton_filter(name):
-    """Der ffmpeg-Filter fuer diese Datei: TON_ANFANG fuer Woerter und
-    Saetze, None fuer die Geschichten."""
-    return TON_ANFANG if EMIR_DATEI.fullmatch(name) else None
+
+def ton_filter(name, codec="opus"):
+    """Der ffmpeg-Filter fuer diese Datei: fuer Woerter und Saetze auf
+    Android (Opus) TON_ANFANG und TON_ENDE, auf iOS (AAC) nur TON_ANFANG,
+    None fuer die Geschichten."""
+    if not EMIR_DATEI.fullmatch(name):
+        return None
+    return TON_ANFANG + "," + TON_ENDE if codec == "opus" else TON_ANFANG
 
 
 def ton_schluessel(inhalt_hash, name, codec="opus"):
@@ -480,7 +517,7 @@ def ton_schluessel(inhalt_hash, name, codec="opus"):
     import hashlib
     s = inhalt_hash[:32] + "-" + (TON_BITRATE if codec == "opus" else
                                   TON_CODECS[codec]["bitrate"] + "-" + codec)
-    f = ton_filter(name)
+    f = ton_filter(name, codec)
     if f:
         s += "-a" + hashlib.sha256(f.encode("ascii")).hexdigest()[:8]
     return s
@@ -544,7 +581,7 @@ def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None, codec="opus"):
         tmp = fertig + ".tmp" + endung
         # Gleicher Schluessel heisst gleicher Filter (er steckt im
         # Schluessel), also genuegt der Name der ersten Quelle.
-        f = ton_filter(name)
+        f = ton_filter(name, codec)
         r = subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y",
                             "-i", os.path.join(audio, name)]
                            + (["-af", f] if f else [])
@@ -554,9 +591,10 @@ def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None, codec="opus"):
             raise RuntimeError("%s: %s" % (name, r.stderr.decode("utf-8", "replace")[-300:]))
         os.replace(tmp, fertig)
 
-    print("\nTonspur nach %s (%d Dateien, %s, %d davon mit gekuerzter Stille am Anfang) ..."
+    print("\nTonspur nach %s (%d Dateien, %s, %d davon mit gekuerzter Stille am %s) ..."
           % ("Opus" if codec == "opus" else codec.upper(), len(mp3s), art["bitrate"],
-             sum(1 for n in mp3s if ton_filter(n))))
+             sum(1 for n in mp3s if ton_filter(n, codec)),
+             "Anfang und Ende" if codec == "opus" else "Anfang"))
     try:
         with ThreadPoolExecutor(max_workers=max(2, (os.cpu_count() or 4))) as pool:
             list(pool.map(umwandeln, sorted(quelle_je_schluessel.items())))
