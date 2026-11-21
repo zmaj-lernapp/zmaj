@@ -192,6 +192,11 @@ def wortzeiten_passen(eintrag, text):
             and len(w) == len(textwoerter(text)))
 
 
+def dateinummer(datei):
+    """Die Nummer einer Tondatei: w0384.mp3 -> 384, w10059.mp3 -> 10059."""
+    return int(re.match(r"[wg](\d+)", datei).group(1))
+
+
 def nur_emir():
     """Die Eintraege aus ton_nur_emir.json als {key: eintrag} (23.10.2026).
 
@@ -535,7 +540,10 @@ def grosser_lauf(dienst, zugang, stimme, stimme_gesch, nur_geschichten=False):
     # naechste neue Wort hier eine Nummer, unter der in audio_emir/ schon
     # ein anderes Wort liegt - und spraeche in der App mit dessen Ton.
     emir = nur_emir()
-    nr_w = max([int(e["datei"][1:5]) for e in list(bekannt.values()) + list(emir.values())
+    # Die ganze Nummer, nicht datei[1:5] (21.11.2026): aus w10059.mp3 wurde
+    # sonst 1005, und das naechste neue Wort bekaeme eine Nummer, die
+    # in ton_nur_emir.json schon vergeben ist (K2 vergibt w10000 und hoeher).
+    nr_w = max([dateinummer(e["datei"]) for e in list(bekannt.values()) + list(emir.values())
                 if e["datei"].startswith("w")] or [0])
     nr_g = max([int(e["datei"][1:3]) for e in bekannt.values()
                 if e["datei"].startswith("g")] or [0])

@@ -487,7 +487,7 @@ function wortzeilen(c){
       const f = wortform(String(w.bs).split(' / ')[0]);
       if(gesehen.has(f)) return;
       gesehen.add(f);
-      zeilen.push({de: w.de, bs: w.bs, kann});
+      zeilen.push({de: w.de, bs: w.bs, ton: w.ton, kann});
       return;
     }
     (String(w.bs).match(/[\p{L}\p{M}'’-]+/gu) || []).forEach(teil => {
@@ -496,7 +496,15 @@ function wortzeilen(c){
       const bed = dictBedeutung(teil);
       if(!bed) return;              // ohne Bedeutung wäre die Zeile leer
       gesehen.add(f);
-      zeilen.push({de: bed, bs: teil, kann});
+      /* Die Bedeutung kommt aus dem Woerterbuch, also auch der Ton dazu:
+         "sam" steht dort als "bin" und spricht kurz (DICT_TON, 21.11.2026).
+         Ausnahme je Satz (w.satzwort_ton, ton_bedeutung.json "saetze"): in
+         "Sam izdržava cijelu porodicu." heisst "sam" allein und spielt die
+         Aufnahme wie bisher, in "ne smije" heisst "smije" darf, nicht lacht.
+         Die angezeigte Bedeutung bleibt die aus dem Woerterbuch. */
+      const klein = teil.toLowerCase();
+      const imSatz = w.satzwort_ton && Object.prototype.hasOwnProperty.call(w.satzwort_ton, klein);
+      zeilen.push({de: bed, bs: teil, ton: imSatz ? w.satzwort_ton[klein] : DICT_TON[klein], kann});
     });
   });
   return zeilen;

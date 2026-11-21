@@ -24,6 +24,11 @@ def _emir():
         return {e["key"]: e["datei"] for e in json.load(f)["toene"]}
 
 
+def _nummer(datei):
+    import ton_bauen                          # conftest.py legt WURZEL in sys.path
+    return ton_bauen.dateinummer(datei)       # auch fuenfstellig (w10059), 21.11.2026
+
+
 # Wie in der App aus dem Store: die Emir-Aufnahmen stehen in AUDIO; abgespielt wird
 # nichts, nur mitgeschrieben - ueber WebAudio (pufferSpielen) oder den spieler (spieleDatei).
 VORBEREITEN = """(emir) => {
@@ -74,7 +79,7 @@ def test_jede_bosnische_antwort_findet_ihre_aufnahme(seite, heute_stand):
     bosnisch = [u for u in vorher if u["bs"]]
     assert len(vorher) == 175 and len(bosnisch) == 172, (len(vorher), len(bosnisch))
     assert sorted(u["richtig"] for u in vorher if not u["bs"]) == ["männlich (on)", "sächlich (ono)", "weiblich (ona)"]
-    neu = {d for d in emir.values() if ERSTE <= int(d[1:5]) <= LETZTE}
+    neu = {d for d in emir.values() if ERSTE <= _nummer(d) <= LETZTE}
     assert not [u for u in vorher if u["datei"] in neu]                 # die Demo kennt sie nicht
     assert len([u for u in bosnisch if not u["datei"]]) >= 94
     seite.js(VORBEREITEN, [[k, d] for k, d in emir.items()])
@@ -98,5 +103,5 @@ def test_nach_der_antwort_spricht_emir(seite, heute_stand):
                                                     ("bratom", "bratom"), ("Ko", "ko"), ("plačem", "plačem")]):
         r = seite.js(ANTWORTEN, [lektion, richtig])
         assert r == {"ok": True, "datei": emir[key], "lang": "bs"}, (richtig, r)
-        assert ERSTE <= int(emir[key][1:5]) <= LETZTE, (richtig, emir[key])
+        assert ERSTE <= _nummer(emir[key]) <= LETZTE, (richtig, emir[key])
     assert seite.fehler == []

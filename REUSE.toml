@@ -32,6 +32,7 @@ path = [
   "sonderzeichen_korrekturen.json",
   "ton_ausnahmen.json",
   "ton_nur_emir.json",
+  "ton_bedeutung.json",
   "data/**",
   "web/audio/**",
   "web/maskottchen/**",

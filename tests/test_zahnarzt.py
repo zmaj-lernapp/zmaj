@@ -149,7 +149,7 @@ def test_uebersetzt_und_bosnisch_bleibt(code, teil):
 def test_ton_lueckenlos_in_der_reihenfolge_der_datei(teil):
     import ton_bauen
     emir = ton_bauen.nur_emir()
-    neu = sorted((e["datei"], k, e["text"]) for k, e in emir.items() if ERSTE <= int(e["datei"][1:5]) <= LETZTE)
+    neu = sorted((e["datei"], k, e["text"]) for k, e in emir.items() if ERSTE <= ton_bauen.dateinummer(e["datei"]) <= LETZTE)
     assert [n[0] for n in neu] == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
     nach = set(NACHGEKOMMEN)
     assert [n[2] for n in neu] == [w["bs"] for w in _alle(teil) if w["bs"] not in nach]
@@ -160,7 +160,7 @@ def test_ton_lueckenlos_in_der_reihenfolge_der_datei(teil):
     for w in _alle(teil):
         if w["bs"] in nach:
             k = ton_bauen.schluessel(w["bs"])
-            assert k in offen_p1020.TON or int(emir[k]["datei"][1:5]) > LETZTE, w["bs"]
+            assert k in offen_p1020.TON or ton_bauen.dateinummer(emir[k]["datei"]) > LETZTE, w["bs"]
     # zubar / stomatolog: dazu die erste Form aus der App, sie hat ihre eigene Aufnahme
     posten = {p["key"] for p in ton_bauen.sammle()}
     assert "zubar / stomatolog" in posten and "zubar" in posten

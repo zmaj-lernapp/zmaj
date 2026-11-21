@@ -372,7 +372,9 @@ function rueckmeldungZeigen(feld, klasse, schluessel, wort, bosnisch, anhang){
    Zahl die gezogene Fassung; bei der naechsten Aufgabe ist sie noch nicht
    gezogen (das tut erst renderTask), dann nichts - ein Satz kommt ohnehin
    erst nach der Antwort, bis dahin ist sein Puffer laengst da.
-   Grammatik: die Antwort, wenn sie bosnisch ist. */
+   Grammatik: die Antwort, wenn sie bosnisch ist. Woerter und Grammatik mit
+   ihrem eigenen Ton je Bedeutung, wenn es ihn gibt (wortTon, eigenerTon,
+   21.11.2026). */
 function lueckeText(s){
   const ganz = s.text.replace('___', s.answer);
   return hoerbar(ganz) ? ganz : hoerbar(s.answer) ? s.answer : null;
@@ -384,8 +386,8 @@ function aufgabeText(task){
     const s = zahlFassung(task.s, task.v);
     return task.typ === 'gap' ? lueckeText(s) : s.bs;
   }
-  if(task.typ === 'gram') return task.g && gramAntwortBosnisch(task.g.richtig) ? task.g.richtig : null;
-  return task.w ? task.w.bs : null;
+  if(task.typ === 'gram') return task.g && gramAntwortBosnisch(task.g.richtig) ? eigenerTon(task.g.richtig, task.g.ton) : null;
+  return task.w ? wortTon(task.w) : null;
 }
 /* Die Aufgabe nach dieser - in Lektion, Level-Test oder Einstufung. */
 function folgeAufgabe(task){
@@ -444,6 +446,8 @@ function aufgabeZeichnen(task, body, done, opts={}){
   const meineAufgabe = aufgabeMarke;   // gilt fuer verspaetete Erkennungs-Ergebnisse
   const pool = task.pool || curWords();
   const w = task.w;
+  /* Gesprochen wird wortTon(w): w.bs, oder der eigene Ton seiner Bedeutung
+     ("dug" als "lang" klingt anders als "dug" als "Schulden", 21.11.2026). */
   /* Zahlen, die wechseln (25.10.2026): einmal je Aufgabe ziehen, siehe
      zahlZiehen(). Die Wiederholung ({...task, retry:true}) hat task.v schon
      und kommt mit derselben Zahl. */
@@ -530,13 +534,13 @@ function aufgabeZeichnen(task, body, done, opts={}){
     body.innerHTML = '<div class="kicker aufgabe mitmarke"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+mitSymbol('lautsprecher', t('task.hoeren'))+'</button>':'')+
       '<div class="row unten"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
-    if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN); }
+    if(canListen){ $$('xListen').addEventListener('click',()=>speak(wortTon(w))); spaeterSprechen(wortTon(w), BEIM_ERSCHEINEN); }
     $$('xNext').addEventListener('click',()=>done({ok:true, intro:true})); $$('xNext').focus();
     return;
   }
   if(task.typ==='mc'){
     body.innerHTML = kick(t('task.was_heisst'))+'<div class="prompt'+(w.de.length>18?' long':'')+'">'+esc(w.de)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok}); }, 'bs');
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(wortTon(w), nachAntwort(ok), ok); done({ok}); }, 'bs');
     return;
   }
   if(task.typ==='mcrev'){
@@ -547,11 +551,11 @@ function aufgabeZeichnen(task, body, done, opts={}){
        Aussprache mitnimmt, auch wenn man daneben lag.
        body.querySelector statt $(): die Kennung xListen gibt es in der
        Lektion UND im Test, und $() findet immer nur die erste im Dokument. */
-    if(hoerbar(w.bs)) body.querySelector('.options').insertAdjacentHTML('beforebegin',
+    if(hoerbar(wortTon(w))) body.querySelector('.options').insertAdjacentHTML('beforebegin',
       '<button class="listen" data-hoer="1">'+mitSymbol('lautsprecher', t('task.hoeren'))+'</button>');
     const hoerKnopf = body.querySelector('[data-hoer]');
-    if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(w.bs); });
-    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok}); });
+    if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(wortTon(w)); });
+    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(wortTon(w), nachAntwort(ok), ok); done({ok}); });
     return;
   }
   if(task.typ==='type'){
@@ -583,7 +587,7 @@ function aufgabeZeichnen(task, body, done, opts={}){
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
       else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', gezeigt);
       loesung(w.bs, w.de, andereForm(gezeigt, w.bs));
-      sound(ok?'ok':'no'); spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok});
+      sound(ok?'ok':'no'); spaeterSprechen(wortTon(w), nachAntwort(ok), ok); done({ok});
     };
     inp.addEventListener('keydown',e=>{ if(e.key==='Enter' && !e.repeat) check(); });   // festgehalten ist kein zweiter Versuch
     $$('xCheck').addEventListener('click',check);
@@ -591,7 +595,7 @@ function aufgabeZeichnen(task, body, done, opts={}){
   }
   if(task.typ==='listen'){
     body.innerHTML = kick(t('task.hoerfrage'))+'<button class="listen bigplay" id="xPlay" aria-label="'+t('task.abspielen')+'">'+symbol('lautsprecher')+'</button><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.hoeren_skip'));
-    $$('xPlay').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN);
+    $$('xPlay').addEventListener('click',()=>speak(wortTon(w))); spaeterSprechen(wortTon(w), BEIM_ERSCHEINEN);
     renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); }, 'bs');
     wireSkip();
     return;
@@ -601,7 +605,7 @@ function aufgabeZeichnen(task, body, done, opts={}){
       (canListen?'<button class="listen" id="xListen">'+mitSymbol('lautsprecher', t('task.vorsprechen'))+'</button>':'')+
       '<button class="mic" id="xMic" aria-label="'+t('task.mikro')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></button>'+
       '<div class="heard" id="xHeard">'+t('task.mikro_tipp')+'</div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.sprechen_skip'));
-    if(canListen) $$('xListen').addEventListener('click',()=>speak(w.bs));
+    if(canListen) $$('xListen').addEventListener('click',()=>speak(wortTon(w)));
     const mic=$$('xMic'), heard=$$('xHeard'); let rec, listening=false, fin=false;
     // Laufende Erkennung abbrechen - beim Ueberspringen und ueber stilleBitte()
     const abhoeren = async ()=>{ const H = hoererPlugin(); try{ if(H) await H.stop(); else if(rec) rec.abort(); }catch(e){} };
@@ -1026,7 +1030,8 @@ function aufgabeZeichnen(task, body, done, opts={}){
     // Vorgelesen auch nur dann: "weiblich (ona)" sprach sonst die bosnische
     // Stimme der Sprachausgabe - ein deutsches Wort mit bosnischer Aussprache.
     const bsRichtig = gramAntwortBosnisch(g.richtig);
-    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, nachAntwort(ok), ok); done({ok, slow:!ok && !!g.tipp}); },
+    const gTon = eigenerTon(g.richtig, g.ton);   // "mi" als "mir" kurz (21.11.2026), sonst g.richtig
+    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(gTon)) spaeterSprechen(gTon, nachAntwort(ok), ok); done({ok, slow:!ok && !!g.tipp}); },
       o => gramAntwortBosnisch(o) ? 'bs' : '');
     return;
   }

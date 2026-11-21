@@ -574,6 +574,22 @@ function audioDatei(text){
   const voll = text.split(' / ')[0].trim().toLowerCase();
   return AUDIO.get(voll) || AUDIO.get(audioKey(text)) || null;
 }
+/* ---- Eigener Ton je Bedeutung (21.11.2026) ----
+   Gleich geschrieben, anders gesprochen: "sam" heisst "bin" (kurz und
+   unbetont) und "allein" (langes a). audioDatei() kennt nur den Text, also
+   hatte jede Schreibweise genau eine Aufnahme. Ajdin beim Test der 1.5:
+   in einer Geschichte "sam" (bin) angetippt, und es kam das lange a von
+   "allein".
+   Seitdem traegt der Inhalt an solchen Stellen ein Feld "ton" mit einem
+   eigenen Schluessel wie "sam (bin)" (ton_bedeutung.py, ton_bedeutung.json):
+   Vokabeln w.ton, Grammatik g.ton, Geschichten s.ton je Vorkommen, die
+   Satzwoerter der Wortliste DICT_TON, mit Ausnahmen je Satz in
+   w.satzwort_ton ("Sam izdržava ...": allein). Die Aufnahme dazu spricht Emir.
+   Solange es sie nicht gibt - und immer in der Web-Demo, die Emir nicht
+   hat - spielt der Text wie bisher: nie Stille statt des alten Tons. */
+function eigenerTon(text, ton){ return typeof ton === 'string' && ton && audioDatei(ton) ? ton : text; }
+/* Was eine Vokabel spricht: ihr eigener Ton, sonst w.bs wie bisher. */
+function wortTon(w){ return eigenerTon(w.bs, w.ton); }
 function sprichMitStimme(text, fertig, rate){
   if(!hasTTS){ if(fertig) fertig(); return; }
   pausiert = false;

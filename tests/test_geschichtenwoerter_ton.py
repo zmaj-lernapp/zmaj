@@ -44,7 +44,8 @@ GEWAEHLT = {"s": "s_B.mp3", "tiho": "tiho_Ck.mp3"}
 
 
 def _nummer(datei):
-    return int(datei[1:5])
+    import ton_bauen
+    return ton_bauen.dateinummer(datei)       # auch fuenfstellig (w10059), 21.11.2026
 
 
 def _index(wurzel):
@@ -109,7 +110,10 @@ def test_b_nummern_lueckenlos_in_der_reihenfolge_von_sammle(monkeypatch):
     for e in neu:
         assert set(e) == {"key", "datei", "text"} and e["key"] == ton_bauen.schluessel(e["text"]), e
     # Die letzten Nummern ueberhaupt
-    assert max(_nummer(e["datei"]) for e in ton_bauen.nur_emir().values()) == LETZTE
+    # ohne die eigenen Toene je Bedeutung (w10059 ff., tests/test_ton_bedeutung.py, 21.11.2026)
+    import ton_bedeutung
+    eigene = set(ton_bedeutung.eigene_schluessel())
+    assert max(_nummer(e["datei"]) for k, e in ton_bauen.nur_emir().items() if k not in eigene) == LETZTE
     # sammle() kennt alle als Wort aus einer Geschichte, mit demselben Text, und die Nummern
     # folgen seiner Reihenfolge vom 16.11.2026. Heute bringt sammle() dieselben Woerter,
     # nur steht ein Wort vielleicht zuerst gross in einer anderen Geschichte ("Boli").

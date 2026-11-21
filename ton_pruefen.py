@@ -71,7 +71,9 @@ def nur_emir_pruefen(emir, toene, audio=None, huelle_audio=None):
     gesehen = set()
     for k, e in sorted(emir.items(), key=lambda x: str(x[1].get("datei"))):
         datei, text = str(e.get("datei", "")), str(e.get("text", ""))
-        if not re.fullmatch(r"w\d{4}\.mp3", datei):
+        # Vier oder fuenf Ziffern, wie EMIR_DATEI in app_bauen.py (21.11.2026: K2
+        # und der Ton je Bedeutung vergeben w10000 und hoeher).
+        if not re.fullmatch(r"w\d{4,5}\.mp3", datei):
             fehler.append("ton_nur_emir.json: kein Name wie w0001.mp3: %r (%s)" % (datei, k))
             continue
         if datei in gesehen or datei in belegt:
@@ -94,6 +96,30 @@ def nur_emir_pruefen(emir, toene, audio=None, huelle_audio=None):
                 fehler.append("Emir-Aufnahme nur %d Byte, vermutlich stumm: %s"
                               % (os.path.getsize(pfad), datei))
     return fehler
+
+
+def bedeutung_pruefen(emir, im_index, aus_inhalt, tabelle=None):
+    """Eigener Ton je Bedeutung (ton_bedeutung.json, 21.11.2026).
+
+    emir: Schluessel aus ton_nur_emir.json, im_index: aus web/audio/index.json,
+    aus_inhalt: die Schluessel aus ton_bauen.sammle(). Gibt (fehler, fehlt)
+    zurueck. fehlt sind die eigenen Aufnahmen, die Emir noch nicht gesprochen
+    hat. Das ist KEIN Fehler: die App spielt dort die Aufnahme wie bisher
+    (eigenerTon() in web/js/ton_abspielen.js). Fehler ist dagegen ein
+    Schluessel, der auch ein echter Text im Inhalt ist (dann spraeche die
+    Stelle dessen Ton), oder einer in web/audio: diese Aufnahmen spricht nur
+    Emir, und sammle() nimmt sie bewusst nicht auf."""
+    import ton_bedeutung
+    fehler, fehlt = [], []
+    for k in ton_bedeutung.eigene_schluessel(tabelle):
+        if k in aus_inhalt:
+            fehler.append("ton_bedeutung.json: Schlüssel ist auch ein Text im Inhalt: %s" % k)
+        if k in im_index:
+            fehler.append("ton_bedeutung.json: %s steht in web/audio/index.json - "
+                          "die eigenen Aufnahmen gehören nur in ton_nur_emir.json" % k)
+        if k not in emir and k not in im_index:
+            fehlt.append(k)
+    return fehler, fehlt
 
 
 def main():
@@ -151,7 +177,15 @@ def main():
                            % p["text"][:60])
             continue
         fehler.append("kein Ton für: %s" % p["text"][:60])
-    for k in sorted(set(emir) - {p["key"] for p in posten}):
+    # 3b) Eigener Ton je Bedeutung (21.11.2026): diese Schluessel stehen in
+    #     ton_bedeutung.json, nicht in sammle(). Was davon noch fehlt, ist nur
+    #     ein Hinweis unten - die App spielt bis dahin die Aufnahme wie bisher.
+    import ton_bedeutung
+    f, fehlt_bedeutung = bedeutung_pruefen(set(emir), {e["key"] for e in toene},
+                                           {p["key"] for p in posten})
+    fehler += f
+    eigene = set(ton_bedeutung.eigene_schluessel())
+    for k in sorted(set(emir) - {p["key"] for p in posten} - eigene):
         warnung.append("in ton_nur_emir.json, aber in keinem Inhalt mehr: %s" % k)
 
     # 4) Keine verwaisten Dateien im Ordner
@@ -182,6 +216,11 @@ def main():
         print("Nur von Emir       : %d  (%s)" % (len(emir), "in der Hülle nachgesehen"
               if huelle_audio else "keine Hülle da, nicht nachgesehen"))
     print("Größe gesamt       : %.1f MB" % (groesse / 1048576.0))
+    if eigene:
+        print("Ton je Bedeutung   : %d von %d da%s" % (
+            len(eigene) - len(fehlt_bedeutung), len(eigene),
+            "; bis Emir sie spricht, wie bisher: " + ", ".join(fehlt_bedeutung)
+            if fehlt_bedeutung else ""))
     print()
     for w in warnung[:20]:
         print("  Warnung: %s" % w)

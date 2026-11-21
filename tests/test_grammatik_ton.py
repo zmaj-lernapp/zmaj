@@ -39,7 +39,8 @@ GEWAEHLT = {"ko": "ko_C2.mp3", "plačem": "placem_K2.mp3", "bratom": "bratom_A.m
 
 
 def _nummer(datei):
-    return int(datei[1:5])
+    import ton_bauen
+    return ton_bauen.dateinummer(datei)       # auch fuenfstellig (w10059), 21.11.2026
 
 
 def _index(wurzel):

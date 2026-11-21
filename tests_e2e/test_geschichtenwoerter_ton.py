@@ -27,8 +27,13 @@ def _emir():
         return {e["key"]: e["datei"] for e in json.load(f)["toene"]}
 
 
+def _nummer(datei):
+    import ton_bauen                          # conftest.py legt WURZEL in sys.path
+    return ton_bauen.dateinummer(datei)       # auch fuenfstellig (w10059), 21.11.2026
+
+
 def _neu(emir):
-    return {d for d in emir.values() if ERSTE <= int(d[1:5]) <= LETZTE}
+    return {d for d in emir.values() if ERSTE <= _nummer(d) <= LETZTE}
 
 
 def _genau(text):
@@ -92,7 +97,7 @@ def test_antippen_spricht_emir(seite, heute_stand):
     assert seite.js("(ws) => ws.map(w => audioDatei(w))", [w for _, w, _ in ANTIPPEN]) == [None] * len(ANTIPPEN)
     seite.js(VORBEREITEN, [[k, d] for k, d in emir.items()])
     for gid, wort, key in ANTIPPEN:
-        assert ERSTE <= int(emir[key][1:5]) <= LETZTE, (wort, emir[key])
+        assert ERSTE <= _nummer(emir[key]) <= LETZTE, (wort, emir[key])
         assert seite.js(OEFFNEN, gid) >= 0, gid
         seite.page.locator("#rBody .txt .w", has_text=_genau(wort)).first.click()
         seite.page.wait_for_function("() => window.__gespielt.length > 0", timeout=3000)

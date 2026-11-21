@@ -115,6 +115,7 @@ document.addEventListener('click', e=>{
 });
 
 let SECTIONS = [], CATEGORIES = [], SENTENCES = [], GRAMMAR = {}, STORIES = [], DICT = {};
+let DICT_TON = {};         // Ton je Bedeutung der Woerterbuch-Woerter, siehe eigenerTon() (21.11.2026)
 let SATZBAU = [];          // Sätze aus Kacheln (vokabeln.py SATZBAU), seit 13.10.2026
 let ZA = null;             // Beim Zahnarzt: {sektion, kategorien}, siehe zaLevel() (06.11.2026)
 let known = new Set(), passed = new Set(), read = new Set(), days = new Set();
