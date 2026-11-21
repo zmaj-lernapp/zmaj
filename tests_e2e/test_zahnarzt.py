@@ -500,9 +500,12 @@ def test_uebersetzt_und_bosnisch_bleibt(seite, heute_stand):
     seite.js("() => { offeneSektion = 'zahnarzt'; homeMode = 'words'; showHome(); }")
     assert seite.page.locator(SEKTION + " h2").inner_text() == "At the dentist"
     e = seite.js("() => zaLevel()[0].words[2]")
-    assert e == {"de": "jaw", "bs": "vilica", "id": "za|vilica"}
+    # auch_var: seit K2 (21.11.2026) zählt beim Tippen auch čeljust, siehe
+    # varianten.py; es wird nirgends gezeigt und bleibt in jeder Sprache gleich
+    assert e == {"de": "jaw", "bs": "vilica", "id": "za|vilica", "auch_var": ["čeljust"]}
     # Sprache wechseln, ohne dass der Teil verschwindet
     seite.js("async () => { await setzeSprache('de'); }")
     assert seite.js("() => zaLevel()[0].words[2].de") == "Kiefer"
+    assert seite.js("() => zaLevel()[0].words[2].auch_var") == ["čeljust"]
     assert seite.js("() => zaAn()") is True
     assert seite.fehler == []

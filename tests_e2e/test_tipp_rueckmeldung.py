@@ -210,10 +210,16 @@ def test_jede_andere_form_mit_einem_tippfehler(seite, heute_stand):
     verdoppeltem ersten Buchstaben getippt, wird als Lösung gezeigt. Ausnahme ist
     nur der Gleichstand mit der Hauptform (sskoro: skoro und uskoro je 1 entfernt,
     pprodavac: prodavac und prodavač nach clean() gleich) - dann die Hauptform.
-    Im Lückensatz ebenso, dort gibt es keinen Gleichstand."""
+    Im Lückensatz ebenso, dort gibt es keinen Gleichstand.
+    Seit K2 (21.11.2026, gut 1.150 weitere Formen) auch der Gleichstand mit
+    einer anderen richtigen Form (iistorijska: istorijska und historijska je 1
+    entfernt - dann die, die vorne steht) und eine Form aus einem Buchstaben
+    (aa für a bei ali): dort greift die Grenze in naechsteAntwort() (2 x
+    Abstand > Länge), es bleibt bei der Hauptform. Beides ist keine falsche
+    Lösung, denn gezeigt wird eine richtige Form, die genauso nah liegt."""
     seite.starten(stand=heute_stand())
     erg = seite.js("""() => {
-      const aus = {woerter: 0, saetze: 0, anders: [], gleichstand: 0};
+      const aus = {woerter: 0, saetze: 0, anders: [], gleichstand: 0, zuKurz: 0};
       const prueft = (antworten, haupt, alts, zaehler) => {
         const teile = String(haupt).split(' / ');
         for(const alt of alts){
@@ -223,8 +229,10 @@ def test_jede_andere_form_mit_einem_tippfehler(seite, heute_stand):
           aus[zaehler]++;
           const z = naechsteAntwort(e, antworten, haupt);
           if(z === alt) continue;
-          const dHaupt = Math.min(...teile.map(h => abstand(clean(h), clean(e))));
-          if(z === haupt && dHaupt === abstand(clean(alt), clean(e))) aus.gleichstand++;
+          const dAlt = abstand(clean(alt), clean(e));
+          const dZ = Math.min(...String(z).split(' / ').map(h => abstand(clean(h), clean(e))));
+          if(z === haupt && 2 * dAlt > clean(alt).length) aus.zuKurz++;
+          else if(dZ === dAlt) aus.gleichstand++;
           else aus.anders.push([haupt, alt, e, z]);
         }
       };
@@ -239,5 +247,6 @@ def test_jede_andere_form_mit_einem_tippfehler(seite, heute_stand):
       return aus;
     }""")
     assert erg["woerter"] > 900 and erg["saetze"] > 30, erg
-    assert erg["anders"] == [] and erg["gleichstand"] <= 10, erg
+    # 15 Gleichstände und 2 zu kurze Formen (s, a) am 21.11.2026 (vor K2: höchstens 10)
+    assert erg["anders"] == [] and erg["gleichstand"] <= 20 and erg["zuKurz"] <= 3, erg
     assert seite.fehler == []
