@@ -6094,7 +6094,10 @@ TEXTE = {
 # 14.11.) auch in die iOS-Fassung - sie entsteht aus set.agb_text, nur die
 # Saetze in IOS_RECHT[code]["agb"] werden getauscht, und keiner davon
 # beruehrt Punkt 2. Fuer das iPhone ist das eine neue Fassung vom 16.11.
-IOS_STAND = {"agb": "16.11.2026", "datenschutz": "16.11.2026"}
+# 21.11.2026: Datenschutz mit dem neuen Satz zu Google als eigenem
+# Verantwortlichen im Werbeabsatz (siehe IOS_RECHT["de"]["werbung"]); die
+# Nutzungsbedingungen bleiben beim 16.11.
+IOS_STAND = {"agb": "16.11.2026", "datenschutz": "21.11.2026"}
 IOS_RECHT = {
     'de': {
         'agb': [
@@ -6191,8 +6194,18 @@ IOS_RECHT = {
             # Auftragsverarbeiter), bei der Werbung fehlte es. Gesucht wird
             # nur das Ende des Satzes "Google verwendet all das ...": dessen
             # Anfang ist die Spur von werbung_texte.py (tests/test_richten.py).
+            # 21.11.2026 (Ajdin: "ja", Vorschlag in Release\Nach_Freigabe_2026-11-20\
+            # ios_rechtsseiten\aenderungen.md): Bis dahin stand hier "Google
+            # verarbeitet die Daten fuer uns nach denselben Regeln wie in dieser
+            # Erklaerung." "Fuer uns" heisst Auftragsverarbeitung; bei AdMob ist
+            # Google aber eigener Verantwortlicher (AdMob-Hilfe 7665968, Google Ads
+            # Controller-Controller Data Protection Terms 4.1), und Google folgt
+            # seiner eigenen Erklaerung, nicht unserer. Der Satz sagt jetzt, wer
+            # verantwortlich ist, und behaelt Apples "gleichwertig geschuetzt".
+            # Den Begriff fuer den Verantwortlichen nimmt jede Sprache aus ihrer
+            # DSGVO-Fassung, wie in Abschnitt 1 (tests/test_ios.py).
             ('ihre Reichweite zu messen und Betrug zu erkennen.',
-             'ihre Reichweite zu messen und Betrug zu erkennen. Google verarbeitet die Daten für uns nach denselben Regeln wie in dieser Erklärung.'),
+             'ihre Reichweite zu messen und Betrug zu erkennen. Google ist für diese Verarbeitung selbst verantwortlich (eigener Verantwortlicher nach der DSGVO) und handelt dabei nicht in unserem Auftrag. In seinen Datenschutzbedingungen für Werbepartner (Google Ads Controller-Controller Data Protection Terms) hat Google zugesagt, dabei die DSGVO einzuhalten. Deine Daten sind bei Google also gleichwertig geschützt.'),
             ('<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen.',
              '<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen. Auf iPhone und iPad fragt danach Apple, ob die App dich über Apps und Websites anderer Firmen hinweg verfolgen darf (App-Tracking-Transparenz); nur mit deinem Ja bekommt Google die Werbe-ID. Ändern kannst du das jederzeit in den Einstellungen deines Geräts unter Datenschutz & Sicherheit → Tracking.'),
         ],
@@ -6280,7 +6293,7 @@ IOS_RECHT = {
             ('start-up time, freezes and battery use.',
              'start-up time, freezes and battery use, plus crash reports that are not linked to you.'),
             ('measure their reach and detect fraud.',
-             'measure their reach and detect fraud. Google processes the data for us under the same rules as in this privacy policy.'),
+             'measure their reach and detect fraud. Google is responsible for this processing itself (an independent controller under the GDPR) and does not act on our behalf. In its data protection terms for advertising partners (Google Ads Controller-Controller Data Protection Terms), Google has committed to complying with the GDPR when doing so. Your data is therefore protected to an equal standard at Google.'),
             ('<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests.',
              "<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests. On iPhone and iPad, Apple then asks whether the app may track you across apps and websites owned by other companies (App Tracking Transparency); only if you say yes does Google receive the advertising ID. You can change this at any time in your device's Settings under Privacy & Security → Tracking."),
         ],
@@ -6368,7 +6381,7 @@ IOS_RECHT = {
             ('başlatma süresi, takılmalar ve pil tüketimi.',
              'başlatma süresi, takılmalar ve pil tüketimi; ayrıca seninle ilişkilendirilmeyen çökme raporları.'),
             ('erişimi ölçmek ve dolandırıcılığı tespit etmek için kullanır.',
-             'erişimi ölçmek ve dolandırıcılığı tespit etmek için kullanır. Google verileri bizim için bu gizlilik politikasındaki kuralların aynısına göre işler.'),
+             "erişimi ölçmek ve dolandırıcılığı tespit etmek için kullanır. Google bu işlemeden kendisi sorumludur (GDPR uyarınca bağımsız veri sorumlusu) ve bu sırada bizim adımıza hareket etmez. Google, reklam ortaklarına yönelik veri koruma koşullarında (Google Ads Controller-Controller Data Protection Terms) bu işlemede GDPR hükümlerine uymayı taahhüt etmiştir. Bu nedenle verilerin Google'da da eşdeğer düzeyde korunur."),
             ('<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar.',
              "<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar. iPhone ve iPad'de ardından Apple, uygulamanın seni başka şirketlerin uygulama ve web sitelerinde izleyip izleyemeyeceğini sorar (Uygulama İzleme Şeffaflığı); Google reklam kimliğini yalnızca sen evet dersen alır. Bunu istediğin zaman cihazının Ayarlar'ında Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin."),
         ],
@@ -6456,7 +6469,7 @@ IOS_RECHT = {
             ('starttid, hängningar och batteriförbrukning.',
              'starttid, hängningar och batteriförbrukning, dessutom kraschrapporter som inte är kopplade till dig.'),
             ('mäta deras räckvidd och upptäcka bedrägerier.',
-             'mäta deras räckvidd och upptäcka bedrägerier. Google behandlar uppgifterna åt oss enligt samma regler som i den här integritetspolicyn.'),
+             'mäta deras räckvidd och upptäcka bedrägerier. Google ansvarar själv för den här behandlingen (som självständig personuppgiftsansvarig enligt GDPR) och agerar inte för vår räkning. I sina dataskyddsvillkor för annonspartner (Google Ads Controller-Controller Data Protection Terms) har Google åtagit sig att följa GDPR vid behandlingen. Dina uppgifter är alltså likvärdigt skyddade hos Google.'),
             ('<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen.',
              '<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen. På iPhone och iPad frågar Apple sedan om appen får spåra dig i appar och på webbplatser som tillhör andra företag (App Tracking Transparency); bara om du svarar ja får Google annons-id:t. Du kan ändra det när som helst i enhetens Inställningar under Integritet och säkerhet → Spårning.'),
         ],
@@ -6544,7 +6557,7 @@ IOS_RECHT = {
             ('opstarttijd, haperingen en batterijverbruik.',
              'opstarttijd, haperingen en batterijverbruik, plus crashrapporten die niet aan jou gekoppeld zijn.'),
             ('hun bereik te meten en fraude op te sporen.',
-             'hun bereik te meten en fraude op te sporen. Google verwerkt de gegevens voor ons volgens dezelfde regels als in deze privacyverklaring.'),
+             'hun bereik te meten en fraude op te sporen. Google is zelf verantwoordelijk voor deze verwerking (zelfstandige verwerkingsverantwoordelijke volgens de AVG) en handelt daarbij niet namens ons. In zijn gegevensbeschermingsvoorwaarden voor advertentiepartners (Google Ads Controller-Controller Data Protection Terms) heeft Google toegezegd zich daarbij aan de AVG te houden. Je gegevens zijn bij Google dus gelijkwaardig beschermd.'),
             ('<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden.',
              '<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden. Op iPhone en iPad vraagt Apple daarna of de app je mag volgen in apps en op websites van andere bedrijven (App Tracking Transparency); alleen als je ja zegt, krijgt Google de advertentie-ID. Je kunt dat altijd wijzigen in de Instellingen van je apparaat onder Privacy en beveiliging → Tracking.'),
         ],
@@ -6632,7 +6645,7 @@ IOS_RECHT = {
             ('oppstartstid, heng og batteriforbruk.',
              'oppstartstid, heng og batteriforbruk, i tillegg krasjrapporter som ikke er knyttet til deg.'),
             ('måle rekkevidden deres og oppdage svindel.',
-             'måle rekkevidden deres og oppdage svindel. Google behandler opplysningene for oss etter de samme reglene som i denne personvernerklæringen.'),
+             'måle rekkevidden deres og oppdage svindel. Google er selv ansvarlig for denne behandlingen (selvstendig behandlingsansvarlig etter personvernforordningen) og handler ikke på våre vegne. I sine personvernvilkår for annonsepartnere (Google Ads Controller-Controller Data Protection Terms) har Google forpliktet seg til å overholde personvernforordningen ved behandlingen. Opplysningene dine er altså likeverdig beskyttet hos Google.'),
             ('<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine.',
              '<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine. På iPhone og iPad spør Apple deretter om appen får spore deg på tvers av apper og nettsteder som tilhører andre selskaper (Gjennomsiktighet for appsporing); bare hvis du sier ja, får Google annonse-ID-en. Du kan endre det når som helst i Innstillinger på enheten under Personvern og sikkerhet → Sporing.'),
         ],
@@ -6720,7 +6733,7 @@ IOS_RECHT = {
             ('opstartstid, hængninger og batteriforbrug.',
              'opstartstid, hængninger og batteriforbrug, desuden nedbrudsrapporter, der ikke er knyttet til dig.'),
             ('måle deres rækkevidde og opdage svindel.',
-             'måle deres rækkevidde og opdage svindel. Google behandler oplysningerne for os efter de samme regler som i denne privatlivspolitik.'),
+             'måle deres rækkevidde og opdage svindel. Google er selv ansvarlig for denne behandling (selvstændig dataansvarlig efter databeskyttelsesforordningen) og handler ikke på vores vegne. I sine databeskyttelsesvilkår for annoncepartnere (Google Ads Controller-Controller Data Protection Terms) har Google forpligtet sig til at overholde databeskyttelsesforordningen ved behandlingen. Dine oplysninger er altså ligeværdigt beskyttet hos Google.'),
             ('<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser.',
              "<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser. På iPhone og iPad spørger Apple derefter, om appen må spore dig på tværs af apps og websteder, der tilhører andre virksomheder (Gennemsigtighed i appsporing); kun hvis du siger ja, får Google annonce-id'et. Du kan til enhver tid ændre det i enhedens Indstillinger under Anonymitet & sikkerhed → Sporing."),
         ],
@@ -6810,7 +6823,7 @@ IOS_RECHT = {
             ('temps de démarrage, blocages et consommation de batterie.',
              'temps de démarrage, blocages et consommation de batterie, ainsi que des rapports de plantage qui ne sont pas liés à toi.'),
             ('mesurer leur portée et détecter la fraude.',
-             'mesurer leur portée et détecter la fraude. Google traite les données pour nous selon les mêmes règles que celles de cette politique de confidentialité.'),
+             "mesurer leur portée et détecter la fraude. Google est lui-même responsable de ce traitement (responsable du traitement indépendant au sens du RGPD) et n'agit pas pour notre compte. Dans ses conditions de protection des données pour les partenaires publicitaires (Google Ads Controller-Controller Data Protection Terms), Google s'est engagé à respecter le RGPD dans ce cadre. Tes données sont donc protégées de manière équivalente chez Google."),
             ("<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt.",
              "<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt. Sur iPhone et iPad, Apple te demande ensuite si l'application peut te suivre dans les apps et sur les sites web d'autres entreprises (transparence du suivi des apps) ; Google ne reçoit l'identifiant publicitaire que si tu dis oui. Tu peux le modifier à tout moment dans les Réglages de ton appareil, sous Confidentialité et sécurité → Suivi."),
         ],

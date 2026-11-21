@@ -260,7 +260,22 @@ def test_ios_datenschutz_app_set_id_bricht_ab(monkeypatch):
 # Fragen 15.11.2026 Nr. 2 (Ajdin: "2 ja"): Apple will in der Erklaerung
 # lesen, dass ein fremder Dienst die Daten genauso schuetzt. Beim Konto steht
 # es (Auftragsverarbeiter), bei der Werbung nun auch - nur auf iOS.
-GOOGLE_REGELN = {
+# 21.11.2026 (Ajdin: "ja"): Der Satz vom 16.11. ("fuer uns nach denselben
+# Regeln") machte Google zum Auftragsverarbeiter; bei AdMob ist Google aber
+# eigener Verantwortlicher (Google Ads Controller-Controller Data Protection
+# Terms). Der neue Satz sagt das und behaelt "gleichwertig geschuetzt".
+GOOGLE_VERANTWORTLICH = {
+    "de": "Google ist für diese Verarbeitung selbst verantwortlich (eigener Verantwortlicher nach der DSGVO) und handelt dabei nicht in unserem Auftrag. In seinen Datenschutzbedingungen für Werbepartner (Google Ads Controller-Controller Data Protection Terms) hat Google zugesagt, dabei die DSGVO einzuhalten. Deine Daten sind bei Google also gleichwertig geschützt.",
+    "en": "Google is responsible for this processing itself (an independent controller under the GDPR) and does not act on our behalf. In its data protection terms for advertising partners (Google Ads Controller-Controller Data Protection Terms), Google has committed to complying with the GDPR when doing so. Your data is therefore protected to an equal standard at Google.",
+    "tr": "Google bu işlemeden kendisi sorumludur (GDPR uyarınca bağımsız veri sorumlusu) ve bu sırada bizim adımıza hareket etmez. Google, reklam ortaklarına yönelik veri koruma koşullarında (Google Ads Controller-Controller Data Protection Terms) bu işlemede GDPR hükümlerine uymayı taahhüt etmiştir. Bu nedenle verilerin Google'da da eşdeğer düzeyde korunur.",
+    "sv": "Google ansvarar själv för den här behandlingen (som självständig personuppgiftsansvarig enligt GDPR) och agerar inte för vår räkning. I sina dataskyddsvillkor för annonspartner (Google Ads Controller-Controller Data Protection Terms) har Google åtagit sig att följa GDPR vid behandlingen. Dina uppgifter är alltså likvärdigt skyddade hos Google.",
+    "nl": "Google is zelf verantwoordelijk voor deze verwerking (zelfstandige verwerkingsverantwoordelijke volgens de AVG) en handelt daarbij niet namens ons. In zijn gegevensbeschermingsvoorwaarden voor advertentiepartners (Google Ads Controller-Controller Data Protection Terms) heeft Google toegezegd zich daarbij aan de AVG te houden. Je gegevens zijn bij Google dus gelijkwaardig beschermd.",
+    "nb": "Google er selv ansvarlig for denne behandlingen (selvstendig behandlingsansvarlig etter personvernforordningen) og handler ikke på våre vegne. I sine personvernvilkår for annonsepartnere (Google Ads Controller-Controller Data Protection Terms) har Google forpliktet seg til å overholde personvernforordningen ved behandlingen. Opplysningene dine er altså likeverdig beskyttet hos Google.",
+    "da": "Google er selv ansvarlig for denne behandling (selvstændig dataansvarlig efter databeskyttelsesforordningen) og handler ikke på vores vegne. I sine databeskyttelsesvilkår for annoncepartnere (Google Ads Controller-Controller Data Protection Terms) har Google forpligtet sig til at overholde databeskyttelsesforordningen ved behandlingen. Dine oplysninger er altså ligeværdigt beskyttet hos Google.",
+    "fr": "Google est lui-même responsable de ce traitement (responsable du traitement indépendant au sens du RGPD) et n'agit pas pour notre compte. Dans ses conditions de protection des données pour les partenaires publicitaires (Google Ads Controller-Controller Data Protection Terms), Google s'est engagé à respecter le RGPD dans ce cadre. Tes données sont donc protégées de manière équivalente chez Google.",
+}
+# Der alte Satz vom 16.11.2026 darf nirgends mehr stehen.
+GOOGLE_REGELN_ALT = {
     "de": "Google verarbeitet die Daten für uns nach denselben Regeln wie in dieser Erklärung.",
     "en": "Google processes the data for us under the same rules as in this privacy policy.",
     "tr": "Google verileri bizim için bu gizlilik politikasındaki kuralların aynısına göre işler.",
@@ -270,33 +285,48 @@ GOOGLE_REGELN = {
     "da": "Google behandler oplysningerne for os efter de samme regler som i denne privatlivspolitik.",
     "fr": "Google traite les données pour nous selon les mêmes règles que celles de cette politique de confidentialité.",
 }
+# Wie Abschnitt 1 den Verantwortlichen nennt (die Begriffe der DSGVO in der
+# jeweiligen Sprache) - so muss ihn auch der Satz zu Google nennen.
+VERANTWORTLICHER = {"de": "Verantwortlicher", "en": "controller", "tr": "veri sorumlusu",
+                    "sv": "personuppgiftsansvarig", "nl": "verwerkingsverantwoordelijke",
+                    "nb": "behandlingsansvarlig", "da": "dataansvarlig", "fr": "responsable du traitement"}
 
 
-def test_ios_datenschutz_google_nach_denselben_regeln(sprachcodes, monkeypatch):
+def test_ios_datenschutz_google_eigener_verantwortlicher(sprachcodes, monkeypatch):
     """Der Satz steht im Absatz zur Werbung, direkt hinter dem, wofuer Google
     die Daten nutzt, einmal und nur in der iOS-Fassung. Ohne Werbung gibt es
-    den Absatz nicht, dann auch den Satz nicht."""
+    den Absatz nicht, dann auch den Satz nicht. Der alte Satz ("fuer uns nach
+    denselben Regeln") steht in keiner Fassung mehr."""
     import sprachen
-    assert sorted(GOOGLE_REGELN) == sorted(sprachcodes)
+    assert sorted(GOOGLE_VERANTWORTLICH) == sorted(sprachcodes) == sorted(VERANTWORTLICHER)
     for code in sprachcodes:
         t = sprachen.texte(code)
         ios = t["set.datenschutz_text_ios"]
-        assert ios.count(GOOGLE_REGELN[code]) == 1, code
-        werbung = [a for a in ios.split("<br>") if "AdMob" in a and GOOGLE_REGELN[code] in a]
-        assert len(werbung) == 1 and werbung[0].endswith(GOOGLE_REGELN[code]), code
-        assert GOOGLE_REGELN[code] not in t["set.datenschutz_text"], code
+        satz = GOOGLE_VERANTWORTLICH[code]
+        assert ios.count(satz) == 1, code
+        werbung = [a for a in ios.split("<br>") if "AdMob" in a and satz in a]
+        assert len(werbung) == 1 and werbung[0].endswith(satz), code
+        assert satz not in t["set.datenschutz_text"], code
+        assert "Controller-Controller Data Protection Terms" in satz, code
+        # derselbe Begriff wie in der Ueberschrift von Abschnitt 1
+        kopf = re.search(r"<b>1\. ([^<]+)</b>", ios).group(1)
+        assert kopf.lower() == VERANTWORTLICHER[code].lower(), (code, kopf)
+        assert VERANTWORTLICHER[code] in satz, code
+        for k in ("set.datenschutz_text", "set.datenschutz_text_ios"):
+            assert GOOGLE_REGELN_ALT[code] not in t[k], (code, k)
     monkeypatch.setattr(sprachen, "WERBUNG_LAEUFT", False)
     for code in sprachcodes:
-        assert GOOGLE_REGELN[code] not in sprachen.texte(code)["set.datenschutz_text_ios"], code
+        assert GOOGLE_VERANTWORTLICH[code] not in sprachen.texte(code)["set.datenschutz_text_ios"], code
 
 
 # Pruefbericht 1.4, S22: eigener Stand der iOS-Fassungen (IOS_STAND).
-# Seit 19.11.2026 (Android 1.4, Abschnitt 3 „Wie oft“) gilt der spaetere
-# Stand der Android-Fassung, IOS_STAND bleibt beim 16.11. (stand_setzen).
-STAND_DS_IOS = {"de": "Stand: 19.11.2026", "en": "Last updated: November 19, 2026",
-                "tr": "Son güncelleme: 19.11.2026", "sv": "Senast uppdaterad: 19.11.2026",
-                "nl": "Laatst bijgewerkt: 19 november 2026", "nb": "Sist oppdatert: 19.11.2026",
-                "da": "Senest opdateret: 19.11.2026", "fr": "Dernière mise à jour : 19.11.2026"}
+# Vom 19.11.2026 (Android 1.4, Abschnitt 3 „Wie oft“) bis zum 21.11. galt der
+# spaetere Stand der Android-Fassung. Seit dem neuen Satz zu Google
+# (21.11.2026) ist IOS_STAND der spaetere (stand_setzen).
+STAND_DS_IOS = {"de": "Stand: 21.11.2026", "en": "Last updated: November 21, 2026",
+                "tr": "Son güncelleme: 21.11.2026", "sv": "Senast uppdaterad: 21.11.2026",
+                "nl": "Laatst bijgewerkt: 21 november 2026", "nb": "Sist oppdatert: 21.11.2026",
+                "da": "Senest opdateret: 21.11.2026", "fr": "Dernière mise à jour : 21.11.2026"}
 
 
 def _stand(text):
@@ -306,7 +336,7 @@ def _stand(text):
 def test_ios_datenschutz_stand(sprachcodes):
     import sprachen
     assert sorted(STAND_DS_IOS) == sorted(sprachcodes)
-    assert sprachen.IOS_STAND["datenschutz"] == "16.11.2026"
+    assert sprachen.IOS_STAND["datenschutz"] == "21.11.2026"
     for code in sprachcodes:
         assert _stand(sprachen.texte(code)["set.datenschutz_text_ios"]) == [STAND_DS_IOS[code]], code
 

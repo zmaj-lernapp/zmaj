@@ -494,6 +494,16 @@ are in the Play Store listing. Format:
   apps of one developer)", in all eight languages, with and without an account;
   dated 16.11.2026. The website (`seite_bauen.py`) takes the same text.
   `tests/test_datenschutz_s23.py`.
+- Privacy policy for iPhone and iPad, ads (the maintainer on 21.11.2026: yes):
+  the sentence added on 16.11.2026, "Google processes the data for us under the
+  same rules as in this privacy policy", described Google as our processor and
+  contradicted the pointer to Google's own privacy policy. For AdMob Google is
+  an independent controller (Google Ads Controller-Controller Data Protection
+  Terms). The sentence now says so, says that Google does not act on our behalf
+  and has committed to complying with the GDPR, and keeps Apple's point that
+  the data is protected to an equal standard. All eight languages, with each
+  language's GDPR term for the controller as in section 1; the iOS policy is
+  dated 21.11.2026, Android is unchanged. `tests/test_ios.py`.
 - Privacy policy, section 3, "How often" (with an account only; approved by
   the maintainer on 17.11.2026): it said the app reads the account at most
   once a day on start and writes at most once a day on leaving, which no
