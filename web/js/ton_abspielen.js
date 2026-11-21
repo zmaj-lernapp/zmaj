@@ -586,7 +586,7 @@ function audioDatei(text){
    Satzwoerter der Wortliste DICT_TON. Die Aufnahme dazu spricht Emir.
    Solange es sie nicht gibt - und immer in der Web-Demo, die Emir nicht
    hat - spielt der Text wie bisher: nie Stille statt des alten Tons. */
-function eigenerTon(text, ton){ return ton && audioDatei(ton) ? ton : text; }
+function eigenerTon(text, ton){ return typeof ton === 'string' && ton && audioDatei(ton) ? ton : text; }
 /* Was eine Vokabel spricht: ihr eigener Ton, sonst w.bs wie bisher. */
 function wortTon(w){ return eigenerTon(w.bs, w.ton); }
 function sprichMitStimme(text, fertig, rate){
