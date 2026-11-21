@@ -480,8 +480,10 @@ TON_ANFANG = ("silenceremove=start_periods=1:start_threshold=-65dB:start_silence
 # Nachlauf vom 06.10.2026 (emir_lauf.py, apad=pad_dur=0.5). Er kam damals
 # gegen abgeschnittene Wortenden hinein, die eigentliche Ursache war aber
 # der Punkt hinter dem Wort. In der App haengt am Ende des Tons nichts
-# (onended in ton.js und ton_abspielen.js), der Hoeren-Knopf ist nur rund
-# 0,4 s frueher wieder frei. Darum dieselbe vorsichtige Regel wie vorn,
+# (onended in ton.js und ton_abspielen.js), und der Hoeren-Knopf ist bei
+# Woertern nie gesperrt (aufgaben.js: stilleBitte(); speak(w.bs)) - der
+# Gewinn ist allein die Groesse (Pruefung 21.11.2026; bis dahin stand hier
+# "0,4 s frueher wieder frei"). Darum dieselbe vorsichtige Regel wie vorn,
 # nur rueckwaerts: was in 1 ms ueber -65 dB ausschlaegt (Spitze), zaehlt
 # als Laut, und danach bleiben 150 ms Stille stehen.
 # Freigabe nach der blinden Hoerprobe vom 20.11.2026, auch mit Bluetooth
@@ -491,8 +493,12 @@ TON_ANFANG = ("silenceremove=start_periods=1:start_threshold=-65dB:start_silence
 # Wert hat -90 dBFS, und das Wortende ist auch nach Opus auf die
 # Millisekunde dasselbe (silencedetect -50 dB, 20k mit und ohne TON_ENDE).
 # silenceremove setzt rueckwaerts an der Kante zur stehengelassenen Stille
-# ein paar Samples um, alle leiser als -57 dBFS; die Stimme davor bleibt
-# samplegleich. Die Dateien werden mit Bitrate zusammen 24 % kleiner.
+# 1 bis 2 Samples direkt hinter dem letzten Laut um (eine 0 und den
+# letzten Wert doppelt), gemessen bis -49,9 dBFS (w2928, Pruefung
+# 21.11.2026; vorher stand hier "alle leiser als -57 dBFS"). TON_ANFANG
+# macht an seiner Kante dasselbe, seit dem 22.10.2026 in der App; hoerbar
+# ist das nicht. Die Stimme davor bleibt samplegleich. Die Dateien werden
+# mit Bitrate zusammen 24 % kleiner.
 # iOS nicht: AAC wird damit nur 1,2 % kleiner (Pruefung 20.11.2026), und
 # ton_filter() laesst dort alles wie vor 1.5, auch den Schluessel in .ton_aac.
 TON_ENDE = ("areverse,silenceremove=start_periods=1:start_threshold=-65dB:start_silence=0.15"
