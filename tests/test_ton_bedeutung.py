@@ -154,6 +154,112 @@ def test_geschichte_mit_eigenem_glossar_ist_entschieden(tabelle):
     assert offen == [], "in ton_bedeutung.json \"geschichten\" entscheiden: %s" % offen
 
 
+def _ist_wort(w):
+    """istWort(grundBedeutung(w)) aus web/js/start.js: hoechstens zwei Woerter in der
+    deutschen Bedeutung der Wort-ID. Alles andere zerlegt die Wortliste in Satzwoerter."""
+    schnitt = len(w["id"]) - len(w["bs"]) - 1
+    de = w["id"][:schnitt] if schnitt > 0 else w["de"]
+    return len(re.sub(r"\([^)]*\)", " ", de).split(" / ")[0].split()) <= 2
+
+
+def _saetze():
+    return {i: w for i, w in _vokabeln().items() if not _ist_wort(dict(w, id=i))}
+
+
+def test_saetze_gibt_es_und_passen(tabelle):
+    """Abschnitt "saetze": jede Wort-ID ist ein Satz, das Wort steht darin, es hat ein "*"
+    (von dem abgewichen wird), und der Schluessel gehoert zu diesem Wort."""
+    saetze = _saetze()
+    assert tabelle["saetze"]
+    for i, je_wort in tabelle["saetze"].items():
+        assert i in saetze, "kein Satz mit dieser Wort-ID (Tippfehler, oder ein Wort?): %s" % i
+        teile = [x.lower() for x in ton_bauen.textwoerter(saetze[i]["bs"])]
+        for wort, k in je_wort.items():
+            assert wort in teile, (i, wort)
+            assert wort in tabelle["geschichten"], (i, wort)
+            assert ton_bedeutung.wort_von(k) == wort, (i, wort, k)
+            assert k != tabelle["geschichten"][wort]["*"], "gleich dem \"*\", die Zeile ist ueberfluessig: %s" % i
+
+
+# Woran man an der deutschen Bedeutung eines Satzes erkennt, dass ein Satzwort NICHT die
+# Bedeutung aus dem WOERTERBUCH hat, und welcher Ton dann gilt (21.11.2026).
+ANDERE_BEDEUTUNG = {
+    "sam": (r"\b(allein|selbst|selber)\b", "sam"),                  # sȃm, nicht "bin"
+    "smije": (r"\b(darf|darfst|dürfen|dürft)\b", "smije (darf)"),   # nicht "lacht"
+    "jela": (r"\btanne", "jela (tanne)"),                           # nicht "gegessen"
+}
+
+
+def test_satzwort_mit_anderer_bedeutung_ist_entschieden(tabelle):
+    """"Wörter dieses Levels" spielt fuer ein Satzwort den Ton seiner Bedeutung im
+    WOERTERBUCH ("*"). In „Sam izdržava cijelu porodicu.“ ist das falsch: dort heisst
+    "sam" allein. Ein neuer Satz dieser Art soll auffallen, bevor er nach Emirs
+    Aufnahme "sam (bin)" spielt."""
+    offen = []
+    for i, w in _saetze().items():
+        teile = {x.lower() for x in ton_bauen.textwoerter(w["bs"])}
+        de = i[:len(i) - len(w["bs"]) - 1]                 # die deutsche Bedeutung, klein
+        for wort, (muster, k) in ANDERE_BEDEUTUNG.items():
+            if wort in teile and re.search(muster, de) and tabelle["saetze"].get(i, {}).get(wort) != k:
+                offen.append("%s (%s: %s)" % (i, wort, k))
+    assert offen == [], "in ton_bedeutung.json \"saetze\" eintragen: %s" % offen
+    # Beim Zahnarzt gibt es keine Ausnahmen je Satz (zahnarzt_fuer_app() in inhalt.py).
+    import zahnarzt
+    za = ["%s (%s)" % (w["bs"], wort) for k in zahnarzt.KATEGORIEN for w in k["words"]
+          for wort, (muster, _) in ANDERE_BEDEUTUNG.items()
+          if wort in {x.lower() for x in ton_bauen.textwoerter(w["bs"])} and re.search(muster, w["de"].lower())]
+    assert za == [], "Beim Zahnarzt braeuchte es satzwort_ton: %s" % za
+
+
+def test_bau_merkt_veralteten_ton(tmp_path, monkeypatch, grunddaten):
+    """app_bauen.inhalt_aktuell() meldet web/inhalt als veraltet, wenn der Ton nicht zur
+    Tabelle passt: nach einer Aenderung an ton_bedeutung.json (Uhrzeit), und bei einem
+    Inhalt ohne "ton" (gebaut vor dem 21.11.2026) auch dann, wenn die Datei neuer ist.
+    Bis zur Pruefung vom 21.11.2026 kannte INHALT_QUELLEN die Tabelle gar nicht: das
+    Handy haette die alten Toene gespielt, am PC waere alles richtig gewesen."""
+    import shutil
+    import time
+
+    import app_bauen
+    for quelle in ("ton_bedeutung.json", "ton_bedeutung.py", "inhalt.py"):
+        assert quelle in app_bauen.INHALT_QUELLEN, quelle
+    ordner = tmp_path / "web" / "inhalt"
+    ordner.mkdir(parents=True)
+    tab = tmp_path / "ton_bedeutung.json"
+    shutil.copy(os.path.join(WURZEL, "ton_bedeutung.json"), str(tab))
+    monkeypatch.setattr(app_bauen, "HIER", str(tmp_path))
+    jetzt = time.time()
+
+    def bauen(daten, tabelle_alter):
+        (ordner / "de.json").write_text(json.dumps(daten, ensure_ascii=False), encoding="utf-8")
+        os.utime(str(ordner / "de.json"), (jetzt, jetzt))
+        os.utime(str(tab), (jetzt + tabelle_alter, jetzt + tabelle_alter))
+
+    gebaut = {k: v for k, v in grunddaten.items() if k != "maskottchen"}
+    bauen(gebaut, -60)
+    assert app_bauen.inhalt_aktuell() == []
+
+    felder = ("ton", "satzwort_ton")
+
+    def ohne(x):
+        return {k: v for k, v in x.items() if k not in felder}
+    alt = dict(gebaut, kategorien=[dict(k, words=[ohne(w) for w in k["words"]]) for k in gebaut["kategorien"]],
+               geschichten=[ohne(g) for g in gebaut["geschichten"]],
+               grammatik={lid: dict(lek, uebungen=[ohne(u) for u in lek["uebungen"]]) if "uebungen" in lek else lek
+                          for lid, lek in gebaut["grammatik"].items()})
+    alt.pop("woerterbuch_ton")
+    bauen(alt, -60)                                     # Datei neuer, aber ohne Ton
+    assert app_bauen.inhalt_aktuell() == [app_bauen.TON_VERALTET]
+
+    neu = json.loads(tab.read_text(encoding="utf-8"))
+    neu["woerter"]["lang:dug"] = "dug (kurz)"
+    tab.write_text(json.dumps(neu, ensure_ascii=False), encoding="utf-8")
+    bauen(gebaut, +60)                                  # Tabelle nach dem Bauen geaendert
+    assert app_bauen.inhalt_aktuell() == ["ton_bedeutung.json"]
+    bauen(gebaut, -60)                                  # ... und Datei trotzdem neuer
+    assert app_bauen.inhalt_aktuell() == [app_bauen.TON_VERALTET]
+
+
 def test_geschichte_toene_zaehlt_wie_die_app():
     """Gross und klein ist dasselbe Wort, gezaehlt ab dem ersten Vorkommen; None heisst
     wie bisher, und ein Wort ohne eigene Aufnahme kommt gar nicht hinein."""
@@ -165,26 +271,51 @@ def test_geschichte_toene_zaehlt_wie_die_app():
         "sam": ["sam (bin)"] * 3, "on": ["on (er)"]}
 
 
+def test_jede_bedeutung_bekommt_eine_eigene_aufnahme(tabelle):
+    """Seit dem Abend des 21.11.2026 bekommt jede Bedeutung eine eigene Aufnahme, statt
+    dass eine die heutige Datei behaelt: sonst haette Ajdin fuer 16 Dateien heraushoeren
+    muessen, zu welcher Bedeutung sie passt. Einzige Ausnahme ist sȃm (allein), dafuer
+    klingt w1359 (gemessen und gehoert, Release/Ton_gleiche_Schreibung_2026-11-21/
+    ursache.md). Jedes Wort der Tabelle hat mindestens zwei Bedeutungen."""
+    bisherig = sorted({k for _, k in ton_bedeutung.alle_schluessel(tabelle) if not ton_bedeutung.eigen(k)})
+    assert bisherig == ["sam"], bisherig
+    je_wort = {}
+    for _, k in ton_bedeutung.alle_schluessel(tabelle):
+        je_wort.setdefault(ton_bedeutung.wort_von(k), set()).add(k)
+    assert {w: ks for w, ks in je_wort.items() if len(ks) < 2} == {}
+    assert len(ton_bedeutung.eigene_schluessel(tabelle)) == 35          # Emir-Liste w10059 bis w10093
+
+
 def test_app_bekommt_den_ton(grunddaten):
-    """Was die App bekommt: "ton" nur dort, wo es eine eigene Aufnahme geben soll."""
+    """Was die App bekommt: "ton" dort, wo es eine eigene Aufnahme geben soll."""
     voc = {w["id"]: w for k in grunddaten["kategorien"] for w in k["words"]}
     assert voc["lang:dug"]["ton"] == "dug (lang)" and voc["lang:dug"]["bs"] == "dug"
-    assert "ton" not in voc["schulden:dug"]
-    assert voc["wenig:malo"]["ton"] == "malo (wenig)" and "ton" not in voc["klein:malo"]
+    assert voc["schulden:dug"]["ton"] == "dug (schulden)"
+    assert voc["wenig:malo"]["ton"] == "malo (wenig)" and voc["klein:malo"]["ton"] == "malo (klein)"
+    assert voc["küken / hähnchen:pile"]["ton"] == "pile (küken)"
     gesch = {g["id"]: g for g in grunddaten["geschichten"]}
-    # Ajdins Fund: in b1_voz ist das erste "sam" "bin", das zweite "allein"
+    # Ajdins Fund: in b1_voz ist das erste "sam" "bin", das zweite "allein" (w1359 wie bisher)
     assert gesch["b1_voz"]["ton"]["sam"] == ["sam (bin)", None]
     assert gesch["jucer"]["ton"]["sam"] == ["sam (bin)"] * 3
-    assert "mi" not in gesch["pismo"]["ton"]                  # "Mi smo dobro": wir, wie bisher
-    assert gesch["b1_doktor"]["ton"]["vas"] == ["vas (betont)", None]
-    assert gesch["b1_struja"]["ton"]["te"] == ["te (diese)"]
-    assert "ton" not in gesch["mira"] or "smije" not in gesch["mira"]["ton"]   # lacht, wie bisher
+    assert gesch["pismo"]["ton"]["mi"] == ["mi (wir)"]          # "Mi smo dobro"
+    assert gesch["jucer"]["ton"]["mi"] == ["mi (mir)"]          # "Nana mi je pokazala"
+    assert gesch["b1_doktor"]["ton"]["vas"] == ["vas (betont)", "vas (unbetont)"]
+    assert gesch["b1_struja"]["ton"]["te"] == ["te (diese)"] and gesch["pismo"]["ton"]["te"] == ["te (dich)"]
+    assert gesch["mira"]["ton"]["smije"] == ["smije (lacht)"]
     assert gesch["b1_kahva"]["ton"]["smije"] == ["smije (darf)"]
+    assert gesch["jucer"]["ton"]["pile"] == ["pile (getrunken)"]
+    assert gesch["b1_pita"]["ton"]["pita"] == ["pita (gericht)"]
     u = grunddaten["grammatik"]["faelle3"]["uebungen"][4]
     assert (u["richtig"], u["ton"]) == ("mi", "mi (mir)")
     assert grunddaten["grammatik"]["vergangenheit"]["uebungen"][2]["ton"] == "radio (gemacht)"
     assert grunddaten["woerterbuch_ton"]["sam"] == "sam (bin)"
-    assert "te" not in grunddaten["woerterbuch_ton"]
+    assert grunddaten["woerterbuch_ton"]["smije"] == "smije (lacht)"
+    # Satzwoerter der Wortliste, die nicht die Bedeutung aus dem Woerterbuch haben
+    assert voc["er versorgt allein die ganze familie.:Sam izdržava cijelu porodicu."]["satzwort_ton"] == {
+        "sam": "sam"}
+    assert voc["in der kurve darf man nicht überholen.:U krivini se ne smije preticati."]["satzwort_ton"] == {
+        "smije": "smije (darf)"}
+    assert "satzwort_ton" not in voc["ich habe die schlüssel verloren.:Izgubio sam ključeve."]
 
 
 def test_ton_ist_in_jeder_sprache_gleich(alle_daten, grunddaten):
@@ -193,9 +324,10 @@ def test_ton_ist_in_jeder_sprache_gleich(alle_daten, grunddaten):
         return ({w["id"]: w.get("ton") for k in d["kategorien"] for w in k["words"] if w.get("ton")},
                 {g["id"]: g.get("ton") for g in d["geschichten"] if g.get("ton")},
                 {lid: [u.get("ton") for u in lek.get("uebungen", [])] for lid, lek in d["grammatik"].items()},
-                d["woerterbuch_ton"])
+                d["woerterbuch_ton"],
+                {w["id"]: w["satzwort_ton"] for k in d["kategorien"] for w in k["words"] if "satzwort_ton" in w})
     soll = toene(grunddaten)
-    assert soll[0] and soll[1]
+    assert soll[0] and soll[1] and soll[4]
     for code, d in alle_daten.items():
         assert toene(d) == soll, code
 
@@ -208,7 +340,7 @@ def test_moduldaten_bleiben_unberuehrt(grunddaten):
     import vokabeln
     assert not [g["id"] for g in geschichten.GESCHICHTEN if "ton" in g]
     assert not [lid for lid, lek in grammatik.GRAMMATIK.items() for u in lek.get("uebungen", []) if "ton" in u]
-    assert not [w["bs"] for k in vokabeln.KATEGORIEN for w in k["words"] if "ton" in w]
+    assert not [w["bs"] for k in vokabeln.KATEGORIEN for w in k["words"] if "ton" in w or "satzwort_ton" in w]
 
 
 def test_azure_spricht_die_schluessel_nie(tabelle):

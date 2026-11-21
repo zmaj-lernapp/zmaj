@@ -497,8 +497,14 @@ function wortzeilen(c){
       if(!bed) return;              // ohne Bedeutung wäre die Zeile leer
       gesehen.add(f);
       /* Die Bedeutung kommt aus dem Woerterbuch, also auch der Ton dazu:
-         "sam" steht dort als "bin" und spricht kurz (DICT_TON, 21.11.2026). */
-      zeilen.push({de: bed, bs: teil, ton: DICT_TON[teil.toLowerCase()], kann});
+         "sam" steht dort als "bin" und spricht kurz (DICT_TON, 21.11.2026).
+         Ausnahme je Satz (w.satzwort_ton, ton_bedeutung.json "saetze"): in
+         "Sam izdržava cijelu porodicu." heisst "sam" allein und spielt die
+         Aufnahme wie bisher, in "ne smije" heisst "smije" darf, nicht lacht.
+         Die angezeigte Bedeutung bleibt die aus dem Woerterbuch. */
+      const klein = teil.toLowerCase();
+      const imSatz = w.satzwort_ton && Object.prototype.hasOwnProperty.call(w.satzwort_ton, klein);
+      zeilen.push({de: bed, bs: teil, ton: imSatz ? w.satzwort_ton[klein] : DICT_TON[klein], kann});
     });
   });
   return zeilen;

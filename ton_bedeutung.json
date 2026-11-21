@@ -1,20 +1,21 @@
 {
- "zweck": "Eigener Ton je Bedeutung (21.11.2026). Gleiche Schreibung, anderer Klang: welche Stelle welchen Ton-Schlüssel spielt. Ein Schlüssel gleich dem Wort heißt: die Aufnahme wie bisher. \"wort (bedeutung)\" ist eine eigene Aufnahme von Emir (Nummer in ton_nur_emir.json); fehlt sie, spielt die App die Aufnahme wie bisher. Siehe ton_bedeutung.py.",
- "version": 1,
+ "zweck": "Eigener Ton je Bedeutung (21.11.2026). Gleiche Schreibung, anderer Klang: welche Stelle welchen Ton-Schlüssel spielt. Ein Schlüssel gleich dem Wort heißt: die Aufnahme wie bisher. \"wort (bedeutung)\" ist eine eigene Aufnahme von Emir (Nummer in ton_nur_emir.json); fehlt sie, spielt die App die Aufnahme wie bisher. Seit dem Abend des 21.11. bekommt jede Bedeutung eine eigene Aufnahme, nur sȃm (allein) behält die heutige (\"sam\"). Siehe ton_bedeutung.py.",
+ "version": 2,
  "woerter": {
-  "schulden:dug": "dug",
+  "schulden:dug": "dug (schulden)",
   "lang:dug": "dug (lang)",
-  "klein:malo": "malo",
+  "klein:malo": "malo (klein)",
   "wenig:malo": "malo (wenig)",
-  "badewanne:kada": "kada",
-  "reihe:niz": "niz",
-  "wegen / um … willen:radi": "radi",
-  "radio:radio": "radio",
-  "helfen:pomoći": "pomoći",
-  "pita (blätterteig-gericht):pita": "pita",
-  "echt:pravi": "pravi",
-  "braut:mlada": "mlada",
-  "spiel (zum spielen):igra": "igra"
+  "badewanne:kada": "kada (badewanne)",
+  "reihe:niz": "niz (reihe)",
+  "wegen / um … willen:radi": "radi (wegen)",
+  "radio:radio": "radio (gerät)",
+  "helfen:pomoći": "pomoći (helfen)",
+  "pita (blätterteig-gericht):pita": "pita (gericht)",
+  "echt:pravi": "pravi (echt)",
+  "braut:mlada": "mlada (braut)",
+  "spiel (zum spielen):igra": "igra (spiel)",
+  "küken / hähnchen:pile": "pile (küken)"
  },
  "vorgemerkt": {
   "tanne:jela": "jela (tanne)"
@@ -25,20 +26,29 @@
  },
  "geschichten": {
   "sam": {"*": "sam (bin)", "b1_voz": ["sam (bin)", "sam"]},
-  "mi": {"*": "mi (mir)", "pismo": "mi"},
-  "te": {"*": "te", "b1_struja": "te (diese)"},
-  "vas": {"*": "vas", "b1_doktor": ["vas (betont)", "vas"], "b1_struja": "vas (betont)", "b1_mejl": "vas (betont)"},
+  "mi": {"*": "mi (mir)", "pismo": "mi (wir)"},
+  "te": {"*": "te (dich)", "b1_struja": "te (diese)"},
+  "vas": {"*": "vas (unbetont)", "b1_doktor": ["vas (betont)", "vas (unbetont)"], "b1_struja": "vas (betont)", "b1_mejl": "vas (betont)"},
   "malo": {"*": "malo (wenig)"},
   "kada": {"*": "kada (wann)"},
   "niz": {"*": "niz (hinunter)"},
   "radi": {"*": "radi (arbeitet)"},
-  "radio": {"*": "radio", "b1_selidba": "radio"},
-  "pomoći": {"*": "pomoći", "opcina": "pomoći (hilfe)"},
-  "pita": {"*": "pita (fragt)", "b1_pita": "pita"},
-  "smije": {"*": "smije", "b1_rodjendan": "smije (darf)", "b1_kahva": "smije (darf)"},
+  "radio": {"*": "radio (gerät)", "b1_selidba": "radio (gerät)"},
+  "pomoći": {"*": "pomoći (helfen)", "opcina": "pomoći (hilfe)"},
+  "pita": {"*": "pita (fragt)", "b1_pita": "pita (gericht)"},
+  "smije": {"*": "smije (lacht)", "b1_rodjendan": "smije (darf)", "b1_kahva": "smije (darf)"},
   "pravi": {"*": "pravi (macht)"},
   "mlada": {"*": "mlada (jung)"},
   "igra": {"*": "igra (spielt)"},
-  "jela": {"*": "jela", "b1_doktor": "jela"}
+  "jela": {"*": "jela (gegessen)", "b1_doktor": "jela (gegessen)"},
+  "pile": {"*": "pile (getrunken)"}
+ },
+ "saetze": {
+  "papa repariert das auto immer selbst.:Babo uvijek sam popravlja auto.": {"sam": "sam"},
+  "papa hat den schrank selbst zusammengebaut.:Babo je sam sastavio ormar.": {"sam": "sam"},
+  "er versorgt allein die ganze familie.:Sam izdržava cijelu porodicu.": {"sam": "sam"},
+  "hier darf man nicht rechts abbiegen.:Ovdje se ne smije skretati desno.": {"smije": "smije (darf)"},
+  "oma hat diabetes, sie darf nichts süßes essen.:Nana ima dijabetes, ne smije jesti slatko.": {"smije": "smije (darf)"},
+  "in der kurve darf man nicht überholen.:U krivini se ne smije preticati.": {"smije": "smije (darf)"}
  }
 }

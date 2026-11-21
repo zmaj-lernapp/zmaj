@@ -24,6 +24,13 @@ ton_bedeutung.json legt fest, welche Stelle welchen Ton-Schlüssel spielt:
                [Schlüssel je Vorkommen]}. "*" gilt in jeder Geschichte ohne
                eigene Zeile und für das Satzwort in "Wörter dieses Levels",
                dessen Bedeutung aus dem WOERTERBUCH kommt.
+  saetze       Wort-ID eines Satzes -> {Wort: Schlüssel}. Ausnahme vom "*"
+               für das Satzwort in "Wörter dieses Levels" (21.11.2026): in
+               „Sam izdržava cijelu porodicu.“ heißt „sam“ allein, nicht
+               „bin“, in „ne smije“ heißt „smije“ darf, nicht „lacht“. Die
+               Liste zeigt je Level nur das erste Vorkommen eines Worts, also
+               gilt der Schlüssel für das Wort in diesem Satz. Hier darf auch
+               das Wort selbst stehen ("sam": die Aufnahme wie bisher, sȃm).
 
 Ein Schlüssel gleich dem Wort ("sam") heißt: die Aufnahme wie bisher.
 "<wort> (<bedeutung>)" ("sam (bin)") ist eine eigene Aufnahme. Die spricht
@@ -33,8 +40,15 @@ Aufnahme wie bisher (eigenerTon() in ton_abspielen.js), also kein
 Rückschritt. ton_bauen.sammle() nimmt diese Schlüssel bewusst NICHT auf:
 sonst spräche Azure beim nächsten großen Lauf den Text „sam (bin)“.
 
+Seit dem Abend des 21.11.2026 bekommt JEDE Bedeutung eine eigene Aufnahme
+("dug (schulden)" und "dug (lang)"), statt dass eine die heutige Datei
+behält. Welche Bedeutung die heutige trifft, hätte Ajdin für 16 Dateien
+heraushören müssen. Nur sȃm (allein) behält "sam" (w1359): gemessen und
+gehört. Bis Emir spricht, klingt alles wie heute.
+
 Bosnisch und Wort-IDs ändern sich dadurch nicht. Die App bekommt je Stelle
-nur ein Feld "ton" dazu (anwenden(), aufgerufen in inhalt.lade_daten()).
+nur ein Feld "ton" dazu, an Sätzen "satzwort_ton" (anwenden(), aufgerufen
+in inhalt.lade_daten()).
 
 Nur Bausteine, die Python schon mitbringt.
 """
@@ -46,7 +60,7 @@ import ton_bauen                            # textwoerter(): dieselben Woerter w
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
 TABELLE = os.path.join(ORDNER, "ton_bedeutung.json")
-ABSCHNITTE = ("woerter", "vorgemerkt", "grammatik", "geschichten")
+ABSCHNITTE = ("woerter", "vorgemerkt", "grammatik", "geschichten", "saetze")
 
 
 def lade(pfad=None):
@@ -83,6 +97,8 @@ def alle_schluessel(tabelle=None):
     for wort, regeln in t["geschichten"].items():
         for wo, wert in regeln.items():
             raus += [("geschichten:%s:%s" % (wort, wo), k) for k in _werte(wert)]
+    for satz, je_wort in t["saetze"].items():
+        raus += [("saetze:%s:%s" % (satz, wort), k) for wort, k in je_wort.items()]
     return raus
 
 
@@ -118,26 +134,46 @@ def geschichte_toene(g, regeln):
     return raus
 
 
+def woerterbuch_ton(tabelle=None):
+    """Der Ton der Satzwörter in "Wörter dieses Levels", deren Bedeutung aus dem
+    WOERTERBUCH kommt: das "*" jedes Worts, wenn es eine eigene Aufnahme ist."""
+    t = tabelle or lade()
+    return {w: r["*"] for w, r in t["geschichten"].items() if eigen(r.get("*"))}
+
+
+def _wort_mit_ton(w, je_id, je_satz):
+    """Eine Vokabel oder ein Satz mit seinem Ton, als Kopie; ohne Ton das Original."""
+    zusatz = {}
+    if w.get("id") in je_id:
+        zusatz["ton"] = je_id[w["id"]]
+    if w.get("id") in je_satz:
+        zusatz["satzwort_ton"] = dict(je_satz[w["id"]])
+    return dict(w, **zusatz) if zusatz else w
+
+
 def anwenden(daten, tabelle=None):
-    """Trägt "ton" an Vokabeln, Grammatik-Übungen und Geschichten ein und
+    """Trägt "ton" an Vokabeln, Grammatik-Übungen und Geschichten ein,
+    "satzwort_ton" an die Sätze mit einer Ausnahme (Abschnitt "saetze"), und
     legt daten["woerterbuch_ton"] an (Satzwörter der Wortliste).
 
     Nur eigene Aufnahmen kommen hinein; wo die bisherige gilt, bleibt alles,
-    wie es war. Geändertes wird kopiert, nie in die Moduldaten geschrieben:
-    auf Deutsch gibt uebersetzungen.anwenden() die Listen aus geschichten.py
-    und grammatik.py unverändert durch, und ein Eintrag dort bliebe bis zum
-    nächsten reload stehen."""
+    wie es war. Ausnahme "satzwort_ton": dort steht auch das Wort selbst
+    ("sam" für sȃm = allein), denn es weicht vom "*" ab. Geändertes wird
+    kopiert, nie in die Moduldaten geschrieben: auf Deutsch gibt
+    uebersetzungen.anwenden() die Listen aus geschichten.py und grammatik.py
+    unverändert durch, und ein Eintrag dort bliebe bis zum nächsten reload
+    stehen."""
     t = tabelle or lade()
     je_id = dict(t["woerter"])
     je_id.update(t["vorgemerkt"])
     je_id = {i: k for i, k in je_id.items() if eigen(k)}
+    je_satz = {i: w for i, w in t["saetze"].items() if w}
     neu = dict(daten)
 
     kategorien = []
     for kat in daten.get("kategorien", []):
-        if any(w.get("id") in je_id for w in kat.get("words", [])):
-            kat = dict(kat, words=[dict(w, ton=je_id[w["id"]]) if w.get("id") in je_id else w
-                                   for w in kat["words"]])
+        if any(w.get("id") in je_id or w.get("id") in je_satz for w in kat.get("words", [])):
+            kat = dict(kat, words=[_wort_mit_ton(w, je_id, je_satz) for w in kat["words"]])
         kategorien.append(kat)
     neu["kategorien"] = kategorien
 
@@ -158,5 +194,31 @@ def anwenden(daten, tabelle=None):
         geschichten.append(dict(g, ton=toene) if toene else g)
     neu["geschichten"] = geschichten
 
-    neu["woerterbuch_ton"] = {w: r["*"] for w, r in t["geschichten"].items() if eigen(r.get("*"))}
+    neu["woerterbuch_ton"] = woerterbuch_ton(t)
     return neu
+
+
+FELDER = ("ton", "satzwort_ton")             # was anwenden() an einzelne Stellen schreibt
+
+
+def stimmt(daten, tabelle=None):
+    """Traegt ein gebauter Inhalt (web/inhalt/<sprache>.json) den Ton so, wie
+    anwenden() ihn heute eintragen wuerde? Fuer app_bauen.inhalt_aktuell().
+
+    Dazu werden "ton" und "satzwort_ton" entfernt und neu eingetragen. Ein
+    Inhalt von vor dem 21.11.2026 hat sie gar nicht, einer von einer aelteren
+    Tabelle andere: beide sind veraltet, auch wenn die Datei neuer ist als
+    ton_bedeutung.json."""
+    def ohne(x):
+        return {k: v for k, v in x.items() if k not in FELDER} if isinstance(x, dict) else x
+    grammatik = {lid: dict(lek, uebungen=[ohne(u) for u in lek["uebungen"]])
+                 if isinstance(lek, dict) and "uebungen" in lek else lek
+                 for lid, lek in (daten.get("grammatik") or {}).items()}
+    roh = dict(daten,
+               kategorien=[dict(k, words=[ohne(w) for w in k["words"]]) if "words" in k else k
+                           for k in daten.get("kategorien", [])],
+               grammatik=grammatik,
+               geschichten=[ohne(g) for g in daten.get("geschichten", [])])
+    roh.pop("woerterbuch_ton", None)
+    soll = anwenden(roh, tabelle)
+    return all(soll.get(f) == daten.get(f) for f in ("kategorien", "grammatik", "geschichten", "woerterbuch_ton"))

@@ -6,8 +6,9 @@ a von sȃm (allein). Die App suchte den Ton nur nach dem Text. Seitdem traegt de
 an solchen Stellen "ton" (ton_bedeutung.json, tests/test_ton_bedeutung.py), und
 eigenerTon() in web/js/ton_abspielen.js spielt ihn, sobald es die Aufnahme gibt.
 
-Die Aufnahmen spricht Emir erst noch (Nummern ab w10059, Release/Wortschatz/
-k2_2026-11-20/final/emir_liste.md). Die Tests tragen sie deshalb selbst in AUDIO ein,
+Die Aufnahmen spricht Emir erst noch (w10059 bis w10093, Release/Wortschatz/
+k2_2026-11-20/final/emir_liste.md). Seit dem Abend des 21.11.2026 bekommt jede Bedeutung
+eine eigene, nur sȃm (allein) behaelt w1359. Die Tests tragen sie deshalb selbst in AUDIO ein,
 wie app_bauen.emir_drueber() es fuer die App tun wird, und schreiben mit, welche Datei
 abgespielt wuerde (wie tests_e2e/test_geschichtenwoerter_ton.py). Abgespielt wird
 nichts. Ohne diese Eintraege - heute, und immer in der Web-Demo - muss alles klingen
@@ -15,9 +16,13 @@ wie vorher.
 """
 import re
 
-NEU = {"sam (bin)": "w10059.mp3", "mi (mir)": "w10060.mp3", "dug (lang)": "w10063.mp3"}
+NEU = {"sam (bin)": "w10059.mp3", "mi (mir)": "w10060.mp3", "dug (lang)": "w10063.mp3",
+       "smije (darf)": "w10071.mp3", "mi (wir)": "w10078.mp3", "dug (schulden)": "w10081.mp3",
+       "smije (lacht)": "w10089.mp3"}
 
 MITSCHREIBEN = """(neu) => {
+  (window.__neu || []).forEach(k => AUDIO.delete(k));   // was ein frueherer Aufruf eingetragen hat
+  window.__neu = Object.keys(neu);
   Object.entries(neu).forEach(([k, d]) => AUDIO.set(k, d));
   window.__gespielt = [];
   spieleDatei = (datei, fertig) => { window.__gespielt.push(datei); if(fertig) setTimeout(fertig, 0); return Promise.resolve(); };
@@ -68,9 +73,12 @@ def test_geschichte_sam_als_bin_und_als_allein(seite, heute_stand):
     assert _antippen(seite, "b1_voz", "sam", 1)[1] == {"gespielt": ["w1359.mp3"] * 2, "wort": "sam"}
     for nr in range(3):                                   # jucer: dreimal "bin"
         assert _antippen(seite, "jucer", "sam", nr)[1]["gespielt"] == ["w10059.mp3"] * 2, nr
-    # "Mi smo dobro" in pismo ist "wir": bleibt bei der Aufnahme wie bisher
-    assert _antippen(seite, "pismo", "Mi", 0)[1]["gespielt"] == ["w1370.mp3"] * 2
+    # "Mi smo dobro" in pismo ist "wir", "Nana mi je pokazala" in jucer "mir"
+    assert _antippen(seite, "pismo", "Mi", 0)[1]["gespielt"] == ["w10078.mp3"] * 2
     assert _antippen(seite, "jucer", "mi", 0)[1]["gespielt"] == ["w10060.mp3"] * 2
+    # Fehlt die Aufnahme einer Bedeutung, spielt diese Stelle wie bisher
+    seite.js(MITSCHREIBEN, {k: d for k, d in NEU.items() if k != "mi (wir)"})
+    assert _antippen(seite, "pismo", "Mi", 0)[1]["gespielt"] == ["w1370.mp3"] * 2
     assert seite.fehler == []
 
 
@@ -89,16 +97,22 @@ LERNEN = """async (id) => {
 
 
 def test_vokabel_dug_als_lang_und_als_schulden(seite, heute_stand):
-    """lang:dug hat einen eigenen Ton, schulden:dug nicht. Ohne die Aufnahme sprechen
-    beide w1009 wie bisher, mit ihr nur lang:dug die neue."""
+    """lang:dug und schulden:dug haben je einen eigenen Ton. Ohne die Aufnahmen sprechen
+    beide w1009 wie bisher, mit ihnen jede ihre eigene, und fehlt nur eine, bleibt diese
+    bei w1009."""
     seite.starten(stand=heute_stand())
     seite.js(MITSCHREIBEN, {})
     assert seite.js(LERNEN, "lang:dug") == {"ton": "dug (lang)", "gespielt": "w1009.mp3", "vorladen": "dug"}
-    assert seite.js(LERNEN, "schulden:dug") == {"ton": None, "gespielt": "w1009.mp3", "vorladen": "dug"}
+    assert seite.js(LERNEN, "schulden:dug") == {"ton": "dug (schulden)", "gespielt": "w1009.mp3",
+                                                "vorladen": "dug"}
     seite.js(MITSCHREIBEN, NEU)
     assert seite.js(LERNEN, "lang:dug") == {"ton": "dug (lang)", "gespielt": "w10063.mp3",
                                                     "vorladen": "dug (lang)"}
-    assert seite.js(LERNEN, "schulden:dug") == {"ton": None, "gespielt": "w1009.mp3", "vorladen": "dug"}
+    assert seite.js(LERNEN, "schulden:dug") == {"ton": "dug (schulden)", "gespielt": "w10081.mp3",
+                                                "vorladen": "dug (schulden)"}
+    seite.js(MITSCHREIBEN, {k: d for k, d in NEU.items() if k != "dug (schulden)"})
+    assert seite.js(LERNEN, "schulden:dug") == {"ton": "dug (schulden)", "gespielt": "w1009.mp3",
+                                                "vorladen": "dug"}
     assert seite.fehler == []
 
 
@@ -149,5 +163,25 @@ def test_wortliste_satzwort_und_vokabel(seite, heute_stand):
     seite.js(MITSCHREIBEN, NEU)
     assert seite.js(WORTLISTE, ["geben_nehmen", "sam"]) == ["w10059.mp3"]
     assert seite.js(WORTLISTE, ["lang_kurz", "dug"]) == ["w10063.mp3"]
-    assert seite.js(WORTLISTE, ["bank", "dug"]) == ["w1009.mp3"]
+    assert seite.js(WORTLISTE, ["bank", "dug"]) == ["w10081.mp3"]
+    assert seite.fehler == []
+
+
+def test_wortliste_satzwort_mit_anderer_bedeutung(seite, heute_stand):
+    """"Wörter dieses Levels": In „Sam izdržava cijelu porodicu.“ (allein) und „Babo je sam
+    sastavio ormar.“ (selbst) bleibt "sam" bei w1359, auch wenn es "sam (bin)" gibt; in
+    „Nana ima dijabetes, ne smije jesti slatko.“ spielt "smije" darf, nicht lacht
+    (satzwort_ton, ton_bedeutung.json "saetze"). Ohne die neuen Aufnahmen wie bisher."""
+    seite.starten(stand=heute_stand())
+    seite.js("() => { const v = document.getElementById('vorspann'); if(v) v.click(); }")
+    seite.js(MITSCHREIBEN, {})
+    assert seite.js(WORTLISTE, ["durchfuehren_schaffen", "Sam"]) == ["w1359.mp3"]
+    assert seite.js(WORTLISTE, ["krank_sein", "smije"]) == ["w1264.mp3"]
+    seite.js(MITSCHREIBEN, NEU)
+    assert seite.js(WORTLISTE, ["durchfuehren_schaffen", "Sam"]) == ["w1359.mp3"]
+    assert seite.js(WORTLISTE, ["bauen_einbauen", "sam"]) == ["w1359.mp3"]
+    assert seite.js(WORTLISTE, ["krank_sein", "smije"]) == ["w10071.mp3"]
+    assert seite.js(WORTLISTE, ["unfaelle_pannen", "smije"]) == ["w10071.mp3"]
+    seite.js(MITSCHREIBEN, {k: d for k, d in NEU.items() if k != "smije (darf)"})
+    assert seite.js(WORTLISTE, ["krank_sein", "smije"]) == ["w1264.mp3"]
     assert seite.fehler == []

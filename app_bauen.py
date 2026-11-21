@@ -844,8 +844,14 @@ def ton_index_verschlanken(audio=None, felder=TON_FELDER):
 
 # Aus diesen Dateien baut inhalt_bauen.py die JSON-Dateien für das Handy.
 # Ändert sich eine davon, sind die JSON-Dateien veraltet.
+# inhalt.py, varianten.py und ton_bedeutung.* seit dem 21.11.2026: die
+# Prüfung von Ton je Bedeutung fand, dass eine geänderte ton_bedeutung.json
+# hier nicht auffiel. Das Handy hätte die alten Töne gespielt, am PC (frisch
+# gelesen) wäre alles richtig gewesen - derselbe Fall wie am 26.09.2026.
 INHALT_QUELLEN = ["sprachen.py", "vokabeln.py", "geschichten.py",
-                  "grammatik.py", "uebersetzungen.py", "zahnarzt.py"]
+                  "grammatik.py", "uebersetzungen.py", "zahnarzt.py",
+                  "inhalt.py", "varianten.py", "ton_bedeutung.py", "ton_bedeutung.json"]
+TON_VERALTET = "Ton je Bedeutung (ton_bedeutung.json)"
 
 
 def inhalt_aktuell():
@@ -875,13 +881,29 @@ def inhalt_aktuell():
     # er dort steht - kommt einer per haut_einbauen.py dazu und niemand baut
     # den Inhalt neu, bliebe die Farbe am Handy stillschweigend die alte
     # (Bild-Drache, 15.10.2026).
+    # Ton je Bedeutung (21.11.2026): nicht nur nach der Uhrzeit, auch nach
+    # dem Inhalt. Fehlen "ton" und "satzwort_ton" (gebaut vor dem 21.11.)
+    # oder passen sie nicht zur Tabelle, ist der Inhalt veraltet, auch wenn
+    # die Datei neuer ist - etwa nach einem Wechsel des Zweigs. Eine Datei
+    # reicht: der Ton ist in jeder Sprache gleich.
     import inhalt
-    for d in gebaut:
+    import ton_bedeutung
+    tabelle = ton_bedeutung.lade(os.path.join(HIER, "ton_bedeutung.json"))
+    maske = ton = False
+    for d in sorted(gebaut):
         with io.open(d, encoding="utf-8") as f:
             stand = json.load(f)
-        if isinstance(stand, dict) and "maskottchen" in stand:
+        if not isinstance(stand, dict):
+            continue
+        if not maske and "maskottchen" in stand:
+            maske = True
             if stand["maskottchen"] != inhalt.maskottchen_bilder():
                 veraltet.append("web/maskottchen")
+        if not ton and "kategorien" in stand:
+            ton = True
+            if not ton_bedeutung.stimmt(stand, tabelle) and "ton_bedeutung.json" not in veraltet:
+                veraltet.append(TON_VERALTET)
+        if maske and ton:
             break
     return veraltet
 
