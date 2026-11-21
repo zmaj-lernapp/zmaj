@@ -27,6 +27,7 @@ import shutil
 import socketserver
 import sys
 import threading
+import warnings
 
 import pytest
 
@@ -254,7 +255,25 @@ def browser(playwright_sitzung):
 
 
 @pytest.fixture(scope="session")
-def webkit(playwright_sitzung):
+def webkit_stumm(playwright_sitzung):
+    """Schaltet WebKit im Lautstaerkemixer von Windows stumm, solange die
+    Tests laufen (stumm_windows.py, 21.11.2026): jede Audio-Sitzung eines
+    Prozesses aus dem Ordner von WebKit, alle 100 ms aufs Neue, sonst
+    nichts. Ausserhalb von Windows tut er nichts. Mit
+    ZMAJ_STUMM_PROTOKOLL=datei.json steht am Ende darin, welche Sitzungen er
+    sah, ob Windows sie schon stumm hatte und ihr hoechster Spitzenpegel."""
+    import stumm_windows
+
+    st = stumm_windows.Stummschalter(os.path.dirname(playwright_sitzung.webkit.executable_path))
+    st.start()
+    yield st
+    st.stop()
+    if os.environ.get("ZMAJ_STUMM_PROTOKOLL"):
+        st.protokoll_schreiben(os.environ["ZMAJ_STUMM_PROTOKOLL"])
+
+
+@pytest.fixture(scope="session")
+def webkit(playwright_sitzung, webkit_stumm):
     """WebKit, die Engine des iPhones (15.11.2026, Offen-Liste 5b). Nur wenn
     Playwright es auf dem Rechner schon hat - hier wird nichts geladen (kein
     playwright install). Fehlt es, wird der Test uebersprungen; die Chromium-
@@ -264,13 +283,27 @@ def webkit(playwright_sitzung):
     # hoerbar ab, einen AudioContext hat es nicht. Ein Gegenstueck zu
     # --mute-audio gibt es nicht - keine Startoption, keine
     # Umgebungsvariable, kein Befehl im Protokoll (Playwright 1.63,
-    # webkit-2359). Die WebKit-Faelle von test_aufteilung, test_doppeltipp
-    # und test_heller_knopf koennen darum zu hoeren sein; test_ios_ton
-    # ersetzt play() durch eine Attrappe und bleibt still.
+    # webkit-2359). Darum schaltet webkit_stumm es im Lautstaerkemixer von
+    # Windows stumm (Ajdin: "3. ja"). Vorher spielt der vorlauf eine halbe
+    # Sekunde Stille: Deren Sitzung wird stumm, und weil Windows sich das je
+    # Programmpfad und Ausgabegeraet merkt, beginnt danach jede neue Sitzung
+    # von WebKitWebProcess.exe schon stumm, vor ihrem ersten Ton (gemessen
+    # 21.11.2026). Das bleibt so, auch nach dem Lauf - zurueck nur im
+    # Lautstaerkemixer. Wechselt das Ausgabegeraet mitten im Lauf
+    # (Kopfhoerer), faengt der Takt von 100 ms die neue Sitzung.
+    import stumm_windows
+
     try:
         b = playwright_sitzung.webkit.launch()
     except Exception as e:      # jeder Startfehler heisst hier: kein WebKit da
         pytest.skip("WebKit fehlt: %s" % str(e).strip().splitlines()[0])
+    try:
+        gespielt, stumm = stumm_windows.vorlauf(b, webkit_stumm)
+    except Exception as e:      # der Takt von 100 ms schaltet trotzdem stumm
+        gespielt, stumm = "Fehler: %s" % str(e).strip().splitlines()[0], False
+    if not stumm:               # z. B. kein Ausgabegeraet - dann ist auch nichts zu hoeren
+        warnings.warn("WebKit im Lautstaerkemixer nicht stumm (Stille: %s, Fehler: %s)"
+                      % (gespielt, webkit_stumm.fehler[:1]))
     yield MitSchemaSperre(b)
     b.close()
 

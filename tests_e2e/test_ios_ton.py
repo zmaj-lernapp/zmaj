@@ -150,7 +150,9 @@ SPRECHEN = """(w) => {
 
 
 @pytest.fixture(scope="module")
-def webkit(pw):
+def webkit(pw, webkit_stumm):
+    # webkit_stumm (conftest.py, 21.11.2026): play() ist hier eine Attrappe,
+    # stumm im Lautstaerkemixer ist WebKit trotzdem, falls doch etwas spielt.
     try:
         b = pw.webkit.launch()
     except Exception as e:                       # pragma: no cover - nur ohne WebKit
