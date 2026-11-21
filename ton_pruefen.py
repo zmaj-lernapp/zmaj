@@ -71,7 +71,9 @@ def nur_emir_pruefen(emir, toene, audio=None, huelle_audio=None):
     gesehen = set()
     for k, e in sorted(emir.items(), key=lambda x: str(x[1].get("datei"))):
         datei, text = str(e.get("datei", "")), str(e.get("text", ""))
-        if not re.fullmatch(r"w\d{4}\.mp3", datei):
+        # Vier oder fuenf Ziffern, wie EMIR_DATEI in app_bauen.py (21.11.2026: K2
+        # und der Ton je Bedeutung vergeben w10000 und hoeher).
+        if not re.fullmatch(r"w\d{4,5}\.mp3", datei):
             fehler.append("ton_nur_emir.json: kein Name wie w0001.mp3: %r (%s)" % (datei, k))
             continue
         if datei in gesehen or datei in belegt:

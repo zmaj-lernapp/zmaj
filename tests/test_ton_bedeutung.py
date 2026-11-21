@@ -242,3 +242,22 @@ def test_ohne_tabelle_bleibt_alles_wie_vorher(tmp_path, grunddaten):
     assert d["woerterbuch_ton"] == {}
     assert d["kategorien"] == [{"id": "k", "words": [{"id": "lang:dug", "bs": "dug"}]}]
     assert d["geschichten"] == [{"id": "x", "text": "Ja sam."}]
+
+
+def test_fuenfstellige_nummern_laufen_durch(tmp_path):
+    """Die neuen Aufnahmen bekommen w10059 und hoeher, nach der K2-Liste (w9872 bis w10058).
+    Bis zum 21.11.2026 kannten app_bauen.py und ton_pruefen.py nur vier Ziffern, und
+    ton_bauen.py las aus w10059.mp3 die Zahl 1005 - das naechste neue Wort haette eine
+    schon vergebene Nummer bekommen."""
+    import app_bauen
+    import ton_pruefen
+    for name in ("w0384.mp3", "w9871.mp3", "w10059.mp3"):
+        assert app_bauen.EMIR_DATEI.fullmatch(name), name
+        assert app_bauen.ton_filter(name) == app_bauen.ton_filter("w0384.mp3") is not None, name
+    for name in ("w123.mp3", "w123456.mp3", "g01.mp3", "w10059.ogg"):
+        assert not app_bauen.EMIR_DATEI.fullmatch(name), name
+    assert [ton_bauen.dateinummer(d) for d in ("w0384.mp3", "w10059.mp3", "g07.mp3")] == [384, 10059, 7]
+    emir = {"sam (bin)": {"key": "sam (bin)", "datei": "w10059.mp3", "text": "sam (bin)"}}
+    assert ton_pruefen.nur_emir_pruefen(emir, [], audio=str(tmp_path)) == []
+    falsch = {"x": {"key": "x", "datei": "w123456.mp3", "text": "x"}}
+    assert "kein Name wie" in ton_pruefen.nur_emir_pruefen(falsch, [], audio=str(tmp_path))[0]

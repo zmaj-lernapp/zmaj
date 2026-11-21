@@ -195,7 +195,12 @@ def maskottchen_groessen(ordner):
 # Fehlt der Ordner - frischer Klon dieses Repos, die Demo, jemand anderes
 # baut -, aendert sich nichts.
 EMIR = os.path.join(HUELLE, "audio_emir")
-EMIR_DATEI = re.compile(r"w\d{4}\.mp3")
+# Vier oder fuenf Ziffern (21.11.2026): die K2-Liste und der Ton je
+# Bedeutung (ton_bedeutung.py) vergeben w10000 und hoeher. Mit \d{4} galt
+# w10059.mp3 als Geschichte: ton_filter() kuerzte die Stille nicht, und
+# emir_drueber() trug bei ihr kein "stimme": "emir" ein. ton_pruefen.py hielt
+# den Namen sogar fuer falsch und liess kein Paket zu.
+EMIR_DATEI = re.compile(r"w\d{4,5}\.mp3")
 
 
 def _liegt_in(pfad, ordner):
