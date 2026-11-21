@@ -261,10 +261,22 @@ def webkit_stumm(playwright_sitzung):
     Prozesses aus dem Ordner von WebKit, alle 100 ms aufs Neue, sonst
     nichts. Ausserhalb von Windows tut er nichts. Mit
     ZMAJ_STUMM_PROTOKOLL=datei.json steht am Ende darin, welche Sitzungen er
-    sah, ob Windows sie schon stumm hatte und ihr hoechster Spitzenpegel."""
+    sah, ob Windows sie schon stumm hatte und ihr hoechster Spitzenpegel.
+
+    Ohne Ordner von WebKit (Playwright meldet keinen Pfad, oder er fehlt auf
+    der Platte) tut er nichts, und alles mit WebKit wird uebersprungen
+    (Pruefung 21.11.2026): aus einem leeren Pfad machte os.path.abspath den
+    Arbeitsordner, und der Helfer haette dessen Prozesse stumm geschaltet."""
     import stumm_windows
 
-    st = stumm_windows.Stummschalter(os.path.dirname(playwright_sitzung.webkit.executable_path))
+    try:
+        programm = playwright_sitzung.webkit.executable_path or ""
+    except Exception:           # Playwright weiss nichts von WebKit
+        programm = ""
+    ordner = os.path.dirname(programm)
+    if not ordner or not os.path.isabs(ordner) or not os.path.isdir(ordner):
+        pytest.skip("WebKit fehlt (Ordner: %r)" % ordner)
+    st = stumm_windows.Stummschalter(ordner)
     st.start()
     yield st
     st.stop()

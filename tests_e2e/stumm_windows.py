@@ -10,11 +10,16 @@ Testprogramm WebKit im Lautstaerkemixer von Windows selbst stumm schaltet.
 Das tut Stummschalter: ein Hintergrund-Thread schaut alle 100 ms ueber die
 Core Audio API von Windows (IMMDeviceEnumerator -> IAudioSessionManager2 ->
 Audio-Sitzungen) nach und schaltet jede Sitzung stumm (ISimpleAudioVolume.
-SetMute), deren Prozess aus dem Ordner kommt, den man ihm gibt - in der
-Suite der Ordner von WebKit unter ms-playwright (WebKitWebProcess.exe und
-seine Geschwister). Andere Programme fasst er nie an, auch nicht Chrome
-oder Ajdins Musik. Alles ueber ctypes, ohne neue Pakete (comtypes fehlt im
-e2e-venv).
+SetMute), die aus dem Ordner kommt, den man ihm gibt - in der Suite der
+Ordner von WebKit unter ms-playwright (WebKitWebProcess.exe und seine
+Geschwister). Andere Programme fasst er nie an, auch nicht Chrome, die
+Systemklaenge oder Ajdins Musik. Alles ueber ctypes, ohne neue Pakete
+(comtypes fehlt im e2e-venv).
+
+"Aus dem Ordner" heisst seit der Pruefung vom 21.11.2026 zweierlei (siehe
+_darf_stumm): die Kennung der Sitzung nennt ein Programm darin, und der
+Prozess hinter ihrer Nummer laeuft von dort. Die Nummer allein taugte
+nicht - die Sitzung der Systemklaenge meldet eine Nummer ohne Prozess.
 
 Windows merkt sich die Stummschaltung je Programmpfad und Ausgabegeraet
 (wie im Lautstaerkemixer von Hand; sie steht in der Registry unter
@@ -49,6 +54,13 @@ import wave
 
 AN = sys.platform == "win32"
 
+S_OK = 0
+S_FALSE = 1
+# GetProcessId: die Sitzung gehoert nicht genau einem Prozess. So meldet
+# sich die Sitzung der Systemklaenge, mit einer Nummer, zu der es keinen
+# Prozess gibt (gemessen 21.11.2026: 2292).
+AUDCLNT_S_NO_SINGLE_PROCESS = 0x0889000D
+
 if AN:
     import ctypes
     from ctypes import wintypes
@@ -80,6 +92,8 @@ if AN:
     _ole32.CoCreateInstance.restype = ctypes.HRESULT
     _ole32.CoUninitialize.argtypes = ()
     _ole32.CoUninitialize.restype = None
+    _ole32.CoTaskMemFree.argtypes = (ctypes.c_void_p,)
+    _ole32.CoTaskMemFree.restype = None
 
     _kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
     _kernel32.OpenProcess.argtypes = (wintypes.DWORD, wintypes.BOOL, wintypes.DWORD)
@@ -89,6 +103,8 @@ if AN:
     _kernel32.QueryFullProcessImageNameW.restype = wintypes.BOOL
     _kernel32.CloseHandle.argtypes = (wintypes.HANDLE,)
     _kernel32.CloseHandle.restype = wintypes.BOOL
+    _kernel32.QueryDosDeviceW.argtypes = (wintypes.LPCWSTR, wintypes.LPWSTR, wintypes.DWORD)
+    _kernel32.QueryDosDeviceW.restype = wintypes.DWORD
 
     _P = ctypes.POINTER
     _VOID_PP = _P(ctypes.c_void_p)
@@ -180,11 +196,70 @@ def _sitzungen(enum, je_sitzung):
                                 je_sitzung(g, steuerung)
 
 
-def _pid(steuerung):
+def _kennung_lesen(s2):
+    text = ctypes.c_void_p()
+    s2.rufe(12, (_VOID_PP,), ctypes.byref(text))                    # GetSessionIdentifier
+    try:
+        return ctypes.wstring_at(text.value) if text.value else None
+    finally:
+        _ole32.CoTaskMemFree(text)             # Windows legt den Text mit CoTaskMemAlloc an
+
+
+def _werte(steuerung, mit_kennung=True):
+    """Was eine Audio-Sitzung ueber sich sagt (IAudioSessionControl2): das
+    HRESULT von GetProcessId und die Nummer, das HRESULT von
+    IsSystemSoundsSession (S_OK heisst: die Systemklaenge) und ihre Kennung
+    (GetSessionIdentifier; None ohne mit_kennung). Fehler-HRESULTs werfen
+    OSError."""
     with steuerung.frage(IID_IAudioSessionControl2) as s2:
         pid = wintypes.DWORD()
-        s2.rufe(14, (_P(wintypes.DWORD),), ctypes.byref(pid))  # GetProcessId
-        return pid.value
+        pid_hr = s2.rufe(14, (_P(wintypes.DWORD),), ctypes.byref(pid))  # GetProcessId
+        system_hr = s2.rufe(15, ())                                      # IsSystemSoundsSession
+        kennung = _kennung_lesen(s2) if mit_kennung else None
+    return {"pid_hr": pid_hr, "pid": pid.value, "system_hr": system_hr, "kennung": kennung}
+
+
+def _kennung(steuerung):
+    with steuerung.frage(IID_IAudioSessionControl2) as s2:
+        return _kennung_lesen(s2)
+
+
+def _laufwerke():
+    """Geraetename -> Laufwerk (QueryDosDevice), etwa \\device\\harddiskvolume3
+    -> C:. Die Kennung einer Audio-Sitzung nennt Pfade in der Geraeteform."""
+    aus = {}
+    puffer = ctypes.create_unicode_buffer(1024)
+    for b in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        if _kernel32.QueryDosDeviceW(b + ":", puffer, len(puffer)):
+            ziel = puffer.value                # der erste Eintrag der Liste
+            if ziel.lower().startswith("\\device\\"):
+                aus[os.path.normcase(ziel)] = b + ":"
+    return aus
+
+
+# {0.0.0.00000000}.{<Geraet>}|\Device\HarddiskVolume3\...\chrome.exe%b{00000000-0000-0000-0000-000000000000}
+# Die Systemklaenge haben statt des Pfads ein #, etwa |#%b{A9EF3FD9-...}
+# (gemessen 21.11.2026). Nur die Kennung der Sitzung, nicht die der Instanz
+# (GetSessionInstanceIdentifier, mit |1%b<Nummer> am Ende).
+_KENNUNG = re.compile(r"^[^|]*\|(.+)%b\{[0-9A-Fa-f-]{36}\}$")
+
+
+def _kennung_programm(kennung, laufwerke):
+    """Programmpfad aus der Kennung einer Audio-Sitzung, mit Laufwerk
+    statt Geraetename. None, wenn die Kennung keinen Pfad nennt (die
+    Systemklaenge) oder das Geraet in laufwerke fehlt."""
+    m = _KENNUNG.match(kennung or "")
+    if not m:
+        return None
+    pfad = m.group(1)
+    if re.match(r"^[A-Za-z]:\\", pfad):
+        return pfad
+    klein = os.path.normcase(pfad)
+    for geraet, laufwerk in laufwerke.items():
+        geraet = os.path.normcase(geraet).rstrip("\\")
+        if klein.startswith(geraet + "\\"):   # HarddiskVolume3, nicht HarddiskVolume30
+            return laufwerk + pfad[len(geraet):]
+    return None
 
 
 def _stumm(lautstaerke):
@@ -233,19 +308,50 @@ def _darin(pfad, muster):
     return bool(muster.match(os.path.normcase(os.path.abspath(pfad))))
 
 
+def _darf_stumm(werte, muster, laufwerke):
+    """Pfad des Prozesses, wenn diese Sitzung von WebKit ist und stumm
+    geschaltet werden darf, sonst None. werte wie aus _werte, dazu "pfad"
+    (der Prozess hinter der Nummer, jetzt). Fragt Windows nichts - so laesst
+    sich die Entscheidung mit nachgestellten Werten pruefen.
+
+    Pruefung vom 21.11.2026: Nummer und Pfad allein reichen nicht. Die
+    Sitzung der Systemklaenge meldet eine Nummer ohne Prozess (2292, mit
+    AUDCLNT_S_NO_SINGLE_PROCESS), und Sitzungen beendeter Programme bleiben
+    in der Liste. Vergaebe Windows so eine Nummer an einen Prozess von
+    WebKit, saehe die Sitzung nach WebKit aus: stumm waeren dann die
+    Systemklaenge oder ein fremdes Programm, und Windows merkte es sich.
+    Darum muss alles stimmen: GetProcessId S_OK, IsSystemSoundsSession
+    S_FALSE (keine Systemklaenge), die Kennung nennt ein Programm aus dem
+    Ordner (mit diesem Programm entstand die Sitzung) und der Prozess hinter
+    der Nummer laeuft von dort."""
+    if werte.get("pid_hr") != S_OK or not werte.get("pid"):
+        return None
+    if werte.get("system_hr") != S_FALSE:
+        return None
+    pfad = werte.get("pfad")
+    if not pfad or not _darin(pfad, muster):
+        return None
+    programm = _kennung_programm(werte.get("kennung"), laufwerke)
+    if not programm or not _darin(programm, muster):
+        return None
+    return pfad
+
+
 def auflisten():
     """Alle Audio-Sitzungen, nur gelesen (zum Nachsehen): Prozess, Pfad,
-    Zustand, stumm, Spitzenpegel. Aendert nichts. Ausserhalb von Windows []."""
+    HRESULTs, Kennung, Zustand, stumm, Spitzenpegel. Aendert nichts.
+    Ausserhalb von Windows []."""
     if not AN:
         return []
     aus = []
 
     def je(g, steuerung):
-        pid = _pid(steuerung)
+        werte = _werte(steuerung)
         with steuerung.frage(IID_ISimpleAudioVolume) as lautstaerke:
             stumm = _stumm(lautstaerke)
-        aus.append({"geraet": g, "pid": pid, "pfad": _pfad(pid) if pid else None,
-                    "zustand": _zustand(steuerung), "stumm": stumm, "spitze": _spitze(steuerung)})
+        werte.update({"geraet": g, "pfad": _pfad(werte["pid"]) if werte["pid"] else None,
+                      "zustand": _zustand(steuerung), "stumm": stumm, "spitze": _spitze(steuerung)})
+        aus.append(werte)
 
     def lesen():
         # In einem eigenen Thread: so bleibt COM im aufrufenden Thread unberuehrt.
@@ -269,18 +375,24 @@ def auflisten():
 
 
 class Stummschalter(object):
-    """Schaltet alle Audio-Sitzungen stumm, deren Prozess aus ordner kommt,
-    solange er laeuft - alle takt Sekunden aufs Neue, damit auch neue
-    Sitzungen sofort stumm sind. Mit start()/stop() oder als with-Block.
+    """Schaltet alle Audio-Sitzungen stumm, die aus ordner kommen (siehe
+    _darf_stumm), solange er laeuft - alle takt Sekunden aufs Neue, damit
+    auch neue Sitzungen sofort stumm sind. Mit start()/stop() oder als
+    with-Block. ordner muss ein voller Pfad sein: aus einem leeren machte
+    os.path.abspath den Arbeitsordner.
 
-    sitzungen: je Sitzung (pid, Geraet) ein Eintrag mit Programm, ob sie
-    beim ersten Blick schon stumm war (Windows hat sich das gemerkt) oder
-    ob er sie stumm geschaltet hat, ob sie zuletzt stumm war, und dem
-    hoechsten Spitzenpegel (IAudioMeterInformation, 0..1)."""
+    sitzungen: je Sitzung (pid, Geraet) ein Eintrag mit Programm (laut
+    Prozess und laut Kennung), ob sie beim ersten Blick schon stumm war
+    (Windows hat sich das gemerkt) oder ob er sie stumm geschaltet hat, ob
+    sie zuletzt stumm war, und dem hoechsten Spitzenpegel
+    (IAudioMeterInformation, 0..1)."""
 
     def __init__(self, ordner, takt=0.1):
+        if not ordner or not os.path.isabs(ordner):
+            raise ValueError("Stummschalter braucht einen vollen Pfad, nicht %r" % (ordner,))
         self.ordner = ordner
         self._muster = _ordner_muster(ordner)
+        self._laufwerke = {}
         self.takt = takt
         self.sitzungen = {}
         self.fehler = []
@@ -322,8 +434,12 @@ class Stummschalter(object):
             return
         try:
             with _enumerator() as enum:
+                laufwerke_um = 0.0
                 while True:
                     try:
+                        if time.monotonic() >= laufwerke_um:   # ein Laufwerk kann dazukommen
+                            self._laufwerke = _laufwerke()
+                            laufwerke_um = time.monotonic() + 10
                         _sitzungen(enum, self._je_sitzung_sicher)
                         self.runden += 1
                     except Exception as e:        # z. B. Geraet gerade weg; weiter im Takt
@@ -342,12 +458,17 @@ class Stummschalter(object):
             if len(self.fehler) < 20:
                 self.fehler.append(str(e))
 
-    def _ist_unser(self, pid):
-        """Pfad des Prozesses, wenn er aus ordner kommt. Jedes Mal neu
-        gefragt und nicht je pid gemerkt: Windows vergibt die Nummer eines
-        beendeten Prozesses wieder, und dann waere es ein fremdes Programm."""
-        pfad = _pfad(pid) if pid else None
-        return pfad if pfad and _darin(pfad, self._muster) else None
+    def _prozess_pfad(self, pid):
+        """Pfad des Prozesses mit dieser Nummer. Jedes Mal neu gefragt und
+        nicht je pid gemerkt: Windows vergibt die Nummer eines beendeten
+        Prozesses wieder, und dann waere es ein fremdes Programm. (Eigene
+        Methode, damit ein Test hier nachstellen kann, WebKit habe jede
+        Nummer.)"""
+        return _pfad(pid)
+
+    def _schalten(self, lautstaerke):
+        """Stumm. (Eigene Methode, damit ein Test trocken laufen kann.)"""
+        lautstaerke.rufe(5, (wintypes.BOOL, ctypes.c_void_p), True, None)   # SetMute
 
     def _je_sitzung_sicher(self, g, steuerung):
         # Ein Fehler bei einer Sitzung (Prozess gerade beendet) haelt die
@@ -358,14 +479,26 @@ class Stummschalter(object):
             self._fehler(e)
 
     def _je_sitzung(self, g, steuerung):
-        pid = _pid(steuerung)
-        pfad = self._ist_unser(pid)
+        # Erst das Billige, die Kennung nur fuer Sitzungen, deren Prozess aus
+        # ordner kommt: Rechnet der Hauptthread, wartet jeder Aufruf ueber
+        # ctypes auf das GIL, und alles fuer jede Sitzung zu lesen halbierte
+        # fast den Takt (gemessen 21.11.2026: 6 statt 10 Runden in 4 s).
+        # Entschieden wird trotzdem nur in _darf_stumm, mit allen Werten.
+        werte = _werte(steuerung, mit_kennung=False)
+        pid = werte["pid"]
+        if werte["pid_hr"] != S_OK or not pid or werte["system_hr"] != S_FALSE:
+            return
+        werte["pfad"] = self._prozess_pfad(pid)
+        if not werte["pfad"] or not _darin(werte["pfad"], self._muster):
+            return
+        werte["kennung"] = _kennung(steuerung)
+        pfad = _darf_stumm(werte, self._muster, self._laufwerke)
         if not pfad:
             return
         with steuerung.frage(IID_ISimpleAudioVolume) as lautstaerke:
             vorher = _stumm(lautstaerke)
             if not vorher:
-                lautstaerke.rufe(5, (wintypes.BOOL, ctypes.c_void_p), True, None)   # SetMute
+                self._schalten(lautstaerke)
             jetzt = _stumm(lautstaerke)
         spitze = _spitze(steuerung)
         with self._sperre:
@@ -373,6 +506,7 @@ class Stummschalter(object):
             if s is None:
                 s = self.sitzungen[(pid, g)] = {
                     "pid": pid, "geraet": g, "programm": os.path.basename(pfad),
+                    "kennung": _kennung_programm(werte["kennung"], self._laufwerke),
                     "gesehen_ms": int((time.monotonic() - self._beginn) * 1000),
                     "zuerst_stumm": vorher, "von_uns_stumm": False, "stumm": jetzt,
                     "spitze": 0.0, "aktiv_proben": 0}
