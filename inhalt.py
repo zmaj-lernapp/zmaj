@@ -38,6 +38,7 @@ import sprachen        # noqa: E402  (Texte der Oberfläche in allen Sprachen)
 import uebersetzungen  # noqa: E402  (Lerninhalte in allen Sprachen)
 import zahnarzt        # noqa: E402  (der versteckte Teil, zählt nirgends mit)
 import varianten       # noqa: E402  (andere Wörter, die beim Tippen auch gelten)
+import ton_bedeutung   # noqa: E402  (eigener Ton je Bedeutung, liest ton_bedeutung.json)
 
 
 def lade_daten(sprache=None):
@@ -77,7 +78,12 @@ def lade_daten(sprache=None):
     })
     # Varianten (12.11.2026): "auch_var" an Wörtern und Lückensätzen, beim
     # Satzbau mehr "ohne" - siehe varianten.py. Bosnisch, in jeder Sprache gleich.
-    return varianten.varianten_anwenden(daten, satz_kacheln)
+    daten = varianten.varianten_anwenden(daten, satz_kacheln)
+    # Eigener Ton je Bedeutung (21.11.2026): "ton" an den Stellen, an denen
+    # ein gleich geschriebenes Wort anders klingt ("sam" = bin / allein),
+    # siehe ton_bedeutung.py. Hängt an Wort-ID und Geschichte, nicht an der
+    # Sprache, und kommt deshalb ganz am Ende.
+    return ton_bedeutung.anwenden(daten)
 
 
 def zahnarzt_fuer_app(code):

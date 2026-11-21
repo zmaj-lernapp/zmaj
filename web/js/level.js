@@ -63,12 +63,12 @@ function showLevelHome(){
       '<div><span class="de">'+esc(z.de)+'</span>'
     + '<span class="bs'+(z.kann?'':' zu')+'">'+(z.kann ? esc(z.bs) : '?')+'</span>'
     + (z.kann ? '<span class="wortende"><span class="ok">✓</span>'
-                + (hoerbar(z.bs) ? '<button type="button" class="wortton" data-bs="'+esc(z.bs)+'" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>' : '')
+                + (hoerbar(eigenerTon(z.bs, z.ton)) ? '<button type="button" class="wortton" data-ton="'+esc(eigenerTon(z.bs, z.ton))+'" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>' : '')
                 + '</span>'
               : '')
     + '</div>').join('');
   $('wordList').querySelectorAll('.wortton').forEach(b=>b.addEventListener('click', e=>{
-    e.stopPropagation(); stilleBitte(); speak(b.dataset.bs);
+    e.stopPropagation(); stilleBitte(); speak(b.dataset.ton);   // eigener Ton je Bedeutung (21.11.2026)
   }));
   $('navPrev').disabled = catIdx===levelAnfang();
   $('navNext').disabled = !(catIdx+1<levelEnde() && isUnlocked(catIdx+1));

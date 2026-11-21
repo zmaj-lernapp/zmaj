@@ -202,7 +202,13 @@ function showStory(){
   const lvl = byId(s.passt_zu);
   let html = '<div class="kicker" style="text-align:center">'+esc(s.stufe||'')+(lvl?t('gesch.kicker_passt',{label:esc(lvl.label)}):'')+(read.has(s.id)?t('gesch.kicker_gelesen'):'')+'</div>';
   const tokens = s.text.split(/([^\p{L}\p{M}'’-]+)/u);
-  html += '<h3>'+esc(s.titel)+'</h3><div class="txt">'+tokens.map(x=> /[\p{L}\p{M}]/u.test(x) ? '<span class="w">'+esc(x)+'</span>' : esc(x)).join('')+'</div>';
+  /* data-n: das wievielte Mal dieses Wort (klein geschrieben) im Text steht,
+     ab 1. Daran haengt der eigene Ton je Stelle, s.ton (21.11.2026): in
+     b1_voz ist das erste "sam" "bin" (kurz), das zweite "allein" (lang).
+     ton_bedeutung.py zaehlt mit textwoerter() genauso. */
+  const gezaehlt = new Map();
+  const nummer = x => { const k = x.toLowerCase(); gezaehlt.set(k, (gezaehlt.get(k) || 0) + 1); return gezaehlt.get(k); };
+  html += '<h3>'+esc(s.titel)+'</h3><div class="txt">'+tokens.map(x=> /[\p{L}\p{M}]/u.test(x) ? '<span class="w" data-n="'+nummer(x)+'">'+esc(x)+'</span>' : esc(x)).join('')+'</div>';
   html += '<div class="bubble empty" id="rBubble" hidden></div>';
   /* "Vorlesen", Stopp und die Tempo-Leiste nur, wenn es die Geschichte als
      Aufnahme gibt (Pruefbericht 1.4, V1; Offen-Liste 6, 16.11.2026). Die
@@ -222,6 +228,10 @@ function showStory(){
     $('rBody').querySelectorAll('.w.on').forEach(x=>x.classList.remove('on')); w.classList.add('on');
     const wort = w.textContent;
     const bed = lookup(wort, s); const b=$('rBubble');
+    /* Gesprochen wird der eigene Ton dieser Stelle, wenn es ihn gibt (s.ton,
+       21.11.2026), sonst das Wort wie bisher. Angezeigt wird immer das Wort. */
+    const stellen = s.ton && Object.prototype.hasOwnProperty.call(s.ton, wort.toLowerCase()) ? s.ton[wort.toLowerCase()] : [];
+    const ton = eigenerTon(wort, stellen[Number(w.dataset.n) - 1]);
     b.hidden = false;
     b.className='bubble'; b.innerHTML = '<b>'+esc(wort)+'</b> '+(bed?esc(bed):'<span style="color:var(--muted)">'+t('gesch.kein_eintrag')+'</span>');
     /* Jeder Tipp schafft erst Ruhe. Sonst hinge es vom Wort ab, ob die
@@ -239,15 +249,15 @@ function showStory(){
        nicht. Sonst bliebe es stumm, und das Antippen fuehlte sich kaputt an
        - deshalb steht der Lautsprecher auch nur dann dabei. Er ist ein
        echter Knopf: nochmal hoeren, ohne das Wort im Text neu zu treffen. */
-    if(hoerbar(wort)){
+    if(hoerbar(ton)){
       /* task.hoeren, NICHT gesch.vorlesen: dieser Knopf spricht ein einzelnes
          Wort. Sobald eine Sprache aus dem Vorlese-Knopf "Hör die Geschichte"
          macht, stünde hier sonst etwas Falsches. */
       b.insertAdjacentHTML('beforeend', '<button type="button" class="wortton" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>');
       // Ueber den spieler wie die ganze Geschichte, nie ueber WebAudio (26.10.2026),
       // aber mit normalem Tempo: das gemerkte gilt nur beim Vorlesen (05.11.2026)
-      b.querySelector('.wortton').addEventListener('click', ()=>{ stilleBitte(); sprichMitSpieler(wort); });
-      sprichMitSpieler(wort);
+      b.querySelector('.wortton').addEventListener('click', ()=>{ stilleBitte(); sprichMitSpieler(ton); });
+      sprichMitSpieler(ton);
     }
     /* Die Blase sitzt unten im Bild fest (V2, 14.11.2026, CSS bei
        .bubble). Wer ein Wort ganz unten antippt, haette es sonst unter ihr.

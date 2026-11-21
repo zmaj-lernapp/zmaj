@@ -42,8 +42,9 @@ def test_beide_tippstellen_zeigen_die_naechste_form(index_html):
                 + ") : naechsteAntwort(inp.value, " + antworten + ", " + haupt + ");") in zweig, typ
         assert "r==='almost' ? 'task.fast' : 'task.falsch', gezeigt);" in zweig, typ
         assert ", andereForm(gezeigt, " + haupt + "));" in zweig, typ
-    # Gesprochen wird weiter die Hauptform (es gibt fast nur ihre Aufnahme).
-    assert "spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok});" in _zweig(html, "type")
+    # Gesprochen wird weiter die Hauptform (es gibt fast nur ihre Aufnahme), seit dem
+    # 21.11.2026 ueber wortTon(w): w.bs, oder der eigene Ton ihrer Bedeutung.
+    assert "spaeterSprechen(wortTon(w), nachAntwort(ok), ok); done({ok});" in _zweig(html, "type")
     assert "const gesagt = lueckeText(s);" in _zweig(html, "gap")
     assert html.count("naechsteAntwort(inp.value, ") == 2 and html.count("function naechsteAntwort(") == 1
     assert html.count("t('task.auch_richtig')") == 1

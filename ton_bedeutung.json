@@ -1,0 +1,44 @@
+{
+ "zweck": "Eigener Ton je Bedeutung (21.11.2026). Gleiche Schreibung, anderer Klang: welche Stelle welchen Ton-Schlüssel spielt. Ein Schlüssel gleich dem Wort heißt: die Aufnahme wie bisher. \"wort (bedeutung)\" ist eine eigene Aufnahme von Emir (Nummer in ton_nur_emir.json); fehlt sie, spielt die App die Aufnahme wie bisher. Siehe ton_bedeutung.py.",
+ "version": 1,
+ "woerter": {
+  "schulden:dug": "dug",
+  "lang:dug": "dug (lang)",
+  "klein:malo": "malo",
+  "wenig:malo": "malo (wenig)",
+  "badewanne:kada": "kada",
+  "reihe:niz": "niz",
+  "wegen / um … willen:radi": "radi",
+  "radio:radio": "radio",
+  "helfen:pomoći": "pomoći",
+  "pita (blätterteig-gericht):pita": "pita",
+  "echt:pravi": "pravi",
+  "braut:mlada": "mlada",
+  "spiel (zum spielen):igra": "igra"
+ },
+ "vorgemerkt": {
+  "tanne:jela": "jela (tanne)"
+ },
+ "grammatik": {
+  "faelle3#4": "mi (mir)",
+  "vergangenheit#2": "radio (gemacht)"
+ },
+ "geschichten": {
+  "sam": {"*": "sam (bin)", "b1_voz": ["sam (bin)", "sam"]},
+  "mi": {"*": "mi (mir)", "pismo": "mi"},
+  "te": {"*": "te", "b1_struja": "te (diese)"},
+  "vas": {"*": "vas", "b1_doktor": ["vas (betont)", "vas"], "b1_struja": "vas (betont)", "b1_mejl": "vas (betont)"},
+  "malo": {"*": "malo (wenig)"},
+  "kada": {"*": "kada (wann)"},
+  "niz": {"*": "niz (hinunter)"},
+  "radi": {"*": "radi (arbeitet)"},
+  "radio": {"*": "radio", "b1_selidba": "radio"},
+  "pomoći": {"*": "pomoći", "opcina": "pomoći (hilfe)"},
+  "pita": {"*": "pita (fragt)", "b1_pita": "pita"},
+  "smije": {"*": "smije", "b1_rodjendan": "smije (darf)", "b1_kahva": "smije (darf)"},
+  "pravi": {"*": "pravi (macht)"},
+  "mlada": {"*": "mlada (jung)"},
+  "igra": {"*": "igra (spielt)"},
+  "jela": {"*": "jela", "b1_doktor": "jela"}
+ }
+}

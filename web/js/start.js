@@ -487,7 +487,7 @@ function wortzeilen(c){
       const f = wortform(String(w.bs).split(' / ')[0]);
       if(gesehen.has(f)) return;
       gesehen.add(f);
-      zeilen.push({de: w.de, bs: w.bs, kann});
+      zeilen.push({de: w.de, bs: w.bs, ton: w.ton, kann});
       return;
     }
     (String(w.bs).match(/[\p{L}\p{M}'’-]+/gu) || []).forEach(teil => {
@@ -496,7 +496,9 @@ function wortzeilen(c){
       const bed = dictBedeutung(teil);
       if(!bed) return;              // ohne Bedeutung wäre die Zeile leer
       gesehen.add(f);
-      zeilen.push({de: bed, bs: teil, kann});
+      /* Die Bedeutung kommt aus dem Woerterbuch, also auch der Ton dazu:
+         "sam" steht dort als "bin" und spricht kurz (DICT_TON, 21.11.2026). */
+      zeilen.push({de: bed, bs: teil, ton: DICT_TON[teil.toLowerCase()], kann});
     });
   });
   return zeilen;

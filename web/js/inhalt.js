@@ -55,6 +55,7 @@ async function ladeDaten(){
   const d = await holeInhalt();
   SECTIONS = d.sektionen || []; CATEGORIES = d.kategorien; SENTENCES = d.saetze;
   GRAMMAR = d.grammatik || {}; STORIES = d.geschichten || []; DICT = d.woerterbuch || {};
+  DICT_TON = d.woerterbuch_ton || {};   // eigener Ton je Bedeutung, Feld seit 21.11.2026
   /* Fehlt das Feld (Inhalt von vor dem 13.10.2026), gibt es eben keine
      Satzbau-Aufgaben. Die Namensliste der Kacheln haengt am Inhalt und wird
      beim naechsten Gebrauch neu gesammelt. */

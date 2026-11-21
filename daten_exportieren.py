@@ -145,7 +145,14 @@ def sammeln():
             "translations": {c: alle[c]["woerterbuch"].get(bs, "") for c in codes},
         })
 
-    grammatik = {c: alle[c]["grammatik"] for c in codes}
+    # Ohne "ton" (eigener Ton je Bedeutung, 21.11.2026, ton_bedeutung.py): der
+    # Schlüssel zeigt auf eine Aufnahme, die es nur in der App gibt (Emir),
+    # nicht im Datensatz. Die übrigen Felder bleiben, wie sie waren.
+    grammatik = {c: {lid: dict(lek, uebungen=[{k: v for k, v in u.items() if k != "ton"}
+                                               for u in lek.get("uebungen", [])])
+                     if "uebungen" in lek else lek
+                     for lid, lek in alle[c]["grammatik"].items()}
+                 for c in codes}
 
     return {
         "codes": codes,
