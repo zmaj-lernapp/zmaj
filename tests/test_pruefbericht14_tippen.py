@@ -100,10 +100,13 @@ def test_v8_sa_form_beim_tippen(alle_daten, grunddaten, index_html):
 
 
 def test_v8_kein_paar_s_sa_fuer_ueberall():
-    """Nur diese sieben. Ein Paar fuer ueberall haette auch „s mnom“ erlaubt."""
+    """Nur diese sieben. Ein Paar fuer ueberall haette auch „s mnom“ erlaubt. Seit K2
+    (Ajdin K2, 20.11.2026) nimmt das Wort „mit“ (sa) allein auch s - nur an dieser
+    Kennung, sonst gibt es kein Paar mit s oder sa."""
     import varianten
     for p in varianten.VARIANTEN:
-        assert {str(p["a"]).lower(), str(p["b"]).lower()} & {"s", "sa"} == set(), p
+        if {str(p["a"]).lower(), str(p["b"]).lower()} & {"s", "sa"}:
+            assert (p["a"], p["b"], p["gilt"]) == ("sa", "s", ["mit:sa"]), p
 
 
 # ---- V9 / F2 bis F5: Lueckensaetze und Woerter mit einer zweiten gaengigen Antwort ----
@@ -147,12 +150,18 @@ def test_v9_satzbau_ohne(alle_daten):
             assert s[0]["ohne"][:len(ohne)] == ohne, (code, s[0])
 
 
+# K2 (Ajdin K2, 20.11.2026): ako -> ukoliko, nur am Wort „wenn / falls“ und im Lueckensatz
+# von F4 - wie F14 c (ukoliko nimmt ako), in die andere Richtung. Kein Paar fuer ueberall.
+K2_V9 = {("ako", "ukoliko"): ["wenn / falls:ako", "___ pada kiša, ostajem kod kuće."]}
+
+
 def test_v9_kein_paar_fuer_ueberall():
     import varianten
     for p in varianten.VARIANTEN:
         seiten = {str(p["a"]).lower(), str(p["b"]).lower()}
         woerter = {"jako", "vrlo", "veoma", "poslije", "nakon", "ako", "kad", "kada", "polazi", "kreće"}
-        assert seiten & woerter == set(), p
+        if seiten & woerter:
+            assert K2_V9.get((p["a"], p["b"])) == p["gilt"], p
 
 
 def test_v9_andere_stellen_bleiben(grunddaten):
@@ -432,5 +441,6 @@ def test_dritte_runde_gdje_nichts_anderes_wird_richtig(grunddaten, index_html):
               (_wort_antworten(woerter["wohin fahrt ihr in den sommerurlaub?:Kuda idete na ljetovanje?"]),
                "Gdje ste na ljetovanju?")]
     assert _matches(index_html, faelle) == ["no"] * len(faelle), faelle
-    assert woerter["wohin?:Kuda?"].get("auch_var") is None
+    # Kamo? (kroatisch „wohin“) seit K2 (Ajdin K2, 20.11.2026, nach F6); bei „Wo?“ nicht.
+    assert woerter["wohin?:Kuda?"].get("auch_var") == ["Kamo?"]
     assert woerter["wo?:Gdje?"].get("auch_var") is None

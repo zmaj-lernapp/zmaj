@@ -83,6 +83,8 @@ AUCH = {
 ZAEHLT_NICHT = {
     "odgoj": ["vaspitanje"], "odgojiti": ["vaspitati"], "odgajati": ["vaspitavati"], "krivica": ["krivnja"],
     "prevara": ["prijevara"], "nesretan": ["nesrećan"], "saučešće": ["sućut"],
+    # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V6-122 „nein“)
+    "grob": ["mezar"],
 }
 
 # Partner je Wort, wie im Paket.

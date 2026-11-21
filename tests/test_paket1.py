@@ -66,6 +66,10 @@ SATZ_AUCH = {"Uspjela sam!": ["Uspio sam!"], "Šta se desilo?": ["Šta se dogodi
 # Pruefbericht 1.4 (14.11.2026), Ajdins Antworten (B3/F14): das andere App-Wort gilt
 # beim Tippen mit, nur in dieser Richtung (tests/test_pruefbericht14_tippen.py).
 PRUEFBERICHT_AUCH = {"pripremiti": ["spremiti"], "nedostajati": ["faliti"]}
+# K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V4-3 „nein“): diese Formen zaehlen
+# beim Tippen NICHT. prisjetiti se ist ein eigenes Wort mit eigener Bedeutung.
+ZAEHLT_NICHT = {"sjetiti se": ["prisjetiti se"]}
+EIGENES_WORT = {"prisjetiti se": "sich zurückerinnern"}
 
 # Gegenstuecke, die schon vor dem Paket in der App standen
 ALTE_PARTNER = {"dolaziti": "doći", "davati": "dati", "pomagati": "pomoći", "plaćati": "platiti",
@@ -124,6 +128,19 @@ def test_auch_formen_und_doppelformen(grunddaten):
         assert neu[bs].get("auch") == auch, bs
     mit_auch = {bs for bs, w in neu.items() if w.get("auch")}
     assert mit_auch == set(AUCH) | set(SATZ_AUCH) | set(PRUEFBERICHT_AUCH)
+
+
+@pytest.mark.parametrize("wort, form", sorted((w, f) for w, l in ZAEHLT_NICHT.items() for f in l))
+def test_was_ajdin_ausgeschlossen_hat_zaehlt_nicht(grunddaten, wort, form):
+    """Beim Tippen zaehlt das Wort, sein "auch", "auch_var" (varianten.py) und jedes
+    andere Wort mit derselben Bedeutung (annehmbar() in web/index.html). Die Form darf
+    in keinem davon stehen; als eigenes Wort mit anderer Bedeutung darf es sie geben."""
+    w = {x["bs"]: x for k in _level(grunddaten) for x in k["words"]}[wort]
+    assert form not in w.get("auch", []) + w.get("auch_var", []) and form not in w["bs"].split(" / ")
+    assert w.get("partner") != form
+    treffer = [x for x in _alle(grunddaten) if form in x["bs"].split(" / ") or form in x.get("auch", [])]
+    assert [x["de"] for x in treffer] == ([EIGENES_WORT[form]] if form in EIGENES_WORT else []), form
+    assert w["de"] != EIGENES_WORT.get(form)
 
 
 def test_partner_stehen_in_der_app(grunddaten):

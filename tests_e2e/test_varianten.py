@@ -159,8 +159,9 @@ DRITTE_RUNDE = [("basics", "type", "entschuldigung (sie):Izvinite", "Oprostite")
                 ("faelle2", "type", "ich habe kein geld:Nemam novca", "Nemam para"),
                 ("praepositionen", "type", "auf dem markt:na pijaci", "na pazaru"),
                 ("faelle3", "type", "auf der straße:na ulici", "na sokaku"),
-                ("kueche_bad", "gap", "Supa je u ___.", "šerpi"),
-                ("faelle1", "type", "er hat einen hund:On ima psa", "On ima kuče")]
+                ("kueche_bad", "gap", "Supa je u ___.", "šerpi")]
+# „On ima kuče“ zählte vom 14. bis zum 21.11.2026, dann Ajdin: „es ist welpe also nein soll
+# nicht zählen“ (Fragen vom 21.11.2026, 1). Seitdem unten in der Gegenprobe.
 GEGEN_DRITTE_RUNDE = """() => {
   const w = id => wortNachId(id).w;
   const typ = (id, e) => matches(e, annehmbar(w(id)).join(' / '));
@@ -169,7 +170,8 @@ GEGEN_DRITTE_RUNDE = """() => {
   return [typ('entschuldigung (du):Izvini', 'Oprostite'), typ('verzeih mir:Oprosti mi', 'Oprostite mi'),
           luecke('Molim te, ___ mi.', 'oprostite'), typ('manchmal:ponekad', 'nikada'), typ('nie:nikad', 'nekada'),
           typ('ich habe ein auto:Imam auto', 'Imam kolima'), typ('im auto:u autu', 'u kola'),
-          typ('er hat einen hund:On ima psa', 'On ima kučeta'), typ('auf der straße:na ulici', 'na sokak')];
+          typ('er hat einen hund:On ima psa', 'On ima kučeta'), typ('auf der straße:na ulici', 'na sokak'),
+          typ('er hat einen hund:On ima psa', 'On ima kuče')];
 }"""
 
 
@@ -190,9 +192,9 @@ FRAGEN_15_11 = [("faelle4", "type", "mit dem auto:autom", "kolima"),
                 ("faelle2", "type", "das auto des vaters:auto oca", "kola oca"),
                 ("bank", "type", "geld abheben:podići novac", "podići pare"),
                 ("bank", "type", "geld einzahlen:uplatiti novac", "uplatiti pare"),
-                ("faelle1", "type", "wir suchen die straße:Tražimo ulicu", "Tražimo sokak"),
-                ("tiere_umgang", "type", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučadi"),
-                ("tiere_umgang", "type", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!")]
+                ("faelle1", "type", "wir suchen die straße:Tražimo ulicu", "Tražimo sokak")]
+# 9g „Bojim se kučadi“ und 9h „Čuvaj se kučeta!“ zählten bis zum 21.11.2026 (Ajdin: „es ist
+# welpe also nein soll nicht zählen“), seitdem unten in der Gegenprobe.
 # 9i „Kuče me je ujelo.“ hat Ajdin am 16.11.2026 zurückgenommen (8b), siehe FRAGEN_16_11.
 GEGEN_FRAGEN_15_11 = """() => {
   const w = id => wortNachId(id).w;
@@ -205,7 +207,9 @@ GEGEN_FRAGEN_15_11 = """() => {
           typ('ich habe angst vor hunden:Bojim se pasa', 'Bojim se kučeta'),
           typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kuče!'),
           typ('der hund hat mich gebissen:Pas me je ujeo', 'Kuče me je ujeo'),
-          typ('der hund hat mich gebissen:Pas me je ujeo', 'Pas me je ujelo'), typ('hund:pas', 'kučadi')];
+          typ('der hund hat mich gebissen:Pas me je ujeo', 'Pas me je ujelo'), typ('hund:pas', 'kučadi'),
+          typ('ich habe angst vor hunden:Bojim se pasa', 'Bojim se kučadi'),
+          typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kučeta!')];
 }"""
 
 
@@ -214,7 +218,7 @@ def test_fragen_15_11_zaehlen_beim_tippen(seite, heute_stand):
     for level, art, wer, eingabe in FRAGEN_15_11:
         assert seite.js(AUFGABE, [level, art, wer, eingabe]) == RICHTIG, (wer, eingabe)
     erg = seite.js(GEGEN_FRAGEN_15_11)
-    assert erg == ["no"] * 10, erg
+    assert erg == ["no"] * 12, erg
     assert seite.fehler == []
 
 
@@ -235,12 +239,16 @@ GEGEN_FRAGEN_16_11 = """() => {
                  typ('der hund hat mich gebissen:Pas me je ujeo', 'Kuče me je ujelo.'),
                  typ('der hund hat mich gebissen:Pas me je ujeo', 'Kuče me je ujelo'),
                  typ('der hund hat mich gebissen:Pas me je ujeo', 'Ujelo me je kuče'),
-                 typ('er hat einen hund:On ima psa', 'Kuče me je ujelo')],
+                 typ('er hat einen hund:On ima psa', 'Kuče me je ujelo'),
+                 // Die anderen kuče-Formen blieben bis zum 21.11.2026 (Ajdin: „es ist welpe
+                 // also nein soll nicht zählen“), seitdem zählt kuče beim Hund nirgends.
+                 typ('er hat einen hund:On ima psa', 'On ima kuče'),
+                 typ('ich habe angst vor hunden:Bojim se pasa', 'Bojim se kučadi'),
+                 typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kučeta!'),
+                 typ('hund:pas', 'kuče')],
           hund: annehmbar(hund), auch_var: hund.auch_var || null,
-          // Die anderen kuče-Formen bleiben (On ima kuče, Bojim se kučadi, Čuvaj se kučeta!)
-          ja: [typ('er hat einen hund:On ima psa', 'On ima kuče'),
-               typ('ich habe angst vor hunden:Bojim se pasa', 'Bojim se kučadi'),
-               typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kučeta!')]};
+          // kuče nur noch beim Welpen (štene, V1-104)
+          ja: [typ('welpe:štene', 'kuče')]};
 }"""
 
 
@@ -249,7 +257,7 @@ def test_fragen_16_11_zaehlen_beim_tippen(seite, heute_stand):
     for level, art, wer, eingabe in FRAGEN_16_11:
         assert seite.js(AUFGABE, [level, art, wer, eingabe]) == RICHTIG, (wer, eingabe)
     erg = seite.js(GEGEN_FRAGEN_16_11)
-    assert erg["nein"] == ["no"] * 6, erg
+    assert erg["nein"] == ["no"] * 10, erg
     assert erg["hund"] == ["Pas me je ujeo", "Ujeo me je pas"] and erg["auch_var"] is None, erg
-    assert erg["ja"] == ["ok"] * 3, erg
+    assert erg["ja"] == ["ok"], erg
     assert seite.fehler == []

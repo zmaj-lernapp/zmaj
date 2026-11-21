@@ -86,6 +86,9 @@ AUCH = {
 ZAEHLT_NICHT = {
     "oružani": ["oružan"], "humanitarni": ["humanitaran"], "vođa": ["lider"], "pravoslavni": ["pravoslavan"],
     "nadležan": ["nadležni"],
+    # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V7-5 „nein“); savjet ist als
+    # eigenes Wort der Ratschlag
+    "vijeće": ["savjet"],
 }
 
 # Partner je Wort, wie im Paket.

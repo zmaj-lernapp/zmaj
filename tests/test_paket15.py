@@ -78,8 +78,11 @@ AUCH = {
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
-    "podnosilac": ["podnositelj"], "koverta": ["kuverta"], "primalac": ["primatelj", "primatelji"],
+    "podnosilac": ["podnositelj"], "primalac": ["primatelj", "primatelji"],
     "pošiljalac": ["pošiljatelj"], "kabel": ["kabl"],
+    # koverat seit K2 (Ajdin K2, 20.11.2026, Karte V7-33 „nein“), dazu V7-37 und V7-43;
+    # šalter ist als eigenes Wort der Schalter im Amt
+    "koverta": ["kuverta", "koverat"], "pribor": ["escajg"], "prekidač": ["šalter"],
 }
 
 # Partner je Wort, wie im Paket.
