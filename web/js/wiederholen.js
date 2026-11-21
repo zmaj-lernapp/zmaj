@@ -171,6 +171,7 @@ function topfNachziehen(){
      Aufruf kommt nicht vom Nutzer. */
   /* Der Kasten "Markiert" (19.10.2026) hat denselben Knopf und dieselbe
      Sperre ohne Leben, ebenso "Heute faellig" (29.10.2026). */
+  faelligNachziehen();   // der Kartei-Tag um 4 Uhr, fuer den roten Zaehler (O10)
   if(sichtbar('pfad') && homeMode === 'topf' &&
      ((topfAnzahl() && (livesNow() > 0) !== !!$('topfLos')) ||
       (sternAnzahl() && (livesNow() > 0) !== !!$('sternLos')) ||
@@ -190,13 +191,16 @@ function topfSeite(){
 }
 /* Nach dem Ende einer Lektion oder Runde: wohin zurueck. */
 function lektionVerlassen(){ if(Lx && Lx.topf) topfSeite(); else showLevelHome(); }
-/* Der Reiter Wiederholen: oben der Kasten fuer Fehler, unveraendert,
-   darunter seit 19.10.2026 der Kasten "Markiert" (sternKasten) und seit
-   29.10.2026 als dritter "Heute faellig" (karteiKasten). */
+/* Der Reiter Wiederholen: der Kasten fuer Fehler, darunter seit 19.10.2026
+   der Kasten "Markiert" (sternKasten). "Heute faellig" (karteiKasten) kam
+   am 29.10.2026 als dritter dazu und steht seit dem 20.11.2026 ganz oben
+   (O10, Ajdin: "ja mach die heute fällig ganz nach oben"). Die Kaesten
+   selbst bauen sich wie vorher; nur der Hinweis ohne Leben steht jetzt
+   zuerst bei "Heute faellig", siehe karteiKasten. */
 function showTopf(){
+  karteiKasten();
   topfKasten();
   sternKasten();
-  karteiKasten();
 }
 function topfKasten(){
   const box = $('topfBox');
@@ -216,7 +220,10 @@ function topfKasten(){
     $('topfLos').addEventListener('click', startTopf);
     return;
   }
-  /* Ohne Leben dieselben zwei Wege wie in der Levelansicht. */
+  /* Ohne Leben dieselben zwei Wege wie in der Levelansicht. Steht der
+     Hinweis schon im Kasten "Heute faellig" darueber (seit 20.11.2026 ganz
+     oben, O10), bleiben hier Zahl und Wort - wie dort bis dahin. */
+  if(karteiHeute().length){ box.innerHTML = html; return; }
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo = werbungErlaubt(true);
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
@@ -486,6 +493,7 @@ function sternKasten(){
     $('sternLos').addEventListener('click', startStern);
     return;
   }
+  if(karteiHeute().length){ box.innerHTML = html; return; }   // Hinweis steht oben bei "Heute faellig" (O10)
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo = werbungErlaubt(true);
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
@@ -740,14 +748,16 @@ function karteiRunde(){
   return runde;
 }
 function startKartei(){ rundeStarten('kartei'); }
-/* Der dritte Kasten im Reiter Wiederholen, "Heute faellig: n" (Ajdin am
-   28.10.2026), gebaut wie die zwei darueber: dieselben Klassen, dieselbe
+/* Der Kasten "Heute faellig: n" im Reiter Wiederholen (Ajdin am
+   28.10.2026), gebaut wie die zwei anderen: dieselben Klassen, dieselbe
    Zahl, derselbe Knopf, ohne Leben derselbe Hinweis und dieselben Wege zu
-   einem Leben. Die zwei alten Kaesten bleiben, wie sie sind.
-   Den Hinweis ohne Leben zeigt er nur, wenn keiner der Kaesten darueber
-   ihn schon zeigt (29.10.2026, Pruefung): sonst stand derselbe lange Text
-   mit denselben Knoepfen bis zu dreimal untereinander. Dann bleiben hier
-   Zahl und Wort. */
+   einem Leben. Bis zum 20.11.2026 stand er als dritter unter "Wiederholen"
+   und "Markiert", seitdem ganz oben (O10, siehe showTopf).
+   Den Hinweis ohne Leben zeigte er bis dahin nur, wenn keiner der Kaesten
+   darueber ihn schon zeigte (29.10.2026, Pruefung): sonst stand derselbe
+   lange Text mit denselben Knoepfen bis zu dreimal untereinander. Jetzt
+   ist er oben und zeigt ihn immer; die zwei darunter lassen ihn dann weg
+   und behalten Zahl und Wort (topfKasten, sternKasten). */
 function karteiKasten(){
   const box = $('karteiBox');
   if(!box) return;
@@ -766,7 +776,6 @@ function karteiKasten(){
     $('karteiLos').addEventListener('click', startKartei);
     return;
   }
-  if(topfAnzahl() || sternAnzahl()){ box.innerHTML = html; return; }
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo = werbungErlaubt(true);
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
@@ -784,6 +793,41 @@ function karteiKasten(){
     $('karteiCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); showTopf(); });
   }
   vollZeileHorchen('karteiVoll');
+}
+/* Der rote Zaehler am Reiter Wiederholen (O10, Ajdin am 20.11.2026: "ja
+   mach die heute fällig ganz nach oben und mach so eine rote mitteilung
+   "12" das ist eine gute idee"). Er zeigt dieselbe Zahl wie der Kasten
+   "Heute faellig" (karteiHeute), wie eine Mitteilung am App-Symbol: nur,
+   wenn etwas faellig ist - eine Null waere eine Mitteilung ohne Nachricht -,
+   und ab 100 "99+", damit er nicht breiter wird als der Reiter. Mit der
+   Tagesgrenze (KARTEI_TAG_MAX) sind es heute hoechstens 30.
+   Der Zaehler selbst ist fuer den Bildschirmleser stumm (aria-hidden); er
+   hoert die Zahl im Namen des Reiters, "Wiederholen, 12 Woerter heute
+   faellig". Ohne Zahl bekommt der Reiter seinen Namen wieder aus dem Text.
+   renderHero() ruft das bei jedem showHome() auf - also nach jeder Runde,
+   jeder Lektion (bis zu 3 faellige Woerter darin), nach dem Tageswechsel
+   um Mitternacht (tagPruefen) und nach einem Sprachwechsel. */
+let faelligTag = -1;   // der Kartei-Tag, fuer den der Zaehler zuletzt gezaehlt hat
+function faelligZaehler(){
+  const reiter = $('modeTopf'), z = $('faelligZahl');
+  if(!reiter || !z) return;
+  faelligTag = karteiTag();
+  const n = karteiHeute().length;
+  z.hidden = !n;
+  z.textContent = !n ? '' : (n > 99 ? '99+' : String(n));
+  if(n) reiter.setAttribute('aria-label', t('tab.wiederholen') + ', ' + tp('kartei.zaehler', n));
+  else reiter.removeAttribute('aria-label');
+}
+/* Der Kartei-Tag beginnt um 4 Uhr (KARTEI_TAG_BEGINN), nicht um Mitternacht
+   wie today() - diesen Wechsel merkt tagPruefen() nicht. Liegt die App
+   ueber 4 Uhr hinaus auf der Startseite, zieht das hier Zaehler und Kasten
+   nach, aus topfNachziehen(): alle 30 Sekunden und beim Zurueckkommen aus
+   dem Hintergrund. Ohne showHome(), das an den Seitenanfang springt.
+   Ist die Startseite nicht zu sehen, zaehlt der naechste showHome() neu. */
+function faelligNachziehen(){
+  if(faelligTag === karteiTag() || !sichtbar('pfad')) return;
+  faelligZaehler();
+  if(homeMode === 'topf') showTopf();
 }
 
 var teileDa = (teileDa || 0) + 1;   // dieser Teil ist ganz gelaufen, siehe teileDa oben

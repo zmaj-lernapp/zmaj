@@ -400,6 +400,34 @@
      Aussehen. Dort ist es keine Reiterreihe, sondern eine Auswahl - deshalb
      aria-checked statt aria-selected. Beide sehen gleich aus. */
   .mode button[aria-checked="true"]{background:var(--primary-fill); color:var(--on-fill)}
+  /* Der rote Zaehler am Reiter Wiederholen (O10, 20.11.2026, Ajdin: "mach
+     so eine rote mitteilung "12""): eine Pille oben rechts am Reiter wie
+     die Mitteilung an einem App-Symbol, mit der Zahl der heute faelligen
+     Woerter (faelligZaehler). Absolut gesetzt, damit er in der Zeile
+     keinen Platz braucht - sonst rutschte der dritte Reiter bei 360 px in
+     die naechste Zeile (siehe oben). Er ragt oben ueber den Rand der
+     Leiste, wie eine Mitteilung ueber den Rand des Symbols, rechts aber
+     nicht ueber den Reiter: sonst waere der Reiter breiter als sein Platz
+     (scrollWidth, tests_e2e/test_symbole.py).
+     Masse in em: die grosse Systemschrift vergroessert ihn mit, und die
+     Zahl passt immer hinein. Sein unterer Rand sitzt fest 10 px unter der
+     Oberkante des Reiters, da, wo die Zeile der Schrift beginnt (Polster
+     oben 10 px); groesser wird er nach oben. Mit top:-7px reichte er bei
+     360 px 2,8 px in diese Zeile und fast an die Oberlaenge von "h" und
+     "l" in "Wiederholen" (gemessen in allen acht Sprachen, 21.11.2026).
+     Rot ist --zaehler, der Ton von --bad-text hell; mit weisser Schrift
+     4,97:1, darum dunkel dieselbe Farbe (--bad hell hat mit Weiss nur
+     4,4:1, --bad-text dunkel ist rosa). Der Rand in --surface trennt ihn
+     wie beim Punkt am Profilknopf (#btnProfil.neu) von Reiter und Leiste.
+     pointer-events:none: was ueber den Reiter hinausragt, faengt keine
+     Tipps ab. */
+  :root{--zaehler:#D0352C; --auf-zaehler:#FFFFFF}
+  .mode button{position:relative}
+  .mode .zaehler{position:absolute; bottom:calc(100% - 10px); right:0; min-width:1.8em; height:1.8em; padding:0 .4em;
+                 display:flex; align-items:center; justify-content:center;
+                 border-radius:99px; border:2px solid var(--surface); background:var(--zaehler); color:var(--auf-zaehler);
+                 font-size:11px; font-weight:900; line-height:1; font-variant-numeric:tabular-nums; pointer-events:none}
+  .mode .zaehler[hidden]{display:none}   /* display:flex oben schlaegt sonst hidden */
   /* ---- Serienschutz: zwei Plaetze (Entwurf B) ----
      Bis zum 24.10.2026 stand hier eine Zeile Text, "❄ 1 Schutz · noch
      9 Tage bis zum naechsten". Ajdin am 23.10.2026: sie ist "nackt". Aus

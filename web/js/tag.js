@@ -637,6 +637,7 @@ function renderHero(){
   }
   renderSerie();
   profilPunkt();   // Erfolge: seit 14.11.2026 statt der Leiste nur der rote Punkt
+  faelligZaehler();   // roter Zaehler am Reiter Wiederholen (O10, 20.11.2026)
   renderQuests();
 }
 /* Als Pfeil, nicht als Wert: showErfolge() steht weiter unten. Ist das Skript

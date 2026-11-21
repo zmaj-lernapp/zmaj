@@ -417,7 +417,10 @@
     <div class="mode" role="tablist">
       <button role="tab" id="modeWords" aria-selected="true"><img class="sym" src="symbole/lernpfad.webp" alt="" aria-hidden="true"> <span data-t="tab.lernpfad"></span></button>
       <button role="tab" id="modeStories" aria-selected="false"><img class="sym" src="symbole/geschichten.webp" alt="" aria-hidden="true"> <span data-t="tab.geschichten"></span></button>
-      <button role="tab" id="modeTopf" aria-selected="false"><img class="sym" src="symbole/wiederholen.webp" alt="" aria-hidden="true"> <span data-t="tab.wiederholen"></span></button>
+      <!-- Der rote Zaehler (O10, 20.11.2026) zeigt, wie viele Woerter heute
+           faellig sind. Zahl und Name fuer den Bildschirmleser setzt
+           faelligZaehler(). -->
+      <button role="tab" id="modeTopf" aria-selected="false"><img class="sym" src="symbole/wiederholen.webp" alt="" aria-hidden="true"> <span data-t="tab.wiederholen"></span><span class="zaehler" id="faelligZahl" aria-hidden="true" hidden></span></button>
     </div>
     <div id="wordsHome">
       <!-- Die Stufen-Reiter A1 bis C1 (13.11.2026). Leiste und Karte
@@ -437,11 +440,15 @@
       <div class="section" id="storyList"></div>
     </div>
     <!-- Wiederholen: der Sammeltopf fuer falsch Beantwortetes. Darunter
-         seit 19.10.2026 die markierten Aufgaben (Stern), siehe STERN. -->
+         seit 19.10.2026 die markierten Aufgaben (Stern), siehe STERN.
+         "Heute faellig" (Lernkartei) kam am 29.10.2026 als dritter Kasten
+         darunter und steht seit dem 20.11.2026 ganz oben (O10, Ajdin: "ja
+         mach die heute fällig ganz nach oben"): bei 800 px Hoehe lag er
+         sonst unter zwei oft leeren Kaesten ausser Sicht. -->
     <div id="topfHome" style="display:none">
+      <div class="section" id="karteiBox"></div>
       <div class="section" id="topfBox"></div>
       <div class="section" id="sternBox"></div>
-      <div class="section" id="karteiBox"></div>
     </div>
   </div>
 
