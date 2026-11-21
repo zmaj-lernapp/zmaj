@@ -242,7 +242,13 @@ def pw(playwright_sitzung):
 @pytest.fixture(scope="session")
 def browser(playwright_sitzung):
     chromium = os.environ.get("ZMAJ_CHROMIUM") or None
-    b = playwright_sitzung.chromium.launch(executable_path=chromium)
+    # Stumm (20.11.2026): Ajdin hoerte waehrend der Browsertests bosnische
+    # Woerter aus den Laptop-Lautsprechern. Playwright setzt --mute-audio nur
+    # ohne Fenster (headless) selbst; hier ausdruecklich, damit es auch mit
+    # Fenster still bleibt (headless=False, PWDEBUG). Nur die Ausgabe ist
+    # stumm: spieler und WebAudio laufen weiter, ihre Zeiten stimmen.
+    # WebKit hat keinen solchen Schalter, siehe webkit.
+    b = playwright_sitzung.chromium.launch(executable_path=chromium, args=["--mute-audio"])
     yield MitSchemaSperre(b)
     b.close()
 
@@ -253,6 +259,14 @@ def webkit(playwright_sitzung):
     Playwright es auf dem Rechner schon hat - hier wird nichts geladen (kein
     playwright install). Fehlt es, wird der Test uebersprungen; die Chromium-
     Faelle laufen trotzdem."""
+    # Ton (gemessen 21.11.2026 an den Audio-Sitzungen von Windows, Probeton
+    # bei -66 dBFS): WebKit von Playwright spielt unter Windows MP3 und WAV
+    # hoerbar ab, einen AudioContext hat es nicht. Ein Gegenstueck zu
+    # --mute-audio gibt es nicht - keine Startoption, keine
+    # Umgebungsvariable, kein Befehl im Protokoll (Playwright 1.63,
+    # webkit-2359). Die WebKit-Faelle von test_aufteilung, test_doppeltipp
+    # und test_heller_knopf koennen darum zu hoeren sein; test_ios_ton
+    # ersetzt play() durch eine Attrappe und bleibt still.
     try:
         b = playwright_sitzung.webkit.launch()
     except Exception as e:      # jeder Startfehler heisst hier: kein WebKit da

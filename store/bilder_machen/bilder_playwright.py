@@ -812,7 +812,11 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
     pfade = []
     try:
         with sync_playwright() as pw:
-            browser = pw.chromium.launch(executable_path=chrome) if chrome else pw.chromium.launch()
+            # --mute-audio (20.11.2026): stumm wie die Browsertests, damit die
+            # App beim Bildermachen nicht aus den Lautsprechern spricht.
+            # Ohne Fenster setzt Playwright den Schalter schon selbst; so gilt
+            # er auch mit Fenster.
+            browser = pw.chromium.launch(executable_path=chrome, args=["--mute-audio"])
             # Feinschliff 16.11.2026: Haengt am Rand eine halbe Zeile, und es
             # gibt keine Lage ohne (Tablets haben wenig Spielraum: die Seite
             # darf nur bis zur Kopfleiste hinauf), kommt der ganze Lauf noch

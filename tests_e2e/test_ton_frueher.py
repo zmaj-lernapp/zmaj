@@ -81,8 +81,9 @@ def test_kuerzer_warten_nach_der_antwort(seite, heute_stand):
 
 @pytest.fixture(scope="module")
 def wie_webview(browser):
+    # --mute-audio (20.11.2026): stumm wie die Suite, siehe browser in conftest.py
     b = browser.browser_type.launch(executable_path=os.environ.get("ZMAJ_CHROMIUM") or None,
-                                    args=["--autoplay-policy=no-user-gesture-required"])
+                                    args=["--autoplay-policy=no-user-gesture-required", "--mute-audio"])
     yield b
     b.close()
 
