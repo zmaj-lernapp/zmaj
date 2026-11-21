@@ -43,7 +43,8 @@ def _neue_woerter(daten):
 
 
 def _nummer(datei):
-    return int(datei[1:5])
+    import ton_bauen
+    return ton_bauen.dateinummer(datei)       # auch fuenfstellig (w10059), 21.11.2026
 
 
 def test_jede_neue_wort_id_hat_emirs_ton(grunddaten, index, wurzel):

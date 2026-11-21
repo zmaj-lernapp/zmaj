@@ -56,7 +56,8 @@ GESCHICHTEN_LETZTE = 9871                            # tests/test_geschichtenwoe
 
 
 def _nummer(datei):
-    return int(datei[1:5])
+    import ton_bauen
+    return ton_bauen.dateinummer(datei)       # auch fuenfstellig (w10059), 21.11.2026
 
 
 def _im_bereich(emir):
@@ -72,7 +73,10 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     # und nana / metvica, tests/test_pruefbericht14_antworten.py), danach nur noch die
     # Grammatik-Antworten (16.11.2026, tests/test_grammatik_ton.py) und die Woerter der
     # B1-Lesetexte (16.11.2026, tests/test_geschichtenwoerter_ton.py).
-    assert max(_nummer(e["datei"]) for e in emir.values()) == GESCHICHTEN_LETZTE
+    # ohne die eigenen Toene je Bedeutung (w10059 ff., tests/test_ton_bedeutung.py, 21.11.2026)
+    import ton_bedeutung
+    eigene = set(ton_bedeutung.eigene_schluessel())
+    assert max(_nummer(e["datei"]) for k, e in emir.items() if k not in eigene) == GESCHICHTEN_LETZTE
     nach = sorted(e["datei"] for e in emir.values() if LETZTE < _nummer(e["datei"]) < GRAMMATIK_ERSTE)
     assert nach == sorted(d for d, _ in DAHINTER.values()), nach
     for key, (datei, text) in DAHINTER.items():

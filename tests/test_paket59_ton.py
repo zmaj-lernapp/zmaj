@@ -28,7 +28,8 @@ WARTET = ["ivica", "poteškoća", "dova", "mezarje", "dići", "dizati", "uopšte
 
 
 def _nummer(datei):
-    return int(datei[1:5])
+    import ton_bauen
+    return ton_bauen.dateinummer(datei)       # auch fuenfstellig (w10059), 21.11.2026
 
 
 def _im_bereich(emir):
@@ -46,7 +47,10 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     # tests/test_paket1020_ton.py, seit dem 16.11.2026 die Grammatik-Antworten (w8956 bis
     # w9048, tests/test_grammatik_ton.py) und die Woerter der B1-Lesetexte (w9049 bis
     # w9871, tests/test_geschichtenwoerter_ton.py).
-    assert max(_nummer(e["datei"]) for e in emir.values()) == 9871
+    # ohne die eigenen Toene je Bedeutung (w10059 ff., tests/test_ton_bedeutung.py, 21.11.2026)
+    import ton_bedeutung
+    eigene = set(ton_bedeutung.eigene_schluessel())
+    assert max(_nummer(e["datei"]) for k, e in emir.items() if k not in eigene) == 9871
     # Die 40 Grundwoerter, die am 13.11.2026 in zwei A-Level gezogen sind, kommen in der
     # App jetzt frueher dran; ihre Nummern bleiben (grundwoerter_umzug.py).
     from grundwoerter_umzug import UMZUG

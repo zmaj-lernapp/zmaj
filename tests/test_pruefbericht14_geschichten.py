@@ -663,7 +663,7 @@ def test_f10_ton(wurzel):
     assert "b1_selidba" not in offen_b1_teil2.GESCHICHTEN
     assert "b1_selidba" not in offen_b1_teil2.WOERTER
     emir = ton_bauen.nur_emir()
-    assert all(9049 <= int(emir[k]["datei"][1:5]) <= 9871 for k in ("kombiju", "zimnice"))
+    assert all(9049 <= ton_bauen.dateinummer(emir[k]["datei"]) <= 9871 for k in ("kombiju", "zimnice"))
     g = next(s for s in geschichten.GESCHICHTEN if s["id"] == "b1_selidba")
     toene = {e["key"]: e for e in json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"),
                                                     encoding="utf-8"))["toene"]}

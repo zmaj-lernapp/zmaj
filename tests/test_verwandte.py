@@ -155,7 +155,11 @@ def test_ton_nur_emir_ist_stimmig(wurzel):
     index = json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8"))
     emir = ton_bauen.nur_emir()
     assert ton_pruefen.nur_emir_pruefen(emir, index["toene"]) == []
-    assert set(emir) <= {p["key"] for p in ton_bauen.sammle()}
+    # Ohne die eigenen Schluessel je Bedeutung ("sam (bin)", ton_bedeutung.json, 21.11.2026):
+    # die stehen in keinem Inhalt, sammle() nimmt sie bewusst nicht auf (sonst spraeche Azure
+    # "sam (bin)"). Ob es sie geben darf, prueft tests/test_ton_bedeutung.py.
+    import ton_bedeutung
+    assert set(emir) - set(ton_bedeutung.eigene_schluessel()) <= {p["key"] for p in ton_bauen.sammle()}
 
 
 def _schreibe(pfad, daten):
