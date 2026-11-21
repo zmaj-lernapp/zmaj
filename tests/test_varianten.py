@@ -140,7 +140,8 @@ WOERTER = {
     "erkältung:prehlada": ["nahlada"],
     "hefe:kvasac": ["germa"],
     "treppe:stepenice": ["basamaci", "stube"],
-    "hund:pas": ["kuče"],
+    # "hund:pas": ["kuče"] bis zum 21.11.2026, dann Ajdin: „es ist welpe also nein soll
+    # nicht zählen“ (Fragen vom 21.11.2026, 1). kuče zählt nur noch beim Welpen.
     "stück:komad": ["parče"],
     "metzgerei:mesnica": ["kasapnica"],
     "schulferien:raspust": ["ferije"],
@@ -156,7 +157,7 @@ WOERTER = {
     "ich habe kein geld:Nemam novca": ["Nemam para"],
     "auf dem markt:na pijaci": ["na pazaru", "na tržnici"],
     "auf der straße:na ulici": ["na sokaku"],
-    "er hat einen hund:On ima psa": ["On ima kuče"],
+    # "er hat einen hund:On ima psa": ["On ima kuče"] bis zum 21.11.2026 (wie pas oben)
     # Fragen vom 15.11.2026 (Ajdin abends, 9a bis 9i, Offen-Liste 5d)
     "mit dem auto:autom": ["kolima", "automobilom"],
     # nicht „očev kola“ aus dem "auch"; „očeva kola“ seit den Fragen vom 16.11.2026 (8a);
@@ -165,8 +166,9 @@ WOERTER = {
     "geld abheben:podići novac": ["podići pare"],
     "geld einzahlen:uplatiti novac": ["uplatiti pare"],
     "wir suchen die straße:Tražimo ulicu": ["Tražimo sokak"],
-    "ich habe angst vor hunden:Bojim se pasa": ["Bojim se kučadi", "Plašim se pasa", "Plašim se kučadi"],
-    "vorsicht vor dem hund!:Čuvaj se psa!": ["Čuvaj se kučeta!"],
+    # Bis zum 21.11.2026 auch „Bojim se kučadi“, „Plašim se kučadi“ und bei „Čuvaj se psa!“
+    # „Čuvaj se kučeta!“ (wie pas oben, Fragen vom 21.11.2026, 1).
+    "ich habe angst vor hunden:Bojim se pasa": ["Plašim se pasa"],
     # „Der Hund hat mich gebissen“ nahm vom 15.11. (9i) bis 16.11.2026 (8b) auch
     # „Kuče me je ujelo“, jetzt nur noch „Pas me je ujeo“ und „Ujeo me je pas“.
     # K2 Wort-Alternativen (Ajdin K2, 20.11.2026; Release\Wortschatz\k2_2026-11-20\final):
@@ -899,6 +901,7 @@ WOERTER = {
     "klären:razjasniti": ["pojasniti"],
     "große halle:dvorana": ["hala"],
     "zentrum (mitte):središte": ["centar"],
+    "zentrum:centar": ["središte"],                     # seit 21.11.2026: „beide zählen“ (V5-29 war nein)
     "motorrad:motocikl": ["motor"],
     "kurve:krivina": ["zavoj"],
     "automobil:automobil": ["auto"],
@@ -1254,6 +1257,12 @@ def _z(antworten, wort=True, kennung="x", fall=None):
     ("Pas me je ujeo", True, []),                        # Kuče me je ujelo seit dem 16.11.2026 nirgends
     ("Čuvaj se psa!", True, []),
     ("plati", True, []),                                 # das Verb, nicht plata
+    # Fragen vom 21.11.2026: kuče beim Hund nirgends mehr, centar -> središte nur am Wort „Zentrum“
+    ("pas", True, []),
+    ("On ima psa", True, []),
+    ("Bojim se pasa", True, ["Plašim se pasa"]),
+    ("centar", True, []),                                # nur mit der Kennung zentrum:centar
+    ("tržni centar", True, []),
 ])
 def test_zusatz_an_beispielen(antwort, wort, mehr):
     assert _z([antwort], wort) == (mehr, [])
@@ -1491,7 +1500,7 @@ TABELLE_2C = {
     37: [("w", "fenster:prozor", "pendžer"), ("w", "wand:zid", "duvar"), ("w", "straße:ulica", "sokak"),
          ("w", "schrank:ormar", "dolap"), ("w", "gast:gost", "musafir"), ("l", "Svi ___ su došli.", "musafiri"),
          ("w", "medikament:lijek", "hap"), ("w", "erkältung:prehlada", "nahlada"), ("w", "hefe:kvasac", "germa"),
-         ("w", "treppe:stepenice", "basamaci"), ("w", "hund:pas", "kuče"), ("w", "stück:komad", "parče"),
+         ("w", "treppe:stepenice", "basamaci"), ("w", "stück:komad", "parče"),   # pas / kuče bis 21.11.2026
          ("w", "metzgerei:mesnica", "kasapnica"), ("l", "Idem u ___.", "kasapnicu"),
          ("w", "schulferien:raspust", "ferije"), ("w", "decke (bettdecke):deka", "ćebe"),
          ("w", "leiter:merdevine", "skale"), ("w", "haselnuss:lješnjak", "lješnik")],
@@ -1524,6 +1533,7 @@ GEGEN_2C = [
     ("w", "dass:da", "je"),                                           # da → je nur in „Pitam se ___ li dolazi.“
     ("l", "Mislim ___ je dobro.", "je"),
     ("w", "nie:nikad", "nekad"),
+    ("w", "hund:pas", "kuče"),                                        # Nr. 37 bis 21.11.2026: kuče ist der Welpe
 ]
 
 
@@ -1592,14 +1602,14 @@ DRITTE_RUNDE = [
     ("w", "entschuldigung (sie):Izvinite", "Oprostite"),               # Oprostite neben Izvinite
     ("l", "___, molim Vas.", "Oprostite"),
     ("w", "manchmal:ponekad", "nekada"),                              # nekada bei ponekad
-    # Zweite Form auch in ganzen Sätzen, genau diese sieben Stellen
+    # Zweite Form auch in ganzen Sätzen, genau diese sieben Stellen. Seit dem 21.11.2026
+    # sind es sechs: „On ima kuče“ ist wieder falsch (unten, Fragen vom 21.11.2026, 1).
     ("w", "ich habe ein auto:Imam auto", "Imam kola"),
     ("w", "im auto:u autu", "u kolima"),
     ("w", "ich habe kein geld:Nemam novca", "Nemam para"),
     ("w", "auf dem markt:na pijaci", "na pazaru"),
     ("w", "auf der straße:na ulici", "na sokaku"),
     ("l", "Supa je u ___.", "šerpi"),
-    ("w", "er hat einen hund:On ima psa", "On ima kuče"),
 ]
 # Bleibt falsch: die du-Form war nicht gefragt, und nie von oprosti nach izvini.
 GEGEN_DRITTE_RUNDE = [
@@ -1624,6 +1634,7 @@ GEGEN_DRITTE_RUNDE = [
     ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučeta"),   # Ajdin: „kučadi“
     ("l", "Na pijaci ima mnogo ___.", "pazaru"),
     ("l", "Koliko je ___?", "sahat"),                                 # „Koliko je sahat?“: Ajdin „Ne“
+    ("w", "er hat einen hund:On ima psa", "On ima kuče"),             # vom 14. bis zum 21.11.2026 richtig
 ]
 
 
@@ -1687,9 +1698,8 @@ FRAGEN_15_11 = [
     ("w", "geld abheben:podići novac", "podići pare"),                  # 9d
     ("w", "geld einzahlen:uplatiti novac", "uplatiti pare"),            # 9e
     ("w", "wir suchen die straße:Tražimo ulicu", "Tražimo sokak"),      # 9f
-    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučadi"),   # 9g
-    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),  # 9h
-    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta"),   #    ohne Ausrufezeichen wie bisher
+    # 9g „Bojim se kučadi“ und 9h „Čuvaj se kučeta!“ zählten bis zum 21.11.2026, seitdem
+    # nicht mehr (Ajdin: „es ist welpe also nein soll nicht zählen“), unten in der Gegenprobe.
     # 9i „Kuče me je ujelo“ hat Ajdin am 16.11.2026 zurückgenommen (8b), siehe FRAGEN_16_11.
 ]
 # Bleibt falsch: andere Fälle, das halbe Paar, und dieselben Formen an anderen Stellen.
@@ -1716,6 +1726,9 @@ GEGEN_FRAGEN_15_11 = [
     ("w", "der hund hat mich gebissen:Pas me je ujeo", "Ujelo me je kuče"),    # andere Stellung nicht gefragt
     ("w", "der hund hat mich gebissen:Pas me je ujeo", "Pas me je ugrizao"),
     ("w", "beißen:ugristi", "ujelo"),
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučadi"),   # 9g, bis 21.11.2026 richtig
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),  # 9h, bis 21.11.2026 richtig
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta"),
 ]
 
 
@@ -1738,15 +1751,15 @@ def test_fragen_15_11_nichts_anderes_wird_richtig(node_fragen_15_11):
 
 
 def test_fragen_15_11_nur_an_ihrer_stelle():
-    """Jedes neue Paar gilt nur an der Stelle, nach der gefragt war."""
+    """Jedes neue Paar gilt nur an der Stelle, nach der gefragt war. pasa / kučadi (9g)
+    und psa / kučeta (9h) gibt es seit dem 21.11.2026 nicht mehr."""
     stellen = {("autom", "kolima"): ["mit dem auto:autom", "Putujemo ___."],
                ("auto oca", "kola oca"): ["das auto des vaters:auto oca"],
-               ("ulicu", "sokak"): ["wir suchen die straße:Tražimo ulicu"],
-               ("pasa", "kučadi"): ["ich habe angst vor hunden:Bojim se pasa"],
-               ("psa", "kučeta"): ["vorsicht vor dem hund!:Čuvaj se psa!"]}
+               ("ulicu", "sokak"): ["wir suchen die straße:Tražimo ulicu"]}
     gefunden = {(p["a"], p["b"]): p["gilt"] for p in varianten.VARIANTEN
                 if isinstance(p["a"], str) and (p["a"], p["b"]) in stellen}
     assert gefunden == stellen
+    assert not [p for p in varianten.VARIANTEN if (p["a"], p["b"]) in (("pasa", "kučadi"), ("psa", "kučeta"))]
     for (a, b), gilt in stellen.items():
         assert _z([a], True) == ([], []), a                                 # anderswo nichts
         assert _z([a], True, kennung=gilt[0]) == ([b] + K2_DAZU.get(a, []), []), a
@@ -1805,7 +1818,8 @@ def test_fragen_16_11_nichts_anderes_wird_richtig(node_fragen_16_11):
 
 def test_fragen_16_11_paare(grunddaten):
     """8a: genau ein neues Paar, nur am "auch" „očev auto“ von „Das Auto des Vaters“.
-    8b: kein Paar mehr nach kuče me je ujelo, die anderen kuče-Paare bleiben."""
+    8b: kein Paar mehr nach kuče me je ujelo, die anderen kuče-Paare blieben bis zum
+    21.11.2026. Seitdem gibt es nur noch štene -> kuče (Fragen vom 21.11.2026, 1)."""
     paare = {(p["a"], p["b"]): p for p in varianten.VARIANTEN if isinstance(p["a"], str)}
     p = paare[("očev auto", "očeva kola")]
     assert p["gilt"] == ["das auto des vaters:auto oca"]
@@ -1815,9 +1829,9 @@ def test_fragen_16_11_paare(grunddaten):
     assert _z(["očev auto"], True, kennung="das auto des vaters:auto oca") == (["očeva kola", "očev automobil"], [])
     assert not [k for k in paare if "ujelo" in k[1] or "ujeo" in k[0]]
     # štene -> kuče seit K2 (Ajdin K2, 20.11.2026, V1-104): nur beim Welpen, „kuce ist nur
-    # welpe kein ausgewachsener hund“.
-    assert {k for k in paare if k[1].startswith("kuč")} == {
-        ("pas", "kuče"), ("psa", "kuče"), ("pasa", "kučadi"), ("psa", "kučeta"), ("štene", "kuče")}
+    # welpe kein ausgewachsener hund“. pas -> kuče, psa -> kuče, pasa -> kučadi und
+    # psa -> kučeta sind seit dem 21.11.2026 raus: „es ist welpe also nein soll nicht zählen“.
+    assert {k for k in paare if k[1].startswith("kuč")} == {("štene", "kuče")}
     assert paare[("štene", "kuče")]["gilt"] == ["welpe:štene", "Malo ___ spava."]
     w = next(x for x in _woerter(grunddaten) if x["id"] == "der hund hat mich gebissen:Pas me je ujeo")
     assert w["bs"] == "Pas me je ujeo" and w.get("auch") == ["Ujeo me je pas"] and "auch_var" not in w
@@ -1862,7 +1876,7 @@ GEGEN_K2 = [
     ("w", "schlaganfall:moždani udar", "šlog"),                                         # V5-3
     ("w", "blauer fleck:modrica", "masnica"),                                           # V5-4
     ("w", "kindergarten:vrtić", "obdanište"),                                           # V5-21
-    ("w", "zentrum:centar", "središte"),                                                # V5-29
+    # V5-29 (centar -> središte) seit dem 21.11.2026 ja: „beide zählen“, siehe FRAGEN_21_11.
     ("w", "richtung (fahrtrichtung):smjer", "pravac"),                                  # V5-30
     ("w", "mangel:nedostatak", "manjak"),                                               # V5-38
     ("w", "schulstunde / augenblick:čas", "sat"),                                       # V5-43
@@ -1896,7 +1910,7 @@ def test_k2_neins_bleiben_falsch(grunddaten):
     """Ohne node: die Eingabe steht nirgends unter den Antworten der Stelle."""
     def n(x):
         return x.strip().rstrip(".!?").strip().lower()
-    assert len(GEGEN_K2) == 57 and len(set(GEGEN_K2)) == 57
+    assert len(GEGEN_K2) == 56 and len(set(GEGEN_K2)) == 56          # 57 bis V5-29 am 21.11.2026
     for art, wer, eingabe in GEGEN_K2:
         antworten = {n(a) for a in _antworten_von(grunddaten, art, wer).split(" / ")}
         assert n(eingabe) not in antworten, (wer, eingabe)
@@ -2017,3 +2031,76 @@ def test_kein_paar_wird_von_einer_laengeren_wendung_verdeckt(grunddaten):
                          for x in allein if x.lower() not in schon]
     assert geprueft > 1000
     assert verdeckt == []
+
+
+# --- Fragen vom 21.11.2026 (Ajdin, Release\Fragen_Ajdin_2026-11-21.md, 1 und 2) in matches() ---
+# 1: „es ist welpe also nein soll nicht zählen“ - kuče heißt Welpe. Beim Hund zählt es
+#    nirgends mehr (bis dahin: pas -> kuče allein, „On ima kuče“, „Bojim se kučadi“,
+#    „Čuvaj se kučeta!“, Entscheidungen vom 14. und 15.11.2026). štene -> kuče (V1-104) bleibt.
+# 2: „beide zählen“ - wo die App centar („Zentrum“) erwartet, zählt auch središte, wie
+#    seit K2 umgekehrt centar bei središte („Zentrum (Mitte)“). Karte V5-29 war am
+#    20.11.2026 nein. Nicht in tržni centar und den anderen Zusammensetzungen.
+FRAGEN_21_11 = [
+    ("w", "zentrum:centar", "središte"),                                # 2, neu
+    ("w", "zentrum:centar", "Središte"),
+    ("w", "zentrum (mitte):središte", "centar"),                        # 2, seit K2, bleibt
+    ("w", "welpe:štene", "kuče"),                                       # 1, V1-104, bleibt
+    ("l", "Malo ___ spava.", "kuče"),
+]
+# Falsch: kuče, kučadi, kučeta beim Hund (bis 21.11.2026 an vier Stellen richtig) und
+# središte in den Zusammensetzungen mit centar oder in einem anderen Fall.
+GEGEN_FRAGEN_21_11 = [
+    ("w", "hund:pas", "kuče"),
+    ("w", "hund:pas", "kučadi"),
+    ("w", "hund:pas", "kučeta"),
+    ("w", "er hat einen hund:On ima psa", "On ima kuče"),
+    ("w", "er hat einen hund:On ima psa", "On ima kučeta"),
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučadi"),
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Plašim se kučadi"),
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučeta"),
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta"),
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kuče!"),
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo"),
+    ("w", "einkaufszentrum:tržni centar", "tržni središte"),
+    ("w", "einkaufszentrum:tržni centar", "trgovački središte"),
+    ("w", "einkaufszentrum:tržni centar", "šoping središte"),
+    ("w", "einkaufszentrum:tržni centar", "središte"),
+    ("w", "zentrum:centar", "središtu"),
+    ("w", "zentrum:centar", "središta"),
+]
+
+
+@pytest.fixture(scope="module")
+def node_fragen_21_11(index_html, grunddaten):
+    return _node_ja_und_gegen(index_html, grunddaten, FRAGEN_21_11, GEGEN_FRAGEN_21_11)
+
+
+def test_fragen_21_11_zentrum_und_welpe_vorher_falsch_jetzt_richtig(node_fragen_21_11):
+    falsch = {k: v for k, v in node_fragen_21_11.items()
+              if k[0] != "gegen" and v != ("no" if k[-1] == "vorher" else "ok")}
+    assert falsch == {}
+    assert len([k for k in node_fragen_21_11 if k[0] != "gegen"]) == 2 * len(FRAGEN_21_11)
+
+
+def test_fragen_21_11_kuce_beim_hund_ist_falsch(node_fragen_21_11):
+    falsch = {k: v for k, v in node_fragen_21_11.items() if k[0] == "gegen" and v != "no"}
+    assert falsch == {}
+    assert len([k for k in node_fragen_21_11 if k[0] == "gegen"]) == len(GEGEN_FRAGEN_21_11)
+
+
+def test_fragen_21_11_paare(grunddaten):
+    """kuče kommt nur noch beim Welpen dazu, središte nur am Wort „Zentrum“ - in der
+    ganzen App, an jedem Wort und jedem Lückensatz."""
+    alle = [(w["id"], v) for w in _woerter(grunddaten) for v in w.get("auch_var", [])]
+    alle += [(s["text"], v) for s in grunddaten["saetze"] for v in s.get("auch_var", [])]
+    assert sorted(k for k, v in alle if re.search(r"(?i)\bkuč", v)) == ["Malo ___ spava.", "welpe:štene"]
+    assert [(k, v) for k, v in alle if re.search(r"(?i)središt", v)] == [("zentrum:centar", "središte")]
+    p = [x for x in varianten.VARIANTEN if (x["a"], x["b"]) == ("centar", "središte")]
+    assert len(p) == 1 and p[0]["gilt"] == ["zentrum:centar"], p
+    assert p[0]["beleg"].startswith("Ajdin 21.11.2026: „beide zählen“")
+    assert _z(["centar"], True, kennung="zentrum:centar") == (["središte"], [])
+    assert _z(["tržni centar"], True, kennung="einkaufszentrum:tržni centar") == (
+        ["trgovački centar", "šoping centar"], [])
+    assert _z(["pas"], True, kennung="hund:pas") == ([], [])
+    assert _z(["štene"], True, kennung="welpe:štene") == (["kuče"], [])

@@ -68,7 +68,9 @@ ZAEHLT_NICHT = {
     # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karten V5-29, V5-30, V5-38, V5-43, V5-51 und
     # V5-53 „nein“). središte, pravac, manjak, sat und lokacija sind eigene App-Wörter mit
     # anderer Bedeutung, das lässt der Test unten zu.
-    "centar": ["središte"], "smjer": ["pravac"], "nedostatak": ["manjak"], "čas": ["sat"],
+    # V5-29 „centar“: ["središte"] stand hier bis zum 21.11.2026. Dann Ajdin: „beide zählen“
+    # (Fragen vom 21.11.2026, 2), seitdem zählt središte bei „Zentrum“ (varianten.py).
+    "smjer": ["pravac"], "nedostatak": ["manjak"], "čas": ["sat"],
     "prilika": ["šansa"], "položaj": ["lokacija"],
 }
 

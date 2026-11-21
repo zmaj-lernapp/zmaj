@@ -373,8 +373,9 @@ VARIANTEN = [
      "beleg": "dritte Runde, 14.11.2026: „na sokaku“"},
     {"a": "loncu", "b": "šerpi", "gilt": ["Supa je u ___."],
      "beleg": "dritte Runde, 14.11.2026: „Supa je u šerpi“"},
-    {"a": "psa", "b": "kuče", "gilt": ["er hat einen hund:On ima psa"],
-     "beleg": "dritte Runde, 14.11.2026: „On ima kuče“"},
+    # „On ima kuče“ (psa -> kuče an „On ima psa“) ist seit dem 21.11.2026 wieder raus:
+    # Ajdin auf die Fragen vom 21.11.2026, Frage 1, „es ist welpe also nein soll nicht
+    # zählen“ - kuče ist der Welpe, nicht der Hund. Nur štene -> kuče (K2, ganz unten) bleibt.
     # Fragen vom 15.11.2026 (Ajdin abends, 9a bis 9i): die zweite Form auch an den
     # neun Stellen, die in der dritten Runde nicht gefragt waren, „ja“, mit genau den
     # Formen, die er bestätigt hat: kolima, kola oca, podići pare und uplatiti pare
@@ -389,10 +390,9 @@ VARIANTEN = [
      "beleg": "Fragen 15.11.2026, 9c: „kola oca“"},
     {"a": "ulicu", "b": "sokak", "gilt": ["wir suchen die straße:Tražimo ulicu"],
      "beleg": "Fragen 15.11.2026, 9f: „Tražimo sokak“"},
-    {"a": "pasa", "b": "kučadi", "gilt": ["ich habe angst vor hunden:Bojim se pasa"],
-     "beleg": "Fragen 15.11.2026, 9g: „Bojim se kučadi“"},
-    {"a": "psa", "b": "kučeta", "gilt": ["vorsicht vor dem hund!:Čuvaj se psa!"],
-     "beleg": "Fragen 15.11.2026, 9h: „Čuvaj se kučeta!“"},
+    # 9g „Bojim se kučadi“ (pasa -> kučadi) und 9h „Čuvaj se kučeta!“ (psa -> kučeta)
+    # sind seit dem 21.11.2026 wieder raus, wie „On ima kuče“ oben: „es ist welpe also
+    # nein soll nicht zählen“ (Fragen vom 21.11.2026, Frage 1).
     # Fragen vom 16.11.2026 (Ajdin, 8a und 8b). 8a: „očeva kola“ zählt auch, „očev auto“
     # bleibt, „očev kola“ bleibt falsch. Am "auch" „očev auto“ als ganze Wendung, wie
     # „auto oca“ / „kola oca“ oben: mit kola wandert das Adjektiv mit (očeva, Mehrzahl).
@@ -400,7 +400,8 @@ VARIANTEN = [
     # je ujeo“ und „Ujeo me je pas“ (das steht als "auch" am Wort in vokabeln.py, wie beim
     # Satzbau). Das Paar „pas me je ujeo“ / „kuče me je ujelo“ vom
     # 15.11.2026 (9i) ist deshalb wieder raus; die anderen kuče-Formen (On ima kuče,
-    # Bojim se kučadi, Čuvaj se kučeta!, kuče allein beim Wort pas) bleiben.
+    # Bojim se kučadi, Čuvaj se kučeta!, kuče allein beim Wort pas) blieben bis zum
+    # 21.11.2026, seitdem zählt kuče beim Hund nirgends mehr (Fragen vom 21.11.2026, 1).
     {"a": "očev auto", "b": "očeva kola", "gilt": ["das auto des vaters:auto oca"],
      "beleg": "Fragen 16.11.2026, 8a/8b: „očeva kola“ zählt auch"},
     {"a": {"sg": ("mobitel", "mobitela", "mobitelu", "mobitel", "mobitelom", "mobitelu")},
@@ -465,7 +466,8 @@ VARIANTEN = [
      "gilt": UEBERALL, "beleg": "2c Nr. 37"},
     {"a": "kvasac", "b": "germa", "gilt": ALLEIN, "beleg": "2c Nr. 37; m. / f."},
     {"a": "stepenice", "b": "basamaci", "gilt": ALLEIN, "beleg": "2c Nr. 37; f. / m."},
-    {"a": "pas", "b": "kuče", "gilt": ALLEIN, "beleg": "2c Nr. 37; m. / n."},
+    # pas -> kuče (allein, 2c Nr. 37) seit dem 21.11.2026 raus: kuče ist der Welpe (Ajdin,
+    # Fragen vom 21.11.2026, 1: „es ist welpe also nein soll nicht zählen“).
     {"a": "komad", "b": "parče", "gilt": ALLEIN, "beleg": "2c Nr. 37; m. / n."},
     {"a": {"sg": ("mesnica", "mesnice", "mesnici", "mesnicu", "mesnicom", "mesnici")},
      "b": {"sg": ("kasapnica", "kasapnice", "kasapnici", "kasapnicu", "kasapnicom", "kasapnici")},
@@ -502,8 +504,10 @@ VARIANTEN = [
     # Noch nicht hier: 34 Paare für die neuen Wörter (moler, zarezač, tisućiti …),
     # sie kommen mit den Wörtern (final/varianten_final.txt, ganz unten).
     # štene -> kuče gilt nur beim Welpen (Ajdin: „kuce ist nur welpe kein
-    # ausgewachsener hund“); ob die kuče-Formen beim Hund (oben, 14./15.11.)
-    # bleiben, ist noch offen.
+    # ausgewachsener hund“). Die kuče-Formen beim Hund (oben, 14./15.11.) sind seit
+    # dem 21.11.2026 raus (Fragen vom 21.11.2026, 1: „es ist welpe also nein soll
+    # nicht zählen“). Seitdem gilt auch centar -> središte bei „Zentrum“ (Frage 2,
+    # „beide zählen“; Karte V5-29 war am 20.11. nein), neben središte -> centar.
     # --- Ajdin K2, 20.11.2026: kroatisch-serbische Standardform ---
     {"a": {"sg": ("krompir", "krompira", "krompiru", "krompir", "krompirom", "krompiru"),
            "pl": ("krompiri", "krompira", "krompirima", "krompire", "krompirima", "krompirima")},
@@ -4197,6 +4201,13 @@ VARIANTEN = [
      "b": "centar",
      "gilt": ALLEIN,
      "beleg": "K2 20.11.2026, Stück 8: App: centar = Zentrum; Ajdin 20.11.2026: Sammelfrage S-synonyme-15-20 ja"},
+    # Die Gegenrichtung, wie auf Karte V5-29 nur am Wort „Zentrum“: m. / n., und nie in
+    # tržni centar, trgovački centar, šoping centar (die haben eigene Paare).
+    {"a": "centar",
+     "b": "središte",
+     "gilt": ["zentrum:centar"],
+     "beleg": "Ajdin 21.11.2026: „beide zählen“ (Fragen vom 21.11.2026, Frage 2); "
+              "V5-29 war am 20.11.2026 nein"},
     {"a": "udes",
      "b": "nesreća",
      "gilt": ["autounfall:udes"],

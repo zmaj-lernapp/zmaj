@@ -1074,7 +1074,7 @@ allein steht (Ajdin über *šerpa* und *kola*).
 | 35 | *navečer*, *ujutro* | *uveče*, *ujutru* | überall |
 | 36 | *kod prijatelja*, *prijatelju!* | *kod druga*, *druže!* | nur an den beiden Wörtern |
 | 37 | *prozor*, *zid*, *ormar*, *gost*, *lijek*, *prehlada*, *mesnica*, *merdevine*, *lješnjak* | *pendžer*, *duvar*, *dolap*, *musafir*, *hap*, *nahlada*, *kasapnica*, *skale*, *lješnik* | überall, auch „Svi ___ su došli.“ (*musafiri*) und „Idem u ___.“ (*kasapnicu*) |
-| 37 | *ulica*, *kvasac*, *stepenice*, *pas*, *komad*, *raspust*, *deka* | *sokak*, *germa*, *basamaci*, *kuče*, *parče*, *ferije*, *ćebe* | allein |
+| 37 | *ulica*, *kvasac*, *stepenice*, *pas*, *komad*, *raspust*, *deka* | *sokak*, *germa*, *basamaci*, *kuče*, *parče*, *ferije*, *ćebe* | allein; *pas* / *kuče* **ersetzt am 21.11.2026**: zählt nicht mehr (ganz unten) |
 | 38 | *tisuća* | bleibt 1000 (`ZAHL_SONDER`) | |
 | 39 | *bundeva*, *nar*, *ugristi*, *saobraćaj* | *tikva*, *šipak*, *ujesti*, *promet* | nur am einen Wort |
 
@@ -1103,6 +1103,8 @@ allein steht (Ajdin über *šerpa* und *kola*).
   Seit der dritten Runde (unten) zählen „Imam kola“, „u kolima“, „Nemam para“, „na
   pazaru“, „na sokaku“, „Supa je u šerpi“ und „On ima kuče“, seit den Fragen vom
   15.11.2026 (ganz unten) auch die übrigen neun.
+  Die Formen mit *kuče* beim Hund sind **ersetzt am 21.11.2026** (ganz unten): sie
+  zählen nicht mehr, *kuče* ist der Welpe.
 
 ## 14.11.2026 abends – dritte Runde: weitere richtige Antworten beim Tippen
 
@@ -1158,7 +1160,7 @@ Formen selbst gebildet):
 | `auf dem markt:na pijaci` | na pazaru |
 | `auf der straße:na ulici` | na sokaku |
 | Lückensatz „Supa je u ___.“ (*loncu*) | šerpi |
-| `er hat einen hund:On ima psa` | On ima kuče |
+| `er hat einen hund:On ima psa` | On ima kuče – **ersetzt am 21.11.2026**: zählt nicht mehr (ganz unten) |
 
 - Nicht gefragt: „Koliko je sahat?“ (Ajdin: „Ne“) und „Moja je ovo kolegica.“ („Ne“)
   bleiben falsch.
@@ -1459,8 +1461,8 @@ gelehrt wird weiter die Form der App, Kennungen und Aufnahmen bleiben.
 | 9d | `geld abheben:podići novac` | podići pare |
 | 9e | `geld einzahlen:uplatiti novac` | uplatiti pare |
 | 9f | `wir suchen die straße:Tražimo ulicu` | Tražimo sokak |
-| 9g | `ich habe angst vor hunden:Bojim se pasa` | Bojim se kučadi |
-| 9h | `vorsicht vor dem hund!:Čuvaj se psa!` | Čuvaj se kučeta! |
+| 9g | `ich habe angst vor hunden:Bojim se pasa` | Bojim se kučadi – **ersetzt am 21.11.2026**: zählt nicht mehr (ganz unten) |
+| 9h | `vorsicht vor dem hund!:Čuvaj se psa!` | Čuvaj se kučeta! – **ersetzt am 21.11.2026**: zählt nicht mehr (ganz unten) |
 | 9i | `der hund hat mich gebissen:Pas me je ujeo` | Kuče me je ujelo |
 
 - Je ein Paar in `varianten.py` nur an dieser Stelle; *novac* / *pare* gilt jetzt
@@ -1513,10 +1515,61 @@ over (nb, da), au-dessus de, wie beim Wort *nad* „über (gehoben)“.
   Abschnitt oben) ist wieder raus. „Kuče me je ujelo“ und „Ujelo me je kuče“ sind
   wieder falsch.
   Die anderen Formen mit *kuče* bleiben: „On ima kuče“, „Bojim se kučadi“, „Čuvaj se
-  kučeta!“ und *kuče* allein beim Wort *pas*.
+  kučeta!“ und *kuče* allein beim Wort *pas*. **Ersetzt am 21.11.2026** (unten): *kuče*
+  zählt beim Hund nirgends mehr.
 
 **Bleibt, wie es ist.** Frage 4 „ja“: die drei deutschen Sätze in *Zmaj uči bosanski*
 (T15, „Aber Oma, ich habe nein, danke gesagt!“, die neue zweite Frage) und in *Kod
 doktora* (T1, „und schreibe Sie für fünf Tage krank“). Frage 6 „ja, beides bleibt so“:
 „Tišina, molim vas!“ klein (an eine Gruppe), „kod Vas“ in *Komšiluk bez struje* groß
 (Hasan siezt Merima).
+
+## 21.11.2026 – kuče nur beim Welpen, centar und središte zählen beide
+
+Ajdin auf die Fragenliste vom 21.11.2026 (`Release\Fragen_Ajdin_2026-11-21.md`,
+„Antworten Ajdin“, nachts, wörtlich), zu den Wort-Alternativen beim Tippen (K2,
+Version 1.5). Wie alles in `varianten.py` gilt das nur beim Tippen: gezeigt,
+gesprochen und gelehrt wird weiter die Form der App, Kennungen und Aufnahmen bleiben.
+
+**kuče beim Hund (Frage 1).** Gefragt war: „a) Beim Hund soll kuče nicht mehr zählen,
+die vier Stellen kommen raus. b) Es bleibt, wie es ist: kuče zählt beim Hund und beim
+Welpen.“ Ajdin: „es ist welpe also nein soll nicht zählen“. Am 20.11.2026 hatte er bei
+Karte V1-104 (*štene* → *kuče*) schon geschrieben: „kuce ist nur welpe kein
+ausgewachsener hund“. Das ersetzt die
+Entscheidungen vom 14.11.2026 (Tabelle 2c Nr. 37, dritte Runde) und vom 15.11.2026
+(9g, 9h), soweit sie *kuče* beim Hund betreffen. Die Einträge oben bleiben stehen und
+sind als „ersetzt am 21.11.2026“ markiert.
+
+| Stelle | zählte vom 14./15. bis 21.11.2026 | jetzt |
+|---|---|---|
+| `hund:pas` | kuče | falsch |
+| `er hat einen hund:On ima psa` | On ima kuče | falsch |
+| `ich habe angst vor hunden:Bojim se pasa` | Bojim se kučadi, Plašim se kučadi | falsch; „Plašim se pasa“ zählt weiter |
+| `vorsicht vor dem hund!:Čuvaj se psa!` | Čuvaj se kučeta! | falsch |
+
+- Bleibt: *kuče* beim Welpen, also `welpe:štene` und der Lückensatz „Malo ___ spava.“
+  (V1-104, 20.11.2026).
+- Die vier Paare in `varianten.py` sind raus. Die Formen stehen jetzt in den
+  Gegenproben der Tests (`GEGEN_FRAGEN_21_11` in `tests/test_varianten.py`), dazu
+  *kučadi* und *kučeta* beim Wort *pas*.
+- Beim Satzbau und in der Auswahl ändert sich nichts: *kuče* ist kein Wort der App.
+
+**centar und središte (Frage 2).** Gefragt war: „Über die Sammelfrage ‚Synonyme Paket
+15–20‘ (ja) zählt jetzt die Gegenrichtung: Wo die App *središte* erwartet, gilt auch
+*centar*. Soll das so bleiben?“ Ajdin: „beide zählen“. Bei Karte V5-29 (*centar* →
+*središte*) hatte er am 20.11.2026 „nein“ geschrieben, das ist damit ersetzt.
+
+| Stelle | zählt auch |
+|---|---|
+| `zentrum (mitte):središte` | centar (seit K2, 20.11.2026, bleibt) |
+| `zentrum:centar` | središte (neu) |
+
+- Nur am Wort „Zentrum“ (Kennung `zentrum:centar`, wie auf Karte V5-29): *centar* ist
+  männlich, *središte* sächlich, in einer Wendung wanderten Adjektive mit. Nicht bei
+  *tržni centar* („Einkaufszentrum“) mit *trgovački centar* und *šoping centar*:
+  „tržni središte“ bleibt falsch. Andere Fälle (*središtu*, *središta*) zählen bei
+  „Zentrum“ nicht.
+- Die übrigen Stellen mit *centar* sind lange Beispielsätze („Stanujemo u samom centru
+  grada.“), dort wird nicht getippt.
+- Die Sperre in den Paket-Tests (`ZAEHLT_NICHT` in `tests/test_paket5.py`) für
+  *središte* bei *centar* ist raus, die Eingabe steht nicht mehr in `GEGEN_K2`.
