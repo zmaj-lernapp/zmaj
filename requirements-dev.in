@@ -5,7 +5,7 @@
 # ist das mit Abstand größte Paket (je Plattform ein eigener Treiber).
 pytest>=8
 jsonschema>=4.18
-ruff>=0.6
+ruff>=0.17.3
 reuse>=4
 genanki>=0.13
 build>=1.2
