@@ -72,11 +72,14 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     # Dahinter die drei Aufnahmen vom 14.11.2026 (kolegica, test_kolegica_spricht_emir,
     # und nana / metvica, tests/test_pruefbericht14_antworten.py), danach nur noch die
     # Grammatik-Antworten (16.11.2026, tests/test_grammatik_ton.py) und die Woerter der
-    # B1-Lesetexte (16.11.2026, tests/test_geschichtenwoerter_ton.py).
+    # B1-Lesetexte (16.11.2026, tests/test_geschichtenwoerter_ton.py), seit dem 27.11.2026
+    # K2 und K7 und als letzte die Hose (w9872 bis w10058, w10094, tests/test_k2_ton.py).
     # ohne die eigenen Toene je Bedeutung (w10059 ff., tests/test_ton_bedeutung.py, 21.11.2026)
     import ton_bedeutung
+    from k2_einbau import TON_ERSTE, TON_HOSE
     eigene = set(ton_bedeutung.eigene_schluessel())
-    assert max(_nummer(e["datei"]) for k, e in emir.items() if k not in eigene) == GESCHICHTEN_LETZTE
+    assert TON_ERSTE == GESCHICHTEN_LETZTE + 1
+    assert max(_nummer(e["datei"]) for k, e in emir.items() if k not in eigene) == _nummer(TON_HOSE["datei"])
     nach = sorted(e["datei"] for e in emir.values() if LETZTE < _nummer(e["datei"]) < GRAMMATIK_ERSTE)
     assert nach == sorted(d for d, _ in DAHINTER.values()), nach
     for key, (datei, text) in DAHINTER.items():

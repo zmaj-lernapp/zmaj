@@ -109,11 +109,17 @@ def test_b_nummern_lueckenlos_in_der_reihenfolge_von_sammle(monkeypatch):
     assert [e["datei"] for e in neu] == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
     for e in neu:
         assert set(e) == {"key", "datei", "text"} and e["key"] == ton_bauen.schluessel(e["text"]), e
-    # Die letzten Nummern ueberhaupt
-    # ohne die eigenen Toene je Bedeutung (w10059 ff., tests/test_ton_bedeutung.py, 21.11.2026)
+    # Bis zum 27.11.2026 die letzten Nummern ueberhaupt
+    # ohne die eigenen Toene je Bedeutung (w10059 ff., tests/test_ton_bedeutung.py, 21.11.2026).
+    # Seit dem Ton-Schritt K2 (27.11.2026) stehen dahinter nur K2 und K7 (w9872 bis w10058)
+    # und die Hose (w10094), tests/test_k2_ton.py.
     import ton_bedeutung
+    from k2_einbau import TON_ERSTE, TON_HOSE, TON_LETZTE
     eigene = set(ton_bedeutung.eigene_schluessel())
-    assert max(_nummer(e["datei"]) for k, e in ton_bauen.nur_emir().items() if k not in eigene) == LETZTE
+    dahinter = sorted(_nummer(e["datei"]) for k, e in ton_bauen.nur_emir().items()
+                      if k not in eigene and _nummer(e["datei"]) > LETZTE)
+    assert TON_ERSTE == LETZTE + 1
+    assert dahinter == list(range(TON_ERSTE, TON_LETZTE + 1)) + [_nummer(TON_HOSE["datei"])]
     # sammle() kennt alle als Wort aus einer Geschichte, mit demselben Text, und die Nummern
     # folgen seiner Reihenfolge vom 16.11.2026. Heute bringt sammle() dieselben Woerter,
     # nur steht ein Wort vielleicht zuerst gross in einer anderen Geschichte ("Boli").
@@ -173,8 +179,10 @@ def test_d_nur_in_der_huelle(wurzel):
 
 def test_d_abgenommene_fassungen_in_der_huelle():
     """Jede Datei in der Huelle ist Byte fuer Byte die abgenommene aus fertig/, s ist
-    Fassung B und tiho Ck."""
+    Fassung B und tiho Ck. sit, mom und sale klangen englisch und haben seit dem 27.11.2026
+    unter derselben Nummer eine neue Aufnahme (tests/test_k2_ton.py, GLEICHE_NUMMER)."""
     import ton_pruefen
+    from test_k2_ton import GLEICHE_NUMMER, K2_NEU
     huelle = ton_pruefen._huelle_audio()
     if not huelle or not os.path.isdir(os.path.join(EINBAU, "fertig")):
         pytest.skip("Huelle oder Einbau-Ordner nicht da")
@@ -183,8 +191,14 @@ def test_d_abgenommene_fassungen_in_der_huelle():
         with open(p, "rb") as f:
             return hashlib.md5(f.read()).hexdigest()
 
+    neu_gesprochen = [e["key"] for e in _neu() if e["datei"] in GLEICHE_NUMMER]
+    assert sorted(neu_gesprochen) == ["mom", "sale", "sit"]
     for e in _neu():
-        assert md5(os.path.join(huelle, e["datei"])) == md5(os.path.join(EINBAU, "fertig", e["key"] + ".mp3")), e
+        soll = (os.path.join(K2_NEU, e["datei"]) if e["key"] in neu_gesprochen
+                else os.path.join(EINBAU, "fertig", e["key"] + ".mp3"))
+        if e["key"] in neu_gesprochen and not os.path.isdir(K2_NEU):
+            continue
+        assert md5(os.path.join(huelle, e["datei"])) == md5(soll), e
     neu = {e["key"]: e["datei"] for e in _neu()}
     for key, datei in GEWAEHLT.items():
         assert md5(os.path.join(huelle, neu[key])) == md5(os.path.join(EINBAU, "_app", datei)), key

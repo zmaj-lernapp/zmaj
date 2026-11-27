@@ -295,7 +295,8 @@ def test_ordnungszahlen_der_app_stehen_in_der_tabelle(grunddaten, index_html):
 
 def test_ton_offen_nur_was_noch_fehlt(grunddaten, wurzel):
     """Bis zum Ton-Schritt still: genau die neuen Schluessel ohne Aufnahme. Kommt eine
-    Aufnahme nach ton_nur_emir.json, muss der Schluessel hier raus."""
+    Aufnahme nach ton_nur_emir.json, muss der Schluessel hier raus. Seit dem Ton-Schritt
+    am 27.11.2026 ist TON_OFFEN leer (tests/test_k2_ton.py)."""
     import io
     import os
 
@@ -308,7 +309,8 @@ def test_ton_offen_nur_was_noch_fehlt(grunddaten, wurzel):
     ohne = [b for b in neu if ton_bauen.schluessel(b) not in emir and ton_bauen.schluessel(b) not in index
             and ton_bauen.schluessel(b) not in K2.TON_OFFEN]
     assert ohne == []
-    assert "pantalone / hlače" in K2.TON_OFFEN          # Emir w10094 „pantalone, hlače“
+    assert K2.TON_OFFEN == frozenset()
+    assert emir["pantalone / hlače"] == K2.TON_HOSE      # Emir w10094 „pantalone, hlače“
     assert K2.FRUEHER_IN_SAMMLE <= set(emir)
 
 

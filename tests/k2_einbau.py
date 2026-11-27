@@ -14,6 +14,8 @@ was davon in die App gekommen ist:
 - TON_OFFEN: Emir hat alles gesprochen (Stimme_Emir_neu/k2_2026-11-21/gewaehlt und
   k2_neu_2026-11-26/gewaehlt), in die Huelle und nach ton_nur_emir.json kommt es im
   Ton-Schritt. Bis dahin bleiben diese Eintraege still. Der Ton-Schritt leert die Menge.
+  Leer seit dem Ton-Schritt am 27.11.2026: die Nummern TON_ERSTE bis TON_LETZTE und
+  TON_HOSE in ton_nur_emir.json, geprueft in tests/test_k2_ton.py.
 - FRUEHER_IN_SAMMLE: Aufnahmen, die es schon gibt (Geschichte, Grammatik, Paket 5 bis 9)
   und die mit K2 auch eine Vokabel sind. ton_bauen.sammle() bringt sie jetzt frueher;
   ihre Nummer bleibt, die Pruefungen der Nummernfolge lassen sie aus.
@@ -259,8 +261,19 @@ TIPPEN = {
 }
 
 # Ton-Schluessel, deren Aufnahme Emir gesprochen hat, die aber erst im Ton-Schritt in die
-# Huelle und nach ton_nur_emir.json kommt (188).
-TON_OFFEN = frozenset([
+# Huelle und nach ton_nur_emir.json kommt. Am 27.11.2026 waren es 188, der Ton-Schritt hat
+# sie eingebaut: 187 als TON_ERSTE bis TON_LETZTE, „pantalone / hlače“ als TON_HOSE.
+TON_OFFEN = frozenset()
+
+# Emirs Nummern fuer K2 und K7 in ton_nur_emir.json (Ton-Schritt 27.11.2026), in der Folge
+# der Emir-Liste (Release/Wortschatz/k2_2026-11-20/final/emir_liste.json), direkt hinter den
+# Woertern der B1-Lesetexte (bis w9871). Dahinter w10059 bis w10093, die eigenen Toene je
+# Bedeutung (ohne w10085), und als letzte die Hose mit beiden Formen.
+TON_ERSTE, TON_LETZTE = 9872, 10058
+TON_HOSE = {"key": "pantalone / hlače", "datei": "w10094.mp3", "text": "pantalone / hlače"}
+
+# Was bis zum 27.11.2026 in TON_OFFEN stand (188), fuer tests/test_k2_ton.py.
+TON_EINGEBAUT = frozenset([
     "ajkula", "babo je uvijek bio darežljiv prema komšijama.", "babo slavi pedeseti rođendan.", "badžo",
     "balduza", "balduza nam dolazi u goste za vikend.", "bez kacige ne sjedaj na motor.", "bio je hiljaditi posjetilac i dobio je nagradu.",
     "brijati se", "brijem se", "budilnik", "bukva",

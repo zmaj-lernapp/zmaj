@@ -46,11 +46,13 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     # dem 14.11.2026 kolegica (w8953, w8954) und nana / metvica (w8955), alles in
     # tests/test_paket1020_ton.py, seit dem 16.11.2026 die Grammatik-Antworten (w8956 bis
     # w9048, tests/test_grammatik_ton.py) und die Woerter der B1-Lesetexte (w9049 bis
-    # w9871, tests/test_geschichtenwoerter_ton.py).
+    # w9871, tests/test_geschichtenwoerter_ton.py), seit dem 27.11.2026 K2 und K7 (w9872 bis
+    # w10058) und als letzte die Hose (w10094), tests/test_k2_ton.py.
     # ohne die eigenen Toene je Bedeutung (w10059 ff., tests/test_ton_bedeutung.py, 21.11.2026)
     import ton_bedeutung
+    from k2_einbau import TON_HOSE
     eigene = set(ton_bedeutung.eigene_schluessel())
-    assert max(_nummer(e["datei"]) for k, e in emir.items() if k not in eigene) == 9871
+    assert max(_nummer(e["datei"]) for k, e in emir.items() if k not in eigene) == _nummer(TON_HOSE["datei"])
     # Die 40 Grundwoerter, die am 13.11.2026 in zwei A-Level gezogen sind, kommen in der
     # App jetzt frueher dran; ihre Nummern bleiben (grundwoerter_umzug.py).
     from grundwoerter_umzug import UMZUG
