@@ -146,6 +146,13 @@
      als Loesung eine andere richtige Form ("Richtig waere: Mnogo hvala"), sagt
      diese Zeile, dass die Hauptform darunter genauso gilt. Klein wie .tempo .tlabel. */
   .loesung .lauch{display:block; margin-bottom:1px; font-size:12px; font-weight:800; color:var(--muted)}
+  /* Hoeren im Lueckensatz, erst nach dem Pruefen (27.11.2026): unter der
+     Uebersetzung in der Loesung, kleiner als der Hoeren-Knopf eines neuen
+     Worts, damit Weiter am kleinen Handy im Bild bleibt. */
+  .loesung .satzton{margin-top:6px; padding:5px 14px; font-size:13px}
+  /* "jezero = See" hinter der Loesung einer Auswahl (27.11.2026): bricht als
+     Ganzes in die naechste Zeile statt zwischen Wort und Bedeutung. */
+  .feedback .gewaehlt{display:inline-block}
 
   /* Tempo des Vorlesens. Steht unter dem Vorlese-Knopf der Geschichte und
      noch einmal in den Einstellungen; beide zeigen denselben Wert. */

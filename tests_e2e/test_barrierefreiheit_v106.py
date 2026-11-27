@@ -103,12 +103,16 @@ def test_ansage_nach_falscher_auswahl_nennt_die_loesung(seite, heute_stand):
     seite.starten(stand=heute_stand())
     w = seite.js(WORT_AUFGABE, "mc")
     falsch = seite.page.locator("#lBody .opt").filter(has_not_text=w["bs"]).first
+    gewaehlt = falsch.text_content()
     seite.frisch_abwarten()
     falsch.click()
     text = _ansage_abwarten(seite, w["bs"])
     assert text.startswith("Richtig wäre"), text
-    # auch das sichtbare Feld ist unveraendert, nur ausgezeichnet
-    assert seite.page.locator("#lBody #xFb").inner_text().strip() == "Richtig wäre: " + w["bs"]
+    # Das sichtbare Feld nennt die Loesung, seit dem 27.11.2026 dahinter das
+    # Gewaehlte mit seiner Bedeutung (test_luecke_hoeren_auswahl.py).
+    sichtbar = seite.page.locator("#lBody #xFb").inner_text().replace(" ", " ").strip()
+    assert sichtbar.startswith("Richtig wäre: " + w["bs"] + " · " + gewaehlt + " = "), sichtbar
+    assert gewaehlt in seite.js("() => [...document.querySelectorAll('#ansage [lang=\"bs\"]')].map(e => e.textContent)")
     assert seite.fehler == []
 
 

@@ -266,7 +266,7 @@ function renderChoice(box, opts, correctKey, keyOf, onDone, sprache){
       box.querySelectorAll('.opt').forEach(x=>{ x.disabled=true; if(x.textContent===correctKey) x.classList.add('right'); });
       const ok = label===correctKey; if(!ok) b.classList.add('wrong');
       sound(ok?'ok':'no');
-      onDone(ok);
+      onDone(ok, o);     // o: was gewaehlt wurde, fuer "jezero = See" (27.11.2026)
     });
     box.appendChild(b);
   });
@@ -353,13 +353,24 @@ const gramAntwortBosnisch = antwort => !GESCHLECHT_KLAMMER.test(String(antwort |
    die Antworten der Geschichten-Fragen: dort bosnisch === false.
    Danach wird die Rueckmeldung angesagt (#ansage, siehe ansagen()) - erst
    nach WEITER_NACH, wenn der Fokus auf Weiter liegt. */
-function rueckmeldungZeigen(feld, klasse, schluessel, wort, bosnisch, anhang){
+/* gewaehlt (27.11.2026): der falsch angetippte Knopf einer Auswahl, ein Wort
+   aus dem Vorrat. Ajdin: "man klickt jezero an aber es ist more richtig dann
+   steht die antwort ist more jezero bedeutet see oder so". Hinter der Loesung
+   steht dann, was das Gewaehlte heisst: "Richtig wäre: more · jezero = See",
+   bei "Was bedeutet ...?" genauso ("Richtig wäre: Meer · jezero = See").
+   Bosnisch ist nur das Wort, die Bedeutung ist in der Sprache der App (w.de).
+   Kein eigener Text: das "=" braucht keine Uebersetzung. Das geschuetzte
+   Leerzeichen vor dem Punkt haelt ihn an der Loesung, und als inline-block
+   rutscht "jezero = See" am schmalen Handy als Ganzes in die naechste Zeile. */
+const gewaehltHtml = g => g && g.bs && g.de
+  ? ' · <span class="gewaehlt"><span lang="bs">'+esc(g.bs)+'</span> = '+esc(g.de)+'</span>' : '';
+function rueckmeldungZeigen(feld, klasse, schluessel, wort, bosnisch, anhang, gewaehlt){
   if(!feld) return;
   const W = '\u0001';
   const teile = esc(t(schluessel, {wort: W})).split(W);
   const wortHtml = bosnisch === false ? esc(wort) : '<span lang="bs">'+esc(wort)+'</span>';
   feld.innerHTML = (schluessel === 'task.richtig' ? '<span lang="bs">'+teile.join('')+'</span>' : teile.join(wortHtml))
-                 + (anhang ? esc(' ('+anhang+')') : '');
+                 + (anhang ? esc(' ('+anhang+')') : '') + gewaehltHtml(gewaehlt);
   feld.className = 'feedback '+klasse;
   ansagen(feld.innerHTML, WEITER_NACH + 80);
 }
@@ -454,10 +465,11 @@ function aufgabeZeichnen(task, body, done, opts={}){
   if(task.s && task.s.zahl && task.v === undefined) task.v = zahlZiehen(task.s);
   woerterVorladen(task);               // ihr Wort und das der naechsten Aufgabe dekodieren (26.10.2026)
   const kick = (text)=> '<div class="kicker aufgabe'+(task.rep||task.retry?' mitmarke':'')+'">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
-  const rueckmeldung = (klasse, schluessel, wort, bosnisch, anhang)=>
-    rueckmeldungZeigen($$('xFb'), klasse, schluessel, wort, bosnisch, anhang);
-  const fb = (ok, right, extra, bosnisch)=> ok ? rueckmeldung('ok', 'task.richtig')
-                                               : rueckmeldung('no', 'task.falsch', right, bosnisch, extra);
+  const rueckmeldung = (klasse, schluessel, wort, bosnisch, anhang, gewaehlt)=>
+    rueckmeldungZeigen($$('xFb'), klasse, schluessel, wort, bosnisch, anhang, gewaehlt);
+  // gewaehlt: nur bei den Wort-Auswahlen mc, mcrev und listen (siehe gewaehltHtml)
+  const fb = (ok, right, extra, bosnisch, gewaehlt)=> ok ? rueckmeldung('ok', 'task.richtig')
+                                               : rueckmeldung('no', 'task.falsch', right, bosnisch, extra, gewaehlt);
   /* Nach der Antwort: das Bosnische und darunter, was es heißt. Vorher
      konnte man eine Auswahlaufgabe richtig lösen, ohne je zu erfahren, was
      das Wort bedeutet - und bei den Höraufgaben stand überhaupt nichts
@@ -540,7 +552,7 @@ function aufgabeZeichnen(task, body, done, opts={}){
   }
   if(task.typ==='mc'){
     body.innerHTML = kick(t('task.was_heisst'))+'<div class="prompt'+(w.de.length>18?' long':'')+'">'+esc(w.de)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(wortTon(w), nachAntwort(ok), ok); done({ok}); }, 'bs');
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, (ok, o)=>{ fb(ok, w.bs, '', undefined, o); loesung(w.bs, w.de); spaeterSprechen(wortTon(w), nachAntwort(ok), ok); done({ok}); }, 'bs');
     return;
   }
   if(task.typ==='mcrev'){
@@ -555,7 +567,7 @@ function aufgabeZeichnen(task, body, done, opts={}){
       '<button class="listen" data-hoer="1">'+mitSymbol('lautsprecher', t('task.hoeren'))+'</button>');
     const hoerKnopf = body.querySelector('[data-hoer]');
     if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(wortTon(w)); });
-    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(wortTon(w), nachAntwort(ok), ok); done({ok}); });
+    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, (ok, o)=>{ fb(ok, w.de, '', false, o); loesung(w.bs, w.de); spaeterSprechen(wortTon(w), nachAntwort(ok), ok); done({ok}); });
     return;
   }
   if(task.typ==='type'){
@@ -596,7 +608,7 @@ function aufgabeZeichnen(task, body, done, opts={}){
   if(task.typ==='listen'){
     body.innerHTML = kick(t('task.hoerfrage'))+'<button class="listen bigplay" id="xPlay" aria-label="'+t('task.abspielen')+'">'+symbol('lautsprecher')+'</button><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.hoeren_skip'));
     $$('xPlay').addEventListener('click',()=>speak(wortTon(w))); spaeterSprechen(wortTon(w), BEIM_ERSCHEINEN);
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); }, 'bs');
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, (ok, o)=>{ fb(ok, w.bs, '', undefined, o); loesung(w.bs, w.de); done({ok}); }, 'bs');
     wireSkip();
     return;
   }
@@ -882,7 +894,24 @@ function aufgabeZeichnen(task, body, done, opts={}){
       const gezeigt = r==='ok' ? s.answer : r==='almost' ? gemeinteAntwort(inp.value, antworten) : naechsteAntwort(inp.value, antworten, s.answer);
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
       else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', gezeigt);
-      loesung(s.text.replace('___', s.answer), s.de, andereForm(gezeigt, s.answer));
+      const ganz = s.text.replace('___', s.answer);
+      loesung(ganz, s.de, andereForm(gezeigt, s.answer));
+      /* Den ganzen Satz noch einmal hoeren (27.11.2026). Ajdin: "nachdem man
+         das ergebnis sehen möchte gibt es den knopf zum anhören". Erst jetzt,
+         mit der Loesung - vor dem Pruefen verriete er die Luecke. Nur mit einer
+         Aufnahme des ganzen Satzes (am Handy spricht Emir), ohne sie kein Knopf,
+         wie beim Vorlesen der Geschichten (audioDatei, 16.11.2026); die
+         Computerstimme zaehlt hier nicht. Von selbst spielt der Knopf nichts:
+         nach der Antwort kommt der Satz wie bisher einmal (lueckeText unten),
+         danach nur auf Tipp. Als .listen laesst weiterBeiTipp() den Tipp
+         durch, er blaettert nicht weiter. Er steht in der Loesung und wandert
+         mit ihr ins Antwortfeld. */
+      const lbox = body.querySelector('.loesung');
+      if(lbox && audioDatei(ganz)){
+        lbox.insertAdjacentHTML('beforeend',
+          '<button type="button" class="listen satzton">'+mitSymbol('lautsprecher', esc(t('task.hoeren')))+'</button>');
+        lbox.lastElementChild.addEventListener('click', ()=>{ stilleBitte(true); speak(ganz); });
+      }
       sound(ok?'ok':'no');
       /* Erst jetzt den FERTIGEN Satz sprechen - vorher waere die Loesung
          verraten. Gehoert wird der Satz mit eingesetztem Wort, nicht der
