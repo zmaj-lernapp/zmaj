@@ -401,7 +401,7 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: fünf Reiter, 27 Sektionen, 297 Levels
+## Der Lernpfad: fünf Reiter, 27 Sektionen, 298 Levels
 
 Seit dem 13.11.2026 steht der Lernpfad in Reitern je Stufe: **A1 · A2 · B1 ·
 B2 · C1** (C1 noch leer, „bald“). Jeder Reiter zeigt seine Sektionen mit ihren
@@ -1286,7 +1286,7 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 7997 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 8191 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, außer
   den Aspektpaaren (*ostati* / *ostajati*), die mit Absicht gleich heißen.
   Keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.

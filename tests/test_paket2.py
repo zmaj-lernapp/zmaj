@@ -24,6 +24,7 @@ Hier steht, was beim Einbau festgelegt wurde:
 import re
 
 import pytest
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 TUN = ["paare_geben", "paare_denken", "paare_alltag", "im_haushalt"]
 WIE = ["lang_kurz", "voll_leer", "moeglich", "wie_jemand_ist", "benehmen", "glueck_sorgen", "sinne"]
@@ -126,7 +127,7 @@ PARTNER_PAKET3 = {"iznijeti": "iznositi", "miješati": "promiješati", "pokvarit
 
 
 def _level(daten, ids):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in ids]
 
 

@@ -74,6 +74,23 @@ function zahlWert(s){
   }
   return null;
 }
+/* ---- Ordnungszahl als Ziffer mit Punkt (K7, 27.11.2026) ----
+   Ajdin am 20.11.2026 (O-F3): "„4.“ für četvrti: ja" - beim Tippen und beim Sprechen.
+   Nur mit Punkt: "4" ist četiri und bleibt bei četvrti falsch, "4." bei četiri auch.
+   Es zaehlt das Wort, nach dem gefragt ist (die maennliche Form, wie sie in der App
+   steht); seine weibliche und saechliche Form gelten dort ohnehin ueber "auch".
+   Die Formen allein stehen bewusst nicht in der Tabelle: prvo heisst in der App auch
+   "zuerst" und peta "Ferse" - dort waeren "1." und "5." falsch richtig. */
+const ORDNUNGSZAHL = {cetvrti:4, peti:5, sesti:6, sedmi:7, osmi:8, deveti:9, deseti:10, jedanaesti:11, dvanaesti:12, dvadeseti:20, 'dvadeset prvi':21, trideseti:30, pedeseti:50, stoti:100, hiljaditi:1000, prvi:1, drugi:2, treci:3};
+const ordnungsWert = s => {
+  const t = strip(String(s || '')).replace(/[^a-z ]/g, '').replace(/\s+/g, ' ').trim();
+  return Object.prototype.hasOwnProperty.call(ORDNUNGSZAHL, t) ? ORDNUNGSZAHL[t] : null;
+};
+/* Die Ziffer mit Punkt passt zur Ordnungszahl: "4." zu četvrti, "21." zu dvadeset prvi. */
+const ordnungsZiffer = (eingabe, wort) => {
+  const m = /^(\d+)\.$/.exec(String(eingabe || '').trim());
+  return !!m && ordnungsWert(wort) === parseInt(m[1], 10);
+};
 /* ---- Zahlen, die wechseln (25.10.2026) ----
    Ajdin: "die sätze immer mit der gleichen zahl ist und nicht mal
    variiert". Gemeint ist die Zahl im Satz: "Sada je pet sati." kam immer
@@ -306,6 +323,7 @@ function klingtWie(gehoert, ziel){
      und "2" auch fuer die weibliche Form "dvije". */
   const zg = zahlWert(gehoert), zz = zahlWert(ziel);
   if(zg !== null && zz !== null) return zg === zz;
+  if(ordnungsZiffer(gehoert, ziel)) return true;   // "4." bei četvrti (27.11.2026)
   /* Ein Klammerzusatz spricht niemand mit: "nana (auch: metvica)" war "nana". Seit dem
      14.11.2026 heisst das Wort "nana / metvica" (Pruefbericht 1.4, B6), die Regel bleibt. */
   const zielOhne = String(ziel).replace(/\([^)]*\)/g, ' ');
@@ -528,6 +546,7 @@ function matches(guess, answer){
   const norm = s => s.normalize('NFC').toLowerCase().replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
   const alts = answer.split(' / ');
   if(alts.some(a => norm(a) === norm(g))) return 'ok';
+  if(ordnungsZiffer(g, alts[0])) return 'ok';     // "4." bei četvrti, siehe ORDNUNGSZAHL (27.11.2026)
   /* Getippte Zahlen zaehlen genauso: wer "5" schreibt, meint "pet".
      Erst der Zahlwert, dann der ausgeschriebene Satz - so gilt auch
      "Nalazimo se u 5".

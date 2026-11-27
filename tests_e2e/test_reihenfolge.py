@@ -116,7 +116,8 @@ def test_erste_zwei_lektionen_zahlen_der_reihe_nach(seite, heute_stand):
     ("mengen", [8, 5, 5, 5, 5, 3]),
     ("konjugation", [8, 5, 5, 5, 5, 1]),
     ("zukunft", [8, 5, 5, 3]),
-    ("routine", [8, 5, 5, 5, 5, 3]),
+    ("routine", [8, 5, 5, 5, 5, 5, 5, 3]),      # seit K2 (27.11.2026) 41 Eintraege
+    ("ordnungszahlen", [8, 5, 5, 5, 5, 2]),     # K7, 27.11.2026
     ("vergangenheit", [8, 5, 5, 4]),
     ("modal", [8, 5, 5, 5, 5]),
     ("adjektive", [8, 5, 5, 5, 3]),
@@ -138,7 +139,9 @@ def test_ganzes_level_der_reihe_nach(seite, heute_stand, kid, groessen):
     if kid == "zukunft":
         assert erg["lektionen"][0][:5] == ["ću", "ćeš", "će", "ćemo", "ćete"]
     if kid == "routine":
-        assert erg["lektionen"][0][:3] == ["ustajati", "Ustajem u sedam", "tuširati se"]
+        assert erg["lektionen"][0][:3] == ["ustajati", "Ustajem u sedam", "budilnik"]     # K2, 27.11.2026
+    if kid == "ordnungszahlen":
+        assert erg["lektionen"][0][:3] == ["četvrti", "Živimo na četvrtom spratu, a lift ne radi.", "peti"]
     if kid == "vergangenheit":                        # 27.10.2026
         assert erg["lektionen"][0][:5] == ["bio sam / bila sam", "bio si / bila si", "bio je", "bila je", "bili smo"]
     if kid == "modal":

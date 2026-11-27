@@ -19,8 +19,8 @@
 </p>
 
 **An offline app for learning Bosnian, and the open Bosnian course behind it.**
-297 levels from the first *Merhaba* to an employment contract, about 4,700 words
-and phrases and about 3,300 example sentences with Bosnian audio, 26 grammar
+298 levels from the first *Merhaba* to an employment contract, about 4,800 words
+and phrases and about 3,400 example sentences with Bosnian audio, 26 grammar
 lessons, 32 graded reading stories, an interface in eight languages. Progress
 lives on the phone; since v109 the Android app has an
 account (Google or email, after the first lesson) that backs it up. All of the
@@ -72,7 +72,7 @@ Everything the app teaches is exported to [`data/`](data/) under
 
 | | Count | Formats |
 |---|---:|---|
-| Words, phrases and example sentences, 27 sections in four stages (A1 to B2), 297 levels | 7,997 | JSON, CSV, Anki (8 decks) |
+| Words, phrases and example sentences, 27 sections in four stages (A1 to B2), 298 levels | 8,191 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
 | Graded stories with glossary and questions | 32 | JSON |
 | Reading glossary | 1,519 | JSON |
@@ -133,7 +133,7 @@ output needs, so the app, the dataset and the demo can never disagree:
 ```mermaid
 flowchart LR
   subgraph src["Content (edited by hand)"]
-    V["vokabeln.py<br/>297 levels · 7,997 entries · 300 cloze sentences"]
+    V["vokabeln.py<br/>298 levels · 8,191 entries · 300 cloze sentences"]
     G["grammatik.py<br/>26 lessons"]
     S["geschichten.py<br/>32 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]
@@ -241,8 +241,8 @@ Please cite as described in [CITATION.cff](CITATION.cff), DOI
 <details>
 <summary><b>Deutsch</b></summary>
 
-**Zmaj** ist eine Offline-App zum Bosnischlernen: 297 Level, rund 4.700 Wörter
-und Wendungen und rund 3.300 Beispielsätze mit bosnischer Tonspur,
+**Zmaj** ist eine Offline-App zum Bosnischlernen: 298 Level, rund 4.800 Wörter
+und Wendungen und rund 3.400 Beispielsätze mit bosnischer Tonspur,
 26 Grammatikeinheiten, 32 Lesegeschichten, Oberfläche in
 acht Sprachen. Der Lernstand liegt auf dem Gerät; die Android-App sichert ihn
 seit v109 in einem Konto, die Browser-Demo hat keins.

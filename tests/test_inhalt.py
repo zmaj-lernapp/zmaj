@@ -31,9 +31,10 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     """README und Store-Text nennen diese Zahlen. Ändern sie sich,
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
-    # 297 seit 13.11.2026: zwei neue Level mit umgezogenen Grundwoertern (Stufen-Reiter)
-    assert len(grunddaten["kategorien"]) == 297
-    assert woerter == 7997
+    # 297 seit 13.11.2026: zwei neue Level mit umgezogenen Grundwoertern (Stufen-Reiter),
+    # 298 und 8 191 seit K2 und K7 (27.11.2026): Level Ordnungszahlen, 194 Eintraege mehr
+    assert len(grunddaten["kategorien"]) == 298
+    assert woerter == 8191
     assert len(grunddaten["saetze"]) == 300
     assert len(grunddaten["geschichten"]) == 32       # seit 13.11.2026 (B1-Lesetexte, Pakete 1 bis 4)
     assert len(grunddaten["grammatik"]) == 26
@@ -50,21 +51,23 @@ def test_woerter_und_saetze_getrennt_wie_in_readme_und_store(grunddaten, wurzel)
     eintraege = [w["bs"].strip() for k in grunddaten["kategorien"] for w in k["words"]]
     eng = sum(bool(ende.search(b)) for b in eintraege)
     breit = sum(bool(ende.search(b)) or len(b.split()) >= 4 for b in eintraege)
-    # Seit den Paketen 10 bis 20 (07.11.2026): rund 4.700 Woerter, rund 3.300 Saetze
+    # Seit den Paketen 10 bis 20 (07.11.2026): rund 4.700 Woerter, rund 3.300 Saetze;
+    # seit K2 und K7 (27.11.2026) rund 4.800 und 3.400 (eng 4.846 / 3.345, breit 4.742 / 3.449)
     for saetze in (eng, breit):
-        assert abs(saetze - 3300) <= 100, saetze
-        assert abs(len(eintraege) - saetze - 4700) <= 100, saetze
+        assert abs(saetze - 3400) <= 100, saetze
+        assert abs(len(eintraege) - saetze - 4800) <= 100, saetze
 
     def flach(name):
         with open(os.path.join(wurzel, name), encoding="utf-8") as f:
             return " ".join(f.read().split())
     readme = flach("README.md")
-    assert "about 4,700 words and phrases and about 3,300 example sentences" in readme
-    assert "rund 4.700 Wörter und Wendungen und rund 3.300 Beispielsätze" in readme
-    assert "oko 4.700 riječi i izraza i oko 3.300 rečenica" in flach("README.bs.md")
+    assert "about 4,800 words and phrases and about 3,400 example sentences" in readme
+    assert "rund 4.800 Wörter und Wendungen und rund 3.400 Beispielsätze" in readme
+    assert "oko 4.800 riječi i izraza i oko 3.400 rečenica" in flach("README.bs.md")
     # Der Alt-Text des Kopfbilds beschreibt das Bild, und dort steht die Zahl noch.
     ohne_bild = re.sub(r'alt="[^"]*"', "", readme)
     assert "7,997 words" not in ohne_bild and "7997 Vokabeln" not in ohne_bild
+    assert "8,191" in ohne_bild and "298 levels" in ohne_bild
 
 
 def test_wort_kennungen_eindeutig_und_stabil(grunddaten):

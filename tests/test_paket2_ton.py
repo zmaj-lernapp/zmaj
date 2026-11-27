@@ -19,6 +19,7 @@ import json
 import os
 
 import pytest
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 ERSTE = 2822
 LETZTE = 3123
@@ -36,7 +37,7 @@ def index(wurzel):
 
 
 def _level(daten):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in PAKET2]
 
 

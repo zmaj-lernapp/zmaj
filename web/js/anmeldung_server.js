@@ -420,7 +420,13 @@ const UMBENANNT = {
      koleginica", "ne sofort umstellen". Neuer Ton von Emir (w8953), die alte Aufnahme
      bleibt wie bei produžni kabl in index.json. Die Suche unten faende das alte
      bosnische Wort nicht mehr. */
-  'kollegin:koleginica': 'kollegin:kolegica'};
+  'kollegin:koleginica': 'kollegin:kolegica',
+  /* Ajdin am 25.11.2026 (1.5): Hose heisst "pantalone / hlače" wie kahva / kafa, und radnja
+     ist "Geschäft (kleiner Laden)" neben trgovina "Geschäft (großer Laden)". Die Suche
+     unten faende pantalone ueber das bosnische Wort nicht mehr; radnja faende sie, aber nur,
+     solange kein zweites Wort so heisst - hier steht es fest. */
+  'hose:pantalone': 'hose:pantalone / hlače',
+  'geschäft:radnja': 'geschäft (kleiner laden):radnja'};
 /* Dasselbe fuer Saetze (25.10.2026): Fehler-Topf und Sterne merken sich
    einen Satz als "s:<Level>|<Lueckentext>" bzw. "k:<Level>|<Satz>"
    (topfSchluessel). Aendert sich der bosnische Text, fuehrt der alte

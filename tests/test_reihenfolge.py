@@ -89,8 +89,10 @@ PAKET1020 = {"abitur_klassenfahrt", "abschluss_titel", "abteilung_mitarbeiter", 
              "unfaelle_pannen", "verbinden_trennen", "versicherung_zinsen", "vertraege", "vor_allem_angeblich",
              "vorhersehen_erkennen", "wachstum_rueckgang", "wahlen_parlament", "wann_wie_lange", "werbung",
              "wie_man_tut", "wie_sicher", "wo_wohin", "wohnen_miete", "zeitung_fernsehen"}
+# Seit 27.11.2026 das Level Ordnungszahlen (K7): von četvrti bis hiljaditi, je Wort vor
+# seinem Satz. Geprueft in tests/test_k2.py.
 GEORDNET = {"zahlen", "wochentage", "monate", "mengen", "konjugation", "zukunft", "routine",
-            "vergangenheit", "modal", "adjektive"} | PAKET1 | PAKET2 | PAKET34 | PAKET59 | PAKET1020
+            "vergangenheit", "modal", "adjektive", "ordnungszahlen"} | PAKET1 | PAKET2 | PAKET34 | PAKET59 | PAKET1020
 TEIL_REIHEN = {"zeit": ["jutro", "podne", "večer", "noć"],
                "wetter": ["proljeće", "ljeto", "jesen", "zima"],
                "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"],

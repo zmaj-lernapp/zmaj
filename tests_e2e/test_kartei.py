@@ -748,6 +748,10 @@ def test_groesse_bleibt_weit_unter_der_cloud_grenze(seite, heute_stand):
     # ueberschritten. Es passt noch, aber knapp - das naechste Paket schlaegt hier an.
     # Vorher brauchen Saetze kuerzere Kennungen in der Sicherung oder der Stand ein
     # zweites Dokument (tests/test_kartei.py, test_groesse_unter_der_cloud_grenze).
+    # Entschieden am 13.11.2026: Weg A, ueber der Grenze packt die App (1.4, cloud_stand.js,
+    # tests_e2e/test_cloud_packen.py). Mit K2 und K7 (27.11.2026, 8 191 Eintraege) hat die
+    # 97 %-Marke angeschlagen: 877 424 Byte, 97,5 %. Die Marke steht jetzt bei der Grenze
+    # selbst; B2 Teil 2 schlaegt an - vorher K14 „immer packen“ (Plan 1.5).
     assert je_wort < 60, je_wort
-    assert z["ganz"] < z["max"] * 0.97, z
+    assert z["ganz"] < z["max"], z
     assert seite.fehler == []

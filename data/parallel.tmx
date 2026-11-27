@@ -1542,6 +1542,18 @@
    <tuv xml:lang="da"><seg>kartoffel</seg></tuv>
    <tuv xml:lang="fr"><seg>pomme de terre</seg></tuv>
   </tu>
+  <tu tuid="pommes:pomfrit" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>pomfrit</seg></tuv>
+   <tuv xml:lang="de"><seg>Pommes</seg></tuv>
+   <tuv xml:lang="en"><seg>French fries</seg></tuv>
+   <tuv xml:lang="tr"><seg>patates kızartması</seg></tuv>
+   <tuv xml:lang="sv"><seg>pommes frites</seg></tuv>
+   <tuv xml:lang="nl"><seg>friet</seg></tuv>
+   <tuv xml:lang="nb"><seg>pommes frites</seg></tuv>
+   <tuv xml:lang="da"><seg>pommes frites</seg></tuv>
+   <tuv xml:lang="fr"><seg>frites</seg></tuv>
+  </tu>
   <tu tuid="tomate:paradajz" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>paradajz</seg></tuv>
@@ -1637,6 +1649,18 @@
    <tuv xml:lang="nb"><seg>ćevapi (grillede kjøttpølser)</seg></tuv>
    <tuv xml:lang="da"><seg>ćevapi (grillede kødpølser)</seg></tuv>
    <tuv xml:lang="fr"><seg>ćevapi (petites saucisses de viande grillée)</seg></tuv>
+  </tu>
+  <tu tuid="pizza:pica" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>pica</seg></tuv>
+   <tuv xml:lang="de"><seg>Pizza</seg></tuv>
+   <tuv xml:lang="en"><seg>pizza</seg></tuv>
+   <tuv xml:lang="tr"><seg>pizza</seg></tuv>
+   <tuv xml:lang="sv"><seg>pizza</seg></tuv>
+   <tuv xml:lang="nl"><seg>pizza</seg></tuv>
+   <tuv xml:lang="nb"><seg>pizza</seg></tuv>
+   <tuv xml:lang="da"><seg>pizza</seg></tuv>
+   <tuv xml:lang="fr"><seg>pizza</seg></tuv>
   </tu>
   <tu tuid="frühstück:doručak" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -2550,6 +2574,30 @@
    <tuv xml:lang="da"><seg>hedt</seg></tuv>
    <tuv xml:lang="fr"><seg>très chaud</seg></tuv>
   </tu>
+  <tu tuid="sonnig:sunčano" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>sunčano</seg></tuv>
+   <tuv xml:lang="de"><seg>sonnig</seg></tuv>
+   <tuv xml:lang="en"><seg>sunny</seg></tuv>
+   <tuv xml:lang="tr"><seg>güneşli</seg></tuv>
+   <tuv xml:lang="sv"><seg>soligt</seg></tuv>
+   <tuv xml:lang="nl"><seg>zonnig</seg></tuv>
+   <tuv xml:lang="nb"><seg>solrikt</seg></tuv>
+   <tuv xml:lang="da"><seg>solrigt</seg></tuv>
+   <tuv xml:lang="fr"><seg>ensoleillé</seg></tuv>
+  </tu>
+  <tu tuid="bewölkt:oblačno" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>oblačno</seg></tuv>
+   <tuv xml:lang="de"><seg>bewölkt</seg></tuv>
+   <tuv xml:lang="en"><seg>cloudy</seg></tuv>
+   <tuv xml:lang="tr"><seg>bulutlu</seg></tuv>
+   <tuv xml:lang="sv"><seg>molnigt</seg></tuv>
+   <tuv xml:lang="nl"><seg>bewolkt</seg></tuv>
+   <tuv xml:lang="nb"><seg>overskyet</seg></tuv>
+   <tuv xml:lang="da"><seg>overskyet</seg></tuv>
+   <tuv xml:lang="fr"><seg>nuageux</seg></tuv>
+  </tu>
   <tu tuid="es regnet:Pada kiša" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Pada kiša</seg></tuv>
@@ -2573,6 +2621,18 @@
    <tuv xml:lang="nb"><seg>Det snør</seg></tuv>
    <tuv xml:lang="da"><seg>Det sner</seg></tuv>
    <tuv xml:lang="fr"><seg>Il neige</seg></tuv>
+  </tu>
+  <tu tuid="regenschirm:kišobran" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>kišobran</seg></tuv>
+   <tuv xml:lang="de"><seg>Regenschirm</seg></tuv>
+   <tuv xml:lang="en"><seg>umbrella</seg></tuv>
+   <tuv xml:lang="tr"><seg>şemsiye</seg></tuv>
+   <tuv xml:lang="sv"><seg>paraply</seg></tuv>
+   <tuv xml:lang="nl"><seg>paraplu</seg></tuv>
+   <tuv xml:lang="nb"><seg>paraply</seg></tuv>
+   <tuv xml:lang="da"><seg>paraply</seg></tuv>
+   <tuv xml:lang="fr"><seg>parapluie</seg></tuv>
   </tu>
   <tu tuid="frühling:proljeće" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -3162,17 +3222,29 @@
    <tuv xml:lang="da"><seg>God bedring!</seg></tuv>
    <tuv xml:lang="fr"><seg>Bon rétablissement !</seg></tuv>
   </tu>
-  <tu tuid="geschäft:radnja" segtype="phrase">
+  <tu tuid="geschäft (kleiner laden):radnja" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>radnja</seg></tuv>
-   <tuv xml:lang="de"><seg>Geschäft</seg></tuv>
-   <tuv xml:lang="en"><seg>store</seg></tuv>
-   <tuv xml:lang="tr"><seg>dükkân</seg></tuv>
-   <tuv xml:lang="sv"><seg>affär</seg></tuv>
-   <tuv xml:lang="nl"><seg>zaak</seg></tuv>
-   <tuv xml:lang="nb"><seg>forretning</seg></tuv>
-   <tuv xml:lang="da"><seg>forretning</seg></tuv>
-   <tuv xml:lang="fr"><seg>magasin</seg></tuv>
+   <tuv xml:lang="de"><seg>Geschäft (kleiner Laden)</seg></tuv>
+   <tuv xml:lang="en"><seg>store (small shop)</seg></tuv>
+   <tuv xml:lang="tr"><seg>dükkân (küçük mağaza)</seg></tuv>
+   <tuv xml:lang="sv"><seg>affär (liten butik)</seg></tuv>
+   <tuv xml:lang="nl"><seg>zaak (kleine winkel)</seg></tuv>
+   <tuv xml:lang="nb"><seg>forretning (liten butikk)</seg></tuv>
+   <tuv xml:lang="da"><seg>forretning (lille butik)</seg></tuv>
+   <tuv xml:lang="fr"><seg>magasin (petite boutique)</seg></tuv>
+  </tu>
+  <tu tuid="geschäft (großer laden):trgovina" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>trgovina</seg></tuv>
+   <tuv xml:lang="de"><seg>Geschäft (großer Laden)</seg></tuv>
+   <tuv xml:lang="en"><seg>store (large shop)</seg></tuv>
+   <tuv xml:lang="tr"><seg>mağaza (büyük mağaza)</seg></tuv>
+   <tuv xml:lang="sv"><seg>affär (stor butik)</seg></tuv>
+   <tuv xml:lang="nl"><seg>zaak (grote winkel)</seg></tuv>
+   <tuv xml:lang="nb"><seg>forretning (stor butikk)</seg></tuv>
+   <tuv xml:lang="da"><seg>forretning (stor butik)</seg></tuv>
+   <tuv xml:lang="fr"><seg>magasin (grand magasin)</seg></tuv>
   </tu>
   <tu tuid="einkaufszentrum:tržni centar" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -3294,9 +3366,9 @@
    <tuv xml:lang="da"><seg>T-shirt</seg></tuv>
    <tuv xml:lang="fr"><seg>tee-shirt</seg></tuv>
   </tu>
-  <tu tuid="hose:pantalone" segtype="phrase">
+  <tu tuid="hose:pantalone / hlače" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>pantalone</seg></tuv>
+   <tuv xml:lang="bs"><seg>pantalone / hlače</seg></tuv>
    <tuv xml:lang="de"><seg>Hose</seg></tuv>
    <tuv xml:lang="en"><seg>pants</seg></tuv>
    <tuv xml:lang="tr"><seg>pantolon</seg></tuv>
@@ -3305,6 +3377,30 @@
    <tuv xml:lang="nb"><seg>bukse</seg></tuv>
    <tuv xml:lang="da"><seg>bukser</seg></tuv>
    <tuv xml:lang="fr"><seg>pantalon</seg></tuv>
+  </tu>
+  <tu tuid="jeans:farmerke" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>farmerke</seg></tuv>
+   <tuv xml:lang="de"><seg>Jeans</seg></tuv>
+   <tuv xml:lang="en"><seg>jeans</seg></tuv>
+   <tuv xml:lang="tr"><seg>kot pantolon</seg></tuv>
+   <tuv xml:lang="sv"><seg>jeans</seg></tuv>
+   <tuv xml:lang="nl"><seg>spijkerbroek</seg></tuv>
+   <tuv xml:lang="nb"><seg>olabukse</seg></tuv>
+   <tuv xml:lang="da"><seg>cowboybukser</seg></tuv>
+   <tuv xml:lang="fr"><seg>jean</seg></tuv>
+  </tu>
+  <tu tuid="trainingsanzug:trenerka" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>trenerka</seg></tuv>
+   <tuv xml:lang="de"><seg>Trainingsanzug</seg></tuv>
+   <tuv xml:lang="en"><seg>tracksuit</seg></tuv>
+   <tuv xml:lang="tr"><seg>eşofman</seg></tuv>
+   <tuv xml:lang="sv"><seg>träningsoverall</seg></tuv>
+   <tuv xml:lang="nl"><seg>trainingspak</seg></tuv>
+   <tuv xml:lang="nb"><seg>treningsdress</seg></tuv>
+   <tuv xml:lang="da"><seg>træningsdragt</seg></tuv>
+   <tuv xml:lang="fr"><seg>survêtement</seg></tuv>
   </tu>
   <tu tuid="jacke:jakna" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -3317,6 +3413,30 @@
    <tuv xml:lang="nb"><seg>jakke</seg></tuv>
    <tuv xml:lang="da"><seg>jakke</seg></tuv>
    <tuv xml:lang="fr"><seg>veste</seg></tuv>
+  </tu>
+  <tu tuid="pullover:džemper" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>džemper</seg></tuv>
+   <tuv xml:lang="de"><seg>Pullover</seg></tuv>
+   <tuv xml:lang="en"><seg>sweater</seg></tuv>
+   <tuv xml:lang="tr"><seg>kazak</seg></tuv>
+   <tuv xml:lang="sv"><seg>tröja</seg></tuv>
+   <tuv xml:lang="nl"><seg>trui</seg></tuv>
+   <tuv xml:lang="nb"><seg>genser</seg></tuv>
+   <tuv xml:lang="da"><seg>sweater</seg></tuv>
+   <tuv xml:lang="fr"><seg>pull</seg></tuv>
+  </tu>
+  <tu tuid="mantel:kaput" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>kaput</seg></tuv>
+   <tuv xml:lang="de"><seg>Mantel</seg></tuv>
+   <tuv xml:lang="en"><seg>coat</seg></tuv>
+   <tuv xml:lang="tr"><seg>palto</seg></tuv>
+   <tuv xml:lang="sv"><seg>kappa</seg></tuv>
+   <tuv xml:lang="nl"><seg>mantel</seg></tuv>
+   <tuv xml:lang="nb"><seg>frakk</seg></tuv>
+   <tuv xml:lang="da"><seg>frakke</seg></tuv>
+   <tuv xml:lang="fr"><seg>manteau</seg></tuv>
   </tu>
   <tu tuid="kleid:haljina" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -3354,6 +3474,42 @@
    <tuv xml:lang="da"><seg>sko</seg></tuv>
    <tuv xml:lang="fr"><seg>chaussures</seg></tuv>
   </tu>
+  <tu tuid="turnschuhe:patike" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>patike</seg></tuv>
+   <tuv xml:lang="de"><seg>Turnschuhe</seg></tuv>
+   <tuv xml:lang="en"><seg>sneakers</seg></tuv>
+   <tuv xml:lang="tr"><seg>spor ayakkabı</seg></tuv>
+   <tuv xml:lang="sv"><seg>gympaskor</seg></tuv>
+   <tuv xml:lang="nl"><seg>sneakers</seg></tuv>
+   <tuv xml:lang="nb"><seg>joggesko</seg></tuv>
+   <tuv xml:lang="da"><seg>sneakers</seg></tuv>
+   <tuv xml:lang="fr"><seg>baskets</seg></tuv>
+  </tu>
+  <tu tuid="stiefel:čizme" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>čizme</seg></tuv>
+   <tuv xml:lang="de"><seg>Stiefel</seg></tuv>
+   <tuv xml:lang="en"><seg>boots</seg></tuv>
+   <tuv xml:lang="tr"><seg>çizme</seg></tuv>
+   <tuv xml:lang="sv"><seg>stövlar</seg></tuv>
+   <tuv xml:lang="nl"><seg>laarzen</seg></tuv>
+   <tuv xml:lang="nb"><seg>støvler</seg></tuv>
+   <tuv xml:lang="da"><seg>støvler</seg></tuv>
+   <tuv xml:lang="fr"><seg>bottes</seg></tuv>
+  </tu>
+  <tu tuid="hausschuhe:papuče" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>papuče</seg></tuv>
+   <tuv xml:lang="de"><seg>Hausschuhe</seg></tuv>
+   <tuv xml:lang="en"><seg>slippers</seg></tuv>
+   <tuv xml:lang="tr"><seg>terlik</seg></tuv>
+   <tuv xml:lang="sv"><seg>tofflor</seg></tuv>
+   <tuv xml:lang="nl"><seg>pantoffels</seg></tuv>
+   <tuv xml:lang="nb"><seg>tøfler</seg></tuv>
+   <tuv xml:lang="da"><seg>hjemmesko</seg></tuv>
+   <tuv xml:lang="fr"><seg>chaussons</seg></tuv>
+  </tu>
   <tu tuid="socken:čarape" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>čarape</seg></tuv>
@@ -3377,6 +3533,42 @@
    <tuv xml:lang="nb"><seg>lue</seg></tuv>
    <tuv xml:lang="da"><seg>hue</seg></tuv>
    <tuv xml:lang="fr"><seg>bonnet</seg></tuv>
+  </tu>
+  <tu tuid="hut:šešir" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>šešir</seg></tuv>
+   <tuv xml:lang="de"><seg>Hut</seg></tuv>
+   <tuv xml:lang="en"><seg>hat</seg></tuv>
+   <tuv xml:lang="tr"><seg>şapka</seg></tuv>
+   <tuv xml:lang="sv"><seg>hatt</seg></tuv>
+   <tuv xml:lang="nl"><seg>hoed</seg></tuv>
+   <tuv xml:lang="nb"><seg>hatt</seg></tuv>
+   <tuv xml:lang="da"><seg>hat</seg></tuv>
+   <tuv xml:lang="fr"><seg>chapeau (couvre-chef)</seg></tuv>
+  </tu>
+  <tu tuid="schal:šal" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>šal</seg></tuv>
+   <tuv xml:lang="de"><seg>Schal</seg></tuv>
+   <tuv xml:lang="en"><seg>scarf</seg></tuv>
+   <tuv xml:lang="tr"><seg>atkı</seg></tuv>
+   <tuv xml:lang="sv"><seg>halsduk</seg></tuv>
+   <tuv xml:lang="nl"><seg>sjaal</seg></tuv>
+   <tuv xml:lang="nb"><seg>skjerf</seg></tuv>
+   <tuv xml:lang="da"><seg>halstørklæde</seg></tuv>
+   <tuv xml:lang="fr"><seg>écharpe</seg></tuv>
+  </tu>
+  <tu tuid="handschuhe:rukavice" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>rukavice</seg></tuv>
+   <tuv xml:lang="de"><seg>Handschuhe</seg></tuv>
+   <tuv xml:lang="en"><seg>gloves</seg></tuv>
+   <tuv xml:lang="tr"><seg>eldivenler</seg></tuv>
+   <tuv xml:lang="sv"><seg>handskar</seg></tuv>
+   <tuv xml:lang="nl"><seg>handschoenen</seg></tuv>
+   <tuv xml:lang="nb"><seg>hansker</seg></tuv>
+   <tuv xml:lang="da"><seg>handsker</seg></tuv>
+   <tuv xml:lang="fr"><seg>gants</seg></tuv>
   </tu>
   <tu tuid="größe:veličina" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -5634,6 +5826,18 @@
    <tuv xml:lang="da"><seg>Vores hankat sover hele dagen.</seg></tuv>
    <tuv xml:lang="fr"><seg>Notre matou dort toute la journée.</seg></tuv>
   </tu>
+  <tu tuid="kätzchen:mače" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>mače</seg></tuv>
+   <tuv xml:lang="de"><seg>Kätzchen</seg></tuv>
+   <tuv xml:lang="en"><seg>kitten</seg></tuv>
+   <tuv xml:lang="tr"><seg>yavru kedi</seg></tuv>
+   <tuv xml:lang="sv"><seg>kattunge</seg></tuv>
+   <tuv xml:lang="nl"><seg>kitten</seg></tuv>
+   <tuv xml:lang="nb"><seg>kattunge</seg></tuv>
+   <tuv xml:lang="da"><seg>killing</seg></tuv>
+   <tuv xml:lang="fr"><seg>chaton</seg></tuv>
+  </tu>
   <tu tuid="haustier:kućni ljubimac" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>kućni ljubimac</seg></tuv>
@@ -7013,6 +7217,18 @@
    <tuv xml:lang="nb"><seg>Når?</seg></tuv>
    <tuv xml:lang="da"><seg>Hvornår?</seg></tuv>
    <tuv xml:lang="fr"><seg>Quand ?</seg></tuv>
+  </tu>
+  <tu tuid="seit wann?:Otkad?" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Otkad?</seg></tuv>
+   <tuv xml:lang="de"><seg>Seit wann?</seg></tuv>
+   <tuv xml:lang="en"><seg>Since when?</seg></tuv>
+   <tuv xml:lang="tr"><seg>Ne zamandan beri?</seg></tuv>
+   <tuv xml:lang="sv"><seg>Sedan när?</seg></tuv>
+   <tuv xml:lang="nl"><seg>Sinds wanneer?</seg></tuv>
+   <tuv xml:lang="nb"><seg>Siden når?</seg></tuv>
+   <tuv xml:lang="da"><seg>Siden hvornår?</seg></tuv>
+   <tuv xml:lang="fr"><seg>Depuis quand ?</seg></tuv>
   </tu>
   <tu tuid="warum?:Zašto?" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -9318,6 +9534,18 @@
    <tuv xml:lang="da"><seg>sengetøj</seg></tuv>
    <tuv xml:lang="fr"><seg>linge de lit</seg></tuv>
   </tu>
+  <tu tuid="bettlaken:čaršaf" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>čaršaf</seg></tuv>
+   <tuv xml:lang="de"><seg>Bettlaken</seg></tuv>
+   <tuv xml:lang="en"><seg>bed sheet</seg></tuv>
+   <tuv xml:lang="tr"><seg>çarşaf</seg></tuv>
+   <tuv xml:lang="sv"><seg>lakan</seg></tuv>
+   <tuv xml:lang="nl"><seg>laken</seg></tuv>
+   <tuv xml:lang="nb"><seg>laken</seg></tuv>
+   <tuv xml:lang="da"><seg>lagen</seg></tuv>
+   <tuv xml:lang="fr"><seg>drap</seg></tuv>
+  </tu>
   <tu tuid="decke (bettdecke):deka" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>deka</seg></tuv>
@@ -9497,6 +9725,18 @@
    <tuv xml:lang="nb"><seg>kost (til å sope med)</seg></tuv>
    <tuv xml:lang="da"><seg>kost</seg></tuv>
    <tuv xml:lang="fr"><seg>balai</seg></tuv>
+  </tu>
+  <tu tuid="schwamm:spužva" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>spužva</seg></tuv>
+   <tuv xml:lang="de"><seg>Schwamm</seg></tuv>
+   <tuv xml:lang="en"><seg>sponge</seg></tuv>
+   <tuv xml:lang="tr"><seg>sünger</seg></tuv>
+   <tuv xml:lang="sv"><seg>tvättsvamp</seg></tuv>
+   <tuv xml:lang="nl"><seg>spons</seg></tuv>
+   <tuv xml:lang="nb"><seg>svamp</seg></tuv>
+   <tuv xml:lang="da"><seg>svamp</seg></tuv>
+   <tuv xml:lang="fr"><seg>éponge</seg></tuv>
   </tu>
   <tu tuid="bügeleisen:pegla" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -10590,6 +10830,18 @@
    <tuv xml:lang="da"><seg>sende en besked</seg></tuv>
    <tuv xml:lang="fr"><seg>envoyer un message</seg></tuv>
   </tu>
+  <tu tuid="e-mail:mejl" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>mejl</seg></tuv>
+   <tuv xml:lang="de"><seg>E-Mail</seg></tuv>
+   <tuv xml:lang="en"><seg>email</seg></tuv>
+   <tuv xml:lang="tr"><seg>e-posta</seg></tuv>
+   <tuv xml:lang="sv"><seg>mejl</seg></tuv>
+   <tuv xml:lang="nl"><seg>e-mail</seg></tuv>
+   <tuv xml:lang="nb"><seg>e-post</seg></tuv>
+   <tuv xml:lang="da"><seg>e-mail</seg></tuv>
+   <tuv xml:lang="fr"><seg>e-mail</seg></tuv>
+  </tu>
   <tu tuid="anrufen:nazvati" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>nazvati</seg></tuv>
@@ -10638,6 +10890,18 @@
    <tuv xml:lang="da"><seg>tastatur</seg></tuv>
    <tuv xml:lang="fr"><seg>clavier</seg></tuv>
   </tu>
+  <tu tuid="laptop:laptop" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>laptop</seg></tuv>
+   <tuv xml:lang="de"><seg>Laptop</seg></tuv>
+   <tuv xml:lang="en"><seg>laptop</seg></tuv>
+   <tuv xml:lang="tr"><seg>dizüstü bilgisayar</seg></tuv>
+   <tuv xml:lang="sv"><seg>bärbar dator</seg></tuv>
+   <tuv xml:lang="nl"><seg>laptop</seg></tuv>
+   <tuv xml:lang="nb"><seg>bærbar PC</seg></tuv>
+   <tuv xml:lang="da"><seg>bærbar computer</seg></tuv>
+   <tuv xml:lang="fr"><seg>ordinateur portable</seg></tuv>
+  </tu>
   <tu tuid="drucker:štampač" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>štampač</seg></tuv>
@@ -10661,6 +10925,18 @@
    <tuv xml:lang="nb"><seg>hodetelefoner</seg></tuv>
    <tuv xml:lang="da"><seg>høretelefoner</seg></tuv>
    <tuv xml:lang="fr"><seg>écouteurs</seg></tuv>
+  </tu>
+  <tu tuid="lautsprecher:zvučnik" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>zvučnik</seg></tuv>
+   <tuv xml:lang="de"><seg>Lautsprecher</seg></tuv>
+   <tuv xml:lang="en"><seg>loudspeaker</seg></tuv>
+   <tuv xml:lang="tr"><seg>hoparlör</seg></tuv>
+   <tuv xml:lang="sv"><seg>högtalare</seg></tuv>
+   <tuv xml:lang="nl"><seg>luidspreker</seg></tuv>
+   <tuv xml:lang="nb"><seg>høyttaler</seg></tuv>
+   <tuv xml:lang="da"><seg>højttaler</seg></tuv>
+   <tuv xml:lang="fr"><seg>haut-parleur</seg></tuv>
   </tu>
   <tu tuid="fotografieren:slikati" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -13458,6 +13734,42 @@
    <tuv xml:lang="da"><seg>Jeg står op klokken syv</seg></tuv>
    <tuv xml:lang="fr"><seg>Je me lève à sept heures</seg></tuv>
   </tu>
+  <tu tuid="wecker:budilnik" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>budilnik</seg></tuv>
+   <tuv xml:lang="de"><seg>Wecker</seg></tuv>
+   <tuv xml:lang="en"><seg>alarm clock</seg></tuv>
+   <tuv xml:lang="tr"><seg>çalar saat</seg></tuv>
+   <tuv xml:lang="sv"><seg>väckarklocka</seg></tuv>
+   <tuv xml:lang="nl"><seg>wekker</seg></tuv>
+   <tuv xml:lang="nb"><seg>vekkerklokke</seg></tuv>
+   <tuv xml:lang="da"><seg>vækkeur</seg></tuv>
+   <tuv xml:lang="fr"><seg>réveil</seg></tuv>
+  </tu>
+  <tu tuid="sich (das gesicht) waschen:umivati se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>umivati se</seg></tuv>
+   <tuv xml:lang="de"><seg>sich (das Gesicht) waschen</seg></tuv>
+   <tuv xml:lang="en"><seg>to wash one's face</seg></tuv>
+   <tuv xml:lang="tr"><seg>yüzünü yıkamak</seg></tuv>
+   <tuv xml:lang="sv"><seg>tvätta ansiktet</seg></tuv>
+   <tuv xml:lang="nl"><seg>zijn gezicht wassen</seg></tuv>
+   <tuv xml:lang="nb"><seg>vaske ansiktet</seg></tuv>
+   <tuv xml:lang="da"><seg>at vaske ansigtet</seg></tuv>
+   <tuv xml:lang="fr"><seg>se laver le visage</seg></tuv>
+  </tu>
+  <tu tuid="ich wasche mir das gesicht:Umivam se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Umivam se</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich wasche mir das Gesicht</seg></tuv>
+   <tuv xml:lang="en"><seg>I wash my face</seg></tuv>
+   <tuv xml:lang="tr"><seg>Yüzümü yıkıyorum</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag tvättar ansiktet</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik was mijn gezicht</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg vasker ansiktet</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg vasker mit ansigt</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je me lave le visage</seg></tuv>
+  </tu>
   <tu tuid="sich duschen:tuširati se" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>tuširati se</seg></tuv>
@@ -13482,6 +13794,30 @@
    <tuv xml:lang="da"><seg>Jeg går i bad</seg></tuv>
    <tuv xml:lang="fr"><seg>Je me douche</seg></tuv>
   </tu>
+  <tu tuid="sich rasieren:brijati se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>brijati se</seg></tuv>
+   <tuv xml:lang="de"><seg>sich rasieren</seg></tuv>
+   <tuv xml:lang="en"><seg>to shave</seg></tuv>
+   <tuv xml:lang="tr"><seg>tıraş olmak</seg></tuv>
+   <tuv xml:lang="sv"><seg>raka sig</seg></tuv>
+   <tuv xml:lang="nl"><seg>zich scheren</seg></tuv>
+   <tuv xml:lang="nb"><seg>barbere seg</seg></tuv>
+   <tuv xml:lang="da"><seg>at barbere sig</seg></tuv>
+   <tuv xml:lang="fr"><seg>se raser</seg></tuv>
+  </tu>
+  <tu tuid="ich rasiere mich:Brijem se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Brijem se</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich rasiere mich</seg></tuv>
+   <tuv xml:lang="en"><seg>I shave</seg></tuv>
+   <tuv xml:lang="tr"><seg>Tıraş oluyorum</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag rakar mig</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik scheer me</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg barberer meg</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg barberer mig</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je me rase</seg></tuv>
+  </tu>
   <tu tuid="zähne putzen:prati zube" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>prati zube</seg></tuv>
@@ -13493,6 +13829,30 @@
    <tuv xml:lang="nb"><seg>pusse tennene</seg></tuv>
    <tuv xml:lang="da"><seg>at børste tænder</seg></tuv>
    <tuv xml:lang="fr"><seg>se brosser les dents</seg></tuv>
+  </tu>
+  <tu tuid="sich kämmen:češljati se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>češljati se</seg></tuv>
+   <tuv xml:lang="de"><seg>sich kämmen</seg></tuv>
+   <tuv xml:lang="en"><seg>to comb one's hair</seg></tuv>
+   <tuv xml:lang="tr"><seg>saçını taramak</seg></tuv>
+   <tuv xml:lang="sv"><seg>kamma sig</seg></tuv>
+   <tuv xml:lang="nl"><seg>zich kammen</seg></tuv>
+   <tuv xml:lang="nb"><seg>gre seg</seg></tuv>
+   <tuv xml:lang="da"><seg>at rede sig</seg></tuv>
+   <tuv xml:lang="fr"><seg>se peigner</seg></tuv>
+  </tu>
+  <tu tuid="ich kämme mich:Češljam se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Češljam se</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich kämme mich</seg></tuv>
+   <tuv xml:lang="en"><seg>I comb my hair</seg></tuv>
+   <tuv xml:lang="tr"><seg>Saçımı tarıyorum</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag kammar mig</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik kam mijn haar</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg grer meg</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg reder mit hår</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je me peigne</seg></tuv>
   </tu>
   <tu tuid="frühstücken:doručkovati" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -13626,6 +13986,30 @@
    <tuv xml:lang="da"><seg>at se fjernsyn</seg></tuv>
    <tuv xml:lang="fr"><seg>regarder la télévision</seg></tuv>
   </tu>
+  <tu tuid="baden / sich baden:kupati se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>kupati se</seg></tuv>
+   <tuv xml:lang="de"><seg>baden / sich baden</seg></tuv>
+   <tuv xml:lang="en"><seg>to bathe</seg></tuv>
+   <tuv xml:lang="tr"><seg>banyo yapmak</seg></tuv>
+   <tuv xml:lang="sv"><seg>bada</seg></tuv>
+   <tuv xml:lang="nl"><seg>baden</seg></tuv>
+   <tuv xml:lang="nb"><seg>bade</seg></tuv>
+   <tuv xml:lang="da"><seg>at bade</seg></tuv>
+   <tuv xml:lang="fr"><seg>se baigner</seg></tuv>
+  </tu>
+  <tu tuid="ich bade:Kupam se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Kupam se</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich bade</seg></tuv>
+   <tuv xml:lang="en"><seg>I'm having a bath</seg></tuv>
+   <tuv xml:lang="tr"><seg>Banyo yapıyorum</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag badar</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik neem een bad</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg bader</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg bader</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je prends un bain</seg></tuv>
+  </tu>
   <tu tuid="schlafen gehen:ići spavati" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>ići spavati</seg></tuv>
@@ -13649,6 +14033,18 @@
    <tuv xml:lang="nb"><seg>Jeg legger meg</seg></tuv>
    <tuv xml:lang="da"><seg>Jeg går i seng</seg></tuv>
    <tuv xml:lang="fr"><seg>Je vais me coucher</seg></tuv>
+  </tu>
+  <tu tuid="schlafanzug:pidžama" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>pidžama</seg></tuv>
+   <tuv xml:lang="de"><seg>Schlafanzug</seg></tuv>
+   <tuv xml:lang="en"><seg>pyjamas</seg></tuv>
+   <tuv xml:lang="tr"><seg>pijama</seg></tuv>
+   <tuv xml:lang="sv"><seg>pyjamas</seg></tuv>
+   <tuv xml:lang="nl"><seg>pyjama</seg></tuv>
+   <tuv xml:lang="nb"><seg>pyjamas</seg></tuv>
+   <tuv xml:lang="da"><seg>pyjamas</seg></tuv>
+   <tuv xml:lang="fr"><seg>pyjama</seg></tuv>
   </tu>
   <tu tuid="einkaufen gehen:ići u kupovinu" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -15258,6 +15654,18 @@
    <tuv xml:lang="da"><seg>taxa</seg></tuv>
    <tuv xml:lang="fr"><seg>taxi</seg></tuv>
   </tu>
+  <tu tuid="taxifahrer:taksista" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>taksista</seg></tuv>
+   <tuv xml:lang="de"><seg>Taxifahrer</seg></tuv>
+   <tuv xml:lang="en"><seg>taxi driver</seg></tuv>
+   <tuv xml:lang="tr"><seg>taksici</seg></tuv>
+   <tuv xml:lang="sv"><seg>taxichaufför</seg></tuv>
+   <tuv xml:lang="nl"><seg>taxichauffeur</seg></tuv>
+   <tuv xml:lang="nb"><seg>drosjesjåfør</seg></tuv>
+   <tuv xml:lang="da"><seg>taxichauffør</seg></tuv>
+   <tuv xml:lang="fr"><seg>chauffeur de taxi</seg></tuv>
+  </tu>
   <tu tuid="fahrer:vozač" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>vozač</seg></tuv>
@@ -16170,6 +16578,42 @@
    <tuv xml:lang="da"><seg>pen</seg></tuv>
    <tuv xml:lang="fr"><seg>stylo</seg></tuv>
   </tu>
+  <tu tuid="kugelschreiber:hemijska olovka" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>hemijska olovka</seg></tuv>
+   <tuv xml:lang="de"><seg>Kugelschreiber</seg></tuv>
+   <tuv xml:lang="en"><seg>ballpoint pen</seg></tuv>
+   <tuv xml:lang="tr"><seg>tükenmez kalem</seg></tuv>
+   <tuv xml:lang="sv"><seg>kulspetspenna</seg></tuv>
+   <tuv xml:lang="nl"><seg>balpen</seg></tuv>
+   <tuv xml:lang="nb"><seg>kulepenn</seg></tuv>
+   <tuv xml:lang="da"><seg>kuglepen</seg></tuv>
+   <tuv xml:lang="fr"><seg>stylo à bille</seg></tuv>
+  </tu>
+  <tu tuid="spitzer:rezač" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>rezač</seg></tuv>
+   <tuv xml:lang="de"><seg>Spitzer</seg></tuv>
+   <tuv xml:lang="en"><seg>pencil sharpener</seg></tuv>
+   <tuv xml:lang="tr"><seg>kalemtıraş</seg></tuv>
+   <tuv xml:lang="sv"><seg>pennvässare</seg></tuv>
+   <tuv xml:lang="nl"><seg>puntenslijper</seg></tuv>
+   <tuv xml:lang="nb"><seg>blyantspisser</seg></tuv>
+   <tuv xml:lang="da"><seg>blyantspidser</seg></tuv>
+   <tuv xml:lang="fr"><seg>taille-crayon</seg></tuv>
+  </tu>
+  <tu tuid="lineal:lenjir" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>lenjir</seg></tuv>
+   <tuv xml:lang="de"><seg>Lineal</seg></tuv>
+   <tuv xml:lang="en"><seg>ruler (for measuring)</seg></tuv>
+   <tuv xml:lang="tr"><seg>cetvel</seg></tuv>
+   <tuv xml:lang="sv"><seg>linjal</seg></tuv>
+   <tuv xml:lang="nl"><seg>liniaal</seg></tuv>
+   <tuv xml:lang="nb"><seg>linjal</seg></tuv>
+   <tuv xml:lang="da"><seg>lineal</seg></tuv>
+   <tuv xml:lang="fr"><seg>règle (pour mesurer)</seg></tuv>
+  </tu>
   <tu tuid="papier:papir" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>papir</seg></tuv>
@@ -16181,6 +16625,18 @@
    <tuv xml:lang="nb"><seg>papir</seg></tuv>
    <tuv xml:lang="da"><seg>papir</seg></tuv>
    <tuv xml:lang="fr"><seg>papier</seg></tuv>
+  </tu>
+  <tu tuid="wort:riječ" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>riječ</seg></tuv>
+   <tuv xml:lang="de"><seg>Wort</seg></tuv>
+   <tuv xml:lang="en"><seg>word</seg></tuv>
+   <tuv xml:lang="tr"><seg>kelime</seg></tuv>
+   <tuv xml:lang="sv"><seg>ord</seg></tuv>
+   <tuv xml:lang="nl"><seg>woord</seg></tuv>
+   <tuv xml:lang="nb"><seg>ord</seg></tuv>
+   <tuv xml:lang="da"><seg>ord</seg></tuv>
+   <tuv xml:lang="fr"><seg>mot</seg></tuv>
   </tu>
   <tu tuid="computer:računar" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -17273,6 +17729,18 @@
    <tuv xml:lang="nb"><seg>for lite</seg></tuv>
    <tuv xml:lang="da"><seg>for lidt</seg></tuv>
    <tuv xml:lang="fr"><seg>trop peu</seg></tuv>
+  </tu>
+  <tu tuid="serviette:salveta" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>salveta</seg></tuv>
+   <tuv xml:lang="de"><seg>Serviette</seg></tuv>
+   <tuv xml:lang="en"><seg>napkin</seg></tuv>
+   <tuv xml:lang="tr"><seg>peçete</seg></tuv>
+   <tuv xml:lang="sv"><seg>servett</seg></tuv>
+   <tuv xml:lang="nl"><seg>servet</seg></tuv>
+   <tuv xml:lang="nb"><seg>serviett</seg></tuv>
+   <tuv xml:lang="da"><seg>serviet</seg></tuv>
+   <tuv xml:lang="fr"><seg>serviette de table</seg></tuv>
   </tu>
   <tu tuid="behalten sie das rückgeld:Zadržite kusur" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -19313,6 +19781,18 @@
    <tuv xml:lang="nb"><seg>iftar (fastebrudd)</seg></tuv>
    <tuv xml:lang="da"><seg>iftar (fastebrud)</seg></tuv>
    <tuv xml:lang="fr"><seg>iftar (rupture du jeûne)</seg></tuv>
+  </tu>
+  <tu tuid="sehur (mahlzeit vor dem morgengrauen im ramadan):sehur" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>sehur</seg></tuv>
+   <tuv xml:lang="de"><seg>Sehur (Mahlzeit vor dem Morgengrauen im Ramadan)</seg></tuv>
+   <tuv xml:lang="en"><seg>suhoor (pre-dawn meal in Ramadan)</seg></tuv>
+   <tuv xml:lang="tr"><seg>sahur</seg></tuv>
+   <tuv xml:lang="sv"><seg>suhur (måltiden före gryningen under ramadan)</seg></tuv>
+   <tuv xml:lang="nl"><seg>suhoor (maaltijd voor zonsopgang tijdens de ramadan)</seg></tuv>
+   <tuv xml:lang="nb"><seg>suhur (måltid før daggry i ramadan)</seg></tuv>
+   <tuv xml:lang="da"><seg>suhur (måltid før daggry i ramadanen)</seg></tuv>
+   <tuv xml:lang="fr"><seg>shour (repas avant l'aube pendant le ramadan)</seg></tuv>
   </tu>
   <tu tuid="inšallah (so gott will):inšallah" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -31566,6 +32046,30 @@
    <tuv xml:lang="da"><seg>Vi forhandler stadig om prisen på lejligheden.</seg></tuv>
    <tuv xml:lang="fr"><seg>Nous négocions encore le prix de l'appartement.</seg></tuv>
   </tu>
+  <tu tuid="scherzen / witze machen:šaliti se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>šaliti se</seg></tuv>
+   <tuv xml:lang="de"><seg>scherzen / Witze machen</seg></tuv>
+   <tuv xml:lang="en"><seg>to joke</seg></tuv>
+   <tuv xml:lang="tr"><seg>şaka yapmak</seg></tuv>
+   <tuv xml:lang="sv"><seg>skämta</seg></tuv>
+   <tuv xml:lang="nl"><seg>grappen maken</seg></tuv>
+   <tuv xml:lang="nb"><seg>tulle</seg></tuv>
+   <tuv xml:lang="da"><seg>at lave sjov</seg></tuv>
+   <tuv xml:lang="fr"><seg>plaisanter</seg></tuv>
+  </tu>
+  <tu tuid="sei nicht böse, ich mache nur spaß.:Ne ljuti se, samo se šalim." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Ne ljuti se, samo se šalim.</seg></tuv>
+   <tuv xml:lang="de"><seg>Sei nicht böse, ich mache nur Spaß.</seg></tuv>
+   <tuv xml:lang="en"><seg>Don't be angry, I'm only joking.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Kızma, sadece şaka yapıyorum.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Bli inte arg, jag skojar bara.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Word niet boos, ik maak maar een grapje.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Ikke bli sint, jeg tuller bare.</seg></tuv>
+   <tuv xml:lang="da"><seg>Bliv ikke sur, jeg laver bare sjov.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Ne te fâche pas, je plaisante.</seg></tuv>
+  </tu>
   <tu tuid="küssen:ljubiti" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>ljubiti</seg></tuv>
@@ -35910,6 +36414,78 @@
    <tuv xml:lang="da"><seg>Vær forsigtig, det er glat udenfor.</seg></tuv>
    <tuv xml:lang="fr"><seg>Fais attention, ça glisse dehors.</seg></tuv>
   </tu>
+  <tu tuid="gutaussehend / hübsch:zgodan" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>zgodan</seg></tuv>
+   <tuv xml:lang="de"><seg>gutaussehend / hübsch</seg></tuv>
+   <tuv xml:lang="en"><seg>good-looking</seg></tuv>
+   <tuv xml:lang="tr"><seg>yakışıklı / güzel</seg></tuv>
+   <tuv xml:lang="sv"><seg>snygg</seg></tuv>
+   <tuv xml:lang="nl"><seg>knap</seg></tuv>
+   <tuv xml:lang="nb"><seg>pen</seg></tuv>
+   <tuv xml:lang="da"><seg>flot (af udseende)</seg></tuv>
+   <tuv xml:lang="fr"><seg>beau</seg></tuv>
+  </tu>
+  <tu tuid="dein bruder sieht sehr gut aus.:Tvoj brat je jako zgodan." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Tvoj brat je jako zgodan.</seg></tuv>
+   <tuv xml:lang="de"><seg>Dein Bruder sieht sehr gut aus.</seg></tuv>
+   <tuv xml:lang="en"><seg>Your brother is very good-looking.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Kardeşin çok yakışıklı.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Din bror är väldigt snygg.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Je broer ziet er heel goed uit.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Broren din er veldig kjekk.</seg></tuv>
+   <tuv xml:lang="da"><seg>Din bror er meget flot.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Ton frère est très beau.</seg></tuv>
+  </tu>
+  <tu tuid="sympathisch / nett:simpatičan" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>simpatičan</seg></tuv>
+   <tuv xml:lang="de"><seg>sympathisch / nett</seg></tuv>
+   <tuv xml:lang="en"><seg>likeable / nice</seg></tuv>
+   <tuv xml:lang="tr"><seg>sempatik</seg></tuv>
+   <tuv xml:lang="sv"><seg>sympatisk</seg></tuv>
+   <tuv xml:lang="nl"><seg>sympathiek</seg></tuv>
+   <tuv xml:lang="nb"><seg>sympatisk</seg></tuv>
+   <tuv xml:lang="da"><seg>sympatisk</seg></tuv>
+   <tuv xml:lang="fr"><seg>sympathique</seg></tuv>
+  </tu>
+  <tu tuid="die neue nachbarin ist sehr sympathisch.:Nova komšinica je jako simpatična." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Nova komšinica je jako simpatična.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die neue Nachbarin ist sehr sympathisch.</seg></tuv>
+   <tuv xml:lang="en"><seg>The new neighbour is very likeable.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Yeni komşumuz çok sempatik.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Den nya grannen är väldigt trevlig.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De nieuwe buurvrouw is heel sympathiek.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Den nye naboen er veldig sympatisk.</seg></tuv>
+   <tuv xml:lang="da"><seg>Den nye nabo er meget sympatisk.</seg></tuv>
+   <tuv xml:lang="fr"><seg>La nouvelle voisine est très sympathique.</seg></tuv>
+  </tu>
+  <tu tuid="langweilig (der langweilige):dosadan" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>dosadan</seg></tuv>
+   <tuv xml:lang="de"><seg>langweilig (der langweilige)</seg></tuv>
+   <tuv xml:lang="en"><seg>boring (m.)</seg></tuv>
+   <tuv xml:lang="tr"><seg>sıkıcı (eril)</seg></tuv>
+   <tuv xml:lang="sv"><seg>tråkig (den tråkige)</seg></tuv>
+   <tuv xml:lang="nl"><seg>saai (m.)</seg></tuv>
+   <tuv xml:lang="nb"><seg>kjedelig (den kjedelige)</seg></tuv>
+   <tuv xml:lang="da"><seg>kedelig (den kedelige)</seg></tuv>
+   <tuv xml:lang="fr"><seg>ennuyeux (m.)</seg></tuv>
+  </tu>
+  <tu tuid="dieser film ist so langweilig, dass ich eingeschlafen bin.:Ovaj film je tako dosadan da sam zaspao." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Ovaj film je tako dosadan da sam zaspao.</seg></tuv>
+   <tuv xml:lang="de"><seg>Dieser Film ist so langweilig, dass ich eingeschlafen bin.</seg></tuv>
+   <tuv xml:lang="en"><seg>This film is so boring that I fell asleep.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Bu film o kadar sıkıcı ki uyuyakaldım.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Den här filmen är så tråkig att jag somnade.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Deze film is zo saai dat ik in slaap ben gevallen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Denne filmen er så kjedelig at jeg sovnet.</seg></tuv>
+   <tuv xml:lang="da"><seg>Denne film er så kedelig, at jeg faldt i søvn.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Ce film est tellement ennuyeux que je me suis endormi.</seg></tuv>
+  </tu>
   <tu tuid="freundlich:ljubazan" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>ljubazan</seg></tuv>
@@ -37842,6 +38418,30 @@
    <tuv xml:lang="da"><seg>Bedstefar fik et hjerteanfald sidste år.</seg></tuv>
    <tuv xml:lang="fr"><seg>Grand-père a fait une crise cardiaque l'année dernière.</seg></tuv>
   </tu>
+  <tu tuid="erkältet:prehlađen" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>prehlađen</seg></tuv>
+   <tuv xml:lang="de"><seg>erkältet</seg></tuv>
+   <tuv xml:lang="en"><seg>having a cold</seg></tuv>
+   <tuv xml:lang="tr"><seg>nezle olmuş</seg></tuv>
+   <tuv xml:lang="sv"><seg>förkyld</seg></tuv>
+   <tuv xml:lang="nl"><seg>verkouden</seg></tuv>
+   <tuv xml:lang="nb"><seg>forkjølet</seg></tuv>
+   <tuv xml:lang="da"><seg>forkølet</seg></tuv>
+   <tuv xml:lang="fr"><seg>enrhumé</seg></tuv>
+  </tu>
+  <tu tuid="ich bin erkältet, ich kann heute nicht kommen.:Prehlađen sam, ne mogu danas doći." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Prehlađen sam, ne mogu danas doći.</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich bin erkältet, ich kann heute nicht kommen.</seg></tuv>
+   <tuv xml:lang="en"><seg>I have a cold, I can't come today.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Üşüttüm, bugün gelemem.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag är förkyld, jag kan inte komma i dag.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik ben verkouden, ik kan vandaag niet komen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg er forkjølet, jeg kan ikke komme i dag.</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg er forkølet, jeg kan ikke komme i dag.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je suis enrhumé, je ne peux pas venir aujourd'hui.</seg></tuv>
+  </tu>
   <tu tuid="brechen (knochen, glas):slomiti" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>slomiti</seg></tuv>
@@ -38201,6 +38801,30 @@
    <tuv xml:lang="nb"><seg>Stopp litt, jeg er kvalm.</seg></tuv>
    <tuv xml:lang="da"><seg>Hold lige ind, jeg har kvalme.</seg></tuv>
    <tuv xml:lang="fr"><seg>Arrête-toi un instant, j'ai mal au cœur.</seg></tuv>
+  </tu>
+  <tu tuid="niesen:kihati" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>kihati</seg></tuv>
+   <tuv xml:lang="de"><seg>niesen</seg></tuv>
+   <tuv xml:lang="en"><seg>to sneeze</seg></tuv>
+   <tuv xml:lang="tr"><seg>hapşırmak</seg></tuv>
+   <tuv xml:lang="sv"><seg>nysa</seg></tuv>
+   <tuv xml:lang="nl"><seg>niezen</seg></tuv>
+   <tuv xml:lang="nb"><seg>nyse</seg></tuv>
+   <tuv xml:lang="da"><seg>at nyse</seg></tuv>
+   <tuv xml:lang="fr"><seg>éternuer</seg></tuv>
+  </tu>
+  <tu tuid="vom staub muss ich ständig niesen.:Od prašine stalno kišem." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Od prašine stalno kišem.</seg></tuv>
+   <tuv xml:lang="de"><seg>Vom Staub muss ich ständig niesen.</seg></tuv>
+   <tuv xml:lang="en"><seg>The dust keeps making me sneeze.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Tozdan sürekli hapşırıyorum.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Dammet får mig att nysa hela tiden.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Van het stof moet ik steeds niezen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Støvet får meg til å nyse hele tiden.</seg></tuv>
+   <tuv xml:lang="da"><seg>Støvet får mig til at nyse hele tiden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>La poussière me fait éternuer sans arrêt.</seg></tuv>
   </tu>
   <tu tuid="kontrolle / nachuntersuchung:kontrola" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -39762,6 +40386,366 @@
    <tuv xml:lang="da"><seg>I morgen er det helligdag, bankerne har lukket.</seg></tuv>
    <tuv xml:lang="fr"><seg>Demain, c'est férié, les banques sont fermées.</seg></tuv>
   </tu>
+  <tu tuid="der vierte:četvrti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>četvrti</seg></tuv>
+   <tuv xml:lang="de"><seg>der vierte</seg></tuv>
+   <tuv xml:lang="en"><seg>the fourth</seg></tuv>
+   <tuv xml:lang="tr"><seg>dördüncü</seg></tuv>
+   <tuv xml:lang="sv"><seg>den fjärde</seg></tuv>
+   <tuv xml:lang="nl"><seg>de vierde</seg></tuv>
+   <tuv xml:lang="nb"><seg>den fjerde</seg></tuv>
+   <tuv xml:lang="da"><seg>den fjerde</seg></tuv>
+   <tuv xml:lang="fr"><seg>le quatrième</seg></tuv>
+  </tu>
+  <tu tuid="wir wohnen im vierten stock, und der aufzug geht nicht.:Živimo na četvrtom spratu, a lift ne radi." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Živimo na četvrtom spratu, a lift ne radi.</seg></tuv>
+   <tuv xml:lang="de"><seg>Wir wohnen im vierten Stock, und der Aufzug geht nicht.</seg></tuv>
+   <tuv xml:lang="en"><seg>We live on the fourth floor, and the lift isn't working.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Dördüncü katta oturuyoruz ve asansör çalışmıyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vi bor på fjärde våningen, och hissen fungerar inte.</seg></tuv>
+   <tuv xml:lang="nl"><seg>We wonen op de vierde verdieping en de lift doet het niet.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Vi bor i fjerde etasje, og heisen virker ikke.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vi bor på fjerde sal, og elevatoren virker ikke.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Nous habitons au quatrième étage, et l'ascenseur ne marche pas.</seg></tuv>
+  </tu>
+  <tu tuid="der fünfte:peti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>peti</seg></tuv>
+   <tuv xml:lang="de"><seg>der fünfte</seg></tuv>
+   <tuv xml:lang="en"><seg>the fifth</seg></tuv>
+   <tuv xml:lang="tr"><seg>beşinci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den femte</seg></tuv>
+   <tuv xml:lang="nl"><seg>de vijfde</seg></tuv>
+   <tuv xml:lang="nb"><seg>den femte</seg></tuv>
+   <tuv xml:lang="da"><seg>den femte</seg></tuv>
+   <tuv xml:lang="fr"><seg>le cinquième</seg></tuv>
+  </tu>
+  <tu tuid="mein gehalt bekomme ich am fünften des monats.:Platu dobivam petog u mjesecu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Platu dobivam petog u mjesecu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Mein Gehalt bekomme ich am Fünften des Monats.</seg></tuv>
+   <tuv xml:lang="en"><seg>I get my salary on the fifth of the month.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Maaşımı her ayın beşinde alıyorum.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag får min lön den femte varje månad.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Mijn salaris krijg ik op de vijfde van de maand.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg får lønnen min den femte hver måned.</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg får min løn den femte i måneden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je reçois mon salaire le cinq du mois.</seg></tuv>
+  </tu>
+  <tu tuid="der sechste:šesti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>šesti</seg></tuv>
+   <tuv xml:lang="de"><seg>der sechste</seg></tuv>
+   <tuv xml:lang="en"><seg>the sixth</seg></tuv>
+   <tuv xml:lang="tr"><seg>altıncı</seg></tuv>
+   <tuv xml:lang="sv"><seg>den sjätte</seg></tuv>
+   <tuv xml:lang="nl"><seg>de zesde</seg></tuv>
+   <tuv xml:lang="nb"><seg>den sjette</seg></tuv>
+   <tuv xml:lang="da"><seg>den sjette</seg></tuv>
+   <tuv xml:lang="fr"><seg>le sixième</seg></tuv>
+  </tu>
+  <tu tuid="mein sohn geht in die sechste klasse.:Moj sin ide u šesti razred." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Moj sin ide u šesti razred.</seg></tuv>
+   <tuv xml:lang="de"><seg>Mein Sohn geht in die sechste Klasse.</seg></tuv>
+   <tuv xml:lang="en"><seg>My son is in sixth grade.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Oğlum altıncı sınıfa gidiyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Min son går i sjätte klass.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Mijn zoon zit in de zesde klas.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Sønnen min går i sjette klasse.</seg></tuv>
+   <tuv xml:lang="da"><seg>Min søn går i sjette klasse.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Mon fils est en sixième.</seg></tuv>
+  </tu>
+  <tu tuid="der siebte:sedmi" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>sedmi</seg></tuv>
+   <tuv xml:lang="de"><seg>der siebte</seg></tuv>
+   <tuv xml:lang="en"><seg>the seventh</seg></tuv>
+   <tuv xml:lang="tr"><seg>yedinci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den sjunde</seg></tuv>
+   <tuv xml:lang="nl"><seg>de zevende</seg></tuv>
+   <tuv xml:lang="nb"><seg>den sjuende</seg></tuv>
+   <tuv xml:lang="da"><seg>den syvende</seg></tuv>
+   <tuv xml:lang="fr"><seg>le septième</seg></tuv>
+  </tu>
+  <tu tuid="das ist schon das siebte mal, dass du zu spät kommst!:Ovo je već sedmi put da kasniš!" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Ovo je već sedmi put da kasniš!</seg></tuv>
+   <tuv xml:lang="de"><seg>Das ist schon das siebte Mal, dass du zu spät kommst!</seg></tuv>
+   <tuv xml:lang="en"><seg>This is already the seventh time you're late!</seg></tuv>
+   <tuv xml:lang="tr"><seg>Bu zaten yedinci geç kalışın!</seg></tuv>
+   <tuv xml:lang="sv"><seg>Det är redan sjunde gången du kommer för sent!</seg></tuv>
+   <tuv xml:lang="nl"><seg>Dit is al de zevende keer dat je te laat komt!</seg></tuv>
+   <tuv xml:lang="nb"><seg>Dette er allerede sjuende gang du kommer for sent!</seg></tuv>
+   <tuv xml:lang="da"><seg>Det er allerede syvende gang, du kommer for sent!</seg></tuv>
+   <tuv xml:lang="fr"><seg>C'est déjà la septième fois que tu es en retard !</seg></tuv>
+  </tu>
+  <tu tuid="der achte:osmi" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>osmi</seg></tuv>
+   <tuv xml:lang="de"><seg>der achte</seg></tuv>
+   <tuv xml:lang="en"><seg>the eighth</seg></tuv>
+   <tuv xml:lang="tr"><seg>sekizinci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den åttonde</seg></tuv>
+   <tuv xml:lang="nl"><seg>de achtste</seg></tuv>
+   <tuv xml:lang="nb"><seg>den åttende</seg></tuv>
+   <tuv xml:lang="da"><seg>den ottende</seg></tuv>
+   <tuv xml:lang="fr"><seg>le huitième</seg></tuv>
+  </tu>
+  <tu tuid="der achte märz ist der frauentag.:Osmi mart je Dan žena." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Osmi mart je Dan žena.</seg></tuv>
+   <tuv xml:lang="de"><seg>Der achte März ist der Frauentag.</seg></tuv>
+   <tuv xml:lang="en"><seg>The eighth of March is Women's Day.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Sekiz Mart Kadınlar Günü'dür.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Den åttonde mars är kvinnodagen.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Acht maart is Vrouwendag.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Åttende mars er kvinnedagen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Den ottende marts er kvindernes kampdag.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le huit mars, c'est la Journée de la femme.</seg></tuv>
+  </tu>
+  <tu tuid="der neunte:deveti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>deveti</seg></tuv>
+   <tuv xml:lang="de"><seg>der neunte</seg></tuv>
+   <tuv xml:lang="en"><seg>the ninth</seg></tuv>
+   <tuv xml:lang="tr"><seg>dokuzuncu</seg></tuv>
+   <tuv xml:lang="sv"><seg>den nionde</seg></tuv>
+   <tuv xml:lang="nl"><seg>de negende</seg></tuv>
+   <tuv xml:lang="nb"><seg>den niende</seg></tuv>
+   <tuv xml:lang="da"><seg>den niende</seg></tuv>
+   <tuv xml:lang="fr"><seg>le neuvième</seg></tuv>
+  </tu>
+  <tu tuid="unsere mannschaft steht auf dem neunten platz in der liga.:Naša ekipa je na devetom mjestu u ligi." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Naša ekipa je na devetom mjestu u ligi.</seg></tuv>
+   <tuv xml:lang="de"><seg>Unsere Mannschaft steht auf dem neunten Platz in der Liga.</seg></tuv>
+   <tuv xml:lang="en"><seg>Our team is in ninth place in the league.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Takımımız ligde dokuzuncu sırada.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vårt lag ligger på nionde plats i ligan.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ons team staat op de negende plaats in de competitie.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Laget vårt ligger på niendeplass i ligaen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vores hold ligger på niendepladsen i ligaen.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Notre équipe est neuvième du championnat.</seg></tuv>
+  </tu>
+  <tu tuid="der zehnte:deseti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>deseti</seg></tuv>
+   <tuv xml:lang="de"><seg>der zehnte</seg></tuv>
+   <tuv xml:lang="en"><seg>the tenth</seg></tuv>
+   <tuv xml:lang="tr"><seg>onuncu</seg></tuv>
+   <tuv xml:lang="sv"><seg>den tionde</seg></tuv>
+   <tuv xml:lang="nl"><seg>de tiende</seg></tuv>
+   <tuv xml:lang="nb"><seg>den tiende</seg></tuv>
+   <tuv xml:lang="da"><seg>den tiende</seg></tuv>
+   <tuv xml:lang="fr"><seg>le dixième</seg></tuv>
+  </tu>
+  <tu tuid="ich bin am zehnten oktober geboren.:Rođen sam desetog oktobra." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Rođen sam desetog oktobra.</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich bin am zehnten Oktober geboren.</seg></tuv>
+   <tuv xml:lang="en"><seg>I was born on the tenth of October.</seg></tuv>
+   <tuv xml:lang="tr"><seg>On Ekim'de doğdum.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag är född den tionde oktober.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik ben op tien oktober geboren.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg er født tiende oktober.</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg er født den tiende oktober.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je suis né le dix octobre.</seg></tuv>
+  </tu>
+  <tu tuid="der elfte:jedanaesti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>jedanaesti</seg></tuv>
+   <tuv xml:lang="de"><seg>der elfte</seg></tuv>
+   <tuv xml:lang="en"><seg>the eleventh</seg></tuv>
+   <tuv xml:lang="tr"><seg>on birinci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den elfte</seg></tuv>
+   <tuv xml:lang="nl"><seg>de elfde</seg></tuv>
+   <tuv xml:lang="nb"><seg>den ellevte</seg></tuv>
+   <tuv xml:lang="da"><seg>den ellevte</seg></tuv>
+   <tuv xml:lang="fr"><seg>le onzième</seg></tuv>
+  </tu>
+  <tu tuid="unser büro ist im elften stock.:Naša kancelarija je na jedanaestom spratu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Naša kancelarija je na jedanaestom spratu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Unser Büro ist im elften Stock.</seg></tuv>
+   <tuv xml:lang="en"><seg>Our office is on the eleventh floor.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Ofisimiz on birinci katta.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vårt kontor ligger på elfte våningen.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ons kantoor is op de elfde verdieping.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Kontoret vårt ligger i ellevte etasje.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vores kontor ligger på ellevte sal.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Notre bureau est au onzième étage.</seg></tuv>
+  </tu>
+  <tu tuid="der zwölfte:dvanaesti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>dvanaesti</seg></tuv>
+   <tuv xml:lang="de"><seg>der zwölfte</seg></tuv>
+   <tuv xml:lang="en"><seg>the twelfth</seg></tuv>
+   <tuv xml:lang="tr"><seg>on ikinci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den tolfte</seg></tuv>
+   <tuv xml:lang="nl"><seg>de twaalfde</seg></tuv>
+   <tuv xml:lang="nb"><seg>den tolvte</seg></tuv>
+   <tuv xml:lang="da"><seg>den tolvte</seg></tuv>
+   <tuv xml:lang="fr"><seg>le douzième</seg></tuv>
+  </tu>
+  <tu tuid="der dezember ist der zwölfte monat des jahres.:Decembar je dvanaesti mjesec u godini." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Decembar je dvanaesti mjesec u godini.</seg></tuv>
+   <tuv xml:lang="de"><seg>Der Dezember ist der zwölfte Monat des Jahres.</seg></tuv>
+   <tuv xml:lang="en"><seg>December is the twelfth month of the year.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Aralık, yılın on ikinci ayıdır.</seg></tuv>
+   <tuv xml:lang="sv"><seg>December är årets tolfte månad.</seg></tuv>
+   <tuv xml:lang="nl"><seg>December is de twaalfde maand van het jaar.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Desember er årets tolvte måned.</seg></tuv>
+   <tuv xml:lang="da"><seg>December er årets tolvte måned.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Décembre est le douzième mois de l'année.</seg></tuv>
+  </tu>
+  <tu tuid="der zwanzigste:dvadeseti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>dvadeseti</seg></tuv>
+   <tuv xml:lang="de"><seg>der zwanzigste</seg></tuv>
+   <tuv xml:lang="en"><seg>the twentieth</seg></tuv>
+   <tuv xml:lang="tr"><seg>yirminci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den tjugonde</seg></tuv>
+   <tuv xml:lang="nl"><seg>de twintigste</seg></tuv>
+   <tuv xml:lang="nb"><seg>den tjuende</seg></tuv>
+   <tuv xml:lang="da"><seg>den tyvende</seg></tuv>
+   <tuv xml:lang="fr"><seg>le vingtième</seg></tuv>
+  </tu>
+  <tu tuid="heute feiern wir den zwanzigsten geburtstag meiner schwester.:Danas slavimo sestrin dvadeseti rođendan." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Danas slavimo sestrin dvadeseti rođendan.</seg></tuv>
+   <tuv xml:lang="de"><seg>Heute feiern wir den zwanzigsten Geburtstag meiner Schwester.</seg></tuv>
+   <tuv xml:lang="en"><seg>Today we're celebrating my sister's twentieth birthday.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Bugün kız kardeşimin yirminci doğum gününü kutluyoruz.</seg></tuv>
+   <tuv xml:lang="sv"><seg>I dag firar vi min systers tjugonde födelsedag.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Vandaag vieren we de twintigste verjaardag van mijn zus.</seg></tuv>
+   <tuv xml:lang="nb"><seg>I dag feirer vi søsteren mins tjuende bursdag.</seg></tuv>
+   <tuv xml:lang="da"><seg>I dag fejrer vi min søsters tyvende fødselsdag.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Aujourd'hui, nous fêtons les vingt ans de ma sœur.</seg></tuv>
+  </tu>
+  <tu tuid="der einundzwanzigste:dvadeset prvi" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>dvadeset prvi</seg></tuv>
+   <tuv xml:lang="de"><seg>der einundzwanzigste</seg></tuv>
+   <tuv xml:lang="en"><seg>the twenty-first</seg></tuv>
+   <tuv xml:lang="tr"><seg>yirmi birinci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den tjugoförsta</seg></tuv>
+   <tuv xml:lang="nl"><seg>de eenentwintigste</seg></tuv>
+   <tuv xml:lang="nb"><seg>den tjueførste</seg></tuv>
+   <tuv xml:lang="da"><seg>den enogtyvende</seg></tuv>
+   <tuv xml:lang="fr"><seg>le vingt et unième</seg></tuv>
+  </tu>
+  <tu tuid="wir leben im einundzwanzigsten jahrhundert.:Živimo u dvadeset prvom stoljeću." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Živimo u dvadeset prvom stoljeću.</seg></tuv>
+   <tuv xml:lang="de"><seg>Wir leben im einundzwanzigsten Jahrhundert.</seg></tuv>
+   <tuv xml:lang="en"><seg>We live in the twenty-first century.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Yirmi birinci yüzyılda yaşıyoruz.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vi lever på tjugoförsta århundradet.</seg></tuv>
+   <tuv xml:lang="nl"><seg>We leven in de eenentwintigste eeuw.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Vi lever i det tjueførste århundre.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vi lever i det enogtyvende århundrede.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Nous vivons au vingt et unième siècle.</seg></tuv>
+  </tu>
+  <tu tuid="der dreißigste:trideseti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>trideseti</seg></tuv>
+   <tuv xml:lang="de"><seg>der dreißigste</seg></tuv>
+   <tuv xml:lang="en"><seg>the thirtieth</seg></tuv>
+   <tuv xml:lang="tr"><seg>otuzuncu</seg></tuv>
+   <tuv xml:lang="sv"><seg>den trettionde</seg></tuv>
+   <tuv xml:lang="nl"><seg>de dertigste</seg></tuv>
+   <tuv xml:lang="nb"><seg>den trettiende</seg></tuv>
+   <tuv xml:lang="da"><seg>den tredivte</seg></tuv>
+   <tuv xml:lang="fr"><seg>le trentième</seg></tuv>
+  </tu>
+  <tu tuid="die miete wird bis zum dreißigsten des monats bezahlt.:Kirija se plaća do tridesetog u mjesecu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Kirija se plaća do tridesetog u mjesecu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die Miete wird bis zum Dreißigsten des Monats bezahlt.</seg></tuv>
+   <tuv xml:lang="en"><seg>The rent is paid by the thirtieth of the month.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Kira ayın otuzuna kadar ödenir.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Hyran betalas senast den trettionde i månaden.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De huur wordt tot de dertigste van de maand betaald.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Husleien betales innen den trettiende i måneden.</seg></tuv>
+   <tuv xml:lang="da"><seg>Huslejen betales senest den tredivte i måneden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le loyer est à payer jusqu'au trente du mois.</seg></tuv>
+  </tu>
+  <tu tuid="der fünfzigste:pedeseti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>pedeseti</seg></tuv>
+   <tuv xml:lang="de"><seg>der fünfzigste</seg></tuv>
+   <tuv xml:lang="en"><seg>the fiftieth</seg></tuv>
+   <tuv xml:lang="tr"><seg>ellinci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den femtionde</seg></tuv>
+   <tuv xml:lang="nl"><seg>de vijftigste</seg></tuv>
+   <tuv xml:lang="nb"><seg>den femtiende</seg></tuv>
+   <tuv xml:lang="da"><seg>den halvtredsindstyvende</seg></tuv>
+   <tuv xml:lang="fr"><seg>le cinquantième</seg></tuv>
+  </tu>
+  <tu tuid="papa feiert seinen fünfzigsten geburtstag.:Babo slavi pedeseti rođendan." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Babo slavi pedeseti rođendan.</seg></tuv>
+   <tuv xml:lang="de"><seg>Papa feiert seinen fünfzigsten Geburtstag.</seg></tuv>
+   <tuv xml:lang="en"><seg>Dad is celebrating his fiftieth birthday.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Babam ellinci doğum gününü kutluyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Pappa firar sin femtionde födelsedag.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Papa viert zijn vijftigste verjaardag.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Pappa feirer femtiårsdagen sin.</seg></tuv>
+   <tuv xml:lang="da"><seg>Far fejrer sin halvtredsårsfødselsdag.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Papa fête ses cinquante ans.</seg></tuv>
+  </tu>
+  <tu tuid="der hundertste:stoti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>stoti</seg></tuv>
+   <tuv xml:lang="de"><seg>der hundertste</seg></tuv>
+   <tuv xml:lang="en"><seg>the hundredth</seg></tuv>
+   <tuv xml:lang="tr"><seg>yüzüncü</seg></tuv>
+   <tuv xml:lang="sv"><seg>den hundrade</seg></tuv>
+   <tuv xml:lang="nl"><seg>de honderdste</seg></tuv>
+   <tuv xml:lang="nb"><seg>den hundrede</seg></tuv>
+   <tuv xml:lang="da"><seg>den hundrede</seg></tuv>
+   <tuv xml:lang="fr"><seg>le centième</seg></tuv>
+  </tu>
+  <tu tuid="das sage ich dir schon zum hundertsten mal!:Ovo ti govorim već stoti put!" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Ovo ti govorim već stoti put!</seg></tuv>
+   <tuv xml:lang="de"><seg>Das sage ich dir schon zum hundertsten Mal!</seg></tuv>
+   <tuv xml:lang="en"><seg>I'm telling you this for the hundredth time!</seg></tuv>
+   <tuv xml:lang="tr"><seg>Bunu sana yüzüncü kez söylüyorum!</seg></tuv>
+   <tuv xml:lang="sv"><seg>Det här säger jag till dig för hundrade gången!</seg></tuv>
+   <tuv xml:lang="nl"><seg>Dit zeg ik je al voor de honderdste keer!</seg></tuv>
+   <tuv xml:lang="nb"><seg>Dette sier jeg til deg for hundrede gang!</seg></tuv>
+   <tuv xml:lang="da"><seg>Det siger jeg til dig for hundrede gang!</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je te le dis pour la centième fois !</seg></tuv>
+  </tu>
+  <tu tuid="der tausendste:hiljaditi" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>hiljaditi</seg></tuv>
+   <tuv xml:lang="de"><seg>der tausendste</seg></tuv>
+   <tuv xml:lang="en"><seg>the thousandth</seg></tuv>
+   <tuv xml:lang="tr"><seg>bininci</seg></tuv>
+   <tuv xml:lang="sv"><seg>den tusende</seg></tuv>
+   <tuv xml:lang="nl"><seg>de duizendste</seg></tuv>
+   <tuv xml:lang="nb"><seg>den tusende</seg></tuv>
+   <tuv xml:lang="da"><seg>den tusinde</seg></tuv>
+   <tuv xml:lang="fr"><seg>le millième</seg></tuv>
+  </tu>
+  <tu tuid="er war der tausendste besucher und hat einen preis bekommen.:Bio je hiljaditi posjetilac i dobio je nagradu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Bio je hiljaditi posjetilac i dobio je nagradu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Er war der tausendste Besucher und hat einen Preis bekommen.</seg></tuv>
+   <tuv xml:lang="en"><seg>He was the thousandth visitor and won a prize.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Bininci ziyaretçiydi ve bir ödül kazandı.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Han var den tusende besökaren och fick ett pris.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Hij was de duizendste bezoeker en kreeg een prijs.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Han var den tusende besøkende og fikk en premie.</seg></tuv>
+   <tuv xml:lang="da"><seg>Han var den tusinde besøgende og fik en præmie.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Il était le millième visiteur et a gagné un prix.</seg></tuv>
+  </tu>
   <tu tuid="ich komme sofort!:Odmah dolazim!" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Odmah dolazim!</seg></tuv>
@@ -40506,6 +41490,126 @@
    <tuv xml:lang="da"><seg>Du skal øve dig mere.</seg></tuv>
    <tuv xml:lang="fr"><seg>Tu dois t'entraîner davantage.</seg></tuv>
   </tu>
+  <tu tuid="torwart:golman" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>golman</seg></tuv>
+   <tuv xml:lang="de"><seg>Torwart</seg></tuv>
+   <tuv xml:lang="en"><seg>goalkeeper</seg></tuv>
+   <tuv xml:lang="tr"><seg>kaleci</seg></tuv>
+   <tuv xml:lang="sv"><seg>målvakt</seg></tuv>
+   <tuv xml:lang="nl"><seg>keeper</seg></tuv>
+   <tuv xml:lang="nb"><seg>keeper</seg></tuv>
+   <tuv xml:lang="da"><seg>målmand</seg></tuv>
+   <tuv xml:lang="fr"><seg>gardien de but</seg></tuv>
+  </tu>
+  <tu tuid="unser torwart ist der beste der liga.:Naš golman je najbolji u ligi." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Naš golman je najbolji u ligi.</seg></tuv>
+   <tuv xml:lang="de"><seg>Unser Torwart ist der beste der Liga.</seg></tuv>
+   <tuv xml:lang="en"><seg>Our goalkeeper is the best in the league.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Kalecimiz ligin en iyisi.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vår målvakt är bäst i ligan.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Onze keeper is de beste van de competitie.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Keeperen vår er den beste i ligaen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vores målmand er den bedste i ligaen.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Notre gardien est le meilleur du championnat.</seg></tuv>
+  </tu>
+  <tu tuid="tennis:tenis" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>tenis</seg></tuv>
+   <tuv xml:lang="de"><seg>Tennis</seg></tuv>
+   <tuv xml:lang="en"><seg>tennis</seg></tuv>
+   <tuv xml:lang="tr"><seg>tenis</seg></tuv>
+   <tuv xml:lang="sv"><seg>tennis</seg></tuv>
+   <tuv xml:lang="nl"><seg>tennis</seg></tuv>
+   <tuv xml:lang="nb"><seg>tennis</seg></tuv>
+   <tuv xml:lang="da"><seg>tennis</seg></tuv>
+   <tuv xml:lang="fr"><seg>tennis</seg></tuv>
+  </tu>
+  <tu tuid="samstags spiele ich mit einem freund tennis.:Subotom igram tenis s prijateljem." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Subotom igram tenis s prijateljem.</seg></tuv>
+   <tuv xml:lang="de"><seg>Samstags spiele ich mit einem Freund Tennis.</seg></tuv>
+   <tuv xml:lang="en"><seg>On Saturdays I play tennis with a friend.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Cumartesileri bir arkadaşımla tenis oynarım.</seg></tuv>
+   <tuv xml:lang="sv"><seg>På lördagar spelar jag tennis med en vän.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Op zaterdag speel ik tennis met een vriend.</seg></tuv>
+   <tuv xml:lang="nb"><seg>På lørdager spiller jeg tennis med en venn.</seg></tuv>
+   <tuv xml:lang="da"><seg>Om lørdagen spiller jeg tennis med en ven.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le samedi, je joue au tennis avec un ami.</seg></tuv>
+  </tu>
+  <tu tuid="volleyball:odbojka" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>odbojka</seg></tuv>
+   <tuv xml:lang="de"><seg>Volleyball</seg></tuv>
+   <tuv xml:lang="en"><seg>volleyball</seg></tuv>
+   <tuv xml:lang="tr"><seg>voleybol</seg></tuv>
+   <tuv xml:lang="sv"><seg>volleyboll</seg></tuv>
+   <tuv xml:lang="nl"><seg>volleybal</seg></tuv>
+   <tuv xml:lang="nb"><seg>volleyball</seg></tuv>
+   <tuv xml:lang="da"><seg>volleyball</seg></tuv>
+   <tuv xml:lang="fr"><seg>volley-ball</seg></tuv>
+  </tu>
+  <tu tuid="im sommer spielen wir am strand volleyball.:Ljeti na plaži igramo odbojku." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Ljeti na plaži igramo odbojku.</seg></tuv>
+   <tuv xml:lang="de"><seg>Im Sommer spielen wir am Strand Volleyball.</seg></tuv>
+   <tuv xml:lang="en"><seg>In summer we play volleyball on the beach.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Yazın plajda voleybol oynarız.</seg></tuv>
+   <tuv xml:lang="sv"><seg>På sommaren spelar vi volleyboll på stranden.</seg></tuv>
+   <tuv xml:lang="nl"><seg>In de zomer spelen we volleybal op het strand.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Om sommeren spiller vi volleyball på stranden.</seg></tuv>
+   <tuv xml:lang="da"><seg>Om sommeren spiller vi volleyball på stranden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>L'été, nous jouons au volley sur la plage.</seg></tuv>
+  </tu>
+  <tu tuid="trikot:dres" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>dres</seg></tuv>
+   <tuv xml:lang="de"><seg>Trikot</seg></tuv>
+   <tuv xml:lang="en"><seg>jersey (sports shirt)</seg></tuv>
+   <tuv xml:lang="tr"><seg>forma</seg></tuv>
+   <tuv xml:lang="sv"><seg>matchtröja</seg></tuv>
+   <tuv xml:lang="nl"><seg>sportshirt</seg></tuv>
+   <tuv xml:lang="nb"><seg>drakt</seg></tuv>
+   <tuv xml:lang="da"><seg>spillertrøje</seg></tuv>
+   <tuv xml:lang="fr"><seg>maillot</seg></tuv>
+  </tu>
+  <tu tuid="ich habe meinem sohn das trikot der nationalmannschaft gekauft.:Kupio sam sinu dres reprezentacije." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Kupio sam sinu dres reprezentacije.</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich habe meinem Sohn das Trikot der Nationalmannschaft gekauft.</seg></tuv>
+   <tuv xml:lang="en"><seg>I bought my son the national team jersey.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Oğluma milli takım forması aldım.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag köpte landslagströjan till min son.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik heb voor mijn zoon het shirt van het nationale elftal gekocht.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg kjøpte landslagsdrakten til sønnen min.</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg købte landsholdstrøjen til min søn.</seg></tuv>
+   <tuv xml:lang="fr"><seg>J'ai acheté à mon fils le maillot de l'équipe nationale.</seg></tuv>
+  </tu>
+  <tu tuid="unentschieden:neriješeno" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>neriješeno</seg></tuv>
+   <tuv xml:lang="de"><seg>unentschieden</seg></tuv>
+   <tuv xml:lang="en"><seg>draw (tie)</seg></tuv>
+   <tuv xml:lang="tr"><seg>berabere</seg></tuv>
+   <tuv xml:lang="sv"><seg>oavgjort</seg></tuv>
+   <tuv xml:lang="nl"><seg>gelijkspel</seg></tuv>
+   <tuv xml:lang="nb"><seg>uavgjort</seg></tuv>
+   <tuv xml:lang="da"><seg>uafgjort</seg></tuv>
+   <tuv xml:lang="fr"><seg>match nul</seg></tuv>
+  </tu>
+  <tu tuid="das spiel endete unentschieden.:Utakmica je završila neriješeno." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Utakmica je završila neriješeno.</seg></tuv>
+   <tuv xml:lang="de"><seg>Das Spiel endete unentschieden.</seg></tuv>
+   <tuv xml:lang="en"><seg>The match ended in a draw.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Maç berabere bitti.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Matchen slutade oavgjort.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De wedstrijd eindigde in een gelijkspel.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Kampen endte uavgjort.</seg></tuv>
+   <tuv xml:lang="da"><seg>Kampen endte uafgjort.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le match s'est terminé par un match nul.</seg></tuv>
+  </tu>
   <tu tuid="hobby:hobi" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>hobi</seg></tuv>
@@ -40817,6 +41921,54 @@
    <tuv xml:lang="nb"><seg>La oss spille et spill!</seg></tuv>
    <tuv xml:lang="da"><seg>Lad os spille et spil!</seg></tuv>
    <tuv xml:lang="fr"><seg>Jouons à un jeu !</seg></tuv>
+  </tu>
+  <tu tuid="schach:šah" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>šah</seg></tuv>
+   <tuv xml:lang="de"><seg>Schach</seg></tuv>
+   <tuv xml:lang="en"><seg>chess</seg></tuv>
+   <tuv xml:lang="tr"><seg>satranç</seg></tuv>
+   <tuv xml:lang="sv"><seg>schack</seg></tuv>
+   <tuv xml:lang="nl"><seg>schaken</seg></tuv>
+   <tuv xml:lang="nb"><seg>sjakk</seg></tuv>
+   <tuv xml:lang="da"><seg>skak</seg></tuv>
+   <tuv xml:lang="fr"><seg>échecs</seg></tuv>
+  </tu>
+  <tu tuid="opa hat mir schach beigebracht.:Dedo me je naučio igrati šah." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Dedo me je naučio igrati šah.</seg></tuv>
+   <tuv xml:lang="de"><seg>Opa hat mir Schach beigebracht.</seg></tuv>
+   <tuv xml:lang="en"><seg>Grandpa taught me to play chess.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Dedem bana satranç oynamayı öğretti.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Morfar lärde mig att spela schack.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Opa heeft me leren schaken.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Bestefar lærte meg å spille sjakk.</seg></tuv>
+   <tuv xml:lang="da"><seg>Bedstefar lærte mig at spille skak.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Grand-père m'a appris à jouer aux échecs.</seg></tuv>
+  </tu>
+  <tu tuid="handyspiel / videospiel:igrica" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>igrica</seg></tuv>
+   <tuv xml:lang="de"><seg>Handyspiel / Videospiel</seg></tuv>
+   <tuv xml:lang="en"><seg>video game</seg></tuv>
+   <tuv xml:lang="tr"><seg>video oyunu</seg></tuv>
+   <tuv xml:lang="sv"><seg>tv-spel</seg></tuv>
+   <tuv xml:lang="nl"><seg>videogame</seg></tuv>
+   <tuv xml:lang="nb"><seg>dataspill</seg></tuv>
+   <tuv xml:lang="da"><seg>computerspil</seg></tuv>
+   <tuv xml:lang="fr"><seg>jeu vidéo</seg></tuv>
+  </tu>
+  <tu tuid="die kinder spielen den ganzen tag spiele auf dem handy.:Djeca cijeli dan igraju igrice na mobitelu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Djeca cijeli dan igraju igrice na mobitelu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die Kinder spielen den ganzen Tag Spiele auf dem Handy.</seg></tuv>
+   <tuv xml:lang="en"><seg>The kids play games on the phone all day.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Çocuklar bütün gün telefonda oyun oynuyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Barnen spelar spel på mobilen hela dagen.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De kinderen spelen de hele dag spelletjes op hun mobiel.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Barna spiller spill på mobilen hele dagen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Børnene spiller spil på mobilen hele dagen.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Les enfants jouent à des jeux sur le portable toute la journée.</seg></tuv>
   </tu>
   <tu tuid="zeitung:novine" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -41166,6 +42318,30 @@
    <tuv xml:lang="da"><seg>Den her skuespiller kommer fra Sarajevo.</seg></tuv>
    <tuv xml:lang="fr"><seg>Cet acteur vient de Sarajevo.</seg></tuv>
   </tu>
+  <tu tuid="zeichentrickfilm:crtani film" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>crtani film</seg></tuv>
+   <tuv xml:lang="de"><seg>Zeichentrickfilm</seg></tuv>
+   <tuv xml:lang="en"><seg>cartoon</seg></tuv>
+   <tuv xml:lang="tr"><seg>çizgi film</seg></tuv>
+   <tuv xml:lang="sv"><seg>tecknad film</seg></tuv>
+   <tuv xml:lang="nl"><seg>tekenfilm</seg></tuv>
+   <tuv xml:lang="nb"><seg>tegnefilm</seg></tuv>
+   <tuv xml:lang="da"><seg>tegnefilm</seg></tuv>
+   <tuv xml:lang="fr"><seg>dessin animé</seg></tuv>
+  </tu>
+  <tu tuid="die kinder schauen jeden morgen zeichentrickfilme.:Djeca svako jutro gledaju crtane filmove." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Djeca svako jutro gledaju crtane filmove.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die Kinder schauen jeden Morgen Zeichentrickfilme.</seg></tuv>
+   <tuv xml:lang="en"><seg>The kids watch cartoons every morning.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Çocuklar her sabah çizgi film izliyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Barnen tittar på tecknade filmer varje morgon.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De kinderen kijken elke ochtend tekenfilms.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Barna ser på tegnefilmer hver morgen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Børnene ser tegnefilm hver morgen.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Les enfants regardent des dessins animés tous les matins.</seg></tuv>
+  </tu>
   <tu tuid="straßenbahn:tramvaj" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>tramvaj</seg></tuv>
@@ -41477,6 +42653,78 @@
    <tuv xml:lang="nb"><seg>Hvor kan jeg se rutetabellen?</seg></tuv>
    <tuv xml:lang="da"><seg>Hvor kan jeg se køreplanen?</seg></tuv>
    <tuv xml:lang="fr"><seg>Où est-ce que je peux voir les horaires ?</seg></tuv>
+  </tu>
+  <tu tuid="sonnenbrille:sunčane naočale" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>sunčane naočale</seg></tuv>
+   <tuv xml:lang="de"><seg>Sonnenbrille</seg></tuv>
+   <tuv xml:lang="en"><seg>sunglasses</seg></tuv>
+   <tuv xml:lang="tr"><seg>güneş gözlüğü</seg></tuv>
+   <tuv xml:lang="sv"><seg>solglasögon</seg></tuv>
+   <tuv xml:lang="nl"><seg>zonnebril</seg></tuv>
+   <tuv xml:lang="nb"><seg>solbriller</seg></tuv>
+   <tuv xml:lang="da"><seg>solbriller</seg></tuv>
+   <tuv xml:lang="fr"><seg>lunettes de soleil</seg></tuv>
+  </tu>
+  <tu tuid="wo ist meine sonnenbrille?:Gdje su moje sunčane naočale?" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Gdje su moje sunčane naočale?</seg></tuv>
+   <tuv xml:lang="de"><seg>Wo ist meine Sonnenbrille?</seg></tuv>
+   <tuv xml:lang="en"><seg>Where are my sunglasses?</seg></tuv>
+   <tuv xml:lang="tr"><seg>Güneş gözlüğüm nerede?</seg></tuv>
+   <tuv xml:lang="sv"><seg>Var är mina solglasögon?</seg></tuv>
+   <tuv xml:lang="nl"><seg>Waar is mijn zonnebril?</seg></tuv>
+   <tuv xml:lang="nb"><seg>Hvor er solbrillene mine?</seg></tuv>
+   <tuv xml:lang="da"><seg>Hvor er mine solbriller?</seg></tuv>
+   <tuv xml:lang="fr"><seg>Où sont mes lunettes de soleil ?</seg></tuv>
+  </tu>
+  <tu tuid="badeanzug:kupaći kostim" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>kupaći kostim</seg></tuv>
+   <tuv xml:lang="de"><seg>Badeanzug</seg></tuv>
+   <tuv xml:lang="en"><seg>swimsuit</seg></tuv>
+   <tuv xml:lang="tr"><seg>mayo</seg></tuv>
+   <tuv xml:lang="sv"><seg>baddräkt</seg></tuv>
+   <tuv xml:lang="nl"><seg>badpak</seg></tuv>
+   <tuv xml:lang="nb"><seg>badedrakt</seg></tuv>
+   <tuv xml:lang="da"><seg>badedragt</seg></tuv>
+   <tuv xml:lang="fr"><seg>maillot de bain</seg></tuv>
+  </tu>
+  <tu tuid="pack den badeanzug ein, wir fahren ans meer.:Spakuj kupaći kostim, idemo na more." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Spakuj kupaći kostim, idemo na more.</seg></tuv>
+   <tuv xml:lang="de"><seg>Pack den Badeanzug ein, wir fahren ans Meer.</seg></tuv>
+   <tuv xml:lang="en"><seg>Pack your swimsuit, we're going to the seaside.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Mayonu çantaya koy, denize gidiyoruz.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Packa ner baddräkten, vi åker till havet.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Pak je badpak in, we gaan naar zee.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Pakk ned badedrakten, vi drar til sjøen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Pak badedragten, vi tager til havet.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Prends ton maillot de bain, on va à la mer.</seg></tuv>
+  </tu>
+  <tu tuid="boot:čamac" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>čamac</seg></tuv>
+   <tuv xml:lang="de"><seg>Boot</seg></tuv>
+   <tuv xml:lang="en"><seg>boat</seg></tuv>
+   <tuv xml:lang="tr"><seg>kayık</seg></tuv>
+   <tuv xml:lang="sv"><seg>båt</seg></tuv>
+   <tuv xml:lang="nl"><seg>boot</seg></tuv>
+   <tuv xml:lang="nb"><seg>båt</seg></tuv>
+   <tuv xml:lang="da"><seg>båd</seg></tuv>
+   <tuv xml:lang="fr"><seg>barque</seg></tuv>
+  </tu>
+  <tu tuid="wir haben auf dem see ein boot gemietet.:Unajmili smo čamac na jezeru." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Unajmili smo čamac na jezeru.</seg></tuv>
+   <tuv xml:lang="de"><seg>Wir haben auf dem See ein Boot gemietet.</seg></tuv>
+   <tuv xml:lang="en"><seg>We rented a boat on the lake.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Gölde bir kayık kiraladık.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vi hyrde en båt på sjön.</seg></tuv>
+   <tuv xml:lang="nl"><seg>We hebben op het meer een bootje gehuurd.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Vi leide en båt på innsjøen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vi lejede en båd på søen.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Nous avons loué une barque sur le lac.</seg></tuv>
   </tu>
   <tu tuid="kindergarten:vrtić" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -41837,6 +43085,30 @@
    <tuv xml:lang="nb"><seg>Hvor mange ganger må jeg gjenta det for deg?</seg></tuv>
    <tuv xml:lang="da"><seg>Hvor mange gange skal jeg gentage det for dig?</seg></tuv>
    <tuv xml:lang="fr"><seg>Combien de fois faut-il que je te le répète ?</seg></tuv>
+  </tu>
+  <tu tuid="lehrer (grundschule):učitelj" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>učitelj</seg></tuv>
+   <tuv xml:lang="de"><seg>Lehrer (Grundschule)</seg></tuv>
+   <tuv xml:lang="en"><seg>(primary school) teacher</seg></tuv>
+   <tuv xml:lang="tr"><seg>sınıf öğretmeni</seg></tuv>
+   <tuv xml:lang="sv"><seg>lärare (lågstadiet)</seg></tuv>
+   <tuv xml:lang="nl"><seg>leerkracht (basisschool)</seg></tuv>
+   <tuv xml:lang="nb"><seg>lærer (barneskole)</seg></tuv>
+   <tuv xml:lang="da"><seg>lærer (indskoling)</seg></tuv>
+   <tuv xml:lang="fr"><seg>instituteur</seg></tuv>
+  </tu>
+  <tu tuid="unser lehrer hat uns das schreiben beigebracht.:Naš učitelj nas je naučio pisati." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Naš učitelj nas je naučio pisati.</seg></tuv>
+   <tuv xml:lang="de"><seg>Unser Lehrer hat uns das Schreiben beigebracht.</seg></tuv>
+   <tuv xml:lang="en"><seg>Our teacher taught us to write.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Öğretmenimiz bize yazmayı öğretti.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vår lärare lärde oss att skriva.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Onze leraar heeft ons leren schrijven.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Læreren vår lærte oss å skrive.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vores lærer lærte os at skrive.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Notre instituteur nous a appris à écrire.</seg></tuv>
   </tu>
   <tu tuid="sich merken:zapamtiti" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -42582,6 +43854,54 @@
    <tuv xml:lang="da"><seg>Er postbuddet kommet endnu?</seg></tuv>
    <tuv xml:lang="fr"><seg>Le facteur est déjà passé ?</seg></tuv>
   </tu>
+  <tu tuid="fliesenleger:keramičar" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>keramičar</seg></tuv>
+   <tuv xml:lang="de"><seg>Fliesenleger</seg></tuv>
+   <tuv xml:lang="en"><seg>tiler</seg></tuv>
+   <tuv xml:lang="tr"><seg>fayansçı</seg></tuv>
+   <tuv xml:lang="sv"><seg>plattsättare</seg></tuv>
+   <tuv xml:lang="nl"><seg>tegelzetter</seg></tuv>
+   <tuv xml:lang="nb"><seg>flislegger</seg></tuv>
+   <tuv xml:lang="da"><seg>flisemurer</seg></tuv>
+   <tuv xml:lang="fr"><seg>carreleur</seg></tuv>
+  </tu>
+  <tu tuid="der fliesenleger kommt morgen, um im bad die fliesen zu verlegen.:Keramičar dolazi sutra da postavi pločice u kupatilu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Keramičar dolazi sutra da postavi pločice u kupatilu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Der Fliesenleger kommt morgen, um im Bad die Fliesen zu verlegen.</seg></tuv>
+   <tuv xml:lang="en"><seg>The tiler is coming tomorrow to lay the bathroom tiles.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Fayansçı yarın banyoya fayans döşemeye geliyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Plattsättaren kommer i morgon för att lägga kakel i badrummet.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De tegelzetter komt morgen om de tegels in de badkamer te leggen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Flisleggeren kommer i morgen for å legge fliser på badet.</seg></tuv>
+   <tuv xml:lang="da"><seg>Flisemureren kommer i morgen for at lægge fliser i badeværelset.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le carreleur vient demain poser le carrelage dans la salle de bain.</seg></tuv>
+  </tu>
+  <tu tuid="maler (anstreicher):soboslikar" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>soboslikar</seg></tuv>
+   <tuv xml:lang="de"><seg>Maler (Anstreicher)</seg></tuv>
+   <tuv xml:lang="en"><seg>house painter</seg></tuv>
+   <tuv xml:lang="tr"><seg>boyacı (badanacı)</seg></tuv>
+   <tuv xml:lang="sv"><seg>målare (byggnadsmålare)</seg></tuv>
+   <tuv xml:lang="nl"><seg>huisschilder</seg></tuv>
+   <tuv xml:lang="nb"><seg>maler (byggmaler)</seg></tuv>
+   <tuv xml:lang="da"><seg>maler (håndværker)</seg></tuv>
+   <tuv xml:lang="fr"><seg>peintre en bâtiment</seg></tuv>
+  </tu>
+  <tu tuid="der maler kommt am montag, um unsere wohnung zu streichen.:Soboslikar dolazi u ponedjeljak da nam okreči stan." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Soboslikar dolazi u ponedjeljak da nam okreči stan.</seg></tuv>
+   <tuv xml:lang="de"><seg>Der Maler kommt am Montag, um unsere Wohnung zu streichen.</seg></tuv>
+   <tuv xml:lang="en"><seg>The painter is coming on Monday to paint our flat.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Boyacı pazartesi dairemizi boyamaya geliyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Målaren kommer på måndag för att måla vår lägenhet.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De schilder komt maandag om onze woning te schilderen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Maleren kommer på mandag for å male leiligheten vår.</seg></tuv>
+   <tuv xml:lang="da"><seg>Maleren kommer på mandag for at male vores lejlighed.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le peintre vient lundi pour repeindre notre appartement.</seg></tuv>
+  </tu>
   <tu tuid="schicht:smjena" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>smjena</seg></tuv>
@@ -42941,6 +44261,30 @@
    <tuv xml:lang="nb"><seg>På hverdager står jeg opp klokka seks.</seg></tuv>
    <tuv xml:lang="da"><seg>På hverdage står jeg op klokken seks.</seg></tuv>
    <tuv xml:lang="fr"><seg>En semaine, je me lève à six heures.</seg></tuv>
+  </tu>
+  <tu tuid="erholung:odmor" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>odmor</seg></tuv>
+   <tuv xml:lang="de"><seg>Erholung</seg></tuv>
+   <tuv xml:lang="en"><seg>rest (relaxation)</seg></tuv>
+   <tuv xml:lang="tr"><seg>dinlenme</seg></tuv>
+   <tuv xml:lang="sv"><seg>vila</seg></tuv>
+   <tuv xml:lang="nl"><seg>rust</seg></tuv>
+   <tuv xml:lang="nb"><seg>hvile</seg></tuv>
+   <tuv xml:lang="da"><seg>hvile</seg></tuv>
+   <tuv xml:lang="fr"><seg>repos</seg></tuv>
+  </tu>
+  <tu tuid="nach so einer woche brauche ich erholung.:Poslije ovakve sedmice treba mi odmor." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Poslije ovakve sedmice treba mi odmor.</seg></tuv>
+   <tuv xml:lang="de"><seg>Nach so einer Woche brauche ich Erholung.</seg></tuv>
+   <tuv xml:lang="en"><seg>After a week like this I need a rest.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Böyle bir haftadan sonra dinlenmeye ihtiyacım var.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Efter en sådan vecka behöver jag vila.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Na zo'n week heb ik rust nodig.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Etter en sånn uke trenger jeg hvile.</seg></tuv>
+   <tuv xml:lang="da"><seg>Efter sådan en uge har jeg brug for hvile.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Après une semaine pareille, j'ai besoin de repos.</seg></tuv>
   </tu>
   <tu tuid="ist dieser platz frei?:Je li ovo mjesto slobodno?" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -51666,6 +53010,30 @@
    <tuv xml:lang="da"><seg>Det er en hyppig fejl.</seg></tuv>
    <tuv xml:lang="fr"><seg>C'est une erreur fréquente.</seg></tuv>
   </tu>
+  <tu tuid="schmutzig (der schmutzige):prljav" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>prljav</seg></tuv>
+   <tuv xml:lang="de"><seg>schmutzig (der schmutzige)</seg></tuv>
+   <tuv xml:lang="en"><seg>dirty (m.)</seg></tuv>
+   <tuv xml:lang="tr"><seg>kirli (eril)</seg></tuv>
+   <tuv xml:lang="sv"><seg>smutsig (den smutsige)</seg></tuv>
+   <tuv xml:lang="nl"><seg>vies (m.)</seg></tuv>
+   <tuv xml:lang="nb"><seg>skitten (den skitne)</seg></tuv>
+   <tuv xml:lang="da"><seg>beskidt (den beskidte)</seg></tuv>
+   <tuv xml:lang="fr"><seg>sale (m.)</seg></tuv>
+  </tu>
+  <tu tuid="stell keinen schmutzigen teller in den schrank.:Ne stavljaj prljav tanjir u ormar." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Ne stavljaj prljav tanjir u ormar.</seg></tuv>
+   <tuv xml:lang="de"><seg>Stell keinen schmutzigen Teller in den Schrank.</seg></tuv>
+   <tuv xml:lang="en"><seg>Don't put a dirty plate in the cupboard.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Kirli tabağı dolaba koyma.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Ställ inte in en smutsig tallrik i skåpet.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Zet geen vuil bord in de kast.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Ikke sett en skitten tallerken i skapet.</seg></tuv>
+   <tuv xml:lang="da"><seg>Stil ikke en beskidt tallerken ind i skabet.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Ne mets pas d'assiette sale dans le placard.</seg></tuv>
+  </tu>
   <tu tuid="lass die tasche da, neben der tür.:Ostavi torbu tu, pored vrata." segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Ostavi torbu tu, pored vrata.</seg></tuv>
@@ -57462,6 +58830,54 @@
    <tuv xml:lang="da"><seg>Børnenes skolegang koster mange penge.</seg></tuv>
    <tuv xml:lang="fr"><seg>La scolarité des enfants coûte beaucoup d'argent.</seg></tuv>
   </tu>
+  <tu tuid="pubertät:pubertet" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>pubertet</seg></tuv>
+   <tuv xml:lang="de"><seg>Pubertät</seg></tuv>
+   <tuv xml:lang="en"><seg>puberty</seg></tuv>
+   <tuv xml:lang="tr"><seg>ergenlik</seg></tuv>
+   <tuv xml:lang="sv"><seg>pubertet</seg></tuv>
+   <tuv xml:lang="nl"><seg>puberteit</seg></tuv>
+   <tuv xml:lang="nb"><seg>pubertet</seg></tuv>
+   <tuv xml:lang="da"><seg>pubertet</seg></tuv>
+   <tuv xml:lang="fr"><seg>puberté</seg></tuv>
+  </tu>
+  <tu tuid="unser sohn ist in die pubertät gekommen.:Naš sin je ušao u pubertet." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Naš sin je ušao u pubertet.</seg></tuv>
+   <tuv xml:lang="de"><seg>Unser Sohn ist in die Pubertät gekommen.</seg></tuv>
+   <tuv xml:lang="en"><seg>Our son has hit puberty.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Oğlumuz ergenliğe girdi.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vår son har kommit in i puberteten.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Onze zoon is in de puberteit gekomen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Sønnen vår har kommet i puberteten.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vores søn er kommet i puberteten.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Notre fils est entré dans la puberté.</seg></tuv>
+  </tu>
+  <tu tuid="teenager:tinejdžer" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>tinejdžer</seg></tuv>
+   <tuv xml:lang="de"><seg>Teenager</seg></tuv>
+   <tuv xml:lang="en"><seg>teenager</seg></tuv>
+   <tuv xml:lang="tr"><seg>ergen</seg></tuv>
+   <tuv xml:lang="sv"><seg>tonåring</seg></tuv>
+   <tuv xml:lang="nl"><seg>tiener</seg></tuv>
+   <tuv xml:lang="nb"><seg>tenåring</seg></tuv>
+   <tuv xml:lang="da"><seg>teenager</seg></tuv>
+   <tuv xml:lang="fr"><seg>adolescent</seg></tuv>
+  </tu>
+  <tu tuid="als teenager habe ich ständig musik gehört.:Kao tinejdžer sam stalno slušao muziku." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Kao tinejdžer sam stalno slušao muziku.</seg></tuv>
+   <tuv xml:lang="de"><seg>Als Teenager habe ich ständig Musik gehört.</seg></tuv>
+   <tuv xml:lang="en"><seg>As a teenager I listened to music all the time.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Gençken sürekli müzik dinlerdim.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Som tonåring lyssnade jag på musik hela tiden.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Als tiener luisterde ik constant naar muziek.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Som tenåring hørte jeg på musikk hele tiden.</seg></tuv>
+   <tuv xml:lang="da"><seg>Som teenager hørte jeg musik hele tiden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Adolescent, j'écoutais de la musique tout le temps.</seg></tuv>
+  </tu>
   <tu tuid="heim / zuhause:dom" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>dom</seg></tuv>
@@ -57918,6 +59334,222 @@
    <tuv xml:lang="da"><seg>Min svigerfar og jeg går på fiskeri sammen.</seg></tuv>
    <tuv xml:lang="fr"><seg>Mon beau-père et moi allons pêcher ensemble.</seg></tuv>
   </tu>
+  <tu tuid="enkelkind:unuče" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>unuče</seg></tuv>
+   <tuv xml:lang="de"><seg>Enkelkind</seg></tuv>
+   <tuv xml:lang="en"><seg>grandchild</seg></tuv>
+   <tuv xml:lang="tr"><seg>torun</seg></tuv>
+   <tuv xml:lang="sv"><seg>barnbarn (pojke eller flicka)</seg></tuv>
+   <tuv xml:lang="nl"><seg>kleinkind</seg></tuv>
+   <tuv xml:lang="nb"><seg>barnebarn (gutt eller jente)</seg></tuv>
+   <tuv xml:lang="da"><seg>barnebarn (dreng eller pige)</seg></tuv>
+   <tuv xml:lang="fr"><seg>petit-enfant</seg></tuv>
+  </tu>
+  <tu tuid="wir haben unser erstes enkelkind bekommen.:Dobili smo prvo unuče." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Dobili smo prvo unuče.</seg></tuv>
+   <tuv xml:lang="de"><seg>Wir haben unser erstes Enkelkind bekommen.</seg></tuv>
+   <tuv xml:lang="en"><seg>We've had our first grandchild.</seg></tuv>
+   <tuv xml:lang="tr"><seg>İlk torunumuz oldu.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vi har fått vårt första barnbarn.</seg></tuv>
+   <tuv xml:lang="nl"><seg>We hebben ons eerste kleinkind gekregen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Vi har fått vårt første barnebarn.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vi har fået vores første barnebarn.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Nous avons eu notre premier petit-enfant.</seg></tuv>
+  </tu>
+  <tu tuid="witwer:udovac" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>udovac</seg></tuv>
+   <tuv xml:lang="de"><seg>Witwer</seg></tuv>
+   <tuv xml:lang="en"><seg>widower</seg></tuv>
+   <tuv xml:lang="tr"><seg>dul erkek</seg></tuv>
+   <tuv xml:lang="sv"><seg>änkling</seg></tuv>
+   <tuv xml:lang="nl"><seg>weduwnaar</seg></tuv>
+   <tuv xml:lang="nb"><seg>enkemann</seg></tuv>
+   <tuv xml:lang="da"><seg>enkemand</seg></tuv>
+   <tuv xml:lang="fr"><seg>veuf</seg></tuv>
+  </tu>
+  <tu tuid="opa ist schon seit zehn jahren witwer.:Dedo je udovac već deset godina." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Dedo je udovac već deset godina.</seg></tuv>
+   <tuv xml:lang="de"><seg>Opa ist schon seit zehn Jahren Witwer.</seg></tuv>
+   <tuv xml:lang="en"><seg>Grandpa has been a widower for ten years.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Dedem on yıldır dul.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Morfar har varit änkling i tio år.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Opa is al tien jaar weduwnaar.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Bestefar har vært enkemann i ti år.</seg></tuv>
+   <tuv xml:lang="da"><seg>Bedstefar har været enkemand i ti år.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Grand-père est veuf depuis dix ans.</seg></tuv>
+  </tu>
+  <tu tuid="schwager (bruder des ehemanns):djever" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>djever</seg></tuv>
+   <tuv xml:lang="de"><seg>Schwager (Bruder des Ehemanns)</seg></tuv>
+   <tuv xml:lang="en"><seg>brother-in-law (husband's brother)</seg></tuv>
+   <tuv xml:lang="tr"><seg>kayınbirader (kocanın erkek kardeşi)</seg></tuv>
+   <tuv xml:lang="sv"><seg>svåger (makens bror)</seg></tuv>
+   <tuv xml:lang="nl"><seg>zwager (broer van de echtgenoot)</seg></tuv>
+   <tuv xml:lang="nb"><seg>svoger (ektemannens bror)</seg></tuv>
+   <tuv xml:lang="da"><seg>svoger (mandens bror)</seg></tuv>
+   <tuv xml:lang="fr"><seg>beau-frère (frère du mari)</seg></tuv>
+  </tu>
+  <tu tuid="bei der hochzeit hat der bruder des bräutigams die braut begleitet.:Na svadbi je djever pratio mladu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Na svadbi je djever pratio mladu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Bei der Hochzeit hat der Bruder des Bräutigams die Braut begleitet.</seg></tuv>
+   <tuv xml:lang="en"><seg>At the wedding the groom's brother escorted the bride.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Düğünde damadın erkek kardeşi geline eşlik etti.</seg></tuv>
+   <tuv xml:lang="sv"><seg>På bröllopet följde brudgummens bror bruden.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Op de bruiloft begeleidde de broer van de bruidegom de bruid.</seg></tuv>
+   <tuv xml:lang="nb"><seg>I bryllupet fulgte brudgommens bror bruden.</seg></tuv>
+   <tuv xml:lang="da"><seg>Til brylluppet ledsagede brudgommens bror bruden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Au mariage, le frère du marié a accompagné la mariée.</seg></tuv>
+  </tu>
+  <tu tuid="schwager (bruder der ehefrau):šurjak" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>šurjak</seg></tuv>
+   <tuv xml:lang="de"><seg>Schwager (Bruder der Ehefrau)</seg></tuv>
+   <tuv xml:lang="en"><seg>brother-in-law (wife's brother)</seg></tuv>
+   <tuv xml:lang="tr"><seg>kayınbirader (karının erkek kardeşi)</seg></tuv>
+   <tuv xml:lang="sv"><seg>svåger (hustruns bror)</seg></tuv>
+   <tuv xml:lang="nl"><seg>zwager (broer van de echtgenote)</seg></tuv>
+   <tuv xml:lang="nb"><seg>svoger (konas bror)</seg></tuv>
+   <tuv xml:lang="da"><seg>svoger (konens bror)</seg></tuv>
+   <tuv xml:lang="fr"><seg>beau-frère (frère de l'épouse)</seg></tuv>
+  </tu>
+  <tu tuid="der bruder meiner frau arbeitet in deutschland.:Moj šurjak radi u Njemačkoj." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Moj šurjak radi u Njemačkoj.</seg></tuv>
+   <tuv xml:lang="de"><seg>Der Bruder meiner Frau arbeitet in Deutschland.</seg></tuv>
+   <tuv xml:lang="en"><seg>My wife's brother works in Germany.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Karımın erkek kardeşi Almanya'da çalışıyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Min frus bror arbetar i Tyskland.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De broer van mijn vrouw werkt in Duitsland.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Broren til kona mi jobber i Tyskland.</seg></tuv>
+   <tuv xml:lang="da"><seg>Min kones bror arbejder i Tyskland.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le frère de ma femme travaille en Allemagne.</seg></tuv>
+  </tu>
+  <tu tuid="schwager (mann der schwester der ehefrau):badžo" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>badžo</seg></tuv>
+   <tuv xml:lang="de"><seg>Schwager (Mann der Schwester der Ehefrau)</seg></tuv>
+   <tuv xml:lang="en"><seg>brother-in-law (wife's sister's husband)</seg></tuv>
+   <tuv xml:lang="tr"><seg>bacanak</seg></tuv>
+   <tuv xml:lang="sv"><seg>svåger (hustruns systers make)</seg></tuv>
+   <tuv xml:lang="nl"><seg>zwager (man van de zus van de echtgenote)</seg></tuv>
+   <tuv xml:lang="nb"><seg>svoger (konas søsters mann)</seg></tuv>
+   <tuv xml:lang="da"><seg>svoger (konens søsters mand)</seg></tuv>
+   <tuv xml:lang="fr"><seg>beau-frère (mari de la sœur de l'épouse)</seg></tuv>
+  </tu>
+  <tu tuid="mit dem mann der schwester meiner frau gehe ich jeden samstag angeln.:S badžom svake subote idem na pecanje." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>S badžom svake subote idem na pecanje.</seg></tuv>
+   <tuv xml:lang="de"><seg>Mit dem Mann der Schwester meiner Frau gehe ich jeden Samstag angeln.</seg></tuv>
+   <tuv xml:lang="en"><seg>Every Saturday I go fishing with my wife's sister's husband.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Her cumartesi bacanağımla balığa gidiyorum.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Varje lördag fiskar jag med min frus systers man.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Elke zaterdag ga ik vissen met de man van de zus van mijn vrouw.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Hver lørdag drar jeg på fisketur med mannen til søsteren til kona mi.</seg></tuv>
+   <tuv xml:lang="da"><seg>Hver lørdag tager jeg ud og fisker med min kones søsters mand.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Tous les samedis, je vais à la pêche avec le mari de la sœur de ma femme.</seg></tuv>
+  </tu>
+  <tu tuid="schwägerin (schwester des ehemanns):zaova" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>zaova</seg></tuv>
+   <tuv xml:lang="de"><seg>Schwägerin (Schwester des Ehemanns)</seg></tuv>
+   <tuv xml:lang="en"><seg>sister-in-law (husband's sister)</seg></tuv>
+   <tuv xml:lang="tr"><seg>görümce</seg></tuv>
+   <tuv xml:lang="sv"><seg>svägerska (makens syster)</seg></tuv>
+   <tuv xml:lang="nl"><seg>schoonzus (zus van de echtgenoot)</seg></tuv>
+   <tuv xml:lang="nb"><seg>svigerinne (ektemannens søster)</seg></tuv>
+   <tuv xml:lang="da"><seg>svigerinde (mandens søster)</seg></tuv>
+   <tuv xml:lang="fr"><seg>belle-sœur (sœur du mari)</seg></tuv>
+  </tu>
+  <tu tuid="meine frau versteht sich sehr gut mit ihrer schwägerin.:Moja žena se odlično slaže sa svojom zaovom." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Moja žena se odlično slaže sa svojom zaovom.</seg></tuv>
+   <tuv xml:lang="de"><seg>Meine Frau versteht sich sehr gut mit ihrer Schwägerin.</seg></tuv>
+   <tuv xml:lang="en"><seg>My wife gets on really well with her sister-in-law.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Karım görümcesiyle çok iyi anlaşıyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Min fru kommer mycket bra överens med sin svägerska.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Mijn vrouw kan het heel goed vinden met haar schoonzus.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Kona mi kommer veldig godt overens med svigerinnen sin.</seg></tuv>
+   <tuv xml:lang="da"><seg>Min kone kommer rigtig godt ud af det med sin svigerinde.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Ma femme s'entend très bien avec sa belle-sœur.</seg></tuv>
+  </tu>
+  <tu tuid="schwägerin (frau des bruders des ehemanns):jetrva" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>jetrva</seg></tuv>
+   <tuv xml:lang="de"><seg>Schwägerin (Frau des Bruders des Ehemanns)</seg></tuv>
+   <tuv xml:lang="en"><seg>sister-in-law (husband's brother's wife)</seg></tuv>
+   <tuv xml:lang="tr"><seg>elti</seg></tuv>
+   <tuv xml:lang="sv"><seg>svägerska (makens brors fru)</seg></tuv>
+   <tuv xml:lang="nl"><seg>schoonzus (vrouw van de broer van de echtgenoot)</seg></tuv>
+   <tuv xml:lang="nb"><seg>svigerinne (ektemannens brors kone)</seg></tuv>
+   <tuv xml:lang="da"><seg>svigerinde (mandens brors kone)</seg></tuv>
+   <tuv xml:lang="fr"><seg>belle-sœur (femme du frère du mari)</seg></tuv>
+  </tu>
+  <tu tuid="meine frau und ihre schwägerin kochen zusammen für bajram.:Moja žena i njena jetrva zajedno kuhaju za Bajram." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Moja žena i njena jetrva zajedno kuhaju za Bajram.</seg></tuv>
+   <tuv xml:lang="de"><seg>Meine Frau und ihre Schwägerin kochen zusammen für Bajram.</seg></tuv>
+   <tuv xml:lang="en"><seg>My wife and her sister-in-law cook together for Bajram.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Karım ve eltisi Bayram için birlikte yemek yapıyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Min fru och hennes svägerska lagar mat tillsammans till Bajram.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Mijn vrouw en haar schoonzus koken samen voor Bajram.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Kona mi og svigerinnen hennes lager mat sammen til Bajram.</seg></tuv>
+   <tuv xml:lang="da"><seg>Min kone og hendes svigerinde laver mad sammen til Bajram.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Ma femme et sa belle-sœur cuisinent ensemble pour le Bajram.</seg></tuv>
+  </tu>
+  <tu tuid="schwägerin (schwester der ehefrau):balduza" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>balduza</seg></tuv>
+   <tuv xml:lang="de"><seg>Schwägerin (Schwester der Ehefrau)</seg></tuv>
+   <tuv xml:lang="en"><seg>sister-in-law (wife's sister)</seg></tuv>
+   <tuv xml:lang="tr"><seg>baldız</seg></tuv>
+   <tuv xml:lang="sv"><seg>svägerska (hustruns syster)</seg></tuv>
+   <tuv xml:lang="nl"><seg>schoonzus (zus van de echtgenote)</seg></tuv>
+   <tuv xml:lang="nb"><seg>svigerinne (konas søster)</seg></tuv>
+   <tuv xml:lang="da"><seg>svigerinde (konens søster)</seg></tuv>
+   <tuv xml:lang="fr"><seg>belle-sœur (sœur de l'épouse)</seg></tuv>
+  </tu>
+  <tu tuid="die schwester meiner frau kommt am wochenende zu besuch.:Balduza nam dolazi u goste za vikend." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Balduza nam dolazi u goste za vikend.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die Schwester meiner Frau kommt am Wochenende zu Besuch.</seg></tuv>
+   <tuv xml:lang="en"><seg>My wife's sister is coming to visit at the weekend.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Baldızım hafta sonu bize misafirliğe geliyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Min frus syster kommer på besök i helgen.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De zus van mijn vrouw komt in het weekend op bezoek.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Søsteren til kona mi kommer på besøk i helgen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Min kones søster kommer på besøg i weekenden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>La sœur de ma femme vient nous rendre visite ce week-end.</seg></tuv>
+  </tu>
+  <tu tuid="schwägerin (frau des bruders der ehefrau):šurnjaja" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>šurnjaja</seg></tuv>
+   <tuv xml:lang="de"><seg>Schwägerin (Frau des Bruders der Ehefrau)</seg></tuv>
+   <tuv xml:lang="en"><seg>sister-in-law (wife's brother's wife)</seg></tuv>
+   <tuv xml:lang="tr"><seg>kayınbiraderin eşi</seg></tuv>
+   <tuv xml:lang="sv"><seg>svägerska (hustruns brors fru)</seg></tuv>
+   <tuv xml:lang="nl"><seg>schoonzus (vrouw van de broer van de echtgenote)</seg></tuv>
+   <tuv xml:lang="nb"><seg>svigerinne (konas brors kone)</seg></tuv>
+   <tuv xml:lang="da"><seg>svigerinde (konens brors kone)</seg></tuv>
+   <tuv xml:lang="fr"><seg>belle-sœur (femme du frère de l'épouse)</seg></tuv>
+  </tu>
+  <tu tuid="die frau vom bruder meiner frau hat uns eine pita gebacken.:Šurnjaja nam je ispekla pitu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Šurnjaja nam je ispekla pitu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die Frau vom Bruder meiner Frau hat uns eine Pita gebacken.</seg></tuv>
+   <tuv xml:lang="en"><seg>My wife's brother's wife baked us a pita.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Karımın erkek kardeşinin eşi bize pita yaptı.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Min frus brors fru bakade en pita åt oss.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De vrouw van de broer van mijn vrouw heeft een pita voor ons gebakken.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Kona til broren til kona mi bakte en pita til oss.</seg></tuv>
+   <tuv xml:lang="da"><seg>Min kones brors kone bagte en pita til os.</seg></tuv>
+   <tuv xml:lang="fr"><seg>La femme du frère de ma femme nous a préparé une pita.</seg></tuv>
+  </tu>
   <tu tuid="schönheit:ljepota" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>ljepota</seg></tuv>
@@ -58277,6 +59909,150 @@
    <tuv xml:lang="nb"><seg>Forlovelsen var forrige lørdag.</seg></tuv>
    <tuv xml:lang="da"><seg>Forlovelsen var sidste lørdag.</seg></tuv>
    <tuv xml:lang="fr"><seg>Les fiançailles ont eu lieu samedi dernier.</seg></tuv>
+  </tu>
+  <tu tuid="ring:prsten" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>prsten</seg></tuv>
+   <tuv xml:lang="de"><seg>Ring</seg></tuv>
+   <tuv xml:lang="en"><seg>ring</seg></tuv>
+   <tuv xml:lang="tr"><seg>yüzük</seg></tuv>
+   <tuv xml:lang="sv"><seg>ring</seg></tuv>
+   <tuv xml:lang="nl"><seg>ring</seg></tuv>
+   <tuv xml:lang="nb"><seg>ring</seg></tuv>
+   <tuv xml:lang="da"><seg>ring</seg></tuv>
+   <tuv xml:lang="fr"><seg>bague</seg></tuv>
+  </tu>
+  <tu tuid="sie hat ihren ring am strand verloren.:Izgubila je prsten na plaži." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Izgubila je prsten na plaži.</seg></tuv>
+   <tuv xml:lang="de"><seg>Sie hat ihren Ring am Strand verloren.</seg></tuv>
+   <tuv xml:lang="en"><seg>She lost her ring on the beach.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Yüzüğünü plajda kaybetti.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Hon tappade sin ring på stranden.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ze is haar ring op het strand verloren.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Hun mistet ringen sin på stranden.</seg></tuv>
+   <tuv xml:lang="da"><seg>Hun mistede sin ring på stranden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Elle a perdu sa bague à la plage.</seg></tuv>
+  </tu>
+  <tu tuid="ehering:burma" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>burma</seg></tuv>
+   <tuv xml:lang="de"><seg>Ehering</seg></tuv>
+   <tuv xml:lang="en"><seg>wedding ring</seg></tuv>
+   <tuv xml:lang="tr"><seg>alyans</seg></tuv>
+   <tuv xml:lang="sv"><seg>vigselring</seg></tuv>
+   <tuv xml:lang="nl"><seg>trouwring</seg></tuv>
+   <tuv xml:lang="nb"><seg>giftering</seg></tuv>
+   <tuv xml:lang="da"><seg>vielsesring</seg></tuv>
+   <tuv xml:lang="fr"><seg>alliance</seg></tuv>
+  </tu>
+  <tu tuid="er trägt den ehering an der rechten hand.:Nosi burmu na desnoj ruci." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Nosi burmu na desnoj ruci.</seg></tuv>
+   <tuv xml:lang="de"><seg>Er trägt den Ehering an der rechten Hand.</seg></tuv>
+   <tuv xml:lang="en"><seg>He wears his wedding ring on his right hand.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Alyansını sağ elinde takıyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Han bär vigselringen på höger hand.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Hij draagt zijn trouwring aan zijn rechterhand.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Han har giftering på høyre hånd.</seg></tuv>
+   <tuv xml:lang="da"><seg>Han bærer vielsesringen på højre hånd.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Il porte son alliance à la main droite.</seg></tuv>
+  </tu>
+  <tu tuid="sich scheiden lassen:razvesti se" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>razvesti se</seg></tuv>
+   <tuv xml:lang="de"><seg>sich scheiden lassen</seg></tuv>
+   <tuv xml:lang="en"><seg>to get divorced</seg></tuv>
+   <tuv xml:lang="tr"><seg>boşanmak</seg></tuv>
+   <tuv xml:lang="sv"><seg>skilja sig</seg></tuv>
+   <tuv xml:lang="nl"><seg>gaan scheiden</seg></tuv>
+   <tuv xml:lang="nb"><seg>skille seg</seg></tuv>
+   <tuv xml:lang="da"><seg>at blive skilt</seg></tuv>
+   <tuv xml:lang="fr"><seg>divorcer</seg></tuv>
+  </tu>
+  <tu tuid="sie haben sich letztes jahr scheiden lassen.:Razveli su se prošle godine." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Razveli su se prošle godine.</seg></tuv>
+   <tuv xml:lang="de"><seg>Sie haben sich letztes Jahr scheiden lassen.</seg></tuv>
+   <tuv xml:lang="en"><seg>They got divorced last year.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Geçen yıl boşandılar.</seg></tuv>
+   <tuv xml:lang="sv"><seg>De skilde sig förra året.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ze zijn vorig jaar gescheiden.</seg></tuv>
+   <tuv xml:lang="nb"><seg>De ble skilt i fjor.</seg></tuv>
+   <tuv xml:lang="da"><seg>De blev skilt sidste år.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Ils ont divorcé l'année dernière.</seg></tuv>
+  </tu>
+  <tu tuid="geschieden:razveden" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>razveden</seg></tuv>
+   <tuv xml:lang="de"><seg>geschieden</seg></tuv>
+   <tuv xml:lang="en"><seg>divorced</seg></tuv>
+   <tuv xml:lang="tr"><seg>boşanmış</seg></tuv>
+   <tuv xml:lang="sv"><seg>skild</seg></tuv>
+   <tuv xml:lang="nl"><seg>gescheiden</seg></tuv>
+   <tuv xml:lang="nb"><seg>skilt</seg></tuv>
+   <tuv xml:lang="da"><seg>skilt</seg></tuv>
+   <tuv xml:lang="fr"><seg>divorcé</seg></tuv>
+  </tu>
+  <tu tuid="mein nachbar ist geschieden und lebt allein.:Moj komšija je razveden i živi sam." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Moj komšija je razveden i živi sam.</seg></tuv>
+   <tuv xml:lang="de"><seg>Mein Nachbar ist geschieden und lebt allein.</seg></tuv>
+   <tuv xml:lang="en"><seg>My neighbour is divorced and lives alone.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Komşum boşanmış ve yalnız yaşıyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Min granne är frånskild och bor ensam.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Mijn buurman is gescheiden en woont alleen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Naboen min er skilt og bor alene.</seg></tuv>
+   <tuv xml:lang="da"><seg>Min nabo er fraskilt og bor alene.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Mon voisin est divorcé et vit seul.</seg></tuv>
+  </tu>
+  <tu tuid="einen heiratsantrag machen:zaprositi" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>zaprositi</seg></tuv>
+   <tuv xml:lang="de"><seg>einen Heiratsantrag machen</seg></tuv>
+   <tuv xml:lang="en"><seg>to propose (marriage)</seg></tuv>
+   <tuv xml:lang="tr"><seg>evlenme teklif etmek</seg></tuv>
+   <tuv xml:lang="sv"><seg>fria</seg></tuv>
+   <tuv xml:lang="nl"><seg>ten huwelijk vragen</seg></tuv>
+   <tuv xml:lang="nb"><seg>fri</seg></tuv>
+   <tuv xml:lang="da"><seg>fri</seg></tuv>
+   <tuv xml:lang="fr"><seg>demander en mariage</seg></tuv>
+  </tu>
+  <tu tuid="ich habe ihr auf der alten brücke einen heiratsantrag gemacht.:Zaprosio sam je na Starom mostu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Zaprosio sam je na Starom mostu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich habe ihr auf der Alten Brücke einen Heiratsantrag gemacht.</seg></tuv>
+   <tuv xml:lang="en"><seg>I proposed to her on the Old Bridge.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Ona Eski Köprü'de evlenme teklif ettim.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag friade till henne på Gamla bron.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik heb haar op de Oude Brug ten huwelijk gevraagd.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg fridde til henne på Den gamle broen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg friede til hende på Den Gamle Bro.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je l'ai demandée en mariage sur le Vieux Pont.</seg></tuv>
+  </tu>
+  <tu tuid="heiratsantrag:prosidba" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>prosidba</seg></tuv>
+   <tuv xml:lang="de"><seg>Heiratsantrag</seg></tuv>
+   <tuv xml:lang="en"><seg>marriage proposal</seg></tuv>
+   <tuv xml:lang="tr"><seg>evlenme teklifi</seg></tuv>
+   <tuv xml:lang="sv"><seg>frieri</seg></tuv>
+   <tuv xml:lang="nl"><seg>huwelijksaanzoek</seg></tuv>
+   <tuv xml:lang="nb"><seg>frieri</seg></tuv>
+   <tuv xml:lang="da"><seg>frieri</seg></tuv>
+   <tuv xml:lang="fr"><seg>demande en mariage</seg></tuv>
+  </tu>
+  <tu tuid="der heiratsantrag war eine überraschung für die ganze familie.:Prosidba je bila iznenađenje za cijelu porodicu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Prosidba je bila iznenađenje za cijelu porodicu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Der Heiratsantrag war eine Überraschung für die ganze Familie.</seg></tuv>
+   <tuv xml:lang="en"><seg>The proposal was a surprise for the whole family.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Evlenme teklifi bütün aile için bir sürprizdi.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Frieriet var en överraskning för hela familjen.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Het huwelijksaanzoek was een verrassing voor de hele familie.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Frieriet var en overraskelse for hele familien.</seg></tuv>
+   <tuv xml:lang="da"><seg>Frieriet var en overraskelse for hele familien.</seg></tuv>
+   <tuv xml:lang="fr"><seg>La demande en mariage a été une surprise pour toute la famille.</seg></tuv>
   </tu>
   <tu tuid="ärger:ljutnja" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -59238,6 +61014,54 @@
    <tuv xml:lang="da"><seg>Din besked glædede mig meget.</seg></tuv>
    <tuv xml:lang="fr"><seg>Ton message m'a fait très plaisir.</seg></tuv>
   </tu>
+  <tu tuid="neid:zavist" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>zavist</seg></tuv>
+   <tuv xml:lang="de"><seg>Neid</seg></tuv>
+   <tuv xml:lang="en"><seg>envy</seg></tuv>
+   <tuv xml:lang="tr"><seg>haset</seg></tuv>
+   <tuv xml:lang="sv"><seg>avund</seg></tuv>
+   <tuv xml:lang="nl"><seg>afgunst</seg></tuv>
+   <tuv xml:lang="nb"><seg>misunnelse</seg></tuv>
+   <tuv xml:lang="da"><seg>misundelse</seg></tuv>
+   <tuv xml:lang="fr"><seg>envie</seg></tuv>
+  </tu>
+  <tu tuid="neid ist eine hässliche eigenschaft.:Zavist je ružna osobina." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Zavist je ružna osobina.</seg></tuv>
+   <tuv xml:lang="de"><seg>Neid ist eine hässliche Eigenschaft.</seg></tuv>
+   <tuv xml:lang="en"><seg>Envy is an ugly trait.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Haset çirkin bir huydur.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Avund är en ful egenskap.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Afgunst is een lelijke eigenschap.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Misunnelse er en stygg egenskap.</seg></tuv>
+   <tuv xml:lang="da"><seg>Misundelse er en grim egenskab.</seg></tuv>
+   <tuv xml:lang="fr"><seg>L'envie est un vilain défaut.</seg></tuv>
+  </tu>
+  <tu tuid="neidisch:zavidan" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>zavidan</seg></tuv>
+   <tuv xml:lang="de"><seg>neidisch</seg></tuv>
+   <tuv xml:lang="en"><seg>envious</seg></tuv>
+   <tuv xml:lang="tr"><seg>hasetçi</seg></tuv>
+   <tuv xml:lang="sv"><seg>avundsjuk</seg></tuv>
+   <tuv xml:lang="nl"><seg>afgunstig</seg></tuv>
+   <tuv xml:lang="nb"><seg>misunnelig</seg></tuv>
+   <tuv xml:lang="da"><seg>misundelig</seg></tuv>
+   <tuv xml:lang="fr"><seg>envieux</seg></tuv>
+  </tu>
+  <tu tuid="er ist nicht neidisch, er freut sich über den erfolg anderer.:Nije zavidan, raduje se tuđem uspjehu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Nije zavidan, raduje se tuđem uspjehu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Er ist nicht neidisch, er freut sich über den Erfolg anderer.</seg></tuv>
+   <tuv xml:lang="en"><seg>He isn't envious, he's happy about other people's success.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Hasetçi değil, başkalarının başarısına seviniyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Han är inte avundsjuk, han gläds åt andras framgång.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Hij is niet afgunstig, hij is blij met het succes van anderen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Han er ikke misunnelig, han gleder seg over andres suksess.</seg></tuv>
+   <tuv xml:lang="da"><seg>Han er ikke misundelig, han glæder sig over andres succes.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Il n'est pas envieux, il se réjouit du succès des autres.</seg></tuv>
+  </tu>
   <tu tuid="verhalten:ponašanje" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>ponašanje</seg></tuv>
@@ -59670,6 +61494,30 @@
    <tuv xml:lang="da"><seg>Hun fortjener et bedre liv.</seg></tuv>
    <tuv xml:lang="fr"><seg>Elle mérite une vie meilleure.</seg></tuv>
   </tu>
+  <tu tuid="großzügig:darežljiv" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>darežljiv</seg></tuv>
+   <tuv xml:lang="de"><seg>großzügig</seg></tuv>
+   <tuv xml:lang="en"><seg>generous</seg></tuv>
+   <tuv xml:lang="tr"><seg>cömert</seg></tuv>
+   <tuv xml:lang="sv"><seg>generös</seg></tuv>
+   <tuv xml:lang="nl"><seg>vrijgevig</seg></tuv>
+   <tuv xml:lang="nb"><seg>raus</seg></tuv>
+   <tuv xml:lang="da"><seg>gavmild</seg></tuv>
+   <tuv xml:lang="fr"><seg>généreux</seg></tuv>
+  </tu>
+  <tu tuid="papa war immer großzügig zu den nachbarn.:Babo je uvijek bio darežljiv prema komšijama." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Babo je uvijek bio darežljiv prema komšijama.</seg></tuv>
+   <tuv xml:lang="de"><seg>Papa war immer großzügig zu den Nachbarn.</seg></tuv>
+   <tuv xml:lang="en"><seg>Dad was always generous to the neighbours.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Babam komşulara karşı hep cömertti.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Pappa var alltid generös mot grannarna.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Papa was altijd vrijgevig tegenover de buren.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Pappa var alltid raus mot naboene.</seg></tuv>
+   <tuv xml:lang="da"><seg>Far var altid gavmild over for naboerne.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Papa a toujours été généreux avec les voisins.</seg></tuv>
+  </tu>
   <tu tuid="versterben:preminuti" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>preminuti</seg></tuv>
@@ -60053,6 +61901,30 @@
    <tuv xml:lang="nb"><seg>Takk for medfølelsen og støtten deres.</seg></tuv>
    <tuv xml:lang="da"><seg>Tak for Deres medfølelse og støtte.</seg></tuv>
    <tuv xml:lang="fr"><seg>Merci pour votre compassion et votre soutien.</seg></tuv>
+  </tu>
+  <tu tuid="testament:oporuka" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>oporuka</seg></tuv>
+   <tuv xml:lang="de"><seg>Testament</seg></tuv>
+   <tuv xml:lang="en"><seg>will (testament)</seg></tuv>
+   <tuv xml:lang="tr"><seg>vasiyetname</seg></tuv>
+   <tuv xml:lang="sv"><seg>testamente</seg></tuv>
+   <tuv xml:lang="nl"><seg>testament</seg></tuv>
+   <tuv xml:lang="nb"><seg>testament</seg></tuv>
+   <tuv xml:lang="da"><seg>testamente</seg></tuv>
+   <tuv xml:lang="fr"><seg>testament</seg></tuv>
+  </tu>
+  <tu tuid="opa hat vor seinem tod ein testament geschrieben.:Dedo je prije smrti napisao oporuku." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Dedo je prije smrti napisao oporuku.</seg></tuv>
+   <tuv xml:lang="de"><seg>Opa hat vor seinem Tod ein Testament geschrieben.</seg></tuv>
+   <tuv xml:lang="en"><seg>Grandpa wrote a will before he died.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Dedem ölmeden önce vasiyetname yazdı.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Morfar skrev ett testamente innan han dog.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Opa heeft voor zijn dood een testament geschreven.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Bestefar skrev et testament før han døde.</seg></tuv>
+   <tuv xml:lang="da"><seg>Bedstefar skrev et testamente, før han døde.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Grand-père a rédigé un testament avant sa mort.</seg></tuv>
   </tu>
   <tu tuid="begegnung:susret" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -64626,6 +66498,30 @@
    <tuv xml:lang="da"><seg>Er der noget nyt?</seg></tuv>
    <tuv xml:lang="fr"><seg>Y a-t-il du nouveau ?</seg></tuv>
   </tu>
+  <tu tuid="moderator (fernsehen):voditelj" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>voditelj</seg></tuv>
+   <tuv xml:lang="de"><seg>Moderator (Fernsehen)</seg></tuv>
+   <tuv xml:lang="en"><seg>presenter / host</seg></tuv>
+   <tuv xml:lang="tr"><seg>sunucu</seg></tuv>
+   <tuv xml:lang="sv"><seg>programledare</seg></tuv>
+   <tuv xml:lang="nl"><seg>presentator</seg></tuv>
+   <tuv xml:lang="nb"><seg>programleder</seg></tuv>
+   <tuv xml:lang="da"><seg>studievært</seg></tuv>
+   <tuv xml:lang="fr"><seg>présentateur</seg></tuv>
+  </tu>
+  <tu tuid="der moderator begrüßte die gäste im studio.:Voditelj je pozdravio goste u studiju." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Voditelj je pozdravio goste u studiju.</seg></tuv>
+   <tuv xml:lang="de"><seg>Der Moderator begrüßte die Gäste im Studio.</seg></tuv>
+   <tuv xml:lang="en"><seg>The presenter welcomed the guests in the studio.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Sunucu stüdyodaki konukları selamladı.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Programledaren hälsade gästerna i studion välkomna.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De presentator verwelkomde de gasten in de studio.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Programlederen ønsket gjestene i studio velkommen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Studieværten bød gæsterne i studiet velkommen.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le présentateur a accueilli les invités sur le plateau.</seg></tuv>
+  </tu>
   <tu tuid="offiziell mitteilen:saopćiti / saopštiti" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>saopćiti / saopštiti</seg></tuv>
@@ -65273,6 +67169,30 @@
    <tuv xml:lang="nb"><seg>Gamlebyen tiltrekker mange turister.</seg></tuv>
    <tuv xml:lang="da"><seg>Den gamle bydel tiltrækker mange turister.</seg></tuv>
    <tuv xml:lang="fr"><seg>La vieille ville attire beaucoup de touristes.</seg></tuv>
+  </tu>
+  <tu tuid="plakat:plakat" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>plakat</seg></tuv>
+   <tuv xml:lang="de"><seg>Plakat</seg></tuv>
+   <tuv xml:lang="en"><seg>poster</seg></tuv>
+   <tuv xml:lang="tr"><seg>afiş</seg></tuv>
+   <tuv xml:lang="sv"><seg>affisch</seg></tuv>
+   <tuv xml:lang="nl"><seg>poster</seg></tuv>
+   <tuv xml:lang="nb"><seg>plakat</seg></tuv>
+   <tuv xml:lang="da"><seg>plakat</seg></tuv>
+   <tuv xml:lang="fr"><seg>affiche</seg></tuv>
+  </tu>
+  <tu tuid="an der wand hing ein plakat für das konzert.:Na zidu je visio plakat za koncert." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Na zidu je visio plakat za koncert.</seg></tuv>
+   <tuv xml:lang="de"><seg>An der Wand hing ein Plakat für das Konzert.</seg></tuv>
+   <tuv xml:lang="en"><seg>A poster for the concert hung on the wall.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Duvarda konser için bir afiş asılıydı.</seg></tuv>
+   <tuv xml:lang="sv"><seg>På väggen hängde en affisch för konserten.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Aan de muur hing een poster voor het concert.</seg></tuv>
+   <tuv xml:lang="nb"><seg>På veggen hang en plakat for konserten.</seg></tuv>
+   <tuv xml:lang="da"><seg>På væggen hang en plakat for koncerten.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Une affiche pour le concert était accrochée au mur.</seg></tuv>
   </tu>
   <tu tuid="festival:festival" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -67193,6 +69113,54 @@
    <tuv xml:lang="nb"><seg>Mennesket er et sosialt vesen.</seg></tuv>
    <tuv xml:lang="da"><seg>Mennesket er et socialt væsen.</seg></tuv>
    <tuv xml:lang="fr"><seg>L'homme est un être social.</seg></tuv>
+  </tu>
+  <tu tuid="plastik:plastika" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>plastika</seg></tuv>
+   <tuv xml:lang="de"><seg>Plastik</seg></tuv>
+   <tuv xml:lang="en"><seg>plastic</seg></tuv>
+   <tuv xml:lang="tr"><seg>plastik</seg></tuv>
+   <tuv xml:lang="sv"><seg>plast</seg></tuv>
+   <tuv xml:lang="nl"><seg>plastic</seg></tuv>
+   <tuv xml:lang="nb"><seg>plast</seg></tuv>
+   <tuv xml:lang="da"><seg>plastik</seg></tuv>
+   <tuv xml:lang="fr"><seg>plastique</seg></tuv>
+  </tu>
+  <tu tuid="plastik verschmutzt flüsse und das meer.:Plastika zagađuje rijeke i more." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Plastika zagađuje rijeke i more.</seg></tuv>
+   <tuv xml:lang="de"><seg>Plastik verschmutzt Flüsse und das Meer.</seg></tuv>
+   <tuv xml:lang="en"><seg>Plastic pollutes rivers and the sea.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Plastik nehirleri ve denizi kirletiyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Plast förorenar floder och havet.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Plastic vervuilt rivieren en de zee.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Plast forurenser elver og havet.</seg></tuv>
+   <tuv xml:lang="da"><seg>Plastik forurener floder og havet.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le plastique pollue les rivières et la mer.</seg></tuv>
+  </tu>
+  <tu tuid="recycling:reciklaža" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>reciklaža</seg></tuv>
+   <tuv xml:lang="de"><seg>Recycling</seg></tuv>
+   <tuv xml:lang="en"><seg>recycling</seg></tuv>
+   <tuv xml:lang="tr"><seg>geri dönüşüm</seg></tuv>
+   <tuv xml:lang="sv"><seg>återvinning</seg></tuv>
+   <tuv xml:lang="nl"><seg>recycling</seg></tuv>
+   <tuv xml:lang="nb"><seg>gjenvinning</seg></tuv>
+   <tuv xml:lang="da"><seg>genbrug</seg></tuv>
+   <tuv xml:lang="fr"><seg>recyclage</seg></tuv>
+  </tu>
+  <tu tuid="recycling spart energie und rohstoffe.:Reciklaža štedi energiju i sirovine." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Reciklaža štedi energiju i sirovine.</seg></tuv>
+   <tuv xml:lang="de"><seg>Recycling spart Energie und Rohstoffe.</seg></tuv>
+   <tuv xml:lang="en"><seg>Recycling saves energy and raw materials.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Geri dönüşüm enerji ve hammadde tasarrufu sağlar.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Återvinning sparar energi och råvaror.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Recycling bespaart energie en grondstoffen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Gjenvinning sparer energi og råvarer.</seg></tuv>
+   <tuv xml:lang="da"><seg>Genbrug sparer energi og råstoffer.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le recyclage économise de l'énergie et des matières premières.</seg></tuv>
   </tu>
   <tu tuid="pandemie:pandemija" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -71874,6 +73842,54 @@
    <tuv xml:lang="da"><seg>Han besidder tre huse.</seg></tuv>
    <tuv xml:lang="fr"><seg>Il possède trois maisons.</seg></tuv>
   </tu>
+  <tu tuid="erbschaft:nasljedstvo" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>nasljedstvo</seg></tuv>
+   <tuv xml:lang="de"><seg>Erbschaft</seg></tuv>
+   <tuv xml:lang="en"><seg>inheritance</seg></tuv>
+   <tuv xml:lang="tr"><seg>miras</seg></tuv>
+   <tuv xml:lang="sv"><seg>arv</seg></tuv>
+   <tuv xml:lang="nl"><seg>erfenis</seg></tuv>
+   <tuv xml:lang="nb"><seg>arv</seg></tuv>
+   <tuv xml:lang="da"><seg>arv</seg></tuv>
+   <tuv xml:lang="fr"><seg>héritage</seg></tuv>
+  </tu>
+  <tu tuid="das haus haben sie geerbt.:Kuću su dobili u nasljedstvo." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Kuću su dobili u nasljedstvo.</seg></tuv>
+   <tuv xml:lang="de"><seg>Das Haus haben sie geerbt.</seg></tuv>
+   <tuv xml:lang="en"><seg>They inherited the house.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Evi miras olarak aldılar.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Huset har de ärvt.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Het huis hebben ze geërfd.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Huset har de arvet.</seg></tuv>
+   <tuv xml:lang="da"><seg>Huset har de arvet.</seg></tuv>
+   <tuv xml:lang="fr"><seg>La maison, ils l'ont reçue en héritage.</seg></tuv>
+  </tu>
+  <tu tuid="erben:naslijediti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>naslijediti</seg></tuv>
+   <tuv xml:lang="de"><seg>erben</seg></tuv>
+   <tuv xml:lang="en"><seg>to inherit</seg></tuv>
+   <tuv xml:lang="tr"><seg>miras almak</seg></tuv>
+   <tuv xml:lang="sv"><seg>ärva</seg></tuv>
+   <tuv xml:lang="nl"><seg>erven</seg></tuv>
+   <tuv xml:lang="nb"><seg>arve</seg></tuv>
+   <tuv xml:lang="da"><seg>at arve</seg></tuv>
+   <tuv xml:lang="fr"><seg>hériter</seg></tuv>
+  </tu>
+  <tu tuid="er hat die wohnung von seiner tante geerbt.:Naslijedio je stan od tetke." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Naslijedio je stan od tetke.</seg></tuv>
+   <tuv xml:lang="de"><seg>Er hat die Wohnung von seiner Tante geerbt.</seg></tuv>
+   <tuv xml:lang="en"><seg>He inherited the flat from his aunt.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Daireyi teyzesinden miras aldı.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Han ärvde lägenheten efter sin moster.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Hij heeft het appartement van zijn tante geërfd.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Han arvet leiligheten etter tanten sin.</seg></tuv>
+   <tuv xml:lang="da"><seg>Han arvede lejligheden efter sin tante.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Il a hérité de l'appartement de sa tante.</seg></tuv>
+  </tu>
   <tu tuid="anmeldung / bewerbung:prijava" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>prijava</seg></tuv>
@@ -73649,6 +75665,30 @@
    <tuv xml:lang="nb"><seg>Jeg har alltid en kam i lommen.</seg></tuv>
    <tuv xml:lang="da"><seg>Jeg har altid en kam i lommen.</seg></tuv>
    <tuv xml:lang="fr"><seg>J'ai toujours un peigne dans ma poche.</seg></tuv>
+  </tu>
+  <tu tuid="schere:makaze" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>makaze</seg></tuv>
+   <tuv xml:lang="de"><seg>Schere</seg></tuv>
+   <tuv xml:lang="en"><seg>scissors</seg></tuv>
+   <tuv xml:lang="tr"><seg>makas</seg></tuv>
+   <tuv xml:lang="sv"><seg>sax</seg></tuv>
+   <tuv xml:lang="nl"><seg>schaar</seg></tuv>
+   <tuv xml:lang="nb"><seg>saks</seg></tuv>
+   <tuv xml:lang="da"><seg>saks</seg></tuv>
+   <tuv xml:lang="fr"><seg>ciseaux</seg></tuv>
+  </tu>
+  <tu tuid="gib mir die schere, damit ich das paket aufmache.:Daj mi makaze da otvorim paket." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Daj mi makaze da otvorim paket.</seg></tuv>
+   <tuv xml:lang="de"><seg>Gib mir die Schere, damit ich das Paket aufmache.</seg></tuv>
+   <tuv xml:lang="en"><seg>Give me the scissors so I can open the parcel.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Paketi açmam için bana makası ver.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Ge mig saxen så att jag kan öppna paketet.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Geef me de schaar, dan maak ik het pakket open.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Gi meg saksen, så jeg kan åpne pakken.</seg></tuv>
+   <tuv xml:lang="da"><seg>Giv mig saksen, så jeg kan åbne pakken.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Donne-moi les ciseaux pour que j'ouvre le colis.</seg></tuv>
   </tu>
   <tu tuid="raum:prostorija" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -80730,6 +82770,54 @@
    <tuv xml:lang="da"><seg>Han citerede en kendt forfatter.</seg></tuv>
    <tuv xml:lang="fr"><seg>Il a cité un écrivain connu.</seg></tuv>
   </tu>
+  <tu tuid="mensa:menza" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>menza</seg></tuv>
+   <tuv xml:lang="de"><seg>Mensa</seg></tuv>
+   <tuv xml:lang="en"><seg>student canteen</seg></tuv>
+   <tuv xml:lang="tr"><seg>öğrenci yemekhanesi</seg></tuv>
+   <tuv xml:lang="sv"><seg>studentrestaurang</seg></tuv>
+   <tuv xml:lang="nl"><seg>mensa</seg></tuv>
+   <tuv xml:lang="nb"><seg>studentkantine</seg></tuv>
+   <tuv xml:lang="da"><seg>kantine</seg></tuv>
+   <tuv xml:lang="fr"><seg>restaurant universitaire</seg></tuv>
+  </tu>
+  <tu tuid="wir essen in der mensa zu mittag.:Ručamo u studentskoj menzi." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Ručamo u studentskoj menzi.</seg></tuv>
+   <tuv xml:lang="de"><seg>Wir essen in der Mensa zu Mittag.</seg></tuv>
+   <tuv xml:lang="en"><seg>We have lunch in the student canteen.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Öğle yemeğini öğrenci yemekhanesinde yiyoruz.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vi äter lunch i studentrestaurangen.</seg></tuv>
+   <tuv xml:lang="nl"><seg>We lunchen in de mensa.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Vi spiser lunsj i studentkantina.</seg></tuv>
+   <tuv xml:lang="da"><seg>Vi spiser frokost i kantinen på universitetet.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Nous déjeunons au restaurant universitaire.</seg></tuv>
+  </tu>
+  <tu tuid="studentenwohnheim:studentski dom" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>studentski dom</seg></tuv>
+   <tuv xml:lang="de"><seg>Studentenwohnheim</seg></tuv>
+   <tuv xml:lang="en"><seg>student dorm</seg></tuv>
+   <tuv xml:lang="tr"><seg>öğrenci yurdu</seg></tuv>
+   <tuv xml:lang="sv"><seg>studentbostad</seg></tuv>
+   <tuv xml:lang="nl"><seg>studentenhuis</seg></tuv>
+   <tuv xml:lang="nb"><seg>studenthjem</seg></tuv>
+   <tuv xml:lang="da"><seg>kollegium</seg></tuv>
+   <tuv xml:lang="fr"><seg>résidence universitaire</seg></tuv>
+  </tu>
+  <tu tuid="im ersten jahr habe ich im studentenwohnheim gewohnt.:Prve godine sam živio u studentskom domu." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Prve godine sam živio u studentskom domu.</seg></tuv>
+   <tuv xml:lang="de"><seg>Im ersten Jahr habe ich im Studentenwohnheim gewohnt.</seg></tuv>
+   <tuv xml:lang="en"><seg>In my first year I lived in a student dorm.</seg></tuv>
+   <tuv xml:lang="tr"><seg>İlk yıl öğrenci yurdunda kaldım.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Första året bodde jag i en studentbostad.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Het eerste jaar woonde ik in een studentenhuis.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Det første året bodde jeg på studenthjem.</seg></tuv>
+   <tuv xml:lang="da"><seg>Det første år boede jeg på et kollegium.</seg></tuv>
+   <tuv xml:lang="fr"><seg>La première année, j'habitais en résidence universitaire.</seg></tuv>
+  </tu>
   <tu tuid="stipendium:stipendija" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>stipendija</seg></tuv>
@@ -84954,6 +87042,30 @@
    <tuv xml:lang="da"><seg>Overgangen over floden er spærret.</seg></tuv>
    <tuv xml:lang="fr"><seg>Le passage sur la rivière est fermé.</seg></tuv>
   </tu>
+  <tu tuid="helm:kaciga" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>kaciga</seg></tuv>
+   <tuv xml:lang="de"><seg>Helm</seg></tuv>
+   <tuv xml:lang="en"><seg>helmet</seg></tuv>
+   <tuv xml:lang="tr"><seg>kask</seg></tuv>
+   <tuv xml:lang="sv"><seg>hjälm</seg></tuv>
+   <tuv xml:lang="nl"><seg>helm</seg></tuv>
+   <tuv xml:lang="nb"><seg>hjelm</seg></tuv>
+   <tuv xml:lang="da"><seg>hjelm</seg></tuv>
+   <tuv xml:lang="fr"><seg>casque</seg></tuv>
+  </tu>
+  <tu tuid="ohne helm setz dich nicht aufs motorrad.:Bez kacige ne sjedaj na motor." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Bez kacige ne sjedaj na motor.</seg></tuv>
+   <tuv xml:lang="de"><seg>Ohne Helm setz dich nicht aufs Motorrad.</seg></tuv>
+   <tuv xml:lang="en"><seg>Don't get on the motorbike without a helmet.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Kasksız motosiklete binme.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Sätt dig inte på motorcykeln utan hjälm.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ga niet zonder helm op de motor zitten.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Ikke sett deg på motorsykkelen uten hjelm.</seg></tuv>
+   <tuv xml:lang="da"><seg>Sæt dig ikke på motorcyklen uden hjelm.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Ne monte pas sur la moto sans casque.</seg></tuv>
+  </tu>
   <tu tuid="automobil:automobil" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>automobil</seg></tuv>
@@ -87378,6 +89490,102 @@
    <tuv xml:lang="da"><seg>En kamel klarer sig længe uden vand.</seg></tuv>
    <tuv xml:lang="fr"><seg>Un chameau peut rester longtemps sans eau.</seg></tuv>
   </tu>
+  <tu tuid="hai:ajkula" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>ajkula</seg></tuv>
+   <tuv xml:lang="de"><seg>Hai</seg></tuv>
+   <tuv xml:lang="en"><seg>shark</seg></tuv>
+   <tuv xml:lang="tr"><seg>köpekbalığı</seg></tuv>
+   <tuv xml:lang="sv"><seg>haj</seg></tuv>
+   <tuv xml:lang="nl"><seg>haai</seg></tuv>
+   <tuv xml:lang="nb"><seg>hai</seg></tuv>
+   <tuv xml:lang="da"><seg>haj</seg></tuv>
+   <tuv xml:lang="fr"><seg>requin</seg></tuv>
+  </tu>
+  <tu tuid="im adriatischen meer gibt es selten haie.:U Jadranskom moru rijetko ima ajkula." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>U Jadranskom moru rijetko ima ajkula.</seg></tuv>
+   <tuv xml:lang="de"><seg>Im Adriatischen Meer gibt es selten Haie.</seg></tuv>
+   <tuv xml:lang="en"><seg>There are rarely sharks in the Adriatic Sea.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Adriyatik Denizi'nde nadiren köpekbalığı olur.</seg></tuv>
+   <tuv xml:lang="sv"><seg>I Adriatiska havet finns det sällan hajar.</seg></tuv>
+   <tuv xml:lang="nl"><seg>In de Adriatische Zee zijn zelden haaien.</seg></tuv>
+   <tuv xml:lang="nb"><seg>I Adriaterhavet er det sjelden haier.</seg></tuv>
+   <tuv xml:lang="da"><seg>I Adriaterhavet er der sjældent hajer.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Il y a rarement des requins dans la mer Adriatique.</seg></tuv>
+  </tu>
+  <tu tuid="krokodil:krokodil" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>krokodil</seg></tuv>
+   <tuv xml:lang="de"><seg>Krokodil</seg></tuv>
+   <tuv xml:lang="en"><seg>crocodile</seg></tuv>
+   <tuv xml:lang="tr"><seg>timsah</seg></tuv>
+   <tuv xml:lang="sv"><seg>krokodil</seg></tuv>
+   <tuv xml:lang="nl"><seg>krokodil</seg></tuv>
+   <tuv xml:lang="nb"><seg>krokodille</seg></tuv>
+   <tuv xml:lang="da"><seg>krokodille</seg></tuv>
+   <tuv xml:lang="fr"><seg>crocodile</seg></tuv>
+  </tu>
+  <tu tuid="das krokodil lag am flussufer.:Krokodil je ležao na obali rijeke." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Krokodil je ležao na obali rijeke.</seg></tuv>
+   <tuv xml:lang="de"><seg>Das Krokodil lag am Flussufer.</seg></tuv>
+   <tuv xml:lang="en"><seg>The crocodile lay on the river bank.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Timsah nehir kıyısında yatıyordu.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Krokodilen låg på flodstranden.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De krokodil lag op de rivieroever.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Krokodillen lå på elvebredden.</seg></tuv>
+   <tuv xml:lang="da"><seg>Krokodillen lå på flodbredden.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le crocodile était allongé sur la rive du fleuve.</seg></tuv>
+  </tu>
+  <tu tuid="giraffe:žirafa" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>žirafa</seg></tuv>
+   <tuv xml:lang="de"><seg>Giraffe</seg></tuv>
+   <tuv xml:lang="en"><seg>giraffe</seg></tuv>
+   <tuv xml:lang="tr"><seg>zürafa</seg></tuv>
+   <tuv xml:lang="sv"><seg>giraff</seg></tuv>
+   <tuv xml:lang="nl"><seg>giraf</seg></tuv>
+   <tuv xml:lang="nb"><seg>sjiraff</seg></tuv>
+   <tuv xml:lang="da"><seg>giraf</seg></tuv>
+   <tuv xml:lang="fr"><seg>girafe</seg></tuv>
+  </tu>
+  <tu tuid="die giraffe hat einen sehr langen hals.:Žirafa ima jako dug vrat." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Žirafa ima jako dug vrat.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die Giraffe hat einen sehr langen Hals.</seg></tuv>
+   <tuv xml:lang="en"><seg>The giraffe has a very long neck.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Zürafanın çok uzun bir boynu var.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Giraffen har en väldigt lång hals.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De giraf heeft een heel lange nek.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Sjiraffen har en veldig lang hals.</seg></tuv>
+   <tuv xml:lang="da"><seg>Giraffen har en meget lang hals.</seg></tuv>
+   <tuv xml:lang="fr"><seg>La girafe a un très long cou.</seg></tuv>
+  </tu>
+  <tu tuid="papagei:papagaj" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>papagaj</seg></tuv>
+   <tuv xml:lang="de"><seg>Papagei</seg></tuv>
+   <tuv xml:lang="en"><seg>parrot</seg></tuv>
+   <tuv xml:lang="tr"><seg>papağan</seg></tuv>
+   <tuv xml:lang="sv"><seg>papegoja</seg></tuv>
+   <tuv xml:lang="nl"><seg>papegaai</seg></tuv>
+   <tuv xml:lang="nb"><seg>papegøye</seg></tuv>
+   <tuv xml:lang="da"><seg>papegøje</seg></tuv>
+   <tuv xml:lang="fr"><seg>perroquet</seg></tuv>
+  </tu>
+  <tu tuid="der papagei des nachbarn kann ein paar wörter.:Komšijin papagaj zna nekoliko riječi." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Komšijin papagaj zna nekoliko riječi.</seg></tuv>
+   <tuv xml:lang="de"><seg>Der Papagei des Nachbarn kann ein paar Wörter.</seg></tuv>
+   <tuv xml:lang="en"><seg>The neighbour's parrot knows a few words.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Komşunun papağanı birkaç kelime biliyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Grannens papegoja kan några ord.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De papegaai van de buurman kent een paar woorden.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Naboens papegøye kan noen ord.</seg></tuv>
+   <tuv xml:lang="da"><seg>Naboens papegøje kan nogle få ord.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le perroquet du voisin connaît quelques mots.</seg></tuv>
+  </tu>
   <tu tuid="frucht:plod" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>plod</seg></tuv>
@@ -87690,6 +89898,30 @@
    <tuv xml:lang="da"><seg>Disse tomater har vi selv dyrket.</seg></tuv>
    <tuv xml:lang="fr"><seg>Nous avons fait pousser ces tomates nous-mêmes.</seg></tuv>
   </tu>
+  <tu tuid="sonnenblume:suncokret" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>suncokret</seg></tuv>
+   <tuv xml:lang="de"><seg>Sonnenblume</seg></tuv>
+   <tuv xml:lang="en"><seg>sunflower</seg></tuv>
+   <tuv xml:lang="tr"><seg>ayçiçeği</seg></tuv>
+   <tuv xml:lang="sv"><seg>solros</seg></tuv>
+   <tuv xml:lang="nl"><seg>zonnebloem</seg></tuv>
+   <tuv xml:lang="nb"><seg>solsikke</seg></tuv>
+   <tuv xml:lang="da"><seg>solsikke</seg></tuv>
+   <tuv xml:lang="fr"><seg>tournesol</seg></tuv>
+  </tu>
+  <tu tuid="das feld war voller sonnenblumen.:Polje je bilo puno suncokreta." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Polje je bilo puno suncokreta.</seg></tuv>
+   <tuv xml:lang="de"><seg>Das Feld war voller Sonnenblumen.</seg></tuv>
+   <tuv xml:lang="en"><seg>The field was full of sunflowers.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Tarla ayçiçekleriyle doluydu.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Fältet var fullt av solrosor.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Het veld stond vol zonnebloemen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jordet var fullt av solsikker.</seg></tuv>
+   <tuv xml:lang="da"><seg>Marken var fuld af solsikker.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le champ était plein de tournesols.</seg></tuv>
+  </tu>
   <tu tuid="birke:breza" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>breza</seg></tuv>
@@ -88001,6 +90233,102 @@
    <tuv xml:lang="nb"><seg>I juli begynner kornhøsten.</seg></tuv>
    <tuv xml:lang="da"><seg>I juli begynder hvedehøsten.</seg></tuv>
    <tuv xml:lang="fr"><seg>La moisson du blé commence en juillet.</seg></tuv>
+  </tu>
+  <tu tuid="buche:bukva" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>bukva</seg></tuv>
+   <tuv xml:lang="de"><seg>Buche</seg></tuv>
+   <tuv xml:lang="en"><seg>beech</seg></tuv>
+   <tuv xml:lang="tr"><seg>kayın</seg></tuv>
+   <tuv xml:lang="sv"><seg>bok (träd)</seg></tuv>
+   <tuv xml:lang="nl"><seg>beuk</seg></tuv>
+   <tuv xml:lang="nb"><seg>bøk</seg></tuv>
+   <tuv xml:lang="da"><seg>bøg</seg></tuv>
+   <tuv xml:lang="fr"><seg>hêtre</seg></tuv>
+  </tu>
+  <tu tuid="die buche ist der häufigste baum in den bosnischen wäldern.:Bukva je najčešće drvo u bosanskim šumama." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Bukva je najčešće drvo u bosanskim šumama.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die Buche ist der häufigste Baum in den bosnischen Wäldern.</seg></tuv>
+   <tuv xml:lang="en"><seg>The beech is the most common tree in Bosnian forests.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Kayın, Bosna ormanlarındaki en yaygın ağaçtır.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Boken är det vanligaste trädet i de bosniska skogarna.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De beuk is de meest voorkomende boom in de Bosnische bossen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Boken er det vanligste treet i de bosniske skogene.</seg></tuv>
+   <tuv xml:lang="da"><seg>Bøgen er det mest almindelige træ i de bosniske skove.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le hêtre est l'arbre le plus répandu dans les forêts bosniennes.</seg></tuv>
+  </tu>
+  <tu tuid="fichte:smreka" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>smreka</seg></tuv>
+   <tuv xml:lang="de"><seg>Fichte</seg></tuv>
+   <tuv xml:lang="en"><seg>spruce</seg></tuv>
+   <tuv xml:lang="tr"><seg>ladin</seg></tuv>
+   <tuv xml:lang="sv"><seg>gran</seg></tuv>
+   <tuv xml:lang="nl"><seg>spar</seg></tuv>
+   <tuv xml:lang="nb"><seg>gran</seg></tuv>
+   <tuv xml:lang="da"><seg>gran</seg></tuv>
+   <tuv xml:lang="fr"><seg>épicéa</seg></tuv>
+  </tu>
+  <tu tuid="auf dem berg wachsen hohe fichten.:Na planini rastu visoke smreke." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Na planini rastu visoke smreke.</seg></tuv>
+   <tuv xml:lang="de"><seg>Auf dem Berg wachsen hohe Fichten.</seg></tuv>
+   <tuv xml:lang="en"><seg>Tall spruces grow on the mountain.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Dağda uzun ladinler yetişiyor.</seg></tuv>
+   <tuv xml:lang="sv"><seg>På berget växer höga granar.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Op de berg groeien hoge sparren.</seg></tuv>
+   <tuv xml:lang="nb"><seg>På fjellet vokser høye graner.</seg></tuv>
+   <tuv xml:lang="da"><seg>På bjerget vokser høje graner.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Sur la montagne poussent de grands épicéas.</seg></tuv>
+  </tu>
+  <tu tuid="tulpe:lala" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>lala</seg></tuv>
+   <tuv xml:lang="de"><seg>Tulpe</seg></tuv>
+   <tuv xml:lang="en"><seg>tulip</seg></tuv>
+   <tuv xml:lang="tr"><seg>lale</seg></tuv>
+   <tuv xml:lang="sv"><seg>tulpan</seg></tuv>
+   <tuv xml:lang="nl"><seg>tulp</seg></tuv>
+   <tuv xml:lang="nb"><seg>tulipan</seg></tuv>
+   <tuv xml:lang="da"><seg>tulipan</seg></tuv>
+   <tuv xml:lang="fr"><seg>tulipe</seg></tuv>
+  </tu>
+  <tu tuid="im frühling blühen im garten tulpen.:U proljeće u bašti cvjetaju lale." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>U proljeće u bašti cvjetaju lale.</seg></tuv>
+   <tuv xml:lang="de"><seg>Im Frühling blühen im Garten Tulpen.</seg></tuv>
+   <tuv xml:lang="en"><seg>In spring tulips bloom in the garden.</seg></tuv>
+   <tuv xml:lang="tr"><seg>İlkbaharda bahçede laleler açar.</seg></tuv>
+   <tuv xml:lang="sv"><seg>På våren blommar tulpaner i trädgården.</seg></tuv>
+   <tuv xml:lang="nl"><seg>In de lente bloeien er tulpen in de tuin.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Om våren blomstrer tulipaner i hagen.</seg></tuv>
+   <tuv xml:lang="da"><seg>Om foråret blomstrer tulipaner i haven.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Au printemps, des tulipes fleurissent dans le jardin.</seg></tuv>
+  </tu>
+  <tu tuid="tanne:jela" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>jela</seg></tuv>
+   <tuv xml:lang="de"><seg>Tanne</seg></tuv>
+   <tuv xml:lang="en"><seg>fir</seg></tuv>
+   <tuv xml:lang="tr"><seg>köknar</seg></tuv>
+   <tuv xml:lang="sv"><seg>ädelgran</seg></tuv>
+   <tuv xml:lang="nl"><seg>zilverspar</seg></tuv>
+   <tuv xml:lang="nb"><seg>edelgran</seg></tuv>
+   <tuv xml:lang="da"><seg>ædelgran</seg></tuv>
+   <tuv xml:lang="fr"><seg>sapin</seg></tuv>
+  </tu>
+  <tu tuid="die tanne bleibt auch im winter grün.:Jela ostaje zelena i u zimi." segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Jela ostaje zelena i u zimi.</seg></tuv>
+   <tuv xml:lang="de"><seg>Die Tanne bleibt auch im Winter grün.</seg></tuv>
+   <tuv xml:lang="en"><seg>The fir stays green even in winter.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Göknar kışın da yeşil kalır.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Ädelgranen är grön även på vintern.</seg></tuv>
+   <tuv xml:lang="nl"><seg>De zilverspar blijft ook in de winter groen.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Edelgranen holder seg grønn også om vinteren.</seg></tuv>
+   <tuv xml:lang="da"><seg>Ædelgranen forbliver grøn også om vinteren.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Le sapin reste vert même en hiver.</seg></tuv>
   </tu>
   <tu tuid="fangen / ergreifen:uhvatiti" segtype="phrase">
    <prop type="x-kind">word</prop>

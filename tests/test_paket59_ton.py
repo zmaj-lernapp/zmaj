@@ -55,6 +55,10 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     # App jetzt frueher dran; ihre Nummern bleiben (grundwoerter_umzug.py).
     from grundwoerter_umzug import UMZUG
     umgezogen = {f(u[1]) for u in UMZUG for f in (ton_bauen.schluessel, ton_bauen.schluessel_alle)}
+    # trgovina ist seit K2 (27.11.2026) auch „Geschäft (großer Laden)“ in Einkaufen und steht
+    # darum frueher in sammle(); die Nummer w4802 bleibt.
+    from k2_einbau import FRUEHER_IN_SAMMLE
+    umgezogen |= FRUEHER_IN_SAMMLE
     reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values()) and p["key"] not in umgezogen]
     assert [neu[d] for d in sorted(neu) if neu[d] not in umgezogen] == reihe
 

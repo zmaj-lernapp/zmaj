@@ -17,6 +17,7 @@ import re
 import pytest
 
 import offen_p1020
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 LEVEL = ["ort_raum", "richtung_mass", "menge_teil", "reihe_wert", "anfang_ende",
          "das_leben", "grund_folge", "nutzen_schaden", "denken_entscheiden", "wahrheit_zweifel",
@@ -84,7 +85,7 @@ NACHGEKOMMEN = ["rub", "ivica", "poteškoća"]
 
 
 def _level(daten):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in LEVEL]
 
 

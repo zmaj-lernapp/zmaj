@@ -22,53 +22,53 @@ source files disagree, so this folder is never stale.
 ## Contents
 
 ```mermaid
-pie showData title Words per section (7,997)
-  "A1/1 Basics & everyday life" : 353
+pie showData title Words per section (8,191)
+  "A1/1 Basics & everyday life" : 369
   "A1/2 Things you can touch" : 114
-  "A1/3 Animals & nature" : 111
-  "A1/4 Building sentences 1" : 187
-  "A2/1 At home" : 137
-  "A2/2 Building sentences 2" : 471
-  "A2/3 Shopping & eating out" : 108
+  "A1/3 Animals & nature" : 112
+  "A1/4 Building sentences 1" : 188
+  "A2/1 At home" : 142
+  "A2/2 Building sentences 2" : 486
+  "A2/3 Shopping & eating out" : 109
   "A2/4 Bosnia & origins" : 81
-  "A2/5 People & culture" : 58
+  "A2/5 People & culture" : 59
   "B1/1 Offices & contracts" : 162
-  "B1/2 Doings and dealings" : 1106
-  "B1/3 How things are" : 190
-  "B1/4 Doctor & health" : 205
-  "B1/5 Time and leisure" : 173
-  "B1/6 Learning and working" : 122
+  "B1/2 Doings and dealings" : 1108
+  "B1/3 How things are" : 196
+  "B1/4 Doctor & health" : 209
+  "B1/5 Time and leisure" : 225
+  "B1/6 Learning and working" : 130
   "B1/7 Basic concepts" : 295
   "B1/8 People and society" : 294
-  "B1/9 How, where and when" : 284
-  "B2/1 Thinking, feelings and relationships" : 605
+  "B1/9 How, where and when" : 286
+  "B2/1 Thinking, feelings and relationships" : 647
   "B2/2 Work and economy" : 305
-  "B2/3 Media, culture and technology" : 310
-  "B2/4 State, law and authorities" : 418
-  "B2/5 House and home" : 236
+  "B2/3 Media, culture and technology" : 318
+  "B2/4 State, law and authorities" : 422
+  "B2/5 House and home" : 238
   "B2/6 Health and sport" : 330
-  "B2/7 School and knowledge" : 340
-  "B2/8 Town, country and on the move" : 338
+  "B2/7 School and knowledge" : 344
+  "B2/8 Town, country and on the move" : 358
   "B2/9 Acting and saying it more precisely" : 664
 ```
 
 | File | What | Count |
 |---|---|---|
-| `vocabulary.json` / `.csv` | words and phrases, 27 sections in four stages (A1 to B2), 297 levels | 7,997 |
+| `vocabulary.json` / `.csv` | words and phrases, 27 sections in four stages (A1 to B2), 298 levels | 8,191 |
 | `sentences.json` / `.csv` | fill-in-the-gap sentences with the full sentence | 300 |
 | `stories.json` | graded stories, stage by stage from A1 to B1 (`stage`), with translation, glossary and comprehension questions | 32 |
 | `glossary.json` | word-by-word reading glossary used by the stories | 1,519 |
 | `grammar.json` | grammar lessons (explanations, tables, exercises) per language | 26 |
 | `anki/zmaj-bs-<lang>.tsv` | ready-to-import Anki decks, tagged by level | 8 decks |
-| `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 8,297 pairs × 8 |
-| `parallel.jsonl` | one line per word, sentence and story with all translations | 8,329 lines |
-| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 8,329 `<tu>` |
+| `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 8,491 pairs × 8 |
+| `parallel.jsonl` | one line per word, sentence and story with all translations | 8,523 lines |
+| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 8,523 `<tu>` |
 | `manifest.json` | counts and SHA-256 of every file above | – |
 | `schema/*.schema.json` | JSON Schema (2020-12) for the JSON files and one `parallel.jsonl` line | – |
 
 Audio paths (`web/audio/w0001.mp3` …) are relative to the repository root.
-There are 2,431 MP3 files (≈ 42 MB). Twelve family words and 6,237 new
-words and example sentences of sections 3, 4 and 10 to 31, added in October and
+There are 2,431 MP3 files (≈ 42 MB). Twelve family words and 6,432 new
+words and example sentences, added in October and
 November 2026, have none (`"audio": null`); the app speaks them with
 recordings that are not part of this dataset.
 
@@ -103,7 +103,7 @@ Gdje je stanica?	Where is the stop?	sentence	s0041
 `parallel.jsonl` and `parallel.tmx` also contain the 32 stories as whole
 texts; they are not sentence-aligned. Words are short phrases, often with
 variants separated by ` / ` (*Laku noć / Lahku noć*); split or drop them as
-your task requires. With 8,297 pairs per language this is evaluation or
+your task requires. With 8,491 pairs per language this is evaluation or
 fine-tuning data, not a training corpus, and the translations other than
 German are not yet native-reviewed (see below).
 

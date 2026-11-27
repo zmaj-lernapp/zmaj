@@ -117,6 +117,10 @@ def test_b_nummern_lueckenlos_in_der_reihenfolge_von_sammle(monkeypatch):
     # sammle() kennt alle als Wort aus einer Geschichte, mit demselben Text, und die Nummern
     # folgen seiner Reihenfolge vom 16.11.2026. Heute bringt sammle() dieselben Woerter,
     # nur steht ein Wort vielleicht zuerst gross in einer anderen Geschichte ("Boli").
+    # Seit K2 (27.11.2026) sind rukavice, sunčano, oblačno, čamac und jela (als Tanne) auch
+    # Vokabeln und stehen darum in sammle() frueher; ihre Nummern bleiben (k2_einbau.py).
+    from k2_einbau import FRUEHER_IN_SAMMLE
+    neu = [e for e in neu if e["key"] not in FRUEHER_IN_SAMMLE]
     posten = [p for p in _sammle_wie_am_16_11(monkeypatch) if p["key"] in {e["key"] for e in neu}]
     assert [p["key"] for p in posten] == [e["key"] for e in neu]
     heute = [p for p in ton_bauen.sammle() if p["key"] in {e["key"] for e in neu}]

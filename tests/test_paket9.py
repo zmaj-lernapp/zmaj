@@ -19,6 +19,7 @@ import re
 import pytest
 
 import offen_p1020
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 LEVEL = ["wichtig_bekannt", "ganz_viele", "frueher_spaeter", "innen_aussen", "eigenschaften",
          "hier_dort", "wann_wie_oft", "wie_sehr", "wie_man_es_meint", "saetze_verbinden",
@@ -120,7 +121,7 @@ NACHGEKOMMEN = ["mrtav", "uopšte", "naime / jer", "poput / kao", "ukupno"]
 
 
 def _level(daten):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in LEVEL]
 
 
@@ -284,7 +285,7 @@ def test_sektion_und_level(grunddaten_vor_umzug):
 
 def test_alle_sektionen(grunddaten):
     assert len(grunddaten["sektionen"]) == 27       # seit 13.11.2026 (Sätze bauen 2, B2 in neun)
-    assert len(grunddaten["kategorien"]) == 297     # seit 13.11.2026 (zwei Grundwort-Level)
+    assert len(grunddaten["kategorien"]) == 298     # seit 13.11.2026 (zwei Grundwort-Level), 27.11.2026 Ordnungszahlen
 
 
 @pytest.mark.parametrize("a, b", [("sav", "cijeli"), ("tu", "ovdje"), ("tako", "ovako"), ("vrlo / veoma", "jako"),

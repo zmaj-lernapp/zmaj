@@ -38,9 +38,12 @@ def grunddaten(alle_daten):
 def grunddaten_vor_umzug(grunddaten):
     """grunddaten mit den Leveln, wie die Wortschatz-Pakete sie geliefert
     haben: die 40 Grundwoerter wieder an ihrem alten Platz in B1, ohne die
-    zwei neuen A-Level (Stufen-Reiter, 13.11.2026). Siehe grundwoerter_umzug.py."""
+    zwei neuen A-Level (Stufen-Reiter, 13.11.2026). Siehe grundwoerter_umzug.py.
+    Seit dem 27.11.2026 auch ohne die neuen Woerter aus K2 und das Level
+    Ordnungszahlen (K7), siehe k2_einbau.py."""
     from grundwoerter_umzug import vor_umzug
-    return vor_umzug(grunddaten)
+    from k2_einbau import ohne_k2
+    return vor_umzug(ohne_k2(grunddaten))
 
 
 @pytest.fixture(scope="session")

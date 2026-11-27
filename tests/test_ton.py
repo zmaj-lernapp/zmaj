@@ -28,7 +28,9 @@ def test_ton_pruefen_meldet_nichts(wurzel, monkeypatch):
     # Pakete 3 und 4: tests/offen_b1_teil2.py) warten noch auf ihren Ton. Seit
     # dem 16.11.2026 liest Vesna die Texte vor, es warten nur noch die Woerter,
     # die allein in diesen Texten stehen (Woerter spricht Emir).
-    offen = offen_p1020.TON | offen_lesetexte.TON | offen_b1_teil2.ton_schluessel()
+    # 27.11.2026: die Woerter und Saetze aus K2 und K7 warten auf den Ton-Schritt (k2_einbau.TON_OFFEN).
+    import k2_einbau
+    offen = offen_p1020.TON | offen_lesetexte.TON | offen_b1_teil2.ton_schluessel() | k2_einbau.TON_OFFEN
     monkeypatch.setattr(ton_bauen, "sammle", lambda: [p for p in echt() if p["key"] not in offen])
     assert ton_pruefen.main() in (0, None)
 
@@ -68,10 +70,12 @@ def test_jedes_wort_findet_seine_aufnahme(grunddaten, index):
     import ton_bauen
     toene = {str(e["key"]).lower(): e["datei"]
              for e in index["toene"] + list(ton_bauen.nur_emir().values())}
+    import k2_einbau
     import offen_p1020
     ohne = [w["bs"] for k in grunddaten["kategorien"] for w in k["words"]
             if not de.ton_datei(w["bs"], toene)
-            and ton_bauen.schluessel(w["bs"]) not in offen_p1020.TON]      # Ton-Schritt, 07.11.2026
+            and ton_bauen.schluessel(w["bs"]) not in offen_p1020.TON      # Ton-Schritt, 07.11.2026
+            and ton_bauen.schluessel(w["bs"]) not in k2_einbau.TON_OFFEN]  # Ton-Schritt K2, 27.11.2026
     assert not ohne, ohne[:20]
 
 

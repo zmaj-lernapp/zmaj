@@ -167,7 +167,8 @@ def _stand_messen(seite, heute_stand, sprache, breite):
     assert [b["art"] for b in aus["neu"]] == ["offen", "zu", "zu", "zu", "bald"]
     assert [b["art"] for b in aus["weit"]] == ["offen", "offen", "offen", "offen", "bald"]
     assert [b["art"] for b in aus["fertig"]] == ["fertig", "fertig", "fertig", "fertig", "bald"]
-    assert [b["text"] for b in aus["weit"]][:4] == ["29/30", "30/31", "106/107", "112/129"]
+    # B1 hat seit dem 27.11.2026 108 Level (K7: Ordnungszahlen), vorher 107
+    assert [b["text"] for b in aus["weit"]][:4] == ["29/30", "30/31", "107/108", "112/129"]
     # Der Bildschirmleser hört den ganzen Satz in der Sprache, nicht "112 Schrägstrich 129"
     assert all(b["label"].startswith(b["st"]) for b in aus["weit"])
     assert "129" in aus["weit"][3]["label"] and "112" in aus["weit"][3]["label"]

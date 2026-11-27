@@ -18,6 +18,7 @@ import json
 import os
 
 import pytest
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 ERSTE = 2521
 LETZTE = 2671
@@ -39,7 +40,7 @@ def index(wurzel):
 def _neue_woerter(daten):
     """Die Woerter der Sektion 10 ohne ihre Beispielsaetze. Jedes Wort steht
     direkt vor seinem Satz (tests/test_paket1.py)."""
-    return [w for k in daten["kategorien"] if k["id"] in PAKET1 for w in k["words"][0::2]]
+    return [w for k in ohne_k2(daten)["kategorien"] if k["id"] in PAKET1 for w in k["words"][0::2]]
 
 
 def _nummer(datei):
@@ -103,7 +104,7 @@ def test_nummern_w2521_bis_w2671_gehoeren_dem_paket(grunddaten):
 
 def _neue_saetze(daten):
     """Die Beispielsaetze der Sektion 10: jeder steht direkt hinter seinem Wort."""
-    return [w for k in daten["kategorien"] if k["id"] in PAKET1 for w in k["words"][1::2]]
+    return [w for k in ohne_k2(daten)["kategorien"] if k["id"] in PAKET1 for w in k["words"][1::2]]
 
 
 def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, wurzel):

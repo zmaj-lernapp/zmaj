@@ -9,7 +9,7 @@ Seitdem (web/js/lektion.js): Formen je Wort gemerkt (lueckeFormenVon), Formen al
 Menge und nur die Wortfolgen des Satzes nachgesehen (lueckeFormMenge), und zu jedem
 Wort-Teil der erste Level (kachelErsterLevel), einmal je Inhalt.
 
-- Gleichheit: Fuer jeden der 297 Level, mit leerem, mittlerem (1.000 Woerter, 40
+- Gleichheit: Fuer jeden der 298 Level (297 bis K7, 27.11.2026), mit leerem, mittlerem (1.000 Woerter, 40
   Level) und vollem Stand, entscheiden die neuen Funktionen bei JEDEM Kandidaten-Satz
   dasselbe wie die alten (unten in ALT Wort fuer Wort abgeschrieben). Dazu wird jede
   Lektion zweimal gebaut, mit demselben Zufall, einmal mit den alten Funktionen:
@@ -174,9 +174,9 @@ def _stand(art, heute_stand, vollversion):
 def test_lektionen_gleich_wie_vorher_in_allen_leveln(seite, heute_stand, vollversion, art):
     seite.starten(stand=_stand(art, heute_stand, vollversion), sprache="de")
     n = seite.js("() => CATEGORIES.length")
-    assert n == 297
+    assert n == 298        # 297 bis K7 (27.11.2026)
     gewusst, bestanden = seite.js("() => [known.size, passed.size]")
-    assert {"leer": (0, 0), "mittel": (1000, 40), "voll": (7997, 297)}[art] == (gewusst, bestanden)
+    assert {"leer": (0, 0), "mittel": (1000, 40), "voll": (8191, 298)}[art] == (gewusst, bestanden)
     summe = {}
     for von in range(0, n, 50):
         e = seite.js(VERGLEICH, [von, von + 50])
@@ -184,9 +184,9 @@ def test_lektionen_gleich_wie_vorher_in_allen_leveln(seite, heute_stand, vollver
         for k, v in e.items():
             if isinstance(v, int):
                 summe[k] = summe.get(k, 0) + v
-    assert summe["level"] == 297 and summe["lektionen"] == 297, summe
+    assert summe["level"] == 298 and summe["lektionen"] == 298, summe       # 297 bis K7 (27.11.2026)
     # Die alten Funktionen waren wirklich eingesetzt, und es gab etwas zu vergleichen.
-    assert summe["eingesetzt"] == 297, summe
+    assert summe["eingesetzt"] == 298, summe
     assert summe["luecken"] >= 300 and summe["kacheln"] >= 357, summe
     assert summe["kachelnJa"] > 0 and summe["mitKacheln"] > 0, summe
     if art != "leer":
@@ -227,7 +227,7 @@ def test_verzeichnisse_neu_wenn_sich_der_inhalt_aendert(seite, heute_stand):
     assert seite.js(NEU_GEBAUT) == {"gleichBleibend": True, "erster": True, "formenGemerkt": True,
                                     "mitWort": True, "ohneWort": True, "sprache": True}
     # Nach dem Sprachwechsel entscheidet alles wie vorher, hier in jedem zehnten Level.
-    for von in range(0, 297, 10):
+    for von in range(0, 298, 10):
         e = seite.js(VERGLEICH, [von, von + 1])
         assert e["anzahl"] == 0 and e["level"] == 1 and e["eingesetzt"] == 1, e
     assert seite.fehler == []
@@ -258,6 +258,6 @@ SCHNELL = r"""
 def test_spaeter_level_startet_schneller(seite, heute_stand, vollversion):
     seite.starten(stand=_stand("voll", heute_stand, vollversion), sprache="de")
     e = seite.js(SCHNELL)
-    assert e["catIdx"] == 277
+    assert e["catIdx"] == 278      # 20 vor dem Ende, seit K7 (27.11.2026) ein Level mehr
     assert e["ms"] < 40, e
     assert seite.fehler == []

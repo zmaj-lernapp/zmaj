@@ -110,9 +110,10 @@ def test_posve_gestrichen_und_dosada_daneben(grunddaten, index_html):
 
 def test_alle_sektionen(grunddaten):
     """27 Sektionen und 297 Level seit den Stufen-Reitern (13.11.2026; vorher 31 und 295
-    seit den Paketen 10 bis 20); Stufe B2 hinter B1, 9 Sektionen (Frage 6a)."""
+    seit den Paketen 10 bis 20); Stufe B2 hinter B1, 9 Sektionen (Frage 6a). 298 Level seit
+    dem 27.11.2026 (K7: Ordnungszahlen in B1)."""
     assert len(grunddaten["sektionen"]) == 27
-    assert len(grunddaten["kategorien"]) == 297
+    assert len(grunddaten["kategorien"]) == 298
     s = [x["id"] for x in grunddaten["sektionen"]]
     assert s[17] == "wiewowann" and s[18] == "denkenmeinen" and s[-1] == "handelnveraendern"
     assert [x["stufe"] for x in grunddaten["sektionen"]].count("B2") == 9

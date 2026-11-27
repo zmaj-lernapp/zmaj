@@ -142,7 +142,7 @@ def test_tabelle_2c_nur_in_einer_richtung(seite, heute_stand):
                      typ('der hund hat mich gebissen:Pas me je ujeo', 'Pas me je ugrizao'),
                      luecke('Putujemo ___.', 'kola'), luecke('Koliko je ___?', 'sahata'),
                      luecke('Mislim ___ je dobro.', 'je')],
-              geschw: [geschw('laden:prodavnica', 'radnja'), geschw('geschäft:radnja', 'prodavnica'),
+              geschw: [geschw('laden:prodavnica', 'radnja'), geschw('geschäft (kleiner laden):radnja', 'prodavnica'),
                        geschw('manchmal:ponekad', 'nekad')]};
     }""")
     assert erg == {"nein": ["no"] * 9, "geschw": [True, True, True]}

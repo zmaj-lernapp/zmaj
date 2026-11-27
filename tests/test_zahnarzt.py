@@ -110,7 +110,7 @@ def test_auch_nur_wie_freigegeben(teil):
 
 def test_fuer_die_app_eigenes_feld_und_keine_zaehlung(grunddaten):
     assert len(grunddaten["sektionen"]) == 27       # seit 13.11.2026 (Stufen-Reiter, B2 in neun)
-    assert len(grunddaten["kategorien"]) == 297
+    assert len(grunddaten["kategorien"]) == 298     # seit 27.11.2026 (K7: Level Ordnungszahlen)
     z = grunddaten["zahnarzt"]
     assert z["sektion"]["id"] == "zahnarzt" and len(z["kategorien"]) == 7
     assert all(k["id"].startswith("za|") for k in z["kategorien"])

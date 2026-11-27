@@ -15,11 +15,10 @@
   "echt:pravi": "pravi (echt)",
   "braut:mlada": "mlada (braut)",
   "spiel (zum spielen):igra": "igra (spiel)",
+  "tanne:jela": "jela (tanne)",
   "küken / hähnchen:pile": "pile (küken)"
  },
- "vorgemerkt": {
-  "tanne:jela": "jela (tanne)"
- },
+ "vorgemerkt": {},
  "grammatik": {
   "faelle3#4": "mi (mir)",
   "vergangenheit#2": "radio (gemacht)"
@@ -49,6 +48,8 @@
   "er versorgt allein die ganze familie.:Sam izdržava cijelu porodicu.": {"sam": "sam"},
   "hier darf man nicht rechts abbiegen.:Ovdje se ne smije skretati desno.": {"smije": "smije (darf)"},
   "oma hat diabetes, sie darf nichts süßes essen.:Nana ima dijabetes, ne smije jesti slatko.": {"smije": "smije (darf)"},
-  "in der kurve darf man nicht überholen.:U krivini se ne smije preticati.": {"smije": "smije (darf)"}
+  "in der kurve darf man nicht überholen.:U krivini se ne smije preticati.": {"smije": "smije (darf)"},
+  "mein nachbar ist geschieden und lebt allein.:Moj komšija je razveden i živi sam.": {"sam": "sam"},
+  "die tanne bleibt auch im winter grün.:Jela ostaje zelena i u zimi.": {"jela": "jela (tanne)"}
  }
 }

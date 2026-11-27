@@ -394,6 +394,9 @@ KATEGORIEN = [
         {"de": "Obst",                "bs": "voće"},
         {"de": "Gemüse",              "bs": "povrće"},
         {"de": "Kartoffel",           "bs": "krompir"},
+        # K2 (20.11.2026, Ajdin: „mach gleich alle und lass emir direkt alle sprechen“): neue
+        # Wörter aus Release/Wortschatz/k2_2026-11-20/final, Emir spricht sie (1.5).
+        {"de": "Pommes",                       "bs": "pomfrit"},
         {"de": "Tomate",              "bs": "paradajz"},
         {"de": "Zwiebel",             "bs": "luk"},
         {"de": "Reis",                "bs": "riža"},
@@ -406,6 +409,8 @@ KATEGORIEN = [
         {"de": "Suppe",               "bs": "supa"},
         {"de": "Pita (Blätterteig-Gericht)", "bs": "pita"},
         {"de": "Ćevapi",              "bs": "ćevapi"},
+        # K2 (20.11.2026): neu
+        {"de": "Pizza",                        "bs": "pica"},
         {"de": "Frühstück",           "bs": "doručak"},
         {"de": "Mittagessen",         "bs": "ručak"},
         {"de": "Abendessen",          "bs": "večera"},
@@ -506,8 +511,13 @@ KATEGORIEN = [
         {"de": "warm",          "bs": "toplo"},
         {"de": "kalt",          "bs": "hladno"},
         {"de": "heiß",          "bs": "vruće"},
+        # K2 (20.11.2026): neu
+        {"de": "sonnig",                       "bs": "sunčano"},
+        {"de": "bewölkt",                      "bs": "oblačno"},
         {"de": "Es regnet",     "bs": "Pada kiša", "auch": ["Kiša pada"]},   # andere Wortstellung (Ajdin, Prüfbericht 1.4, B2/F13)
         {"de": "Es schneit",    "bs": "Pada snijeg", "auch": ["Snijeg pada"]},   # Prüfbericht 1.4, B2/F13
+        # K2 (20.11.2026): neu
+        {"de": "Regenschirm",                  "bs": "kišobran"},
         {"de": "Frühling",      "bs": "proljeće"},
         {"de": "Sommer",        "bs": "ljeto"},
         {"de": "Herbst",        "bs": "jesen"},
@@ -568,7 +578,14 @@ KATEGORIEN = [
 
     {"id": "einkaufen", "label": "Einkaufen & Kleidung", "sektion": "alltag", "baut_auf": ["zahlen", "farben", "essen"], "tipp": "Preise, Größen, Kleidung. Zahlen und Farben werden hier gebraucht.",
      "words": [
-        {"de": "Geschäft",                  "bs": "radnja"},
+        # Ajdin am 25.11.2026 (Offen-Liste, Eingang): „schreib bei radnja in klammern für
+        # kleine geschäfte und trgovina eher für supermarkt oder so“, dann „nimm kleiner
+        # und großer laden“ (Variante A: „die bleiben dann getrennt“). Die neue deutsche
+        # Seite ist eine neue Kennung; Lernstand, Stern, Kartei und Fehler-Topf ziehen über
+        # UMBENANNT (web/js/anmeldung_server.js) mit. Beim Tippen zählen radnja, trgovina
+        # und prodavnica füreinander (varianten.py).
+        {"de": "Geschäft (kleiner Laden)",     "bs": "radnja"},
+        {"de": "Geschäft (großer Laden)",      "bs": "trgovina"},
         {"de": "Einkaufszentrum",           "bs": "tržni centar"},
         {"de": "Kasse",                     "bs": "kasa"},
         {"de": "Preis",                     "bs": "cijena"},
@@ -579,13 +596,30 @@ KATEGORIEN = [
         {"de": "Kleidung",                  "bs": "odjeća"},
         {"de": "Hemd",                      "bs": "košulja"},
         {"de": "T-Shirt",                   "bs": "majica"},
-        {"de": "Hose",                      "bs": "pantalone"},
+        # Ajdin am 25.11.2026: „ich sage trgovina und hlace das andere hab ich tatsächlich
+        # kaum gehört“, „pantalone und hlace bleiben zusammen“: zwei Formen wie kahva / kafa.
+        # Neue Kennung hose:pantalone / hlače, umgezogen über UMBENANNT.
+        {"de": "Hose",                         "bs": "pantalone / hlače"},
+        # K2 (20.11.2026): neu
+        {"de": "Jeans",                        "bs": "farmerke"},
+        {"de": "Trainingsanzug",               "bs": "trenerka"},
         {"de": "Jacke",                     "bs": "jakna"},
+        # K2 (20.11.2026): neu
+        {"de": "Pullover",                     "bs": "džemper"},
+        {"de": "Mantel",                       "bs": "kaput"},
         {"de": "Kleid",                     "bs": "haljina"},
         {"de": "Rock",                      "bs": "suknja"},
         {"de": "Schuhe",                    "bs": "cipele"},
+        # K2 (20.11.2026): neu
+        {"de": "Turnschuhe",                   "bs": "patike"},
+        {"de": "Stiefel",                      "bs": "čizme"},
+        {"de": "Hausschuhe",                   "bs": "papuče"},
         {"de": "Socken",                    "bs": "čarape"},
         {"de": "Mütze",                     "bs": "kapa"},
+        # K2 (20.11.2026): neu
+        {"de": "Hut",                          "bs": "šešir"},
+        {"de": "Schal",                        "bs": "šal"},
+        {"de": "Handschuhe",                   "bs": "rukavice"},
         {"de": "Größe",                     "bs": "veličina"},
         {"de": "groß",                      "bs": "veliko", "auch": ["velik", "velika"]},
         {"de": "klein",                     "bs": "malo", "auch": ["mali", "mala"]},
@@ -815,6 +849,8 @@ KATEGORIEN = [
      "words": [
         {"de": "Kater",                       "bs": "mačak"},
         {"de": "Unser Kater schläft den ganzen Tag.", "bs": "Naš mačak spava cijeli dan."},
+        # K2 (20.11.2026): neu
+        {"de": "Kätzchen",                     "bs": "mače"},
         {"de": "Haustier",           "bs": "kućni ljubimac"},
         {"de": "Tier",               "bs": "životinja"},
         {"de": "Vieh / Nutztiere",   "bs": "stoka"},
@@ -949,6 +985,8 @@ KATEGORIEN = [
         {"de": "Wohin?",                    "bs": "Kuda?", "auch": ["Gdje?"]},   # „Ja gdje geht auch alleine“ (Ajdin, 14.11.2026 abends, wie Kuda ideš? bei F7 a)
         {"de": "Woher?",                    "bs": "Odakle?"},
         {"de": "Wann?",                     "bs": "Kada?", "auch": ["kad"]},
+        # K2 (20.11.2026): neu
+        {"de": "Seit wann?",                   "bs": "Otkad?"},
         {"de": "Warum?",                    "bs": "Zašto?"},
         {"de": "Wie?",                      "bs": "Kako?"},
         {"de": "Wie viel?",                 "bs": "Koliko?"},
@@ -1184,6 +1222,8 @@ KATEGORIEN = [
         {"de": "Topf",               "bs": "lonac"},
         {"de": "Tüte / Plastiktüte", "bs": "kesa"},
         {"de": "Bettwäsche",         "bs": "posteljina"},
+        # K2 (20.11.2026): neu
+        {"de": "Bettlaken",                    "bs": "čaršaf"},
         {"de": "Decke (Bettdecke)",  "bs": "deka"},
         {"de": "Kissen",             "bs": "jastuk"},
         {"de": "Regal / Brett",      "bs": "polica"},
@@ -1203,6 +1243,8 @@ KATEGORIEN = [
      "words": [
         {"de": "aufräumen",             "bs": "pospremiti"},
         {"de": "Besen",                 "bs": "metla"},
+        # K2 (20.11.2026): neu
+        {"de": "Schwamm",                      "bs": "spužva"},
         {"de": "Bügeleisen",            "bs": "pegla"},
         {"de": "bügeln",                "bs": "peglati"},
         {"de": "Eimer",                 "bs": "kanta"},
@@ -1309,12 +1351,18 @@ KATEGORIEN = [
         {"de": "Kein Empfang.",                       "bs": "Nema signala."},
         {"de": "Nachricht",                           "bs": "poruka"},
         {"de": "eine Nachricht schicken",             "bs": "poslati poruku"},
+        # K2 (20.11.2026): neu
+        {"de": "E-Mail",                       "bs": "mejl"},
         {"de": "anrufen",                             "bs": "nazvati", "auch": ["zvati"]},
         {"de": "App",                                 "bs": "aplikacija"},
         {"de": "Bildschirm",                          "bs": "ekran"},
         {"de": "Tastatur",                            "bs": "tastatura"},
+        # K2 (20.11.2026): neu
+        {"de": "Laptop",                       "bs": "laptop"},
         {"de": "Drucker",                             "bs": "štampač"},
         {"de": "Kopfhörer",                           "bs": "slušalice"},
+        # K2 (20.11.2026): neu
+        {"de": "Lautsprecher",                 "bs": "zvučnik"},
         {"de": "fotografieren",                       "bs": "slikati"},
         {"de": "aktualisieren",                       "bs": "ažurirati"},
         {"de": "Spülmaschine",                        "bs": "mašina za suđe"},
@@ -1599,9 +1647,19 @@ KATEGORIEN = [
      "words": [
         {"de": "aufstehen",                 "bs": "ustajati"},
         {"de": "Ich stehe um sieben auf",   "bs": "Ustajem u sedam"},
+        # K2 (20.11.2026): neu
+        {"de": "Wecker",                       "bs": "budilnik"},
+        {"de": "sich (das Gesicht) waschen",   "bs": "umivati se"},
+        {"de": "Ich wasche mir das Gesicht", "bs": "Umivam se"},
         {"de": "sich duschen",              "bs": "tuširati se"},
         {"de": "Ich dusche mich",           "bs": "Tuširam se"},
+        # K2 (20.11.2026): neu
+        {"de": "sich rasieren",                "bs": "brijati se"},
+        {"de": "Ich rasiere mich", "bs": "Brijem se"},
         {"de": "Zähne putzen",              "bs": "prati zube"},
+        # K2 (20.11.2026): neu
+        {"de": "sich kämmen",                  "bs": "češljati se"},
+        {"de": "Ich kämme mich", "bs": "Češljam se"},
         {"de": "frühstücken",               "bs": "doručkovati"},
         {"de": "Ich frühstücke",            "bs": "Doručkujem"},
         {"de": "zur Arbeit gehen",          "bs": "ići na posao"},
@@ -1613,8 +1671,13 @@ KATEGORIEN = [
         {"de": "kochen",                    "bs": "kuhati", "partner": "skuhati"},
         {"de": "Ich koche Abendessen",      "bs": "Kuham večeru"},
         {"de": "fernsehen",                 "bs": "gledati televiziju"},
+        # K2 (20.11.2026): neu
+        {"de": "baden / sich baden",           "bs": "kupati se"},
+        {"de": "Ich bade", "bs": "Kupam se"},
         {"de": "schlafen gehen",            "bs": "ići spavati"},
         {"de": "Ich gehe schlafen",         "bs": "Idem spavati"},
+        # K2 (20.11.2026): neu
+        {"de": "Schlafanzug",                  "bs": "pidžama"},
         {"de": "einkaufen gehen",           "bs": "ići u kupovinu"},
         {"de": "putzen",                    "bs": "čistiti", "partner": "počistiti"},
         {"de": "Wäsche waschen",            "bs": "prati veš"},
@@ -1716,9 +1779,11 @@ KATEGORIEN = [
         {"de": "die Hälfte",                "bs": "pola"},
         {"de": "ein halbes Kilo",           "bs": "pola kilograma"},
         {"de": "ein Viertel",               "bs": "četvrt"},
-        {"de": "der erste",                 "bs": "prvi"},
-        {"de": "der zweite",                "bs": "drugi"},
-        {"de": "der dritte",                "bs": "treći"},
+        # K7, Ajdin am 20.11.2026 (O-F2): „auch bei prvi, drugi, treći“ zählt beim Tippen die
+        # weibliche und die sächliche Form, wie bei den Ordnungszahlen ab četvrti.
+        {"de": "der erste",                 "bs": "prvi", "auch": ["prva", "prvo"]},
+        {"de": "der zweite",                "bs": "drugi", "auch": ["druga", "drugo"]},
+        {"de": "der dritte",                "bs": "treći", "auch": ["treća", "treće"]},
         {"de": "der letzte",                "bs": "zadnji"},
         {"de": "einmal",                    "bs": "jednom"},
         {"de": "zweimal",                   "bs": "dva puta"},
@@ -1781,6 +1846,8 @@ KATEGORIEN = [
         {"de": "Reservierung",              "bs": "rezervacija"},
         {"de": "Busbahnhof",                "bs": "autobuska stanica"},
         {"de": "Taxi",                      "bs": "taksi"},
+        # K2 (20.11.2026): neu
+        {"de": "Taxifahrer",                   "bs": "taksista"},
         {"de": "Fahrer",                    "bs": "vozač"},
         {"de": "Tankstelle",                "bs": "benzinska pumpa"},
         {"de": "Benzin",                    "bs": "benzin"},
@@ -1866,7 +1933,13 @@ KATEGORIEN = [
         {"de": "Hausaufgabe",               "bs": "zadaća"},
         {"de": "Buch",                      "bs": "knjiga"},
         {"de": "Stift",                     "bs": "olovka"},
+        # K2 (20.11.2026): neu
+        {"de": "Kugelschreiber",               "bs": "hemijska olovka", "auch": ["hemijska"]},
+        {"de": "Spitzer",                      "bs": "rezač"},
+        {"de": "Lineal",                       "bs": "lenjir"},
         {"de": "Papier",                    "bs": "papir"},
+        # K2 (20.11.2026): neu
+        {"de": "Wort",                         "bs": "riječ"},
         {"de": "Computer",                  "bs": "računar"},
     ]},
 
@@ -1981,6 +2054,8 @@ KATEGORIEN = [
         {"de": "scharf",                      "bs": "ljuto"},
         {"de": "süß",                         "bs": "slatko"},
         {"de": "zu wenig",                    "bs": "premalo"},
+        # K2 (20.11.2026): neu
+        {"de": "Serviette",                    "bs": "salveta"},
         {"de": "Behalten Sie das Rückgeld",   "bs": "Zadržite kusur"},
         {"de": "getrennt",                    "bs": "odvojeno"},
         {"de": "Jeder zahlt seins",           "bs": "Svako plaća svoje"},
@@ -2189,6 +2264,8 @@ KATEGORIEN = [
         {"de": "Gott",                                    "bs": "Bog"},
         {"de": "Gott sei Dank",                           "bs": "Hvala Bogu"},
         {"de": "Iftar (Fastenbrechen)",                   "bs": "iftar"},
+        # K2 (20.11.2026): neu
+        {"de": "Sehur (Mahlzeit vor dem Morgengrauen im Ramadan)", "bs": "sehur"},
         {"de": "Inšallah (so Gott will)",                 "bs": "inšallah", "auch": ["Ako Bog da"]},
         {"de": "Mašallah (wie schön, Gott schütze es)", "bs": "mašallah"},
         {"de": "Ramadanfest / Opferfest",                 "bs": "Ramazanski bajram / Kurban-bajram"},
@@ -3460,6 +3537,9 @@ KATEGORIEN = [
         {"de": "Bemüh dich ein bisschen mehr!", "bs": "Potrudi se malo više!"},
         {"de": "verhandeln (Preis)",          "bs": "pogađati se"},
         {"de": "Wir verhandeln noch über den Preis der Wohnung.", "bs": "Još se pogađamo oko cijene stana."},
+        # K2 (20.11.2026): neu
+        {"de": "scherzen / Witze machen",      "bs": "šaliti se"},
+        {"de": "Sei nicht böse, ich mache nur Spaß.", "bs": "Ne ljuti se, samo se šalim."},
     ]},
 
     {"id": "lieben_fuerchten", "label": "Lieben und fürchten", "sektion": "tunlassen", "tipp": "Küssen, umarmen, weinen, träumen, sich ärgern, sich fürchten: starke Gefühle.",
@@ -3931,6 +4011,13 @@ KATEGORIEN = [
         {"de": "Sie ist immer fröhlich und lacht.", "bs": "Uvijek je vesela i nasmijana."},
         {"de": "vorsichtig",                 "bs": "oprezan", "auch": ["oprezna", "oprezno"]},
         {"de": "Sei vorsichtig, draußen ist es glatt.", "bs": "Budi oprezan, vani je klizavo."},
+        # K2 (20.11.2026): neu
+        {"de": "gutaussehend / hübsch",        "bs": "zgodan", "auch": ["zgodna", "zgodno"]},
+        {"de": "Dein Bruder sieht sehr gut aus.", "bs": "Tvoj brat je jako zgodan."},
+        {"de": "sympathisch / nett",           "bs": "simpatičan", "auch": ["simpatična", "simpatično"]},
+        {"de": "Die neue Nachbarin ist sehr sympathisch.", "bs": "Nova komšinica je jako simpatična."},
+        {"de": "langweilig (der langweilige)", "bs": "dosadan", "auch": ["dosadna", "dosadno"]},
+        {"de": "Dieser Film ist so langweilig, dass ich eingeschlafen bin.", "bs": "Ovaj film je tako dosadan da sam zaspao."},
     ]},
 
     {"id": "benehmen", "label": "Wie man sich benimmt", "sektion": "wieetwasist", "tipp": "Freundlich, höflich, geduldig, frech, stur: im Umgang mit anderen.",
@@ -4143,6 +4230,9 @@ KATEGORIEN = [
         {"de": "Der Nachbar hatte einen Schlaganfall.", "bs": "Komšija je imao moždani udar."},
         {"de": "Herzinfarkt",                "bs": "srčani udar / infarkt"},
         {"de": "Opa hatte letztes Jahr einen Herzinfarkt.", "bs": "Dedo je prošle godine imao srčani udar."},
+        # K2 (20.11.2026): neu
+        {"de": "erkältet",                     "bs": "prehlađen", "auch": ["prehlađena"]},
+        {"de": "Ich bin erkältet, ich kann heute nicht kommen.", "bs": "Prehlađen sam, ne mogu danas doći."},
     ]},
 
     {"id": "beschwerden", "label": "Beschwerden", "sektion": "koerpergesundheit", "tipp": "Husten, Übelkeit, Schwindel, Ausschlag: sagen, was wehtut.",
@@ -4179,6 +4269,9 @@ KATEGORIEN = [
         {"de": "Ich habe schlimme Zahnschmerzen, ich muss zum Zahnarzt.", "bs": "Imam strašnu zubobolju, moram kod zubara."},
         {"de": "Mir ist übel.",              "bs": "Muka mi je."},
         {"de": "Halt mal kurz an, mir ist übel.", "bs": "Stani malo, muka mi je."},
+        # K2 (20.11.2026): neu
+        {"de": "niesen",                       "bs": "kihati"},
+        {"de": "Vom Staub muss ich ständig niesen.", "bs": "Od prašine stalno kišem."},
     ]},
 
     {"id": "in_der_praxis", "label": "In der Arztpraxis", "sektion": "koerpergesundheit", "tipp": "Wartezimmer, Befund, Spritze, Röntgen: der Weg durch die Praxis.",
@@ -4351,6 +4444,46 @@ KATEGORIEN = [
         {"de": "Morgen ist Feiertag, die Banken haben zu.", "bs": "Sutra je praznik, banke ne rade."},
     ]},
 
+    # K7 Ordnungszahlen (Ajdin am 20.11.2026, O-F1 bis O-F4: alles ja): von četvrti bis
+    # hiljaditi, je Wort mit Beispielsatz, hinter Zeitangaben. Beim Tippen zählen die
+    # weibliche und die sächliche Form (auch), dazu die Ziffer mit Punkt: „4.“ bei četvrti
+    # (O-F3, ordnungsZiffer() in web/js/pruefen.js). prvi, drugi und treći stehen in mengen.
+    {"id": "ordnungszahlen", "label": "Ordnungszahlen", "sektion": "zeitfreizeit", "tipp": "Der vierte, der zehnte, der hundertste: Stockwerk, Datum, Geburtstag und wie oft schon.",
+     "baut_auf": ["zeitangaben", "mengen"],
+     "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz, von vier bis tausend (27.11.2026)
+     "words": [
+        {"de": "der vierte",                   "bs": "četvrti", "auch": ["četvrta", "četvrto"]},
+        {"de": "Wir wohnen im vierten Stock, und der Aufzug geht nicht.", "bs": "Živimo na četvrtom spratu, a lift ne radi."},
+        {"de": "der fünfte",                   "bs": "peti", "auch": ["peta", "peto"]},
+        {"de": "Mein Gehalt bekomme ich am Fünften des Monats.", "bs": "Platu dobivam petog u mjesecu."},
+        {"de": "der sechste",                  "bs": "šesti", "auch": ["šesta", "šesto"]},
+        {"de": "Mein Sohn geht in die sechste Klasse.", "bs": "Moj sin ide u šesti razred."},
+        {"de": "der siebte",                   "bs": "sedmi", "auch": ["sedma", "sedmo"]},
+        {"de": "Das ist schon das siebte Mal, dass du zu spät kommst!", "bs": "Ovo je već sedmi put da kasniš!"},
+        {"de": "der achte",                    "bs": "osmi", "auch": ["osma", "osmo"]},
+        {"de": "Der achte März ist der Frauentag.", "bs": "Osmi mart je Dan žena."},
+        {"de": "der neunte",                   "bs": "deveti", "auch": ["deveta", "deveto"]},
+        {"de": "Unsere Mannschaft steht auf dem neunten Platz in der Liga.", "bs": "Naša ekipa je na devetom mjestu u ligi."},
+        {"de": "der zehnte",                   "bs": "deseti", "auch": ["deseta", "deseto"]},
+        {"de": "Ich bin am zehnten Oktober geboren.", "bs": "Rođen sam desetog oktobra."},
+        {"de": "der elfte",                    "bs": "jedanaesti", "auch": ["jedanaesta", "jedanaesto"]},
+        {"de": "Unser Büro ist im elften Stock.", "bs": "Naša kancelarija je na jedanaestom spratu."},
+        {"de": "der zwölfte",                  "bs": "dvanaesti", "auch": ["dvanaesta", "dvanaesto"]},
+        {"de": "Der Dezember ist der zwölfte Monat des Jahres.", "bs": "Decembar je dvanaesti mjesec u godini."},
+        {"de": "der zwanzigste",               "bs": "dvadeseti", "auch": ["dvadeseta", "dvadeseto"]},
+        {"de": "Heute feiern wir den zwanzigsten Geburtstag meiner Schwester.", "bs": "Danas slavimo sestrin dvadeseti rođendan."},
+        {"de": "der einundzwanzigste",         "bs": "dvadeset prvi", "auch": ["dvadeset prva", "dvadeset prvo"]},
+        {"de": "Wir leben im einundzwanzigsten Jahrhundert.", "bs": "Živimo u dvadeset prvom stoljeću."},
+        {"de": "der dreißigste",               "bs": "trideseti", "auch": ["trideseta", "trideseto"]},
+        {"de": "Die Miete wird bis zum Dreißigsten des Monats bezahlt.", "bs": "Kirija se plaća do tridesetog u mjesecu."},
+        {"de": "der fünfzigste",               "bs": "pedeseti", "auch": ["pedeseta", "pedeseto"]},
+        {"de": "Papa feiert seinen fünfzigsten Geburtstag.", "bs": "Babo slavi pedeseti rođendan."},
+        {"de": "der hundertste",               "bs": "stoti", "auch": ["stota", "stoto"]},
+        {"de": "Das sage ich dir schon zum hundertsten Mal!", "bs": "Ovo ti govorim već stoti put!"},
+        {"de": "der tausendste",               "bs": "hiljaditi", "auch": ["hiljadita", "hiljadito"]},
+        {"de": "Er war der tausendste Besucher und hat einen Preis bekommen.", "bs": "Bio je hiljaditi posjetilac i dobio je nagradu."},
+    ]},
+
     {"id": "sofort_endlich", "label": "Sofort, gerade, endlich", "sektion": "zeitfreizeit", "tipp": "Noch, wieder, erst, für immer: kleine Wörter für die Zeit.",
      "baut_auf": ["zeitangaben", "vergangenheit"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (01.11.2026)
@@ -4423,6 +4556,17 @@ KATEGORIEN = [
         {"de": "Ich habe um sechs Training.", "bs": "Imam trening u šest."},
         {"de": "üben / trainieren",          "bs": "vježbati"},
         {"de": "Du musst mehr üben.",        "bs": "Moraš više vježbati."},
+        # K2 (20.11.2026): neu
+        {"de": "Torwart",                      "bs": "golman"},
+        {"de": "Unser Torwart ist der beste der Liga.", "bs": "Naš golman je najbolji u ligi."},
+        {"de": "Tennis",                       "bs": "tenis"},
+        {"de": "Samstags spiele ich mit einem Freund Tennis.", "bs": "Subotom igram tenis s prijateljem."},
+        {"de": "Volleyball",                   "bs": "odbojka"},
+        {"de": "Im Sommer spielen wir am Strand Volleyball.", "bs": "Ljeti na plaži igramo odbojku."},
+        {"de": "Trikot",                       "bs": "dres"},
+        {"de": "Ich habe meinem Sohn das Trikot der Nationalmannschaft gekauft.", "bs": "Kupio sam sinu dres reprezentacije."},
+        {"de": "unentschieden",                "bs": "neriješeno"},
+        {"de": "Das Spiel endete unentschieden.", "bs": "Utakmica je završila neriješeno."},
     ]},
 
     {"id": "hobbys", "label": "Hobbys und Ausgehen", "sektion": "zeitfreizeit", "tipp": "Zeichnen, angeln, Kino, Konzert, Party: was man in der Freizeit macht.",
@@ -4455,6 +4599,11 @@ KATEGORIEN = [
         {"de": "Party",                      "bs": "žurka", "auch": ["zabava"]},
         {"de": "Wer kommt alles zur Party?", "bs": "Ko sve dolazi na žurku?"},
         {"de": "Lass uns ein Spiel spielen!", "bs": "Hajmo igrati neku igru!"},
+        # K2 (20.11.2026): neu
+        {"de": "Schach",                       "bs": "šah"},
+        {"de": "Opa hat mir Schach beigebracht.", "bs": "Dedo me je naučio igrati šah."},
+        {"de": "Handyspiel / Videospiel",      "bs": "igrica"},
+        {"de": "Die Kinder spielen den ganzen Tag Spiele auf dem Handy.", "bs": "Djeca cijeli dan igraju igrice na mobitelu."},
     ]},
 
     {"id": "medien", "label": "Zeitung, Fernsehen, Internet", "sektion": "zeitfreizeit", "tipp": "Nachrichten, Serie, Video, posten: was man liest, schaut und teilt.",
@@ -4490,6 +4639,9 @@ KATEGORIEN = [
         {"de": "Sie hat Fotos vom Meer gepostet.", "bs": "Objavila je slike s mora."},
         {"de": "Schauspieler",               "bs": "glumac"},
         {"de": "Dieser Schauspieler kommt aus Sarajevo.", "bs": "Taj glumac je iz Sarajeva."},
+        # K2 (20.11.2026): neu
+        {"de": "Zeichentrickfilm",             "bs": "crtani film", "auch": ["crtani"]},
+        {"de": "Die Kinder schauen jeden Morgen Zeichentrickfilme.", "bs": "Djeca svako jutro gledaju crtane filmove."},
     ]},
 
     {"id": "urlaub", "label": "Reisen und Urlaub", "sektion": "zeitfreizeit", "tipp": "Strand, Unterkunft, Koffer packen, reservieren: unterwegs in den Ferien.",
@@ -4522,6 +4674,13 @@ KATEGORIEN = [
         {"de": "Ich habe für Samstagabend einen Tisch reserviert.", "bs": "Rezervisala sam sto za subotu navečer."},
         {"de": "Fahrplan",                   "bs": "red vožnje"},
         {"de": "Wo kann ich den Fahrplan sehen?", "bs": "Gdje mogu vidjeti red vožnje?"},
+        # K2 (20.11.2026): neu
+        {"de": "Sonnenbrille",                 "bs": "sunčane naočale", "auch": ["sunčane naočare"]},
+        {"de": "Wo ist meine Sonnenbrille?", "bs": "Gdje su moje sunčane naočale?"},
+        {"de": "Badeanzug",                    "bs": "kupaći kostim"},
+        {"de": "Pack den Badeanzug ein, wir fahren ans Meer.", "bs": "Spakuj kupaći kostim, idemo na more."},
+        {"de": "Boot",                         "bs": "čamac"},
+        {"de": "Wir haben auf dem See ein Boot gemietet.", "bs": "Unajmili smo čamac na jezeru."},
     ]},
 
     # ---- Sektion 14 · Lernen und Arbeiten: Wortschatz-Paket 4 (01.11.2026) ----
@@ -4563,6 +4722,9 @@ KATEGORIEN = [
         {"de": "Sprich mir nach!",           "bs": "Ponovi za mnom!"},
         {"de": "wiederholen",                "bs": "ponavljati", "partner": "ponoviti"},
         {"de": "Wie oft muss ich dir das noch wiederholen?", "bs": "Koliko puta ti moram ponavljati?"},
+        # K2 (20.11.2026): neu
+        {"de": "Lehrer (Grundschule)",         "bs": "učitelj"},
+        {"de": "Unser Lehrer hat uns das Schreiben beigebracht.", "bs": "Naš učitelj nas je naučio pisati."},
     ]},
 
     {"id": "lernen_studieren", "label": "Lernen und studieren", "sektion": "lernenarbeiten", "tipp": "Sich merken, rechnen, übersetzen, studieren: vom Buchstaben bis zur Uni.",
@@ -4637,6 +4799,11 @@ KATEGORIEN = [
         {"de": "In der Fabrik arbeiten fünfhundert Arbeiter.", "bs": "U fabrici radi petsto radnika."},
         {"de": "Postbote",                   "bs": "poštar"},
         {"de": "Ist der Postbote schon gekommen?", "bs": "Je li poštar već došao?"},
+        # K2 (20.11.2026): neu
+        {"de": "Fliesenleger",                 "bs": "keramičar"},
+        {"de": "Der Fliesenleger kommt morgen, um im Bad die Fliesen zu verlegen.", "bs": "Keramičar dolazi sutra da postavi pločice u kupatilu."},
+        {"de": "Maler (Anstreicher)",          "bs": "soboslikar"},
+        {"de": "Der Maler kommt am Montag, um unsere Wohnung zu streichen.", "bs": "Soboslikar dolazi u ponedjeljak da nam okreči stan."},
     ]},
 
     {"id": "arbeitsplatz", "label": "Am Arbeitsplatz", "sektion": "lernenarbeiten", "tipp": "Schicht, Baustelle, Besprechung, Gehaltserhöhung: der Alltag bei der Arbeit.",
@@ -4673,6 +4840,9 @@ KATEGORIEN = [
         {"de": "Studenten müssen ein Praktikum machen.", "bs": "Studenti moraju odraditi praksu."},
         {"de": "Werktag",                    "bs": "radni dan"},
         {"de": "An Werktagen stehe ich um sechs auf.", "bs": "Radnim danima ustajem u šest."},
+        # K2 (20.11.2026): neu
+        {"de": "Erholung",                     "bs": "odmor"},
+        {"de": "Nach so einer Woche brauche ich Erholung.", "bs": "Poslije ovakve sedmice treba mi odmor."},
     ]},
 
     # Wortschatz-Paket 5 (06.11.2026): Sektion 15 · Grundbegriffe, 148 Hauptwoerter je mit
@@ -5590,6 +5760,9 @@ KATEGORIEN = [
         {"de": "Ich muss dir dringend etwas sagen.", "bs": "Moram ti nešto hitno reći."},
         {"de": "häufig",                      "bs": "čest", "auch": ["česta", "često"]},
         {"de": "Das ist ein häufiger Fehler.", "bs": "To je česta greška."},
+        # K2 (20.11.2026): neu
+        {"de": "schmutzig (der schmutzige)",   "bs": "prljav", "auch": ["prljava", "prljavo"]},
+        {"de": "Stell keinen schmutzigen Teller in den Schrank.", "bs": "Ne stavljaj prljav tanjir u ormar."},
     ]},
 
     {"id": "hier_dort", "label": "Hier und dort", "sektion": "wiewowann", "tipp": "Da, oben, unten, irgendwo, nirgendwo, zurück: kleine Wörter für den Ort.",
@@ -6200,6 +6373,11 @@ KATEGORIEN = [
         {"de": "Dieser Schüler verdient ein Lob.", "bs": "Ovaj učenik zaslužuje pohvalu."},
         {"de": "Schulbildung",                "bs": "školovanje"},
         {"de": "Die Schulbildung der Kinder kostet viel Geld.", "bs": "Školovanje djece košta mnogo novca."},
+        # K2 (20.11.2026): neu
+        {"de": "Pubertät",                     "bs": "pubertet"},
+        {"de": "Unser Sohn ist in die Pubertät gekommen.", "bs": "Naš sin je ušao u pubertet."},
+        {"de": "Teenager",                     "bs": "tinejdžer"},
+        {"de": "Als Teenager habe ich ständig Musik gehört.", "bs": "Kao tinejdžer sam stalno slušao muziku."},
     ]},
 
     {"id": "familie_generationen", "label": "Familie und Generationen", "sektion": "denkenmeinen", "tipp": "Herkunft, Vorfahr, Enkel, Zwilling, Witwe, Schwiegereltern: die ganze Verwandtschaft.",
@@ -6244,6 +6422,25 @@ KATEGORIEN = [
         {"de": "Die Schwiegermutter hat uns zum Mittagessen eingeladen.", "bs": "Punica nas je pozvala na ručak."},
         {"de": "Schwiegervater (Vater der Frau)", "bs": "punac"},
         {"de": "Mein Schwiegervater und ich gehen zusammen angeln.", "bs": "Punac i ja idemo zajedno na pecanje."},
+        # K2 (20.11.2026): neu
+        {"de": "Enkelkind",                    "bs": "unuče"},
+        {"de": "Wir haben unser erstes Enkelkind bekommen.", "bs": "Dobili smo prvo unuče."},
+        {"de": "Witwer",                       "bs": "udovac"},
+        {"de": "Opa ist schon seit zehn Jahren Witwer.", "bs": "Dedo je udovac već deset godina."},
+        {"de": "Schwager (Bruder des Ehemanns)", "bs": "djever"},
+        {"de": "Bei der Hochzeit hat der Bruder des Bräutigams die Braut begleitet.", "bs": "Na svadbi je djever pratio mladu."},
+        {"de": "Schwager (Bruder der Ehefrau)", "bs": "šurjak"},
+        {"de": "Der Bruder meiner Frau arbeitet in Deutschland.", "bs": "Moj šurjak radi u Njemačkoj."},
+        {"de": "Schwager (Mann der Schwester der Ehefrau)", "bs": "badžo"},
+        {"de": "Mit dem Mann der Schwester meiner Frau gehe ich jeden Samstag angeln.", "bs": "S badžom svake subote idem na pecanje."},
+        {"de": "Schwägerin (Schwester des Ehemanns)", "bs": "zaova"},
+        {"de": "Meine Frau versteht sich sehr gut mit ihrer Schwägerin.", "bs": "Moja žena se odlično slaže sa svojom zaovom."},
+        {"de": "Schwägerin (Frau des Bruders des Ehemanns)", "bs": "jetrva"},
+        {"de": "Meine Frau und ihre Schwägerin kochen zusammen für Bajram.", "bs": "Moja žena i njena jetrva zajedno kuhaju za Bajram."},
+        {"de": "Schwägerin (Schwester der Ehefrau)", "bs": "balduza"},
+        {"de": "Die Schwester meiner Frau kommt am Wochenende zu Besuch.", "bs": "Balduza nam dolazi u goste za vikend."},
+        {"de": "Schwägerin (Frau des Bruders der Ehefrau)", "bs": "šurnjaja"},
+        {"de": "Die Frau vom Bruder meiner Frau hat uns eine Pita gebacken.", "bs": "Šurnjaja nam je ispekla pitu."},
     ]},
 
     {"id": "liebe_ehe", "label": "Liebe und Ehe", "sektion": "denkenmeinen", "tipp": "Leidenschaft, Trauung, Kuss, Eifersucht, treu, Verlobung: wenn zwei sich lieben.",
@@ -6280,6 +6477,19 @@ KATEGORIEN = [
         {"de": "Vor der Trauung waren sie drei Jahre ein Paar.", "bs": "Zabavljali su se tri godine prije vjenčanja."},
         {"de": "Verlobung",                   "bs": "vjeridba", "auch": ["zaruke"]},
         {"de": "Die Verlobung war letzten Samstag.", "bs": "Vjeridba je bila prošle subote."},
+        # K2 (20.11.2026): neu
+        {"de": "Ring",                         "bs": "prsten"},
+        {"de": "Sie hat ihren Ring am Strand verloren.", "bs": "Izgubila je prsten na plaži."},
+        {"de": "Ehering",                      "bs": "burma"},
+        {"de": "Er trägt den Ehering an der rechten Hand.", "bs": "Nosi burmu na desnoj ruci."},
+        {"de": "sich scheiden lassen",         "bs": "razvesti se"},
+        {"de": "Sie haben sich letztes Jahr scheiden lassen.", "bs": "Razveli su se prošle godine."},
+        {"de": "geschieden",                   "bs": "razveden", "auch": ["razvedena"]},
+        {"de": "Mein Nachbar ist geschieden und lebt allein.", "bs": "Moj komšija je razveden i živi sam."},
+        {"de": "einen Heiratsantrag machen",   "bs": "zaprositi"},
+        {"de": "Ich habe ihr auf der Alten Brücke einen Heiratsantrag gemacht.", "bs": "Zaprosio sam je na Starom mostu."},
+        {"de": "Heiratsantrag",                "bs": "prosidba"},
+        {"de": "Der Heiratsantrag war eine Überraschung für die ganze Familie.", "bs": "Prosidba je bila iznenađenje za cijelu porodicu."},
     ]},
 
     {"id": "streit_versoehnung", "label": "Streit und Versöhnung", "sektion": "denkenmeinen", "tipp": "Ärger, Beleidigung, Missverständnis, Versöhnung, verzeihen: streiten und sich wieder vertragen.",
@@ -6378,6 +6588,11 @@ KATEGORIEN = [
         {"de": "Diese Sängerin begeistert das Publikum immer.", "bs": "Ova pjevačica uvijek oduševljava publiku."},
         {"de": "erfreuen",                    "bs": "obradovati"},
         {"de": "Deine Nachricht hat mich sehr gefreut.", "bs": "Tvoja poruka me je jako obradovala."},
+        # K2 (20.11.2026): neu
+        {"de": "Neid",                         "bs": "zavist"},
+        {"de": "Neid ist eine hässliche Eigenschaft.", "bs": "Zavist je ružna osobina."},
+        {"de": "neidisch",                     "bs": "zavidan", "auch": ["zavidna", "zavidno"]},
+        {"de": "Er ist nicht neidisch, er freut sich über den Erfolg anderer.", "bs": "Nije zavidan, raduje se tuđem uspjehu."},
     ]},
 
     {"id": "charakter", "label": "Charakter", "sektion": "denkenmeinen", "tipp": "Verhalten, Weisheit, Geduld, bescheiden, gerecht, reif: wie ein Mensch ist.",
@@ -6420,6 +6635,9 @@ KATEGORIEN = [
         {"de": "Du hast dir diesen Urlaub wirklich verdient.", "bs": "Stvarno si zaslužila ovaj odmor."},
         {"de": "verdienen (moralisch)",       "bs": "zasluživati", "partner": "zaslužiti"},
         {"de": "Sie verdient ein besseres Leben.", "bs": "Ona zaslužuje bolji život."},
+        # K2 (20.11.2026): neu
+        {"de": "großzügig",                    "bs": "darežljiv", "auch": ["darežljiva", "darežljivo"]},
+        {"de": "Papa war immer großzügig zu den Nachbarn.", "bs": "Babo je uvijek bio darežljiv prema komšijama."},
     ]},
 
     {"id": "trauer_beileid", "label": "Trauer und Beileid", "sektion": "denkenmeinen", "tipp": "Versterben, Trauer, Grab, Trost, Gedenkfeier, Beileid: wenn jemand stirbt.",
@@ -6458,6 +6676,9 @@ KATEGORIEN = [
         {"de": "Nehmen Sie mein aufrichtiges Beileid entgegen.", "bs": "Primite moje iskreno saučešće."},
         {"de": "Mitgefühl",                   "bs": "suosjećanje", "auch": ["saosjećanje"]},
         {"de": "Danke für Ihr Mitgefühl und Ihre Unterstützung.", "bs": "Hvala Vam na suosjećanju i podršci."},
+        # K2 (20.11.2026): neu
+        {"de": "Testament",                    "bs": "oporuka"},
+        {"de": "Opa hat vor seinem Tod ein Testament geschrieben.", "bs": "Dedo je prije smrti napisao oporuku."},
     ]},
 
     {"id": "begegnen_versammeln", "label": "Begegnen und versammeln", "sektion": "denkenmeinen", "tipp": "Begegnung, Siedlung, Kontakt, versammeln, empfangen, sich anschließen: zusammenkommen.",
@@ -6930,6 +7151,9 @@ KATEGORIEN = [
         {"de": "Die Polizei hat eine Mitteilung zum Unfall herausgegeben.", "bs": "Policija je izdala saopćenje o nesreći."},
         {"de": "Neuigkeit",                   "bs": "novost"},
         {"de": "Gibt es etwas Neues?",        "bs": "Ima li kakvih novosti?"},
+        # K2 (20.11.2026): neu
+        {"de": "Moderator (Fernsehen)",        "bs": "voditelj"},
+        {"de": "Der Moderator begrüßte die Gäste im Studio.", "bs": "Voditelj je pozdravio goste u studiju."},
     ]},
 
     {"id": "berichten_verbreiten", "label": "Berichten und verbreiten", "sektion": "medienkultur", "tipp": "Mitteilen, Redakteur, berichten, Umfrage, Ereignis, notieren, verbreiten: Nachrichten machen.",
@@ -6996,6 +7220,9 @@ KATEGORIEN = [
         {"de": "Diese Werbung hat meine Aufmerksamkeit auf sich gezogen.", "bs": "Ta reklama mi je privukla pažnju."},
         {"de": "anziehen (Interesse)",        "bs": "privlačiti", "partner": "privući"},
         {"de": "Die Altstadt zieht viele Touristen an.", "bs": "Stari grad privlači mnogo turista."},
+        # K2 (20.11.2026): neu
+        {"de": "Plakat",                       "bs": "plakat"},
+        {"de": "An der Wand hing ein Plakat für das Konzert.", "bs": "Na zidu je visio plakat za koncert."},
     ]},
 
     {"id": "theater_musik", "label": "Theater und Musik", "sektion": "medienkultur", "tipp": "Festival, Bühne, Auftritt, Veranstaltung, auftreten, Drama: auf der Bühne.",
@@ -7192,6 +7419,11 @@ KATEGORIEN = [
         {"de": "Die globale Erwärmung ist ein ernstes Problem.", "bs": "Globalno zagrijavanje je ozbiljan problem."},
         {"de": "Lebewesen / Wesen",           "bs": "biće"},
         {"de": "Der Mensch ist ein soziales Wesen.", "bs": "Čovjek je društveno biće."},
+        # K2 (20.11.2026): neu
+        {"de": "Plastik",                      "bs": "plastika"},
+        {"de": "Plastik verschmutzt Flüsse und das Meer.", "bs": "Plastika zagađuje rijeke i more."},
+        {"de": "Recycling",                    "bs": "reciklaža"},
+        {"de": "Recycling spart Energie und Rohstoffe.", "bs": "Reciklaža štedi energiju i sirovine."},
     ]},
 
     {"id": "naturkatastrophen", "label": "Naturkatastrophen", "sektion": "medienkultur", "tipp": "Überschwemmung, Katastrophe, Rettung, Erdbeben, Erdrutsch, Unwetter, Dürre: wenn die Natur zuschlägt.",
@@ -7654,6 +7886,11 @@ KATEGORIEN = [
         {"de": "Die Vertragsauflösung kostet hundert Mark.", "bs": "Raskid ugovora košta sto maraka."},
         {"de": "besitzen",                    "bs": "posjedovati"},
         {"de": "Er besitzt drei Häuser.",     "bs": "On posjeduje tri kuće."},
+        # K2 (20.11.2026): neu
+        {"de": "Erbschaft",                    "bs": "nasljedstvo"},
+        {"de": "Das Haus haben sie geerbt.", "bs": "Kuću su dobili u nasljedstvo."},
+        {"de": "erben",                        "bs": "naslijediti"},
+        {"de": "Er hat die Wohnung von seiner Tante geerbt.", "bs": "Naslijedio je stan od tetke."},
     ]},
 
     {"id": "auf_dem_amt", "label": "Auf dem Amt", "sektion": "gesellschaftpolitik", "tipp": "Anmeldung, Aufenthalt, Liste, Urkunde, Visum, Gesuch, Protokoll, beglaubigen: Papiere fürs Amt.",
@@ -7838,6 +8075,9 @@ KATEGORIEN = [
         {"de": "Kinder dürfen nicht mit Streichhölzern spielen.", "bs": "Djeca se ne smiju igrati šibicama."},
         {"de": "Kamm",                        "bs": "češalj"},
         {"de": "Ich habe immer einen Kamm in der Tasche.", "bs": "Uvijek nosim češalj u džepu."},
+        # K2 (20.11.2026): neu
+        {"de": "Schere",                       "bs": "makaze"},
+        {"de": "Gib mir die Schere, damit ich das Paket aufmache.", "bs": "Daj mi makaze da otvorim paket."},
     ]},
 
     {"id": "raeume_moebel", "label": "Räume und Möbel", "sektion": "hauswohnung", "tipp": "Raum, Flur, Hoftor, Fliese, Sessel, Treppenhaus, Heizkörper, Badewanne: im ganzen Haus.",
@@ -8566,6 +8806,11 @@ KATEGORIEN = [
         {"de": "Morgen gehe ich zu einem Seminar über Marketing.", "bs": "Sutra idem na seminar o marketingu."},
         {"de": "zitieren",                    "bs": "citirati"},
         {"de": "Er hat einen bekannten Schriftsteller zitiert.", "bs": "Citirao je poznatog pisca."},
+        # K2 (20.11.2026): neu
+        {"de": "Mensa",                        "bs": "menza"},
+        {"de": "Wir essen in der Mensa zu Mittag.", "bs": "Ručamo u studentskoj menzi."},
+        {"de": "Studentenwohnheim",            "bs": "studentski dom"},
+        {"de": "Im ersten Jahr habe ich im Studentenwohnheim gewohnt.", "bs": "Prve godine sam živio u studentskom domu."},
     ]},
 
     {"id": "abschluss_titel", "label": "Abschluss und Titel", "sektion": "schulewissen", "tipp": "Stipendium, Dozent, Zitat, Rektor, Aufsatz, Magister, Semester, Doktortitel, Master: bis zum Abschluss.",
@@ -8990,6 +9235,9 @@ KATEGORIEN = [
         {"de": "Der Bahnhof ist nahe am Zentrum.", "bs": "Željeznička stanica je blizu centra."},
         {"de": "Übergang / Kreuzung",         "bs": "prijelaz / prelaz"},
         {"de": "Der Übergang über den Fluss ist gesperrt.", "bs": "Prijelaz preko rijeke je zatvoren."},
+        # K2 (20.11.2026): neu
+        {"de": "Helm",                         "bs": "kaciga"},
+        {"de": "Ohne Helm setz dich nicht aufs Motorrad.", "bs": "Bez kacige ne sjedaj na motor."},
     ]},
 
     {"id": "autofahren", "label": "Autofahren", "sektion": "stadtreisen", "tipp": "Werkstatt, beschleunigen, verlangsamen, Zusammenstoß, Diesel, Lenkrad, Getriebe, bremsen: am Steuer.",
@@ -9240,6 +9488,15 @@ KATEGORIEN = [
         {"de": "Das Männchen ist größer als das Weibchen.", "bs": "Mužjak je veći od ženke."},
         {"de": "Kamel",                       "bs": "deva"},
         {"de": "Ein Kamel kommt lange ohne Wasser aus.", "bs": "Deva može dugo bez vode."},
+        # K2 (20.11.2026): neu
+        {"de": "Hai",                          "bs": "ajkula"},
+        {"de": "Im Adriatischen Meer gibt es selten Haie.", "bs": "U Jadranskom moru rijetko ima ajkula."},
+        {"de": "Krokodil",                     "bs": "krokodil"},
+        {"de": "Das Krokodil lag am Flussufer.", "bs": "Krokodil je ležao na obali rijeke."},
+        {"de": "Giraffe",                      "bs": "žirafa"},
+        {"de": "Die Giraffe hat einen sehr langen Hals.", "bs": "Žirafa ima jako dug vrat."},
+        {"de": "Papagei",                      "bs": "papagaj"},
+        {"de": "Der Papagei des Nachbarn kann ein paar Wörter.", "bs": "Komšijin papagaj zna nekoliko riječi."},
     ]},
 
     {"id": "pflanzen_anbau", "label": "Pflanzen und Anbau", "sektion": "stadtreisen", "tipp": "Frucht, Baumstamm, Rinde, Anbau, Rose, Samen, Weizen, Laub, säen: was wächst.",
@@ -9272,6 +9529,9 @@ KATEGORIEN = [
         {"de": "Der Nachbar baut Erdbeeren im Gewächshaus an.", "bs": "Komšija uzgaja jagode u plasteniku."},
         {"de": "anbauen / züchten",           "bs": "uzgojiti", "partner": "uzgajati"},
         {"de": "Diese Tomaten haben wir selbst gezogen.", "bs": "Sami smo uzgojili ovaj paradajz."},
+        # K2 (20.11.2026): neu
+        {"de": "Sonnenblume",                  "bs": "suncokret"},
+        {"de": "Das Feld war voller Sonnenblumen.", "bs": "Polje je bilo puno suncokreta."},
     ]},
 
     {"id": "ernten_pflanzen", "label": "Ernten und pflanzen", "sektion": "stadtreisen", "tipp": "Birke, Getreide, Lilie, Setzling, pflücken, pflanzen, Eiche, Dünger, Ernte: im Garten und auf dem Feld.",
@@ -9304,6 +9564,15 @@ KATEGORIEN = [
         {"de": "Der Garten braucht natürlichen Dünger.", "bs": "Bašti treba prirodno gnojivo."},
         {"de": "Getreideernte",               "bs": "žetva"},
         {"de": "Im Juli beginnt die Weizenernte.", "bs": "U julu počinje žetva pšenice."},
+        # K2 (20.11.2026): neu
+        {"de": "Buche",                        "bs": "bukva"},
+        {"de": "Die Buche ist der häufigste Baum in den bosnischen Wäldern.", "bs": "Bukva je najčešće drvo u bosanskim šumama."},
+        {"de": "Fichte",                       "bs": "smreka"},
+        {"de": "Auf dem Berg wachsen hohe Fichten.", "bs": "Na planini rastu visoke smreke."},
+        {"de": "Tulpe",                        "bs": "lala"},
+        {"de": "Im Frühling blühen im Garten Tulpen.", "bs": "U proljeće u bašti cvjetaju lale."},
+        {"de": "Tanne",                        "bs": "jela"},
+        {"de": "Die Tanne bleibt auch im Winter grün.", "bs": "Jela ostaje zelena i u zimi."},
     ]},
 
     {"id": "bewegen_verschieben", "label": "Bewegen und verschieben", "sektion": "handelnveraendern", "tipp": "Fangen, herausziehen, verlegen, hineintun, entfernen, herausfallen, zugehen auf: Dinge und sich selbst bewegen.",

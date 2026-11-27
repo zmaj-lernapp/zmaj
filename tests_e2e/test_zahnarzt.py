@@ -117,7 +117,8 @@ def test_ohne_wort_ist_nichts_zu_sehen(seite, heute_stand):
     _heim(seite)
     assert seite.page.locator(SEKTION).count() == 0
     z = seite.js(ZAHLEN)
-    assert z["sektionen"] == 27 and z["level"] == 297 and z["woerter"] == 7997 and z["wortkarte"] is False
+    # 298 Level und 8 191 Eintraege seit K2 und K7 (27.11.2026)
+    assert z["sektionen"] == 27 and z["level"] == 298 and z["woerter"] == 8191 and z["wortkarte"] is False
     assert seite.js("() => [zaAn(), zaSchalter.an, !!ZA, standAlsObjekt().zahnarzt.an]") == [False, False, True, False]
     assert seite.js("() => document.querySelector('#sections').textContent.includes('Beim Zahnarzt')") is False
     # Kein eigener Eintrag im Geraetespeicher, und nichts laedt nach
@@ -387,7 +388,7 @@ def test_ganz_fertig_feiert_nichts_aus_dem_lernpfad(seite, heute_stand):
     alle = seite.js("() => CATEGORIES.map(c => c.id)")
     seite.starten(stand=heute_stand(bestanden=alle, zahnarzt={"an": True, "z": 1000}))
     vorher = seite.js(ZAHLEN)
-    assert vorher["firstOpen"] == 296      # das letzte der 297 Level (seit 13.11.2026)
+    assert vorher["firstOpen"] == 297      # das letzte der 298 Level (seit 27.11.2026, vorher 297)
     # Bis auf das letzte Level des Teils
     seite.js("() => { zaLevel().slice(0, -1).forEach(c => passed.add(c.id)); }")
     seite.js("() => { openLevel(CATEGORIES.length + 6); cur().words.forEach(w => known.add(w.id)); showLevelHome(); startTest(); }")
@@ -396,7 +397,7 @@ def test_ganz_fertig_feiert_nichts_aus_dem_lernpfad(seite, heute_stand):
         weiter: !!document.getElementById('tNext'), kicker: !!document.querySelector('#tBody .kicker')})""")
     assert e["weiter"] is False and e["kicker"] is False, e
     assert seite.js("() => t('test.sektion_fertig')") in e["text"]
-    assert seite.js(ZAHLEN)["firstOpen"] == 296
+    assert seite.js(ZAHLEN)["firstOpen"] == 297      # 296 bis K7 (27.11.2026)
     assert seite.fehler == []
 
 
@@ -409,7 +410,7 @@ def test_lernstand_im_teil_zaehlt_nicht_als_gelernt(seite, heute_stand):
     assert z == {"gewusst": 0, "bestanden": 0, "einstufung": True, "roh": 2}
     _heim(seite)
     assert seite.js("() => document.getElementById('summary').textContent") == (
-        "0 von 297 Levels geschafft · 0 von 7997 Wörtern sitzen")
+        "0 von 298 Levels geschafft · 0 von 8191 Wörtern sitzen")
     assert seite.fehler == []
 
 

@@ -25,10 +25,11 @@ def _stufe_je_level(daten):
 
 
 def test_reiter_mit_ihren_sektionen_und_leveln(grunddaten):
-    """Die Tabelle aus reiter.md: A1 30 Level, A2 31, B1 107, B2 129, C1 leer."""
+    """Die Tabelle aus reiter.md: A1 30 Level, A2 31, B1 107, B2 129, C1 leer. Seit dem
+    27.11.2026 hat B1 108: Ordnungszahlen (K7) hinter Zeitangaben."""
     sek = grunddaten["sektionen"]
     stufen = _stufe_je_level(grunddaten)
-    assert [stufen.count(s) for s in ("A1", "A2", "B1", "B2", "C1")] == [30, 31, 107, 129, 0]
+    assert [stufen.count(s) for s in ("A1", "A2", "B1", "B2", "C1")] == [30, 31, 108, 129, 0]
     assert [s["id"] for s in sek if s["stufe"] == "A1"] == ["alltag", "anfassen", "tiernatur", "saetze"]
     assert [s["id"] for s in sek if s["stufe"] == "A2"] == ["zuhause2", "saetze2", "einkauf", "herkunft", "kultur"]
     assert [s["id"] for s in sek if s["stufe"] == "B1"][0] == "amt", "Amt & Verträge ist Sektion 1 von B1"
@@ -124,7 +125,7 @@ def test_beispielsaetze_bleiben_in_b1(grunddaten):
 def test_vor_umzug_ist_der_alte_inhalt(grunddaten):
     """Die Hilfe fuer die Pakettests stellt genau den alten Stand her."""
     vorher = kategorien_vor_umzug(grunddaten["kategorien"])
-    assert len(vorher) == 295
+    assert len(vorher) == 296       # 295 bis K7, seit 27.11.2026 mit dem Level Ordnungszahlen
     assert sum(len(k["words"]) for k in vorher) == sum(len(k["words"]) for k in grunddaten["kategorien"])
     hier = {k["id"]: [w["bs"] for w in k["words"]] for k in vorher}
     assert hier["hier_dort"][:3] == ["tu", "Ostavi torbu tu, pored vrata.", "ovdje"]

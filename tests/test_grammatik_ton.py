@@ -107,13 +107,18 @@ def test_b_nummern_lueckenlos_in_der_reihenfolge_der_lektionen():
     assert [e["text"] for e in neu] == [r for r in reihe if r in {x["text"] for x in neu}]
     # sammle() kennt alle 93: 15 schon als Wort aus einem B1-Text, 78 aus dem letzten Block,
     # dort in derselben Reihenfolge wie die Nummern.
+    # Seit K2 (27.11.2026) ist sedmi auch eine Vokabel (Ordnungszahlen) und kommt frueher,
+    # seine Nummer w9011 bleibt (k2_einbau.py).
+    from k2_einbau import FRUEHER_IN_SAMMLE
+    schon = SCHON_IN_SAMMLE + sorted(e["key"] for e in neu if e["key"] in FRUEHER_IN_SAMMLE)
+    assert schon[len(SCHON_IN_SAMMLE):] == ["sedmi"]
     keys = [p["key"] for p in ton_bauen.sammle()]
     assert {e["key"] for e in neu} <= set(keys)
-    start = min(keys.index(e["key"]) for e in neu if e["key"] not in SCHON_IN_SAMMLE)
+    start = min(keys.index(e["key"]) for e in neu if e["key"] not in schon)
     block = keys[start:]
-    assert len(block) == ANZAHL - len(SCHON_IN_SAMMLE)
-    assert block == [e["key"] for e in neu if e["key"] not in SCHON_IN_SAMMLE]
-    assert all(keys.index(k) < start for k in SCHON_IN_SAMMLE)
+    assert len(block) == ANZAHL - len(schon)
+    assert block == [e["key"] for e in neu if e["key"] not in schon]
+    assert all(keys.index(k) < start for k in schon)
 
 
 def test_b_wie_in_nummern_json():

@@ -20,6 +20,7 @@ was beim Einbau festgelegt wurde:
 import re
 
 import pytest
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 # Die Woerter je Level in der Reihenfolge des Pakets, ohne die Beispielsaetze.
 # Bosnisch genau so, wie Ajdin es freigegeben hat - aendert sich hier etwas,
@@ -81,7 +82,7 @@ ALTE_PARTNER = {"dolaziti": "doći", "davati": "dati", "pomagati": "pomoći", "p
 def _level(daten):
     """Die zehn Level aus Paket 1. Seit Paket 2 (31.10.2026) hat die Sektion
     vier Level mehr, die prueft tests/test_paket2.py."""
-    return [k for k in daten["kategorien"] if k["id"] in WOERTER]
+    return [k for k in ohne_k2(daten)["kategorien"] if k["id"] in WOERTER]
 
 
 def _alle(daten):

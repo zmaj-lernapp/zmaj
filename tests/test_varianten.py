@@ -40,7 +40,8 @@ WOERTER = {
     "jetzt:sada": ["sad"],
     "abend:večer": ["veče"],
     "nachbar:komšija": ["susjed"],
-    "hose:pantalone": ["hlače"],
+    # "hose:pantalone": ["hlače"] bis 27.11.2026. Seitdem heisst das Wort "pantalone / hlače"
+    # (Ajdin, 25.11.2026); mit zwei Formen ist es keine Schreibaufgabe mehr (typable()).
     "grüne bohnen:boranija": ["mahune"],
     "mayonnaise:majonez": ["majoneza"],
     "senf:senf": ["gorušica"],
@@ -109,7 +110,8 @@ WOERTER = {
     "lauch:praziluk": ["poriluk"],
     "handtuch:peškir": ["ručnik"],
     "laden:prodavnica": ["radnja", "trgovina", "dućan"],                           # 18
-    "geschäft:radnja": ["prodavnica", "trgovina", "dućan"],
+    "geschäft (kleiner laden):radnja": ["prodavnica", "trgovina", "dućan"],   # Kennung seit 27.11.2026
+    "geschäft (großer laden):trgovina": ["radnja", "prodavnica"],             # neu 27.11.2026 (Variante A)
     "hof (am haus):dvorište": ["avlija"],                     # 19
     "hof / innenhof:avlija": ["dvorište"],
     "manchmal:ponekad": ["nekad", "nekada", "katkad", "katkada"],                  # 20, nekada seit der dritten Runde
@@ -962,6 +964,33 @@ WOERTER = {
     "za|vilica": ["čeljust"],
     "za|upala desni": ["upala zubnog mesa"],
     "za|zubni konac": ["konac za zube"],
+    # K2 und K7 (27.11.2026): die 34 Paare, die erst mit den neuen Woertern gehen
+    "jeans:farmerke": ["traperice"],
+    "seit wann?:Otkad?": ["Otkada?", "Od kada?"],
+    "wecker:budilnik": ["budilica"],
+    "bettlaken:čaršaf": ["plahta"],
+    "schwamm:spužva": ["sunđer"],
+    "lineal:lenjir": ["ravnalo"],
+    "serviette:salveta": ["ubrus"],
+    "torwart:golman": ["vratar"],
+    "niesen:kihati": ["kijati"],
+    "schere:makaze": ["škare"],
+    "hai:ajkula": ["morski pas"],
+    "fichte:smreka": ["smrča"],
+    "tulpe:lala": ["tulipan"],
+    "pizza:pica": ["pizza"],
+    "e-mail:mejl": ["e-mail", "imejl"],
+    "taxifahrer:taksista": ["taksist"],
+    "trainingsanzug:trenerka": ["trenirka"],
+    "maler (anstreicher):soboslikar": ["moler"],
+    "schwager (bruder des ehemanns):djever": ["dever"],
+    "schwager (bruder der ehefrau):šurjak": ["šura"],
+    "schwager (mann der schwester der ehefrau):badžo": ["badžanak", "pašanac"],
+    "schwägerin (schwester der ehefrau):balduza": ["svastika"],
+    "testament:oporuka": ["testament"],
+    "spitzer:rezač": ["zarezač", "šiljilo"],
+    "der einundzwanzigste:dvadeset prvi": ["dvadeset i prvi", "dvadeset i prva", "dvadeset i prvo"],
+    "der tausendste:hiljaditi": ["tisućiti", "tisućita", "tisućito"],
 }
 
 # Lückensatz: Text -> zusätzliche Antworten
@@ -1477,7 +1506,7 @@ TABELLE_2C = {
          ("w", "zimmerdecke:plafon", "strop"), ("w", "fabrik:fabrika", "tvornica"),
          ("w", "aprikose:kajsija", "marelica"), ("w", "lauch:praziluk", "poriluk"),
          ("w", "handtuch:peškir", "ručnik")],
-    18: [("w", "laden:prodavnica", "radnja"), ("w", "geschäft:radnja", "prodavnica")],
+    18: [("w", "laden:prodavnica", "radnja"), ("w", "geschäft (kleiner laden):radnja", "prodavnica")],
     19: [("w", "hof (am haus):dvorište", "avlija"), ("w", "hof / innenhof:avlija", "dvorište")],
     20: [("w", "manchmal:ponekad", "nekad")],
     21: [("w", "braun:kafena", "braon"), ("w", "braun:kafena", "kahvena")],
@@ -1529,6 +1558,8 @@ GEGEN_2C = [
     ("w", "verzeih mir:Oprosti mi", "Izvini mi"),                     # nie von oprosti nach izvini
     ("w", "manchmal / früher:nekad", "ponekad"),                      # nie von nekad nach ponekad
     ("w", "handel:trgovina", "prodavnica"),                           # trgovina gehört nicht dazu
+    ("w", "handel:trgovina", "radnja"),                               # auch seit 27.11.2026 nicht (Variante A)
+    ("w", "handel:trgovina", "dućan"),
     ("w", "voll:pun", "mnogo"),                                       # puno → mnogo nur in „Hvala ___!“
     ("w", "dass:da", "je"),                                           # da → je nur in „Pitam se ___ li dolazi.“
     ("l", "Mislim ___ je dobro.", "je"),

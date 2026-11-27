@@ -127,5 +127,5 @@ def test_sektionen_zwoelf_bis_vierzehn_im_lernpfad(seite, heute_stand):
         farben: SECTIONS.slice(12, 15).map(s => sektionsNummer(s.id)),
         level: SECTIONS.slice(12, 15).map(s => CATEGORIES.filter(c => c.sektion === s.id).length)})""")
     assert e == {"sektionen": ["koerpergesundheit", "zeitfreizeit", "lernenarbeiten"], "farben": ["4", "5", "6"],
-                 "level": [8, 6, 4]}
+                 "level": [8, 7, 4]}     # Zeit und Freizeit seit 27.11.2026 mit Ordnungszahlen (K7)
     assert seite.fehler == []

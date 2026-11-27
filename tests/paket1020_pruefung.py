@@ -13,6 +13,7 @@ Emirs Ton kommt im eigenen Schritt: was noch keinen hat, steht in tests/offen_p1
 import re
 
 import offen_p1020
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 __all__ = ["pytest_generate_tests", "test_jedes_wort_steht_vor_seinem_beispielsatz", "test_auch_genau_nach_dem_paket",
            "test_was_ajdin_ausgeschlossen_hat_zaehlt_nicht", "test_partner_an_beiden_woertern",
@@ -24,7 +25,7 @@ DREI_GLEICHE = {"izvršiti", "vršiti", "izvršavati"}
 
 
 def _level(m, daten):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in m.LEVEL]
 
 

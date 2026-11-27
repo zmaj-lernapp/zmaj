@@ -1573,3 +1573,41 @@ sind als „ersetzt am 21.11.2026“ markiert.
   grada.“), dort wird nicht getippt.
 - Die Sperre in den Paket-Tests (`ZAEHLT_NICHT` in `tests/test_paket5.py`) für
   *središte* bei *centar* ist raus, die Eingabe steht nicht mehr in `GEGEN_K2`.
+
+## 25.11.2026 – Hose heißt pantalone / hlače, Geschäft als kleiner und großer Laden
+
+Ajdin am 25.11.2026 (Offen-Liste, Eingang), wörtlich: „was ich gemerkt habe die wörter
+hlace bei pantalone und trgovina bei radnja fehlen“, „denn ich sage trgovina und hlace das
+andere hab ich tatsächlich kaum gehört mach das noch für 1.5“. Zu radnja: „schreib bei
+radnja in klammern für kleine geschäfte und trgovina eher für supermarkt oder so“, dann
+„nimm kleiner und großer laden“ und „nimm a die bleiben dann getrennt und pantalone und
+hlace bleiben zusammen“. Eingebaut am 27.11.2026 (1.5).
+
+| vorher | jetzt | Kennung |
+|---|---|---|
+| Hose = *pantalone* | Hose = ***pantalone / hlače*** (zwei Formen wie *kahva / kafa*) | `hose:pantalone / hlače`, vorher `hose:pantalone` |
+| Geschäft = *radnja* | **Geschäft (kleiner Laden)** = *radnja* | `geschäft (kleiner laden):radnja`, vorher `geschäft:radnja` |
+| – | **Geschäft (großer Laden)** = *trgovina* (neu, Emir hat *trgovina* schon) | `geschäft (großer laden):trgovina` |
+
+- Lernstand, Stern, Kartei und Fehler-Topf ziehen über `UMBENANNT`
+  (`web/js/anmeldung_server.js`) auf die neue Kennung.
+- Beim Tippen zählen *radnja*, *trgovina* und *prodavnica* füreinander, an beiden
+  Geschäften. Bei „Laden“ (*prodavnica*) bleibt alles, wie es war. Bei „Handel“
+  (*trgovina*) zählt keins davon. In der Auswahl stehen die drei nie gegeneinander.
+- Mit zwei Formen ist die Hose keine Schreibaufgabe mehr, beim Sprechen zählen beide.
+  Emirs Aufnahme „pantalone, hlače“ (w10094) kommt mit dem Ton-Schritt.
+
+## 27.11.2026 – K2 und K7: neue Wörter und Ordnungszahlen
+
+Ajdin am 20.11.2026: „mach gleich alle und lass emir direkt alle sprechen“. Seine Antworten
+auf die Karten stehen in `Release/Wortschatz/k2_2026-11-20/final` (LIESMICH.md), was davon
+in der App steht, in `tests/k2_einbau.py`.
+
+- 97 neue Wörter (*patike*, *čizme*, *pomfrit*, *budilnik*, *djever*, *šurjak*, *badžo*,
+  *zaova*, *jetrva*, *balduza*, *šurnjaja*, *jela* „Tanne“ …), 66 davon mit Beispielsatz.
+- Das Level **Ordnungszahlen** hinter Zeitangaben: *četvrti* bis *hiljaditi*. Beim Tippen
+  zählen die weibliche und die sächliche Form (*četvrta*, *četvrto*), ebenso bei *prvi*,
+  *drugi* und *treći*, und die Ziffer mit Punkt („4.“ bei *četvrti*). *zadnji* war nicht
+  gefragt und bleibt.
+- 34 Formen zählen beim Tippen nur an ihrem neuen Wort (*traperice*, *škare*, *moler*,
+  *dever*, *šura*, *badžanak*, *pašanac*, *svastika*, *tisućiti* …), gezeigt wird keine.
