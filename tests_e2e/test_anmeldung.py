@@ -19,6 +19,7 @@ v109: test_ohne_projekt_alles_wie_heute.
 import datetime
 import json
 
+import pytest
 from conftest import DURCHSPIELEN
 from firebase_attrappe import CLIENT, FIREBASE, UID, Attrappe, dok_pfad, wege
 
@@ -867,6 +868,83 @@ def test_abmelden(seite, heute_stand, cloud_html):
     _mail_anmelden(seite, "ich@probe.example", "geheim-123")
     assert seite.js("() => known.has('probe:zuletzt') && known.has('probe:geraet')")
     assert seite.js("() => localStorage.getItem('zmaj_abgemeldet')") is None
+    assert seite.fehler == []
+
+
+LADEKREIS = """() => { const n = document.getElementById('setLogoutNote'), k = n.querySelector('.ladekreis');
+  return {kreis: !!k && !!k.offsetWidth, text: n.textContent, gesperrt: document.getElementById('setLogout').disabled,
+          stumm: k ? k.getAttribute('aria-hidden') : null, dreht: k ? getComputedStyle(k).animationName : null,
+          rolle: n.getAttribute('role')}; }"""
+# Haelt das letzte Hochladen an, bis der Test weiter() ruft.
+ANHALTEN = """() => { const alt = cloudAbgleich;
+  window.weiter = null; const halt = new Promise(r => { window.weiter = r; });
+  cloudAbgleich = async (...a) => { if(a[0] === 'abmelden') await halt; return alt(...a); }; }"""
+
+
+@pytest.mark.parametrize("bewegung", [True, False])
+def test_abmelden_zeigt_einen_lade_kreis(seite, heute_stand, cloud_html, bewegung):
+    """1.5, K3 (Ajdin im Handytest am 19.11.2026: Abmelden dauert, man sieht
+    nichts). Solange die App ein letztes Mal hochlaedt, dreht unter dem Knopf ein
+    Kreis neben einem kurzen Text, und der Knopf ist gesperrt. Danach: die
+    Anmeldeseite, oder bei einem Fehler die Meldung statt des Kreises und der Knopf
+    wieder frei. Ohne Bewegung steht der Kreis still."""
+    attrappe = Attrappe()
+    attrappe.konto_anlegen("ich@probe.example", "geheim-123")
+    _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    if not bewegung:
+        seite.js("() => document.body.classList.add('no-anim')")
+    seite.js("() => showKonto()")
+    assert seite.js(LADEKREIS)["kreis"] is False
+    # Firestore lehnt ab: erst der Kreis, dann die Meldung an seiner Stelle
+    attrappe.kontingent_weg = True
+    seite.js(ANHALTEN)
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => !!window.weiter && abmeldenLaeuft")
+    z = seite.js(LADEKREIS)
+    assert z["kreis"] and z["gesperrt"] and z["stumm"] == "true" and z["rolle"] == "status", z
+    assert z["text"] == _t(seite, "set.abmelden_laeuft") == "Lernstand wird gesichert …"
+    assert z["dreht"] == ("ladekreis" if bewegung else "none"), z
+    # Ein zweiter Tipp startet nichts: der Knopf ist gesperrt, und es kommt keine Rueckfrage
+    seite.page.click("#setLogout", force=True)
+    assert seite.page.locator("#frJa").count() == 0
+    # Zurueck auf die Kontoseite, waehrend es laeuft: der Kreis bleibt
+    seite.js("() => showKonto()")
+    assert seite.js(LADEKREIS)["kreis"] is True
+    seite.js("() => weiter()")
+    seite.page.wait_for_function("(soll) => document.getElementById('setLogoutNote').textContent === soll",
+                                 arg=_t(seite, "konto.fehler_allgemein"))
+    _fertig(seite)
+    z = seite.js(LADEKREIS)
+    assert not z["kreis"] and not z["gesperrt"], z
+    assert seite.js(ZUSTAND)["merker"] is not None, "angemeldet geblieben"
+    # Mit Netz: Kreis, dann die Anmeldeseite, und der Knopf ist fuers naechste Mal frei
+    attrappe.kontingent_weg = False
+    seite.js(ANHALTEN)
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => !!window.weiter && abmeldenLaeuft")
+    assert seite.js(LADEKREIS)["kreis"] is True
+    seite.js("() => weiter()")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    _fertig(seite)
+    assert seite.js(ZUSTAND)["merker"] is None
+    z = seite.js(LADEKREIS)
+    assert not z["kreis"] and not z["gesperrt"] and z["text"] == "", z
+    assert seite.fehler == []
+
+
+def test_abmelden_text_in_allen_sprachen(seite, heute_stand):
+    """Der Text unter dem Kreis steht in jeder Sprache und ist kurz."""
+    seite.starten(stand=heute_stand())
+    texte = seite.js("""async () => { const aus = {};
+        for(const code of SPRACHEN.map(s => s.code)){ await setzeSprache(code); aus[code] = t('set.abmelden_laeuft'); }
+        return aus; }""")
+    assert len(texte) == 8, texte
+    for code, text in texte.items():
+        assert text and text != "set.abmelden_laeuft" and len(text) <= 40 and text.endswith(" …"), (code, text)
+    assert len(set(texte.values())) == 8, texte
     assert seite.fehler == []
 
 

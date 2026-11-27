@@ -351,39 +351,71 @@ function kontoSeiteCloud(){
   $('setPwZeile').hidden = true; $('pwForm').style.display = 'none';
   $('setWegSub').textContent = t('set.konto_weg_sub');
   $('wegForm').style.display = 'none';
-  $('setLogoutNote').textContent = ''; $('setLogoutNote').className = 'note';
+  // Kommt man waehrend des Abmeldens zurueck, dreht der Kreis weiter (K3)
+  if(abmeldenLaeuft) abmeldenWarten(true);
+  else { $('setLogoutNote').textContent = ''; $('setLogoutNote').className = 'note'; }
+}
+/* Der Lade-Kreis beim Abmelden (1.5, K3). Ajdin im Handytest am
+   19.11.2026: Abmelden dauert, und man sieht nichts. Vor dem Abmelden
+   wartet die App auf einen laufenden Abgleich und laedt dann ein letztes
+   Mal hoch (cloudAbgleich 'abmelden') - ein paar Sekunden, bei schlechtem
+   Netz mehr. Bis dahin stand unter dem Knopf nur klein "Einen Moment …".
+   Jetzt dreht dort ein Kreis neben einem kurzen Text, bis die
+   Anmeldeseite kommt oder eine Meldung, und der Knopf ist so lange
+   gesperrt: ein zweiter Tipp startete sonst ein zweites Abmelden. Der
+   Kreis ist Schmuck (aria-hidden), vorgelesen wird der Text, denn die
+   Zeile ist role="status". Ohne Bewegung (Schalter "Animationen" oder
+   Geraeteeinstellung) steht er still, der Text sagt dasselbe. an = false
+   raeumt nur den Kreis weg, eine Meldung an seiner Stelle bleibt stehen. */
+let abmeldenLaeuft = false;
+function abmeldenWarten(an){
+  const note = $('setLogoutNote');
+  abmeldenLaeuft = an;
+  $('setLogout').disabled = an;
+  if(an){
+    note.className = 'note abmeldewarten';
+    note.innerHTML = '<span class="ladekreis" aria-hidden="true"></span><span>' + esc(t('set.abmelden_laeuft')) + '</span>';
+  } else if(note.querySelector('.ladekreis')){
+    note.className = 'note'; note.textContent = '';
+  }
 }
 async function cloudAbmeldenGanz(){
+  if(abmeldenLaeuft) return;
   const note = $('setLogoutNote');
   note.className = 'note'; note.textContent = '';
   if(navigator.onLine === false){ note.textContent = t('set.abmelden_netz'); note.className = 'note feedback no'; return; }
   if(!await frage(t('set.abmelden'), t('set.abmelden_frage'), t('set.abmelden'), t('btn.dialog_abbrechen'))) return;
-  note.textContent = t('konto.laeuft');
-  await saveProgress();
-  // Laeuft gerade ein Abgleich (etwa vom Start), auf ihn warten.
-  for(let i = 0; cloudLaeuft && i < 60; i++) await new Promise(f => setTimeout(f, 500));
-  cloudFehlerGrund = '';
-  const r = await cloudAbgleich('abmelden');
-  /* Hat Firebase die Anmeldung eben selbst fuer ungueltig erklaert
-     (cloudVonAussenAbgemeldet), ist der Merker schon weg und abgemeldet
-     ist man schon. Hochladen ging dann nicht mehr, der Lernstand auf dem
-     Geraet ist die einzige aktuelle Kopie. Er bleibt stehen, und die
-     naechste Anmeldung fuehrt ihn mit dem Konto zusammen - wie beim Start.
-     Gegenpruefung 28.10.2026: bis dahin leerte abmeldenFertig() ihn hier,
-     und alles seit dem letzten Hochladen war weg. */
-  if(!cloudMerker()){ note.textContent = ''; anmeldungZeigen('abgemeldet'); return; }
-  /* "Brauchst du Internet" nur, wenn es am Netz lag - nicht, wenn Firebase
-     ablehnt, etwa mit 429, weil das Tageskontingent aufgebraucht ist
-     (Gegenpruefung 28.10.2026). */
-  if(r !== 'gespeichert' && r !== 'unveraendert'){
-    note.textContent = t(cloudFehlerGrund === 'netz' ? 'set.abmelden_netz' : 'konto.fehler_allgemein');
-    note.className = 'note feedback no';
-    return;
+  abmeldenWarten(true);
+  try{
+    await saveProgress();
+    // Laeuft gerade ein Abgleich (etwa vom Start), auf ihn warten.
+    for(let i = 0; cloudLaeuft && i < 60; i++) await new Promise(f => setTimeout(f, 500));
+    cloudFehlerGrund = '';
+    const r = await cloudAbgleich('abmelden');
+    /* Hat Firebase die Anmeldung eben selbst fuer ungueltig erklaert
+       (cloudVonAussenAbgemeldet), ist der Merker schon weg und abgemeldet
+       ist man schon. Hochladen ging dann nicht mehr, der Lernstand auf dem
+       Geraet ist die einzige aktuelle Kopie. Er bleibt stehen, und die
+       naechste Anmeldung fuehrt ihn mit dem Konto zusammen - wie beim Start.
+       Gegenpruefung 28.10.2026: bis dahin leerte abmeldenFertig() ihn hier,
+       und alles seit dem letzten Hochladen war weg. */
+    if(!cloudMerker()){ anmeldungZeigen('abgemeldet'); return; }
+    /* "Brauchst du Internet" nur, wenn es am Netz lag - nicht, wenn Firebase
+       ablehnt, etwa mit 429, weil das Tageskontingent aufgebraucht ist
+       (Gegenpruefung 28.10.2026). */
+    if(r !== 'gespeichert' && r !== 'unveraendert'){
+      note.textContent = t(cloudFehlerGrund === 'netz' ? 'set.abmelden_netz' : 'konto.fehler_allgemein');
+      note.className = 'note feedback no';
+      return;
+    }
+    /* Der Kreis bleibt bis zur Anmeldeseite: abmeldenFertig() wartet noch
+       auf das Abmelden in der Huelle (bis zu 8 s). */
+    cloudAbmelden();
+    await abmeldenFertig();
+    anmeldungZeigen('abgemeldet');
+  }finally{
+    abmeldenWarten(false);
   }
-  note.textContent = '';
-  cloudAbmelden();
-  await abmeldenFertig();
-  anmeldungZeigen('abgemeldet');
 }
 async function abmeldenFertig(){
   cloudNativToken = null; restoreUid = '';
