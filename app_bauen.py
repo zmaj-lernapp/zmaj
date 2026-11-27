@@ -15,7 +15,8 @@ Anführungszeichen, siehe gradle().
 Dieses Skript kopiert web/ dorthin nach www/, ruft Capacitor auf und baut
 das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
 
-    app_bauen.py                 Abgleich + Debug-Paket zum Aufspielen aufs Handy
+    app_bauen.py                 Abgleich + Debug-Paket zum Aufspielen aufs Handy,
+                                 immer mit Googles Testanzeigen (seit 1.5, K11)
     app_bauen.py --aab           Abgleich + signiertes Paket für Google Play
     app_bauen.py --aab --testwerbung
                                  dasselbe mit Googles Testanzeigen – nur für
@@ -28,7 +29,9 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
                                  oder schweren Fehlern (Ajdin, 10.10.2026).
                                  Ein normaler Bau überspringt Vielfache von
                                  100, siehe naechste_versionsnummer()
-    app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen
+    app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen - ebenfalls mit
+                                 Testanzeigen, denn daraus baut gradlew
+                                 assembleDebug die Test-App
     app_bauen.py --aab --ohne-anmeldung
                                  Paket für Google Play OHNE die Anmeldung.
                                  Seit v109 (28.10.2026) ist sie Pflicht, und
@@ -216,8 +219,11 @@ TESTWERBUNG_AUS = "const ADMOB_TEST = false;"
 TESTWERBUNG_AN = "const ADMOB_TEST = true;"
 
 
-def testwerbung_einschalten(pfad=None):
+def testwerbung_einschalten(pfad=None, test_app=False):
     """Schaltet in der KOPIE www/index.html auf Googles Testanzeigen um.
+
+    test_app: fuer die Test-App (Debug-Paket, --nur-abgleich), dort immer,
+    auch ohne --testwerbung (1.5, K11) - es aendert nur die Meldung.
 
     Fuer Pakete, die in den geschlossenen Test gehen. Seit admob_scharf.py
     stehen in web/index.html die echten Kennungen, und ein Tester, der aus
@@ -238,6 +244,9 @@ def testwerbung_einschalten(pfad=None):
                          % (TESTWERBUNG_AUS, pfad))
     with io.open(pfad, "w", encoding="utf-8", newline="") as f:
         f.write(text.replace(TESTWERBUNG_AUS, TESTWERBUNG_AN))
+    if test_app:
+        print("\nTESTWERBUNG: ADMOB_TEST = true - die Test-App zeigt nur Googles Testanzeigen.")
+        return
     print("\nTESTWERBUNG: ADMOB_TEST = true im Paket. Nur fuer den "
           "geschlossenen Test hochladen, NICHT in die Produktion.")
 
@@ -1703,8 +1712,17 @@ def main(argv=None):
     version_einsetzen(version, test=not aab)
     # Nach Emir: dessen Aufnahmen sind MP3 und werden mit umgewandelt.
     ton_verkleinern()
-    if "--testwerbung" in schalter:
-        testwerbung_einschalten()
+    # Testanzeigen (1.5, K11; Pruefbericht 1.3, S29): Jedes Paket, das nicht
+    # fuer Google Play ist, nimmt Googles Testanzeigen, auch ohne den
+    # Schalter - das Debug-Paket, --nur-abgleich (daraus baut gradlew
+    # assembleDebug die Test-App), --immer-packen und --pflicht ohne --aab.
+    # Bis dahin tat das nur --testwerbung. Ohne ihn hatte die Test-App die
+    # echten Anzeigenbloecke, obwohl der Kopf dieses Skripts den Aufruf
+    # "Debug-Paket zum Aufspielen aufs Handy" nennt, und ein Tipp darauf ist
+    # ungueltiger Traffic fuer das AdMob-Konto. Echte Anzeigen gibt es nur
+    # noch mit --aab ohne --testwerbung.
+    if "--testwerbung" in schalter or not aab:
+        testwerbung_einschalten(test_app=not aab)
     if "--immer-packen" in schalter:
         immer_packen_einschalten()
     # Aufraeumen (1.5, Optimierung Punkt 5), als Letztes an www/: Bis hier

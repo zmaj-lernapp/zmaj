@@ -56,6 +56,64 @@ def test_testwerbung_nur_in_der_kopie(tmp_path, wurzel):
     assert app_bauen.TESTWERBUNG_AN in text and app_bauen.TESTWERBUNG_AUS not in text
 
 
+# Testanzeigen ohne Schalter (1.5, K11; Pruefbericht 1.3, S29): Jedes Paket, das
+# nicht fuer Google Play ist, nimmt Googles Testanzeigen. Echte nur mit --aab
+# ohne --testwerbung.
+BAU_SCHRITTE = ("anmeldung_pruefen", "versionsname_lesen", "pruefen", "kopieren", "emir_drueber",
+                "dauer_einsetzen", "cloud_einsetzen", "version_einsetzen", "ton_verkleinern",
+                "immer_packen_einschalten", "standbilder_als_webp", "ton_index_verschlanken",
+                "versionsnummer_hochzaehlen", "capacitor", "plugins_flicken", "debug_apk",
+                "freigabe_aab", "versionsname_anheben", "pflicht_melden")
+
+
+@pytest.fixture
+def probebau(tmp_path, monkeypatch):
+    """main() ohne Huelle und Gradle: alles ist eine Attrappe ausser
+    testwerbung_einschalten(), das echt in eine Probe-Kopie www/index.html schreibt."""
+    import app_bauen
+    www = tmp_path / "www"
+    www.mkdir()
+    monkeypatch.setattr(app_bauen, "WWW", str(www))
+    for name in BAU_SCHRITTE:
+        monkeypatch.setattr(app_bauen, name, lambda *a, **k: None)
+
+    def bauen(argv):
+        (www / "index.html").write_text("<script>\n" + app_bauen.TESTWERBUNG_AUS + "\n</script>\n",
+                                        encoding="utf-8")
+        app_bauen.main(argv)
+        return (www / "index.html").read_text(encoding="utf-8")
+    return bauen
+
+
+@pytest.mark.parametrize("argv", [[], ["--nur-abgleich"], ["--immer-packen"], ["--nur-abgleich", "--immer-packen"],
+                                  ["--pflicht"], ["--testwerbung"], ["--nur-abgleich", "--testwerbung"]])
+def test_test_app_immer_mit_testanzeigen(probebau, capsys, argv):
+    import app_bauen
+    text = probebau(argv)
+    assert app_bauen.TESTWERBUNG_AN in text and app_bauen.TESTWERBUNG_AUS not in text
+    ausgabe = capsys.readouterr().out
+    assert "die Test-App zeigt nur Googles Testanzeigen" in ausgabe
+    assert "geschlossenen Test" not in ausgabe
+
+
+def test_store_paket_echte_anzeigen_nur_ohne_testwerbung(probebau, capsys):
+    import app_bauen
+    text = probebau(["--aab"])
+    assert app_bauen.TESTWERBUNG_AUS in text and app_bauen.TESTWERBUNG_AN not in text
+    assert "TESTWERBUNG" not in capsys.readouterr().out
+    # --aab --testwerbung (geschlossener Test) wie bisher, mit der Warnung
+    text = probebau(["--aab", "--testwerbung"])
+    assert app_bauen.TESTWERBUNG_AN in text
+    assert "NICHT in die Produktion" in capsys.readouterr().out
+
+
+def test_kopf_nennt_testanzeigen_fuer_die_test_app():
+    import app_bauen
+    kopf = app_bauen.__doc__
+    zeile = kopf[kopf.index("app_bauen.py                 Abgleich + Debug-Paket"):]
+    assert "immer mit Googles Testanzeigen" in zeile.split("app_bauen.py --aab")[0]
+
+
 # Pflicht-Updates (Ajdin, 10.10.2026): Die App haelt ein Update fuer Pflicht,
 # wenn sein versionCode ein Vielfaches von 100 ist. --pflicht muss genau dort
 # landen, ein normaler Bau nie.
