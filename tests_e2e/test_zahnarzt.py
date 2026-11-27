@@ -345,7 +345,8 @@ def test_lektion_zaehlt_im_teil_und_sonst_nirgends(seite, heute_stand):
     assert im_teil["stern"] is True
     # Das Ergebnis meldet keinen Lerntag
     assert seite.js("() => t('lektion.heute_geuebt')") not in seite.page.locator("#lBody").inner_text()
-    # Ein Fehler im Teil: kein Stern, kein Fehler-Topf, keine Kartei
+    # Ein Fehler im Teil: kein Fehler-Topf, keine Kartei. Einen Stern kann man
+    # dort seit 1.5 setzen (K1, test_stern.py), von selbst kommt keiner.
     falsch = seite.js("""() => { const task = {typ: 'mc', w: zaLevel()[0].words[0]};
         topfMerken(task, false); karteiAntwort(task, false);
         return [topfSchluessel(task), topfAnzahl(), Object.keys(kartei.w).length]; }""")

@@ -200,8 +200,10 @@ function rectFaktor(){
    ohneZa(). Der Schalter steht im Stand (Feld zahnarzt), damit der Teil nach
    einer Neuinstallation von selbst wieder da ist. Eine Lektion hier ist kein
    Lerntag (also auch keine Wegmarke und kein anderes Bild auf der Startseite),
-   zaehlt nicht fuer Tagesaufgaben und Muenzen und landet nicht in Kartei,
-   Fehler-Topf und Sternen. */
+   zaehlt nicht fuer Tagesaufgaben und Muenzen und landet nicht in Kartei
+   und Fehler-Topf. Sterne bekommen seine Woerter seit 1.5 (K1) wie alle
+   anderen, im selben Topf und in derselben Runde "Markiert" - siehe
+   sternSchluessel() und sternSichtbar(). */
 const ZA_WORT = 'zahnarzt', ZA_VORN = 'za|';
 let zaSchalter = {an: false, z: 0};
 const zaLevel = () => ZA ? ZA.kategorien : [];

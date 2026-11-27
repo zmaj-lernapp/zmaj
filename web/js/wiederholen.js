@@ -30,10 +30,24 @@ function topfSchluessel(task){
   if(task.typ === 'gap' && task.s) return 's:' + task.s.kat + '|' + task.s.text;
   if(task.typ === 'kacheln' && task.s) return 'k:' + task.s.kat + '|' + task.s.bs;
   if(task.typ === 'gram' && task.g && task.g._lv) return 'g:' + task.g._lv + '|' + task.g._nr;
-  /* Beim Zahnarzt: kein Schluessel heisst kein Fehler-Topf und kein Stern. */
+  /* Beim Zahnarzt: kein Schluessel heisst kein Fehler-Topf. Einen Stern
+     bekommen seine Woerter seit 1.5 trotzdem, ueber sternSchluessel(). */
   if(task.w && task.w.id) return istZa(task.w.id) ? '' : 'w:' + task.w.id;
   return '';
 }
+/* Der Schluessel fuer den Stern (1.5, K1). Wie topfSchluessel(), nur
+   bekommen auch die Woerter beim Zahnarzt einen: "w:za|<bosnisch>". Ajdin
+   am 20.11.2026: "pack die zahnarzt wörter mit in den normalen stern topf
+   wo alle anderen drin sind das ist nicht schlimm also theoretisch gesehen
+   nur stern funktion beim zahnarzt einfügen mehr nicht". Also derselbe
+   Topf und dieselbe Runde "Markiert" wie fuer alle Woerter, aber weiter
+   kein Fehler-Topf und keine Kartei: die gehen ueber topfSchluessel() und
+   wortNachId() und sehen den Teil nie. */
+function sternSchluessel(task){
+  if(task && task.w && istZa(task.w.id)) return 'w:' + task.w.id;
+  return topfSchluessel(task);
+}
+const istZaStern = k => typeof k === 'string' && k.startsWith('w:') && istZa(k.slice(2));
 function topfMerken(task, ok){
   const k = topfSchluessel(task);
   if(!k) return;
@@ -61,12 +75,31 @@ function wortNachId(id){
   }
   return _wortNachId.get(id) || null;
 }
+/* Die Woerter beim Zahnarzt, nur fuer die Sterne (1.5, K1). Getrennt von
+   wortNachId(), das nur den Lernpfad kennt: daran haengen Kartei,
+   Fehler-Topf und Lektion, und die sollen den Teil weiter nie sehen. Neu
+   gebaut, sobald ladeDaten() ein anderes ZA setzt (Sprachwechsel). Ohne
+   den Teil (iPhone, siehe ladeDaten) immer null. */
+let _zaNachId = null, _zaNachIdVon = null;
+function zaWortNachId(id){
+  if(!ZA || !istZa(id)) return null;
+  if(_zaNachIdVon !== ZA){
+    _zaNachIdVon = ZA;
+    _zaNachId = new Map();
+    zaLevel().forEach(c => c.words.forEach(w => { if(!_zaNachId.has(w.id)) _zaNachId.set(w.id, {w, c}); }));
+  }
+  return _zaNachId.get(id) || null;
+}
 /* Aus dem Schluessel wieder eine Aufgabe. null, wenn es den Inhalt nicht
-   mehr gibt - dann fliegt der Eintrag raus. */
-function topfAufgabe(k, e){
+   mehr gibt - dann fliegt der Eintrag raus. mitZa: auch ein Wort beim
+   Zahnarzt, nur fuer die Sterne (sternRunde, 1.5, K1). Es kommt mit den
+   Woertern seines Levels als Auswahl, wie ein faelliges Wort aus einem
+   anderen Level in buildLesson(). Fehler-Topf und Kartei fragen ohne
+   mitZa, dort fuehrt so ein Schluessel wie bisher zu keiner Aufgabe. */
+function topfAufgabe(k, e, mitZa){
   const art = k.slice(0, 2), rest = k.slice(2);
   if(art === 'w:'){
-    const f = wortNachId(rest);
+    const f = wortNachId(rest) || (mitZa ? zaWortNachId(rest) : null);
     if(!f) return null;
     let typ = e.typ;
     if(typ === 'listen' && !canListen) typ = 'mc';
@@ -314,9 +347,11 @@ function topfEnde(){
    19.10.2026. Anders als der Fehler-Topf entscheidet hier der Lernende:
    ein Stern bleibt, bis er ihn wieder wegnimmt, auch nach richtigen
    Antworten.
-     - Markierbar ist jede Aufgabe mit einer Kennung aus topfSchluessel():
+     - Markierbar ist jede Aufgabe mit einer Kennung aus sternSchluessel():
        Woerter (w:), Luecken (s:), Kacheln (k:) und Grammatik (g:). Ein
        Stern je Wort, egal in welcher Aufgabenart markiert. Keine Level.
+       Seit 1.5 (K1) auch die Woerter beim Zahnarzt, im selben Topf und in
+       derselben Runde - aber nur, solange der Teil an ist (sternSichtbar).
      - Der Knopf (Variante 1 "Ring" aus dem Entwurf, CSS bei .kastenkopf
        .stern) steht in der Kopfzeile der Lernkarte, rechts neben den
        Fortschrittspunkten, auf einer Linie mit dem Herz - seit dem
@@ -340,7 +375,16 @@ function topfEnde(){
        einmal und landet im Fehler-Topf - wie in jeder Lektion.
      - Der grosse Weitermachen-Knopf oben bleibt, wie er war: er startet
        nie die Markiert-Runde, nur der Knopf im Kasten "Markiert". */
-const sternAnzahl = () => Object.keys(stern).length;
+/* Sterne beim Zahnarzt zaehlen und kommen dran, solange der Teil an ist
+   (zaAn). Ist er aus - ausgeblendet, oder auf dem iPhone, wo es ihn nicht
+   gibt -, bleiben sie still im Stand: nicht gezaehlt und nicht in der
+   Runde, aber auch nicht geloescht (sternUmschreiben). So gehen sie
+   unveraendert ins Konto zurueck und sind auf Android nach dem naechsten
+   Abgleich noch da, wie Schalter und Lernstand des Teils (ladeDaten).
+   Die Obergrenze STERN_MAX zaehlt alle, auch die stillen: so viele haelt
+   sternPruefen() hoechstens. */
+const sternSichtbar = k => !istZaStern(k) || zaAn();
+const sternAnzahl = () => Object.keys(stern).filter(sternSichtbar).length;
 const STERN_ART = /^[wskg]:./;
 /* Ein Stand von aussen - Geraetespeicher oder Sicherungsdatei - wird nur
    so uebernommen: Kennung ein Text mit gueltigem Anfang und hoechstens 200
@@ -376,6 +420,15 @@ function sternUmschreiben(nachWort){
   const neu = {};
   let geaendert = false;
   Object.keys(stern).forEach(k => {
+    /* Beim Zahnarzt (1.5, K1): nie auf ein Wort des Lernpfads umschreiben,
+       wie bei known (altenFortschrittUmschreiben) - zubar steht in beiden.
+       Weg nur, wenn der Teil geladen ist und das Wort darin fehlt. Ohne den
+       Teil (iPhone) bleibt der Stern liegen, wie er ist. */
+    if(istZaStern(k)){
+      if(ZA && !zaWortNachId(k.slice(2))) geaendert = true;
+      else neu[k] = stern[k];
+      return;
+    }
     let ziel = k;
     if(k.slice(0, 2) === 'w:' && !wortNachId(k.slice(2))){
       const id = k.slice(2);
@@ -411,7 +464,7 @@ function sternSvg(an, px, bild){
 function sternKnopf(id, task){
   const b = $(id);
   if(!b) return;
-  const k = task ? topfSchluessel(task) : '';
+  const k = task ? sternSchluessel(task) : '';
   b.dataset.k = k;
   b.hidden = !k;
   b.classList.remove('pop');
@@ -431,7 +484,7 @@ function sternUmschalten(e){
     sternZeigen(b, false);
     ansagen(esc(t('stern.weg')));
   } else {
-    if(sternAnzahl() >= STERN_MAX){ kurzMeldung(t('stern.voll', {n: STERN_MAX})); return; }
+    if(Object.keys(stern).length >= STERN_MAX){ kurzMeldung(t('stern.voll', {n: STERN_MAX})); return; }   // alle, siehe sternSichtbar
     stern[k] = {z: Date.now(), r: 0};
     sternZeigen(b, true);
     ansagen(esc(t('stern.titel')));
@@ -451,13 +504,13 @@ function sternUmschalten(e){
    solange sie noch markiert ist - wer den Stern unterwegs wegnimmt, will
    sie nicht mehr sehen. */
 function sternGeuebt(task){
-  const e = stern[topfSchluessel(task)];
+  const e = stern[sternSchluessel(task)];
   if(e) e.r = Date.now();
 }
 function sternRunde(){
-  const runde = rundeAus(Object.keys(stern).map(k => ({k, e: stern[k]}))
+  const runde = rundeAus(Object.keys(stern).filter(sternSichtbar).map(k => ({k, e: stern[k]}))
     .sort((a, b) => (a.e.r - b.e.r) || (a.e.z - b.e.z))
-    .map(x => topfAufgabe(x.k, {typ: 'mc'})).filter(Boolean));
+    .map(x => topfAufgabe(x.k, {typ: 'mc'}, true)).filter(Boolean));
   /* Wie in buildLesson(), nur ohne Sprechen: das laesst sich ueberspringen,
      und dann zaehlte es nicht als geuebt. Schreiben nur bei tippbaren
      Woertern (artenReihum), Hoeren nur, wenn das Geraet vorlesen kann. */

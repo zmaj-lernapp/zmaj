@@ -401,6 +401,29 @@ def test_zahnarzt_aus_dem_konto_klappt_auf_ios_nichts_auf(seite, heute_stand, pl
 
 
 @pytest.mark.parametrize("plattform", ["ios", "android"])
+def test_zahnarzt_sterne_aus_dem_konto_auf_ios(seite, heute_stand, plattform):
+    """1.5, K1: Sterne auf Woertern beim Zahnarzt kommen mit dem Konto auch aufs
+    iPhone. Dort gibt es den Teil nicht: Sie zaehlen nicht und kommen in keine
+    Runde, bleiben aber im Stand und gehen mit ins Konto zurueck, sonst waeren sie
+    nach dem naechsten Abgleich auf Android weg. Auch ein Wort, das es im Teil nicht
+    mehr gibt, bleibt dort stehen - das pruefen kann nur Android."""
+    stern = {"w:za|vilica": {"z": 1000, "r": 0}, "w:za|gibt es nicht": {"z": 1001, "r": 0}}
+    stand = heute_stand(zahnarzt={"an": True, "z": 1700000000000}, stern=stern)
+    _app(seite, plattform, lambda: stand)
+    ios = plattform == "ios"
+    bleibt = sorted(stern) if ios else ["w:za|vilica"]
+    assert seite.js("() => Object.keys(stern).sort()") == bleibt
+    assert seite.js("() => [sternAnzahl(), sternRunde().length]") == ([0, 0] if ios else [1, 1])
+    seite.js("() => { homeMode = 'topf'; showHome(); }")
+    assert seite.js("() => !!document.querySelector('#sternBox .topfzahl')") is not ios
+    seite.js("async () => { await saveProgress(); }")
+    assert sorted(seite.js("() => JSON.parse(localStorage.getItem('zmaj_stand')).stern")) == bleibt
+    # Zusammengefuehrt mit einem Konto ohne Sterne: sie bleiben (Vereinigung)
+    assert sorted(seite.js("() => standZusammenfuehren(standAlsObjekt(), {stern: {}}).stern")) == bleibt
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("plattform", ["ios", "android"])
 def test_zahnarzt_wort_nur_auf_android(seite, heute_stand, plattform):
     """Siebenmal auf die Versionszeile fragt auf iOS nach gar nichts, und auch ein
     direkter Aufruf schaltet dort nichts ein. Android: wie in 1.3."""
