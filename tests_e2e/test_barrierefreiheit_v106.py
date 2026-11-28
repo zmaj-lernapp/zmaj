@@ -103,11 +103,16 @@ def test_ansage_nach_falscher_auswahl_nennt_die_loesung(seite, heute_stand):
     seite.starten(stand=heute_stand())
     w = seite.js(WORT_AUFGABE, "mc")
     falsch = seite.page.locator("#lBody .opt").filter(has_not_text=w["bs"]).first
+    gewaehlt = falsch.text_content()
+    seite.frisch_abwarten()
     falsch.click()
     text = _ansage_abwarten(seite, w["bs"])
     assert text.startswith("Richtig wäre"), text
-    # auch das sichtbare Feld ist unveraendert, nur ausgezeichnet
-    assert seite.page.locator("#lBody #xFb").inner_text().strip() == "Richtig wäre: " + w["bs"]
+    # Das sichtbare Feld nennt die Loesung, seit dem 27.11.2026 dahinter das
+    # Gewaehlte mit seiner Bedeutung (test_luecke_hoeren_auswahl.py).
+    sichtbar = seite.page.locator("#lBody #xFb").inner_text().replace(" ", " ").strip()
+    assert sichtbar.startswith("Richtig wäre: " + w["bs"] + " · " + gewaehlt + " = "), sichtbar
+    assert gewaehlt in seite.js("() => [...document.querySelectorAll('#ansage [lang=\"bs\"]')].map(e => e.textContent)")
     assert seite.fehler == []
 
 
@@ -115,6 +120,7 @@ def test_ansage_nach_mcrev_ohne_bosnisch_markierung_der_bedeutung(seite, heute_s
     """Bei 'Was bedeutet ...' ist die Loesung die Bedeutung - die ist nicht bosnisch."""
     seite.starten(stand=heute_stand())
     w = seite.js(WORT_AUFGABE, "mcrev")
+    seite.frisch_abwarten()
     seite.page.locator("#lBody .opt").filter(has_not_text=w["de"]).first.click()
     _ansage_abwarten(seite, w["de"])
     bs = seite.js("() => [...document.querySelectorAll('#ansage [lang=\"bs\"]')].map(e => e.textContent)")
@@ -279,6 +285,7 @@ def test_grammatik_geschlecht_ist_nicht_bosnisch(seite, heute_stand):
     assert g, "keine Geschlechtsaufgabe im Inhalt"
     assert "männlich (on)" in g["optionen"]
     assert set(seite.js(LANG_VON, "#lBody .opt")) == {None}, "die Geschlechter sind als Bosnisch markiert"
+    seite.frisch_abwarten()
     seite.page.locator("#lBody .opt").filter(has_not_text=_genau(g["richtig"])).first.click()
     text = _ansage_abwarten(seite, g["richtig"])
     assert text.startswith("Richtig wäre"), text
@@ -289,6 +296,7 @@ def test_grammatik_geschlecht_ist_nicht_bosnisch(seite, heute_stand):
     g = seite.js(GRAM_AUFGABE, "moja")
     assert g, "keine Aufgabe mit der Antwort moja"
     assert set(seite.js(LANG_VON, "#lBody .opt")) == {"bs"}
+    seite.frisch_abwarten()
     seite.page.locator("#lBody .opt").filter(has_not_text=_genau("moja")).first.click()
     _ansage_abwarten(seite, "moja")
     bs = seite.js("() => [...document.querySelectorAll('#ansage [lang=\"bs\"]')].map(e => e.textContent)")
@@ -344,6 +352,7 @@ def test_punktereihe_ist_fortschrittsanzeige(seite, heute_stand):
     assert seite.js(BALKEN, "lBar") == {"rolle": "progressbar", "min": "0", "max": str(n), "jetzt": "0",
                                         "name": "Frage 1 von %d" % n}
     assert seite.js("() => Lx.queue[0].typ") == "intro"
+    seite.frisch_abwarten()
     seite.page.locator("#lBody #xNext").click()
     assert seite.js(BALKEN, "lBar")["jetzt"] == "1"
     assert seite.js(BALKEN, "lBar")["name"] == "Frage 2 von %d" % n

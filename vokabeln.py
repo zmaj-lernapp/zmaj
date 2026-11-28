@@ -140,84 +140,85 @@ durchgehen und korrigieren – besonders regionale Formen
 (kahva/kafa, babo/otac, nana/baka, amidža/daidža, hiljada/tisuća).
 """
 
-# Die Sektionen des Lernpfads (seit 07.11.2026 einunddreißig). "id" wird in jedem Level unter "sektion" genannt.
+# Die Sektionen des Lernpfads, je Stufe in einem eigenen Reiter (seit 13.11.2026).
+# "id" wird in jedem Level unter "sektion" genannt und darf sich nie aendern.
+# "stufe" ist der Reiter (A1, A2, B1, B2; C1 kommt spaeter). Die Nummer im
+# Namen zaehlt je Reiter von vorn, wie die Farben in der App (sektionsNummer()).
+# Die Reihenfolge hier ist die des Lernpfads; die Level einer Stufe stehen in
+# KATEGORIEN zusammen, das prueft inhalt.pruefe_stufen().
+# Bis zum 12.11.2026 waren es 31 Sektionen in einer Reihe. Ajdin am 08.11.2026:
+# „ja so eine kategorie für A1-A2 niveau, B1-B2 usw“, „wir machen am besten alle
+# getrennt“. Am 13.11.2026 Variante B: Sätze bauen geteilt (A1 und A2), Zuhause
+# hinter Fälle 1. B2 von 14 auf 9 Sektionen zusammengelegt (Frage 6a, „ja“): es
+# gibt neun Farben, und je Reiter soll keine doppelt vorkommen (Farben-Entscheidung
+# vom 27.09.2026). Zusammengelegt die alten Nummern 18+19, 21+22, 23+24, 28+29 und
+# 30+31; die Reihenfolge der Level blieb. Weggefallen sind dabei die Kennungen
+# menschenbeziehungen, umwelttechnik, rechtbehoerden, landtiere und genauersagen,
+# ihre Level stehen jetzt in der Sektion davor. Das kostet keinen Lernstand: der
+# Stand merkt sich Level und Woerter, keine Sektion (offeneSektion lebt nur bis
+# zum Schliessen der App).
 SEKTIONEN = [
-    {"id": "alltag", "label": "Sektion 1 · Grundlagen & Alltag",
+    # ---- A1 ----
+    {"id": "alltag", "stufe": "A1", "label": "Sektion 1 · Grundlagen & Alltag",
      "beschreibung": "Sich vorstellen, zählen, Familie, Essen, Wochentage, Einkaufen. Alles, was man jeden Tag sagt."},
-    {"id": "anfassen", "label": "Sektion 2 · Dinge zum Anfassen",
+    {"id": "anfassen", "stufe": "A1", "label": "Sektion 2 · Dinge zum Anfassen",
      "beschreibung": "Obst, Gemüse, Vorrat. Wörter, die man zeigen kann – ohne Grammatik."},
-    {"id": "tiernatur", "label": "Sektion 3 · Tiere & Natur",
+    {"id": "tiernatur", "stufe": "A1", "label": "Sektion 3 · Tiere & Natur",
      "beschreibung": "Haustiere, Wild, Insekten, Landschaft und Pflanzen."},
-    {"id": "zuhause2", "label": "Sektion 4 · Zuhause",
+    {"id": "saetze", "stufe": "A1", "label": "Sektion 4 · Sätze bauen 1",
+     "beschreibung": "Fragen stellen, Verben beugen, Mehrzahl und Nebensätze. Dazu kleine Wörter und der erste Fall."},
+    # ---- A2 ----
+    {"id": "zuhause2", "stufe": "A2", "label": "Sektion 1 · Zuhause",
      "beschreibung": "Küche, Bad, Putzen, Strom und Reparatur. Die ersten Tätigkeiten."},
-    {"id": "saetze", "label": "Sektion 5 · Sätze bauen",
-     "beschreibung": "Fragen stellen, Verben beugen, Nebensätze mit dass/weil/ob, Vergangenheit und Zukunft."},
-    {"id": "einkauf", "label": "Sektion 6 · Einkaufen & Essen gehen",
+    {"id": "saetze2", "stufe": "A2", "label": "Sektion 2 · Sätze bauen 2",
+     "beschreibung": "Fälle, Vergangenheit, Zukunft, Können und Müssen."},
+    {"id": "einkauf", "stufe": "A2", "label": "Sektion 3 · Einkaufen & Essen gehen",
      "beschreibung": "Bestellen, bezahlen, nachfragen. Jetzt hilft die Grammatik."},
-    {"id": "herkunft", "label": "Sektion 7 · Bosnien & Herkunft",
+    {"id": "herkunft", "stufe": "A2", "label": "Sektion 4 · Bosnien & Herkunft",
      "beschreibung": "Bosnische Küche, woher jemand kommt, männliche und weibliche Formen."},
-    {"id": "kultur", "label": "Sektion 8 · Menschen & Kultur",
+    {"id": "kultur", "stufe": "A2", "label": "Sektion 5 · Menschen & Kultur",
      "beschreibung": "Sich vorstellen, Musik, Glaube, Gastfreundschaft. Das Idiomatische."},
-    {"id": "amt", "label": "Sektion 9 · Amt & Verträge",
+    # ---- B1 ----
+    {"id": "amt", "stufe": "B1", "label": "Sektion 1 · Amt & Verträge",
      "beschreibung": "Behörde, Bank, Hauskauf, Arbeitsvertrag, Arzt. Die Sprache für offizielle Dinge."},
-    # Seit 31.10.2026: Stufe B1 aus dem Ausbauplan (Release\Ausbauplan_C-Niveau.md).
-    # Eine zehnte Farbe gibt es nicht; sektionsNummer() in web/index.html
-    # faengt fuer sie wieder bei der ersten an, bis die Reiter je Stufe kommen.
-    {"id": "tunlassen", "label": "Sektion 10 · Tun und Lassen",
+    {"id": "tunlassen", "stufe": "B1", "label": "Sektion 2 · Tun und Lassen",
      "beschreibung": "Die wichtigsten Verben, oft als Paar, jedes mit einem Beispielsatz. Dazu Hilfe im Notfall."},
-    # Seit 31.10.2026 (Wortschatz-Paket 2): Sektion 11 aus Stufe B1 des
-    # Ausbauplans. Sie traegt die zweite Farbe (sektionsNummer()).
-    {"id": "wieetwasist", "label": "Sektion 11 · Wie etwas ist",
+    {"id": "wieetwasist", "stufe": "B1", "label": "Sektion 3 · Wie etwas ist",
      "beschreibung": "Adjektive für Gegensätze, Charakter, Gefühle und Sinne, jedes mit einem Beispielsatz."},
-    # Seit 01.11.2026 (Wortschatz-Pakete 3 und 4): die drei uebrigen Sektionen
-    # aus Stufe B1 des Ausbauplans. Die Farben gehen reihum weiter,
-    # sektionsNummer() gibt ihnen die dritte, vierte und fuenfte.
-    {"id": "koerpergesundheit", "label": "Sektion 12 · Körper und Gesundheit",
+    # Name seit 14.11.2026 "Arzt & Gesundheit", vorher "Körper und Gesundheit"
+    # (Ajdin: "ok mach arzt & gesundheit"). Die id bleibt; das A1-Level
+    # "Körper & Gesundheit" heißt weiter so.
+    {"id": "koerpergesundheit", "stufe": "B1", "label": "Sektion 4 · Arzt & Gesundheit",
      "beschreibung": "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz."},
-    {"id": "zeitfreizeit", "label": "Sektion 13 · Zeit und Freizeit",
+    {"id": "zeitfreizeit", "stufe": "B1", "label": "Sektion 5 · Zeit und Freizeit",
      "beschreibung": "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz."},
-    {"id": "lernenarbeiten", "label": "Sektion 14 · Lernen und Arbeiten",
+    {"id": "lernenarbeiten", "stufe": "B1", "label": "Sektion 6 · Lernen und Arbeiten",
      "beschreibung": "Schule, Studium, Berufe und der Arbeitsplatz, jedes Wort mit einem Beispielsatz."},
-    # Seit 06.11.2026 (Wortschatz-Pakete 5 bis 9): B1 nach Haeufigkeit aufgefuellt. Die Farben
-    # gehen reihum weiter (sektionsNummer()).
-    {"id": "grundbegriffe", "label": "Sektion 15 · Grundbegriffe",
+    {"id": "grundbegriffe", "stufe": "B1", "label": "Sektion 7 · Grundbegriffe",
      "beschreibung": "Ort, Menge, Zeit, Grund und Folge: Hauptwörter, die man überall braucht, jedes mit einem Beispielsatz."},
-    {"id": "menschengesellschaft", "label": "Sektion 16 · Menschen und Gesellschaft",
+    {"id": "menschengesellschaft", "stufe": "B1", "label": "Sektion 8 · Menschen und Gesellschaft",
      "beschreibung": "Menschen und Beziehungen, Staat und Recht, Wirtschaft, Kultur und Glaube, jedes Wort mit einem Beispielsatz."},
-    {"id": "wiewowann", "label": "Sektion 17 · Wie, wo und wann",
+    {"id": "wiewowann", "stufe": "B1", "label": "Sektion 9 · Wie, wo und wann",
      "beschreibung": "Eigenschaften, Orte, Zeiten und die kleinen Wörter, die Sätze verbinden, jedes mit einem Beispielsatz."},
-    # Seit 07.11.2026 (Wortschatz-Pakete 10 bis 20): Stufe B2 aus dem Ausbauplan
-    # (Release\Ausbauplan_C-Niveau.md). Eigene Sektionen hinter B1, damit B2 nicht
-    # mitten in die ersten Sektionen rutscht; die Reiter je Stufe kommen spaeter.
-    # Die Farben gehen reihum weiter (sektionsNummer()).
-    {"id": "denkenmeinen", "label": "Sektion 18 · Denken und Meinen",
-     "beschreibung": "Grundlagen, Meinung und Kritik, Bindewörter und kleine Wörter, mit denen man genauer sagt, was man denkt, jedes mit einem Beispielsatz."},
-    {"id": "menschenbeziehungen", "label": "Sektion 19 · Menschen und Beziehungen",
-     "beschreibung": "Erziehung, Familie, Liebe und Streit, Trauer und Nachbarschaft, jedes Wort mit einem Beispielsatz."},
-    {"id": "arbeitwirtschaft", "label": "Sektion 20 · Arbeit und Wirtschaft",
+    # ---- B2 ----
+    {"id": "denkenmeinen", "stufe": "B2", "label": "Sektion 1 · Denken, Fühlen und Beziehungen",
+     "beschreibung": "Meinung und Kritik, Bindewörter, Familie, Liebe und Streit, Trauer und Nachbarschaft, jedes Wort mit einem Beispielsatz."},
+    {"id": "arbeitwirtschaft", "stufe": "B2", "label": "Sektion 2 · Arbeit und Wirtschaft",
      "beschreibung": "Firma und Handel, Geld und Preise, Gewinn und Verlust, Karriere und Rechte bei der Arbeit, jedes Wort mit einem Beispielsatz."},
-    {"id": "medienkultur", "label": "Sektion 21 · Medien und Kultur",
-     "beschreibung": "Zeitung und Fernsehen, Werbung, Theater, Bücher, Kunst und Geschichte, jedes Wort mit einem Beispielsatz."},
-    {"id": "umwelttechnik", "label": "Sektion 22 · Umwelt und Technik",
-     "beschreibung": "Klima und Energie, Naturkatastrophen, Computer und Dateien, jedes Wort mit einem Beispielsatz."},
-    {"id": "gesellschaftpolitik", "label": "Sektion 23 · Gesellschaft und Politik",
-     "beschreibung": "Staat und Wahl, Krieg und Frieden, Bürger und Rechte, Religion und Gemeinschaft, jedes Wort mit einem Beispielsatz."},
-    {"id": "rechtbehoerden", "label": "Sektion 24 · Recht und Behörden",
-     "beschreibung": "Gericht, Polizei, Bescheide und Verträge, dazu Amt, Post, Bank und Versicherung, jedes Wort mit einem Beispielsatz."},
-    {"id": "hauswohnung", "label": "Sektion 25 · Haus und Wohnung",
+    {"id": "medienkultur", "stufe": "B2", "label": "Sektion 3 · Medien, Kultur und Technik",
+     "beschreibung": "Zeitung und Fernsehen, Kunst und Geschichte, Klima und Energie, Computer und Dateien, jedes Wort mit einem Beispielsatz."},
+    {"id": "gesellschaftpolitik", "stufe": "B2", "label": "Sektion 4 · Staat, Recht und Behörden",
+     "beschreibung": "Staat und Wahl, Krieg und Frieden, Gericht und Polizei, Amt, Bank und Versicherung, jedes Wort mit einem Beispielsatz."},
+    {"id": "hauswohnung", "stufe": "B2", "label": "Sektion 5 · Haus und Wohnung",
      "beschreibung": "Dinge im Haushalt, Räume und Möbel, Schäden, Reparieren und Bauen, Wohnen und Miete, jedes Wort mit einem Beispielsatz."},
-    {"id": "gesundheitsport", "label": "Sektion 26 · Gesundheit und Sport",
+    {"id": "gesundheitsport", "stufe": "B2", "label": "Sektion 6 · Gesundheit und Sport",
      "beschreibung": "Der Körper genauer, Krankheiten, Krankenhaus, Psyche, Sport und Ernährung, jedes Wort mit einem Beispielsatz."},
-    {"id": "schulewissen", "label": "Sektion 27 · Schule und Wissen",
+    {"id": "schulewissen", "stufe": "B2", "label": "Sektion 7 · Schule und Wissen",
      "beschreibung": "Schule und Universität, Fächer und Forschung, Sprache und Grammatik, reden und erklären, jedes Wort mit einem Beispielsatz."},
-    {"id": "stadtreisen", "label": "Sektion 28 · Stadt, Verkehr und Reisen",
-     "beschreibung": "In der Stadt, Straßen und Bahn, Autofahren, Reisen und Unterkunft, jedes Wort mit einem Beispielsatz."},
-    {"id": "landtiere", "label": "Sektion 29 · Land, Tiere und Pflanzen",
-     "beschreibung": "Landschaft und Boden, Tiere genauer, Pflanzen und Anbau, jedes Wort mit einem Beispielsatz."},
-    {"id": "handelnveraendern", "label": "Sektion 30 · Handeln und verändern",
-     "beschreibung": "Verben, oft als Paar: bewegen, durchführen, verändern, verbinden, bestimmen und mit Menschen umgehen, jedes mit einem Beispielsatz."},
-    {"id": "genauersagen", "label": "Sektion 31 · Genauer sagen",
-     "beschreibung": "Wie sicher, wie und wann, wo, wie gut, feste Wendungen und Mengen, jedes Wort mit einem Beispielsatz."},
+    {"id": "stadtreisen", "stufe": "B2", "label": "Sektion 8 · Stadt, Land und unterwegs",
+     "beschreibung": "Stadt und Verkehr, Reisen und Unterkunft, Landschaft, Tiere und Pflanzen, jedes Wort mit einem Beispielsatz."},
+    {"id": "handelnveraendern", "stufe": "B2", "label": "Sektion 9 · Handeln und genauer sagen",
+     "beschreibung": "Verben, oft als Paar, dazu wie sicher, wie und wo, feste Wendungen und Mengen, jedes Wort mit einem Beispielsatz."},
 ]
 
 
@@ -225,7 +226,7 @@ KATEGORIEN = [
     {"id": "basics", "label": "Grundlagen", "sektion": "alltag", "tipp": "Erste Wörter: Grüßen, Danke, Ja und Nein.",
      "reihe": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"],   # Grüße nach Tageszeit in Folge, der Rest gemischt (27.10.2026)
      "words": [
-        {"de": "Hallo",                       "bs": "Merhaba", "auch": ["Zdravo"]},
+        {"de": "Hallo",                       "bs": "Merhaba", "auch": ["Zdravo", "Ćao"]},   # Ćao ist auch „Hallo“ (Ajdin, Prüfbericht 1.4, B5/F16)
         # Die Grüße auch in der Liste in Tagesfolge wie in "reihe": Anki,
         # die Exporte und die Wortliste des Levels gehen nach der Liste
         # (Prüfer 27.10.2026).
@@ -235,7 +236,7 @@ KATEGORIEN = [
         {"de": "Gute Nacht",                  "bs": "Laku noć / Lahku noć"},
         {"de": "Auf Wiedersehen",             "bs": "Doviđenja", "auch": ["Ćao"]},
         {"de": "Tschüss",                     "bs": "Ćao", "auch": ["Doviđenja"]},
-        {"de": "Willkommen",                  "bs": "Dobro došli"},
+        {"de": "Willkommen",                  "bs": "Dobro došli", "auch": ["Dobrodošli"]},   # zusammengeschrieben auch (Ajdin, Prüfbericht 1.4, B4/F15)
         {"de": "Ja",                          "bs": "Da"},
         {"de": "Nein",                        "bs": "Ne"},
         {"de": "Danke",                       "bs": "Hvala"},
@@ -248,7 +249,7 @@ KATEGORIEN = [
         {"de": "Wie geht es Ihnen?",          "bs": "Kako ste?"},
         {"de": "Gut",                         "bs": "Dobro", "auch": ["dobar", "dobra"]},
         {"de": "Schlecht",                    "bs": "Loše", "auch": ["loš", "loša"]},
-        {"de": "Wie heißt du?",               "bs": "Kako se zoveš?"},
+        {"de": "Wie heißt du?",               "bs": "Kako se zoveš?", "auch": ["Kako ti je ime?"]},   # Ajdin, Prüfbericht 1.4, B1/F12
         {"de": "Ich heiße ...",               "bs": "Zovem se ..."},
         {"de": "Freut mich",                  "bs": "Drago mi je"},
         {"de": "Ich verstehe",                "bs": "Razumijem"},
@@ -260,7 +261,7 @@ KATEGORIEN = [
         {"de": "Vielleicht",                  "bs": "Možda"},
         {"de": "Prost!",                      "bs": "Živjeli!", "auch": ["U zdravlje!"]},
         {"de": "Guten Appetit",               "bs": "Prijatno"},
-        {"de": "Hallo (neutral, überall)", "bs": "Zdravo"},
+        {"de": "Hallo (neutral, überall)", "bs": "Zdravo", "auch": ["Ćao"]},   # Ćao ist auch „Hallo“, wie bei Merhaba (Ajdin, Prüfbericht 1.4, B5/F16)
     ]},
 
     {"id": "zahlen", "label": "Zahlen", "sektion": "alltag", "tipp": "Zählen von null bis tausend.",
@@ -333,8 +334,8 @@ KATEGORIEN = [
         {"de": "Tochter",             "bs": "kćerka"},
         {"de": "Kind",                "bs": "dijete"},
         {"de": "Kinder",              "bs": "djeca"},
-        {"de": "Ehefrau",             "bs": "žena"},
-        {"de": "Ehemann",             "bs": "muž"},
+        {"de": "Ehefrau",             "bs": "žena", "auch": ["supruga"]},   # nur in dieser Richtung (Ajdin, Prüfbericht 1.4, B3/F14)
+        {"de": "Ehemann",             "bs": "muž", "auch": ["suprug"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Oma",                 "bs": "nana"},
         {"de": "Opa",                 "bs": "dedo"},
         # Verwandte nach ihrer Seite, Ajdin am 23.10.2026: "tetka ujna strina
@@ -348,14 +349,18 @@ KATEGORIEN = [
         # ton_bauen.py spricht nur "bs".
         # Bewusst nicht: bratić, sestrična, bratučed - je nach Gegend Cousin
         # oder Neffe/Nichte.
+        # "auch" bei amidžić und amidžična (13.11.2026, Ajdin: "4 ja"): die
+        # Formen zu stric, stričević und stričevka. Wie die Koseformen nur
+        # beim Tippen richtig, keine eigenen Lernwoerter, nie gesprochen.
+        # Kennung, Anzeige und Aufnahme bleiben, wie sie sind.
         {"de": "Onkel (Bruder des Vaters)",                      "bs": "amidža / stric", "auch": ["striko", "adžo"]},
         {"de": "Onkel (Bruder der Mutter)",                      "bs": "daidža / ujak", "auch": ["ujo", "dajo"]},
         {"de": "Onkel (Mann der Tante)",                         "bs": "tetak"},
         {"de": "Tante (Schwester von Vater oder Mutter)",        "bs": "tetka"},
         {"de": "Tante (Frau des Onkels väterlicherseits)",       "bs": "strina / amidžinica"},
         {"de": "Tante (Frau des Onkels mütterlicherseits)",      "bs": "ujna / daidžinica"},
-        {"de": "Cousin (Sohn des Onkels väterlicherseits)",      "bs": "amidžić / brat od amidže"},
-        {"de": "Cousine (Tochter des Onkels väterlicherseits)",  "bs": "amidžična / sestra od amidže"},
+        {"de": "Cousin (Sohn des Onkels väterlicherseits)",      "bs": "amidžić / brat od amidže", "auch": ["stričević"]},
+        {"de": "Cousine (Tochter des Onkels väterlicherseits)",  "bs": "amidžična / sestra od amidže", "auch": ["stričevka"]},
         {"de": "Cousin (Sohn des Onkels mütterlicherseits)",     "bs": "daidžić / brat od daidže"},
         {"de": "Cousine (Tochter des Onkels mütterlicherseits)", "bs": "daidžična / sestra od daidže"},
         {"de": "Cousin (Sohn der Tante)",                        "bs": "tetić / brat od tetke"},
@@ -389,6 +394,9 @@ KATEGORIEN = [
         {"de": "Obst",                "bs": "voće"},
         {"de": "Gemüse",              "bs": "povrće"},
         {"de": "Kartoffel",           "bs": "krompir"},
+        # K2 (20.11.2026, Ajdin: „mach gleich alle und lass emir direkt alle sprechen“): neue
+        # Wörter aus Release/Wortschatz/k2_2026-11-20/final, Emir spricht sie (1.5).
+        {"de": "Pommes",                       "bs": "pomfrit"},
         {"de": "Tomate",              "bs": "paradajz"},
         {"de": "Zwiebel",             "bs": "luk"},
         {"de": "Reis",                "bs": "riža"},
@@ -401,6 +409,8 @@ KATEGORIEN = [
         {"de": "Suppe",               "bs": "supa"},
         {"de": "Pita (Blätterteig-Gericht)", "bs": "pita"},
         {"de": "Ćevapi",              "bs": "ćevapi"},
+        # K2 (20.11.2026): neu
+        {"de": "Pizza",                        "bs": "pica"},
         {"de": "Frühstück",           "bs": "doručak"},
         {"de": "Mittagessen",         "bs": "ručak"},
         {"de": "Abendessen",          "bs": "večera"},
@@ -501,8 +511,13 @@ KATEGORIEN = [
         {"de": "warm",          "bs": "toplo"},
         {"de": "kalt",          "bs": "hladno"},
         {"de": "heiß",          "bs": "vruće"},
-        {"de": "Es regnet",     "bs": "Pada kiša"},
-        {"de": "Es schneit",    "bs": "Pada snijeg"},
+        # K2 (20.11.2026): neu
+        {"de": "sonnig",                       "bs": "sunčano"},
+        {"de": "bewölkt",                      "bs": "oblačno"},
+        {"de": "Es regnet",     "bs": "Pada kiša", "auch": ["Kiša pada"]},   # andere Wortstellung (Ajdin, Prüfbericht 1.4, B2/F13)
+        {"de": "Es schneit",    "bs": "Pada snijeg", "auch": ["Snijeg pada"]},   # Prüfbericht 1.4, B2/F13
+        # K2 (20.11.2026): neu
+        {"de": "Regenschirm",                  "bs": "kišobran"},
         {"de": "Frühling",      "bs": "proljeće"},
         {"de": "Sommer",        "bs": "ljeto"},
         {"de": "Herbst",        "bs": "jesen"},
@@ -563,7 +578,14 @@ KATEGORIEN = [
 
     {"id": "einkaufen", "label": "Einkaufen & Kleidung", "sektion": "alltag", "baut_auf": ["zahlen", "farben", "essen"], "tipp": "Preise, Größen, Kleidung. Zahlen und Farben werden hier gebraucht.",
      "words": [
-        {"de": "Geschäft",                  "bs": "radnja"},
+        # Ajdin am 25.11.2026 (Offen-Liste, Eingang): „schreib bei radnja in klammern für
+        # kleine geschäfte und trgovina eher für supermarkt oder so“, dann „nimm kleiner
+        # und großer laden“ (Variante A: „die bleiben dann getrennt“). Die neue deutsche
+        # Seite ist eine neue Kennung; Lernstand, Stern, Kartei und Fehler-Topf ziehen über
+        # UMBENANNT (web/js/anmeldung_server.js) mit. Beim Tippen zählen radnja, trgovina
+        # und prodavnica füreinander (varianten.py).
+        {"de": "Geschäft (kleiner Laden)",     "bs": "radnja"},
+        {"de": "Geschäft (großer Laden)",      "bs": "trgovina"},
         {"de": "Einkaufszentrum",           "bs": "tržni centar"},
         {"de": "Kasse",                     "bs": "kasa"},
         {"de": "Preis",                     "bs": "cijena"},
@@ -574,13 +596,30 @@ KATEGORIEN = [
         {"de": "Kleidung",                  "bs": "odjeća"},
         {"de": "Hemd",                      "bs": "košulja"},
         {"de": "T-Shirt",                   "bs": "majica"},
-        {"de": "Hose",                      "bs": "pantalone"},
+        # Ajdin am 25.11.2026: „ich sage trgovina und hlace das andere hab ich tatsächlich
+        # kaum gehört“, „pantalone und hlace bleiben zusammen“: zwei Formen wie kahva / kafa.
+        # Neue Kennung hose:pantalone / hlače, umgezogen über UMBENANNT.
+        {"de": "Hose",                         "bs": "pantalone / hlače"},
+        # K2 (20.11.2026): neu
+        {"de": "Jeans",                        "bs": "farmerke"},
+        {"de": "Trainingsanzug",               "bs": "trenerka"},
         {"de": "Jacke",                     "bs": "jakna"},
+        # K2 (20.11.2026): neu
+        {"de": "Pullover",                     "bs": "džemper"},
+        {"de": "Mantel",                       "bs": "kaput"},
         {"de": "Kleid",                     "bs": "haljina"},
         {"de": "Rock",                      "bs": "suknja"},
         {"de": "Schuhe",                    "bs": "cipele"},
+        # K2 (20.11.2026): neu
+        {"de": "Turnschuhe",                   "bs": "patike"},
+        {"de": "Stiefel",                      "bs": "čizme"},
+        {"de": "Hausschuhe",                   "bs": "papuče"},
         {"de": "Socken",                    "bs": "čarape"},
         {"de": "Mütze",                     "bs": "kapa"},
+        # K2 (20.11.2026): neu
+        {"de": "Hut",                          "bs": "šešir"},
+        {"de": "Schal",                        "bs": "šal"},
+        {"de": "Handschuhe",                   "bs": "rukavice"},
         {"de": "Größe",                     "bs": "veličina"},
         {"de": "groß",                      "bs": "veliko", "auch": ["velik", "velika"]},
         {"de": "klein",                     "bs": "malo", "auch": ["mali", "mala"]},
@@ -642,7 +681,7 @@ KATEGORIEN = [
         {"de": "Was gibt's? / Wie läuft's?",   "bs": "Šta ima?"},
         {"de": "Alles gut",                    "bs": "Sve je dobro"},
         {"de": "Kein Problem",                 "bs": "Nema problema"},
-        {"de": "Mach dir keine Sorgen",        "bs": "Ne brini"},
+        {"de": "Mach dir keine Sorgen",        "bs": "Ne brini", "auch": ["Ne brini se"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Komm! / Los!",                 "bs": "Hajde!"},
         {"de": "Auf geht's!",                  "bs": "Hajmo!"},
         {"de": "Schau mal",                    "bs": "Vidi"},
@@ -659,7 +698,7 @@ KATEGORIEN = [
         {"de": "traurig (m/w)",                "bs": "tužan / tužna"},
         {"de": "Liebe",                        "bs": "ljubav"},
         {"de": "Ich liebe dich",               "bs": "Volim te"},
-        {"de": "Ich vermisse dich",            "bs": "Nedostaješ mi"},
+        {"de": "Ich vermisse dich",            "bs": "Nedostaješ mi", "auch": ["Fališ mi"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Schatz (Anrede)",              "bs": "dušo"},
         {"de": "Das gefällt mir",              "bs": "Sviđa mi se"},
         {"de": "Ich möchte (m/w)",             "bs": "Htio bih / Htjela bih"},
@@ -810,6 +849,8 @@ KATEGORIEN = [
      "words": [
         {"de": "Kater",                       "bs": "mačak"},
         {"de": "Unser Kater schläft den ganzen Tag.", "bs": "Naš mačak spava cijeli dan."},
+        # K2 (20.11.2026): neu
+        {"de": "Kätzchen",                     "bs": "mače"},
         {"de": "Haustier",           "bs": "kućni ljubimac"},
         {"de": "Tier",               "bs": "životinja"},
         {"de": "Vieh / Nutztiere",   "bs": "stoka"},
@@ -891,7 +932,7 @@ KATEGORIEN = [
         {"de": "Spaziergang",                "bs": "šetnja"},
         {"de": "stechen (Insekt)",           "bs": "ubosti"},
         {"de": "Vorsicht vor dem Hund!",     "bs": "Čuvaj se psa!"},
-        {"de": "Der Hund hat mich gebissen", "bs": "Pas me je ujeo"},
+        {"de": "Der Hund hat mich gebissen", "bs": "Pas me je ujeo", "auch": ["Ujeo me je pas"]},   # Fragen 16.11.2026, 8b
         {"de": "gefährlich",                "bs": "opasno"},
         {"de": "Gefahr",                     "bs": "opasnost"},
         {"de": "Mine (Landmine)",            "bs": "mina"},
@@ -926,182 +967,26 @@ KATEGORIEN = [
         {"de": "Ast / Zweig",            "bs": "grana"},
         {"de": "Kamille",                "bs": "kamilica"},
         {"de": "Linde",                  "bs": "lipa"},
-        {"de": "Minze",                  "bs": "nana (auch: metvica)"},
+        # Bis zum 14.11.2026 "nana (auch: metvica)", mit dem deutschen "auch" im bosnischen
+        # Knopf. Ajdin (Pruefbericht 1.4, B6/F17 b): "nana / metvica" wie kahva / kafa. Die
+        # alte Kennung zieht ueber UMBENANNT in web/index.html mit.
+        {"de": "Minze",                  "bs": "nana / metvica"},
         {"de": "Pflanze",                "bs": "biljka"},
         {"de": "Pflaume / Pflaumenbaum", "bs": "šljiva"},
         {"de": "Walnuss / Walnussbaum",  "bs": "orah"},
         {"de": "Wurzel",                 "bs": "korijen"},
     ]},
-    {"id": "kueche_bad", "label": "Küche & Bad", "sektion": "zuhause2", "tipp": "Geschirr, Möbel, Körperpflege.",
-     "baut_auf": ["zuhause"],
-     "words": [
-        {"de": "Backofen",           "bs": "rerna"},
-        {"de": "Flasche",            "bs": "flaša"},
-        {"de": "Gabel",              "bs": "viljuška"},
-        {"de": "Gefrierschrank",     "bs": "zamrzivač"},
-        {"de": "Geschirr",           "bs": "suđe"},
-        {"de": "Geschirr spülen",    "bs": "prati suđe"},
-        {"de": "Pfanne",             "bs": "tava"},
-        {"de": "Teller",             "bs": "tanjir"},
-        {"de": "Topf",               "bs": "lonac"},
-        {"de": "Tüte / Plastiktüte", "bs": "kesa"},
-        {"de": "Bettwäsche",         "bs": "posteljina"},
-        {"de": "Decke (Bettdecke)",  "bs": "deka"},
-        {"de": "Kissen",             "bs": "jastuk"},
-        {"de": "Regal / Brett",      "bs": "polica"},
-        {"de": "Schrank",            "bs": "ormar"},
-        {"de": "Sofa",               "bs": "kauč"},
-        {"de": "Vorhang",            "bs": "zavjesa"},
-        {"de": "Dusche",             "bs": "tuš"},
-        {"de": "Spiegel",            "bs": "ogledalo"},
-        {"de": "Toilette",           "bs": "WC"},
-        {"de": "Toilettenpapier",    "bs": "toalet papir"},
-        {"de": "Waschbecken",        "bs": "lavabo"},
-        {"de": "Zahnbürste",         "bs": "četkica za zube"},
-        {"de": "Zahnpasta",          "bs": "pasta za zube"},
-    ]},
-    {"id": "putzen", "label": "Putzen & Nachbarschaft", "sektion": "zuhause2", "tipp": "Sauber machen, waschen, und wer nebenan wohnt.",
-     "baut_auf": ["kueche_bad", "zuhause"],
-     "words": [
-        {"de": "aufräumen",             "bs": "pospremiti"},
-        {"de": "Besen",                 "bs": "metla"},
-        {"de": "Bügeleisen",            "bs": "pegla"},
-        {"de": "bügeln",                "bs": "peglati"},
-        {"de": "Eimer",                 "bs": "kanta"},
-        {"de": "Müll",                  "bs": "smeće"},
-        {"de": "Mülleimer / Mülltonne", "bs": "kanta za smeće"},
-        {"de": "sauber",                "bs": "čisto"},
-        {"de": "schmutzig",             "bs": "prljavo"},
-        {"de": "Staubsauger",           "bs": "usisivač"},
-        {"de": "Waschmaschine",         "bs": "veš mašina"},
-        {"de": "Waschmittel",           "bs": "deterdžent"},
-        {"de": "Wäsche",                "bs": "veš"},
-        {"de": "Wäscheleine",           "bs": "štrik"},
-        {"de": "Aufzug",                "bs": "lift"},
-        {"de": "Briefkasten",           "bs": "poštansko sanduče"},
-        {"de": "Dach",                  "bs": "krov"},
-        {"de": "Dachboden",             "bs": "tavan"},
-        {"de": "Fußboden",              "bs": "pod"},
-        {"de": "Hausmeister",           "bs": "domar"},
-        {"de": "Keller",                "bs": "podrum"},
-        {"de": "Klingel",               "bs": "zvono"},
-        {"de": "klingeln",              "bs": "zvoniti"},
-        {"de": "Nachbarin",             "bs": "komšinica"},
-        {"de": "Wand",                  "bs": "zid"},
-        {"de": "Zaun",                  "bs": "ograda"},
-    ]},
-    {"id": "technik", "label": "Technik & Reparatur", "sektion": "zuhause2", "tipp": "Strom, Licht, Heizung und was man selbst repariert.",
-     "baut_auf": ["kueche_bad", "zuhause"],
-     "words": [
-        {"de": "ausschalten / ausmachen",     "bs": "ugasiti", "partner": "gasiti"},
-        {"de": "Boiler / Warmwasserspeicher", "bs": "bojler"},
-        {"de": "Brennholz",                   "bs": "drva"},
-        {"de": "einschalten / anmachen",      "bs": "upaliti", "partner": "paliti"},
-        {"de": "Es gibt keinen Strom",        "bs": "Nema struje"},
-        {"de": "Glühbirne",                   "bs": "sijalica"},
-        {"de": "Heizung",                     "bs": "grijanje"},
-        {"de": "Kohle",                       "bs": "ugalj"},
-        {"de": "Licht",                       "bs": "svjetlo"},
-        {"de": "Ofen (Heizofen)",             "bs": "peć"},
-        {"de": "Sicherung",                   "bs": "osigurač"},
-        {"de": "Steckdose",                   "bs": "utičnica"},
-        {"de": "Stecker",                     "bs": "utikač"},
-        {"de": "Strom",                       "bs": "struja"},
-        {"de": "warmes Wasser",               "bs": "topla voda"},
-        {"de": "Es funktioniert nicht",       "bs": "Ne radi"},
-        {"de": "Es läuft aus / es tropft",    "bs": "Curi voda"},
-        {"de": "Hammer",                      "bs": "čekić"},
-        {"de": "Handwerker / Fachmann",       "bs": "majstor"},
-        {"de": "kaputt",                      "bs": "pokvaren / pokvarena / pokvareno"},
-        {"de": "Leiter",                      "bs": "merdevine"},
-        {"de": "Nagel",                       "bs": "ekser"},
-        {"de": "reparieren",                  "bs": "popraviti", "partner": "popravljati"},
-        {"de": "Schloss (Türschloss)",        "bs": "brava"},
-        {"de": "Schraube",                    "bs": "šaraf"},
-        {"de": "Wasserhahn",                  "bs": "slavina"},
-        {"de": "Werkzeug",                    "bs": "alat"},
-    ]},
-
-    # Technik-Wortschatz, durchgesehen von Ajdin am 01.10.2026 (entwurf_technik.py)
-    {"id": "auto_werkstatt", "label": "Auto & Werkstatt", "sektion": "zuhause2", "tipp": "Tanken, Panne, Werkzeug – was man auf der Straße und in der Werkstatt braucht.",
-     "baut_auf": ["technik", "unterwegs"],
-     "words": [
-        {"de": "Kraftstoff / Sprit",                  "bs": "gorivo"},
-        {"de": "tanken",                              "bs": "sipati gorivo"},
-        {"de": "Reifen",                              "bs": "guma"},
-        {"de": "Ich habe einen Platten.",             "bs": "Pukla mi je guma."},
-        {"de": "Bremse",                              "bs": "kočnica"},
-        {"de": "Motor",                               "bs": "motor"},
-        {"de": "Autobatterie",                        "bs": "akumulator"},
-        {"de": "Sicherheitsgurt",                     "bs": "sigurnosni pojas"},
-        {"de": "Parkplatz",                           "bs": "parkiralište"},
-        {"de": "parken",                              "bs": "parkirati"},
-        {"de": "Ampel",                               "bs": "semafor"},
-        {"de": "Kreuzung",                            "bs": "raskrsnica"},
-        {"de": "Verkehr",                             "bs": "saobraćaj"},
-        {"de": "Stau",                                "bs": "zastoj"},
-        {"de": "Strafzettel / Bußgeld",               "bs": "kazna"},
-        {"de": "Kennzeichen (Auto)",                  "bs": "registracija"},
-        {"de": "Hauptuntersuchung (TÜV)",             "bs": "tehnički pregled"},
-        {"de": "Autowerkstatt",                       "bs": "autoservis"},
-        {"de": "Abschleppdienst",                     "bs": "šlep služba"},
-        {"de": "Pannenhilfe",                         "bs": "pomoć na cesti"},
-        {"de": "Schraubenzieher",                     "bs": "odvijač / šrafciger"},
-        {"de": "Zange",                               "bs": "kliješta"},
-        {"de": "Bohrmaschine",                        "bs": "bušilica"},
-        {"de": "bohren",                              "bs": "bušiti"},
-        {"de": "Säge",                                "bs": "testera"},
-        {"de": "Rollgabelschlüssel (Engländer)",      "bs": "francuski ključ"},
-        {"de": "Maßband / Zollstock",                 "bs": "metar"},
-        {"de": "Kleber",                              "bs": "ljepilo"},
-        {"de": "Verlängerungskabel",                  "bs": "produžni kabel"},   # Ajdin, 07.11.2026: kabel statt kabl (UMBENANNT)
-        {"de": "Werkstatt",                           "bs": "radionica"},
-    ]},
-
-    {"id": "geraete", "label": "Handy, Computer & Geräte", "sektion": "zuhause2", "tipp": "Laden, Passwort, Nachricht – und die Geräte im Haushalt.",
-     "baut_auf": ["technik", "zuhause"],
-     "words": [
-        {"de": "Ladegerät",                           "bs": "punjač"},
-        {"de": "Akku",                                "bs": "baterija"},
-        {"de": "Der Akku ist leer.",                  "bs": "Baterija je prazna."},
-        {"de": "aufladen",                            "bs": "napuniti", "partner": "puniti"},
-        {"de": "Passwort",                            "bs": "šifra / lozinka"},
-        {"de": "Wie ist das WLAN-Passwort?",          "bs": "Koja je šifra za WiFi?"},
-        {"de": "Internet",                            "bs": "internet"},
-        {"de": "Kein Empfang.",                       "bs": "Nema signala."},
-        {"de": "Nachricht",                           "bs": "poruka"},
-        {"de": "eine Nachricht schicken",             "bs": "poslati poruku"},
-        {"de": "anrufen",                             "bs": "nazvati", "auch": ["zvati"]},
-        {"de": "App",                                 "bs": "aplikacija"},
-        {"de": "Bildschirm",                          "bs": "ekran"},
-        {"de": "Tastatur",                            "bs": "tastatura"},
-        {"de": "Drucker",                             "bs": "štampač"},
-        {"de": "Kopfhörer",                           "bs": "slušalice"},
-        {"de": "fotografieren",                       "bs": "slikati"},
-        {"de": "aktualisieren",                       "bs": "ažurirati"},
-        {"de": "Spülmaschine",                        "bs": "mašina za suđe"},
-        {"de": "Wäschetrockner",                      "bs": "sušilica za veš"},
-        {"de": "Mikrowelle",                          "bs": "mikrovalna"},
-        {"de": "Toaster",                             "bs": "toster"},
-        {"de": "Wasserkocher",                        "bs": "kuhalo za vodu"},
-        {"de": "Föhn",                                "bs": "fen"},
-        {"de": "Klimaanlage",                         "bs": "klima"},
-        {"de": "Ventilator",                          "bs": "ventilator"},
-        {"de": "Fernbedienung",                       "bs": "daljinski"},
-        {"de": "Kaffeemaschine",                      "bs": "aparat za kahvu / aparat za kafu"},
-        {"de": "Bedienungsanleitung",                 "bs": "uputstvo"},
-        {"de": "Garantie",                            "bs": "garancija"},
-    ]},
-
     {"id": "fragen", "label": "Fragen stellen", "sektion": "saetze", "tipp": "Fragewörter und die wichtigsten Fragen im Gespräch.",
      "baut_auf": ["basics", "verben", "smalltalk"],
      "words": [
         {"de": "Wer?",                      "bs": "Ko?"},
         {"de": "Was?",                      "bs": "Šta?"},
         {"de": "Wo?",                       "bs": "Gdje?"},
-        {"de": "Wohin?",                    "bs": "Kuda?"},
+        {"de": "Wohin?",                    "bs": "Kuda?", "auch": ["Gdje?"]},   # „Ja gdje geht auch alleine“ (Ajdin, 14.11.2026 abends, wie Kuda ideš? bei F7 a)
         {"de": "Woher?",                    "bs": "Odakle?"},
         {"de": "Wann?",                     "bs": "Kada?", "auch": ["kad"]},
+        # K2 (20.11.2026): neu
+        {"de": "Seit wann?",                   "bs": "Otkad?"},
         {"de": "Warum?",                    "bs": "Zašto?"},
         {"de": "Wie?",                      "bs": "Kako?"},
         {"de": "Wie viel?",                 "bs": "Koliko?"},
@@ -1111,15 +996,15 @@ KATEGORIEN = [
         {"de": "Ist das ...?",              "bs": "Je li to ...?"},
         {"de": "Wer bist du?",              "bs": "Ko si ti?"},
         {"de": "Woher kommst du?",          "bs": "Odakle si?"},
-        {"de": "Wohin gehst du?",           "bs": "Kuda ideš?"},
-        {"de": "Wann kommst du?",           "bs": "Kada dolaziš?"},
+        {"de": "Wohin gehst du?",           "bs": "Kuda ideš?", "auch": ["Gdje ideš?"]},   # gesprochen oft auch gdje (Ajdin, Prüfbericht 1.4, V11/F7 a)
+        {"de": "Wann kommst du?",           "bs": "Kada dolaziš?", "auch": ["Kad dolaziš?"]},   # kad und kada gelten wie beim Wort (Prüfbericht 1.4, V3)
         {"de": "Warum nicht?",              "bs": "Zašto ne?"},
         {"de": "Was ist das?",              "bs": "Šta je to?"},
         {"de": "Wie alt bist du?",          "bs": "Koliko imaš godina?"},
         {"de": "Hast du Zeit?",             "bs": "Imaš li vremena?"},
         {"de": "Sprichst du Englisch?",     "bs": "Govoriš li engleski?"},
         {"de": "Kann ich helfen?",          "bs": "Mogu li pomoći?"},
-        {"de": "Wo wohnst du?",             "bs": "Gdje stanuješ?"},
+        {"de": "Wo wohnst du?",             "bs": "Gdje stanuješ?", "auch": ["Gdje živiš?"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Was meinst du?",            "bs": "Šta misliš?"},
     ]},
 
@@ -1257,6 +1142,36 @@ KATEGORIEN = [
         {"de": "noch nicht",                "bs": "još ne"},
     ]},
 
+    # Seit 13.11.2026 (Stufen-Reiter, Variante B, Ajdin: „alles wie empfohlen“):
+    # Grundwoerter, die vorher erst in B1 als Karte kamen, obwohl sie zu den
+    # haeufigsten gehoeren (Release\Entscheidungen_2026-11-13\reihenfolge_befunde.csv).
+    # Die Eintraege sind nur umgezogen: Kennung, Ton und Lernstand bleiben, ihre
+    # Beispielsaetze stehen weiter in den B1-Leveln, als Wiederholung.
+    {"id": "kleine_woerter", "label": "Kleine Wörter", "sektion": "saetze", "tipp": "Hier, dort, dann, so, wie: kleine Wörter für jeden Satz.",
+     "baut_auf": ["fragen", "satzbau"],
+     "words": [
+        {"de": "hier",                        "bs": "ovdje", "auch": ["tu"]},   # Prüfbericht 1.4, B3/F14
+        {"de": "dort",                        "bs": "tamo"},
+        {"de": "da / hier",                   "bs": "tu"},
+        {"de": "oben",                        "bs": "gore"},
+        {"de": "unten",                       "bs": "dolje"},
+        {"de": "dann",                        "bs": "onda"},
+        {"de": "danach",                      "bs": "zatim"},
+        {"de": "zuerst",                      "bs": "prvo"},
+        {"de": "wieder",                     "bs": "opet", "auch": ["ponovo"]},
+        {"de": "sofort",                     "bs": "odmah"},
+        {"de": "ständig",                     "bs": "stalno"},
+        {"de": "so",                          "bs": "tako"},
+        {"de": "sehr (vor Eigenschaften)",    "bs": "vrlo / veoma"},
+        {"de": "gern",                        "bs": "rado"},
+        {"de": "wie / als",                   "bs": "kao"},
+        {"de": "und dann / also",             "bs": "pa"},
+        {"de": "hier ist / da ist",           "bs": "evo"},
+        {"de": "dieser (da)",                 "bs": "taj", "auch": ["ta", "to"]},
+        {"de": "ganz / all",                  "bs": "sav", "auch": ["sva", "sve"]},
+        {"de": "ganz (der ganze)",            "bs": "cijeli", "auch": ["cijela", "cijelo"]},
+    ]},
+
     {"id": "faelle1", "label": "Fälle 1: Nominativ & Akkusativ", "sektion": "saetze", "tipp": "Wer tut etwas (Nominativ) und wen oder was betrifft es (Akkusativ).",
      "baut_auf": ["konjugation", "genus", "familie", "essen"],
      "words": [
@@ -1274,7 +1189,7 @@ KATEGORIEN = [
         {"de": "Er hat einen Hund",         "bs": "On ima psa"},
         {"de": "Sie hat eine Katze",        "bs": "Ona ima mačku"},
         {"de": "Wir suchen die Straße",     "bs": "Tražimo ulicu"},
-        {"de": "Ich brauche Wasser",        "bs": "Trebam vodu"},
+        {"de": "Ich brauche Wasser",        "bs": "Trebam vodu", "auch": ["Treba mi voda"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Ich brauche einen Schlüssel", "bs": "Trebam ključ"},
         {"de": "Ich kenne deinen Bruder",   "bs": "Znam tvog brata"},
         {"de": "Frage",                     "bs": "pitanje"},
@@ -1291,7 +1206,180 @@ KATEGORIEN = [
         {"de": "sie (Akkusativ)",           "bs": "nju / je"},
     ]},
 
-    {"id": "faelle2", "label": "Fälle 2: Genitiv", "sektion": "saetze", "tipp": "Wessen? Woher? Ohne was? Nach Mengen und vielen Präpositionen.",
+    # Zuhause steht seit 13.11.2026 hinter Faelle 1 und ist die erste Sektion von A2
+    # (Stufen-Reiter, Variante B): erst die Grammatik, dann Auto & Werkstatt.
+    {"id": "kueche_bad", "label": "Küche & Bad", "sektion": "zuhause2", "tipp": "Geschirr, Möbel, Körperpflege.",
+     "baut_auf": ["zuhause"],
+     "words": [
+        {"de": "Backofen",           "bs": "rerna"},
+        {"de": "Flasche",            "bs": "flaša"},
+        {"de": "Gabel",              "bs": "viljuška"},
+        {"de": "Gefrierschrank",     "bs": "zamrzivač"},
+        {"de": "Geschirr",           "bs": "suđe"},
+        {"de": "Geschirr spülen",    "bs": "prati suđe"},
+        {"de": "Pfanne",             "bs": "tava"},
+        {"de": "Teller",             "bs": "tanjir"},
+        {"de": "Topf",               "bs": "lonac"},
+        {"de": "Tüte / Plastiktüte", "bs": "kesa"},
+        {"de": "Bettwäsche",         "bs": "posteljina"},
+        # K2 (20.11.2026): neu
+        {"de": "Bettlaken",                    "bs": "čaršaf"},
+        {"de": "Decke (Bettdecke)",  "bs": "deka"},
+        {"de": "Kissen",             "bs": "jastuk"},
+        {"de": "Regal / Brett",      "bs": "polica"},
+        {"de": "Schrank",            "bs": "ormar"},
+        {"de": "Sofa",               "bs": "kauč"},
+        {"de": "Vorhang",            "bs": "zavjesa"},
+        {"de": "Dusche",             "bs": "tuš"},
+        {"de": "Spiegel",            "bs": "ogledalo"},
+        {"de": "Toilette",           "bs": "WC"},
+        {"de": "Toilettenpapier",    "bs": "toalet papir"},
+        {"de": "Waschbecken",        "bs": "lavabo"},
+        {"de": "Zahnbürste",         "bs": "četkica za zube"},
+        {"de": "Zahnpasta",          "bs": "pasta za zube"},
+    ]},
+    {"id": "putzen", "label": "Putzen & Nachbarschaft", "sektion": "zuhause2", "tipp": "Sauber machen, waschen, und wer nebenan wohnt.",
+     "baut_auf": ["kueche_bad", "zuhause"],
+     "words": [
+        {"de": "aufräumen",             "bs": "pospremiti"},
+        {"de": "Besen",                 "bs": "metla"},
+        # K2 (20.11.2026): neu
+        {"de": "Schwamm",                      "bs": "spužva"},
+        {"de": "Bügeleisen",            "bs": "pegla"},
+        {"de": "bügeln",                "bs": "peglati"},
+        {"de": "Eimer",                 "bs": "kanta"},
+        {"de": "Müll",                  "bs": "smeće"},
+        {"de": "Mülleimer / Mülltonne", "bs": "kanta za smeće"},
+        {"de": "sauber",                "bs": "čisto"},
+        {"de": "schmutzig",             "bs": "prljavo"},
+        {"de": "Staubsauger",           "bs": "usisivač"},
+        {"de": "Waschmaschine",         "bs": "veš mašina"},
+        {"de": "Waschmittel",           "bs": "deterdžent"},
+        {"de": "Wäsche",                "bs": "veš"},
+        {"de": "Wäscheleine",           "bs": "štrik"},
+        {"de": "Aufzug",                "bs": "lift"},
+        {"de": "Briefkasten",           "bs": "poštansko sanduče"},
+        {"de": "Dach",                  "bs": "krov"},
+        {"de": "Dachboden",             "bs": "tavan"},
+        {"de": "Fußboden",              "bs": "pod"},
+        {"de": "Hausmeister",           "bs": "domar"},
+        {"de": "Keller",                "bs": "podrum"},
+        {"de": "Klingel",               "bs": "zvono"},
+        {"de": "klingeln",              "bs": "zvoniti"},
+        {"de": "Nachbarin",             "bs": "komšinica"},
+        {"de": "Wand",                  "bs": "zid"},
+        {"de": "Zaun",                  "bs": "ograda"},
+    ]},
+    {"id": "technik", "label": "Technik & Reparatur", "sektion": "zuhause2", "tipp": "Strom, Licht, Heizung und was man selbst repariert.",
+     "baut_auf": ["kueche_bad", "zuhause"],
+     "words": [
+        {"de": "ausschalten / ausmachen",     "bs": "ugasiti", "partner": "gasiti"},
+        {"de": "Boiler / Warmwasserspeicher", "bs": "bojler"},
+        {"de": "Brennholz",                   "bs": "drva"},
+        {"de": "einschalten / anmachen",      "bs": "upaliti", "partner": "paliti"},
+        {"de": "Es gibt keinen Strom",        "bs": "Nema struje"},
+        {"de": "Glühbirne",                   "bs": "sijalica"},
+        {"de": "Heizung",                     "bs": "grijanje"},
+        {"de": "Kohle",                       "bs": "ugalj"},
+        {"de": "Licht",                       "bs": "svjetlo"},
+        {"de": "Ofen (Heizofen)",             "bs": "peć"},
+        {"de": "Sicherung",                   "bs": "osigurač"},
+        {"de": "Steckdose",                   "bs": "utičnica"},
+        {"de": "Stecker",                     "bs": "utikač"},
+        {"de": "Strom",                       "bs": "struja"},
+        {"de": "warmes Wasser",               "bs": "topla voda"},
+        {"de": "Es funktioniert nicht",       "bs": "Ne radi"},
+        {"de": "Es läuft aus / es tropft",    "bs": "Curi voda", "auch": ["Voda curi"]},   # Prüfbericht 1.4, B2/F13
+        {"de": "Hammer",                      "bs": "čekić"},
+        {"de": "Handwerker / Fachmann",       "bs": "majstor"},
+        {"de": "kaputt",                      "bs": "pokvaren / pokvarena / pokvareno"},
+        {"de": "Leiter",                      "bs": "merdevine"},
+        {"de": "Nagel",                       "bs": "ekser"},
+        {"de": "reparieren",                  "bs": "popraviti", "partner": "popravljati"},
+        {"de": "Schloss (Türschloss)",        "bs": "brava"},
+        {"de": "Schraube",                    "bs": "šaraf"},
+        {"de": "Wasserhahn",                  "bs": "slavina"},
+        {"de": "Werkzeug",                    "bs": "alat"},
+    ]},
+
+    # Technik-Wortschatz, durchgesehen von Ajdin am 01.10.2026 (entwurf_technik.py)
+    {"id": "auto_werkstatt", "label": "Auto & Werkstatt", "sektion": "zuhause2", "tipp": "Tanken, Panne, Werkzeug – was man auf der Straße und in der Werkstatt braucht.",
+     "baut_auf": ["technik", "unterwegs"],
+     "words": [
+        {"de": "Kraftstoff / Sprit",                  "bs": "gorivo"},
+        {"de": "tanken",                              "bs": "sipati gorivo"},
+        {"de": "Reifen",                              "bs": "guma"},
+        {"de": "Ich habe einen Platten.",             "bs": "Pukla mi je guma."},
+        {"de": "Bremse",                              "bs": "kočnica"},
+        {"de": "Motor",                               "bs": "motor"},
+        {"de": "Autobatterie",                        "bs": "akumulator"},
+        {"de": "Sicherheitsgurt",                     "bs": "sigurnosni pojas"},
+        {"de": "Parkplatz",                           "bs": "parkiralište"},
+        {"de": "parken",                              "bs": "parkirati"},
+        {"de": "Ampel",                               "bs": "semafor"},
+        {"de": "Kreuzung",                            "bs": "raskrsnica"},
+        {"de": "Verkehr",                             "bs": "saobraćaj"},
+        {"de": "Stau",                                "bs": "zastoj", "auch": ["gužva"]},   # Prüfbericht 1.4, B3/F14
+        {"de": "Strafzettel / Bußgeld",               "bs": "kazna"},
+        {"de": "Kennzeichen (Auto)",                  "bs": "registracija"},
+        {"de": "Hauptuntersuchung (TÜV)",             "bs": "tehnički pregled"},
+        {"de": "Autowerkstatt",                       "bs": "autoservis"},
+        {"de": "Abschleppdienst",                     "bs": "šlep služba"},
+        {"de": "Pannenhilfe",                         "bs": "pomoć na cesti"},
+        {"de": "Schraubenzieher",                     "bs": "odvijač / šrafciger"},
+        {"de": "Zange",                               "bs": "kliješta"},
+        {"de": "Bohrmaschine",                        "bs": "bušilica"},
+        {"de": "bohren",                              "bs": "bušiti"},
+        {"de": "Säge",                                "bs": "testera"},
+        {"de": "Rollgabelschlüssel (Engländer)",      "bs": "francuski ključ"},
+        {"de": "Maßband / Zollstock",                 "bs": "metar"},
+        {"de": "Kleber",                              "bs": "ljepilo"},
+        {"de": "Verlängerungskabel",                  "bs": "produžni kabel"},   # Ajdin, 07.11.2026: kabel statt kabl (UMBENANNT)
+        {"de": "Werkstatt",                           "bs": "radionica"},
+    ]},
+
+    {"id": "geraete", "label": "Handy, Computer & Geräte", "sektion": "zuhause2", "tipp": "Laden, Passwort, Nachricht – und die Geräte im Haushalt.",
+     "baut_auf": ["technik", "zuhause"],
+     "words": [
+        {"de": "Ladegerät",                           "bs": "punjač"},
+        {"de": "Akku",                                "bs": "baterija"},
+        {"de": "Der Akku ist leer.",                  "bs": "Baterija je prazna."},
+        {"de": "aufladen",                            "bs": "napuniti", "partner": "puniti"},
+        {"de": "Passwort",                            "bs": "šifra / lozinka"},
+        {"de": "Wie ist das WLAN-Passwort?",          "bs": "Koja je šifra za WiFi?"},
+        {"de": "Internet",                            "bs": "internet"},
+        {"de": "Kein Empfang.",                       "bs": "Nema signala."},
+        {"de": "Nachricht",                           "bs": "poruka"},
+        {"de": "eine Nachricht schicken",             "bs": "poslati poruku"},
+        # K2 (20.11.2026): neu
+        {"de": "E-Mail",                       "bs": "mejl"},
+        {"de": "anrufen",                             "bs": "nazvati", "auch": ["zvati"]},
+        {"de": "App",                                 "bs": "aplikacija"},
+        {"de": "Bildschirm",                          "bs": "ekran"},
+        {"de": "Tastatur",                            "bs": "tastatura"},
+        # K2 (20.11.2026): neu
+        {"de": "Laptop",                       "bs": "laptop"},
+        {"de": "Drucker",                             "bs": "štampač"},
+        {"de": "Kopfhörer",                           "bs": "slušalice"},
+        # K2 (20.11.2026): neu
+        {"de": "Lautsprecher",                 "bs": "zvučnik"},
+        {"de": "fotografieren",                       "bs": "slikati"},
+        {"de": "aktualisieren",                       "bs": "ažurirati"},
+        {"de": "Spülmaschine",                        "bs": "mašina za suđe"},
+        {"de": "Wäschetrockner",                      "bs": "sušilica za veš"},
+        {"de": "Mikrowelle",                          "bs": "mikrovalna"},
+        {"de": "Toaster",                             "bs": "toster"},
+        {"de": "Wasserkocher",                        "bs": "kuhalo za vodu"},
+        {"de": "Föhn",                                "bs": "fen"},
+        {"de": "Klimaanlage",                         "bs": "klima"},
+        {"de": "Ventilator",                          "bs": "ventilator"},
+        {"de": "Fernbedienung",                       "bs": "daljinski"},
+        {"de": "Kaffeemaschine",                      "bs": "aparat za kahvu / aparat za kafu"},
+        {"de": "Bedienungsanleitung",                 "bs": "uputstvo"},
+        {"de": "Garantie",                            "bs": "garancija"},
+    ]},
+
+    {"id": "faelle2", "label": "Fälle 2: Genitiv", "sektion": "saetze2", "tipp": "Wessen? Woher? Ohne was? Nach Mengen und vielen Präpositionen.",
      "baut_auf": ["faelle1", "familie", "zeit", "essen"],
      "words": [
         {"de": "ohne Zucker",               "bs": "bez šećera"},
@@ -1306,7 +1394,7 @@ KATEGORIEN = [
         {"de": "bei der Oma",               "bs": "kod nane"},
         {"de": "bei meinem Freund",         "bs": "kod prijatelja"},
         {"de": "das Haus meiner Schwester", "bs": "kuća moje sestre"},
-        {"de": "das Auto des Vaters",       "bs": "auto oca"},
+        {"de": "das Auto des Vaters",       "bs": "auto oca", "auch": ["očev auto"]},   # Prüfbericht 1.4, B1/F12
         {"de": "ein Glas Wasser",           "bs": "čaša vode"},
         {"de": "eine Tasse Kaffee",         "bs": "šolja kahve"},
         {"de": "ein Kilo Äpfel",            "bs": "kilogram jabuka"},
@@ -1325,7 +1413,7 @@ KATEGORIEN = [
         {"de": "wegen",                     "bs": "zbog"},
     ]},
 
-    {"id": "praepositionen", "label": "Präpositionen", "sektion": "saetze", "tipp": "In, auf, aus, mit, für: kleine Wörter, die den Fall bestimmen.",
+    {"id": "praepositionen", "label": "Präpositionen", "sektion": "saetze2", "tipp": "In, auf, aus, mit, für: kleine Wörter, die den Fall bestimmen.",
      "baut_auf": ["faelle2", "unterwegs", "zuhause"],
      "words": [
         {"de": "in (wo)",                   "bs": "u"},
@@ -1344,7 +1432,7 @@ KATEGORIEN = [
         {"de": "hinter",                    "bs": "iza"},
         {"de": "vor (räumlich)",            "bs": "ispred"},
         {"de": "neben",                     "bs": "pored"},
-        {"de": "nach (zeitlich)",           "bs": "poslije"},
+        {"de": "nach (zeitlich)",           "bs": "poslije", "auch": ["nakon"]},   # poslije und nakon austauschbar (Ajdin, Prüfbericht 1.4, V9/F3)
         {"de": "vor (zeitlich)",            "bs": "prije"},
         {"de": "durch",                     "bs": "kroz"},
         {"de": "um ... herum",              "bs": "oko"},
@@ -1352,15 +1440,15 @@ KATEGORIEN = [
         {"de": "im Haus",                   "bs": "u kući"},
         {"de": "auf dem Tisch",             "bs": "na stolu"},
         {"de": "auf dem Markt",             "bs": "na pijaci"},
-        {"de": "mit meiner Frau",           "bs": "s mojom ženom"},
+        {"de": "mit meiner Frau",           "bs": "s mojom ženom", "auch": ["sa mojom ženom"]},   # s und sa (Ajdin, Prüfbericht 1.4, V8/F1)
         {"de": "für dich",                  "bs": "za tebe"},
         {"de": "für die Kinder",            "bs": "za djecu"},
         {"de": "im Auto",                   "bs": "u autu"},
-        {"de": "nach der Arbeit",           "bs": "poslije posla"},
+        {"de": "nach der Arbeit",           "bs": "poslije posla", "auch": ["nakon posla"]},   # Prüfbericht 1.4, V9/F3
         {"de": "vor dem Essen",             "bs": "prije jela"},
     ]},
 
-    {"id": "faelle3", "label": "Fälle 3: Dativ & Lokativ", "sektion": "saetze", "tipp": "Wem gebe ich etwas? Wo bin ich? Beide Fälle sehen gleich aus.",
+    {"id": "faelle3", "label": "Fälle 3: Dativ & Lokativ", "sektion": "saetze2", "tipp": "Wem gebe ich etwas? Wo bin ich? Beide Fälle sehen gleich aus.",
      "baut_auf": ["praepositionen", "faelle1", "familie"],
      "words": [
         {"de": "Ich gebe dem Bruder",       "bs": "Dajem bratu"},
@@ -1389,27 +1477,27 @@ KATEGORIEN = [
         {"de": "geben",                     "bs": "dati"},
         {"de": "helfen",                    "bs": "pomoći"},
         {"de": "schreiben",                 "bs": "pisati"},
-        {"de": "sagen",                     "bs": "reći"},
+        {"de": "sagen",                     "bs": "reći", "auch": ["kazati"]},   # Prüfbericht 1.4, B3/F14
         {"de": "schenken",                  "bs": "pokloniti"},
         {"de": "zeigen",                    "bs": "pokazati", "partner": "pokazivati"},
     ]},
 
-    {"id": "faelle4", "label": "Fälle 4: Instrumental & Vokativ", "sektion": "saetze", "tipp": "Mit wem, womit? Und wie man jemanden anspricht.",
+    {"id": "faelle4", "label": "Fälle 4: Instrumental & Vokativ", "sektion": "saetze2", "tipp": "Mit wem, womit? Und wie man jemanden anspricht.",
      "baut_auf": ["faelle3", "familie", "unterwegs"],
      "words": [
-        {"de": "mit dem Bruder",            "bs": "s bratom"},
+        {"de": "mit dem Bruder",            "bs": "s bratom", "auch": ["sa bratom"]},   # die Grammatik schreibt „sa bratom“ (Ajdin, Prüfbericht 1.4, V8/F1)
         {"de": "mit der Schwester",         "bs": "sa sestrom"},
-        {"de": "mit den Kindern",           "bs": "s djecom"},
+        {"de": "mit den Kindern",           "bs": "s djecom", "auch": ["sa djecom"]},   # Prüfbericht 1.4, V8/F1
         {"de": "mit dem Auto",              "bs": "autom"},
         {"de": "mit dem Bus",               "bs": "autobusom"},
         {"de": "mit dem Zug",               "bs": "vozom"},
         {"de": "mit dem Fahrrad",           "bs": "biciklom"},
         {"de": "zu Fuß",                    "bs": "pješke"},
         {"de": "mit mir",                   "bs": "sa mnom"},
-        {"de": "mit dir",                   "bs": "s tobom"},
-        {"de": "mit uns",                   "bs": "s nama"},
+        {"de": "mit dir",                   "bs": "s tobom", "auch": ["sa tobom"]},   # Prüfbericht 1.4, V8/F1
+        {"de": "mit uns",                   "bs": "s nama", "auch": ["sa nama"]},   # Prüfbericht 1.4, V8/F1
         {"de": "mit Zucker",                "bs": "sa šećerom"},
-        {"de": "mit Milch",                 "bs": "s mlijekom"},
+        {"de": "mit Milch",                 "bs": "s mlijekom", "auch": ["sa mlijekom"]},   # Prüfbericht 1.4, V8/F1
         {"de": "unter dem Tisch",           "bs": "pod stolom"},
         {"de": "Anrede: Bruder!",           "bs": "brate!"},
         {"de": "Anrede: Schwester!",        "bs": "sestro!"},
@@ -1428,7 +1516,7 @@ KATEGORIEN = [
         {"de": "Messer",                    "bs": "nož"},
     ]},
 
-    {"id": "vergangenheit", "label": "Vergangenheit", "sektion": "saetze", "tipp": "Was gestern war. Männer sagen -o, Frauen -la.",
+    {"id": "vergangenheit", "label": "Vergangenheit", "sektion": "saetze2", "tipp": "Was gestern war. Männer sagen -o, Frauen -la.",
      "baut_auf": ["konjugation", "zeit", "verben"],
      "reihenfolge": True,   # biti in ja, ti, on, ona, mi, dann die Ich-Formen, dann der Rest (27.10.2026)
      "words": [
@@ -1449,14 +1537,14 @@ KATEGORIEN = [
         {"de": "letzte Woche",              "bs": "prošle sedmice"},
         {"de": "letztes Jahr",              "bs": "prošle godine"},
         {"de": "vor zwei Tagen",            "bs": "prije dva dana"},
-        {"de": "früher",                    "bs": "prije"},
+        {"de": "früher",                    "bs": "prije", "auch": ["nekad", "nekada"]},   # nekad (F14 i), nekada auf Rückfrage „ja“ (Prüfbericht 1.4, B3)
         {"de": "damals",                    "bs": "tada"},
         {"de": "Ich war in Bosnien (m/w)",  "bs": "Bio sam u Bosni / Bila sam u Bosni"},
         {"de": "Es war schön",              "bs": "Bilo je lijepo"},
         {"de": "Was hast du gemacht? (m/w)", "bs": "Šta si radio? / Šta si radila?"},
     ]},
 
-    {"id": "zukunft", "label": "Zukunft & Pläne", "sektion": "saetze", "tipp": "Ću, ćeš, će: über morgen sprechen.",
+    {"id": "zukunft", "label": "Zukunft & Pläne", "sektion": "saetze2", "tipp": "Ću, ćeš, će: über morgen sprechen.",
      "baut_auf": ["konjugation", "zeit", "monate"],
      "reihenfolge": True,   # ću, ćeš, će, ćemo, ćete, dann die Sätze (26.10.2026)
      "words": [
@@ -1465,16 +1553,16 @@ KATEGORIEN = [
         {"de": "er / sie wird",             "bs": "će"},
         {"de": "wir werden",                "bs": "ćemo"},
         {"de": "ihr werdet",                "bs": "ćete"},
-        {"de": "Ich werde arbeiten",        "bs": "Radit ću"},
+        {"de": "Ich werde arbeiten",        "bs": "Radit ću", "auch": ["Ja ću raditi"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Ich werde kommen",          "bs": "Doći ću"},
         {"de": "Wir werden sehen",          "bs": "Vidjet ćemo"},
         {"de": "Ich werde lernen",          "bs": "Učit ću"},
         {"de": "Ich werde dich anrufen",    "bs": "Nazvat ću te"},
-        {"de": "Wann wirst du kommen?",  "bs": "Kada ćeš doći?"},
+        {"de": "Wann wirst du kommen?",  "bs": "Kada ćeš doći?", "auch": ["Kad ćeš doći?"]},   # Prüfbericht 1.4, V3
         {"de": "übermorgen",                "bs": "prekosutra"},
         {"de": "nächste Woche",             "bs": "sljedeće sedmice"},
         {"de": "nächstes Jahr",             "bs": "sljedeće godine"},
-        {"de": "bald",                      "bs": "uskoro"},
+        {"de": "bald",                      "bs": "uskoro", "auch": ["skoro"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Plan",                      "bs": "plan"},
         {"de": "Ich habe vor ...",          "bs": "Planiram ..."},
         {"de": "Ich möchte reisen",         "bs": "Želim putovati"},
@@ -1483,7 +1571,7 @@ KATEGORIEN = [
         {"de": "Ich werde es versuchen",    "bs": "Pokušat ću"},
     ]},
 
-    {"id": "modal", "label": "Können, müssen, wollen", "sektion": "saetze", "tipp": "Modalverben: was man muss, kann, darf und will.",
+    {"id": "modal", "label": "Können, müssen, wollen", "sektion": "saetze2", "tipp": "Modalverben: was man muss, kann, darf und will.",
      "baut_auf": ["konjugation", "satzbau", "verben"],
      "reihenfolge": True,   # je Verb Infinitiv, ja, ti, on/ona, mi, dann der Rest (27.10.2026)
      "words": [
@@ -1519,7 +1607,7 @@ KATEGORIEN = [
         {"de": "versuchen",                 "bs": "pokušati"},
     ]},
 
-    {"id": "reflexiv", "label": "Reflexive Verben (se)", "sektion": "saetze", "tipp": "Zovem se, osjećam se, radujem se: Verben mit dem kleinen Wort se.",
+    {"id": "reflexiv", "label": "Reflexive Verben (se)", "sektion": "saetze2", "tipp": "Zovem se, osjećam se, radujem se: Verben mit dem kleinen Wort se.",
      "baut_auf": ["konjugation", "smalltalk", "koerper"],
      "words": [
         {"de": "sich (Reflexivpronomen)",   "bs": "se"},
@@ -1553,15 +1641,25 @@ KATEGORIEN = [
         {"de": "sich Sorgen machen",        "bs": "brinuti se"},
     ]},
 
-    {"id": "routine", "label": "Tagesablauf", "sektion": "saetze", "tipp": "Aufstehen, duschen, arbeiten, kochen, schlafen: den Tag erzählen.",
+    {"id": "routine", "label": "Tagesablauf", "sektion": "saetze2", "tipp": "Aufstehen, duschen, arbeiten, kochen, schlafen: den Tag erzählen.",
      "baut_auf": ["reflexiv", "zeit", "essen"],
      "reihenfolge": True,   # aufstehen bis schlafen gehen, dann der Rest (26.10.2026)
      "words": [
         {"de": "aufstehen",                 "bs": "ustajati"},
         {"de": "Ich stehe um sieben auf",   "bs": "Ustajem u sedam"},
+        # K2 (20.11.2026): neu
+        {"de": "Wecker",                       "bs": "budilnik"},
+        {"de": "sich (das Gesicht) waschen",   "bs": "umivati se"},
+        {"de": "Ich wasche mir das Gesicht", "bs": "Umivam se"},
         {"de": "sich duschen",              "bs": "tuširati se"},
         {"de": "Ich dusche mich",           "bs": "Tuširam se"},
+        # K2 (20.11.2026): neu
+        {"de": "sich rasieren",                "bs": "brijati se"},
+        {"de": "Ich rasiere mich", "bs": "Brijem se"},
         {"de": "Zähne putzen",              "bs": "prati zube"},
+        # K2 (20.11.2026): neu
+        {"de": "sich kämmen",                  "bs": "češljati se"},
+        {"de": "Ich kämme mich", "bs": "Češljam se"},
         {"de": "frühstücken",               "bs": "doručkovati"},
         {"de": "Ich frühstücke",            "bs": "Doručkujem"},
         {"de": "zur Arbeit gehen",          "bs": "ići na posao"},
@@ -1573,8 +1671,13 @@ KATEGORIEN = [
         {"de": "kochen",                    "bs": "kuhati", "partner": "skuhati"},
         {"de": "Ich koche Abendessen",      "bs": "Kuham večeru"},
         {"de": "fernsehen",                 "bs": "gledati televiziju"},
+        # K2 (20.11.2026): neu
+        {"de": "baden / sich baden",           "bs": "kupati se"},
+        {"de": "Ich bade", "bs": "Kupam se"},
         {"de": "schlafen gehen",            "bs": "ići spavati"},
         {"de": "Ich gehe schlafen",         "bs": "Idem spavati"},
+        # K2 (20.11.2026): neu
+        {"de": "Schlafanzug",                  "bs": "pidžama"},
         {"de": "einkaufen gehen",           "bs": "ići u kupovinu"},
         {"de": "putzen",                    "bs": "čistiti", "partner": "počistiti"},
         {"de": "Wäsche waschen",            "bs": "prati veš"},
@@ -1590,7 +1693,37 @@ KATEGORIEN = [
         {"de": "am Wochenende",             "bs": "vikendom"},
     ]},
 
-    {"id": "adjektive", "label": "Vergleichen & Beschreiben", "sektion": "saetze", "tipp": "Groß, größer, am größten. Männlich und weiblich unterscheiden.",
+    # Seit 13.11.2026 (Stufen-Reiter, Variante B, Ajdin: „alles wie empfohlen“):
+    # Grundwoerter, die vorher erst in B1 als Karte kamen, obwohl sie zu den
+    # haeufigsten gehoeren (Release\Entscheidungen_2026-11-13\reihenfolge_befunde.csv).
+    # Die Eintraege sind nur umgezogen: Kennung, Ton und Lernstand bleiben, ihre
+    # Beispielsaetze stehen weiter in den B1-Leveln, als Wiederholung.
+    {"id": "jeden_tag", "label": "Wörter für jeden Tag", "sektion": "saetze2", "tipp": "Name, Adresse, Telefon, Eltern, Essen: Wörter, die man täglich braucht.",
+     "baut_auf": ["routine", "familie"],
+     "words": [
+        {"de": "Name",                        "bs": "ime"},
+        {"de": "Nachname",                    "bs": "prezime"},
+        {"de": "Adresse",                     "bs": "adresa"},
+        {"de": "Telefon",                     "bs": "telefon"},
+        {"de": "Eltern",                      "bs": "roditelji"},
+        {"de": "Person",                      "bs": "osoba"},
+        {"de": "Essen / Nahrung",             "bs": "hrana"},
+        {"de": "Getränk",                     "bs": "piće"},
+        {"de": "Gesicht",                    "bs": "lice"},
+        {"de": "das Leben",                   "bs": "život"},
+        {"de": "Ort / Platz",                 "bs": "mjesto"},
+        {"de": "Teil",                        "bs": "dio"},
+        {"de": "Anfang",                      "bs": "početak"},
+        {"de": "Ende",                        "bs": "kraj"},
+        {"de": "Problem",                     "bs": "problem"},
+        {"de": "Bild / Foto",                "bs": "slika"},
+        {"de": "Geschichte (Erzählung)",      "bs": "priča"},
+        {"de": "Spiel (zum Spielen)",        "bs": "igra"},
+        {"de": "Film",                       "bs": "film"},
+        {"de": "Zahl / Nummer",               "bs": "broj"},
+    ]},
+
+    {"id": "adjektive", "label": "Vergleichen & Beschreiben", "sektion": "saetze2", "tipp": "Groß, größer, am größten. Männlich und weiblich unterscheiden.",
      "baut_auf": ["genus", "farben", "einkaufen"],
      "reihenfolge": True,   # je Adjektiv Grundform, Komparativ, Superlativ, dann der Rest (27.10.2026)
      "words": [
@@ -1617,12 +1750,12 @@ KATEGORIEN = [
         {"de": "schnell (m/w)",     "bs": "brz / brza"},
         {"de": "langsam (m/w)",     "bs": "spor / spora"},
         {"de": "als (Vergleich)",   "bs": "nego / od"},
-        {"de": "sehr",              "bs": "jako"},
+        {"de": "sehr",              "bs": "jako", "auch": ["vrlo", "veoma"]},   # wie vrlo / veoma „sehr (vor Eigenschaften)“ (Ajdin, Prüfbericht 1.4, V9/F2)
         {"de": "zu (zu groß)",      "bs": "previše"},
         {"de": "Das ist besser als das", "bs": "To je bolje nego to"},
     ]},
 
-    {"id": "mengen", "label": "Zahlen im Satz", "sektion": "saetze", "tipp": "Jedan brat, dva brata, pet braće: nach Zahlen ändert sich das Wort.",
+    {"id": "mengen", "label": "Zahlen im Satz", "sektion": "saetze2", "tipp": "Jedan brat, dva brata, pet braće: nach Zahlen ändert sich das Wort.",
      "baut_auf": ["zahlen", "faelle2", "mehrzahl"],
      "reihenfolge": True,   # je Hauptwort erst eins, dann zwei bis vier, dann fünf (26.10.2026)
      "words": [
@@ -1646,9 +1779,11 @@ KATEGORIEN = [
         {"de": "die Hälfte",                "bs": "pola"},
         {"de": "ein halbes Kilo",           "bs": "pola kilograma"},
         {"de": "ein Viertel",               "bs": "četvrt"},
-        {"de": "der erste",                 "bs": "prvi"},
-        {"de": "der zweite",                "bs": "drugi"},
-        {"de": "der dritte",                "bs": "treći"},
+        # K7, Ajdin am 20.11.2026 (O-F2): „auch bei prvi, drugi, treći“ zählt beim Tippen die
+        # weibliche und die sächliche Form, wie bei den Ordnungszahlen ab četvrti.
+        {"de": "der erste",                 "bs": "prvi", "auch": ["prva", "prvo"]},
+        {"de": "der zweite",                "bs": "drugi", "auch": ["druga", "drugo"]},
+        {"de": "der dritte",                "bs": "treći", "auch": ["treća", "treće"]},
         {"de": "der letzte",                "bs": "zadnji"},
         {"de": "einmal",                    "bs": "jednom"},
         {"de": "zweimal",                   "bs": "dva puta"},
@@ -1659,7 +1794,7 @@ KATEGORIEN = [
         {"de": "kein / keine",              "bs": "nijedan / nijedna"},
     ]},
 
-    {"id": "gefuehle", "label": "Gefühle & Meinungen", "sektion": "saetze", "tipp": "Zustimmen, widersprechen, Angst, Stolz, Hoffnung.",
+    {"id": "gefuehle", "label": "Gefühle & Meinungen", "sektion": "saetze2", "tipp": "Zustimmen, widersprechen, Angst, Stolz, Hoffnung.",
      "baut_auf": ["smalltalk", "satzbau", "adjektive"],
      "words": [
         {"de": "Meinung",                   "bs": "mišljenje"},
@@ -1667,17 +1802,17 @@ KATEGORIEN = [
         {"de": "Ich stimme zu",             "bs": "Slažem se"},
         {"de": "Ich stimme nicht zu",       "bs": "Ne slažem se"},
         {"de": "Ich bin sicher (m/w)",      "bs": "Siguran sam / Sigurna sam"},
-        {"de": "Das stimmt",                "bs": "To je tačno"},
+        {"de": "Das stimmt",                "bs": "To je tačno", "auch": ["Tačno je"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Das stimmt nicht",          "bs": "To nije tačno"},
         {"de": "wichtig",                   "bs": "važno"},
-        {"de": "Mir ist es egal",           "bs": "Svejedno mi je"},
+        {"de": "Mir ist es egal",           "bs": "Svejedno mi je", "auch": ["Meni je svejedno"]},   # Prüfbericht 1.4, B2/F13
         {"de": "Angst",                     "bs": "strah"},
         {"de": "Ich habe Angst",            "bs": "Bojim se"},
         {"de": "wütend (m/w)",              "bs": "ljut / ljuta"},
         {"de": "nervös (m/w)",              "bs": "nervozan / nervozna"},
         {"de": "zufrieden (m/w)",           "bs": "zadovoljan / zadovoljna"},
         {"de": "überrascht (m/w)",          "bs": "iznenađen / iznenađena"},
-        {"de": "Mir ist langweilig",        "bs": "Dosadno mi je"},
+        {"de": "Mir ist langweilig",        "bs": "Dosadno mi je", "auch": ["Meni je dosadno"]},   # Prüfbericht 1.4, B2/F13
         {"de": "einsam (m/w)",              "bs": "usamljen / usamljena"},
         {"de": "stolz (m/w)",               "bs": "ponosan / ponosna"},
         {"de": "Ich bin stolz auf dich (m/w)", "bs": "Ponosan sam na tebe / Ponosna sam na tebe"},
@@ -1694,7 +1829,7 @@ KATEGORIEN = [
         {"de": "leicht / einfach",          "bs": "lako / lahko"},
     ]},
 
-    {"id": "reisen", "label": "Reisen & Verkehr", "sektion": "saetze", "tipp": "Flughafen, Ticket, Abfahrt, Hotel. Unterwegs nach Bosnien.",
+    {"id": "reisen", "label": "Reisen & Verkehr", "sektion": "saetze2", "tipp": "Flughafen, Ticket, Abfahrt, Hotel. Unterwegs nach Bosnien.",
      "baut_auf": ["unterwegs", "zukunft", "faelle4"],
      "words": [
         {"de": "Flughafen",                 "bs": "aerodrom"},
@@ -1711,12 +1846,14 @@ KATEGORIEN = [
         {"de": "Reservierung",              "bs": "rezervacija"},
         {"de": "Busbahnhof",                "bs": "autobuska stanica"},
         {"de": "Taxi",                      "bs": "taksi"},
+        # K2 (20.11.2026): neu
+        {"de": "Taxifahrer",                   "bs": "taksista"},
         {"de": "Fahrer",                    "bs": "vozač"},
         {"de": "Tankstelle",                "bs": "benzinska pumpa"},
         {"de": "Benzin",                    "bs": "benzin"},
         {"de": "Autobahn",                  "bs": "autoput"},
         {"de": "Landkarte",                 "bs": "mapa", "auch": ["karta"]},
-        {"de": "Richtung",                  "bs": "pravac"},
+        {"de": "Richtung",                  "bs": "pravac", "auch": ["smjer"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Fahrt",                     "bs": "vožnja"},
         {"de": "Wie lange dauert die Fahrt?", "bs": "Koliko traje vožnja?"},
         {"de": "Wann fährt der Bus ab?",    "bs": "Kada polazi autobus?"},
@@ -1731,7 +1868,7 @@ KATEGORIEN = [
         {"de": "Gute Reise!",               "bs": "Sretan put!"},
     ]},
 
-    {"id": "feiern", "label": "Feste & Traditionen", "sektion": "saetze", "tipp": "Geburtstag, Hochzeit, Bajram: feiern wie in Bosnien.",
+    {"id": "feiern", "label": "Feste & Traditionen", "sektion": "saetze2", "tipp": "Geburtstag, Hochzeit, Bajram: feiern wie in Bosnien.",
      "baut_auf": ["familie", "essen", "zeit"],
      "words": [
         {"de": "Feier",                     "bs": "proslava"},
@@ -1772,7 +1909,7 @@ KATEGORIEN = [
         {"de": "Tracht",         "bs": "narodna nošnja"},
     ]},
 
-    {"id": "arbeit", "label": "Arbeit & Schule", "sektion": "saetze", "baut_auf": ["konjugation", "zeit", "zahlen"], "tipp": "Beruf, Firma, Schule.",
+    {"id": "arbeit", "label": "Arbeit & Schule", "sektion": "saetze2", "baut_auf": ["konjugation", "zeit", "zahlen"], "tipp": "Beruf, Firma, Schule.",
      "words": [
         {"de": "Arbeit",                    "bs": "posao"},
         {"de": "Firma",                     "bs": "firma"},
@@ -1796,11 +1933,17 @@ KATEGORIEN = [
         {"de": "Hausaufgabe",               "bs": "zadaća"},
         {"de": "Buch",                      "bs": "knjiga"},
         {"de": "Stift",                     "bs": "olovka"},
+        # K2 (20.11.2026): neu
+        {"de": "Kugelschreiber",               "bs": "hemijska olovka", "auch": ["hemijska"]},
+        {"de": "Spitzer",                      "bs": "rezač"},
+        {"de": "Lineal",                       "bs": "lenjir"},
         {"de": "Papier",                    "bs": "papir"},
+        # K2 (20.11.2026): neu
+        {"de": "Wort",                         "bs": "riječ"},
         {"de": "Computer",                  "bs": "računar"},
     ]},
 
-    {"id": "saetze", "label": "Ganze Sätze", "sektion": "saetze", "baut_auf": ["satzbau", "faelle1", "faelle3", "vergangenheit", "zukunft", "routine", "reisen"], "tipp": "Nur ganze Sätze aus den Wörtern der vorherigen Levels.",
+    {"id": "saetze", "label": "Ganze Sätze", "sektion": "saetze2", "baut_auf": ["satzbau", "faelle1", "faelle3", "vergangenheit", "zukunft", "routine", "reisen"], "tipp": "Nur ganze Sätze aus den Wörtern der vorherigen Levels.",
      "words": [
         # Dieses Level hat keine neuen Wörter. Jeder Satz besteht aus Wörtern
         # der vorherigen Levels – Wiederholung im Zusammenhang.
@@ -1911,6 +2054,8 @@ KATEGORIEN = [
         {"de": "scharf",                      "bs": "ljuto"},
         {"de": "süß",                         "bs": "slatko"},
         {"de": "zu wenig",                    "bs": "premalo"},
+        # K2 (20.11.2026): neu
+        {"de": "Serviette",                    "bs": "salveta"},
         {"de": "Behalten Sie das Rückgeld",   "bs": "Zadržite kusur"},
         {"de": "getrennt",                    "bs": "odvojeno"},
         {"de": "Jeder zahlt seins",           "bs": "Svako plaća svoje"},
@@ -1918,7 +2063,7 @@ KATEGORIEN = [
         {"de": "Trinkgeld (förmlich)",        "bs": "napojnica"},
         {"de": "Wie viel macht das?",         "bs": "Koliko je?", "auch": ["Koliko košta?"]},
         {"de": "zusammen",                    "bs": "zajedno"},
-        {"de": "Das ist teuer",               "bs": "Ovo je skupo"},
+        {"de": "Das ist teuer",               "bs": "Ovo je skupo", "auch": ["To je skupo"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Ein halbes Kilo, bitte",      "bs": "Pola kile, molim"},
         {"de": "Ein Kilo, bitte",             "bs": "Jedan kilogram, molim"},
         {"de": "Eine Tüte, bitte",            "bs": "Jednu kesu, molim"},
@@ -2062,7 +2207,10 @@ KATEGORIEN = [
      # Stattdessen die Familie: "Ovo je moja žena", prijatelj, porodica.
      "baut_auf": ["basics", "smalltalk", "familie"],
      "words": [
-        {"de": "(Antwort darauf)",                   "bs": "Alejkumu selam"},
+        # Bis zum 14.11.2026 "(Antwort darauf)": seit dem alphabetischen Einsortieren
+        # steht es vor Selam alejkum und verwies ins Leere (Pruefbericht 1.4, B9). Die
+        # alte Kennung zieht ueber UMBENANNT in web/index.html mit.
+        {"de": "Antwort auf Selam alejkum",          "bs": "Alejkumu selam"},
         {"de": "Besuch",                             "bs": "posjeta"},
         {"de": "Danke für alles",                    "bs": "Hvala na svemu"},
         {"de": "Darf ich vorstellen: ...",           "bs": "Da te upoznam: ..."},
@@ -2087,7 +2235,10 @@ KATEGORIEN = [
         {"de": "Bekannter / Bekannte",               "bs": "poznanik / poznanica"},
         {"de": "Freundeskreis / die Clique",         "bs": "raja"},
         {"de": "Gastgeber",                          "bs": "domaćin"},
-        {"de": "Kollegin",                           "bs": "koleginica"},
+        # Bis zum 14.11.2026 "koleginica". Ajdin (Pruefbericht 1.4, S2/F19): "kolegica ist
+        # [richtig] nicht koleginica", "ne sofort umstellen". Die alte Kennung zieht ueber
+        # UMBENANNT in web/index.html mit, den Ton spricht Emir (w8953).
+        {"de": "Kollegin",                           "bs": "kolegica"},
         {"de": "Kumpel (Slang, vor allem Sarajevo)", "bs": "jaran"},
         {"de": "Kumpel / Kumpelin (locker)",         "bs": "drug / drugarica"},
         {"de": "Nachbarn (Mehrzahl)",                "bs": "komšije"},
@@ -2113,6 +2264,8 @@ KATEGORIEN = [
         {"de": "Gott",                                    "bs": "Bog"},
         {"de": "Gott sei Dank",                           "bs": "Hvala Bogu"},
         {"de": "Iftar (Fastenbrechen)",                   "bs": "iftar"},
+        # K2 (20.11.2026): neu
+        {"de": "Sehur (Mahlzeit vor dem Morgengrauen im Ramadan)", "bs": "sehur"},
         {"de": "Inšallah (so Gott will)",                 "bs": "inšallah", "auch": ["Ako Bog da"]},
         {"de": "Mašallah (wie schön, Gott schütze es)", "bs": "mašallah"},
         {"de": "Ramadanfest / Opferfest",                 "bs": "Ramazanski bajram / Kurban-bajram"},
@@ -2146,7 +2299,7 @@ KATEGORIEN = [
         {"de": "Vielen Dank für Ihre Hilfe",        "bs": "Hvala Vam na pomoći"},
         {"de": "Sehr geehrter Herr",                "bs": "Poštovani gospodine"},
         {"de": "Sehr geehrte Frau",                 "bs": "Poštovana gospođo"},
-        {"de": "Mit freundlichen Grüßen",           "bs": "S poštovanjem"},
+        {"de": "Mit freundlichen Grüßen",           "bs": "S poštovanjem", "auch": ["Sa poštovanjem"]},   # Prüfbericht 1.4, V8/F1
     ]},
 
     {"id": "amt", "label": "Amt & Behörde", "sektion": "amt", "baut_auf": ["formell", "zeit", "zahlen", "arbeit"], "tipp": "Dokumente, Anträge, Behördensprache. Das schwerste Level.",
@@ -2188,7 +2341,7 @@ KATEGORIEN = [
         {"de": "Botschaft",                  "bs": "ambasada"},
         {"de": "Grenze",                     "bs": "granica"},
         {"de": "Zoll",                       "bs": "carina"},
-        {"de": "Ich brauche eine Bescheinigung", "bs": "Trebam potvrdu"},
+        {"de": "Ich brauche eine Bescheinigung", "bs": "Trebam potvrdu", "auch": ["Treba mi potvrda"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Wo muss ich unterschreiben?",    "bs": "Gdje trebam potpisati?"},
         {"de": "Welche Dokumente brauche ich?",  "bs": "Koji dokumenti mi trebaju?"},
     ]},
@@ -2514,7 +2667,7 @@ KATEGORIEN = [
         {"de": "weitermachen / fortsetzen",  "bs": "nastaviti", "partner": "nastavljati"},
         {"de": "Wir machen morgen weiter.",  "bs": "Nastavit ćemo sutra."},
         {"de": "schaffen / gelingen",        "bs": "uspjeti", "partner": "uspijevati"},
-        {"de": "Ich habe es geschafft!",     "bs": "Uspjela sam!"},
+        {"de": "Ich habe es geschafft!",     "bs": "Uspjela sam!", "auch": ["Uspio sam!"]},   # die Aufgabe nennt kein Geschlecht (Prüfbericht 1.4, V3)
         {"de": "dauern",                     "bs": "trajati"},
         {"de": "Wie lange dauert der Flug nach Sarajevo?", "bs": "Koliko traje let do Sarajeva?"},
         {"de": "ändern / wechseln",          "bs": "promijeniti", "partner": "mijenjati"},
@@ -2528,7 +2681,7 @@ KATEGORIEN = [
         {"de": "schließen / zumachen",       "bs": "zatvarati", "partner": "zatvoriti"},
         {"de": "Wir schließen in fünf Minuten.", "bs": "Zatvaramo za pet minuta."},
         {"de": "passieren / geschehen",      "bs": "desiti se / dogoditi se", "partner": "dešavati se / događati se"},
-        {"de": "Was ist passiert?",          "bs": "Šta se desilo?"},
+        {"de": "Was ist passiert?",          "bs": "Šta se desilo?", "auch": ["Šta se dogodilo?"]},   # wie beim Verb desiti se / dogoditi se (Prüfbericht 1.4, V3)
     ]},
 
     {"id": "tun_machen", "label": "Tun und machen", "sektion": "tunlassen", "tipp": "Machen, erledigen, werden, leben, benutzen.",
@@ -2561,7 +2714,7 @@ KATEGORIEN = [
         {"de": "Ich versuche den ganzen Tag, dich anzurufen.", "bs": "Pokušavam te nazvati cijeli dan."},
         {"de": "lösen / klären",             "bs": "riješiti", "partner": "rješavati"},
         {"de": "Wir klären das zusammen.",   "bs": "Riješit ćemo to zajedno."},
-        {"de": "vorbereiten",                "bs": "pripremiti", "partner": "pripremati"},
+        {"de": "vorbereiten",                "bs": "pripremiti", "partner": "pripremati", "auch": ["spremiti"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Ich muss alles für die Reise vorbereiten.", "bs": "Moram sve pripremiti za put."},
         {"de": "trinken / austrinken",       "bs": "popiti", "partner": "piti"},
         {"de": "Lass uns einen Kaffee trinken!", "bs": "Hajmo popiti kahvu!"},
@@ -2623,7 +2776,7 @@ KATEGORIEN = [
         {"de": "Mich interessiert Geschichte.", "bs": "Zanima me historija."},
         {"de": "abhängen",                   "bs": "zavisiti"},
         {"de": "Das hängt vom Wetter ab.",   "bs": "Zavisi od vremena."},
-        {"de": "fehlen",                     "bs": "nedostajati"},
+        {"de": "fehlen",                     "bs": "nedostajati", "auch": ["faliti"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Bosnien fehlt mir sehr.",    "bs": "Mnogo mi nedostaje Bosna."},
         {"de": "aufwachen",                  "bs": "probuditi se", "partner": "buditi se"},
         {"de": "Ich bin um fünf aufgewacht.", "bs": "Probudio sam se u pet."},
@@ -2735,7 +2888,7 @@ KATEGORIEN = [
         {"de": "schaffen / gelingen",        "bs": "uspijevati", "partner": "uspjeti"},
         {"de": "Ich schaffe es einfach nicht einzuschlafen.", "bs": "Nikako ne uspijevam zaspati."},
         {"de": "heiraten (Mann)",            "bs": "ženiti se", "partner": "oženiti se"},
-        {"de": "Wann heiratest du?",         "bs": "Kad se ženiš?"},
+        {"de": "Wann heiratest du?",         "bs": "Kad se ženiš?", "auch": ["Kada se ženiš?"]},   # Prüfbericht 1.4, V3
         {"de": "heiraten (Frau)",            "bs": "udavati se", "partner": "udati se"},
         {"de": "Meine Schwester heiratet im Juni.", "bs": "Sestra mi se udaje u junu."},
         {"de": "einschalten / anmachen",     "bs": "paliti", "partner": "upaliti"},
@@ -3384,6 +3537,9 @@ KATEGORIEN = [
         {"de": "Bemüh dich ein bisschen mehr!", "bs": "Potrudi se malo više!"},
         {"de": "verhandeln (Preis)",          "bs": "pogađati se"},
         {"de": "Wir verhandeln noch über den Preis der Wohnung.", "bs": "Još se pogađamo oko cijene stana."},
+        # K2 (20.11.2026): neu
+        {"de": "scherzen / Witze machen",      "bs": "šaliti se"},
+        {"de": "Sei nicht böse, ich mache nur Spaß.", "bs": "Ne ljuti se, samo se šalim."},
     ]},
 
     {"id": "lieben_fuerchten", "label": "Lieben und fürchten", "sektion": "tunlassen", "tipp": "Küssen, umarmen, weinen, träumen, sich ärgern, sich fürchten: starke Gefühle.",
@@ -3408,7 +3564,7 @@ KATEGORIEN = [
         {"de": "Ärgere dich nicht über mich.", "bs": "Nemoj se ljutiti na mene."},
         {"de": "sich ärgern",                 "bs": "naljutiti se", "partner": "ljutiti se"},
         {"de": "Papa hat sich wegen des Autos geärgert.", "bs": "Babo se naljutio zbog auta."},
-        {"de": "sich fürchten",               "bs": "plašiti se", "partner": "uplašiti se"},
+        {"de": "sich fürchten",               "bs": "plašiti se", "partner": "uplašiti se", "auch": ["bojati se"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Das Kind fürchtet sich vor der Dunkelheit.", "bs": "Dijete se plaši mraka."},
         {"de": "sich fürchten",               "bs": "uplašiti se", "partner": "plašiti se"},
         {"de": "Ich habe Angst bekommen, als es gedonnert hat.", "bs": "Uplašio sam se kad je zagrmilo."},
@@ -3478,7 +3634,7 @@ KATEGORIEN = [
      "baut_auf": ["sich_bewegen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "losgehen",                    "bs": "poći", "partner": "polaziti"},
+        {"de": "losgehen",                    "bs": "poći", "partner": "polaziti", "auch": ["krenuti"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Wir müssen vor Einbruch der Dunkelheit losgehen.", "bs": "Moramo poći prije mraka."},
         {"de": "losgehen",                    "bs": "polaziti", "partner": "poći"},
         {"de": "Morgen gehen wir um acht Uhr früh los.", "bs": "Sutra polazimo u osam ujutro."},
@@ -3855,6 +4011,13 @@ KATEGORIEN = [
         {"de": "Sie ist immer fröhlich und lacht.", "bs": "Uvijek je vesela i nasmijana."},
         {"de": "vorsichtig",                 "bs": "oprezan", "auch": ["oprezna", "oprezno"]},
         {"de": "Sei vorsichtig, draußen ist es glatt.", "bs": "Budi oprezan, vani je klizavo."},
+        # K2 (20.11.2026): neu
+        {"de": "gutaussehend / hübsch",        "bs": "zgodan", "auch": ["zgodna", "zgodno"]},
+        {"de": "Dein Bruder sieht sehr gut aus.", "bs": "Tvoj brat je jako zgodan."},
+        {"de": "sympathisch / nett",           "bs": "simpatičan", "auch": ["simpatična", "simpatično"]},
+        {"de": "Die neue Nachbarin ist sehr sympathisch.", "bs": "Nova komšinica je jako simpatična."},
+        {"de": "langweilig (der langweilige)", "bs": "dosadan", "auch": ["dosadna", "dosadno"]},
+        {"de": "Dieser Film ist so langweilig, dass ich eingeschlafen bin.", "bs": "Ovaj film je tako dosadan da sam zaspao."},
     ]},
 
     {"id": "benehmen", "label": "Wie man sich benimmt", "sektion": "wieetwasist", "tipp": "Freundlich, höflich, geduldig, frech, stur: im Umgang mit anderen.",
@@ -3980,7 +4143,6 @@ KATEGORIEN = [
      "baut_auf": ["koerper", "sinne"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (01.11.2026)
      "words": [
-        {"de": "Gesicht",                    "bs": "lice"},
         {"de": "Du hast etwas im Gesicht.",  "bs": "Imaš nešto na licu."},
         {"de": "Zunge",                      "bs": "jezik"},
         {"de": "Ich habe mir auf die Zunge gebissen.", "bs": "Ugrizao sam se za jezik."},
@@ -4068,6 +4230,9 @@ KATEGORIEN = [
         {"de": "Der Nachbar hatte einen Schlaganfall.", "bs": "Komšija je imao moždani udar."},
         {"de": "Herzinfarkt",                "bs": "srčani udar / infarkt"},
         {"de": "Opa hatte letztes Jahr einen Herzinfarkt.", "bs": "Dedo je prošle godine imao srčani udar."},
+        # K2 (20.11.2026): neu
+        {"de": "erkältet",                     "bs": "prehlađen", "auch": ["prehlađena"]},
+        {"de": "Ich bin erkältet, ich kann heute nicht kommen.", "bs": "Prehlađen sam, ne mogu danas doći."},
     ]},
 
     {"id": "beschwerden", "label": "Beschwerden", "sektion": "koerpergesundheit", "tipp": "Husten, Übelkeit, Schwindel, Ausschlag: sagen, was wehtut.",
@@ -4104,6 +4269,9 @@ KATEGORIEN = [
         {"de": "Ich habe schlimme Zahnschmerzen, ich muss zum Zahnarzt.", "bs": "Imam strašnu zubobolju, moram kod zubara."},
         {"de": "Mir ist übel.",              "bs": "Muka mi je."},
         {"de": "Halt mal kurz an, mir ist übel.", "bs": "Stani malo, muka mi je."},
+        # K2 (20.11.2026): neu
+        {"de": "niesen",                       "bs": "kihati"},
+        {"de": "Vom Staub muss ich ständig niesen.", "bs": "Od prašine stalno kišem."},
     ]},
 
     {"id": "in_der_praxis", "label": "In der Arztpraxis", "sektion": "koerpergesundheit", "tipp": "Wartezimmer, Befund, Spritze, Röntgen: der Weg durch die Praxis.",
@@ -4276,11 +4444,50 @@ KATEGORIEN = [
         {"de": "Morgen ist Feiertag, die Banken haben zu.", "bs": "Sutra je praznik, banke ne rade."},
     ]},
 
+    # K7 Ordnungszahlen (Ajdin am 20.11.2026, O-F1 bis O-F4: alles ja): von četvrti bis
+    # hiljaditi, je Wort mit Beispielsatz, hinter Zeitangaben. Beim Tippen zählen die
+    # weibliche und die sächliche Form (auch), dazu die Ziffer mit Punkt: „4.“ bei četvrti
+    # (O-F3, ordnungsZiffer() in web/js/pruefen.js). prvi, drugi und treći stehen in mengen.
+    {"id": "ordnungszahlen", "label": "Ordnungszahlen", "sektion": "zeitfreizeit", "tipp": "Der vierte, der zehnte, der hundertste: Stockwerk, Datum, Geburtstag und wie oft schon.",
+     "baut_auf": ["zeitangaben", "mengen"],
+     "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz, von vier bis tausend (27.11.2026)
+     "words": [
+        {"de": "der vierte",                   "bs": "četvrti", "auch": ["četvrta", "četvrto"]},
+        {"de": "Wir wohnen im vierten Stock, und der Aufzug geht nicht.", "bs": "Živimo na četvrtom spratu, a lift ne radi."},
+        {"de": "der fünfte",                   "bs": "peti", "auch": ["peta", "peto"]},
+        {"de": "Mein Gehalt bekomme ich am Fünften des Monats.", "bs": "Platu dobivam petog u mjesecu."},
+        {"de": "der sechste",                  "bs": "šesti", "auch": ["šesta", "šesto"]},
+        {"de": "Mein Sohn geht in die sechste Klasse.", "bs": "Moj sin ide u šesti razred."},
+        {"de": "der siebte",                   "bs": "sedmi", "auch": ["sedma", "sedmo"]},
+        {"de": "Das ist schon das siebte Mal, dass du zu spät kommst!", "bs": "Ovo je već sedmi put da kasniš!"},
+        {"de": "der achte",                    "bs": "osmi", "auch": ["osma", "osmo"]},
+        {"de": "Der achte März ist der Frauentag.", "bs": "Osmi mart je Dan žena."},
+        {"de": "der neunte",                   "bs": "deveti", "auch": ["deveta", "deveto"]},
+        {"de": "Unsere Mannschaft steht auf dem neunten Platz in der Liga.", "bs": "Naša ekipa je na devetom mjestu u ligi."},
+        {"de": "der zehnte",                   "bs": "deseti", "auch": ["deseta", "deseto"]},
+        {"de": "Ich bin am zehnten Oktober geboren.", "bs": "Rođen sam desetog oktobra."},
+        {"de": "der elfte",                    "bs": "jedanaesti", "auch": ["jedanaesta", "jedanaesto"]},
+        {"de": "Unser Büro ist im elften Stock.", "bs": "Naša kancelarija je na jedanaestom spratu."},
+        {"de": "der zwölfte",                  "bs": "dvanaesti", "auch": ["dvanaesta", "dvanaesto"]},
+        {"de": "Der Dezember ist der zwölfte Monat des Jahres.", "bs": "Decembar je dvanaesti mjesec u godini."},
+        {"de": "der zwanzigste",               "bs": "dvadeseti", "auch": ["dvadeseta", "dvadeseto"]},
+        {"de": "Heute feiern wir den zwanzigsten Geburtstag meiner Schwester.", "bs": "Danas slavimo sestrin dvadeseti rođendan."},
+        {"de": "der einundzwanzigste",         "bs": "dvadeset prvi", "auch": ["dvadeset prva", "dvadeset prvo"]},
+        {"de": "Wir leben im einundzwanzigsten Jahrhundert.", "bs": "Živimo u dvadeset prvom stoljeću."},
+        {"de": "der dreißigste",               "bs": "trideseti", "auch": ["trideseta", "trideseto"]},
+        {"de": "Die Miete wird bis zum Dreißigsten des Monats bezahlt.", "bs": "Kirija se plaća do tridesetog u mjesecu."},
+        {"de": "der fünfzigste",               "bs": "pedeseti", "auch": ["pedeseta", "pedeseto"]},
+        {"de": "Papa feiert seinen fünfzigsten Geburtstag.", "bs": "Babo slavi pedeseti rođendan."},
+        {"de": "der hundertste",               "bs": "stoti", "auch": ["stota", "stoto"]},
+        {"de": "Das sage ich dir schon zum hundertsten Mal!", "bs": "Ovo ti govorim već stoti put!"},
+        {"de": "der tausendste",               "bs": "hiljaditi", "auch": ["hiljadita", "hiljadito"]},
+        {"de": "Er war der tausendste Besucher und hat einen Preis bekommen.", "bs": "Bio je hiljaditi posjetilac i dobio je nagradu."},
+    ]},
+
     {"id": "sofort_endlich", "label": "Sofort, gerade, endlich", "sektion": "zeitfreizeit", "tipp": "Noch, wieder, erst, für immer: kleine Wörter für die Zeit.",
      "baut_auf": ["zeitangaben", "vergangenheit"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (01.11.2026)
      "words": [
-        {"de": "sofort",                     "bs": "odmah"},
         {"de": "Ich komme sofort!",          "bs": "Odmah dolazim!"},
         {"de": "gerade (eben)",              "bs": "upravo"},
         {"de": "Ich bin gerade nach Hause gekommen.", "bs": "Upravo sam stigla kući."},
@@ -4298,7 +4505,6 @@ KATEGORIEN = [
         {"de": "Der Film fängt erst um neun an.", "bs": "Film počinje tek u devet."},
         {"de": "noch",                       "bs": "još"},
         {"de": "Er schläft noch, weck ihn nicht.", "bs": "Još spava, nemoj ga buditi."},
-        {"de": "wieder",                     "bs": "opet", "auch": ["ponovo"]},
         {"de": "Kommt uns wieder besuchen!", "bs": "Dođite nam opet!"},
         {"de": "für immer",                  "bs": "zauvijek"},
         {"de": "Das kann nicht für immer so weitergehen.", "bs": "Ovo ne može trajati zauvijek."},
@@ -4350,6 +4556,17 @@ KATEGORIEN = [
         {"de": "Ich habe um sechs Training.", "bs": "Imam trening u šest."},
         {"de": "üben / trainieren",          "bs": "vježbati"},
         {"de": "Du musst mehr üben.",        "bs": "Moraš više vježbati."},
+        # K2 (20.11.2026): neu
+        {"de": "Torwart",                      "bs": "golman"},
+        {"de": "Unser Torwart ist der beste der Liga.", "bs": "Naš golman je najbolji u ligi."},
+        {"de": "Tennis",                       "bs": "tenis"},
+        {"de": "Samstags spiele ich mit einem Freund Tennis.", "bs": "Subotom igram tenis s prijateljem."},
+        {"de": "Volleyball",                   "bs": "odbojka"},
+        {"de": "Im Sommer spielen wir am Strand Volleyball.", "bs": "Ljeti na plaži igramo odbojku."},
+        {"de": "Trikot",                       "bs": "dres"},
+        {"de": "Ich habe meinem Sohn das Trikot der Nationalmannschaft gekauft.", "bs": "Kupio sam sinu dres reprezentacije."},
+        {"de": "unentschieden",                "bs": "neriješeno"},
+        {"de": "Das Spiel endete unentschieden.", "bs": "Utakmica je završila neriješeno."},
     ]},
 
     {"id": "hobbys", "label": "Hobbys und Ausgehen", "sektion": "zeitfreizeit", "tipp": "Zeichnen, angeln, Kino, Konzert, Party: was man in der Freizeit macht.",
@@ -4368,7 +4585,6 @@ KATEGORIEN = [
         {"de": "Meine Tochter lernt Gitarre spielen.", "bs": "Kćerka uči svirati gitaru."},
         {"de": "stricken",                   "bs": "plesti", "auch": ["štrikati"]},
         {"de": "Oma strickt Socken für den Winter.", "bs": "Nana plete čarape za zimu."},
-        {"de": "Bild / Foto",                "bs": "slika"},
         {"de": "Schick mir ein Foto!",       "bs": "Pošalji mi sliku!"},
         {"de": "Ausflug",                    "bs": "izlet"},
         {"de": "Am Sonntag machen wir einen Ausflug zum Vrelo Bosne.", "bs": "U nedjelju idemo na izlet na Vrelo Bosne."},
@@ -4382,8 +4598,12 @@ KATEGORIEN = [
         {"de": "Die Kinder waren mit der Klasse im Museum.", "bs": "Djeca su s razredom bila u muzeju."},
         {"de": "Party",                      "bs": "žurka", "auch": ["zabava"]},
         {"de": "Wer kommt alles zur Party?", "bs": "Ko sve dolazi na žurku?"},
-        {"de": "Spiel (zum Spielen)",        "bs": "igra"},
         {"de": "Lass uns ein Spiel spielen!", "bs": "Hajmo igrati neku igru!"},
+        # K2 (20.11.2026): neu
+        {"de": "Schach",                       "bs": "šah"},
+        {"de": "Opa hat mir Schach beigebracht.", "bs": "Dedo me je naučio igrati šah."},
+        {"de": "Handyspiel / Videospiel",      "bs": "igrica"},
+        {"de": "Die Kinder spielen den ganzen Tag Spiele auf dem Handy.", "bs": "Djeca cijeli dan igraju igrice na mobitelu."},
     ]},
 
     {"id": "medien", "label": "Zeitung, Fernsehen, Internet", "sektion": "zeitfreizeit", "tipp": "Nachrichten, Serie, Video, posten: was man liest, schaut und teilt.",
@@ -4402,7 +4622,6 @@ KATEGORIEN = [
         {"de": "Schon wieder Werbung, ich hol mir einen Saft.", "bs": "Opet reklame, idem po sok."},
         {"de": "Radio",                      "bs": "radio"},
         {"de": "Im Auto höre ich immer Radio.", "bs": "U autu uvijek slušam radio."},
-        {"de": "Film",                       "bs": "film"},
         {"de": "Wollen wir uns einen Film anschauen?", "bs": "Hoćemo li pogledati neki film?"},
         {"de": "Serie",                      "bs": "serija"},
         {"de": "Oma schaut jede türkische Serie.", "bs": "Nana gleda svaku tursku seriju."},
@@ -4420,6 +4639,9 @@ KATEGORIEN = [
         {"de": "Sie hat Fotos vom Meer gepostet.", "bs": "Objavila je slike s mora."},
         {"de": "Schauspieler",               "bs": "glumac"},
         {"de": "Dieser Schauspieler kommt aus Sarajevo.", "bs": "Taj glumac je iz Sarajeva."},
+        # K2 (20.11.2026): neu
+        {"de": "Zeichentrickfilm",             "bs": "crtani film", "auch": ["crtani"]},
+        {"de": "Die Kinder schauen jeden Morgen Zeichentrickfilme.", "bs": "Djeca svako jutro gledaju crtane filmove."},
     ]},
 
     {"id": "urlaub", "label": "Reisen und Urlaub", "sektion": "zeitfreizeit", "tipp": "Strand, Unterkunft, Koffer packen, reservieren: unterwegs in den Ferien.",
@@ -4431,7 +4653,7 @@ KATEGORIEN = [
         {"de": "Schiff",                     "bs": "brod"},
         {"de": "Ich bin zum ersten Mal mit dem Schiff gefahren.", "bs": "Prvi put sam se vozio brodom."},
         {"de": "Sommerurlaub",               "bs": "ljetovanje"},
-        {"de": "Wohin fahrt ihr in den Sommerurlaub?", "bs": "Kuda idete na ljetovanje?"},
+        {"de": "Wohin fahrt ihr in den Sommerurlaub?", "bs": "Kuda idete na ljetovanje?", "auch": ["Gdje idete na ljetovanje?"]},   # Ajdin, 14.11.2026 abends: „Ja“ (wie Kuda ideš? bei F7 a)
         {"de": "Strand",                     "bs": "plaža"},
         {"de": "Wir waren den ganzen Tag am Strand.", "bs": "Cijeli dan smo bili na plaži."},
         {"de": "packen",                     "bs": "spakovati", "partner": "pakovati"},
@@ -4452,6 +4674,13 @@ KATEGORIEN = [
         {"de": "Ich habe für Samstagabend einen Tisch reserviert.", "bs": "Rezervisala sam sto za subotu navečer."},
         {"de": "Fahrplan",                   "bs": "red vožnje"},
         {"de": "Wo kann ich den Fahrplan sehen?", "bs": "Gdje mogu vidjeti red vožnje?"},
+        # K2 (20.11.2026): neu
+        {"de": "Sonnenbrille",                 "bs": "sunčane naočale", "auch": ["sunčane naočare"]},
+        {"de": "Wo ist meine Sonnenbrille?", "bs": "Gdje su moje sunčane naočale?"},
+        {"de": "Badeanzug",                    "bs": "kupaći kostim"},
+        {"de": "Pack den Badeanzug ein, wir fahren ans Meer.", "bs": "Spakuj kupaći kostim, idemo na more."},
+        {"de": "Boot",                         "bs": "čamac"},
+        {"de": "Wir haben auf dem See ein Boot gemietet.", "bs": "Unajmili smo čamac na jezeru."},
     ]},
 
     # ---- Sektion 14 · Lernen und Arbeiten: Wortschatz-Paket 4 (01.11.2026) ----
@@ -4493,6 +4722,9 @@ KATEGORIEN = [
         {"de": "Sprich mir nach!",           "bs": "Ponovi za mnom!"},
         {"de": "wiederholen",                "bs": "ponavljati", "partner": "ponoviti"},
         {"de": "Wie oft muss ich dir das noch wiederholen?", "bs": "Koliko puta ti moram ponavljati?"},
+        # K2 (20.11.2026): neu
+        {"de": "Lehrer (Grundschule)",         "bs": "učitelj"},
+        {"de": "Unser Lehrer hat uns das Schreiben beigebracht.", "bs": "Naš učitelj nas je naučio pisati."},
     ]},
 
     {"id": "lernen_studieren", "label": "Lernen und studieren", "sektion": "lernenarbeiten", "tipp": "Sich merken, rechnen, übersetzen, studieren: vom Buchstaben bis zur Uni.",
@@ -4567,6 +4799,11 @@ KATEGORIEN = [
         {"de": "In der Fabrik arbeiten fünfhundert Arbeiter.", "bs": "U fabrici radi petsto radnika."},
         {"de": "Postbote",                   "bs": "poštar"},
         {"de": "Ist der Postbote schon gekommen?", "bs": "Je li poštar već došao?"},
+        # K2 (20.11.2026): neu
+        {"de": "Fliesenleger",                 "bs": "keramičar"},
+        {"de": "Der Fliesenleger kommt morgen, um im Bad die Fliesen zu verlegen.", "bs": "Keramičar dolazi sutra da postavi pločice u kupatilu."},
+        {"de": "Maler (Anstreicher)",          "bs": "soboslikar"},
+        {"de": "Der Maler kommt am Montag, um unsere Wohnung zu streichen.", "bs": "Soboslikar dolazi u ponedjeljak da nam okreči stan."},
     ]},
 
     {"id": "arbeitsplatz", "label": "Am Arbeitsplatz", "sektion": "lernenarbeiten", "tipp": "Schicht, Baustelle, Besprechung, Gehaltserhöhung: der Alltag bei der Arbeit.",
@@ -4603,6 +4840,9 @@ KATEGORIEN = [
         {"de": "Studenten müssen ein Praktikum machen.", "bs": "Studenti moraju odraditi praksu."},
         {"de": "Werktag",                    "bs": "radni dan"},
         {"de": "An Werktagen stehe ich um sechs auf.", "bs": "Radnim danima ustajem u šest."},
+        # K2 (20.11.2026): neu
+        {"de": "Erholung",                     "bs": "odmor"},
+        {"de": "Nach so einer Woche brauche ich Erholung.", "bs": "Poslije ovakve sedmice treba mi odmor."},
     ]},
 
     # Wortschatz-Paket 5 (06.11.2026): Sektion 15 · Grundbegriffe, 148 Hauptwoerter je mit
@@ -4612,7 +4852,6 @@ KATEGORIEN = [
      "baut_auf": ["praepositionen", "zeitangaben"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "Ort / Platz",                 "bs": "mjesto"},
         {"de": "Ist dieser Platz frei?",      "bs": "Je li ovo mjesto slobodno?"},
         {"de": "Seite (Richtung)",            "bs": "strana"},
         {"de": "Die Apotheke ist auf der anderen Straßenseite.", "bs": "Apoteka je na drugoj strani ulice."},
@@ -4674,9 +4913,7 @@ KATEGORIEN = [
      "baut_auf": ["mengen", "ort_raum"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "Teil",                        "bs": "dio"},
         {"de": "Der zweite Teil des Films war besser.", "bs": "Drugi dio filma je bio bolji."},
-        {"de": "Zahl / Nummer",               "bs": "broj"},
         {"de": "Schreib mir deine Nummer auf einen Zettel.", "bs": "Napiši mi svoj broj na papir."},
         {"de": "Mehrheit",                    "bs": "većina"},
         {"de": "Die meisten meiner Freunde leben in Deutschland.", "bs": "Većina mojih prijatelja živi u Njemačkoj."},
@@ -4732,9 +4969,7 @@ KATEGORIEN = [
      "baut_auf": ["menge_teil", "zeitangaben"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "Anfang",                      "bs": "početak"},
         {"de": "Am Anfang war es schwer für mich.", "bs": "Na početku mi je bilo teško."},
-        {"de": "Ende",                        "bs": "kraj"},
         {"de": "Die Bäckerei ist am Ende der Straße.", "bs": "Pekara je na kraju ulice."},
         {"de": "Zeitraum",                    "bs": "period"},
         {"de": "Das war eine schwere Zeit in meinem Leben.", "bs": "To je bio težak period u mom životu."},
@@ -4772,7 +5007,6 @@ KATEGORIEN = [
      "baut_auf": ["anfang_ende"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "das Leben",                   "bs": "život"},
         {"de": "Das Leben auf dem Dorf ist ruhig.", "bs": "Život na selu je miran."},
         {"de": "Tod",                         "bs": "smrt"},
         {"de": "Sein Tod hat uns alle erschüttert.", "bs": "Njegova smrt nas je sve potresla."},
@@ -4914,7 +5148,6 @@ KATEGORIEN = [
      "baut_auf": ["wahrheit_zweifel"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "Problem",                     "bs": "problem"},
         {"de": "Das ist nicht mein Problem.", "bs": "To nije moj problem."},
         {"de": "Lösung",                      "bs": "rješenje"},
         {"de": "Für jedes Problem gibt es eine Lösung.", "bs": "Za svaki problem postoji rješenje."},
@@ -4989,9 +5222,7 @@ KATEGORIEN = [
      "baut_auf": ["familie", "kennenlernen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "Person",                      "bs": "osoba"},
         {"de": "Ich habe einen Tisch für vier Personen reserviert.", "bs": "Rezervisao sam sto za četiri osobe."},
-        {"de": "Eltern",                      "bs": "roditelji"},
         {"de": "Meine Eltern leben in Sarajevo.", "bs": "Moji roditelji žive u Sarajevu."},
         {"de": "Ehefrau (förmlich)",          "bs": "supruga"},
         {"de": "Das ist meine Frau, Amra.",   "bs": "Ovo je moja supruga, Amra."},
@@ -5313,19 +5544,12 @@ KATEGORIEN = [
      "baut_auf": ["glaube_gedenken"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "Essen / Nahrung",             "bs": "hrana"},
         {"de": "Selbstgemachtes Essen ist am besten.", "bs": "Domaća hrana je najbolja."},
-        {"de": "Getränk",                     "bs": "piće"},
         {"de": "Was möchten Sie trinken?",    "bs": "Šta ćete za piće?"},
-        {"de": "Name",                        "bs": "ime"},
         {"de": "Wie schreibt man deinen Namen?", "bs": "Kako se piše tvoje ime?"},
-        {"de": "Nachname",                    "bs": "prezime"},
         {"de": "Schreiben Sie hier Ihren Nachnamen hin.", "bs": "Napišite ovdje svoje prezime."},
-        {"de": "Adresse",                     "bs": "adresa"},
         {"de": "Wie lautet deine neue Adresse?", "bs": "Koja je tvoja nova adresa?"},
-        {"de": "Telefon",                     "bs": "telefon"},
         {"de": "Ich habe das Telefon zu Hause gelassen.", "bs": "Ostavio sam telefon kod kuće."},
-        {"de": "Geschichte (Erzählung)",      "bs": "priča"},
         {"de": "Das ist eine lange Geschichte.", "bs": "To je duga priča."},
         {"de": "Information",                 "bs": "informacija"},
         {"de": "Ich brauche mehr Informationen.", "bs": "Treba mi više informacija."},
@@ -5412,9 +5636,7 @@ KATEGORIEN = [
      "baut_auf": ["wichtig_bekannt", "mengen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "ganz / all",                  "bs": "sav", "auch": ["sva", "sve"]},
         {"de": "Die Kinder haben den ganzen Saft getrunken.", "bs": "Djeca su popila sav sok."},
-        {"de": "ganz (der ganze)",            "bs": "cijeli", "auch": ["cijela", "cijelo"]},
         {"de": "Die ganze Stadt ist ohne Strom.", "bs": "Cijeli grad je bez struje."},
         {"de": "viele",                       "bs": "mnogi", "auch": ["mnoge", "mnoga"]},
         {"de": "Viele sind nach Deutschland gegangen.", "bs": "Mnogi su otišli u Njemačku."},
@@ -5510,7 +5732,7 @@ KATEGORIEN = [
         {"de": "Gott sei Dank sind alle gesund und munter.", "bs": "Hvala Bogu, svi su živi i zdravi."},
         {"de": "stark / kräftig",             "bs": "snažan", "auch": ["snažna", "snažno"]},
         {"de": "Mein Bruder ist stark wie ein Stier.", "bs": "Moj brat je snažan kao bik."},
-        {"de": "modern",                      "bs": "moderan", "auch": ["moderna", "moderno"]},
+        {"de": "modern",                      "bs": "moderan", "auch": ["moderna", "moderno", "savremen", "savremena", "savremeno"]},   # savremen in den Formen wie beim Wort (Prüfbericht 1.4, B3/F14)
         {"de": "Sie haben eine sehr moderne Küche.", "bs": "Imaju jako modernu kuhinju."},
         {"de": "warm (der warme)",            "bs": "topao", "auch": ["topla", "toplo"]},
         {"de": "Ich brauche einen warmen Pullover.", "bs": "Treba mi topao džemper."},
@@ -5538,21 +5760,19 @@ KATEGORIEN = [
         {"de": "Ich muss dir dringend etwas sagen.", "bs": "Moram ti nešto hitno reći."},
         {"de": "häufig",                      "bs": "čest", "auch": ["česta", "često"]},
         {"de": "Das ist ein häufiger Fehler.", "bs": "To je česta greška."},
+        # K2 (20.11.2026): neu
+        {"de": "schmutzig (der schmutzige)",   "bs": "prljav", "auch": ["prljava", "prljavo"]},
+        {"de": "Stell keinen schmutzigen Teller in den Schrank.", "bs": "Ne stavljaj prljav tanjir u ormar."},
     ]},
 
     {"id": "hier_dort", "label": "Hier und dort", "sektion": "wiewowann", "tipp": "Da, oben, unten, irgendwo, nirgendwo, zurück: kleine Wörter für den Ort.",
      "baut_auf": ["eigenschaften", "praepositionen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "da / hier",                   "bs": "tu"},
         {"de": "Lass die Tasche da, neben der Tür.", "bs": "Ostavi torbu tu, pored vrata."},
-        {"de": "hier",                        "bs": "ovdje"},
         {"de": "Ich wohne hier schon seit zehn Jahren.", "bs": "Živim ovdje već deset godina."},
-        {"de": "dort",                        "bs": "tamo"},
         {"de": "Ich war letztes Jahr dort.",  "bs": "Bio sam tamo prošle godine."},
-        {"de": "oben",                        "bs": "gore"},
         {"de": "Die Kinder spielen oben im Zimmer.", "bs": "Djeca se igraju gore u sobi."},
-        {"de": "unten",                       "bs": "dolje"},
         {"de": "Ich warte unten auf dich, vor dem Gebäude.", "bs": "Čekam te dolje, ispred zgrade."},
         {"de": "irgendwo",                    "bs": "negdje"},
         {"de": "Ich habe die Schlüssel irgendwo liegen lassen.", "bs": "Negdje sam ostavio ključeve."},
@@ -5568,9 +5788,7 @@ KATEGORIEN = [
      "baut_auf": ["hier_dort", "sofort_endlich"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "dann",                        "bs": "onda"},
         {"de": "Erst das Mittagessen, dann der Kaffee.", "bs": "Prvo ručak, onda kahva."},
-        {"de": "danach",                      "bs": "zatim"},
         {"de": "Wir haben zu Abend gegessen und danach einen Film geschaut.", "bs": "Večerali smo, a zatim smo gledali film."},
         {"de": "manchmal / früher",           "bs": "nekad", "auch": ["nekada"]},
         {"de": "Früher haben wir in Tuzla gelebt.", "bs": "Nekad smo živjeli u Tuzli."},
@@ -5578,11 +5796,9 @@ KATEGORIEN = [
         {"de": "Plötzlich ist der Strom ausgefallen.", "bs": "Odjednom je nestala struja."},
         {"de": "vor langer Zeit",             "bs": "davno"},
         {"de": "Das ist lange her, ich erinnere mich nicht.", "bs": "To je bilo davno, ne sjećam se."},
-        {"de": "ständig",                     "bs": "stalno"},
         {"de": "Ich denke ständig an dich.",  "bs": "Stalno mislim na tebe."},
         {"de": "momentan / gerade",           "bs": "trenutno"},
         {"de": "Ich bin gerade nicht zu Hause.", "bs": "Trenutno nisam kod kuće."},
-        {"de": "zuerst",                      "bs": "prvo"},
         {"de": "Wasch dir zuerst die Hände und iss dann.", "bs": "Prvo operi ruke, pa onda jedi."},
         {"de": "fast / bald",                 "bs": "skoro"},
         {"de": "Ich hätte fast deinen Geburtstag vergessen.", "bs": "Skoro sam zaboravio tvoj rođendan."},
@@ -5592,11 +5808,9 @@ KATEGORIEN = [
      "baut_auf": ["wann_wie_oft"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "so",                          "bs": "tako"},
         {"de": "Warum kommst du so spät nach Hause?", "bs": "Zašto tako kasno dolaziš kući?"},
         {"de": "so (wie hier)",               "bs": "ovako"},
         {"de": "Schau, das macht man so.",    "bs": "Gledaj, to se radi ovako."},
-        {"de": "sehr (vor Eigenschaften)",    "bs": "vrlo / veoma"},
         {"de": "Das ist sehr wichtig für mich.", "bs": "Ovo je vrlo važno za mene."},
         {"de": "so viel",                     "bs": "toliko"},
         {"de": "Oma, so viel kann ich nicht essen!", "bs": "Nano, ne mogu toliko pojesti!"},
@@ -5608,7 +5822,6 @@ KATEGORIEN = [
         {"de": "Irgendwie kommen wir schon zurecht.", "bs": "Nekako ćemo se snaći."},
         {"de": "ein wenig",                   "bs": "pomalo"},
         {"de": "Ich spreche schon ein wenig Bosnisch.", "bs": "Već pomalo govorim bosanski."},
-        {"de": "gern",                        "bs": "rado"},
         {"de": "Ich helfe dir gern.",         "bs": "Rado ću ti pomoći."},
         {"de": "ungefähr",                    "bs": "otprilike"},
         {"de": "Wir kommen in ungefähr einer Stunde an.", "bs": "Stižemo za otprilike sat vremena."},
@@ -5652,15 +5865,13 @@ KATEGORIEN = [
      "baut_auf": ["wie_man_es_meint", "satzbau"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "wie / als",                   "bs": "kao"},
         {"de": "Ich habe wie ein Baby geschlafen.", "bs": "Spavao sam kao beba."},
-        {"de": "und dann / also",             "bs": "pa"},
         {"de": "Mach deine Hausaufgaben fertig und geh dann raus.", "bs": "Završi zadaću pa idi vani."},
         {"de": "was / dass (im Nebensatz)",   "bs": "što"},
         {"de": "Es tut mir leid, dass ich zu spät komme.", "bs": "Žao mi je što kasnim."},
         {"de": "obwohl",                      "bs": "iako"},
         {"de": "Obwohl ich müde bin, gehe ich zum Training.", "bs": "Iako sam umoran, idem na trening."},
-        {"de": "falls",                       "bs": "ukoliko"},
+        {"de": "falls",                       "bs": "ukoliko", "auch": ["ako"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Falls du nicht kommen kannst, sag mir Bescheid.", "bs": "Ukoliko ne možeš doći, javi mi."},
         {"de": "also",                        "bs": "dakle"},
         {"de": "Also, wir sehen uns morgen um acht.", "bs": "Dakle, vidimo se sutra u osam."},
@@ -5676,7 +5887,6 @@ KATEGORIEN = [
         {"de": "Da es regnet, bleiben wir zu Hause.", "bs": "Pošto pada kiša, ostajemo kod kuće."},
         {"de": "soll / möge",                 "bs": "neka"},
         {"de": "Er soll fünf Minuten warten.", "bs": "Neka sačeka pet minuta."},
-        {"de": "hier ist / da ist",           "bs": "evo"},
         {"de": "Hier hast du die Wohnungsschlüssel.", "bs": "Evo ti ključevi od stana."},
     ]},
 
@@ -5686,7 +5896,7 @@ KATEGORIEN = [
      "words": [
         {"de": "nach / pro",                  "bs": "po"},
         {"de": "Der Eintritt kostet fünf Mark pro Person.", "bs": "Ulaz košta pet maraka po osobi."},
-        {"de": "nach (einem Ereignis)",       "bs": "nakon"},
+        {"de": "nach (einem Ereignis)",       "bs": "nakon", "auch": ["poslije"]},   # Prüfbericht 1.4, V9/F3
         {"de": "Nach dem Mittagessen trinken wir Kaffee.", "bs": "Nakon ručka pijemo kahvu."},
         {"de": "neben / zu / mit",            "bs": "uz"},
         {"de": "Zu Ćevapi gehört unbedingt Zwiebel.", "bs": "Uz ćevape obavezno ide luk."},
@@ -5720,7 +5930,6 @@ KATEGORIEN = [
      "words": [
         {"de": "sich",                        "bs": "sebe"},
         {"de": "Er denkt nur an sich.",       "bs": "On misli samo na sebe."},
-        {"de": "dieser (da)",                 "bs": "taj", "auch": ["ta", "to"]},
         {"de": "Wer ist dieser Mann?",        "bs": "Ko je taj čovjek?"},
         {"de": "eigener (mein, dein, sein)",  "bs": "svoj", "auch": ["svoja", "svoje"]},
         {"de": "Nimm deine Tasche, wir gehen!", "bs": "Uzmi svoju torbu, idemo!"},
@@ -5997,7 +6206,7 @@ KATEGORIEN = [
         {"de": "Es ist spät, daher müssen wir gehen.", "bs": "Kasno je, stoga moramo ići."},
         {"de": "außerdem",                    "bs": "osim toga"},
         {"de": "Das Hotel ist schön und außerdem günstig.", "bs": "Hotel je lijep, a osim toga je jeftin."},
-        {"de": "da (weil)",                   "bs": "budući da"},
+        {"de": "da (weil)",                   "bs": "budući da", "auch": ["pošto"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Da Sonntag ist, ist alles geschlossen.", "bs": "Budući da je nedjelja, sve je zatvoreno."},
         {"de": "damit / um zu",               "bs": "kako bi / kako bih"},
         {"de": "Sie lernt, um die Prüfung zu bestehen.", "bs": "Ona uči kako bi položila ispit."},
@@ -6005,7 +6214,7 @@ KATEGORIEN = [
         {"de": "Ich habe ein Taxi genommen, sodass ich nicht zu spät kam.", "bs": "Uzeo sam taksi, tako da nisam zakasnio."},
         {"de": "bevor",                       "bs": "prije nego što", "auch": ["prije nego"]},
         {"de": "Ruf mich an, bevor du losgehst.", "bs": "Nazovi me prije nego što kreneš."},
-        {"de": "nachdem",                     "bs": "nakon što"},
+        {"de": "nachdem",                     "bs": "nakon što", "auch": ["pošto"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Nachdem ich fertig bin, rufe ich dich an.", "bs": "Nakon što završim, nazvat ću te."},
         {"de": "nicht nur",                   "bs": "ne samo"},
         {"de": "Er kommt nicht nur zu spät, sondern ärgert sich auch noch.", "bs": "Ne samo da kasni, nego se još i ljuti."},
@@ -6130,7 +6339,7 @@ KATEGORIEN = [
         {"de": "Dieses Thema ist immer noch aktuell.", "bs": "Ta tema je još uvijek aktuelna."},
     ]},
 
-    {"id": "erziehung_aufwachsen", "label": "Erziehung und Aufwachsen", "sektion": "menschenbeziehungen", "tipp": "Erziehung, Vorbild, Jugendliche, Spielzeug, aufwachsen, belohnen: wie Kinder groß werden.",
+    {"id": "erziehung_aufwachsen", "label": "Erziehung und Aufwachsen", "sektion": "denkenmeinen", "tipp": "Erziehung, Vorbild, Jugendliche, Spielzeug, aufwachsen, belohnen: wie Kinder groß werden.",
      "baut_auf": ["etwas_beurteilen", "familie", "menschen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6164,9 +6373,14 @@ KATEGORIEN = [
         {"de": "Dieser Schüler verdient ein Lob.", "bs": "Ovaj učenik zaslužuje pohvalu."},
         {"de": "Schulbildung",                "bs": "školovanje"},
         {"de": "Die Schulbildung der Kinder kostet viel Geld.", "bs": "Školovanje djece košta mnogo novca."},
+        # K2 (20.11.2026): neu
+        {"de": "Pubertät",                     "bs": "pubertet"},
+        {"de": "Unser Sohn ist in die Pubertät gekommen.", "bs": "Naš sin je ušao u pubertet."},
+        {"de": "Teenager",                     "bs": "tinejdžer"},
+        {"de": "Als Teenager habe ich ständig Musik gehört.", "bs": "Kao tinejdžer sam stalno slušao muziku."},
     ]},
 
-    {"id": "familie_generationen", "label": "Familie und Generationen", "sektion": "menschenbeziehungen", "tipp": "Herkunft, Vorfahr, Enkel, Zwilling, Witwe, Schwiegereltern: die ganze Verwandtschaft.",
+    {"id": "familie_generationen", "label": "Familie und Generationen", "sektion": "denkenmeinen", "tipp": "Herkunft, Vorfahr, Enkel, Zwilling, Witwe, Schwiegereltern: die ganze Verwandtschaft.",
      "baut_auf": ["erziehung_aufwachsen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6208,9 +6422,28 @@ KATEGORIEN = [
         {"de": "Die Schwiegermutter hat uns zum Mittagessen eingeladen.", "bs": "Punica nas je pozvala na ručak."},
         {"de": "Schwiegervater (Vater der Frau)", "bs": "punac"},
         {"de": "Mein Schwiegervater und ich gehen zusammen angeln.", "bs": "Punac i ja idemo zajedno na pecanje."},
+        # K2 (20.11.2026): neu
+        {"de": "Enkelkind",                    "bs": "unuče"},
+        {"de": "Wir haben unser erstes Enkelkind bekommen.", "bs": "Dobili smo prvo unuče."},
+        {"de": "Witwer",                       "bs": "udovac"},
+        {"de": "Opa ist schon seit zehn Jahren Witwer.", "bs": "Dedo je udovac već deset godina."},
+        {"de": "Schwager (Bruder des Ehemanns)", "bs": "djever"},
+        {"de": "Bei der Hochzeit hat der Bruder des Bräutigams die Braut begleitet.", "bs": "Na svadbi je djever pratio mladu."},
+        {"de": "Schwager (Bruder der Ehefrau)", "bs": "šurjak"},
+        {"de": "Der Bruder meiner Frau arbeitet in Deutschland.", "bs": "Moj šurjak radi u Njemačkoj."},
+        {"de": "Schwager (Mann der Schwester der Ehefrau)", "bs": "badžo"},
+        {"de": "Mit dem Mann der Schwester meiner Frau gehe ich jeden Samstag angeln.", "bs": "S badžom svake subote idem na pecanje."},
+        {"de": "Schwägerin (Schwester des Ehemanns)", "bs": "zaova"},
+        {"de": "Meine Frau versteht sich sehr gut mit ihrer Schwägerin.", "bs": "Moja žena se odlično slaže sa svojom zaovom."},
+        {"de": "Schwägerin (Frau des Bruders des Ehemanns)", "bs": "jetrva"},
+        {"de": "Meine Frau und ihre Schwägerin kochen zusammen für Bajram.", "bs": "Moja žena i njena jetrva zajedno kuhaju za Bajram."},
+        {"de": "Schwägerin (Schwester der Ehefrau)", "bs": "balduza"},
+        {"de": "Die Schwester meiner Frau kommt am Wochenende zu Besuch.", "bs": "Balduza nam dolazi u goste za vikend."},
+        {"de": "Schwägerin (Frau des Bruders der Ehefrau)", "bs": "šurnjaja"},
+        {"de": "Die Frau vom Bruder meiner Frau hat uns eine Pita gebacken.", "bs": "Šurnjaja nam je ispekla pitu."},
     ]},
 
-    {"id": "liebe_ehe", "label": "Liebe und Ehe", "sektion": "menschenbeziehungen", "tipp": "Leidenschaft, Trauung, Kuss, Eifersucht, treu, Verlobung: wenn zwei sich lieben.",
+    {"id": "liebe_ehe", "label": "Liebe und Ehe", "sektion": "denkenmeinen", "tipp": "Leidenschaft, Trauung, Kuss, Eifersucht, treu, Verlobung: wenn zwei sich lieben.",
      "baut_auf": ["familie_generationen", "beziehungen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6244,9 +6477,22 @@ KATEGORIEN = [
         {"de": "Vor der Trauung waren sie drei Jahre ein Paar.", "bs": "Zabavljali su se tri godine prije vjenčanja."},
         {"de": "Verlobung",                   "bs": "vjeridba", "auch": ["zaruke"]},
         {"de": "Die Verlobung war letzten Samstag.", "bs": "Vjeridba je bila prošle subote."},
+        # K2 (20.11.2026): neu
+        {"de": "Ring",                         "bs": "prsten"},
+        {"de": "Sie hat ihren Ring am Strand verloren.", "bs": "Izgubila je prsten na plaži."},
+        {"de": "Ehering",                      "bs": "burma"},
+        {"de": "Er trägt den Ehering an der rechten Hand.", "bs": "Nosi burmu na desnoj ruci."},
+        {"de": "sich scheiden lassen",         "bs": "razvesti se"},
+        {"de": "Sie haben sich letztes Jahr scheiden lassen.", "bs": "Razveli su se prošle godine."},
+        {"de": "geschieden",                   "bs": "razveden", "auch": ["razvedena"]},
+        {"de": "Mein Nachbar ist geschieden und lebt allein.", "bs": "Moj komšija je razveden i živi sam."},
+        {"de": "einen Heiratsantrag machen",   "bs": "zaprositi"},
+        {"de": "Ich habe ihr auf der Alten Brücke einen Heiratsantrag gemacht.", "bs": "Zaprosio sam je na Starom mostu."},
+        {"de": "Heiratsantrag",                "bs": "prosidba"},
+        {"de": "Der Heiratsantrag war eine Überraschung für die ganze Familie.", "bs": "Prosidba je bila iznenađenje za cijelu porodicu."},
     ]},
 
-    {"id": "streit_versoehnung", "label": "Streit und Versöhnung", "sektion": "menschenbeziehungen", "tipp": "Ärger, Beleidigung, Missverständnis, Versöhnung, verzeihen: streiten und sich wieder vertragen.",
+    {"id": "streit_versoehnung", "label": "Streit und Versöhnung", "sektion": "denkenmeinen", "tipp": "Ärger, Beleidigung, Missverständnis, Versöhnung, verzeihen: streiten und sich wieder vertragen.",
      "baut_auf": ["liebe_ehe", "stimmung_streit"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6276,7 +6522,7 @@ KATEGORIEN = [
         {"de": "Eine Mutter verzeiht ihren Kindern alles.", "bs": "Majka djeci sve oprašta."},
     ]},
 
-    {"id": "reue_enttaeuschung", "label": "Reue und Enttäuschung", "sektion": "menschenbeziehungen", "tipp": "Bereuen, Schande, sich schämen, Schuld, Betrug, enttäuschen: was danach bleibt.",
+    {"id": "reue_enttaeuschung", "label": "Reue und Enttäuschung", "sektion": "denkenmeinen", "tipp": "Bereuen, Schande, sich schämen, Schuld, Betrug, enttäuschen: was danach bleibt.",
      "baut_auf": ["streit_versoehnung"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6306,7 +6552,7 @@ KATEGORIEN = [
         {"de": "Der Film war eine echte Enttäuschung.", "bs": "Film je bio pravo razočaranje."},
     ]},
 
-    {"id": "gefuehle_genauer", "label": "Gefühle genauer", "sektion": "menschenbeziehungen", "tipp": "Zufriedenheit, Erwartung, Stolz, Panik, Erleichterung, Langeweile: was in einem vorgeht.",
+    {"id": "gefuehle_genauer", "label": "Gefühle genauer", "sektion": "denkenmeinen", "tipp": "Zufriedenheit, Erwartung, Stolz, Panik, Erleichterung, Langeweile: was in einem vorgeht.",
      "baut_auf": ["reue_enttaeuschung", "glueck_sorgen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6342,9 +6588,14 @@ KATEGORIEN = [
         {"de": "Diese Sängerin begeistert das Publikum immer.", "bs": "Ova pjevačica uvijek oduševljava publiku."},
         {"de": "erfreuen",                    "bs": "obradovati"},
         {"de": "Deine Nachricht hat mich sehr gefreut.", "bs": "Tvoja poruka me je jako obradovala."},
+        # K2 (20.11.2026): neu
+        {"de": "Neid",                         "bs": "zavist"},
+        {"de": "Neid ist eine hässliche Eigenschaft.", "bs": "Zavist je ružna osobina."},
+        {"de": "neidisch",                     "bs": "zavidan", "auch": ["zavidna", "zavidno"]},
+        {"de": "Er ist nicht neidisch, er freut sich über den Erfolg anderer.", "bs": "Nije zavidan, raduje se tuđem uspjehu."},
     ]},
 
-    {"id": "charakter", "label": "Charakter", "sektion": "menschenbeziehungen", "tipp": "Verhalten, Weisheit, Geduld, bescheiden, gerecht, reif: wie ein Mensch ist.",
+    {"id": "charakter", "label": "Charakter", "sektion": "denkenmeinen", "tipp": "Verhalten, Weisheit, Geduld, bescheiden, gerecht, reif: wie ein Mensch ist.",
      "baut_auf": ["gefuehle_genauer", "wie_jemand_ist"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6384,9 +6635,12 @@ KATEGORIEN = [
         {"de": "Du hast dir diesen Urlaub wirklich verdient.", "bs": "Stvarno si zaslužila ovaj odmor."},
         {"de": "verdienen (moralisch)",       "bs": "zasluživati", "partner": "zaslužiti"},
         {"de": "Sie verdient ein besseres Leben.", "bs": "Ona zaslužuje bolji život."},
+        # K2 (20.11.2026): neu
+        {"de": "großzügig",                    "bs": "darežljiv", "auch": ["darežljiva", "darežljivo"]},
+        {"de": "Papa war immer großzügig zu den Nachbarn.", "bs": "Babo je uvijek bio darežljiv prema komšijama."},
     ]},
 
-    {"id": "trauer_beileid", "label": "Trauer und Beileid", "sektion": "menschenbeziehungen", "tipp": "Versterben, Trauer, Grab, Trost, Gedenkfeier, Beileid: wenn jemand stirbt.",
+    {"id": "trauer_beileid", "label": "Trauer und Beileid", "sektion": "denkenmeinen", "tipp": "Versterben, Trauer, Grab, Trost, Gedenkfeier, Beileid: wenn jemand stirbt.",
      "baut_auf": ["charakter", "glaube_gedenken"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6422,9 +6676,12 @@ KATEGORIEN = [
         {"de": "Nehmen Sie mein aufrichtiges Beileid entgegen.", "bs": "Primite moje iskreno saučešće."},
         {"de": "Mitgefühl",                   "bs": "suosjećanje", "auch": ["saosjećanje"]},
         {"de": "Danke für Ihr Mitgefühl und Ihre Unterstützung.", "bs": "Hvala Vam na suosjećanju i podršci."},
+        # K2 (20.11.2026): neu
+        {"de": "Testament",                    "bs": "oporuka"},
+        {"de": "Opa hat vor seinem Tod ein Testament geschrieben.", "bs": "Dedo je prije smrti napisao oporuku."},
     ]},
 
-    {"id": "begegnen_versammeln", "label": "Begegnen und versammeln", "sektion": "menschenbeziehungen", "tipp": "Begegnung, Siedlung, Kontakt, versammeln, empfangen, sich anschließen: zusammenkommen.",
+    {"id": "begegnen_versammeln", "label": "Begegnen und versammeln", "sektion": "denkenmeinen", "tipp": "Begegnung, Siedlung, Kontakt, versammeln, empfangen, sich anschließen: zusammenkommen.",
      "baut_auf": ["trauer_beileid"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6456,7 +6713,7 @@ KATEGORIEN = [
         {"de": "Er lebt im Nachbardorf.",     "bs": "Živi u susjednom selu."},
     ]},
 
-    {"id": "nachbarn_miteinander", "label": "Nachbarn und Miteinander", "sektion": "menschenbeziehungen", "tipp": "Hof, Mitbürger, Solidarität, Zusammenleben, Nachbarschaft, widmen: mit anderen leben.",
+    {"id": "nachbarn_miteinander", "label": "Nachbarn und Miteinander", "sektion": "denkenmeinen", "tipp": "Hof, Mitbürger, Solidarität, Zusammenleben, Nachbarschaft, widmen: mit anderen leben.",
      "baut_auf": ["begegnen_versammeln", "putzen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6894,6 +7151,9 @@ KATEGORIEN = [
         {"de": "Die Polizei hat eine Mitteilung zum Unfall herausgegeben.", "bs": "Policija je izdala saopćenje o nesreći."},
         {"de": "Neuigkeit",                   "bs": "novost"},
         {"de": "Gibt es etwas Neues?",        "bs": "Ima li kakvih novosti?"},
+        # K2 (20.11.2026): neu
+        {"de": "Moderator (Fernsehen)",        "bs": "voditelj"},
+        {"de": "Der Moderator begrüßte die Gäste im Studio.", "bs": "Voditelj je pozdravio goste u studiju."},
     ]},
 
     {"id": "berichten_verbreiten", "label": "Berichten und verbreiten", "sektion": "medienkultur", "tipp": "Mitteilen, Redakteur, berichten, Umfrage, Ereignis, notieren, verbreiten: Nachrichten machen.",
@@ -6960,6 +7220,9 @@ KATEGORIEN = [
         {"de": "Diese Werbung hat meine Aufmerksamkeit auf sich gezogen.", "bs": "Ta reklama mi je privukla pažnju."},
         {"de": "anziehen (Interesse)",        "bs": "privlačiti", "partner": "privući"},
         {"de": "Die Altstadt zieht viele Touristen an.", "bs": "Stari grad privlači mnogo turista."},
+        # K2 (20.11.2026): neu
+        {"de": "Plakat",                       "bs": "plakat"},
+        {"de": "An der Wand hing ein Plakat für das Konzert.", "bs": "Na zidu je visio plakat za koncert."},
     ]},
 
     {"id": "theater_musik", "label": "Theater und Musik", "sektion": "medienkultur", "tipp": "Festival, Bühne, Auftritt, Veranstaltung, auftreten, Drama: auf der Bühne.",
@@ -7112,7 +7375,7 @@ KATEGORIEN = [
         {"de": "Das ganze Archiv ist in diesen Kartons.", "bs": "Cijela arhiva je u ovim kutijama."},
     ]},
 
-    {"id": "klima_energie", "label": "Klima und Energie", "sektion": "umwelttechnik", "tipp": "Atmosphäre, Abfall, Erdgas, Erdöl, Umwelt, Kraftwerk, erneuerbar: Energie und Klima.",
+    {"id": "klima_energie", "label": "Klima und Energie", "sektion": "medienkultur", "tipp": "Atmosphäre, Abfall, Erdgas, Erdöl, Umwelt, Kraftwerk, erneuerbar: Energie und Klima.",
      "baut_auf": ["geschichte_frueher", "technik_energie", "natur"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7156,9 +7419,14 @@ KATEGORIEN = [
         {"de": "Die globale Erwärmung ist ein ernstes Problem.", "bs": "Globalno zagrijavanje je ozbiljan problem."},
         {"de": "Lebewesen / Wesen",           "bs": "biće"},
         {"de": "Der Mensch ist ein soziales Wesen.", "bs": "Čovjek je društveno biće."},
+        # K2 (20.11.2026): neu
+        {"de": "Plastik",                      "bs": "plastika"},
+        {"de": "Plastik verschmutzt Flüsse und das Meer.", "bs": "Plastika zagađuje rijeke i more."},
+        {"de": "Recycling",                    "bs": "reciklaža"},
+        {"de": "Recycling spart Energie und Rohstoffe.", "bs": "Reciklaža štedi energiju i sirovine."},
     ]},
 
-    {"id": "naturkatastrophen", "label": "Naturkatastrophen", "sektion": "umwelttechnik", "tipp": "Überschwemmung, Katastrophe, Rettung, Erdbeben, Erdrutsch, Unwetter, Dürre: wenn die Natur zuschlägt.",
+    {"id": "naturkatastrophen", "label": "Naturkatastrophen", "sektion": "medienkultur", "tipp": "Überschwemmung, Katastrophe, Rettung, Erdbeben, Erdrutsch, Unwetter, Dürre: wenn die Natur zuschlägt.",
      "baut_auf": ["klima_energie", "notfall"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7198,7 +7466,7 @@ KATEGORIEN = [
         {"de": "Die Dürre hat dieses Jahr den Mais vernichtet.", "bs": "Suša je ove godine uništila kukuruz."},
     ]},
 
-    {"id": "computer_dateien", "label": "Computer und Dateien", "sektion": "umwelttechnik", "tipp": "Datenbank, Plattform, digital, Version, Link, Software, löschen, Datei: am Computer.",
+    {"id": "computer_dateien", "label": "Computer und Dateien", "sektion": "medienkultur", "tipp": "Datenbank, Plattform, digital, Version, Link, Software, löschen, Datei: am Computer.",
      "baut_auf": ["naturkatastrophen", "geraete"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7428,7 +7696,7 @@ KATEGORIEN = [
         {"de": "Der Hodscha hat über das Paradies und die Hölle gesprochen.", "bs": "Hodža je pričao o džennetu i džehennemu."},
     ]},
 
-    {"id": "gericht", "label": "Gericht", "sektion": "rechtbehoerden", "tipp": "Staatsanwaltschaft, Ermittlung, Anklage, aussagen, Prozess, Justiz, verurteilen: vor Gericht.",
+    {"id": "gericht", "label": "Gericht", "sektion": "gesellschaftpolitik", "tipp": "Staatsanwaltschaft, Ermittlung, Anklage, aussagen, Prozess, Justiz, verurteilen: vor Gericht.",
      "baut_auf": ["religion_gemeinschaft", "krieg_recht", "amt"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7472,7 +7740,7 @@ KATEGORIEN = [
         {"de": "Beschuldige mich nicht ohne Beweise.", "bs": "Ne optužuj me bez dokaza."},
     ]},
 
-    {"id": "polizei_anzeige", "label": "Polizei und Anzeige", "sektion": "rechtbehoerden", "tipp": "Droge, drohen, Fahndung, Kriminalität, Diebstahl, Festnahme, Strafanzeige: wenn die Polizei kommt.",
+    {"id": "polizei_anzeige", "label": "Polizei und Anzeige", "sektion": "gesellschaftpolitik", "tipp": "Droge, drohen, Fahndung, Kriminalität, Diebstahl, Festnahme, Strafanzeige: wenn die Polizei kommt.",
      "baut_auf": ["gericht"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7516,7 +7784,7 @@ KATEGORIEN = [
         {"de": "Er hat Strafanzeige gegen den Nachbarn erstattet.", "bs": "Podnio je krivičnu prijavu protiv komšije."},
     ]},
 
-    {"id": "aemter_zustaendigkeit", "label": "Ämter und Zuständigkeit", "sektion": "rechtbehoerden", "tipp": "Agentur, Dienst, Einrichtung, zuständig, verweisen, ausstellen, Unterlagen: wer wofür zuständig ist.",
+    {"id": "aemter_zustaendigkeit", "label": "Ämter und Zuständigkeit", "sektion": "gesellschaftpolitik", "tipp": "Agentur, Dienst, Einrichtung, zuständig, verweisen, ausstellen, Unterlagen: wer wofür zuständig ist.",
      "baut_auf": ["polizei_anzeige"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7546,7 +7814,7 @@ KATEGORIEN = [
         {"de": "Das liegt nicht in unserer Zuständigkeit.", "bs": "To nije u našoj nadležnosti."},
     ]},
 
-    {"id": "bescheid_einspruch", "label": "Bescheid und Einspruch", "sektion": "rechtbehoerden", "tipp": "Zustimmung, Anordnung, genehmigen, Bescheid, Einspruch, Behörde, durchführen: der Weg durch die Behörde.",
+    {"id": "bescheid_einspruch", "label": "Bescheid und Einspruch", "sektion": "gesellschaftpolitik", "tipp": "Zustimmung, Anordnung, genehmigen, Bescheid, Einspruch, Behörde, durchführen: der Weg durch die Behörde.",
      "baut_auf": ["aemter_zustaendigkeit"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7578,7 +7846,7 @@ KATEGORIEN = [
         {"de": "Die Polizei stellt in der Stadt langsam die Ordnung wieder her.", "bs": "Policija polako uspostavlja red u gradu."},
     ]},
 
-    {"id": "vertraege", "label": "Verträge", "sektion": "rechtbehoerden", "tipp": "Abänderung, Ergänzung, gelten, verlängern, Besitz, Erbe, abschließen, Pacht: Verträge schließen und lösen.",
+    {"id": "vertraege", "label": "Verträge", "sektion": "gesellschaftpolitik", "tipp": "Abänderung, Ergänzung, gelten, verlängern, Besitz, Erbe, abschließen, Pacht: Verträge schließen und lösen.",
      "baut_auf": ["bescheid_einspruch", "arbeitsvertrag"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7618,9 +7886,14 @@ KATEGORIEN = [
         {"de": "Die Vertragsauflösung kostet hundert Mark.", "bs": "Raskid ugovora košta sto maraka."},
         {"de": "besitzen",                    "bs": "posjedovati"},
         {"de": "Er besitzt drei Häuser.",     "bs": "On posjeduje tri kuće."},
+        # K2 (20.11.2026): neu
+        {"de": "Erbschaft",                    "bs": "nasljedstvo"},
+        {"de": "Das Haus haben sie geerbt.", "bs": "Kuću su dobili u nasljedstvo."},
+        {"de": "erben",                        "bs": "naslijediti"},
+        {"de": "Er hat die Wohnung von seiner Tante geerbt.", "bs": "Naslijedio je stan od tetke."},
     ]},
 
-    {"id": "auf_dem_amt", "label": "Auf dem Amt", "sektion": "rechtbehoerden", "tipp": "Anmeldung, Aufenthalt, Liste, Urkunde, Visum, Gesuch, Protokoll, beglaubigen: Papiere fürs Amt.",
+    {"id": "auf_dem_amt", "label": "Auf dem Amt", "sektion": "gesellschaftpolitik", "tipp": "Anmeldung, Aufenthalt, Liste, Urkunde, Visum, Gesuch, Protokoll, beglaubigen: Papiere fürs Amt.",
      "baut_auf": ["vertraege", "amt"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7652,7 +7925,7 @@ KATEGORIEN = [
         {"de": "Ich warte auf eine Sendung aus Deutschland.", "bs": "Čekam pošiljku iz Njemačke."},
     ]},
 
-    {"id": "post_abmeldung", "label": "Post und Abmeldung", "sektion": "rechtbehoerden", "tipp": "Beilegen, Briefumschlag, Schalter, Finanzamt, Vollmacht, Empfänger, abmelden: Post und Formulare.",
+    {"id": "post_abmeldung", "label": "Post und Abmeldung", "sektion": "gesellschaftpolitik", "tipp": "Beilegen, Briefumschlag, Schalter, Finanzamt, Vollmacht, Empfänger, abmelden: Post und Formulare.",
      "baut_auf": ["auf_dem_amt"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7684,7 +7957,7 @@ KATEGORIEN = [
         {"de": "Für die Abmeldung braucht man nur den Personalausweis.", "bs": "Za odjavu treba samo lična karta."},
     ]},
 
-    {"id": "bank_darlehen", "label": "Bank und Darlehen", "sektion": "rechtbehoerden", "tipp": "Auszahlen, Transaktion, Prämie, Darlehen, Tilgung, Provision, Schließfach: bei der Bank.",
+    {"id": "bank_darlehen", "label": "Bank und Darlehen", "sektion": "gesellschaftpolitik", "tipp": "Auszahlen, Transaktion, Prämie, Darlehen, Tilgung, Provision, Schließfach: bei der Bank.",
      "baut_auf": ["post_abmeldung", "bank"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7714,7 +7987,7 @@ KATEGORIEN = [
         {"de": "Die Dokumente bewahre ich im Schließfach der Bank auf.", "bs": "Dokumente držim u sefu u banci."},
     ]},
 
-    {"id": "versicherung_zinsen", "label": "Versicherung und Zinsen", "sektion": "rechtbehoerden", "tipp": "Bankrott, Devisen, Geldüberweisung, Zinssatz, abbezahlen, Bürge, Versicherungspolice: Geld absichern.",
+    {"id": "versicherung_zinsen", "label": "Versicherung und Zinsen", "sektion": "gesellschaftpolitik", "tipp": "Bankrott, Devisen, Geldüberweisung, Zinssatz, abbezahlen, Bürge, Versicherungspolice: Geld absichern.",
      "baut_auf": ["bank_darlehen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7802,6 +8075,9 @@ KATEGORIEN = [
         {"de": "Kinder dürfen nicht mit Streichhölzern spielen.", "bs": "Djeca se ne smiju igrati šibicama."},
         {"de": "Kamm",                        "bs": "češalj"},
         {"de": "Ich habe immer einen Kamm in der Tasche.", "bs": "Uvijek nosim češalj u džepu."},
+        # K2 (20.11.2026): neu
+        {"de": "Schere",                       "bs": "makaze"},
+        {"de": "Gib mir die Schere, damit ich das Paket aufmache.", "bs": "Daj mi makaze da otvorim paket."},
     ]},
 
     {"id": "raeume_moebel", "label": "Räume und Möbel", "sektion": "hauswohnung", "tipp": "Raum, Flur, Hoftor, Fliese, Sessel, Treppenhaus, Heizkörper, Badewanne: im ganzen Haus.",
@@ -8530,6 +8806,11 @@ KATEGORIEN = [
         {"de": "Morgen gehe ich zu einem Seminar über Marketing.", "bs": "Sutra idem na seminar o marketingu."},
         {"de": "zitieren",                    "bs": "citirati"},
         {"de": "Er hat einen bekannten Schriftsteller zitiert.", "bs": "Citirao je poznatog pisca."},
+        # K2 (20.11.2026): neu
+        {"de": "Mensa",                        "bs": "menza"},
+        {"de": "Wir essen in der Mensa zu Mittag.", "bs": "Ručamo u studentskoj menzi."},
+        {"de": "Studentenwohnheim",            "bs": "studentski dom"},
+        {"de": "Im ersten Jahr habe ich im Studentenwohnheim gewohnt.", "bs": "Prve godine sam živio u studentskom domu."},
     ]},
 
     {"id": "abschluss_titel", "label": "Abschluss und Titel", "sektion": "schulewissen", "tipp": "Stipendium, Dozent, Zitat, Rektor, Aufsatz, Magister, Semester, Doktortitel, Master: bis zum Abschluss.",
@@ -8954,6 +9235,9 @@ KATEGORIEN = [
         {"de": "Der Bahnhof ist nahe am Zentrum.", "bs": "Željeznička stanica je blizu centra."},
         {"de": "Übergang / Kreuzung",         "bs": "prijelaz / prelaz"},
         {"de": "Der Übergang über den Fluss ist gesperrt.", "bs": "Prijelaz preko rijeke je zatvoren."},
+        # K2 (20.11.2026): neu
+        {"de": "Helm",                         "bs": "kaciga"},
+        {"de": "Ohne Helm setz dich nicht aufs Motorrad.", "bs": "Bez kacige ne sjedaj na motor."},
     ]},
 
     {"id": "autofahren", "label": "Autofahren", "sektion": "stadtreisen", "tipp": "Werkstatt, beschleunigen, verlangsamen, Zusammenstoß, Diesel, Lenkrad, Getriebe, bremsen: am Steuer.",
@@ -9078,7 +9362,7 @@ KATEGORIEN = [
         {"de": "Wir haben lange am Grenzübergang gewartet.", "bs": "Dugo smo čekali na graničnom prijelazu."},
     ]},
 
-    {"id": "landschaft_boden", "label": "Landschaft und Boden", "sektion": "landtiere", "tipp": "Erdboden, Gold, Welle, Morgendämmerung, Schatten, Schlamm, Acker, Wüste, Frost: was draußen ist.",
+    {"id": "landschaft_boden", "label": "Landschaft und Boden", "sektion": "stadtreisen", "tipp": "Erdboden, Gold, Welle, Morgendämmerung, Schatten, Schlamm, Acker, Wüste, Frost: was draußen ist.",
      "baut_auf": ["ankommen_ansehen", "natur", "wetter"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9112,7 +9396,7 @@ KATEGORIEN = [
         {"de": "Endlich sind wir wieder an Land.", "bs": "Konačno smo opet na kopnu."},
     ]},
 
-    {"id": "ozean_schlucht", "label": "Ozean und Schlucht", "sektion": "landtiere", "tipp": "Bergsteiger, Ozean, Weinberg, Landschaft, Bucht, Mündung, Vulkan, Lawine, Sumpf: Landschaften der Welt.",
+    {"id": "ozean_schlucht", "label": "Ozean und Schlucht", "sektion": "stadtreisen", "tipp": "Bergsteiger, Ozean, Weinberg, Landschaft, Bucht, Mündung, Vulkan, Lawine, Sumpf: Landschaften der Welt.",
      "baut_auf": ["landschaft_boden"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9146,7 +9430,7 @@ KATEGORIEN = [
         {"de": "Der Weg führt durch eine enge Schlucht.", "bs": "Put vodi kroz usku klisuru."},
     ]},
 
-    {"id": "jagen_fischen", "label": "Jagen und fischen", "sektion": "landtiere", "tipp": "Löwe, Jagd, Schildkröte, Jäger, Angeln, Widder, Bienenstock, Herde, Fischer: Tiere fangen und halten.",
+    {"id": "jagen_fischen", "label": "Jagen und fischen", "sektion": "stadtreisen", "tipp": "Löwe, Jagd, Schildkröte, Jäger, Angeln, Widder, Bienenstock, Herde, Fischer: Tiere fangen und halten.",
      "baut_auf": ["ozean_schlucht", "tiere_wild", "tiere_umgang"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9176,7 +9460,7 @@ KATEGORIEN = [
         {"de": "Der Fischer repariert das Netz am Ufer.", "bs": "Ribar popravlja mrežu na obali."},
     ]},
 
-    {"id": "tiere_genauer", "label": "Tiere genauer", "sektion": "landtiere", "tipp": "Affe, Wal, Elefant, Muschel, Rind, Weibchen, Delfin, Tiger, Schwarm, Kamel: Tiere aus aller Welt.",
+    {"id": "tiere_genauer", "label": "Tiere genauer", "sektion": "stadtreisen", "tipp": "Affe, Wal, Elefant, Muschel, Rind, Weibchen, Delfin, Tiger, Schwarm, Kamel: Tiere aus aller Welt.",
      "baut_auf": ["jagen_fischen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9204,9 +9488,18 @@ KATEGORIEN = [
         {"de": "Das Männchen ist größer als das Weibchen.", "bs": "Mužjak je veći od ženke."},
         {"de": "Kamel",                       "bs": "deva"},
         {"de": "Ein Kamel kommt lange ohne Wasser aus.", "bs": "Deva može dugo bez vode."},
+        # K2 (20.11.2026): neu
+        {"de": "Hai",                          "bs": "ajkula"},
+        {"de": "Im Adriatischen Meer gibt es selten Haie.", "bs": "U Jadranskom moru rijetko ima ajkula."},
+        {"de": "Krokodil",                     "bs": "krokodil"},
+        {"de": "Das Krokodil lag am Flussufer.", "bs": "Krokodil je ležao na obali rijeke."},
+        {"de": "Giraffe",                      "bs": "žirafa"},
+        {"de": "Die Giraffe hat einen sehr langen Hals.", "bs": "Žirafa ima jako dug vrat."},
+        {"de": "Papagei",                      "bs": "papagaj"},
+        {"de": "Der Papagei des Nachbarn kann ein paar Wörter.", "bs": "Komšijin papagaj zna nekoliko riječi."},
     ]},
 
-    {"id": "pflanzen_anbau", "label": "Pflanzen und Anbau", "sektion": "landtiere", "tipp": "Frucht, Baumstamm, Rinde, Anbau, Rose, Samen, Weizen, Laub, säen: was wächst.",
+    {"id": "pflanzen_anbau", "label": "Pflanzen und Anbau", "sektion": "stadtreisen", "tipp": "Frucht, Baumstamm, Rinde, Anbau, Rose, Samen, Weizen, Laub, säen: was wächst.",
      "baut_auf": ["tiere_genauer"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9236,9 +9529,12 @@ KATEGORIEN = [
         {"de": "Der Nachbar baut Erdbeeren im Gewächshaus an.", "bs": "Komšija uzgaja jagode u plasteniku."},
         {"de": "anbauen / züchten",           "bs": "uzgojiti", "partner": "uzgajati"},
         {"de": "Diese Tomaten haben wir selbst gezogen.", "bs": "Sami smo uzgojili ovaj paradajz."},
+        # K2 (20.11.2026): neu
+        {"de": "Sonnenblume",                  "bs": "suncokret"},
+        {"de": "Das Feld war voller Sonnenblumen.", "bs": "Polje je bilo puno suncokreta."},
     ]},
 
-    {"id": "ernten_pflanzen", "label": "Ernten und pflanzen", "sektion": "landtiere", "tipp": "Birke, Getreide, Lilie, Setzling, pflücken, pflanzen, Eiche, Dünger, Ernte: im Garten und auf dem Feld.",
+    {"id": "ernten_pflanzen", "label": "Ernten und pflanzen", "sektion": "stadtreisen", "tipp": "Birke, Getreide, Lilie, Setzling, pflücken, pflanzen, Eiche, Dünger, Ernte: im Garten und auf dem Feld.",
      "baut_auf": ["pflanzen_anbau"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9268,6 +9564,15 @@ KATEGORIEN = [
         {"de": "Der Garten braucht natürlichen Dünger.", "bs": "Bašti treba prirodno gnojivo."},
         {"de": "Getreideernte",               "bs": "žetva"},
         {"de": "Im Juli beginnt die Weizenernte.", "bs": "U julu počinje žetva pšenice."},
+        # K2 (20.11.2026): neu
+        {"de": "Buche",                        "bs": "bukva"},
+        {"de": "Die Buche ist der häufigste Baum in den bosnischen Wäldern.", "bs": "Bukva je najčešće drvo u bosanskim šumama."},
+        {"de": "Fichte",                       "bs": "smreka"},
+        {"de": "Auf dem Berg wachsen hohe Fichten.", "bs": "Na planini rastu visoke smreke."},
+        {"de": "Tulpe",                        "bs": "lala"},
+        {"de": "Im Frühling blühen im Garten Tulpen.", "bs": "U proljeće u bašti cvjetaju lale."},
+        {"de": "Tanne",                        "bs": "jela"},
+        {"de": "Die Tanne bleibt auch im Winter grün.", "bs": "Jela ostaje zelena i u zimi."},
     ]},
 
     {"id": "bewegen_verschieben", "label": "Bewegen und verschieben", "sektion": "handelnveraendern", "tipp": "Fangen, herausziehen, verlegen, hineintun, entfernen, herausfallen, zugehen auf: Dinge und sich selbst bewegen.",
@@ -9470,7 +9775,7 @@ KATEGORIEN = [
         {"de": "Man hat ihr den Preis für die beste Arbeit verliehen.", "bs": "Dodijelili su joj nagradu za najbolji rad."},
         {"de": "zuteilen / verleihen",        "bs": "dodjeljivati", "partner": "dodijeliti"},
         {"de": "Die Schule vergibt jedes Jahr Stipendien.", "bs": "Škola svake godine dodjeljuje stipendije."},
-        {"de": "verbinden",                   "bs": "spojiti", "partner": "spajati"},
+        {"de": "verbinden",                   "bs": "spojiti", "partner": "spajati", "auch": ["povezati"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Können wir diese zwei Tische zusammenstellen?", "bs": "Možemo li spojiti ova dva stola?"},
         {"de": "verbinden",                   "bs": "spajati", "partner": "spojiti"},
         {"de": "Diese Brücke verbindet zwei Stadtteile.", "bs": "Ovaj most spaja dva dijela grada."},
@@ -9674,7 +9979,7 @@ KATEGORIEN = [
         {"de": "Vergleich dich nicht mit anderen.", "bs": "Nemoj se upoređivati s drugima."},
     ]},
 
-    {"id": "wie_sicher", "label": "Wie sicher", "sektion": "genauersagen", "tipp": "Offenbar, wenigstens, definitiv, absolut, relativ, äußerst, generell, kurz gesagt, wörtlich: wie sicher man ist.",
+    {"id": "wie_sicher", "label": "Wie sicher", "sektion": "handelnveraendern", "tipp": "Offenbar, wenigstens, definitiv, absolut, relativ, äußerst, generell, kurz gesagt, wörtlich: wie sicher man ist.",
      "baut_auf": ["entwicklung_vergleich", "wie_sehr", "wie_man_es_meint"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9704,7 +10009,7 @@ KATEGORIEN = [
         {"de": "Nimm das nicht wörtlich.",    "bs": "Nemoj to shvatiti doslovno."},
     ]},
 
-    {"id": "ganz_teilweise", "label": "Ganz oder teilweise", "sektion": "genauersagen", "tipp": "Ganz und gar, nebenbei, annähernd, total, zu wenig, allzu, vergeblich, teilweise, zweifellos, übertrieben: wie sehr.",
+    {"id": "ganz_teilweise", "label": "Ganz oder teilweise", "sektion": "handelnveraendern", "tipp": "Ganz und gar, nebenbei, annähernd, total, zu wenig, allzu, vergeblich, teilweise, zweifellos, übertrieben: wie sehr.",
      "baut_auf": ["wie_sicher"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9734,7 +10039,7 @@ KATEGORIEN = [
         {"de": "Mach dir nicht übertrieben viele Sorgen.", "bs": "Nemoj se pretjerano brinuti."},
     ]},
 
-    {"id": "wie_man_tut", "label": "Wie man etwas tut", "sektion": "genauersagen", "tipp": "Direkt, automatisch, gegenseitig, richtig, allmählich, absichtlich, selbstständig, auswendig, schriftlich: wie etwas geschieht.",
+    {"id": "wie_man_tut", "label": "Wie man etwas tut", "sektion": "handelnveraendern", "tipp": "Direkt, automatisch, gegenseitig, richtig, allmählich, absichtlich, selbstständig, auswendig, schriftlich: wie etwas geschieht.",
      "baut_auf": ["ganz_teilweise"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9772,7 +10077,7 @@ KATEGORIEN = [
         {"de": "Mündlich hat er mir die Stelle versprochen.", "bs": "Usmeno mi je obećao posao."},
     ]},
 
-    {"id": "wann_wie_lange", "label": "Wann und wie lange", "sektion": "genauersagen", "tipp": "Anfang, Ende, täglich, bald darauf, seit langem, zuerst, bisher, im Voraus, gelegentlich: wann etwas passiert.",
+    {"id": "wann_wie_lange", "label": "Wann und wie lange", "sektion": "handelnveraendern", "tipp": "Anfang, Ende, täglich, bald darauf, seit langem, zuerst, bisher, im Voraus, gelegentlich: wann etwas passiert.",
      "baut_auf": ["wie_man_tut", "wann_wie_oft"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9800,7 +10105,7 @@ KATEGORIEN = [
         {"de": "Das Geschäft ist vorübergehend geschlossen.", "bs": "Prodavnica je privremeno zatvorena."},
     ]},
 
-    {"id": "immer_zukunft", "label": "Schon immer und in Zukunft", "sektion": "genauersagen", "tipp": "Unaufhörlich, schon immer, vorerst, unerwartet, nachträglich, in Zukunft, schließlich, tagsüber: Zeit genauer sagen.",
+    {"id": "immer_zukunft", "label": "Schon immer und in Zukunft", "sektion": "handelnveraendern", "tipp": "Unaufhörlich, schon immer, vorerst, unerwartet, nachträglich, in Zukunft, schließlich, tagsüber: Zeit genauer sagen.",
      "baut_auf": ["wann_wie_lange"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9828,7 +10133,7 @@ KATEGORIEN = [
         {"de": "Tagsüber arbeite ich und nachts lerne ich.", "bs": "Danju radim, a noću učim."},
     ]},
 
-    {"id": "wo_wohin", "label": "Wo und wohin", "sektion": "genauersagen", "tipp": "Hinaus, mitten in, überall, gegenüber, entlang, hierher, von innen, von dort, anderswo, von oben: wo und woher.",
+    {"id": "wo_wohin", "label": "Wo und wohin", "sektion": "handelnveraendern", "tipp": "Hinaus, mitten in, überall, gegenüber, entlang, hierher, von innen, von dort, anderswo, von oben: wo und woher.",
      "baut_auf": ["immer_zukunft", "hier_dort"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9860,7 +10165,7 @@ KATEGORIEN = [
         {"de": "Die Aussicht von oben ist wunderschön.", "bs": "Pogled odozgo je prekrasan."},
     ]},
 
-    {"id": "gut_schlecht", "label": "Gut oder schlecht", "sektion": "genauersagen", "tipp": "Hochwertig, perfekt, ideal, furchtbar, wunderschön, ungewöhnlich, schädlich, berühmt, hässlich: wie gut etwas ist.",
+    {"id": "gut_schlecht", "label": "Gut oder schlecht", "sektion": "handelnveraendern", "tipp": "Hochwertig, perfekt, ideal, furchtbar, wunderschön, ungewöhnlich, schädlich, berühmt, hässlich: wie gut etwas ist.",
      "baut_auf": ["wo_wohin", "eigenschaften"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9904,7 +10209,7 @@ KATEGORIEN = [
         {"de": "Das ist eine unnötige Ausgabe.", "bs": "Ovo je nepotreban trošak."},
     ]},
 
-    {"id": "fest_sichtbar", "label": "Fest und sichtbar", "sektion": "genauersagen", "tipp": "Anwesend, fest, ruhig, gleich, klassisch, komplett, sichtbar, speziell, selten, mild, mächtig: Eigenschaften genauer.",
+    {"id": "fest_sichtbar", "label": "Fest und sichtbar", "sektion": "handelnveraendern", "tipp": "Anwesend, fest, ruhig, gleich, klassisch, komplett, sichtbar, speziell, selten, mild, mächtig: Eigenschaften genauer.",
      "baut_auf": ["gut_schlecht"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9934,7 +10239,7 @@ KATEGORIEN = [
         {"de": "Er ist ein mächtiger Mann in dieser Stadt.", "bs": "On je moćan čovjek u ovom gradu."},
     ]},
 
-    {"id": "streng_zuverlaessig", "label": "Streng und zuverlässig", "sektion": "genauersagen", "tipp": "Dauerhaft, verrückt, flach, winzig, korrekt, scharf, zuverlässig, streng, üblich, rund, dicht, intelligent: wie jemand oder etwas ist.",
+    {"id": "streng_zuverlaessig", "label": "Streng und zuverlässig", "sektion": "handelnveraendern", "tipp": "Dauerhaft, verrückt, flach, winzig, korrekt, scharf, zuverlässig, streng, üblich, rund, dicht, intelligent: wie jemand oder etwas ist.",
      "baut_auf": ["fest_sichtbar"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9966,7 +10271,7 @@ KATEGORIEN = [
         {"de": "Mein Hund ist sehr intelligent.", "bs": "Moj pas je vrlo inteligentan."},
     ]},
 
-    {"id": "feste_wendungen", "label": "Feste Wendungen", "sektion": "genauersagen", "tipp": "Ungeachtet, vor allen Dingen, unter anderem, in jedem Fall, alles in allem, letzten Endes: was man oft sagt.",
+    {"id": "feste_wendungen", "label": "Feste Wendungen", "sektion": "handelnveraendern", "tipp": "Ungeachtet, vor allen Dingen, unter anderem, in jedem Fall, alles in allem, letzten Endes: was man oft sagt.",
      "baut_auf": ["streng_zuverlaessig", "kulturlevel"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9996,7 +10301,7 @@ KATEGORIEN = [
         {"de": "Von Zeit zu Zeit hören wir voneinander.", "bs": "S vremena na vrijeme se čujemo."},
     ]},
 
-    {"id": "keine_ahnung", "label": "Keine Ahnung und alle Achtung", "sektion": "genauersagen", "tipp": "Alle Achtung!, Keine Ahnung., Schritt für Schritt, früher oder später, für alle Fälle, Halt durch!: Sätze für jeden Tag.",
+    {"id": "keine_ahnung", "label": "Keine Ahnung und alle Achtung", "sektion": "handelnveraendern", "tipp": "Alle Achtung!, Keine Ahnung., Schritt für Schritt, früher oder später, für alle Fälle, Halt durch!: Sätze für jeden Tag.",
      "baut_auf": ["feste_wendungen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -10026,7 +10331,7 @@ KATEGORIEN = [
         {"de": "Nein danke, ich habe keinen Hunger.", "bs": "Neka, hvala, nisam gladan."},
     ]},
 
-    {"id": "mengen_masse", "label": "Mengen und Maße", "sektion": "genauersagen", "tipp": "Prozent, zwei Männer, etwa zehn, Tonne, Vielzahl, Zentimeter, Stückchen, Teelöffel, Schluck: wie viel genau.",
+    {"id": "mengen_masse", "label": "Mengen und Maße", "sektion": "handelnveraendern", "tipp": "Prozent, zwei Männer, etwa zehn, Tonne, Vielzahl, Zentimeter, Stückchen, Teelöffel, Schluck: wie viel genau.",
      "baut_auf": ["keine_ahnung", "mengen", "menge_teil"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -10079,9 +10384,9 @@ KATEGORIEN = [
 SAETZE = [
     # Grundlagen
     {"kat": "basics", "text": "Dobar ___",              "answer": "dan",       "de": "Guten Tag"},
-    {"kat": "basics", "text": "___, kako si?",          "answer": "Merhaba",   "de": "Hallo, wie geht's dir?"},
+    {"kat": "basics", "text": "___, kako si?",          "answer": "Merhaba",   "auch": ["Zdravo", "Ćao"], "de": "Hallo, wie geht's dir?"},   # wie beim Wort Merhaba (Prüfbericht 1.4, V3; Ćao B5/F16)
     {"kat": "basics", "text": "Kako ___?",              "answer": "si",        "de": "Wie geht's dir?"},
-    {"kat": "basics", "text": "Hvala ___!",             "answer": "puno",      "de": "Vielen Dank!"},
+    {"kat": "basics", "text": "Hvala ___!",             "answer": "puno", "auch": ["mnogo", "lijepa"], "de": "Vielen Dank!"},   # nur beim Tippen (Ajdin, Prüfbericht 1.4, F6/V10, Tabelle 2c Nr. 32)
     {"kat": "basics", "text": "Laku ___!",              "answer": "noć",       "de": "Gute Nacht!"},
     {"kat": "basics", "text": "Zovem ___ Amina.",       "answer": "se",        "de": "Ich heiße Amina."},
     {"kat": "basics", "text": "Ne ___.",                "answer": "razumijem", "de": "Ich verstehe nicht."},
@@ -10150,7 +10455,7 @@ SAETZE = [
 
     # Smalltalk & Gefühle
     {"kat": "smalltalk", "text": "Volim ___.",          "answer": "te",       "de": "Ich liebe dich."},
-    {"kat": "smalltalk", "text": "___ mi.",             "answer": "Nedostaješ", "de": "Ich vermisse dich."},
+    {"kat": "smalltalk", "text": "___ mi.",             "answer": "Nedostaješ", "auch": ["Fališ"], "de": "Ich vermisse dich."},   # wie beim Wort Nedostaješ mi (Prüfbericht 1.4, B1/F12 e; V3)
     {"kat": "smalltalk", "text": "Nema ___.",           "answer": "problema", "de": "Kein Problem."},
     {"kat": "smalltalk", "text": "Šta ___?",            "answer": "radiš",    "de": "Was machst du?"},
     {"kat": "smalltalk", "text": "___, idemo!",         "answer": "Hajde",    "de": "Komm, wir gehen!"},
@@ -10188,7 +10493,7 @@ SAETZE = [
     # Arbeit & Schule
     {"kat": "arbeit", "text": "Sutra ___.",             "answer": "radim",    "de": "Morgen arbeite ich."},
     {"kat": "arbeit", "text": "Imam ___.",              "answer": "ispit",    "de": "Ich habe eine Prüfung."},
-    {"kat": "arbeit", "text": "Šta si po ___?",         "answer": "zanimanju", "de": "Was bist du von Beruf?"},
+    {"kat": "arbeit", "text": "Šta si po ___?",         "answer": "zanimanju", "auch": ["struci"], "de": "Was bist du von Beruf?"},   # Ajdin, Prüfbericht 1.4, S1/F18
 
     # Höflich & Formell
     {"kat": "formell", "text": "Kako ___?",             "answer": "ste",      "de": "Wie geht es Ihnen?"},
@@ -10223,7 +10528,7 @@ SAETZE = [
     {"kat": "fragen", "text": "___ je to?",                  "answer": "Šta",     "de": "Was ist das?"},
     {"kat": "fragen", "text": "Koliko ___ godina?",          "answer": "imaš",    "de": "Wie alt bist du?"},
     {"kat": "fragen", "text": "___ li vremena?",             "answer": "Imaš",    "de": "Hast du Zeit?"},
-    {"kat": "fragen", "text": "___ ideš?",                   "answer": "Kuda",    "de": "Wohin gehst du?"},
+    {"kat": "fragen", "text": "___ ideš?",                   "answer": "Kuda",    "auch": ["Gdje"], "de": "Wohin gehst du?"},   # wie beim Wort Kuda ideš? (Prüfbericht 1.4, V11/F7 a)
 
     # Verben beugen
     {"kat": "konjugation", "text": "Ja ___ iz Njemačke.",    "answer": "sam",     "de": "Ich bin aus Deutschland."},
@@ -10236,11 +10541,13 @@ SAETZE = [
     # Nebensätze & Verneinung
     {"kat": "satzbau", "text": "Mislim ___ je dobro.",       "answer": "da",      "de": "Ich denke, dass es gut ist."},
     {"kat": "satzbau", "text": "Ne znam ___ je ključ.",      "answer": "gdje",    "de": "Ich weiß nicht, wo der Schlüssel ist."},
-    {"kat": "satzbau", "text": "Pitam se ___ li dolazi.",    "answer": "da",      "de": "Ich frage mich, ob er kommt."},
+    {"kat": "satzbau", "text": "Pitam se ___ li dolazi.",    "answer": "da", "auch": ["je"], "de": "Ich frage mich, ob er kommt."},   # je li, nur beim Tippen (Prüfbericht 1.4, F6/V10, Tabelle 2c Nr. 31)
     {"kat": "satzbau", "text": "Nemam vremena ___ radim.",   "answer": "jer",     "de": "Ich habe keine Zeit, weil ich arbeite."},
     {"kat": "satzbau", "text": "Ja ___ umoran.",             "answer": "nisam",   "de": "Ich bin nicht müde."},
     {"kat": "satzbau", "text": "Volim kahvu, ___ ne volim čaj.", "answer": "ali", "de": "Ich mag Kaffee, aber ich mag keinen Tee."},
-    {"kat": "satzbau", "text": "___ pada kiša, ostajem kod kuće.", "answer": "Ako", "de": "Wenn es regnet, bleibe ich zu Hause."},
+    # Kad und Kada auch (Ajdin, Prüfbericht 1.4, V9/F4): „kad heißt wenn und ako heißt
+    # falls also an sich ja aber haben beide eine leicht andere bedeutung“.
+    {"kat": "satzbau", "text": "___ pada kiša, ostajem kod kuće.", "answer": "Ako", "auch": ["Kad", "Kada"], "de": "Wenn es regnet, bleibe ich zu Hause."},
 
     # Vergangenheit
     {"kat": "vergangenheit", "text": "Jučer ___ radila.",         "answer": "sam",   "de": "Gestern habe ich gearbeitet. (Frau)"},
@@ -10257,7 +10564,7 @@ SAETZE = [
     # Vergleichen & Beschreiben
     {"kat": "adjektive", "text": "Ovo je ___ nego to.",      "answer": "bolje",   "de": "Das ist besser als das."},
     {"kat": "adjektive", "text": "Moj brat je ___ od mene.", "answer": "stariji", "de": "Mein Bruder ist älter als ich."},
-    {"kat": "adjektive", "text": "Kahva je ___ vruća.",      "answer": "jako",    "de": "Der Kaffee ist sehr heiß."},
+    {"kat": "adjektive", "text": "Kahva je ___ vruća.",      "answer": "jako", "auch": ["vrlo", "veoma"], "de": "Der Kaffee ist sehr heiß."},   # Prüfbericht 1.4, V9/F2
     {"kat": "adjektive", "text": "Ova jakna je ___ od one.", "answer": "skuplja", "de": "Diese Jacke ist teurer als jene."},
 
     # Bank & Geld
@@ -10318,7 +10625,7 @@ SAETZE = [
 
     # Präpositionen
     {"kat": "praepositionen", "text": "Knjiga je ___ stolu.", "answer": "na",   "de": "Das Buch ist auf dem Tisch."},
-    {"kat": "praepositionen", "text": "___ posla idem kući.", "answer": "Poslije", "de": "Nach der Arbeit gehe ich nach Hause."},
+    {"kat": "praepositionen", "text": "___ posla idem kući.", "answer": "Poslije", "auch": ["Nakon"], "de": "Nach der Arbeit gehe ich nach Hause."},   # Prüfbericht 1.4, V9/F3
     {"kat": "praepositionen", "text": "Poklon je ___ tebe.", "answer": "za",    "de": "Das Geschenk ist für dich."},
     {"kat": "praepositionen", "text": "Kahva ___ mlijeka.", "answer": "bez",    "de": "Kaffee ohne Milch."},
 
@@ -10350,7 +10657,7 @@ SAETZE = [
     # Tagesablauf
     {"kat": "routine", "text": "___ u sedam sati.",        "answer": "Ustajem", "de": "Ich stehe um sieben Uhr auf.",
      "zahl": {"wort": "sedam", "werte": [5, 6, 7, 8, 9], "de": "Ich stehe um {n} Uhr auf."}},
-    {"kat": "routine", "text": "Poslije posla ___ večeru.", "answer": "kuham",  "de": "Nach der Arbeit koche ich Abendessen."},
+    {"kat": "routine", "text": "Poslije posla ___ večeru.", "answer": "kuham", "auch": ["spremam", "pravim"], "de": "Nach der Arbeit koche ich Abendessen."},   # Prüfbericht 1.4, S1/F18
     {"kat": "routine", "text": "Idem ___ u jedanaest.",    "answer": "spavati", "de": "Ich gehe um elf schlafen.",
      "zahl": {"wort": "jedanaest", "werte": [9, 10, 11, 12], "frei": "uhrzeit", "de": "Ich gehe um {n} schlafen."}},
     {"kat": "routine", "text": "___ dan pijem kahvu.",     "answer": "Svaki",   "de": "Jeden Tag trinke ich Kaffee."},
@@ -10372,7 +10679,7 @@ SAETZE = [
 
     # Reisen & Verkehr
     {"kat": "reisen", "text": "Koliko traje ___?",         "answer": "vožnja",  "de": "Wie lange dauert die Fahrt?"},
-    {"kat": "reisen", "text": "Kada ___ autobus?",         "answer": "polazi",  "de": "Wann fährt der Bus ab?"},
+    {"kat": "reisen", "text": "Kada ___ autobus?",         "answer": "polazi", "auch": ["kreće"], "de": "Wann fährt der Bus ab?"},   # wie „Autobus kreće u sedam.“ (Ajdin, Prüfbericht 1.4, V9/F5)
     {"kat": "reisen", "text": "Gdje je ___?",              "answer": "izlaz",   "de": "Wo ist der Ausgang?"},
     {"kat": "reisen", "text": "Sretan ___!",               "answer": "put",     "de": "Gute Reise!"},
 
@@ -10471,7 +10778,7 @@ SAETZE = [
     {"kat": "technik", "text": "Upali ___, molim te.", "answer": "svjetlo",  "de": "Mach bitte das Licht an."},
     {"kat": "technik", "text": "Ne radi ___.",         "answer": "bojler",   "de": "Der Boiler funktioniert nicht."},
     {"kat": "technik", "text": "Ugasi ___.",           "answer": "grijanje", "de": "Mach die Heizung aus."},
-    {"kat": "auto_werkstatt", "text": "Moram sipati ___.", "answer": "gorivo", "de": "Ich muss tanken."},
+    {"kat": "auto_werkstatt", "text": "Moram sipati ___.", "answer": "gorivo", "auch": ["benzin"], "de": "Ich muss tanken."},   # Prüfbericht 1.4, S1/F18
     {"kat": "auto_werkstatt", "text": "Pukla mi je ___.", "answer": "guma", "de": "Ich habe einen Platten."},
     {"kat": "auto_werkstatt", "text": "Gdje mogu ___ svoj auto?", "answer": "parkirati", "de": "Wo kann ich mein Auto parken?"},
     {"kat": "auto_werkstatt", "text": "Na ___ je crveno.", "answer": "semaforu", "de": "Die Ampel ist rot."},
@@ -10489,7 +10796,10 @@ SAETZE = [
     {"kat": "einkauf_orte", "text": "Jabuke su na ___.",     "answer": "akciji",  "de": "Die Äpfel sind im Angebot."},
     {"kat": "einkauf_orte", "text": "Ovo voće je ___.",      "answer": "svježe",  "de": "Dieses Obst ist frisch."},
     {"kat": "einkauf_orte", "text": "Mogu li ___ karticom?", "answer": "platiti", "de": "Kann ich mit Karte bezahlen?"},
-    {"kat": "einkauf_orte", "text": "Gdje je moj ___?",      "answer": "kusur",   "de": "Wo ist mein Wechselgeld?"},
+    # kusur ist Rückgeld (WORTSCHATZ_KORREKTUREN.md, Richtiggestellt), wie im
+    # Satzbau "Gdje je moj kusur?" (Prüfbericht 1.4, S11). Der Satz hängt an
+    # text und answer, die Kennung der Vokabel "Wechselgeld / Rückgeld" bleibt.
+    {"kat": "einkauf_orte", "text": "Gdje je moj ___?",      "answer": "kusur",   "de": "Wo ist mein Rückgeld?"},
 
     # Im Restaurant: ankommen
     {"kat": "resto1", "text": "Idemo u ___.",        "answer": "kafić",    "de": "Wir gehen ins Café."},
@@ -10501,12 +10811,12 @@ SAETZE = [
     # Im Restaurant: essen & zahlen
     {"kat": "resto2", "text": "Ovo meso je ___.",       "answer": "ljuto",    "de": "Dieses Fleisch ist scharf."},
     {"kat": "resto2", "text": "Voće je ___.",           "answer": "slatko",   "de": "Das Obst ist süß."},
-    {"kat": "resto2", "text": "Možemo li platiti ___?", "answer": "odvojeno", "de": "Können wir getrennt zahlen?"},
+    {"kat": "resto2", "text": "Možemo li platiti ___?", "answer": "odvojeno", "auch": ["posebno"], "de": "Können wir getrennt zahlen?"},   # Prüfbericht 1.4, S1/F18
     {"kat": "resto2", "text": "Jedemo ___.",            "answer": "zajedno",  "de": "Wir essen zusammen."},
     {"kat": "resto2", "text": "Zadržite ___.",          "answer": "kusur",    "de": "Behalten Sie das Rückgeld."},
 
     # Essen gehen & Mengen
-    {"kat": "essen_gehen", "text": "Ovo je jako ___.",          "answer": "ukusno",   "de": "Das ist sehr lecker."},
+    {"kat": "essen_gehen", "text": "Ovo je jako ___.",          "answer": "ukusno", "auch": ["fino"], "de": "Das ist sehr lecker."},   # Prüfbericht 1.4, S1/F18
     {"kat": "essen_gehen", "text": "Idemo u ___.",              "answer": "restoran", "de": "Wir gehen ins Restaurant."},
     {"kat": "essen_gehen", "text": "Gdje je ___?",              "answer": "pekara",   "de": "Wo ist die Bäckerei?"},
     {"kat": "essen_gehen", "text": "Jedan ___ mlijeka, molim.", "answer": "litar",    "de": "Einen Liter Milch, bitte."},
@@ -10541,7 +10851,7 @@ SAETZE = [
     {"kat": "kennenlernen", "text": "Da te ___: moj brat.",   "answer": "upoznam",    "de": "Darf ich vorstellen: mein Bruder."},
     {"kat": "kennenlernen", "text": "Hoću da te ___.",        "answer": "posjetim",   "de": "Ich will dich besuchen."},
     {"kat": "kennenlernen", "text": "Molim te, ___ mi.",      "answer": "oprosti",    "de": "Bitte verzeih mir."},
-    {"kat": "kennenlernen", "text": "Ovo je moja ___.",       "answer": "koleginica", "de": "Das ist meine Kollegin."},
+    {"kat": "kennenlernen", "text": "Ovo je moja ___.",       "answer": "kolegica", "de": "Das ist meine Kollegin."},   # bis 14.11.2026 koleginica (Prüfbericht 1.4, S2/F19)
     {"kat": "kennenlernen", "text": "Moj babo je dobar ___.", "answer": "domaćin",    "de": "Mein Papa ist ein guter Gastgeber."},
 
     # Musik, Glaube & Gastfreundschaft
@@ -10565,7 +10875,7 @@ SAETZE = [
 # und mit "ohne" Ablenker gesperrt, die den Satz ebenfalls richtig machen.
 SATZBAU = [
     # Level 1 · Grundlagen
-    {"kat": "basics", "bs": "Merhaba, kako si?", "de": "Hallo, wie geht's dir?", "quelle": "saetze"},
+    {"kat": "basics", "bs": "Merhaba, kako si?", "ohne": ["ćao"], "de": "Hallo, wie geht's dir?", "quelle": "saetze"},   # ćao ist auch „Hallo“ (Prüfbericht 1.4, B5/F16)
     {"kat": "basics", "bs": "Ja se zovem Amina.", "auch": ["Zovem se Amina.", "Amina se zovem."], "de": "Ich heiße Amina.", "quelle": "neu"},
     {"kat": "basics", "bs": "Drago mi je.", "de": "Freut mich.", "quelle": "saetze"},
     {"kat": "basics", "bs": "Nema na čemu.", "de": "Gern geschehen.", "quelle": "saetze"},
@@ -10719,6 +11029,7 @@ SATZBAU = [
     {"kat": "kueche_bad", "bs": "Voda je u flaši.", "auch": ["U flaši je voda."], "de": "Das Wasser ist in der Flasche.", "formen": {"flaši": "flaša"}, "quelle": "saetze"},
     {"kat": "kueche_bad", "bs": "Supa je u loncu.", "auch": ["U loncu je supa."], "de": "Die Suppe ist im Topf.", "formen": {"loncu": "lonac"}, "quelle": "saetze"},
     {"kat": "kueche_bad", "bs": "Deka je na kauču.", "auch": ["Na kauču je deka."], "de": "Die Bettdecke ist auf dem Sofa.", "formen": {"kauču": "kauč"}, "quelle": "saetze"},
+    {"kat": "kueche_bad", "bs": "Ovo je moj tanjir.", "auch": ["Moj je ovo tanjir."], "de": "Das ist mein Teller.", "quelle": "saetze"},
     # Level 25 · Putzen & Nachbarschaft
     {"kat": "putzen", "bs": "Kupatilo je čisto.", "auch": ["Čisto je kupatilo."], "de": "Das Bad ist sauber.", "quelle": "saetze"},
     {"kat": "putzen", "bs": "Gdje je metla?", "de": "Wo ist der Besen?", "quelle": "saetze"},
@@ -10728,17 +11039,20 @@ SATZBAU = [
     # Level 26 · Technik & Reparatur
     {"kat": "technik", "bs": "Ne radi bojler.", "auch": ["Bojler ne radi."], "de": "Der Boiler funktioniert nicht.", "quelle": "saetze"},
     {"kat": "technik", "bs": "Upali svjetlo, molim te.", "auch": ["Molim te, upali svjetlo.", "Upali, molim te, svjetlo."], "de": "Mach bitte das Licht an.", "formen": {"upali": "upaliti"}, "quelle": "saetze"},
+    {"kat": "technik", "bs": "Gdje je moj alat?", "de": "Wo ist mein Werkzeug?", "quelle": "saetze"},
     # Level 27 · Auto & Werkstatt
     {"kat": "auto_werkstatt", "bs": "Pukla mi je guma.", "auch": ["Guma mi je pukla."], "de": "Ich habe einen Platten.", "quelle": "saetze"},
     {"kat": "auto_werkstatt", "bs": "Na semaforu je crveno.", "auch": ["Crveno je na semaforu."], "de": "Die Ampel ist rot.", "formen": {"semaforu": "semafor", "crveno": "crvena"}, "quelle": "saetze"},
     {"kat": "auto_werkstatt", "bs": "pomoć na cesti", "de": "Pannenhilfe", "quelle": "vokabel"},
     {"kat": "auto_werkstatt", "bs": "Gdje mogu parkirati?", "de": "Wo kann ich parken?", "quelle": "neu"},
+    {"kat": "auto_werkstatt", "bs": "Gdje mogu parkirati svoj auto?", "auch": ["Gdje mogu svoj auto parkirati?"], "de": "Wo kann ich mein Auto parken?", "formen": {"svoj": "svoju"}, "quelle": "saetze", "notiz": "svoj = Grundform; im Wortschatz steht bis hier nur svoju"},
     # Level 28 · Handy, Computer & Geräte
     {"kat": "geraete", "bs": "Ne radi mašina za suđe.", "auch": ["Mašina za suđe ne radi."], "de": "Die Spülmaschine funktioniert nicht.", "quelle": "saetze", "notiz": "Von Level 26 nach 28 verschoben: die Kacheln wären ab 26 da, aber das Wort 'mašina za suđe' (Spülmaschine) lernt man erst in Level 28."},
     {"kat": "geraete", "bs": "Koja je šifra za WiFi?", "de": "Wie ist das WLAN-Passwort?", "quelle": "saetze"},
     {"kat": "geraete", "bs": "Baterija je prazna.", "auch": ["Prazna je baterija."], "de": "Der Akku ist leer.", "quelle": "saetze"},
     {"kat": "geraete", "bs": "Pošalji mi poruku.", "auch": ["Poruku mi pošalji."], "de": "Schick mir eine Nachricht.", "formen": {"pošalji": "poslati"}, "quelle": "saetze"},
     {"kat": "geraete", "bs": "kuhalo za vodu", "de": "Wasserkocher", "quelle": "vokabel"},
+    {"kat": "geraete", "bs": "Gdje je moj punjač?", "de": "Wo ist mein Ladegerät?", "quelle": "saetze"},
     # Level 29 · Fragen stellen
     {"kat": "fragen", "bs": "Šta je to?", "de": "Was ist das?", "quelle": "saetze"},
     {"kat": "fragen", "bs": "Govoriš li ti bosanski?", "auch": ["Govoriš li bosanski?"], "de": "Sprichst du Bosnisch?", "quelle": "saetze"},
@@ -10752,11 +11066,6 @@ SATZBAU = [
     {"kat": "genus", "bs": "Ona je učiteljica.", "auch": ["Učiteljica je."], "de": "Sie ist Lehrerin.", "quelle": "neu"},
     {"kat": "genus", "bs": "Ovo je naše selo.", "auch": ["Naše je ovo selo."], "de": "Das ist unser Dorf.", "quelle": "saetze"},
     {"kat": "genus", "bs": "Moj brat je veterinar.", "auch": ["Moj je brat veterinar."], "de": "Mein Bruder ist Tierarzt.", "quelle": "saetze"},
-    {"kat": "genus", "bs": "Ovo je moj tanjir.", "auch": ["Moj je ovo tanjir."], "de": "Das ist mein Teller.", "quelle": "saetze"},
-    {"kat": "genus", "bs": "Gdje je moj alat?", "de": "Wo ist mein Werkzeug?", "quelle": "saetze"},
-    {"kat": "genus", "bs": "Gdje je moj punjač?", "de": "Wo ist mein Ladegerät?", "quelle": "saetze"},
-    {"kat": "genus", "bs": "Moja sestra se zove Amina.", "auch": ["Moja se sestra zove Amina."], "de": "Meine Schwester heißt Amina.", "formen": {"zove": "zvati"}, "quelle": "saetze"},
-    {"kat": "genus", "bs": "Moj muž se zove Ajdin.", "auch": ["Moj se muž zove Ajdin."], "de": "Mein Mann heißt Ajdin.", "formen": {"zove": "zvati"}, "quelle": "saetze"},
     {"kat": "genus", "bs": "Moja mama voli kruške.", "auch": ["Moja mama kruške voli."], "de": "Meine Mama mag Birnen.", "formen": {"voli": "voljeti", "kruške": "kruška"}, "quelle": "saetze"},
     {"kat": "genus", "bs": "Moja sestra voli čokoladu.", "auch": ["Moja sestra čokoladu voli."], "de": "Meine Schwester liebt Schokolade.", "formen": {"voli": "voljeti", "čokoladu": "čokolada"}, "quelle": "saetze"},
     {"kat": "genus", "bs": "Moj pas laje.", "de": "Mein Hund bellt.", "formen": {"laje": "lajati"}, "quelle": "saetze"},
@@ -10792,7 +11101,8 @@ SATZBAU = [
     {"kat": "faelle1", "bs": "On ima psa", "auch": ["Ima psa", "Psa ima", "On psa ima"], "de": "Er hat einen Hund", "quelle": "vokabel"},
     {"kat": "faelle1", "bs": "Ona ima mačku", "auch": ["Ima mačku", "Mačku ima", "Ona mačku ima"], "de": "Sie hat eine Katze", "quelle": "vokabel"},
     {"kat": "faelle1", "bs": "Znam tvog brata", "auch": ["Tvog brata znam"], "de": "Ich kenne deinen Bruder", "quelle": "vokabel"},
-    {"kat": "faelle1", "bs": "Gdje mogu parkirati svoj auto?", "auch": ["Gdje mogu svoj auto parkirati?"], "de": "Wo kann ich mein Auto parken?", "formen": {"svoj": "svoju"}, "quelle": "saetze", "notiz": "svoj = Grundform; im Wortschatz steht bis hier nur svoju"},
+    {"kat": "faelle1", "bs": "Moja sestra se zove Amina.", "auch": ["Moja se sestra zove Amina."], "de": "Meine Schwester heißt Amina.", "formen": {"zove": "zvati"}, "quelle": "saetze"},
+    {"kat": "faelle1", "bs": "Moj muž se zove Ajdin.", "auch": ["Moj se muž zove Ajdin."], "de": "Mein Mann heißt Ajdin.", "formen": {"zove": "zvati"}, "quelle": "saetze"},
     # Level 35 · Fälle 2: Genitiv
     {"kat": "faelle2", "bs": "Čuvaj se od psa!", "auch": ["Čuvaj se psa!"], "de": "Vorsicht vor dem Hund!", "quelle": "neu"},
     {"kat": "faelle2", "bs": "Ja sam iz Njemačke.", "auch": ["Iz Njemačke sam."], "de": "Ich bin aus Deutschland.", "quelle": "saetze"},
@@ -10896,9 +11206,9 @@ SATZBAU = [
     {"kat": "arbeit", "bs": "Sutra imam ispit.", "auch": ["Imam ispit sutra.", "Imam sutra ispit.", "Ispit imam sutra."], "de": "Morgen habe ich eine Prüfung.", "quelle": "neu"},
     # Level 50 · Ganze Sätze
     {"kat": "saetze", "bs": "Pitam se da li on dolazi.", "auch": ["Pitam se da li dolazi.", "Pitam se dolazi li on."], "de": "Ich frage mich, ob er kommt.", "quelle": "neu"},
-    {"kat": "saetze", "bs": "Ako pada kiša, ostajem kod kuće.", "auch": ["Ako kiša pada, ostajem kod kuće.", "Ostajem kod kuće ako pada kiša.", "Ostajem kod kuće ako kiša pada."], "de": "Wenn es regnet, bleibe ich zu Hause.", "quelle": "saetze"},
+    {"kat": "saetze", "bs": "Ako pada kiša, ostajem kod kuće.", "auch": ["Ako kiša pada, ostajem kod kuće.", "Ostajem kod kuće ako pada kiša.", "Ostajem kod kuće ako kiša pada."], "ohne": ["kad", "kada"], "de": "Wenn es regnet, bleibe ich zu Hause.", "quelle": "saetze"},   # kad/kada wie im Lückensatz (Prüfbericht 1.4, V9/F4)
     {"kat": "saetze", "bs": "Ne znam kada dolazi autobus.", "auch": ["Ne znam kada autobus dolazi."], "de": "Ich weiß nicht, wann der Bus kommt.", "quelle": "saetze"},
-    {"kat": "saetze", "bs": "Kahva je jako vruća.", "de": "Der Kaffee ist sehr heiß.", "quelle": "saetze"},
+    {"kat": "saetze", "bs": "Kahva je jako vruća.", "ohne": ["vrlo", "veoma"], "de": "Der Kaffee ist sehr heiß.", "quelle": "saetze"},   # vrlo/veoma wie im Lückensatz (Prüfbericht 1.4, V9/F2)
     {"kat": "saetze", "bs": "Želim kupiti kuću.", "auch": ["Želim kuću kupiti.", "Kuću želim kupiti."], "de": "Ich möchte ein Haus kaufen.", "quelle": "saetze"},
     {"kat": "saetze", "bs": "Mi ostajemo pet dana.", "auch": ["Ostajemo pet dana.", "Pet dana ostajemo."], "de": "Wir bleiben fünf Tage.", "formen": {"ostajemo": "ostajem"}, "quelle": "neu",
      "zahl": {"wort": "pet", "werte": [2, 3, 4, 5, 6, 7, 10, 14], "frei": "dana", "de": "Wir bleiben {n} Tage."}},
@@ -10970,7 +11280,9 @@ SATZBAU = [
     {"kat": "kennenlernen", "bs": "Da te upoznam: moj brat.", "de": "Darf ich vorstellen: mein Bruder.", "quelle": "saetze"},
     {"kat": "kennenlernen", "bs": "Hoću da te posjetim.", "de": "Ich will dich besuchen.", "formen": {"posjetim": "posjetiti"}, "quelle": "saetze"},
     {"kat": "kennenlernen", "bs": "Molim te, oprosti mi.", "auch": ["Oprosti mi, molim te."], "de": "Bitte verzeih mir.", "quelle": "saetze"},
-    {"kat": "kennenlernen", "bs": "Ovo je moja koleginica.", "de": "Das ist meine Kollegin.", "quelle": "saetze"},
+    # Bis zum 14.11.2026 "Ovo je moja koleginica." (Pruefbericht 1.4, S2/F19, Ton w8954 von
+    # Emir). Weiter ohne "auch": die Umstellung "Moja je ovo ..." (F19 a) ist nicht freigegeben.
+    {"kat": "kennenlernen", "bs": "Ovo je moja kolegica.", "de": "Das ist meine Kollegin.", "quelle": "saetze"},
     {"kat": "kennenlernen", "bs": "Moj babo je dobar domaćin.", "auch": ["Dobar domaćin je moj babo.", "Moj je babo dobar domaćin.", "Dobar je domaćin moj babo."], "de": "Mein Papa ist ein guter Gastgeber.", "quelle": "saetze"},
     {"kat": "kennenlernen", "bs": "Drago mi je što smo se upoznali", "de": "Schön, dich kennengelernt zu haben", "quelle": "vokabel"},
     # Level 59 · Musik, Glaube & Gastfreundschaft

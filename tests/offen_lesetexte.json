@@ -1,0 +1,5 @@
+{
+ "zweck": "B1-Lesetexte, Paket 1 und 2 (13.11.2026): Seit dem 16.11.2026 liest Azure (Vesna) die zwölf Texte vor, mit Wortzeiten (Offen-Liste 6), \"geschichten\" ist deshalb leer. Die Wörter, die nur in diesen Texten stehen, spricht seit dem 16.11.2026 Emir (ton_nur_emir.json, w9049 bis w9871, Offen-Liste 6a), \"woerter\" ist deshalb auch leer. Wörter spricht Emir, nicht Azure, und wann, entscheidet Ajdin: Kommt ein Text mit einem Wort ohne Ton dazu, steht das Wort hier, bis Emir es spricht. Hat ein Wort seinen Ton, hier streichen; tests/test_offen_lesetexte.py meldet es.",
+ "geschichten": [],
+ "woerter": []
+}

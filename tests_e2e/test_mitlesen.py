@@ -26,6 +26,9 @@ nachgemessen; die ersten Fassungen dieser Tests waren dadurch scheinbar
 gruen, weil alles bei null stimmte. Die Aufnahmen liefert hier deshalb
 _mit_bereichen() aus, mit 206 und Content-Range wie ein richtiger Server.
 """
+import importlib.util
+import io
+import json
 import os
 import re
 
@@ -139,6 +142,14 @@ def starten(seite, stand):
     seite.konsole.clear()
 
 
+# Vorlesen- und Stopp-Knopf: gezeichnetes Zeichen (Klasse), Text, Name.
+# Seit 14.11.2026 statt der Zeichen ⏸ und ⏹ im Text (Offen-Liste 5).
+KNOEPFE = """() => { const z = k => { const s = k.querySelector('svg.zei');
+    return s ? [...s.classList].find(c => c.startsWith('zei-')) : null; };
+  const v = document.getElementById('rListen'), s = document.getElementById('rStop');
+  return {vor: [z(v), v.textContent.trim()], stopp: [z(s), s.textContent.trim(), s.getAttribute('aria-label')]}; }"""
+
+
 def vorlesen(seite):
     """Den grossen Knopf wirklich antippen (Nutzergeste fuer play()) und
     warten, bis die Aufnahme laeuft und das Mitlesen steht."""
@@ -216,9 +227,15 @@ def test_pause_haelt_weiter_laeuft(dunkel):
     seite = dunkel
     n = seite.js(VORBEREITEN, [0, SCHRITT, DAUER, ANFANG, 0, False])["n"]
     vorlesen(seite)
+    # Der Knopf zeigt das gezeichnete Pause-Zeichen, Stopp nur seines (14.11.2026)
+    assert seite.js(KNOEPFE) == {"vor": ["zei-pause", "Pause"], "stopp": ["zei-stopp", "", "Stopp"]}
     seite.js(SPRINGEN, ANFANG + 5 * SCHRITT + 20)
     seite.page.click("#rListen")                            # Pause
     seite.page.wait_for_function("() => spieler.paused && pausiert")
+    assert seite.js(KNOEPFE)["vor"] == [None, seite.js("() => t('gesch.weiterlesen')")]
+    # Seit 15.11.2026 das gemalte play vor "Weiterlesen" statt ▶ im Text (Offen-Liste 5a)
+    assert seite.js("() => [...document.querySelectorAll('#rListen img.sym')].map(i => [i.getAttribute('src'),"
+                    " i.getAttribute('alt'), i.getAttribute('aria-hidden')])") == [["symbole/play.webp", "", "true"]]
     vorher = seite.js(ZUSTAND)
     assert stimmt(vorher, n) and len(vorher["gelesen"]) >= 5, vorher
     takte = vorher["takte"]
@@ -336,11 +353,41 @@ def test_echte_wortzeiten_passen(dunkel):
     seite = dunkel
     ergebnis = seite.js("""() => STORIES.map((s, i) => { openStory(i);
       const datei = audioDatei(s.text), n = document.querySelectorAll('#rBody .txt .w').length;
-      return {nr: i, datei: datei, n: n, paare: (WORTZEITEN.get(datei) || []).length,
-              passt: !!mitlesZeiten(datei, n)}; })""")
-    assert len(ergebnis) >= 12
-    assert [e for e in ergebnis if not e["passt"]] == []
+      return {nr: i, id: s.id, datei: datei, n: n, paare: (WORTZEITEN.get(datei) || []).length,
+              passt: !!(datei && mitlesZeiten(datei, n)),
+              key: s.text.split(' / ')[0].trim().toLowerCase()}; })""")
+    # 13.11.2026: die B1-Lesetexte haben noch keine Aufnahme. Ausgenommen ist
+    # genau, was in tests/offen_lesetexte.json und tests/offen_b1_teil2.py steht,
+    # wie in test_wortzeiten.py; jede andere Geschichte muss Ton und Zeiten haben.
+    # Wartende fehlen ganz, nicht halb. Seit dem 16.11.2026 liest Vesna alle 32
+    # Geschichten vor (Offen-Liste 6), es wartet keine mehr.
+    wartet = _wartet_auf_ton()
+    assert len([e for e in ergebnis if e["datei"]]) >= 32
+    assert [e["id"] for e in ergebnis if not e["datei"] and not wartet(e)] == []
+    assert [e["id"] for e in ergebnis if wartet(e) and e["datei"]] == []
+    assert [e for e in ergebnis if not e["passt"] and not wartet(e)] == []
     assert seite.fehler == []
+
+
+def _wartet_auf_ton():
+    """Prueft eine Geschichte ({id, key}) gegen die beiden Listen der Ton-Tests:
+    die Texte aus tests/offen_lesetexte.json (Pakete 1 und 2, als Ton-Schluessel
+    wie ton_bauen.schluessel) und GESCHICHTEN aus tests/offen_b1_teil2.py
+    (Pakete 3 und 4, als id). Dort steht, warum. Fehlt eine Datei, wartet
+    von dort nichts mehr; eine Ausnahme nur nach "b1_" gibt es nicht."""
+    tests = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tests")
+    texte, ids = set(), set()
+    json_pfad = os.path.join(tests, "offen_lesetexte.json")
+    if os.path.exists(json_pfad):
+        with io.open(json_pfad, encoding="utf-8") as f:
+            texte = set(json.load(f).get("geschichten", []))
+    py_pfad = os.path.join(tests, "offen_b1_teil2.py")
+    if os.path.exists(py_pfad):
+        spec = importlib.util.spec_from_file_location("offen_b1_teil2", py_pfad)
+        modul = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(modul)
+        ids = set(modul.GESCHICHTEN)
+    return lambda g: g["key"] in texte or g["id"] in ids
 
 
 def _kontrast(a, b):
@@ -464,7 +511,15 @@ def test_folgt_dem_wort_ohne_zu_reissen(browser, basis, heute_stand):
     ctx, seite = neue_seite(browser, basis, "dark", hoehe=560)
     try:
         starten(seite, heute_stand())
-        nr = seite.js("() => STORIES.reduce((m, s, i, a) => s.text.length > a[m].text.length ? i : m, 0)")
+        # Die laengste, die nicht auf ihren Ton wartet (13.11.2026: B1-Lesetexte,
+        # siehe _wartet_auf_ton). Sie muss eine Aufnahme haben.
+        wartet = _wartet_auf_ton()
+        alle = seite.js("""() => STORIES.map((s, i) => ({nr: i, id: s.id, laenge: s.text.length,
+          datei: audioDatei(s.text), key: s.text.split(' / ')[0].trim().toLowerCase()}))""")
+        bereit = [g for g in alle if not wartet(g)]
+        laengste = max(bereit, key=lambda g: g["laenge"])
+        assert laengste["datei"], laengste["id"]
+        nr = laengste["nr"]
         n = seite.js(VORBEREITEN, [nr, SCHRITT, DAUER, ANFANG, 0, False])["n"]
         vorlesen(seite)
         seite.js("() => window.scrollTo(0, 0)")

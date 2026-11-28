@@ -31,10 +31,12 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     """README und Store-Text nennen diese Zahlen. Ändern sie sich,
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
-    assert len(grunddaten["kategorien"]) == 295       # seit 07.11.2026 (Pakete 10 bis 20)
-    assert woerter == 7997
+    # 297 seit 13.11.2026: zwei neue Level mit umgezogenen Grundwoertern (Stufen-Reiter),
+    # 298 und 8 191 seit K2 und K7 (27.11.2026): Level Ordnungszahlen, 194 Eintraege mehr
+    assert len(grunddaten["kategorien"]) == 298
+    assert woerter == 8191
     assert len(grunddaten["saetze"]) == 300
-    assert len(grunddaten["geschichten"]) == 12
+    assert len(grunddaten["geschichten"]) == 32       # seit 13.11.2026 (B1-Lesetexte, Pakete 1 bis 4)
     assert len(grunddaten["grammatik"]) == 26
 
 
@@ -49,21 +51,23 @@ def test_woerter_und_saetze_getrennt_wie_in_readme_und_store(grunddaten, wurzel)
     eintraege = [w["bs"].strip() for k in grunddaten["kategorien"] for w in k["words"]]
     eng = sum(bool(ende.search(b)) for b in eintraege)
     breit = sum(bool(ende.search(b)) or len(b.split()) >= 4 for b in eintraege)
-    # Seit den Paketen 10 bis 20 (07.11.2026): rund 4.700 Woerter, rund 3.300 Saetze
+    # Seit den Paketen 10 bis 20 (07.11.2026): rund 4.700 Woerter, rund 3.300 Saetze;
+    # seit K2 und K7 (27.11.2026) rund 4.800 und 3.400 (eng 4.846 / 3.345, breit 4.742 / 3.449)
     for saetze in (eng, breit):
-        assert abs(saetze - 3300) <= 100, saetze
-        assert abs(len(eintraege) - saetze - 4700) <= 100, saetze
+        assert abs(saetze - 3400) <= 100, saetze
+        assert abs(len(eintraege) - saetze - 4800) <= 100, saetze
 
     def flach(name):
         with open(os.path.join(wurzel, name), encoding="utf-8") as f:
             return " ".join(f.read().split())
     readme = flach("README.md")
-    assert "about 4,700 words and phrases and about 3,300 example sentences" in readme
-    assert "rund 4.700 Wörter und Wendungen und rund 3.300 Beispielsätze" in readme
-    assert "oko 4.700 riječi i izraza i oko 3.300 rečenica" in flach("README.bs.md")
+    assert "about 4,800 words and phrases and about 3,400 example sentences" in readme
+    assert "rund 4.800 Wörter und Wendungen und rund 3.400 Beispielsätze" in readme
+    assert "oko 4.800 riječi i izraza i oko 3.400 rečenica" in flach("README.bs.md")
     # Der Alt-Text des Kopfbilds beschreibt das Bild, und dort steht die Zahl noch.
     ohne_bild = re.sub(r'alt="[^"]*"', "", readme)
     assert "7,997 words" not in ohne_bild and "7997 Vokabeln" not in ohne_bild
+    assert "8,191" in ohne_bild and "298 levels" in ohne_bild
 
 
 def test_wort_kennungen_eindeutig_und_stabil(grunddaten):
@@ -160,4 +164,29 @@ def test_uebersetzungen_ohne_doppelte_schluessel():
                     if k.value in gesehen:
                         doppelt.append("Zeile %d: %r" % (k.lineno, k.value))
                     gesehen.add(k.value)
+    assert not doppelt, "\n".join(doppelt[:20])
+
+
+def test_geschichten_woerterbuch_jede_form_einmal():
+    """13.11.2026, Merge der B1-Lesetexte (Paket 1/2 und 3/4): 159 Wortformen
+    standen im WOERTERBUCH und in WOERTERBUCH_B1_2, 42 davon mit anderer
+    Bedeutung. Welche galt, hing an der Reihenfolge der Blöcke - jednom hieß
+    dann in einem Text "einmal" statt "einem (Lok.)". Jede Form steht deshalb
+    in genau einem Block und dort genau einmal (ruff prüft F601 nicht)."""
+    import ast
+    import pathlib
+    quelle = (pathlib.Path(__file__).resolve().parent.parent / "geschichten.py").read_text(encoding="utf-8")
+    bloecke = {}
+    for knoten in ast.parse(quelle).body:
+        if (isinstance(knoten, ast.Assign) and isinstance(knoten.value, ast.Dict)
+                and any(isinstance(z, ast.Name) and z.id.startswith("WOERTERBUCH") for z in knoten.targets)):
+            bloecke[knoten.targets[0].id] = knoten.value
+    assert "WOERTERBUCH" in bloecke, sorted(bloecke)
+    gesehen, doppelt = {}, []
+    for name, d in bloecke.items():
+        for k in d.keys:
+            if isinstance(k, ast.Constant):
+                if k.value in gesehen:
+                    doppelt.append("%s Zeile %d: %r (schon %s)" % (name, k.lineno, k.value, gesehen[k.value]))
+                gesehen.setdefault(k.value, "%s Zeile %d" % (name, k.lineno))
     assert not doppelt, "\n".join(doppelt[:20])

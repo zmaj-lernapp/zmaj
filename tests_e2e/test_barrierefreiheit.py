@@ -69,6 +69,11 @@ ANSICHTEN = [
      " await warte(500);"),
     ("test", "Lx=null; openLevel(3); await warte(400); startTest(); await warte(900);"),
     ("einstellungen", "Lx=null; showSettings(); await warte(800);"),
+    # Das Profil mit der Leiste der Erfolge (14.11.2026, vorher auf der Startseite)
+    ("profil", "showKonto(); await warte(600);"),
+    # und die ganze Wand dahinter: die Zahl auf offenen Abzeichen lag bei
+    # 4,3 : 1 (Pruefbericht 1.4, S19)
+    ("erfolge", "showErfolge(); await warte(600);"),
     ("geschichte", "openStory(3); await warte(800); stilleBitte();"),
     ("laden", "showLaden(); await warte(800);"),
     # der Reiter mit den Kostuemen: Tragen, Preis und Vollversion (17.10.2026)
@@ -84,7 +89,9 @@ def seite_basis(tmp_path_factory):
     demo_bauen.main(["--ziel", ziel])
     pfad = os.path.join(ziel, "index.html")
     html = io.open(pfad, encoding="utf-8", newline="").read()
-    if barrierefreiheit_richten.KENNUNG not in html:
+    # In der ganzen App suchen (app_quelle): seit 1.5 kann der Stil in css/ stehen.
+    import app_quelle
+    if barrierefreiheit_richten.KENNUNG not in app_quelle.lesen(ziel):
         neu, fehler = barrierefreiheit_richten.anwenden(html)
         assert not fehler, fehler
         io.open(pfad, "w", encoding="utf-8", newline="").write(neu)

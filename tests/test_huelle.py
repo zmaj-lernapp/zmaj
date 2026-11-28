@@ -8,6 +8,12 @@ import os
 import pytest
 
 
+def _quelle(wurzel):
+    """Die ganze App, auch wenn sie in web/js geteilt ist (app_quelle)."""
+    import app_quelle
+    return app_quelle.lesen(os.path.join(wurzel, "web")).replace("\r\n", "\n")
+
+
 def test_umgebungsvariable_geht_vor(tmp_path):
     import huelle
     assert huelle.ordner({"ZMAJ_HUELLE": str(tmp_path)}, str(tmp_path / "x")) == str(tmp_path)
@@ -41,13 +47,71 @@ def test_testwerbung_nur_in_der_kopie(tmp_path, wurzel):
     """--testwerbung schaltet in der Paket-Kopie auf Testanzeigen; die Quelle
     muss den Anker genau einmal haben, sonst bricht der Bau ab. 10.10.2026."""
     import app_bauen
-    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    quelle = _quelle(wurzel)
     assert quelle.count(app_bauen.TESTWERBUNG_AUS) == 1
     kopie = tmp_path / "index.html"
     kopie.write_text("a\n" + app_bauen.TESTWERBUNG_AUS + "\nb\n", encoding="utf-8")
     app_bauen.testwerbung_einschalten(str(kopie))
     text = kopie.read_text(encoding="utf-8")
     assert app_bauen.TESTWERBUNG_AN in text and app_bauen.TESTWERBUNG_AUS not in text
+
+
+# Testanzeigen ohne Schalter (1.5, K11; Pruefbericht 1.3, S29): Jedes Paket, das
+# nicht fuer Google Play ist, nimmt Googles Testanzeigen. Echte nur mit --aab
+# ohne --testwerbung.
+BAU_SCHRITTE = ("anmeldung_pruefen", "versionsname_lesen", "pruefen", "kopieren", "emir_drueber",
+                "dauer_einsetzen", "cloud_einsetzen", "version_einsetzen", "ton_verkleinern",
+                "immer_packen_einschalten", "standbilder_als_webp", "ton_index_verschlanken",
+                "versionsnummer_hochzaehlen", "capacitor", "plugins_flicken", "debug_apk",
+                "freigabe_aab", "versionsname_anheben", "pflicht_melden")
+
+
+@pytest.fixture
+def probebau(tmp_path, monkeypatch):
+    """main() ohne Huelle und Gradle: alles ist eine Attrappe ausser
+    testwerbung_einschalten(), das echt in eine Probe-Kopie www/index.html schreibt."""
+    import app_bauen
+    www = tmp_path / "www"
+    www.mkdir()
+    monkeypatch.setattr(app_bauen, "WWW", str(www))
+    for name in BAU_SCHRITTE:
+        monkeypatch.setattr(app_bauen, name, lambda *a, **k: None)
+
+    def bauen(argv):
+        (www / "index.html").write_text("<script>\n" + app_bauen.TESTWERBUNG_AUS + "\n</script>\n",
+                                        encoding="utf-8")
+        app_bauen.main(argv)
+        return (www / "index.html").read_text(encoding="utf-8")
+    return bauen
+
+
+@pytest.mark.parametrize("argv", [[], ["--nur-abgleich"], ["--immer-packen"], ["--nur-abgleich", "--immer-packen"],
+                                  ["--pflicht"], ["--testwerbung"], ["--nur-abgleich", "--testwerbung"]])
+def test_test_app_immer_mit_testanzeigen(probebau, capsys, argv):
+    import app_bauen
+    text = probebau(argv)
+    assert app_bauen.TESTWERBUNG_AN in text and app_bauen.TESTWERBUNG_AUS not in text
+    ausgabe = capsys.readouterr().out
+    assert "die Test-App zeigt nur Googles Testanzeigen" in ausgabe
+    assert "geschlossenen Test" not in ausgabe
+
+
+def test_store_paket_echte_anzeigen_nur_ohne_testwerbung(probebau, capsys):
+    import app_bauen
+    text = probebau(["--aab"])
+    assert app_bauen.TESTWERBUNG_AUS in text and app_bauen.TESTWERBUNG_AN not in text
+    assert "TESTWERBUNG" not in capsys.readouterr().out
+    # --aab --testwerbung (geschlossener Test) wie bisher, mit der Warnung
+    text = probebau(["--aab", "--testwerbung"])
+    assert app_bauen.TESTWERBUNG_AN in text
+    assert "NICHT in die Produktion" in capsys.readouterr().out
+
+
+def test_kopf_nennt_testanzeigen_fuer_die_test_app():
+    import app_bauen
+    kopf = app_bauen.__doc__
+    zeile = kopf[kopf.index("app_bauen.py                 Abgleich + Debug-Paket"):]
+    assert "immer mit Googles Testanzeigen" in zeile.split("app_bauen.py --aab")[0]
 
 
 # Pflicht-Updates (Ajdin, 10.10.2026): Die App haelt ein Update fuer Pflicht,
@@ -156,6 +220,8 @@ def test_main_reicht_pflicht_durch(monkeypatch):
     # hier nicht gibt - eigene Tests in test_cloud.py. 28.10.2026
     for name in ("anmeldung_pruefen", "pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "cloud_einsetzen",
                  "ton_verkleinern", "capacitor",
+                 # Aufraeumen (1.5) liefe sonst am echten www/ der Huelle
+                 "standbilder_als_webp", "ton_index_verschlanken",
                  "plugins_flicken", "freigabe_aab", "debug_apk",
                  # versionName (30.10.2026) liest sonst die echte build.gradle
                  # der Huelle; eigene Tests in test_version.py
@@ -179,7 +245,7 @@ def test_main_reicht_pflicht_durch(monkeypatch):
 # setzt den Pruefwert aus der privaten Huelle ein.
 def test_dauer_quelle_hat_nur_den_platzhalter(wurzel):
     import app_bauen
-    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    quelle = _quelle(wurzel)
     assert quelle.count(app_bauen.DAUER_PLATZHALTER) == 1
     assert "DAUER_WORT" not in quelle
 
@@ -216,7 +282,7 @@ def test_dauer_pruefwert_wie_in_der_app(wurzel):
     import shutil
     import subprocess
     import dauer_wort_setzen as d
-    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    quelle = _quelle(wurzel)
     assert "const DAUER_SALZ = '%s';" % d.SALZ in quelle
     assert "const DAUER_RUNDEN = %d;" % d.RUNDEN in quelle
     assert re.search(r"const w = wort\.trim\(\)\.toLowerCase\(\);", quelle)
@@ -283,12 +349,74 @@ def test_ton_verkleinern_mit_ffmpeg(tmp_path):
 # woerter oder saetze"): ton_verkleinern() kuerzt sie bei Woertern und
 # Saetzen auf rund 30 ms, die Geschichten bleiben, wie sie sind.
 def test_ton_filter_nur_fuer_woerter():
+    """Seit 1.5 (Optimierung Punkt 8) kuerzt der Filter auf Android auch das
+    Ende (TON_ENDE). Auf iOS (AAC) bleibt es bei TON_ANFANG."""
     import app_bauen
-    assert app_bauen.ton_filter("w0001.mp3") == app_bauen.TON_ANFANG
+    assert app_bauen.ton_filter("w0001.mp3") == app_bauen.TON_ANFANG + "," + app_bauen.TON_ENDE
+    assert app_bauen.ton_filter("w0001.mp3", "opus") == app_bauen.ton_filter("w0001.mp3")
+    assert app_bauen.ton_filter("w0001.mp3", "aac") == app_bauen.TON_ANFANG
     assert "silenceremove" in app_bauen.TON_ANFANG and "start_periods=1" in app_bauen.TON_ANFANG
-    assert "stop_periods" not in app_bauen.TON_ANFANG          # das Ende bleibt dran
+    assert "stop_periods" not in app_bauen.TON_ANFANG + app_bauen.TON_ENDE
     for name in ("g01.mp3", "g12.mp3", "index.json", "w001.mp3"):
         assert app_bauen.ton_filter(name) is None, name
+        assert app_bauen.ton_filter(name, "aac") is None, name
+
+
+def test_ton_ende_wie_in_der_hoerprobe():
+    """Genau der Filter, den Ajdin am 20.11.2026 blind und mit Bluetooth
+    abgehoert hat (Release/Hoerprobe_Ton_2026-11-20/_skript/hoerprobe_machen.py:
+    ENDE = "areverse," + ANF.replace("0.03", "0.15") + ",areverse", 20k).
+    Wer hier die Schwelle oder die 150 ms aendert, braucht eine neue Hoerprobe."""
+    import app_bauen
+    assert app_bauen.TON_ENDE == ("areverse," + app_bauen.TON_ANFANG.replace(
+        "start_silence=0.03", "start_silence=0.15") + ",areverse")
+    assert app_bauen.TON_ENDE == ("areverse,silenceremove=start_periods=1:start_threshold=-65dB"
+                                  ":start_silence=0.15:detection=peak:window=0.001,areverse")
+    assert app_bauen.TON_BITRATE == app_bauen.TON_CODECS["opus"]["bitrate"] == "20k"
+    assert app_bauen.TON_CODECS["aac"]["bitrate"] == "32k"            # iOS bleibt
+
+
+def test_ton_ffmpeg_schalter(tmp_path, monkeypatch):
+    """Was ton_verkleinern() wirklich an ffmpeg gibt, ohne ffmpeg: Woerter auf
+    Android mit Anfang und Ende und 20k, Geschichten ohne Filter mit 20k
+    (nur die Bitrate, ihre Wortzeiten zaehlen ab Dateianfang), auf iOS
+    Woerter nur mit dem Anfang und 32k wie vor 1.5."""
+    import json
+    import subprocess
+    import app_bauen
+    aufrufe = []
+
+    def run(cmd, **kw):
+        aufrufe.append(cmd)
+        with open(cmd[-1], "wb") as f:              # die Zieldatei, wie ffmpeg sie schriebe
+            f.write(b"ton")
+        return subprocess.CompletedProcess(cmd, 0, b"", b"")
+    monkeypatch.setattr(app_bauen.subprocess, "run", run)
+    ffmpeg = tmp_path / "ffmpeg.exe"
+    ffmpeg.write_bytes(b"")
+    for codec in ("opus", "aac"):
+        audio = tmp_path / ("audio_" + codec)
+        audio.mkdir()
+        for name in ("w0001.mp3", "g01.mp3"):
+            (audio / name).write_bytes(name.encode("ascii") * 40)
+        (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+            {"key": "eins", "datei": "w0001.mp3"}, {"key": "g", "datei": "g01.mp3"}]}),
+            encoding="utf-8")
+        app_bauen.ton_verkleinern(str(audio), ffmpeg=str(ffmpeg),
+                                  zwischen=str(tmp_path / ("zwischen_" + codec)), codec=codec)
+    je = {}
+    for c in aufrufe:
+        quelle = c[c.index("-i") + 1]
+        codec = os.path.basename(os.path.dirname(quelle))[len("audio_"):]
+        je[codec, os.path.basename(quelle)] = c[c.index("-i") + 2:-1]   # alles zwischen Quelle und Ziel
+    opus = ["-ac", "1", "-c:a", "libopus", "-vbr", "on", "-application", "audio", "-b:a", "20k"]
+    aac = ["-ac", "1", "-c:a", "aac", "-movflags", "+faststart", "-b:a", "32k"]
+    assert je == {
+        ("opus", "w0001.mp3"): ["-af", app_bauen.TON_ANFANG + "," + app_bauen.TON_ENDE] + opus,
+        ("opus", "g01.mp3"): opus,
+        ("aac", "w0001.mp3"): ["-af", app_bauen.TON_ANFANG] + aac,
+        ("aac", "g01.mp3"): aac,
+    }, je
 
 
 def test_ton_schluessel_kennt_den_filter(monkeypatch):
@@ -297,9 +425,12 @@ def test_ton_schluessel_kennt_den_filter(monkeypatch):
     import app_bauen
     h = "ab" * 32
     wort, geschichte = app_bauen.ton_schluessel(h, "w0001.mp3"), app_bauen.ton_schluessel(h, "g01.mp3")
-    assert geschichte == h[:32] + "-24k"
+    assert geschichte == h[:32] + "-20k"
     assert wort.startswith(geschichte + "-a") and wort != geschichte
     monkeypatch.setattr(app_bauen, "TON_ANFANG", app_bauen.TON_ANFANG.replace("0.03", "0.06"))
+    assert app_bauen.ton_schluessel(h, "w0001.mp3") != wort
+    monkeypatch.undo()
+    monkeypatch.setattr(app_bauen, "TON_ENDE", app_bauen.TON_ENDE.replace("0.15", "0.2"))
     assert app_bauen.ton_schluessel(h, "w0001.mp3") != wort
 
 
@@ -353,7 +484,45 @@ def test_ton_verkleinern_kuerzt_den_anfang(tmp_path):
     ende = max(i for i, x in enumerate(wort) if abs(x) > 1000) / 48.0
     assert ende - _einsatz_ms(wort) >= 1480, ende
     namen = sorted(os.listdir(zwischen))
-    assert len(namen) == 2 and sum(1 for n in namen if "-24k-a" in n) == 1, namen
+    assert len(namen) == 2 and sum(1 for n in namen if "-20k-a" in n) == 1, namen
+
+
+def test_ton_verkleinern_kuerzt_das_ende_nur_auf_android(tmp_path):
+    """1.5 (Optimierung Punkt 8, Hoerprobe 20.11.2026): Hinter dem letzten
+    Laut bleiben bei Woertern und Saetzen auf Android 150 ms Stille statt
+    0,6 s. Der Laut selbst bleibt ganz, der Sinus laeuft volle 1,0 s. Die
+    Geschichte behaelt ihr Ende (Wortzeiten, Mitlesen), und auf iOS (AAC)
+    bleibt auch beim Wort das Ende wie vor 1.5."""
+    import json
+    import shutil
+    import subprocess
+    import app_bauen
+    ffmpeg = os.environ.get("ZMAJ_FFMPEG") or (
+        app_bauen.FFMPEG if os.path.isfile(app_bauen.FFMPEG) else shutil.which("ffmpeg"))
+    if not ffmpeg:
+        pytest.skip("ffmpeg fehlt")
+    erg = {}
+    for codec, endung in (("opus", ".ogg"), ("aac", ".m4a")):
+        audio = tmp_path / codec
+        audio.mkdir()
+        for name in ("w0001.mp3", "g01.mp3"):
+            subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y", "-f", "lavfi",
+                            "-i", "sine=frequency=440:duration=1", "-af", "apad=pad_dur=0.6",
+                            "-ar", "24000", "-ac", "1", "-b:a", "48k", str(audio / name)], check=True)
+        (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+            {"key": "eins", "datei": "w0001.mp3"}, {"key": "g1", "datei": "g01.mp3"}]}),
+            encoding="utf-8")
+        app_bauen.ton_verkleinern(str(audio), ffmpeg=ffmpeg, zwischen=str(tmp_path / ("z" + codec)),
+                                  codec=codec)
+        for name in ("w0001", "g01"):
+            x = _pcm(ffmpeg, audio / (name + endung))
+            laut = [i for i, v in enumerate(x) if abs(v) > 1000]
+            erg[codec, name] = ((laut[-1] - laut[0]) / 48.0, (len(x) - 1 - laut[-1]) / 48.0)
+    ton, stille = erg["opus", "w0001"]
+    assert ton >= 990 and 140 <= stille <= 200, erg
+    for schluessel in (("opus", "g01"), ("aac", "w0001"), ("aac", "g01")):
+        ton, stille = erg[schluessel]
+        assert ton >= 990 and stille >= 570, (schluessel, erg)
 
 
 def test_ton_verkleinern_neue_aufnahme_unter_altem_namen(tmp_path):

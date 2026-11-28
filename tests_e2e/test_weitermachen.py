@@ -17,9 +17,9 @@ Die Pruefungen ohne Browser stehen in tests/test_weitermachen.py.
 import datetime
 
 KNOPF = """() => { homeMode = 'words'; showHome(); const k = document.getElementById('weiterKnopf');
-  return k.style.display === 'none' ? null : k.textContent; }"""
+  return k.style.display === 'none' ? null : k.textContent.trim(); }"""
 LEVEL = "() => CATEGORIES.map(c => c.id)"
-NAME = "(i) => '▶ ' + t('btn.weitermachen') + ' · ' + CATEGORIES[i].label"
+NAME = "(i) => t('btn.weitermachen') + ' · ' + CATEGORIES[i].label"
 # Die Nummern im Kreis der Level, die der Lernpfad als "Jetzt dran" markiert
 JETZT = """() => { homeMode = 'words'; showHome();
   return [...document.querySelectorAll('#sections .node.current .circle')].map(n => n.textContent); }"""
@@ -54,11 +54,12 @@ def _test_bestehen(seite, i):
 
 def test_weiter_nach_dem_test_ueberspringt_bestandene_level(seite, heute_stand):
     """Pruefbericht 1.3, G3: nach dem letzten eingeschobenen Level (102) stand
-    "Weiter zu Level 103", und das war laengst bestanden. Dran ist Level 130."""
+    "Weiter zu Level 103", und das war laengst bestanden. Dran ist Level 130.
+    Seit den Stufen-Reitern (13.11.2026) zaehlt die Nummer je Reiter (levelNummer)."""
     ids = _ids(seite, heute_stand)
     seite.starten(stand=heute_stand(bestanden=ids[:101] + ids[102:129]))
     _test_bestehen(seite, 101)
-    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: 130})")
+    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: levelNummer(129)})")
     seite.page.click("#tNext")
     assert seite.js("() => [catIdx, passed.has(cur().id), document.getElementById('levelHome').style.display]") == [
         129, False, "block"]
@@ -76,7 +77,7 @@ def test_weiter_nach_dem_test_sonst_wie_bisher(seite, heute_stand):
     # Dahinter ist alles bestanden: ebenfalls eins weiter, auch wenn das bestanden ist
     seite.starten(stand=heute_stand(bestanden=ids[:50] + ids[51:]))
     _test_bestehen(seite, 50)
-    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: 52})")
+    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: levelNummer(51)})")
     seite.page.click("#tNext")
     assert seite.js("() => catIdx") == 51
     assert seite.fehler == []
@@ -101,7 +102,7 @@ def test_ajdins_beispiel_level_8_ueben_knopf_bleibt_bei_10(seite, heute_stand):
     _knopf_zeigt(seite, 9)
     assert seite.js(JETZT) == ["10"]
     _lektion_in(seite, 7)
-    assert seite.js("() => document.getElementById('weiterKnopf').textContent") == seite.js(NAME, 9)
+    assert seite.js("() => document.getElementById('weiterKnopf').textContent.trim()") == seite.js(NAME, 9)
     _knopf_zeigt(seite, 9)
     # Der Knopf oeffnet Level 10
     seite.page.click("#weiterKnopf")
@@ -172,7 +173,9 @@ def test_eingestuft_aber_von_vorn_gelernt(seite, heute_stand):
     Einstieg etwas besteht, lernt wieder dort weiter."""
     ids = _ids(seite, heute_stand)
     ein = min(64, len(ids) - 3)
-    stand = {"einstufung": {"tag": datetime.date.today().isoformat(), "wahl": "alles", "bis": ids[ein]},
+    # reiter: eingestuft mit den Stufen-Reitern - vorher eingestuft holen die zwei
+    # Grundwort-Level den Knopf zurueck (tests_e2e/test_reiter.py)
+    stand = {"einstufung": {"tag": datetime.date.today().isoformat(), "wahl": "alles", "bis": ids[ein], "reiter": True},
              "bestanden": ids[:9]}
     seite.starten(stand=stand)
     _knopf_zeigt(seite, 9)

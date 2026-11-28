@@ -1,0 +1,122 @@
+  /* ---- Update aus Google Play (10.10.2026) ----
+     Die Leiste "Update bereit · Neu starten": klein, unten, im Kartenstil
+     der App. Sie liegt ueber dem Inhalt, aber unter Anzeige (999) und jeder
+     Nachfrage (1000), damit sie nichts davon verdeckt. In Lektion, Test und
+     Wiederholen-Runde blendet body.nurHerz sie aus - auch dann, wenn das
+     Skript es einmal nicht tut. Seit 19.10.2026 ebenso in der Einstufung
+     samt ihrem Ergebnis: einstufungStarten() setzt nurHerz jetzt auch, erst
+     showView() beim Verlassen nimmt es zurueck.
+     Solange sie steht, bekommt die Seite unten so viel Platz, wie die Leiste hoch ist (--upd-hoehe misst das Skript),
+     sonst laege sie auf den letzten Knoepfen. Gemessen und nicht fest, weil
+     sie bei grosser Systemschrift zweizeilig wird: Android vergroessert die
+     Schrift, px-Abstaende aber nicht. flex-wrap: der Knopf rutscht dann in
+     die naechste Zeile, rechtsbuendig. */
+  .updleiste{position:fixed; left:50%; bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+    transform:translateX(-50%); z-index:950; width:min(92vw,440px);
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px;
+    padding:10px 10px 10px 16px; background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius); box-shadow:0 8px 24px rgba(0,0,0,.28);
+    color:var(--ink); font-size:15px; font-weight:800; line-height:1.35}
+  .updleiste[hidden], body.nurHerz .updleiste{display:none}
+  .updleiste .updtext{flex:1 1 auto; min-width:0}
+  .updleiste .btn{flex:0 0 auto; margin-left:auto; padding:10px 16px}
+  body.updDa{padding-bottom:calc(var(--upd-hoehe, 72px) + 28px + env(safe-area-inset-bottom, 0px))}
+  /* Pflicht-Update: deckend und ueber allem anderen der App, denn dahinter
+     ist nichts mehr zu bedienen. Die Karte selbst ist die Nachfrage-Karte. */
+  .nachfrage.updsperre{z-index:1002; background:var(--bg)}
+  /* Einwilligung: kommt beim ersten Start, bevor irgendeine Werbung läuft.
+     Beide Knöpfe sind gleich groß und gleich auffällig – Ablehnen darf nach
+     der DSGVO nicht umständlicher sein als Zustimmen. */
+  .einwilligung{position:fixed; inset:0; z-index:1000; background:rgba(6,12,32,.86);
+    display:flex; align-items:center; justify-content:center; padding:18px; overflow:auto}
+  /* Deckend, nicht durchscheinend: vor dem Schliessen soll nichts mehr
+     durchschimmern, sonst wirkt die Frage wie ein Versehen. */
+  .nachfrage{position:fixed; inset:0; z-index:1000; background:rgba(6,12,32,.72);
+    display:flex; align-items:center; justify-content:center; padding:18px; overflow:auto}
+  /* iOS: die Vollbild-Ebenen halten Abstand zu Notch und Home-Leiste,
+     sonst laege ein langer Kaufkasten mit seinem Knopf unter der Leiste.
+     30.10.2026, siehe html[data-plattform="ios"] body. */
+  html[data-plattform="ios"] .werbung, html[data-plattform="ios"] .einwilligung,
+  html[data-plattform="ios"] .nachfrage{
+    padding:calc(18px + env(safe-area-inset-top, 0px)) max(18px, env(safe-area-inset-right, 0px))
+            calc(18px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px))}
+  html[data-plattform="ios"] .kurznote{bottom:calc(86px + env(safe-area-inset-bottom, 0px))}
+  html[data-plattform="ios"] .meldenote{bottom:calc(140px + env(safe-area-inset-bottom, 0px))}
+  .einwilligungbox, .nachfragebox{background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px; width:100%; max-width:440px; max-height:92vh; overflow:auto}
+  .einwilligungbox h3, .nachfragebox h3{margin:0 0 10px; font-size:19px}
+  .einwilligungbox .txt, .nachfragebox .txt{font-size:14px; line-height:1.6; color:var(--muted)}
+  .einwilligungbox .btn, .nachfragebox .btn{width:100%; margin-top:10px}
+  .einwilligungbox details{margin-top:14px}
+  .einwilligungbox .fuss{font-size:12px; color:var(--muted); margin-top:12px; text-align:center}
+  /* Nachfrage: kurz, mittig, schmaler als die Einwilligung. */
+  .nachfragebox{max-width:340px; text-align:center; background:var(--surface);
+    border:1px solid var(--line); box-shadow:0 18px 50px rgba(0,0,0,.55)}
+
+  /* ---- Vollversion ----
+     Der Weg zu Googles Abo-Seite. Kündigen kann die App nicht, das geht nur
+     bei Google - also führt hier ein Verweis hin. Google verlangt diesen Weg
+     ausdrücklich auf einem Einstellungsbildschirm. */
+  .abolink{background:none; border:0; padding:0; cursor:pointer; font:inherit;
+    color:var(--primary); text-decoration:underline; text-underline-offset:2px}
+  .abowahl{display:flex; flex-direction:column; gap:10px; margin:14px 0 4px}
+  /* flex-wrap und margin-left:auto am Preis: bei grosser Systemschrift
+     rutscht der Preis in eine eigene Zeile, statt ueber den Kasten
+     hinauszuragen - er muss vor "Zahlungspflichtig abonnieren" ganz
+     lesbar sein. Gefunden bei der Pruefung am 06.10.2026. */
+  .abokarte{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;
+    width:100%; padding:14px; border-radius:var(--radius); border:1px solid var(--line);
+    background:var(--bg); cursor:pointer; font:inherit; color:var(--ink); text-align:left}
+  .abokarte:disabled{opacity:.45; cursor:default}
+  /* Die gewählte Karte. Sie kauft nicht - dafür gibt es den Knopf darunter. */
+  .abokarte[aria-checked="true"]{border-color:var(--primary); background:var(--primary-soft)}
+  .abokarte .haken{font-weight:800; color:var(--primary); margin-right:6px}
+  .abokarte .n{font-weight:800; font-size:15px}
+  .abokarte .p{margin-left:auto; font-weight:800; font-size:17px; color:var(--primary); white-space:nowrap}
+  /* Beides steht in derselben gelben Pille, untereinander: nebeneinander
+     war die Zeile auf Deutsch zu lang, und in Grau darunter wirkte der
+     Monatspreis wie eine Fussnote. Ajdin am 29.09.2026. */
+  .abospar .promonat{display:block; font-weight:700; opacity:.9}
+  .abospar{display:inline-block; margin-top:4px; font-size:11px; font-weight:800;
+    text-align:center; line-height:1.4;
+    color:var(--on-accent); background:var(--accent); border-radius:99px; padding:2px 8px}
+  /* Der Drache im Kaufkasten. Niemand kauft eine Aufzaehlung, aber ein
+     Bild, das man haben will. Ajdin am 29.09.2026. */
+  .abovorschau{display:flex; flex-direction:column; align-items:center; margin:2px 0 6px}
+  .abovorschau .zmaj-anim, .abovorschau .zmaj{width:150px; height:150px}
+  .abovorschau .wort{font-size:12px; font-weight:800; color:var(--muted); margin-top:2px}
+  .abohinweis{font-size:12px; line-height:1.5; color:var(--muted); margin-top:8px}
+  /* iOS: Nutzungsbedingungen, Datenschutz, Kaeufe wiederherstellen - eine
+     kleine Zeile unter dem Hinweis (Richtlinie 3.1.2, 30.10.2026). */
+  .abolinks{font-size:12px; line-height:1.6; color:var(--muted); margin-top:8px}
+  .abolinks .abolink{font-size:12px}
+  .rechtsebene .legal{max-height:60vh; overflow:auto; font-size:13px; line-height:1.55}
+  /* Die Testwoche: Dauer und Preis danach stehen fett ueber dem Kaufknopf,
+     nicht im Kleingedruckten - wer bestellt, muss wissen, wann zum ersten
+     Mal abgebucht wird. Ohne Testwoche bleibt die Zeile leer und nimmt
+     keinen Platz. Gefunden bei der Pruefung am 06.10.2026. */
+  .abogratis{margin-top:10px; font-size:14px; font-weight:800; line-height:1.4; color:var(--ink)}
+  .abogratis:empty{display:none}
+  /* Auf kleinen Handys lag "Zahlungspflichtig abonnieren" unter dem Rand des
+     Kastens: man sah Drache und Preise, aber keinen Knopf (Pruefbericht 1.3,
+     G13). kaufkastenEinpassen() macht den Kasten jetzt Stufe um Stufe enger, nur
+     so weit wie noetig. Rollt er danach noch, bleiben die Knoepfe am unteren Rand
+     stehen. Fest stehen nur die Knoepfe: stuenden auch Testwoche und Hinweis
+     darin, verdeckten sie bei grosser Schrift die Karten mit den Preisen, und die
+     muss sehen, wer bestellt. Sticky statt eines eigenen Rollbereichs: wo alles
+     passt, sieht der Kasten genauso aus wie vorher. Die Raender gleichen die 18 px
+     von .nachfragebox aus, auch bei bottom: Chrome rechnet es vom Innenrand. */
+  .kaufknoepfe{position:sticky; bottom:-18px; margin:0 -18px -18px; padding:0 18px 18px; background:var(--surface)}
+  .kaufbox.rollt .kaufknoepfe{box-shadow:0 -10px 12px -12px rgba(6,12,32,.45)}
+  .kaufbox.eng1 .abovorschau .zmaj-anim, .kaufbox.eng1 .abovorschau .zmaj{width:90px; height:90px}
+  .kaufbox.eng2 .txt{line-height:1.45}
+  .kaufbox.eng2 .abowahl{gap:8px; margin:10px 0 2px}
+  .kaufbox.eng2 .abokarte{padding:10px 14px}
+  .kaufbox.eng2 .abogratis, .kaufbox.eng2 .abohinweis{margin-top:6px}
+  .kaufbox.eng2 .btn{margin-top:8px}
+  .kaufbox.eng3{max-height:calc(100vh - 36px); padding-top:12px}
+  .kaufbox.eng3 h3{margin-bottom:6px; font-size:17px}
+  .kaufbox.eng3 .txt{font-size:13px; line-height:1.4}
+  .kaufbox.eng3 .abogratis{font-size:13px}
+

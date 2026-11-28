@@ -24,6 +24,7 @@ import json
 import os
 
 import pytest
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 BEREICHE = ((3124, 3421), (3720, 3723))
 SCHON_DA = {"zarađivati": "w1475.mp3", "jezik": "w1982.mp3"}
@@ -42,7 +43,7 @@ def index(wurzel):
 
 
 def _level(daten):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in PAKET3]
 
 
@@ -57,7 +58,8 @@ def _neue_saetze(daten):
 
 
 def _nummer(datei):
-    return int(datei[1:5])
+    import ton_bauen
+    return ton_bauen.dateinummer(datei)       # auch fuenfstellig (w10059), 21.11.2026
 
 
 def _im_bereich(datei):
@@ -125,10 +127,11 @@ def test_doppelformen_alle_formen_am_ende(grunddaten):
         assert 3124 <= _nummer(erste["datei"]) <= 3421, erste
 
 
-def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, index, wurzel):
+def test_jeder_beispielsatz_hat_emirs_ton(grunddaten_vor_umzug, index, wurzel):
     """Jeder der 150 Saetze hat seine eigene Aufnahme, Text genau wie in der
     App - auch die aus Ajdins Entscheidungen (Boli me u prsima. statt grudi,
     Ne mogu izabrati ...)."""
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     import ton_bauen
     import ton_pruefen
     emir = ton_bauen.nur_emir()
@@ -150,11 +153,12 @@ def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, index, wurzel):
         assert ton_bauen.schluessel(satz) in emir, satz
 
 
-def test_nummern_gehoeren_dem_paket(grunddaten):
+def test_nummern_gehoeren_dem_paket(grunddaten_vor_umzug):
     """Genau die 302 neuen Aufnahmen, lueckenlos, keine fuer etwas anderes,
     und in der Reihenfolge von ton_bauen.sammle(). Die Nummern bleiben
     vergeben (ton_bauen.grosser_lauf zaehlt sie mit), auch wenn ein Wort
     spaeter wieder geht."""
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     import ton_bauen
     emir = ton_bauen.nur_emir()
     im_paket = {e["datei"]: k for k, e in emir.items() if _im_bereich(e["datei"])}
@@ -162,5 +166,9 @@ def test_nummern_gehoeren_dem_paket(grunddaten):
     assert len(im_paket) == 302
     texte = {w["bs"] for w in _neue_woerter(grunddaten) + _neue_saetze(grunddaten)}
     assert {emir[k]["text"] for k in im_paket.values()} <= texte
-    reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(im_paket.values())]
-    assert [im_paket[d] for d in sorted(im_paket)] == reihe
+    # Seit 13.11.2026 kommen die 40 umgezogenen Grundwoerter in der App frueher dran,
+    # ihre Nummern bleiben (grundwoerter_umzug.py). Sie zaehlen hier nicht zur Reihenfolge.
+    from grundwoerter_umzug import UMZUG
+    umgezogen = {f(u[1]) for u in UMZUG for f in (ton_bauen.schluessel, ton_bauen.schluessel_alle)}
+    reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(im_paket.values()) and p["key"] not in umgezogen]
+    assert [im_paket[d] for d in sorted(im_paket) if im_paket[d] not in umgezogen] == reihe

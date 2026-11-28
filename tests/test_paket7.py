@@ -17,6 +17,7 @@ import re
 import pytest
 
 import offen_p1020
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 LEVEL = ["sagen_betonen", "mitteilen_bitten", "fuehren_bringen", "heben_ziehen", "schaffen_erreichen",
          "starten_planen", "veraendern_herstellen", "ermoeglichen_entdecken", "entscheiden_annehmen", "aufhoeren_vermeiden"]
@@ -126,7 +127,7 @@ SEIT_P1020 = {"dići": "dizati", "dizati": "dići", "tvrditi": "ustvrditi"}
 
 
 def _level(daten):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in LEVEL]
 
 

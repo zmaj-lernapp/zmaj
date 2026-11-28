@@ -39,13 +39,16 @@ def test_kartei_texte_deutsch_wie_entschieden():
     }
 
 
-def test_dritter_kasten_unter_den_beiden_alten(index_html):
-    """Im Reiter Wiederholen unter "Wiederholen" und "Markiert", eine
-    schlichte .section, gebaut mit denselben Klassen."""
+def test_kasten_ganz_oben_ueber_den_beiden_alten(index_html):
+    """Im Reiter Wiederholen seit dem 20.11.2026 ganz oben, ueber
+    "Wiederholen" und "Markiert" (O10, Ajdin: "ja mach die heute fällig ganz
+    nach oben"); bis dahin der dritte darunter. Eine schlichte .section,
+    gebaut mit denselben Klassen."""
     html = index_html.replace("\r\n", "\n")
-    assert ('      <div class="section" id="topfBox"></div>\n'
-            '      <div class="section" id="sternBox"></div>\n'
+    assert ('    <div id="topfHome" style="display:none">\n'
             '      <div class="section" id="karteiBox"></div>\n'
+            '      <div class="section" id="topfBox"></div>\n'
+            '      <div class="section" id="sternBox"></div>\n'
             '    </div>\n') in html
     assert html.count('id="karteiBox"') == 1
     rumpf = html.split("function karteiKasten(){")[1].split("\n}\n")[0]
@@ -53,7 +56,26 @@ def test_dritter_kasten_unter_den_beiden_alten(index_html):
                    '<div class="topfleer">', '<div class="row"><button class="btn know" id="karteiLos"',
                    '<div class="note">', '<div class="row schmal">'):
         assert klasse in rumpf, klasse
-    assert "function showTopf(){\n  topfKasten();\n  sternKasten();\n  karteiKasten();\n}" in html
+    assert "function showTopf(){\n  karteiKasten();\n  topfKasten();\n  sternKasten();\n}" in html
+
+
+def test_roter_zaehler_am_reiter(index_html, sprachcodes):
+    """Der rote Zaehler am Reiter Wiederholen (O10, 20.11.2026): im Reiter,
+    fuer den Bildschirmleser stumm, die Zahl im Namen des Reiters. Der Text
+    dafuer in jeder Sprache mit {n}, Einzahl und Mehrzahl, ohne HTML."""
+    import sprachen
+    html = index_html.replace("\r\n", "\n")
+    reiter = html.split('<button role="tab" id="modeTopf"')[1].split("</button>")[0]
+    assert '<span class="zaehler" id="faelligZahl" aria-hidden="true" hidden></span>' in reiter
+    assert html.count('id="faelligZahl"') == 1
+    assert "faelligZaehler();" in html.split("function renderHero(){")[1].split("\n}\n")[0]
+    assert "faelligNachziehen();" in html.split("function topfNachziehen(){")[1].split("\n}\n")[0]
+    for code in sprachcodes:
+        v = sprachen.TEXTE[code].get("kartei.zaehler")
+        assert isinstance(v, str) and v.count("|") == 1, (code, v)
+        assert all(teil.count("{n}") == 1 for teil in v.split("|")), (code, v)
+        assert "<" not in v and len(v) <= 80, (code, v)
+    assert sprachen.TEXTE["de"]["kartei.zaehler"] == "{n} Wort heute fällig|{n} Wörter heute fällig"
 
 
 def test_regeln_wie_entschieden(index_html):
@@ -78,8 +100,13 @@ def test_nachbesserung_nach_der_pruefung(index_html):
     lektion = html.split("function buildLesson(){")[1].split("\n}\n")[0]
     assert "const pickF = artenReihum(types.filter(x => x !== 'speak'));" in lektion
     assert "faellig.forEach(f => tasks.push(Object.assign({typ:pickF(f.w)," in lektion
+    # Der Hinweis ohne Leben nur einmal: seit "Heute faellig" ganz oben steht
+    # (O10, 20.11.2026), zeigt er ihn, und die zwei darunter lassen ihn weg.
     kasten = html.split("function karteiKasten(){")[1].split("\n}\n")[0]
-    assert "if(topfAnzahl() || sternAnzahl()){ box.innerHTML = html; return; }" in kasten
+    assert "if(topfAnzahl() || sternAnzahl())" not in kasten
+    for name in ("topfKasten", "sternKasten"):
+        rumpf = html.split("function %s(){" % name)[1].split("\n}\n")[0]
+        assert "if(karteiHeute().length){ box.innerHTML = html; return; }" in rumpf, name
 
 
 def test_eigenes_feld_ueberall_dabei(index_html):
@@ -149,11 +176,19 @@ def test_groesse_unter_der_cloud_grenze(grunddaten, index_html):
     Bei etwa 8 800 Eintraegen ist die Grenze allein damit erreicht, dann meldet
     cloudSpeichern() 'zu gross' und sichert nichts mehr. Vor dem naechsten Paket
     brauchen Saetze kuerzere Kennungen in der Sicherung oder der Stand ein zweites
-    Dokument - darum die Grenze hier bei 92 %: das naechste Paket schlaegt an."""
+    Dokument - darum die Grenze hier bei 92 %: das naechste Paket schlaegt an.
+
+    Entschieden am 13.11.2026 (Weg A, in 1.4): Ueber CLOUD_GROESSE_MAX packt die App den
+    Stand (cloud_stand.js, gepackt rund ein Viertel, tests_e2e/test_cloud_packen.py).
+    Mit K2 und K7 (27.11.2026, 8 191 Eintraege) hat die 92 %-Marke wie gedacht
+    angeschlagen: 840 062 Byte, 93 %. Wer alles kann, sichert also gepackt; nur ein
+    Geraet mit 1.3 daneben kann dann gepackt1 weglassen (standFremdAus, Randfall in
+    cloud_stand.js). Die Marke steht jetzt bei der Grenze selbst: B2 Teil 2 (rund 900
+    Eintraege) schlaegt an - vorher K14 „immer packen“ und nachsehen, wer noch 1.3 hat."""
     grenze = int(re.search(r"const CLOUD_GROESSE_MAX = (\d+);", index_html).group(1))
     ids = list(dict.fromkeys(w["id"] for k in grunddaten["kategorien"] for w in k["words"]))
     kompakt = dict(ensure_ascii=False, separators=(",", ":"))
     kartei = len(json.dumps({"tag": 9999, "n": 30, "w": {i: [6, 9999, 9999] for i in ids}}, **kompakt).encode("utf-8"))
     gewusst = len(json.dumps(ids, **kompakt).encode("utf-8"))
     assert kartei / len(ids) < 60, kartei / len(ids)
-    assert kartei + gewusst < grenze * 0.92, (kartei + gewusst, grenze)
+    assert kartei + gewusst < grenze, (kartei + gewusst, grenze)

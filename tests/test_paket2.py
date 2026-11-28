@@ -24,6 +24,7 @@ Hier steht, was beim Einbau festgelegt wurde:
 import re
 
 import pytest
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 TUN = ["paare_geben", "paare_denken", "paare_alltag", "im_haushalt"]
 WIE = ["lang_kurz", "voll_leer", "moeglich", "wie_jemand_ist", "benehmen", "glueck_sorgen", "sinne"]
@@ -94,6 +95,13 @@ FORMEN = {
 AUCH_EXTRA = {"shvatati": ["shvaćati"], "sačekati": ["pričekati"], "objesiti": ["okačiti"],
               "počistiti": ["očistiti"], "mekan": ["mek", "meko"], "komplikovan": ["kompliciran"],
               "stidljiv": ["sramežljiv"]}
+# Pruefbericht 1.4, V3 (14.11.2026): ein Beispielsatz nimmt beim Tippen auch kada.
+# Die Kennung bleibt (tests/test_pruefbericht14_antworten.py).
+SATZ_AUCH = {"Kad se ženiš?": ["Kada se ženiš?"]}
+# K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karten V3-86 und V4-33 „nein“): diese Formen
+# zaehlen beim Tippen NICHT. uključivati ist ein eigenes Wort mit eigener Bedeutung.
+ZAEHLT_NICHT = {"Sretno!": ["Srećno!"], "paliti": ["uključivati"]}
+EIGENES_WORT = {"uključivati": "einschalten / einbeziehen"}
 
 # Das Gegenstueck jedes neuen Verbs. Steht es in Paket 1 oder der App, hat
 # es seit Paket 2 umgekehrt auch "partner".
@@ -119,7 +127,7 @@ PARTNER_PAKET3 = {"iznijeti": "iznositi", "miješati": "promiješati", "pokvarit
 
 
 def _level(daten, ids):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in ids]
 
 
@@ -131,11 +139,12 @@ def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten):
-    sektion = grunddaten["sektionen"][10]
-    assert len(grunddaten["sektionen"]) == 31       # seit 07.11.2026 (Pakete 10 bis 20)
+def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
+    sektion = grunddaten["sektionen"][11]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
+    assert len(grunddaten["sektionen"]) == 27       # seit 13.11.2026 (Sätze bauen 2, B2 in neun)
     assert sektion["id"] == "wieetwasist"
-    assert sektion["label"] == "Sektion 11 · Wie etwas ist"
+    assert sektion["label"] == "Sektion 3 · Wie etwas ist"
     ids = [k["id"] for k in grunddaten["kategorien"]]
     tun = [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "tunlassen"]
     assert tun[8:12] == TUN, "nach den acht Leveln aus Paket 1"
@@ -163,7 +172,7 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
         for wort, satz in zip(woerter[0::2], woerter[1::2]):
             assert re.search(r"[.!?]$", satz["bs"]) and re.search(r"[.!?]$", satz["de"]), satz
             assert satz["bs"][:1].isupper() and satz["de"][:1].isupper(), satz
-            assert "partner" not in satz and "auch" not in satz, satz
+            assert "partner" not in satz and satz.get("auch") == SATZ_AUCH.get(satz["bs"]), satz
             assert satz["bs"] != wort["bs"], satz
 
 
@@ -189,8 +198,10 @@ def test_adjektive_maennlich_die_anderen_formen_zaehlen(grunddaten):
         assert w["auch"] == [weiblich, saechlich] + AUCH_EXTRA.get(bs, []), bs
     for bs, extra in AUCH_EXTRA.items():
         assert neu[bs]["auch"][-len(extra):] == extra, bs
+    for bs, auch in SATZ_AUCH.items():
+        assert neu[bs]["auch"] == auch, bs
     mit_auch = {bs for bs, w in neu.items() if w.get("auch")}
-    assert mit_auch == set(FORMEN) | set(AUCH_EXTRA)
+    assert mit_auch == set(FORMEN) | set(AUCH_EXTRA) | set(SATZ_AUCH)
     for w in neu.values():
         formen = [f.strip() for f in w["bs"].split(" / ")]
         for a in w.get("auch", []):
@@ -347,3 +358,16 @@ def test_norwegisch_putzen_und_waschen(alle_daten):
     w = {x["bs"]: x["de"] for x in _alle(alle_daten["nb"])}
     assert w["oprati"] == "vaske"
     assert w["počistiti"] == w["čistiti"] == "gjøre rent"
+
+
+@pytest.mark.parametrize("wort, form", sorted((w, f) for w, l in ZAEHLT_NICHT.items() for f in l))
+def test_was_ajdin_ausgeschlossen_hat_zaehlt_nicht(grunddaten, wort, form):
+    """Beim Tippen zaehlt das Wort, sein "auch", "auch_var" (varianten.py) und jedes
+    andere Wort mit derselben Bedeutung (annehmbar() in web/index.html). Die Form darf
+    in keinem davon stehen; als eigenes Wort mit anderer Bedeutung darf es sie geben."""
+    w = {x["bs"]: x for x in _neu(grunddaten)}[wort]
+    assert form not in w.get("auch", []) + w.get("auch_var", []) and form not in w["bs"].split(" / ")
+    assert w.get("partner") != form
+    treffer = [x for x in _alle(grunddaten) if form in x["bs"].split(" / ") or form in x.get("auch", [])]
+    assert [x["de"] for x in treffer] == ([EIGENES_WORT[form]] if form in EIGENES_WORT else []), form
+    assert w["de"] != EIGENES_WORT.get(form)

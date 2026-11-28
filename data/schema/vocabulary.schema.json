@@ -19,6 +19,7 @@
     "properties": {
      "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
      "position": {"type": "integer", "minimum": 1},
+     "stage": {"type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"], "description": "CEFR stage. The app shows one tab per stage, and the number in the section label counts within the stage."},
      "label": {"$ref": "#/$defs/translations"},
      "description": {"$ref": "#/$defs/translations"}
     }

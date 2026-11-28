@@ -127,6 +127,7 @@ jabuka	elma	word	apfel:jabuka
 voće	meyve	word	obst:voće
 povrće	sebze	word	gemüse:povrće
 krompir	patates	word	kartoffel:krompir
+pomfrit	patates kızartması	word	pommes:pomfrit
 paradajz	domates	word	tomate:paradajz
 luk	soğan	word	zwiebel:luk
 riža	pirinç	word	reis:riža
@@ -135,6 +136,7 @@ so / sol	tuz	word	salz:so / sol
 supa	çorba	word	suppe:supa
 pita	pita (yufkadan börek)	word	pita (blätterteig-gericht):pita
 ćevapi	ćevapi (küçük köfteler)	word	ćevapi:ćevapi
+pica	pizza	word	pizza:pica
 doručak	kahvaltı	word	frühstück:doručak
 ručak	öğle yemeği	word	mittagessen:ručak
 večera	akşam yemeği	word	abendessen:večera
@@ -211,8 +213,11 @@ oblak	bulut	word	wolke:oblak
 toplo	ılık	word	warm:toplo
 hladno	soğuk	word	kalt:hladno
 vruće	sıcak	word	heiß:vruće
+sunčano	güneşli	word	sonnig:sunčano
+oblačno	bulutlu	word	bewölkt:oblačno
 Pada kiša	Yağmur yağıyor	word	es regnet:Pada kiša
 Pada snijeg	Kar yağıyor	word	es schneit:Pada snijeg
+kišobran	şemsiye	word	regenschirm:kišobran
 proljeće	ilkbahar	word	frühling:proljeće
 ljeto	yaz	word	sommer:ljeto
 jesen	sonbahar	word	herbst:jesen
@@ -262,7 +267,8 @@ glavobolja	baş ağrısı	word	kopfschmerzen:glavobolja
 temperatura	vücut ateşi	word	fieber:temperatura
 lijek	ilaç	word	medikament:lijek
 Brz oporavak	Geçmiş olsun!	word	gute besserung!:Brz oporavak
-radnja	dükkân	word	geschäft:radnja
+radnja	dükkân (küçük mağaza)	word	geschäft (kleiner laden):radnja
+trgovina	mağaza (büyük mağaza)	word	geschäft (großer laden):trgovina
 tržni centar	alışveriş merkezi	word	einkaufszentrum:tržni centar
 kasa	kasa	word	kasse:kasa
 cijena	fiyat	word	preis:cijena
@@ -273,13 +279,23 @@ torba	çanta	word	tasche:torba
 odjeća	giysi	word	kleidung:odjeća
 košulja	gömlek	word	hemd:košulja
 majica	tişört	word	t-shirt:majica
-pantalone	pantolon	word	hose:pantalone
+pantalone / hlače	pantolon	word	hose:pantalone / hlače
+farmerke	kot pantolon	word	jeans:farmerke
+trenerka	eşofman	word	trainingsanzug:trenerka
 jakna	ceket	word	jacke:jakna
+džemper	kazak	word	pullover:džemper
+kaput	palto	word	mantel:kaput
 haljina	elbise	word	kleid:haljina
 suknja	etek	word	rock:suknja
 cipele	ayakkabı	word	schuhe:cipele
+patike	spor ayakkabı	word	turnschuhe:patike
+čizme	çizme	word	stiefel:čizme
+papuče	terlik	word	hausschuhe:papuče
 čarape	çorap	word	socken:čarape
 kapa	bere	word	mütze:kapa
+šešir	şapka	word	hut:šešir
+šal	atkı	word	schal:šal
+rukavice	eldivenler	word	handschuhe:rukavice
 veličina	beden	word	größe:veličina
 veliko	büyük	word	groß:veliko
 malo	küçük	word	klein:malo
@@ -468,6 +484,7 @@ loza	üzüm rakijası	word	traubenbrand:loza
 šljivovica	erik rakijası	word	zwetschgenbrand:šljivovica
 mačak	erkek kedi	word	kater:mačak
 Naš mačak spava cijeli dan.	Erkek kedimiz bütün gün uyuyor.	word	unser kater schläft den ganzen tag.:Naš mačak spava cijeli dan.
+mače	yavru kedi	word	kätzchen:mače
 kućni ljubimac	evcil hayvan	word	haustier:kućni ljubimac
 životinja	hayvan	word	tier:životinja
 stoka	çiftlik hayvanları / besi hayvanları	word	vieh / nutztiere:stoka
@@ -572,154 +589,18 @@ livada	çayır	word	wiese:livada
 grana	dal / ince dal	word	ast / zweig:grana
 kamilica	papatya	word	kamille:kamilica
 lipa	ıhlamur	word	linde:lipa
-nana (auch: metvica)	nane	word	minze:nana (auch: metvica)
+nana / metvica	nane	word	minze:nana / metvica
 biljka	bitki	word	pflanze:biljka
 šljiva	erik / erik ağacı	word	pflaume / pflaumenbaum:šljiva
 orah	ceviz / ceviz ağacı	word	walnuss / walnussbaum:orah
 korijen	kök	word	wurzel:korijen
-rerna	fırın	word	backofen:rerna
-flaša	şişe	word	flasche:flaša
-viljuška	çatal	word	gabel:viljuška
-zamrzivač	dondurucu	word	gefrierschrank:zamrzivač
-suđe	tabak çanak (bulaşık)	word	geschirr:suđe
-prati suđe	bulaşık yıkamak	word	geschirr spülen:prati suđe
-tava	tava	word	pfanne:tava
-tanjir	tabak	word	teller:tanjir
-lonac	tencere	word	topf:lonac
-kesa	poşet / plastik poşet	word	tüte / plastiktüte:kesa
-posteljina	nevresim	word	bettwäsche:posteljina
-deka	battaniye	word	decke (bettdecke):deka
-jastuk	yastık	word	kissen:jastuk
-polica	raf	word	regal / brett:polica
-ormar	dolap	word	schrank:ormar
-kauč	kanepe	word	sofa:kauč
-zavjesa	perde	word	vorhang:zavjesa
-tuš	duş	word	dusche:tuš
-ogledalo	ayna	word	spiegel:ogledalo
-WC	tuvalet	word	toilette:WC
-toalet papir	tuvalet kâğıdı	word	toilettenpapier:toalet papir
-lavabo	lavabo	word	waschbecken:lavabo
-četkica za zube	diş fırçası	word	zahnbürste:četkica za zube
-pasta za zube	diş macunu	word	zahnpasta:pasta za zube
-pospremiti	ortalığı toplamak	word	aufräumen:pospremiti
-metla	süpürge	word	besen:metla
-pegla	ütü	word	bügeleisen:pegla
-peglati	ütülemek	word	bügeln:peglati
-kanta	kova	word	eimer:kanta
-smeće	çöp	word	müll:smeće
-kanta za smeće	çöp kovası / çöp bidonu	word	mülleimer / mülltonne:kanta za smeće
-čisto	temiz	word	sauber:čisto
-prljavo	kirli	word	schmutzig:prljavo
-usisivač	elektrikli süpürge	word	staubsauger:usisivač
-veš mašina	çamaşır makinesi	word	waschmaschine:veš mašina
-deterdžent	çamaşır deterjanı	word	waschmittel:deterdžent
-veš	çamaşır	word	wäsche:veš
-štrik	çamaşır ipi	word	wäscheleine:štrik
-lift	asansör	word	aufzug:lift
-poštansko sanduče	posta kutusu	word	briefkasten:poštansko sanduče
-krov	çatı	word	dach:krov
-tavan	tavan arası	word	dachboden:tavan
-pod	yer / zemin	word	fußboden:pod
-domar	kapıcı	word	hausmeister:domar
-podrum	bodrum	word	keller:podrum
-zvono	kapı zili	word	klingel:zvono
-zvoniti	zil çalmak	word	klingeln:zvoniti
-komšinica	komşu (kadın)	word	nachbarin:komšinica
-zid	duvar	word	wand:zid
-ograda	çit	word	zaun:ograda
-ugasiti	kapatmak / söndürmek	word	ausschalten / ausmachen:ugasiti
-bojler	termosifon / sıcak su deposu	word	boiler / warmwasserspeicher:bojler
-drva	odun (yakacak)	word	brennholz:drva
-upaliti	açmak / yakmak	word	einschalten / anmachen:upaliti
-Nema struje	Elektrik yok	word	es gibt keinen strom:Nema struje
-sijalica	ampul	word	glühbirne:sijalica
-grijanje	kalorifer / ısıtma	word	heizung:grijanje
-ugalj	kömür	word	kohle:ugalj
-svjetlo	ışık	word	licht:svjetlo
-peć	soba (ısıtma sobası)	word	ofen (heizofen):peć
-osigurač	elektrik sigortası	word	sicherung:osigurač
-utičnica	priz	word	steckdose:utičnica
-utikač	fiş	word	stecker:utikač
-struja	elektrik	word	strom:struja
-topla voda	sıcak su	word	warmes wasser:topla voda
-Ne radi	Çalışmıyor	word	es funktioniert nicht:Ne radi
-Curi voda	Su sızıyor / damlıyor	word	es läuft aus / es tropft:Curi voda
-čekić	çekiç	word	hammer:čekić
-majstor	zanaatkâr / usta	word	handwerker / fachmann:majstor
-pokvaren / pokvarena / pokvareno	bozuk	word	kaputt:pokvaren / pokvarena / pokvareno
-merdevine	el merdiveni	word	leiter:merdevine
-ekser	çivi	word	nagel:ekser
-popraviti	tamir etmek	word	reparieren:popraviti
-brava	kilit (kapı kilidi)	word	schloss (türschloss):brava
-šaraf	vida	word	schraube:šaraf
-slavina	musluk	word	wasserhahn:slavina
-alat	alet	word	werkzeug:alat
-gorivo	yakıt	word	kraftstoff / sprit:gorivo
-sipati gorivo	yakıt almak	word	tanken:sipati gorivo
-guma	lastik	word	reifen:guma
-Pukla mi je guma.	Lastiğim patladı.	word	ich habe einen platten.:Pukla mi je guma.
-kočnica	fren	word	bremse:kočnica
-motor	motor	word	motor:motor
-akumulator	akü	word	autobatterie:akumulator
-sigurnosni pojas	emniyet kemeri	word	sicherheitsgurt:sigurnosni pojas
-parkiralište	otopark	word	parkplatz:parkiralište
-parkirati	park etmek	word	parken:parkirati
-semafor	trafik lambası	word	ampel:semafor
-raskrsnica	kavşak	word	kreuzung:raskrsnica
-saobraćaj	trafik	word	verkehr:saobraćaj
-zastoj	trafik sıkışıklığı	word	stau:zastoj
-kazna	trafik cezası	word	strafzettel / bußgeld:kazna
-registracija	plaka	word	kennzeichen (auto):registracija
-tehnički pregled	araç muayenesi	word	hauptuntersuchung (tüv):tehnički pregled
-autoservis	oto tamirhanesi	word	autowerkstatt:autoservis
-šlep služba	çekici hizmeti	word	abschleppdienst:šlep služba
-pomoć na cesti	yol yardımı	word	pannenhilfe:pomoć na cesti
-odvijač / šrafciger	tornavida	word	schraubenzieher:odvijač / šrafciger
-kliješta	pense	word	zange:kliješta
-bušilica	matkap	word	bohrmaschine:bušilica
-bušiti	delmek	word	bohren:bušiti
-testera	testere	word	säge:testera
-francuski ključ	İngiliz anahtarı	word	rollgabelschlüssel (engländer):francuski ključ
-metar	şerit metre	word	maßband / zollstock:metar
-ljepilo	yapıştırıcı	word	kleber:ljepilo
-produžni kabel	uzatma kablosu	word	verlängerungskabel:produžni kabel
-radionica	atölye	word	werkstatt:radionica
-punjač	şarj aleti	word	ladegerät:punjač
-baterija	batarya	word	akku:baterija
-Baterija je prazna.	Şarjım bitti.	word	der akku ist leer.:Baterija je prazna.
-napuniti	şarj etmek	word	aufladen:napuniti
-šifra / lozinka	şifre	word	passwort:šifra / lozinka
-Koja je šifra za WiFi?	Wi-Fi şifresi ne?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
-internet	internet	word	internet:internet
-Nema signala.	Sinyal yok.	word	kein empfang.:Nema signala.
-poruka	mesaj	word	nachricht:poruka
-poslati poruku	mesaj göndermek	word	eine nachricht schicken:poslati poruku
-nazvati	aramak (telefonla)	word	anrufen:nazvati
-aplikacija	uygulama	word	app:aplikacija
-ekran	ekran	word	bildschirm:ekran
-tastatura	klavye	word	tastatur:tastatura
-štampač	yazıcı	word	drucker:štampač
-slušalice	kulaklık	word	kopfhörer:slušalice
-slikati	fotoğraf çekmek	word	fotografieren:slikati
-ažurirati	güncellemek	word	aktualisieren:ažurirati
-mašina za suđe	bulaşık makinesi	word	spülmaschine:mašina za suđe
-sušilica za veš	çamaşır kurutma makinesi	word	wäschetrockner:sušilica za veš
-mikrovalna	mikrodalga fırın	word	mikrowelle:mikrovalna
-toster	ekmek kızartma makinesi	word	toaster:toster
-kuhalo za vodu	su ısıtıcısı	word	wasserkocher:kuhalo za vodu
-fen	saç kurutma makinesi	word	föhn:fen
-klima	klima	word	klimaanlage:klima
-ventilator	vantilatör	word	ventilator:ventilator
-daljinski	kumanda	word	fernbedienung:daljinski
-aparat za kahvu / aparat za kafu	kahve makinesi	word	kaffeemaschine:aparat za kahvu / aparat za kafu
-uputstvo	kullanım kılavuzu	word	bedienungsanleitung:uputstvo
-garancija	garanti	word	garantie:garancija
 Ko?	Kim?	word	wer?:Ko?
 Šta?	Ne?	word	was?:Šta?
 Gdje?	Nerede?	word	wo?:Gdje?
 Kuda?	Nereye?	word	wohin?:Kuda?
 Odakle?	Nereden?	word	woher?:Odakle?
 Kada?	Ne zaman?	word	wann?:Kada?
+Otkad?	Ne zamandan beri?	word	seit wann?:Otkad?
 Zašto?	Neden?	word	warum?:Zašto?
 Kako?	Nasıl?	word	wie?:Kako?
 Koliko?	Ne kadar?	word	wie viel?:Koliko?
@@ -852,6 +733,26 @@ također	de / da	word	auch:također
 samo	sadece	word	nur:samo
 već	zaten	word	schon:već
 još ne	henüz değil	word	noch nicht:još ne
+ovdje	burada	word	hier:ovdje
+tamo	orada	word	dort:tamo
+tu	burada (yakında) / şurada	word	da / hier:tu
+gore	yukarıda	word	oben:gore
+dolje	aşağıda	word	unten:dolje
+onda	o zaman	word	dann:onda
+zatim	ardından	word	danach:zatim
+prvo	önce	word	zuerst:prvo
+opet	yine / tekrar	word	wieder:opet
+odmah	hemen	word	sofort:odmah
+stalno	sürekli	word	ständig:stalno
+tako	öyle	word	so:tako
+vrlo / veoma	çok (özellikten önce)	word	sehr (vor eigenschaften):vrlo / veoma
+rado	seve seve	word	gern:rado
+kao	gibi / olarak	word	wie / als:kao
+pa	sonra da / yani	word	und dann / also:pa
+evo	işte	word	hier ist / da ist:evo
+taj	bu / şu (oradaki)	word	dieser (da):taj
+sav	bütün / tüm	word	ganz / all:sav
+cijeli	bütün (eril)	word	ganz (der ganze):cijeli
 Vidim brata	Erkek kardeşi görüyorum	word	ich sehe den bruder:Vidim brata
 Vidim sestru	Kız kardeşi görüyorum	word	ich sehe die schwester:Vidim sestru
 Vidim dijete	Çocuğu görüyorum	word	ich sehe das kind:Vidim dijete
@@ -881,6 +782,148 @@ mene / me	beni	word	mich:mene / me
 tebe / te	seni	word	dich:tebe / te
 njega / ga	onu (erkek)	word	ihn:njega / ga
 nju / je	onu (kadın)	word	sie (akkusativ):nju / je
+rerna	fırın	word	backofen:rerna
+flaša	şişe	word	flasche:flaša
+viljuška	çatal	word	gabel:viljuška
+zamrzivač	dondurucu	word	gefrierschrank:zamrzivač
+suđe	tabak çanak (bulaşık)	word	geschirr:suđe
+prati suđe	bulaşık yıkamak	word	geschirr spülen:prati suđe
+tava	tava	word	pfanne:tava
+tanjir	tabak	word	teller:tanjir
+lonac	tencere	word	topf:lonac
+kesa	poşet / plastik poşet	word	tüte / plastiktüte:kesa
+posteljina	nevresim	word	bettwäsche:posteljina
+čaršaf	çarşaf	word	bettlaken:čaršaf
+deka	battaniye	word	decke (bettdecke):deka
+jastuk	yastık	word	kissen:jastuk
+polica	raf	word	regal / brett:polica
+ormar	dolap	word	schrank:ormar
+kauč	kanepe	word	sofa:kauč
+zavjesa	perde	word	vorhang:zavjesa
+tuš	duş	word	dusche:tuš
+ogledalo	ayna	word	spiegel:ogledalo
+WC	tuvalet	word	toilette:WC
+toalet papir	tuvalet kâğıdı	word	toilettenpapier:toalet papir
+lavabo	lavabo	word	waschbecken:lavabo
+četkica za zube	diş fırçası	word	zahnbürste:četkica za zube
+pasta za zube	diş macunu	word	zahnpasta:pasta za zube
+pospremiti	ortalığı toplamak	word	aufräumen:pospremiti
+metla	süpürge	word	besen:metla
+spužva	sünger	word	schwamm:spužva
+pegla	ütü	word	bügeleisen:pegla
+peglati	ütülemek	word	bügeln:peglati
+kanta	kova	word	eimer:kanta
+smeće	çöp	word	müll:smeće
+kanta za smeće	çöp kovası / çöp bidonu	word	mülleimer / mülltonne:kanta za smeće
+čisto	temiz	word	sauber:čisto
+prljavo	kirli	word	schmutzig:prljavo
+usisivač	elektrikli süpürge	word	staubsauger:usisivač
+veš mašina	çamaşır makinesi	word	waschmaschine:veš mašina
+deterdžent	çamaşır deterjanı	word	waschmittel:deterdžent
+veš	çamaşır	word	wäsche:veš
+štrik	çamaşır ipi	word	wäscheleine:štrik
+lift	asansör	word	aufzug:lift
+poštansko sanduče	posta kutusu	word	briefkasten:poštansko sanduče
+krov	çatı	word	dach:krov
+tavan	tavan arası	word	dachboden:tavan
+pod	yer / zemin	word	fußboden:pod
+domar	kapıcı	word	hausmeister:domar
+podrum	bodrum	word	keller:podrum
+zvono	kapı zili	word	klingel:zvono
+zvoniti	zil çalmak	word	klingeln:zvoniti
+komšinica	komşu (kadın)	word	nachbarin:komšinica
+zid	duvar	word	wand:zid
+ograda	çit	word	zaun:ograda
+ugasiti	kapatmak / söndürmek	word	ausschalten / ausmachen:ugasiti
+bojler	termosifon / sıcak su deposu	word	boiler / warmwasserspeicher:bojler
+drva	odun (yakacak)	word	brennholz:drva
+upaliti	açmak / yakmak	word	einschalten / anmachen:upaliti
+Nema struje	Elektrik yok	word	es gibt keinen strom:Nema struje
+sijalica	ampul	word	glühbirne:sijalica
+grijanje	kalorifer / ısıtma	word	heizung:grijanje
+ugalj	kömür	word	kohle:ugalj
+svjetlo	ışık	word	licht:svjetlo
+peć	soba (ısıtma sobası)	word	ofen (heizofen):peć
+osigurač	elektrik sigortası	word	sicherung:osigurač
+utičnica	priz	word	steckdose:utičnica
+utikač	fiş	word	stecker:utikač
+struja	elektrik	word	strom:struja
+topla voda	sıcak su	word	warmes wasser:topla voda
+Ne radi	Çalışmıyor	word	es funktioniert nicht:Ne radi
+Curi voda	Su sızıyor / damlıyor	word	es läuft aus / es tropft:Curi voda
+čekić	çekiç	word	hammer:čekić
+majstor	zanaatkâr / usta	word	handwerker / fachmann:majstor
+pokvaren / pokvarena / pokvareno	bozuk	word	kaputt:pokvaren / pokvarena / pokvareno
+merdevine	el merdiveni	word	leiter:merdevine
+ekser	çivi	word	nagel:ekser
+popraviti	tamir etmek	word	reparieren:popraviti
+brava	kilit (kapı kilidi)	word	schloss (türschloss):brava
+šaraf	vida	word	schraube:šaraf
+slavina	musluk	word	wasserhahn:slavina
+alat	alet	word	werkzeug:alat
+gorivo	yakıt	word	kraftstoff / sprit:gorivo
+sipati gorivo	yakıt almak	word	tanken:sipati gorivo
+guma	lastik	word	reifen:guma
+Pukla mi je guma.	Lastiğim patladı.	word	ich habe einen platten.:Pukla mi je guma.
+kočnica	fren	word	bremse:kočnica
+motor	motor	word	motor:motor
+akumulator	akü	word	autobatterie:akumulator
+sigurnosni pojas	emniyet kemeri	word	sicherheitsgurt:sigurnosni pojas
+parkiralište	otopark	word	parkplatz:parkiralište
+parkirati	park etmek	word	parken:parkirati
+semafor	trafik lambası	word	ampel:semafor
+raskrsnica	kavşak	word	kreuzung:raskrsnica
+saobraćaj	trafik	word	verkehr:saobraćaj
+zastoj	trafik sıkışıklığı	word	stau:zastoj
+kazna	trafik cezası	word	strafzettel / bußgeld:kazna
+registracija	plaka	word	kennzeichen (auto):registracija
+tehnički pregled	araç muayenesi	word	hauptuntersuchung (tüv):tehnički pregled
+autoservis	oto tamirhanesi	word	autowerkstatt:autoservis
+šlep služba	çekici hizmeti	word	abschleppdienst:šlep služba
+pomoć na cesti	yol yardımı	word	pannenhilfe:pomoć na cesti
+odvijač / šrafciger	tornavida	word	schraubenzieher:odvijač / šrafciger
+kliješta	pense	word	zange:kliješta
+bušilica	matkap	word	bohrmaschine:bušilica
+bušiti	delmek	word	bohren:bušiti
+testera	testere	word	säge:testera
+francuski ključ	İngiliz anahtarı	word	rollgabelschlüssel (engländer):francuski ključ
+metar	şerit metre	word	maßband / zollstock:metar
+ljepilo	yapıştırıcı	word	kleber:ljepilo
+produžni kabel	uzatma kablosu	word	verlängerungskabel:produžni kabel
+radionica	atölye	word	werkstatt:radionica
+punjač	şarj aleti	word	ladegerät:punjač
+baterija	batarya	word	akku:baterija
+Baterija je prazna.	Şarjım bitti.	word	der akku ist leer.:Baterija je prazna.
+napuniti	şarj etmek	word	aufladen:napuniti
+šifra / lozinka	şifre	word	passwort:šifra / lozinka
+Koja je šifra za WiFi?	Wi-Fi şifresi ne?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
+internet	internet	word	internet:internet
+Nema signala.	Sinyal yok.	word	kein empfang.:Nema signala.
+poruka	mesaj	word	nachricht:poruka
+poslati poruku	mesaj göndermek	word	eine nachricht schicken:poslati poruku
+mejl	e-posta	word	e-mail:mejl
+nazvati	aramak (telefonla)	word	anrufen:nazvati
+aplikacija	uygulama	word	app:aplikacija
+ekran	ekran	word	bildschirm:ekran
+tastatura	klavye	word	tastatur:tastatura
+laptop	dizüstü bilgisayar	word	laptop:laptop
+štampač	yazıcı	word	drucker:štampač
+slušalice	kulaklık	word	kopfhörer:slušalice
+zvučnik	hoparlör	word	lautsprecher:zvučnik
+slikati	fotoğraf çekmek	word	fotografieren:slikati
+ažurirati	güncellemek	word	aktualisieren:ažurirati
+mašina za suđe	bulaşık makinesi	word	spülmaschine:mašina za suđe
+sušilica za veš	çamaşır kurutma makinesi	word	wäschetrockner:sušilica za veš
+mikrovalna	mikrodalga fırın	word	mikrowelle:mikrovalna
+toster	ekmek kızartma makinesi	word	toaster:toster
+kuhalo za vodu	su ısıtıcısı	word	wasserkocher:kuhalo za vodu
+fen	saç kurutma makinesi	word	föhn:fen
+klima	klima	word	klimaanlage:klima
+ventilator	vantilatör	word	ventilator:ventilator
+daljinski	kumanda	word	fernbedienung:daljinski
+aparat za kahvu / aparat za kafu	kahve makinesi	word	kaffeemaschine:aparat za kahvu / aparat za kafu
+uputstvo	kullanım kılavuzu	word	bedienungsanleitung:uputstvo
+garancija	garanti	word	garantie:garancija
 bez šećera	şekersiz	word	ohne zucker:bez šećera
 bez mlijeka	sütsüz	word	ohne milch:bez mlijeka
 iz Bosne	Bosna'dan	word	aus bosnien:iz Bosne
@@ -920,7 +963,7 @@ za	için	word	für:za
 kod	-de	word	bei:kod
 bez	-siz	word	ohne:bez
 prema	-e doğru	word	zu / in richtung:prema
-iznad	üstünde	word	über / oberhalb:iznad
+iznad	üstünde (yukarıda)	word	über / oberhalb:iznad
 ispod	altında	word	unter:ispod
 između	arasında	word	zwischen:između
 iza	arkasında	word	hinter:iza
@@ -1042,7 +1085,7 @@ putovanje	seyahat	word	reise:putovanje
 Idemo u Bosnu	Bosna'ya gidiyoruz	word	wir fahren nach bosnien:Idemo u Bosnu
 Pokušat ću	Deneyeceğim	word	ich werde es versuchen:Pokušat ću
 morati	zorunda olmak	word	müssen:morati
-moram	-meliyim	word	ich muss:moram
+moram	zorundayım	word	ich muss:moram
 moraš	-melisin	word	du musst:moraš
 moramo	-meliyiz	word	wir müssen:moramo
 može	yapabilir	word	er / sie kann:može
@@ -1100,9 +1143,16 @@ Djeca se igraju	Çocuklar oynuyor	word	die kinder spielen:Djeca se igraju
 brinuti se	endişelenmek	word	sich sorgen machen:brinuti se
 ustajati	kalkmak	word	aufstehen:ustajati
 Ustajem u sedam	Yedide kalkıyorum	word	ich stehe um sieben auf:Ustajem u sedam
+budilnik	çalar saat	word	wecker:budilnik
+umivati se	yüzünü yıkamak	word	sich (das gesicht) waschen:umivati se
+Umivam se	Yüzümü yıkıyorum	word	ich wasche mir das gesicht:Umivam se
 tuširati se	duş almak	word	sich duschen:tuširati se
 Tuširam se	Duş alıyorum	word	ich dusche mich:Tuširam se
+brijati se	tıraş olmak	word	sich rasieren:brijati se
+Brijem se	Tıraş oluyorum	word	ich rasiere mich:Brijem se
 prati zube	diş fırçalamak	word	zähne putzen:prati zube
+češljati se	saçını taramak	word	sich kämmen:češljati se
+Češljam se	Saçımı tarıyorum	word	ich kämme mich:Češljam se
 doručkovati	kahvaltı yapmak	word	frühstücken:doručkovati
 Doručkujem	Kahvaltı yapıyorum	word	ich frühstücke:Doručkujem
 ići na posao	işe gitmek	word	zur arbeit gehen:ići na posao
@@ -1114,8 +1164,11 @@ Dolazim kući	Eve geliyorum	word	ich komme nach hause:Dolazim kući
 kuhati	yemek pişirmek	word	kochen:kuhati
 Kuham večeru	Akşam yemeği pişiriyorum	word	ich koche abendessen:Kuham večeru
 gledati televiziju	televizyon izlemek	word	fernsehen:gledati televiziju
+kupati se	banyo yapmak	word	baden / sich baden:kupati se
+Kupam se	Banyo yapıyorum	word	ich bade:Kupam se
 ići spavati	uyumaya gitmek	word	schlafen gehen:ići spavati
 Idem spavati	Uyumaya gidiyorum	word	ich gehe schlafen:Idem spavati
+pidžama	pijama	word	schlafanzug:pidžama
 ići u kupovinu	alışverişe gitmek	word	einkaufen gehen:ići u kupovinu
 čistiti	temizlemek	word	putzen:čistiti
 prati veš	çamaşır yıkamak	word	wäsche waschen:prati veš
@@ -1129,6 +1182,26 @@ ujutro	sabahleyin	word	am morgen:ujutro
 popodne	öğleden sonra	word	am nachmittag:popodne
 navečer	akşamleyin	word	am abend:navečer
 vikendom	hafta sonunda	word	am wochenende:vikendom
+ime	ad	word	name:ime
+prezime	soyadı	word	nachname:prezime
+adresa	adres	word	adresse:adresa
+telefon	telefon	word	telefon:telefon
+roditelji	anne baba	word	eltern:roditelji
+osoba	kişi	word	person:osoba
+hrana	yiyecek / besin	word	essen / nahrung:hrana
+piće	içecek	word	getränk:piće
+lice	yüz (çehre)	word	gesicht:lice
+život	hayat	word	das leben:život
+mjesto	yer / mevki	word	ort / platz:mjesto
+dio	parça	word	teil:dio
+početak	başlangıç	word	anfang:početak
+kraj	son	word	ende:kraj
+problem	sorun	word	problem:problem
+slika	resim / fotoğraf	word	bild / foto:slika
+priča	hikâye	word	geschichte (erzählung):priča
+igra	oyun	word	spiel (zum spielen):igra
+film	film	word	film:film
+broj	sayı / numara	word	zahl / nummer:broj
 velik / velika	büyük (e/k)	word	groß (m/w):velik / velika
 veći	daha büyük	word	größer:veći
 najveći	en büyük	word	am größten:najveći
@@ -1230,6 +1303,7 @@ rezervisati sobu	oda ayırtmak	word	ein zimmer reservieren:rezervisati sobu
 rezervacija	rezervasyon	word	reservierung:rezervacija
 autobuska stanica	otogar	word	busbahnhof:autobuska stanica
 taksi	taksi	word	taxi:taksi
+taksista	taksici	word	taxifahrer:taksista
 vozač	şoför	word	fahrer:vozač
 benzinska pumpa	benzin istasyonu	word	tankstelle:benzinska pumpa
 benzin	benzin	word	benzin:benzin
@@ -1306,7 +1380,11 @@ ispit	sınav	word	prüfung:ispit
 zadaća	ödev	word	hausaufgabe:zadaća
 knjiga	kitap	word	buch:knjiga
 olovka	kalem	word	stift:olovka
+hemijska olovka	tükenmez kalem	word	kugelschreiber:hemijska olovka
+rezač	kalemtıraş	word	spitzer:rezač
+lenjir	cetvel	word	lineal:lenjir
 papir	kâğıt	word	papier:papir
+riječ	kelime	word	wort:riječ
 računar	bilgisayar	word	computer:računar
 Imam dva brata	İki erkek kardeşim var	word	ich habe zwei brüder:Imam dva brata
 Moja sestra ima pet godina	Kız kardeşim beş yaşında	word	meine schwester ist fünf jahre alt:Moja sestra ima pet godina
@@ -1341,7 +1419,7 @@ mesar	kasap	word	metzger:mesar
 mesnica	kasap dükkânı	word	metzgerei:mesnica
 sniženje	fiyat indirimi	word	preisnachlass:sniženje
 supermarket	süpermarket	word	supermarkt:supermarket
-prodavač	satıcı	word	verkäufer:prodavač
+prodavač	satıcı (erkek)	word	verkäufer:prodavač
 prodavačica	satıcı (kadın)	word	verkäuferin:prodavačica
 platiti	ödemek	word	bezahlen:platiti
 fening	fening (markın 1/100'ü)	word	fening (1/100 mark):fening
@@ -1398,6 +1476,7 @@ kiselo	ekşi	word	sauer:kiselo
 ljuto	acı (baharatlı)	word	scharf:ljuto
 slatko	tatlı	word	süß:slatko
 premalo	çok az	word	zu wenig:premalo
+salveta	peçete	word	serviette:salveta
 Zadržite kusur	Üstü kalsın	word	behalten sie das rückgeld:Zadržite kusur
 odvojeno	ayrı ayrı	word	getrennt:odvojeno
 Svako plaća svoje	Herkes kendi hesabını öder	word	jeder zahlt seins:Svako plaća svoje
@@ -1521,7 +1600,7 @@ Molim te, pričaj sporije	Lütfen daha yavaş konuş	word	sprich bitte langsamer
 Govoriš li bosanski?	Boşnakça konuşuyor musun?	word	sprichst du bosnisch?:Govoriš li bosanski?
 Šta to znači?	Bu ne demek?	word	was bedeutet das?:Šta to znači?
 Kako se to kaže na bosanskom?	Bunu Boşnakça nasıl derler?	word	wie sagt man das auf bosnisch?:Kako se to kaže na bosanskom?
-Alejkumu selam	(buna verilen cevap)	word	(antwort darauf):Alejkumu selam
+Alejkumu selam	Selam alejkum'a verilen cevap	word	antwort auf selam alejkum:Alejkumu selam
 posjeta	ziyaret	word	besuch:posjeta
 Hvala na svemu	Her şey için teşekkürler	word	danke für alles:Hvala na svemu
 Da te upoznam: ...	Tanıştırayım: ...	word	darf ich vorstellen: ...:Da te upoznam: ...
@@ -1546,7 +1625,7 @@ Poznajemo se	Birbirimizi tanıyoruz	word	wir kennen uns:Poznajemo se
 poznanik / poznanica	tanıdık (erkek / kadın)	word	bekannter / bekannte:poznanik / poznanica
 raja	arkadaş çevresi / tayfa	word	freundeskreis / die clique:raja
 domaćin	ev sahibi	word	gastgeber:domaćin
-koleginica	iş arkadaşı (kadın)	word	kollegin:koleginica
+kolegica	iş arkadaşı (kadın)	word	kollegin:kolegica
 jaran	ahbap (argo, özellikle Saraybosna)	word	kumpel (slang, vor allem sarajevo):jaran
 drug / drugarica	arkadaş (samimi; erkek / kadın)	word	kumpel / kumpelin (locker):drug / drugarica
 komšije	komşular	word	nachbarn (mehrzahl):komšije
@@ -1568,6 +1647,7 @@ Sretan Bajram!	Bayramın kutlu olsun!	word	frohes bajram!:Sretan Bajram!
 Bog	Tanrı	word	gott:Bog
 Hvala Bogu	Allah'a şükür	word	gott sei dank:Hvala Bogu
 iftar	iftar (oruç açma)	word	iftar (fastenbrechen):iftar
+sehur	sahur	word	sehur (mahlzeit vor dem morgengrauen im ramadan):sehur
 inšallah	inşallah (Allah izin verirse)	word	inšallah (so gott will):inšallah
 mašallah	maşallah (ne güzel, Allah korusun)	word	mašallah (wie schön, gott schütze es):mašallah
 Ramazanski bajram / Kurban-bajram	Ramazan Bayramı / Kurban Bayramı	word	ramadanfest / opferfest:Ramazanski bajram / Kurban-bajram
@@ -2589,6 +2669,8 @@ potruditi se	gayret etmek	word	sich bemühen:potruditi se
 Potrudi se malo više!	Biraz daha gayret et!	word	bemüh dich ein bisschen mehr!:Potrudi se malo više!
 pogađati se	pazarlık etmek (fiyat)	word	verhandeln (preis):pogađati se
 Još se pogađamo oko cijene stana.	Dairenin fiyatı için hâlâ pazarlık ediyoruz.	word	wir verhandeln noch über den preis der wohnung.:Još se pogađamo oko cijene stana.
+šaliti se	şaka yapmak	word	scherzen / witze machen:šaliti se
+Ne ljuti se, samo se šalim.	Kızma, sadece şaka yapıyorum.	word	sei nicht böse, ich mache nur spaß.:Ne ljuti se, samo se šalim.
 ljubiti	öpmek	word	küssen:ljubiti
 Na Bajram ljubimo ruku nani.	Bayramda ninemizin elini öperiz.	word	an bajram küssen wir oma die hand.:Na Bajram ljubimo ruku nani.
 poljubiti	öpmek	word	küssen:poljubiti
@@ -2951,6 +3033,12 @@ veseo	neşeli	word	fröhlich:veseo
 Uvijek je vesela i nasmijana.	Hep neşeli ve güler yüzlü.	word	sie ist immer fröhlich und lacht.:Uvijek je vesela i nasmijana.
 oprezan	dikkatli	word	vorsichtig:oprezan
 Budi oprezan, vani je klizavo.	Dikkatli ol, dışarısı kaygan.	word	sei vorsichtig, draußen ist es glatt.:Budi oprezan, vani je klizavo.
+zgodan	yakışıklı / güzel	word	gutaussehend / hübsch:zgodan
+Tvoj brat je jako zgodan.	Kardeşin çok yakışıklı.	word	dein bruder sieht sehr gut aus.:Tvoj brat je jako zgodan.
+simpatičan	sempatik	word	sympathisch / nett:simpatičan
+Nova komšinica je jako simpatična.	Yeni komşumuz çok sempatik.	word	die neue nachbarin ist sehr sympathisch.:Nova komšinica je jako simpatična.
+dosadan	sıkıcı (eril)	word	langweilig (der langweilige):dosadan
+Ovaj film je tako dosadan da sam zaspao.	Bu film o kadar sıkıcı ki uyuyakaldım.	word	dieser film ist so langweilig, dass ich eingeschlafen bin.:Ovaj film je tako dosadan da sam zaspao.
 ljubazan	nazik	word	freundlich:ljubazan
 Prodavačica je bila jako ljubazna.	Satıcı kadın çok nazikti.	word	die verkäuferin war sehr freundlich.:Prodavačica je bila jako ljubazna.
 pristojan	terbiyeli / kibar	word	höflich / anständig:pristojan
@@ -3037,7 +3125,6 @@ smrdjeti / smrditi	kötü kokmak	word	stinken:smrdjeti / smrditi
 Nešto smrdi u frižideru.	Buzdolabında bir şey kötü kokuyor.	word	im kühlschrank stinkt etwas.:Nešto smrdi u frižideru.
 bljutav	tatsız / yavan	word	fad (ohne geschmack):bljutav
 Supa je bljutava, fali joj soli.	Çorba yavan, tuzu eksik.	word	die suppe ist fad, es fehlt salz.:Supa je bljutava, fali joj soli.
-lice	yüz (çehre)	word	gesicht:lice
 Imaš nešto na licu.	Yüzünde bir şey var.	word	du hast etwas im gesicht.:Imaš nešto na licu.
 jezik	dil (ağızdaki)	word	zunge:jezik
 Ugrizao sam se za jezik.	Dilimi ısırdım.	word	ich habe mir auf die zunge gebissen.:Ugrizao sam se za jezik.
@@ -3113,6 +3200,8 @@ moždani udar	inme	word	schlaganfall:moždani udar
 Komšija je imao moždani udar.	Komşumuz inme geçirdi.	word	der nachbar hatte einen schlaganfall.:Komšija je imao moždani udar.
 srčani udar / infarkt	kalp krizi	word	herzinfarkt:srčani udar / infarkt
 Dedo je prošle godine imao srčani udar.	Dedem geçen yıl kalp krizi geçirdi.	word	opa hatte letztes jahr einen herzinfarkt.:Dedo je prošle godine imao srčani udar.
+prehlađen	nezle olmuş	word	erkältet:prehlađen
+Prehlađen sam, ne mogu danas doći.	Üşüttüm, bugün gelemem.	word	ich bin erkältet, ich kann heute nicht kommen.:Prehlađen sam, ne mogu danas doći.
 slomiti	kırmak (kemik, cam)	word	brechen (knochen, glas):slomiti
 Slomio je ruku na skijanju.	Kayak yaparken kolunu kırdı.	word	er hat sich beim skifahren den arm gebrochen.:Slomio je ruku na skijanju.
 umor	yorgunluk	word	müdigkeit:umor
@@ -3143,6 +3232,8 @@ zubobolja	diş ağrısı	word	zahnschmerzen:zubobolja
 Imam strašnu zubobolju, moram kod zubara.	Dişim çok kötü ağrıyor, dişçiye gitmem lazım.	word	ich habe schlimme zahnschmerzen, ich muss zum zahnarzt.:Imam strašnu zubobolju, moram kod zubara.
 Muka mi je.	Midem bulanıyor.	word	mir ist übel.:Muka mi je.
 Stani malo, muka mi je.	Biraz kenara çek, midem bulanıyor.	word	halt mal kurz an, mir ist übel.:Stani malo, muka mi je.
+kihati	hapşırmak	word	niesen:kihati
+Od prašine stalno kišem.	Tozdan sürekli hapşırıyorum.	word	vom staub muss ich ständig niesen.:Od prašine stalno kišem.
 kontrola	kontrol / takip muayenesi	word	kontrolle / nachuntersuchung:kontrola
 Za dvije sedmice dođite na kontrolu.	İki hafta sonra kontrole gelin.	word	kommen sie in zwei wochen zur kontrolle.:Za dvije sedmice dođite na kontrolu.
 pacijent	hasta (muayenede)	word	patient:pacijent
@@ -3273,7 +3364,36 @@ budućnost	gelecek	word	zukunft:budućnost
 U budućnosti želimo živjeti u Bosni.	Gelecekte Bosna'da yaşamak istiyoruz.	word	in zukunft wollen wir in bosnien leben.:U budućnosti želimo živjeti u Bosni.
 praznik	resmî tatil	word	feiertag:praznik
 Sutra je praznik, banke ne rade.	Yarın resmî tatil, bankalar kapalı.	word	morgen ist feiertag, die banken haben zu.:Sutra je praznik, banke ne rade.
-odmah	hemen	word	sofort:odmah
+četvrti	dördüncü	word	der vierte:četvrti
+Živimo na četvrtom spratu, a lift ne radi.	Dördüncü katta oturuyoruz ve asansör çalışmıyor.	word	wir wohnen im vierten stock, und der aufzug geht nicht.:Živimo na četvrtom spratu, a lift ne radi.
+peti	beşinci	word	der fünfte:peti
+Platu dobivam petog u mjesecu.	Maaşımı her ayın beşinde alıyorum.	word	mein gehalt bekomme ich am fünften des monats.:Platu dobivam petog u mjesecu.
+šesti	altıncı	word	der sechste:šesti
+Moj sin ide u šesti razred.	Oğlum altıncı sınıfa gidiyor.	word	mein sohn geht in die sechste klasse.:Moj sin ide u šesti razred.
+sedmi	yedinci	word	der siebte:sedmi
+Ovo je već sedmi put da kasniš!	Bu zaten yedinci geç kalışın!	word	das ist schon das siebte mal, dass du zu spät kommst!:Ovo je već sedmi put da kasniš!
+osmi	sekizinci	word	der achte:osmi
+Osmi mart je Dan žena.	Sekiz Mart Kadınlar Günü'dür.	word	der achte märz ist der frauentag.:Osmi mart je Dan žena.
+deveti	dokuzuncu	word	der neunte:deveti
+Naša ekipa je na devetom mjestu u ligi.	Takımımız ligde dokuzuncu sırada.	word	unsere mannschaft steht auf dem neunten platz in der liga.:Naša ekipa je na devetom mjestu u ligi.
+deseti	onuncu	word	der zehnte:deseti
+Rođen sam desetog oktobra.	On Ekim'de doğdum.	word	ich bin am zehnten oktober geboren.:Rođen sam desetog oktobra.
+jedanaesti	on birinci	word	der elfte:jedanaesti
+Naša kancelarija je na jedanaestom spratu.	Ofisimiz on birinci katta.	word	unser büro ist im elften stock.:Naša kancelarija je na jedanaestom spratu.
+dvanaesti	on ikinci	word	der zwölfte:dvanaesti
+Decembar je dvanaesti mjesec u godini.	Aralık, yılın on ikinci ayıdır.	word	der dezember ist der zwölfte monat des jahres.:Decembar je dvanaesti mjesec u godini.
+dvadeseti	yirminci	word	der zwanzigste:dvadeseti
+Danas slavimo sestrin dvadeseti rođendan.	Bugün kız kardeşimin yirminci doğum gününü kutluyoruz.	word	heute feiern wir den zwanzigsten geburtstag meiner schwester.:Danas slavimo sestrin dvadeseti rođendan.
+dvadeset prvi	yirmi birinci	word	der einundzwanzigste:dvadeset prvi
+Živimo u dvadeset prvom stoljeću.	Yirmi birinci yüzyılda yaşıyoruz.	word	wir leben im einundzwanzigsten jahrhundert.:Živimo u dvadeset prvom stoljeću.
+trideseti	otuzuncu	word	der dreißigste:trideseti
+Kirija se plaća do tridesetog u mjesecu.	Kira ayın otuzuna kadar ödenir.	word	die miete wird bis zum dreißigsten des monats bezahlt.:Kirija se plaća do tridesetog u mjesecu.
+pedeseti	ellinci	word	der fünfzigste:pedeseti
+Babo slavi pedeseti rođendan.	Babam ellinci doğum gününü kutluyor.	word	papa feiert seinen fünfzigsten geburtstag.:Babo slavi pedeseti rođendan.
+stoti	yüzüncü	word	der hundertste:stoti
+Ovo ti govorim već stoti put!	Bunu sana yüzüncü kez söylüyorum!	word	das sage ich dir schon zum hundertsten mal!:Ovo ti govorim već stoti put!
+hiljaditi	bininci	word	der tausendste:hiljaditi
+Bio je hiljaditi posjetilac i dobio je nagradu.	Bininci ziyaretçiydi ve bir ödül kazandı.	word	er war der tausendste besucher und hat einen preis bekommen.:Bio je hiljaditi posjetilac i dobio je nagradu.
 Odmah dolazim!	Hemen geliyorum!	word	ich komme sofort!:Odmah dolazim!
 upravo	yeni (az önce)	word	gerade (eben):upravo
 Upravo sam stigla kući.	Eve yeni geldim.	word	ich bin gerade nach hause gekommen.:Upravo sam stigla kući.
@@ -3291,7 +3411,6 @@ tek	ancak	word	erst:tek
 Film počinje tek u devet.	Film ancak dokuzda başlıyor.	word	der film fängt erst um neun an.:Film počinje tek u devet.
 još	hâlâ	word	noch:još
 Još spava, nemoj ga buditi.	Hâlâ uyuyor, onu uyandırma.	word	er schläft noch, weck ihn nicht.:Još spava, nemoj ga buditi.
-opet	yine / tekrar	word	wieder:opet
 Dođite nam opet!	Yine bize gelin!	word	kommt uns wieder besuchen!:Dođite nam opet!
 zauvijek	sonsuza dek	word	für immer:zauvijek
 Ovo ne može trajati zauvijek.	Bu sonsuza dek böyle süremez.	word	das kann nicht für immer so weitergehen.:Ovo ne može trajati zauvijek.
@@ -3337,6 +3456,16 @@ trening	antrenman	word	training:trening
 Imam trening u šest.	Saat altıda antrenmanım var.	word	ich habe um sechs training.:Imam trening u šest.
 vježbati	alıştırma yapmak / antrenman yapmak	word	üben / trainieren:vježbati
 Moraš više vježbati.	Daha çok çalışman lazım.	word	du musst mehr üben.:Moraš više vježbati.
+golman	kaleci	word	torwart:golman
+Naš golman je najbolji u ligi.	Kalecimiz ligin en iyisi.	word	unser torwart ist der beste der liga.:Naš golman je najbolji u ligi.
+tenis	tenis	word	tennis:tenis
+Subotom igram tenis s prijateljem.	Cumartesileri bir arkadaşımla tenis oynarım.	word	samstags spiele ich mit einem freund tennis.:Subotom igram tenis s prijateljem.
+odbojka	voleybol	word	volleyball:odbojka
+Ljeti na plaži igramo odbojku.	Yazın plajda voleybol oynarız.	word	im sommer spielen wir am strand volleyball.:Ljeti na plaži igramo odbojku.
+dres	forma	word	trikot:dres
+Kupio sam sinu dres reprezentacije.	Oğluma milli takım forması aldım.	word	ich habe meinem sohn das trikot der nationalmannschaft gekauft.:Kupio sam sinu dres reprezentacije.
+neriješeno	berabere	word	unentschieden:neriješeno
+Utakmica je završila neriješeno.	Maç berabere bitti.	word	das spiel endete unentschieden.:Utakmica je završila neriješeno.
 hobi	hobi	word	hobby:hobi
 Imaš li neki hobi?	Bir hobin var mı?	word	hast du ein hobby?:Imaš li neki hobi?
 slobodno vrijeme	boş zaman	word	freizeit:slobodno vrijeme
@@ -3349,7 +3478,6 @@ gitara	gitar	word	gitarre:gitara
 Kćerka uči svirati gitaru.	Kızım gitar çalmayı öğreniyor.	word	meine tochter lernt gitarre spielen.:Kćerka uči svirati gitaru.
 plesti	örgü örmek	word	stricken:plesti
 Nana plete čarape za zimu.	Ninem kış için çorap örüyor.	word	oma strickt socken für den winter.:Nana plete čarape za zimu.
-slika	resim / fotoğraf	word	bild / foto:slika
 Pošalji mi sliku!	Bana bir fotoğraf gönder!	word	schick mir ein foto!:Pošalji mi sliku!
 izlet	gezi	word	ausflug:izlet
 U nedjelju idemo na izlet na Vrelo Bosne.	Pazar günü Vrelo Bosne'ye geziye gidiyoruz.	word	am sonntag machen wir einen ausflug zum vrelo bosne.:U nedjelju idemo na izlet na Vrelo Bosne.
@@ -3363,8 +3491,11 @@ muzej	müze	word	museum:muzej
 Djeca su s razredom bila u muzeju.	Çocuklar sınıfça müzeye gitti.	word	die kinder waren mit der klasse im museum.:Djeca su s razredom bila u muzeju.
 žurka	parti	word	party:žurka
 Ko sve dolazi na žurku?	Partiye kimler geliyor?	word	wer kommt alles zur party?:Ko sve dolazi na žurku?
-igra	oyun	word	spiel (zum spielen):igra
 Hajmo igrati neku igru!	Hadi bir oyun oynayalım!	word	lass uns ein spiel spielen!:Hajmo igrati neku igru!
+šah	satranç	word	schach:šah
+Dedo me je naučio igrati šah.	Dedem bana satranç oynamayı öğretti.	word	opa hat mir schach beigebracht.:Dedo me je naučio igrati šah.
+igrica	video oyunu	word	handyspiel / videospiel:igrica
+Djeca cijeli dan igraju igrice na mobitelu.	Çocuklar bütün gün telefonda oyun oynuyor.	word	die kinder spielen den ganzen tag spiele auf dem handy.:Djeca cijeli dan igraju igrice na mobitelu.
 novine	gazete	word	zeitung:novine
 Dedo svako jutro čita novine.	Dedem her sabah gazete okur.	word	opa liest jeden morgen zeitung.:Dedo svako jutro čita novine.
 vijesti	haberler	word	nachrichten (tv, zeitung):vijesti
@@ -3377,7 +3508,6 @@ reklama	reklam	word	werbung:reklama
 Opet reklame, idem po sok.	Yine reklam, ben meyve suyu almaya gidiyorum.	word	schon wieder werbung, ich hol mir einen saft.:Opet reklame, idem po sok.
 radio	radyo	word	radio:radio
 U autu uvijek slušam radio.	Arabada hep radyo dinlerim.	word	im auto höre ich immer radio.:U autu uvijek slušam radio.
-film	film	word	film:film
 Hoćemo li pogledati neki film?	Bir film izleyelim mi?	word	wollen wir uns einen film anschauen?:Hoćemo li pogledati neki film?
 serija	dizi	word	serie:serija
 Nana gleda svaku tursku seriju.	Ninem her Türk dizisini izliyor.	word	oma schaut jede türkische serie.:Nana gleda svaku tursku seriju.
@@ -3395,6 +3525,8 @@ objaviti	yayınlamak / paylaşmak	word	veröffentlichen / posten:objaviti
 Objavila je slike s mora.	Denizden fotoğraflar paylaştı.	word	sie hat fotos vom meer gepostet.:Objavila je slike s mora.
 glumac	aktör	word	schauspieler:glumac
 Taj glumac je iz Sarajeva.	Bu aktör Saraybosnalı.	word	dieser schauspieler kommt aus sarajevo.:Taj glumac je iz Sarajeva.
+crtani film	çizgi film	word	zeichentrickfilm:crtani film
+Djeca svako jutro gledaju crtane filmove.	Çocuklar her sabah çizgi film izliyor.	word	die kinder schauen jeden morgen zeichentrickfilme.:Djeca svako jutro gledaju crtane filmove.
 tramvaj	tramvay	word	straßenbahn:tramvaj
 Tramvajem je najbrže do Baščaršije.	Baščaršija'ya en hızlı tramvayla gidilir.	word	mit der straßenbahn kommt man am schnellsten zur baščaršija.:Tramvajem je najbrže do Baščaršije.
 brod	gemi	word	schiff:brod
@@ -3421,6 +3553,12 @@ rezervisati	rezervasyon yapmak	word	reservieren:rezervisati
 Rezervisala sam sto za subotu navečer.	Cumartesi akşamı için masa ayırttım.	word	ich habe für samstagabend einen tisch reserviert.:Rezervisala sam sto za subotu navečer.
 red vožnje	sefer tarifesi	word	fahrplan:red vožnje
 Gdje mogu vidjeti red vožnje?	Sefer tarifesini nerede görebilirim?	word	wo kann ich den fahrplan sehen?:Gdje mogu vidjeti red vožnje?
+sunčane naočale	güneş gözlüğü	word	sonnenbrille:sunčane naočale
+Gdje su moje sunčane naočale?	Güneş gözlüğüm nerede?	word	wo ist meine sonnenbrille?:Gdje su moje sunčane naočale?
+kupaći kostim	mayo	word	badeanzug:kupaći kostim
+Spakuj kupaći kostim, idemo na more.	Mayonu çantaya koy, denize gidiyoruz.	word	pack den badeanzug ein, wir fahren ans meer.:Spakuj kupaći kostim, idemo na more.
+čamac	kayık	word	boot:čamac
+Unajmili smo čamac na jezeru.	Gölde bir kayık kiraladık.	word	wir haben auf dem see ein boot gemietet.:Unajmili smo čamac na jezeru.
 vrtić	anaokulu	word	kindergarten:vrtić
 Vodim sina u vrtić pa idem na posao.	Oğlumu anaokuluna bırakıp işe gidiyorum.	word	ich bringe meinen sohn in den kindergarten und gehe dann zur arbeit.:Vodim sina u vrtić pa idem na posao.
 osnovna škola	ilkokul	word	grundschule:osnovna škola
@@ -3451,6 +3589,8 @@ ponoviti	tekrarlamak	word	wiederholen:ponoviti
 Ponovi za mnom!	Benden sonra tekrarla!	word	sprich mir nach!:Ponovi za mnom!
 ponavljati	tekrarlamak	word	wiederholen:ponavljati
 Koliko puta ti moram ponavljati?	Bunu sana kaç kere tekrarlamam lazım?	word	wie oft muss ich dir das noch wiederholen?:Koliko puta ti moram ponavljati?
+učitelj	sınıf öğretmeni	word	lehrer (grundschule):učitelj
+Naš učitelj nas je naučio pisati.	Öğretmenimiz bize yazmayı öğretti.	word	unser lehrer hat uns das schreiben beigebracht.:Naš učitelj nas je naučio pisati.
 zapamtiti	aklında tutmak	word	sich merken:zapamtiti
 Ne mogu zapamtiti njegovo ime.	Onun adını aklımda tutamıyorum.	word	ich kann mir seinen namen nicht merken.:Ne mogu zapamtiti njegovo ime.
 pamtiti	aklında tutmak	word	sich merken:pamtiti
@@ -3513,6 +3653,10 @@ radnik	işçi	word	arbeiter:radnik
 U fabrici radi petsto radnika.	Fabrikada beş yüz işçi çalışıyor.	word	in der fabrik arbeiten fünfhundert arbeiter.:U fabrici radi petsto radnika.
 poštar	postacı	word	postbote:poštar
 Je li poštar već došao?	Postacı geldi mi?	word	ist der postbote schon gekommen?:Je li poštar već došao?
+keramičar	fayansçı	word	fliesenleger:keramičar
+Keramičar dolazi sutra da postavi pločice u kupatilu.	Fayansçı yarın banyoya fayans döşemeye geliyor.	word	der fliesenleger kommt morgen, um im bad die fliesen zu verlegen.:Keramičar dolazi sutra da postavi pločice u kupatilu.
+soboslikar	boyacı (badanacı)	word	maler (anstreicher):soboslikar
+Soboslikar dolazi u ponedjeljak da nam okreči stan.	Boyacı pazartesi dairemizi boyamaya geliyor.	word	der maler kommt am montag, um unsere wohnung zu streichen.:Soboslikar dolazi u ponedjeljak da nam okreči stan.
 smjena	vardiya	word	schicht:smjena
 Sutra radim noćnu smjenu.	Yarın gece vardiyasındayım.	word	morgen habe ich nachtschicht.:Sutra radim noćnu smjenu.
 gradilište	şantiye	word	baustelle:gradilište
@@ -3543,7 +3687,8 @@ praksa	staj	word	praktikum:praksa
 Studenti moraju odraditi praksu.	Öğrencilerin staj yapması gerekiyor.	word	studenten müssen ein praktikum machen.:Studenti moraju odraditi praksu.
 radni dan	iş günü	word	werktag:radni dan
 Radnim danima ustajem u šest.	İş günlerinde altıda kalkarım.	word	an werktagen stehe ich um sechs auf.:Radnim danima ustajem u šest.
-mjesto	yer / mevki	word	ort / platz:mjesto
+odmor	dinlenme	word	erholung:odmor
+Poslije ovakve sedmice treba mi odmor.	Böyle bir haftadan sonra dinlenmeye ihtiyacım var.	word	nach so einer woche brauche ich erholung.:Poslije ovakve sedmice treba mi odmor.
 Je li ovo mjesto slobodno?	Bu yer boş mu?	word	ist dieser platz frei?:Je li ovo mjesto slobodno?
 strana	taraf (yön)	word	seite (richtung):strana
 Apoteka je na drugoj strani ulice.	Eczane sokağın öbür tarafında.	word	die apotheke ist auf der anderen straßenseite.:Apoteka je na drugoj strani ulice.
@@ -3593,9 +3738,7 @@ Dužina staze je pet kilometara.	Yolun uzunluğu beş kilometre.	word	die länge
 Moramo izmjeriti širinu prozora.	Pencerenin genişliğini ölçmemiz gerekiyor.	word	wir müssen die breite des fensters messen.:Moramo izmjeriti širinu prozora.
 ivica	kenar (masa, sandalye)	word	kante (tischkante, stuhlkante):ivica
 Čaša stoji na samoj ivici stola.	Bardak masanın tam kenarında duruyor.	word	das glas steht direkt an der tischkante.:Čaša stoji na samoj ivici stola.
-dio	parça	word	teil:dio
 Drugi dio filma je bio bolji.	Filmin ikinci bölümü daha iyiydi.	word	der zweite teil des films war besser.:Drugi dio filma je bio bolji.
-broj	sayı / numara	word	zahl / nummer:broj
 Napiši mi svoj broj na papir.	Numaranı bir kâğıda yaz bana.	word	schreib mir deine nummer auf einen zettel.:Napiši mi svoj broj na papir.
 većina	çoğunluk	word	mehrheit:većina
 Većina mojih prijatelja živi u Njemačkoj.	Arkadaşlarımın çoğu Almanya'da yaşıyor.	word	die meisten meiner freunde leben in deutschland.:Većina mojih prijatelja živi u Njemačkoj.
@@ -3639,9 +3782,7 @@ razlika	fark	word	unterschied:razlika
 Koja je razlika između ove dvije riječi?	Bu iki kelime arasındaki fark ne?	word	was ist der unterschied zwischen diesen zwei wörtern?:Koja je razlika između ove dvije riječi?
 kilometar	kilometre	word	kilometer:kilometar
 Do škole ima samo jedan kilometar.	Okula sadece bir kilometre var.	word	bis zur schule ist es nur ein kilometer.:Do škole ima samo jedan kilometar.
-početak	başlangıç	word	anfang:početak
 Na početku mi je bilo teško.	Başlangıçta benim için zordu.	word	am anfang war es schwer für mich.:Na početku mi je bilo teško.
-kraj	son	word	ende:kraj
 Pekara je na kraju ulice.	Fırın sokağın sonunda.	word	die bäckerei ist am ende der straße.:Pekara je na kraju ulice.
 period	dönem	word	zeitraum:period
 To je bio težak period u mom životu.	Hayatımda zor bir dönemdi.	word	das war eine schwere zeit in meinem leben.:To je bio težak period u mom životu.
@@ -3673,7 +3814,6 @@ faza	evre	word	phase:faza
 To je samo faza, proći će.	Bu sadece bir evre, geçer.	word	das ist nur eine phase, das geht vorbei.:To je samo faza, proći će.
 korak	adım	word	schritt:korak
 Prvi korak je uvijek najteži.	İlk adım hep en zorudur.	word	der erste schritt ist immer der schwerste.:Prvi korak je uvijek najteži.
-život	hayat	word	das leben:život
 Život na selu je miran.	Köyde hayat sakindir.	word	das leben auf dem dorf ist ruhig.:Život na selu je miran.
 smrt	ölüm	word	tod:smrt
 Njegova smrt nas je sve potresla.	Ölümü hepimizi sarstı.	word	sein tod hat uns alle erschüttert.:Njegova smrt nas je sve potresla.
@@ -3785,7 +3925,6 @@ pojam	kavram / fikir (bilgi)	word	begriff / ahnung:pojam
 Nemam pojma gdje su ključevi.	Anahtarların nerede olduğu hakkında hiçbir fikrim yok.	word	ich habe keine ahnung, wo die schlüssel sind.:Nemam pojma gdje su ključevi.
 pamet	akıl	word	verstand:pamet
 Ima novca, ali nema pameti.	Parası var ama aklı yok.	word	er hat geld, aber keinen verstand.:Ima novca, ali nema pameti.
-problem	sorun	word	problem:problem
 To nije moj problem.	Bu benim sorunum değil.	word	das ist nicht mein problem.:To nije moj problem.
 rješenje	çözüm	word	lösung:rješenje
 Za svaki problem postoji rješenje.	Her sorunun bir çözümü vardır.	word	für jedes problem gibt es eine lösung.:Za svaki problem postoji rješenje.
@@ -3845,9 +3984,7 @@ aktivnost	etkinlik	word	aktivität:aktivnost
 Djeca imaju mnogo aktivnosti poslije škole.	Çocukların okuldan sonra çok etkinliği var.	word	die kinder haben nach der schule viele aktivitäten.:Djeca imaju mnogo aktivnosti poslije škole.
 poteškoća	küçük zorluk	word	kleine schwierigkeit:poteškoća
 Imam male poteškoće s internetom.	İnternetle küçük sorunlarım var.	word	ich habe kleine probleme mit dem internet.:Imam male poteškoće s internetom.
-osoba	kişi	word	person:osoba
 Rezervisao sam sto za četiri osobe.	Dört kişilik masa ayırttım.	word	ich habe einen tisch für vier personen reserviert.:Rezervisao sam sto za četiri osobe.
-roditelji	anne baba	word	eltern:roditelji
 Moji roditelji žive u Sarajevu.	Annemle babam Saraybosna'da yaşıyor.	word	meine eltern leben in sarajevo.:Moji roditelji žive u Sarajevu.
 supruga	hanım (resmî)	word	ehefrau (förmlich):supruga
 Ovo je moja supruga, Amra.	Bu benim eşim, Amra.	word	das ist meine frau, amra.:Ovo je moja supruga, Amra.
@@ -4102,19 +4239,12 @@ dova	dua (İslami yakarış)	word	muslimisches bittgebet:dova
 Moja nana svako veče uči dovu.	Ninem her akşam dua eder.	word	meine oma spricht jeden abend ein bittgebet.:Moja nana svako veče uči dovu.
 mezarje	Müslüman mezarlığı	word	muslimischer friedhof:mezarje
 Mezarje je iznad sela.	Mezarlık köyün üstünde.	word	der friedhof liegt oberhalb des dorfes.:Mezarje je iznad sela.
-hrana	yiyecek / besin	word	essen / nahrung:hrana
 Domaća hrana je najbolja.	Ev yemeği en iyisidir.	word	selbstgemachtes essen ist am besten.:Domaća hrana je najbolja.
-piće	içecek	word	getränk:piće
 Šta ćete za piće?	Ne içersiniz?	word	was möchten sie trinken?:Šta ćete za piće?
-ime	ad	word	name:ime
 Kako se piše tvoje ime?	Adın nasıl yazılıyor?	word	wie schreibt man deinen namen?:Kako se piše tvoje ime?
-prezime	soyadı	word	nachname:prezime
 Napišite ovdje svoje prezime.	Soyadınızı buraya yazın.	word	schreiben sie hier ihren nachnamen hin.:Napišite ovdje svoje prezime.
-adresa	adres	word	adresse:adresa
 Koja je tvoja nova adresa?	Yeni adresin ne?	word	wie lautet deine neue adresse?:Koja je tvoja nova adresa?
-telefon	telefon	word	telefon:telefon
 Ostavio sam telefon kod kuće.	Telefonu evde bıraktım.	word	ich habe das telefon zu hause gelassen.:Ostavio sam telefon kod kuće.
-priča	hikâye	word	geschichte (erzählung):priča
 To je duga priča.	Uzun hikâye.	word	das ist eine lange geschichte.:To je duga priča.
 informacija	bilgi	word	information:informacija
 Treba mi više informacija.	Daha fazla bilgiye ihtiyacım var.	word	ich brauche mehr informationen.:Treba mi više informacija.
@@ -4180,9 +4310,7 @@ negativan	negatif	word	negativ:negativan
 Nalaz je negativan, hvala Bogu.	Sonuç negatif, çok şükür.	word	der befund ist negativ, gott sei dank.:Nalaz je negativan, hvala Bogu.
 jasan	açık (anlaşılır)	word	klar:jasan
 Je li ti sada jasno?	Şimdi anladın mı?	word	ist es dir jetzt klar?:Je li ti sada jasno?
-sav	bütün / tüm	word	ganz / all:sav
 Djeca su popila sav sok.	Çocuklar bütün meyve suyunu içti.	word	die kinder haben den ganzen saft getrunken.:Djeca su popila sav sok.
-cijeli	bütün (eril)	word	ganz (der ganze):cijeli
 Cijeli grad je bez struje.	Bütün şehir elektriksiz.	word	die ganze stadt ist ohne strom.:Cijeli grad je bez struje.
 mnogi	birçok	word	viele:mnogi
 Mnogi su otišli u Njemačku.	Birçoğu Almanya'ya gitti.	word	viele sind nach deutschland gegangen.:Mnogi su otišli u Njemačku.
@@ -4288,15 +4416,12 @@ hitan	acil	word	dringend:hitan
 Moram ti nešto hitno reći.	Sana acil bir şey söylemem lazım.	word	ich muss dir dringend etwas sagen.:Moram ti nešto hitno reći.
 čest	sık görülen	word	häufig:čest
 To je česta greška.	Bu sık yapılan bir hata.	word	das ist ein häufiger fehler.:To je česta greška.
-tu	burada (yakında) / şurada	word	da / hier:tu
+prljav	kirli (eril)	word	schmutzig (der schmutzige):prljav
+Ne stavljaj prljav tanjir u ormar.	Kirli tabağı dolaba koyma.	word	stell keinen schmutzigen teller in den schrank.:Ne stavljaj prljav tanjir u ormar.
 Ostavi torbu tu, pored vrata.	Çantayı şuraya, kapının yanına bırak.	word	lass die tasche da, neben der tür.:Ostavi torbu tu, pored vrata.
-ovdje	burada	word	hier:ovdje
 Živim ovdje već deset godina.	On yıldır burada oturuyorum.	word	ich wohne hier schon seit zehn jahren.:Živim ovdje već deset godina.
-tamo	orada	word	dort:tamo
 Bio sam tamo prošle godine.	Geçen yıl oradaydım.	word	ich war letztes jahr dort.:Bio sam tamo prošle godine.
-gore	yukarıda	word	oben:gore
 Djeca se igraju gore u sobi.	Çocuklar yukarıda odada oynuyor.	word	die kinder spielen oben im zimmer.:Djeca se igraju gore u sobi.
-dolje	aşağıda	word	unten:dolje
 Čekam te dolje, ispred zgrade.	Seni aşağıda, binanın önünde bekliyorum.	word	ich warte unten auf dich, vor dem gebäude.:Čekam te dolje, ispred zgrade.
 negdje	bir yerde	word	irgendwo:negdje
 Negdje sam ostavio ključeve.	Anahtarları bir yerde bıraktım.	word	ich habe die schlüssel irgendwo liegen lassen.:Negdje sam ostavio ključeve.
@@ -4306,9 +4431,7 @@ naprijed	ileri / öne doğru	word	vorwärts / nach vorne:naprijed
 Samo naprijed, ne boj se!	Haydi, korkma!	word	nur zu, hab keine angst!:Samo naprijed, ne boj se!
 nazad	geri	word	zurück:nazad
 Kad ideš nazad u Njemačku?	Almanya'ya ne zaman geri dönüyorsun?	word	wann gehst du zurück nach deutschland?:Kad ideš nazad u Njemačku?
-onda	o zaman	word	dann:onda
 Prvo ručak, onda kahva.	Önce öğle yemeği, sonra kahve.	word	erst das mittagessen, dann der kaffee.:Prvo ručak, onda kahva.
-zatim	ardından	word	danach:zatim
 Večerali smo, a zatim smo gledali film.	Akşam yemeği yedik, ardından film izledik.	word	wir haben zu abend gegessen und danach einen film geschaut.:Večerali smo, a zatim smo gledali film.
 nekad	bazen / eskiden	word	manchmal / früher:nekad
 Nekad smo živjeli u Tuzli.	Eskiden Tuzla'da yaşıyorduk.	word	früher haben wir in tuzla gelebt.:Nekad smo živjeli u Tuzli.
@@ -4316,19 +4439,15 @@ odjednom	birdenbire	word	plötzlich:odjednom
 Odjednom je nestala struja.	Birdenbire elektrik kesildi.	word	plötzlich ist der strom ausgefallen.:Odjednom je nestala struja.
 davno	uzun zaman önce	word	vor langer zeit:davno
 To je bilo davno, ne sjećam se.	Uzun zaman önceydi, hatırlamıyorum.	word	das ist lange her, ich erinnere mich nicht.:To je bilo davno, ne sjećam se.
-stalno	sürekli	word	ständig:stalno
 Stalno mislim na tebe.	Sürekli seni düşünüyorum.	word	ich denke ständig an dich.:Stalno mislim na tebe.
 trenutno	şu anda / şimdilik	word	momentan / gerade:trenutno
 Trenutno nisam kod kuće.	Şu anda evde değilim.	word	ich bin gerade nicht zu hause.:Trenutno nisam kod kuće.
-prvo	önce	word	zuerst:prvo
 Prvo operi ruke, pa onda jedi.	Önce ellerini yıka, sonra ye.	word	wasch dir zuerst die hände und iss dann.:Prvo operi ruke, pa onda jedi.
 skoro	neredeyse / yakında	word	fast / bald:skoro
 Skoro sam zaboravio tvoj rođendan.	Doğum gününü neredeyse unutuyordum.	word	ich hätte fast deinen geburtstag vergessen.:Skoro sam zaboravio tvoj rođendan.
-tako	öyle	word	so:tako
 Zašto tako kasno dolaziš kući?	Eve neden bu kadar geç geliyorsun?	word	warum kommst du so spät nach hause?:Zašto tako kasno dolaziš kući?
 ovako	böyle	word	so (wie hier):ovako
 Gledaj, to se radi ovako.	Bak, bu böyle yapılır.	word	schau, das macht man so.:Gledaj, to se radi ovako.
-vrlo / veoma	çok (özellikten önce)	word	sehr (vor eigenschaften):vrlo / veoma
 Ovo je vrlo važno za mene.	Bu benim için çok önemli.	word	das ist sehr wichtig für mich.:Ovo je vrlo važno za mene.
 toliko	o kadar	word	so viel:toliko
 Nano, ne mogu toliko pojesti!	Nine, o kadar yiyemem!	word	oma, so viel kann ich nicht essen!:Nano, ne mogu toliko pojesti!
@@ -4340,7 +4459,6 @@ nekako	bir şekilde	word	irgendwie:nekako
 Nekako ćemo se snaći.	Bir şekilde idare ederiz.	word	irgendwie kommen wir schon zurecht.:Nekako ćemo se snaći.
 pomalo	azıcık	word	ein wenig:pomalo
 Već pomalo govorim bosanski.	Şimdiden azıcık Boşnakça konuşuyorum.	word	ich spreche schon ein wenig bosnisch.:Već pomalo govorim bosanski.
-rado	seve seve	word	gern:rado
 Rado ću ti pomoći.	Sana seve seve yardım ederim.	word	ich helfe dir gern.:Rado ću ti pomoći.
 otprilike	yaklaşık	word	ungefähr:otprilike
 Stižemo za otprilike sat vremena.	Yaklaşık bir saat sonra varıyoruz.	word	wir kommen in ungefähr einer stunde an.:Stižemo za otprilike sat vremena.
@@ -4372,9 +4490,7 @@ svakako	mutlaka	word	auf jeden fall:svakako
 Svakako ću ti se javiti.	Sana mutlaka haber veririm.	word	ich melde mich auf jeden fall bei dir.:Svakako ću ti se javiti.
 valjda	herhâlde / sanırım	word	wohl / vermutlich:valjda
 Valjda će sve biti dobro.	Herhâlde her şey iyi olacak.	word	es wird wohl alles gut werden.:Valjda će sve biti dobro.
-kao	gibi / olarak	word	wie / als:kao
 Spavao sam kao beba.	Bebek gibi uyudum.	word	ich habe wie ein baby geschlafen.:Spavao sam kao beba.
-pa	sonra da / yani	word	und dann / also:pa
 Završi zadaću pa idi vani.	Ödevini bitir, sonra da dışarı çık.	word	mach deine hausaufgaben fertig und geh dann raus.:Završi zadaću pa idi vani.
 što	ne / -dığı (yan cümlede)	word	was / dass (im nebensatz):što
 Žao mi je što kasnim.	Geç kaldığım için üzgünüm.	word	es tut mir leid, dass ich zu spät komme.:Žao mi je što kasnim.
@@ -4396,7 +4512,6 @@ pošto	-diği için / -dikten sonra	word	da / nachdem:pošto
 Pošto pada kiša, ostajemo kod kuće.	Yağmur yağdığı için evde kalıyoruz.	word	da es regnet, bleiben wir zu hause.:Pošto pada kiša, ostajemo kod kuće.
 neka	-sin (dilek)	word	soll / möge:neka
 Neka sačeka pet minuta.	Beş dakika beklesin.	word	er soll fünf minuten warten.:Neka sačeka pet minuta.
-evo	işte	word	hier ist / da ist:evo
 Evo ti ključevi od stana.	İşte evin anahtarları.	word	hier hast du die wohnungsschlüssel.:Evo ti ključevi od stana.
 po	-e göre / başına	word	nach / pro:po
 Ulaz košta pet maraka po osobi.	Giriş kişi başına beş mark.	word	der eintritt kostet fünf mark pro person.:Ulaz košta pet maraka po osobi.
@@ -4428,7 +4543,6 @@ radi	yüzünden / hatırına	word	wegen / um … willen:radi
 Radi djece ostajemo ovdje.	Çocukların hatırına burada kalıyoruz.	word	der kinder wegen bleiben wir hier.:Radi djece ostajemo ovdje.
 sebe	kendini	word	sich:sebe
 On misli samo na sebe.	Sadece kendini düşünüyor.	word	er denkt nur an sich.:On misli samo na sebe.
-taj	bu / şu (oradaki)	word	dieser (da):taj
 Ko je taj čovjek?	Bu adam kim?	word	wer ist dieser mann?:Ko je taj čovjek?
 svoj	kendi (benim, senin, onun)	word	eigener (mein, dein, sein):svoj
 Uzmi svoju torbu, idemo!	Çantanı al, gidiyoruz!	word	nimm deine tasche, wir gehen!:Uzmi svoju torbu, idemo!
@@ -4787,6 +4901,10 @@ pohvala	övgü	word	lob:pohvala
 Ovaj učenik zaslužuje pohvalu.	Bu öğrenci övgüyü hak ediyor.	word	dieser schüler verdient ein lob.:Ovaj učenik zaslužuje pohvalu.
 školovanje	okul eğitimi	word	schulbildung:školovanje
 Školovanje djece košta mnogo novca.	Çocukların okul eğitimi çok paraya mal oluyor.	word	die schulbildung der kinder kostet viel geld.:Školovanje djece košta mnogo novca.
+pubertet	ergenlik	word	pubertät:pubertet
+Naš sin je ušao u pubertet.	Oğlumuz ergenliğe girdi.	word	unser sohn ist in die pubertät gekommen.:Naš sin je ušao u pubertet.
+tinejdžer	ergen	word	teenager:tinejdžer
+Kao tinejdžer sam stalno slušao muziku.	Gençken sürekli müzik dinlerdim.	word	als teenager habe ich ständig musik gehört.:Kao tinejdžer sam stalno slušao muziku.
 dom	yuva / ev	word	heim / zuhause:dom
 Ovo je naš novi dom.	Bu bizim yeni yuvamız.	word	das ist unser neues zuhause.:Ovo je naš novi dom.
 porijeklo	köken	word	herkunft:porijeklo
@@ -4825,6 +4943,24 @@ punica	kayınvalide (karının annesi)	word	schwiegermutter (mutter der frau):pu
 Punica nas je pozvala na ručak.	Kayınvalidem bizi yemeğe davet etti.	word	die schwiegermutter hat uns zum mittagessen eingeladen.:Punica nas je pozvala na ručak.
 punac	kayınpeder (karının babası)	word	schwiegervater (vater der frau):punac
 Punac i ja idemo zajedno na pecanje.	Kayınpederimle birlikte balığa gidiyoruz.	word	mein schwiegervater und ich gehen zusammen angeln.:Punac i ja idemo zajedno na pecanje.
+unuče	torun	word	enkelkind:unuče
+Dobili smo prvo unuče.	İlk torunumuz oldu.	word	wir haben unser erstes enkelkind bekommen.:Dobili smo prvo unuče.
+udovac	dul erkek	word	witwer:udovac
+Dedo je udovac već deset godina.	Dedem on yıldır dul.	word	opa ist schon seit zehn jahren witwer.:Dedo je udovac već deset godina.
+djever	kayınbirader (kocanın erkek kardeşi)	word	schwager (bruder des ehemanns):djever
+Na svadbi je djever pratio mladu.	Düğünde damadın erkek kardeşi geline eşlik etti.	word	bei der hochzeit hat der bruder des bräutigams die braut begleitet.:Na svadbi je djever pratio mladu.
+šurjak	kayınbirader (karının erkek kardeşi)	word	schwager (bruder der ehefrau):šurjak
+Moj šurjak radi u Njemačkoj.	Karımın erkek kardeşi Almanya'da çalışıyor.	word	der bruder meiner frau arbeitet in deutschland.:Moj šurjak radi u Njemačkoj.
+badžo	bacanak	word	schwager (mann der schwester der ehefrau):badžo
+S badžom svake subote idem na pecanje.	Her cumartesi bacanağımla balığa gidiyorum.	word	mit dem mann der schwester meiner frau gehe ich jeden samstag angeln.:S badžom svake subote idem na pecanje.
+zaova	görümce	word	schwägerin (schwester des ehemanns):zaova
+Moja žena se odlično slaže sa svojom zaovom.	Karım görümcesiyle çok iyi anlaşıyor.	word	meine frau versteht sich sehr gut mit ihrer schwägerin.:Moja žena se odlično slaže sa svojom zaovom.
+jetrva	elti	word	schwägerin (frau des bruders des ehemanns):jetrva
+Moja žena i njena jetrva zajedno kuhaju za Bajram.	Karım ve eltisi Bayram için birlikte yemek yapıyor.	word	meine frau und ihre schwägerin kochen zusammen für bajram.:Moja žena i njena jetrva zajedno kuhaju za Bajram.
+balduza	baldız	word	schwägerin (schwester der ehefrau):balduza
+Balduza nam dolazi u goste za vikend.	Baldızım hafta sonu bize misafirliğe geliyor.	word	die schwester meiner frau kommt am wochenende zu besuch.:Balduza nam dolazi u goste za vikend.
+šurnjaja	kayınbiraderin eşi	word	schwägerin (frau des bruders der ehefrau):šurnjaja
+Šurnjaja nam je ispekla pitu.	Karımın erkek kardeşinin eşi bize pita yaptı.	word	die frau vom bruder meiner frau hat uns eine pita gebacken.:Šurnjaja nam je ispekla pitu.
 ljepota	güzellik	word	schönheit:ljepota
 Prava ljepota dolazi iznutra.	Gerçek güzellik içeriden gelir.	word	wahre schönheit kommt von innen.:Prava ljepota dolazi iznutra.
 strast	tutku	word	leidenschaft:strast
@@ -4855,6 +4991,18 @@ zabavljati se	eğlenmek / çıkmak (flört etmek)	word	sich amüsieren / ein paa
 Zabavljali su se tri godine prije vjenčanja.	Evlenmeden önce üç yıl çıktılar.	word	vor der trauung waren sie drei jahre ein paar.:Zabavljali su se tri godine prije vjenčanja.
 vjeridba	nişan	word	verlobung:vjeridba
 Vjeridba je bila prošle subote.	Nişan geçen cumartesiydi.	word	die verlobung war letzten samstag.:Vjeridba je bila prošle subote.
+prsten	yüzük	word	ring:prsten
+Izgubila je prsten na plaži.	Yüzüğünü plajda kaybetti.	word	sie hat ihren ring am strand verloren.:Izgubila je prsten na plaži.
+burma	alyans	word	ehering:burma
+Nosi burmu na desnoj ruci.	Alyansını sağ elinde takıyor.	word	er trägt den ehering an der rechten hand.:Nosi burmu na desnoj ruci.
+razvesti se	boşanmak	word	sich scheiden lassen:razvesti se
+Razveli su se prošle godine.	Geçen yıl boşandılar.	word	sie haben sich letztes jahr scheiden lassen.:Razveli su se prošle godine.
+razveden	boşanmış	word	geschieden:razveden
+Moj komšija je razveden i živi sam.	Komşum boşanmış ve yalnız yaşıyor.	word	mein nachbar ist geschieden und lebt allein.:Moj komšija je razveden i živi sam.
+zaprositi	evlenme teklif etmek	word	einen heiratsantrag machen:zaprositi
+Zaprosio sam je na Starom mostu.	Ona Eski Köprü'de evlenme teklif ettim.	word	ich habe ihr auf der alten brücke einen heiratsantrag gemacht.:Zaprosio sam je na Starom mostu.
+prosidba	evlenme teklifi	word	heiratsantrag:prosidba
+Prosidba je bila iznenađenje za cijelu porodicu.	Evlenme teklifi bütün aile için bir sürprizdi.	word	der heiratsantrag war eine überraschung für die ganze familie.:Prosidba je bila iznenađenje za cijelu porodicu.
 ljutnja	öfke	word	ärger:ljutnja
 Ljutnja mu je brzo prošla.	Öfkesi çabuk geçti.	word	sein ärger war schnell verflogen.:Ljutnja mu je brzo prošla.
 bijes	hiddet	word	zorn:bijes
@@ -4935,6 +5083,10 @@ oduševljavati	büyülemek	word	begeistern:oduševljavati
 Ova pjevačica uvijek oduševljava publiku.	Bu şarkıcı seyirciyi her zaman büyülüyor.	word	diese sängerin begeistert das publikum immer.:Ova pjevačica uvijek oduševljava publiku.
 obradovati	sevindirmek	word	erfreuen:obradovati
 Tvoja poruka me je jako obradovala.	Mesajın beni çok sevindirdi.	word	deine nachricht hat mich sehr gefreut.:Tvoja poruka me je jako obradovala.
+zavist	haset	word	neid:zavist
+Zavist je ružna osobina.	Haset çirkin bir huydur.	word	neid ist eine hässliche eigenschaft.:Zavist je ružna osobina.
+zavidan	hasetçi	word	neidisch:zavidan
+Nije zavidan, raduje se tuđem uspjehu.	Hasetçi değil, başkalarının başarısına seviniyor.	word	er ist nicht neidisch, er freut sich über den erfolg anderer.:Nije zavidan, raduje se tuđem uspjehu.
 ponašanje	davranış	word	verhalten:ponašanje
 Njegovo ponašanje me je iznenadilo.	Davranışı beni şaşırttı.	word	sein verhalten hat mich überrascht.:Njegovo ponašanje me je iznenadilo.
 osobina	kişilik özelliği	word	eigenschaft (eines menschen):osobina
@@ -4971,6 +5123,8 @@ zaslužiti	hak etmek (ahlaken)	word	verdienen (moralisch):zaslužiti
 Stvarno si zaslužila ovaj odmor.	Bu tatili gerçekten hak ettin.	word	du hast dir diesen urlaub wirklich verdient.:Stvarno si zaslužila ovaj odmor.
 zasluživati	hak etmek (ahlaken)	word	verdienen (moralisch):zasluživati
 Ona zaslužuje bolji život.	O daha iyi bir hayatı hak ediyor.	word	sie verdient ein besseres leben.:Ona zaslužuje bolji život.
+darežljiv	cömert	word	großzügig:darežljiv
+Babo je uvijek bio darežljiv prema komšijama.	Babam komşulara karşı hep cömertti.	word	papa war immer großzügig zu den nachbarn.:Babo je uvijek bio darežljiv prema komšijama.
 preminuti	vefat etmek	word	versterben:preminuti
 Preminuo je prošle sedmice u bolnici.	Geçen hafta hastanede vefat etti.	word	er ist letzte woche im krankenhaus verstorben.:Preminuo je prošle sedmice u bolnici.
 patnja	ıstırap	word	leid:patnja
@@ -5003,6 +5157,8 @@ saučešće	başsağlığı	word	beileid:saučešće
 Primite moje iskreno saučešće.	İçten başsağlığı dileklerimi kabul edin.	word	nehmen sie mein aufrichtiges beileid entgegen.:Primite moje iskreno saučešće.
 suosjećanje	duygudaşlık	word	mitgefühl:suosjećanje
 Hvala Vam na suosjećanju i podršci.	Duygudaşlığınız ve desteğiniz için teşekkür ederim.	word	danke für ihr mitgefühl und ihre unterstützung.:Hvala Vam na suosjećanju i podršci.
+oporuka	vasiyetname	word	testament:oporuka
+Dedo je prije smrti napisao oporuku.	Dedem ölmeden önce vasiyetname yazdı.	word	opa hat vor seinem tod ein testament geschrieben.:Dedo je prije smrti napisao oporuku.
 susret	karşılaşma	word	begegnung:susret
 Naš prvi susret bio je u Sarajevu.	İlk karşılaşmamız Saraybosna'daydı.	word	unsere erste begegnung war in sarajevo.:Naš prvi susret bio je u Sarajevu.
 naselje	yerleşim	word	siedlung:naselje
@@ -5384,6 +5540,8 @@ saopćenje / saopštenje	resmî duyuru	word	offizielle mitteilung:saopćenje / s
 Policija je izdala saopćenje o nesreći.	Polis kaza hakkında bir duyuru yayımladı.	word	die polizei hat eine mitteilung zum unfall herausgegeben.:Policija je izdala saopćenje o nesreći.
 novost	yeni haber	word	neuigkeit:novost
 Ima li kakvih novosti?	Yeni bir haber var mı?	word	gibt es etwas neues?:Ima li kakvih novosti?
+voditelj	sunucu	word	moderator (fernsehen):voditelj
+Voditelj je pozdravio goste u studiju.	Sunucu stüdyodaki konukları selamladı.	word	der moderator begrüßte die gäste im studio.:Voditelj je pozdravio goste u studiju.
 saopćiti / saopštiti	resmen bildirmek	word	offiziell mitteilen:saopćiti / saopštiti
 Direktor će sutra saopćiti odluku.	Müdür kararı yarın duyuracak.	word	der direktor gibt morgen die entscheidung bekannt.:Direktor će sutra saopćiti odluku.
 saopćavati / saopštavati	resmen bildirmek	word	offiziell mitteilen:saopćavati / saopštavati
@@ -5438,6 +5596,8 @@ privući	çekmek (ilgiyi)	word	anziehen (interesse):privući
 Ta reklama mi je privukla pažnju.	O reklam dikkatimi çekti.	word	diese werbung hat meine aufmerksamkeit auf sich gezogen.:Ta reklama mi je privukla pažnju.
 privlačiti	çekmek (ilgiyi)	word	anziehen (interesse):privlačiti
 Stari grad privlači mnogo turista.	Eski şehir çok sayıda turist çekiyor.	word	die altstadt zieht viele touristen an.:Stari grad privlači mnogo turista.
+plakat	afiş	word	plakat:plakat
+Na zidu je visio plakat za koncert.	Duvarda konser için bir afiş asılıydı.	word	an der wand hing ein plakat für das konzert.:Na zidu je visio plakat za koncert.
 festival	festival	word	festival:festival
 Ljeti idemo na filmski festival u Sarajevo.	Yazın film festivali için Saraybosna'ya gidiyoruz.	word	im sommer fahren wir zum filmfestival nach sarajevo.:Ljeti idemo na filmski festival u Sarajevo.
 scena	sahne / perde	word	bühne / szene:scena
@@ -5598,6 +5758,10 @@ zagrijavanje	ısınma	word	erwärmung:zagrijavanje
 Globalno zagrijavanje je ozbiljan problem.	Küresel ısınma ciddi bir sorun.	word	die globale erwärmung ist ein ernstes problem.:Globalno zagrijavanje je ozbiljan problem.
 biće	canlı / varlık	word	lebewesen / wesen:biće
 Čovjek je društveno biće.	İnsan toplumsal bir varlıktır.	word	der mensch ist ein soziales wesen.:Čovjek je društveno biće.
+plastika	plastik	word	plastik:plastika
+Plastika zagađuje rijeke i more.	Plastik nehirleri ve denizi kirletiyor.	word	plastik verschmutzt flüsse und das meer.:Plastika zagađuje rijeke i more.
+reciklaža	geri dönüşüm	word	recycling:reciklaža
+Reciklaža štedi energiju i sirovine.	Geri dönüşüm enerji ve hammadde tasarrufu sağlar.	word	recycling spart energie und rohstoffe.:Reciklaža štedi energiju i sirovine.
 pandemija	pandemi	word	pandemie:pandemija
 Tokom pandemije sam radio od kuće.	Pandemi sırasında evden çalıştım.	word	während der pandemie habe ich von zu hause gearbeitet.:Tokom pandemije sam radio od kuće.
 poplava	sel	word	überschwemmung:poplava
@@ -5988,6 +6152,10 @@ raskid	sözleşmenin sona erdirilmesi	word	auflösung (vertrag):raskid
 Raskid ugovora košta sto maraka.	Sözleşmenin feshi yüz mark tutuyor.	word	die vertragsauflösung kostet hundert mark.:Raskid ugovora košta sto maraka.
 posjedovati	malik olmak	word	besitzen:posjedovati
 On posjeduje tri kuće.	Üç evi var.	word	er besitzt drei häuser.:On posjeduje tri kuće.
+nasljedstvo	miras	word	erbschaft:nasljedstvo
+Kuću su dobili u nasljedstvo.	Evi miras olarak aldılar.	word	das haus haben sie geerbt.:Kuću su dobili u nasljedstvo.
+naslijediti	miras almak	word	erben:naslijediti
+Naslijedio je stan od tetke.	Daireyi teyzesinden miras aldı.	word	er hat die wohnung von seiner tante geerbt.:Naslijedio je stan od tetke.
 prijava	kayıt / başvuru	word	anmeldung / bewerbung:prijava
 Rok za prijavu je do petka.	Kayıt süresi cumaya kadar.	word	die anmeldefrist läuft bis freitag.:Rok za prijavu je do petka.
 boravak	ikamet	word	aufenthalt:boravak
@@ -6136,6 +6304,8 @@ Uzmi lopatu i očisti snijeg.	Küreği al ve karı temizle.	word	nimm die schauf
 Djeca se ne smiju igrati šibicama.	Çocukların kibritle oynamaması gerekir.	word	kinder dürfen nicht mit streichhölzern spielen.:Djeca se ne smiju igrati šibicama.
 češalj	tarak	word	kamm:češalj
 Uvijek nosim češalj u džepu.	Cebimde hep bir tarak taşırım.	word	ich habe immer einen kamm in der tasche.:Uvijek nosim češalj u džepu.
+makaze	makas	word	schere:makaze
+Daj mi makaze da otvorim paket.	Paketi açmam için bana makası ver.	word	gib mir die schere, damit ich das paket aufmache.:Daj mi makaze da otvorim paket.
 prostorija	oda (mekân)	word	raum:prostorija
 Ova prostorija nema prozora.	Bu odanın penceresi yok.	word	dieser raum hat keine fenster.:Ova prostorija nema prozora.
 prag	eşik	word	türschwelle:prag
@@ -6726,6 +6896,10 @@ seminar	seminer	word	seminar:seminar
 Sutra idem na seminar o marketingu.	Yarın pazarlama üzerine bir semineri izlemeye gidiyorum.	word	morgen gehe ich zu einem seminar über marketing.:Sutra idem na seminar o marketingu.
 citirati	alıntılamak	word	zitieren:citirati
 Citirao je poznatog pisca.	Tanınmış bir yazardan alıntı yaptı.	word	er hat einen bekannten schriftsteller zitiert.:Citirao je poznatog pisca.
+menza	öğrenci yemekhanesi	word	mensa:menza
+Ručamo u studentskoj menzi.	Öğle yemeğini öğrenci yemekhanesinde yiyoruz.	word	wir essen in der mensa zu mittag.:Ručamo u studentskoj menzi.
+studentski dom	öğrenci yurdu	word	studentenwohnheim:studentski dom
+Prve godine sam živio u studentskom domu.	İlk yıl öğrenci yurdunda kaldım.	word	im ersten jahr habe ich im studentenwohnheim gewohnt.:Prve godine sam živio u studentskom domu.
 stipendija	burs	word	stipendium:stipendija
 Dobila je stipendiju za studij.	Öğrenim için burs aldı.	word	sie hat ein stipendium für das studium bekommen.:Dobila je stipendiju za studij.
 predavač	öğretim görevlisi	word	dozent:predavač
@@ -7078,6 +7252,8 @@ Koristim javni prijevoz svaki dan.	Her gün toplu taşıma kullanıyorum.	word	i
 Željeznička stanica je blizu centra.	Tren istasyonu merkeze yakın.	word	der bahnhof ist nahe am zentrum.:Željeznička stanica je blizu centra.
 prijelaz / prelaz	geçit / kavşak	word	übergang / kreuzung:prijelaz / prelaz
 Prijelaz preko rijeke je zatvoren.	Nehrin üzerindeki geçit kapalı.	word	der übergang über den fluss ist gesperrt.:Prijelaz preko rijeke je zatvoren.
+kaciga	kask	word	helm:kaciga
+Bez kacige ne sjedaj na motor.	Kasksız motosiklete binme.	word	ohne helm setz dich nicht aufs motorrad.:Bez kacige ne sjedaj na motor.
 automobil	otomobil	word	automobil:automobil
 Kupili smo polovan automobil.	İkinci el bir otomobil aldık.	word	wir haben ein gebrauchtes auto gekauft.:Kupili smo polovan automobil.
 servis	servis / tamirhane	word	werkstatt / kundendienst:servis
@@ -7280,6 +7456,14 @@ mužjak	erkek (hayvan)	word	männchen:mužjak
 Mužjak je veći od ženke.	Erkek dişiden daha büyüktür.	word	das männchen ist größer als das weibchen.:Mužjak je veći od ženke.
 deva	deve	word	kamel:deva
 Deva može dugo bez vode.	Deve uzun süre susuz kalabilir.	word	ein kamel kommt lange ohne wasser aus.:Deva može dugo bez vode.
+ajkula	köpekbalığı	word	hai:ajkula
+U Jadranskom moru rijetko ima ajkula.	Adriyatik Denizi'nde nadiren köpekbalığı olur.	word	im adriatischen meer gibt es selten haie.:U Jadranskom moru rijetko ima ajkula.
+krokodil	timsah	word	krokodil:krokodil
+Krokodil je ležao na obali rijeke.	Timsah nehir kıyısında yatıyordu.	word	das krokodil lag am flussufer.:Krokodil je ležao na obali rijeke.
+žirafa	zürafa	word	giraffe:žirafa
+Žirafa ima jako dug vrat.	Zürafanın çok uzun bir boynu var.	word	die giraffe hat einen sehr langen hals.:Žirafa ima jako dug vrat.
+papagaj	papağan	word	papagei:papagaj
+Komšijin papagaj zna nekoliko riječi.	Komşunun papağanı birkaç kelime biliyor.	word	der papagei des nachbarn kann ein paar wörter.:Komšijin papagaj zna nekoliko riječi.
 plod	meyve (bitkinin)	word	frucht:plod
 Ovo drvo daje slatke plodove.	Bu ağaç tatlı meyveler veriyor.	word	dieser baum trägt süße früchte.:Ovo drvo daje slatke plodove.
 stablo	gövde / ağaç	word	baumstamm / baum:stablo
@@ -7306,6 +7490,8 @@ uzgajati	yetiştirmek / ekip biçmek	word	anbauen / züchten:uzgajati
 Komšija uzgaja jagode u plasteniku.	Komşu serada çilek yetiştiriyor.	word	der nachbar baut erdbeeren im gewächshaus an.:Komšija uzgaja jagode u plasteniku.
 uzgojiti	yetiştirmek / ekip biçmek	word	anbauen / züchten:uzgojiti
 Sami smo uzgojili ovaj paradajz.	Bu domatesleri kendimiz yetiştirdik.	word	diese tomaten haben wir selbst gezogen.:Sami smo uzgojili ovaj paradajz.
+suncokret	ayçiçeği	word	sonnenblume:suncokret
+Polje je bilo puno suncokreta.	Tarla ayçiçekleriyle doluydu.	word	das feld war voller sonnenblumen.:Polje je bilo puno suncokreta.
 breza	huş ağacı	word	birke:breza
 Pored kuće raste stara breza.	Evin yanında yaşlı bir huş ağacı büyüyor.	word	neben dem haus wächst eine alte birke.:Pored kuće raste stara breza.
 žito	tahıl	word	getreide:žito
@@ -7332,6 +7518,14 @@ gnojivo / đubrivo	gübre	word	dünger:gnojivo / đubrivo
 Bašti treba prirodno gnojivo.	Bahçenin doğal gübreye ihtiyacı var.	word	der garten braucht natürlichen dünger.:Bašti treba prirodno gnojivo.
 žetva	tahıl hasadı	word	getreideernte:žetva
 U julu počinje žetva pšenice.	Temmuzda buğday hasadı başlıyor.	word	im juli beginnt die weizenernte.:U julu počinje žetva pšenice.
+bukva	kayın	word	buche:bukva
+Bukva je najčešće drvo u bosanskim šumama.	Kayın, Bosna ormanlarındaki en yaygın ağaçtır.	word	die buche ist der häufigste baum in den bosnischen wäldern.:Bukva je najčešće drvo u bosanskim šumama.
+smreka	ladin	word	fichte:smreka
+Na planini rastu visoke smreke.	Dağda uzun ladinler yetişiyor.	word	auf dem berg wachsen hohe fichten.:Na planini rastu visoke smreke.
+lala	lale	word	tulpe:lala
+U proljeće u bašti cvjetaju lale.	İlkbaharda bahçede laleler açar.	word	im frühling blühen im garten tulpen.:U proljeće u bašti cvjetaju lale.
+jela	köknar	word	tanne:jela
+Jela ostaje zelena i u zimi.	Göknar kışın da yeşil kalır.	word	die tanne bleibt auch im winter grün.:Jela ostaje zelena i u zimi.
 uhvatiti	yakalamak / tutmak	word	fangen / ergreifen:uhvatiti
 Uhvatio je loptu jednom rukom.	Topu tek eliyle yakaladı.	word	er hat den ball mit einer hand gefangen.:Uhvatio je loptu jednom rukom.
 hvatati	yakalamak / tutmak	word	fangen / ergreifen:hvatati
@@ -8289,7 +8483,7 @@ Moja vjera je važna.	İnancım önemli.	sentence	s0290
 Da te upoznam: moj brat.	Seni tanıştırayım: erkek kardeşim.	sentence	s0291
 Hoću da te posjetim.	Seni ziyaret etmek istiyorum.	sentence	s0292
 Molim te, oprosti mi.	Lütfen beni affet.	sentence	s0293
-Ovo je moja koleginica.	Bu benim kadın iş arkadaşım.	sentence	s0294
+Ovo je moja kolegica.	Bu benim kadın iş arkadaşım.	sentence	s0294
 Moj babo je dobar domaćin.	Babam iyi bir ev sahibi.	sentence	s0295
 Nana svira harmoniku.	Nenem akordeon çalıyor.	sentence	s0296
 Plešemo kolo.	Kolo oynuyoruz.	sentence	s0297

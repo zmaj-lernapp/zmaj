@@ -118,8 +118,11 @@ class Handler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         # Browser soll index.html, Symbol und Maskottchen nicht zwischenspeichern,
-        # damit Änderungen sofort sichtbar sind
-        if self.path.endswith((".html", ".ico", ".json")) or self.path == "/" or "icon-256" in self.path or "flagge" in self.path:
+        # damit Änderungen sofort sichtbar sind. Seit 1.5 auch .js und .css:
+        # die App kann in web/js und web/css geteilt sein, und ohne Kopf nahm
+        # Edge die alten Dateien aus dem Zwischenspeicher (20.11.2026).
+        if self.path.endswith((".html", ".ico", ".json", ".js", ".css")) or self.path == "/" \
+                or "icon-256" in self.path or "flagge" in self.path:
             self.send_header("Cache-Control", "no-store")
         super().end_headers()
 
@@ -141,10 +144,19 @@ def lokale_ip():
         return None
 
 
+class Server(ThreadingHTTPServer):
+    """Warteschlange 128 statt 5 (wie der Server der Browser-Tests,
+    test_dateiserver.py vom 22.10.2026): Seit 1.5 holt die App beim Start
+    rund 50 Dateien mehr (web/js, web/css) fast gleichzeitig. Was über fünf
+    hinaus wartet, lehnt Windows ab, und ein abgelehntes Skript macht die
+    App kaputt (Release/Aufteilung/PLAN.md, G6)."""
+    request_queue_size = 128
+
+
 def starte_server():
     # Windows lässt zwei Server auf demselben Port zu, wenn allow_reuse_address gesetzt ist.
     # Dann antwortet die alte Instanz weiter. Deshalb aus, und den Port vorher prüfen.
-    ThreadingHTTPServer.allow_reuse_address = False
+    ThreadingHTTPServer.allow_reuse_address = False     # gilt auch für Server
     for port in range(PORT_START, PORT_START + 20):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.settimeout(0.2)
@@ -153,7 +165,7 @@ def starte_server():
         if belegt:
             continue
         try:
-            return ThreadingHTTPServer(("0.0.0.0", port), Handler), port
+            return Server(("0.0.0.0", port), Handler), port
         except OSError:
             continue
     raise RuntimeError("Kein freier Port gefunden (8000–8019).")

@@ -63,8 +63,8 @@ def test_datenkarte_passt_zum_manifest(wurzel):
     for datei in re.findall(r"data_files: (\S+)", kopf):
         assert datei in manifest["files"], datei
 
-    for zahl, schluessel in [("7,997 words", "words"), ("300 cloze", "sentences"),
-                             ("12 graded", "stories"), ("406", "glossary_entries"),
+    for zahl, schluessel in [("8,191 words", "words"), ("300 cloze", "sentences"),
+                             ("32 graded", "stories"), ("1,519", "glossary_entries"),
                              ("26 grammar", "grammar_lessons")]:
         assert zahl in karte, zahl
         assert int(zahl.split()[0].replace(",", "")) == n[schluessel], schluessel
@@ -103,3 +103,46 @@ def test_datensatz_wirbt_nicht_fuer_sprachsynthese(wurzel):
                          ("README.md", text("README.md")),
                          ("paket/README.md", text("paket", "README.md"))]:
         assert hinweis in flach(inhalt), name
+
+
+def test_zahl_der_geschichten_ueberall_gleich(wurzel):
+    """13.11.2026: README.md nannte im ersten Absatz noch "12 graded reading
+    stories", Tabelle, Liste und Diagramm darunter schon 24. Kein Test sah die
+    Zeile. Jede Stelle "<n> (graded) (reading) stories" in den Texten, die die
+    Zahl nennen, muss zum Manifest passen."""
+    import re
+    n = json.loads(lies(wurzel, "manifest.json"))["counts"]["stories"]
+    dateien = ["README.md", "CITATION.cff", ".zenodo.json", "AGENTS.md", "data/README.md",
+               "data/DATASHEET.md", "paket/README.md", "paket/pyproject.toml",
+               "paket/src/zmaj_bosnian/__init__.py"]
+    falsch, gefunden = [], 0
+    for name in dateien:
+        text = io.open(os.path.join(wurzel, *name.split("/")), encoding="utf-8").read()
+        text = re.sub(r"\s+", " ", text)
+        for m in re.finditer(r"\b(\d+) (?:graded )?(?:reading )?stories\b", text):
+            gefunden += 1
+            if int(m.group(1)) != n:
+                falsch.append("%s: %s" % (name, m.group(0)))
+    assert gefunden >= 9, gefunden
+    assert not falsch, falsch
+
+
+def test_paket_hilfe_nennt_die_zahlen_des_manifests(wurzel):
+    """16.11.2026: Nach a87b70d ("ljubazne" fällt aus dem Wörterbuch der
+    Geschichten) sagte help(glossary) im Paket noch "1,520 reading-glossary
+    entries", Datenkarte, Datenblatt und READMEs schon 1,519. Kein Test las
+    die Docstrings. Jede Zahl darin muss zum Manifest passen."""
+    import re
+    n = json.loads(lies(wurzel, "manifest.json"))["counts"]
+    text = io.open(os.path.join(wurzel, "paket", "src", "zmaj_bosnian", "__init__.py"),
+                   encoding="utf-8").read()
+    for muster, schluessel in [(r"All ([\d,]+) words", "words"),
+                               (r"The ([\d,]+) levels", "levels"),
+                               (r"The ([\d,]+) sections", "sections"),
+                               (r"([\d,]+) cloze sentences", "sentences"),
+                               (r"([\d,]+) graded stories", "stories"),
+                               (r"([\d,]+) reading-glossary entries", "glossary_entries"),
+                               (r"The ([\d,]+) grammar lessons", "grammar_lessons")]:
+        m = re.search(muster, text)
+        assert m, muster
+        assert int(m.group(1).replace(",", "")) == n[schluessel], m.group(0)

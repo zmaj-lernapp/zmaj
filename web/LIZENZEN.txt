@@ -144,6 +144,34 @@ the dragon. We cut them out, scaled them down and saved them as WebP.
 Where rights exist, they are licensed under CC BY-SA 4.0 as stated in
 REUSE.toml.
 
+Stand 13.11.2026. Die 15 Abzeichen der Erfolge in web/erfolge (Kalender,
+Lernkarten, Stufen, Bücher, Gehirn) hat Google Gemini im selben Stil
+gemalt. Wir haben sie genauso freigestellt, verkleinert und als WebP
+gespeichert; es gilt dasselbe wie oben.
+
+The 15 achievement badges in web/erfolge (calendars, flash cards, stairs,
+books, brain) are AI-generated with Google Gemini in the same style. We
+cut them out, scaled them down and saved them as WebP in the same way; the
+same terms apply.
+
+Stand 14.11.2026. Sechs weitere Symbole in web/symbole (goldenes Herz,
+Zielflagge, Stern, blaues Herz, Funken, Brief) hat Google Gemini im selben
+Stil gemalt. Wir haben sie genauso freigestellt, verkleinert und als WebP
+gespeichert; es gilt dasselbe wie oben.
+
+Six more icons in web/symbole (golden heart, chequered flag, star, blue
+heart, sparkles, envelope) are AI-generated with Google Gemini in the same
+style. We cut them out, scaled them down and saved them as WebP in the same
+way; the same terms apply.
+
+Stand 15.11.2026. Zwei weitere Symbole in web/symbole (Konfetti, Abspielen)
+hat Google Gemini im selben Stil gemalt. Wir haben sie genauso freigestellt,
+verkleinert und als WebP gespeichert; es gilt dasselbe wie oben.
+
+Two more icons in web/symbole (party popper, play) are AI-generated with
+Google Gemini in the same style. We cut them out, scaled them down and saved
+them as WebP in the same way; the same terms apply.
+
 
 Das „G“ von Google / The Google “G”
 -----------------------------------

@@ -23,9 +23,10 @@ from paket1020_pruefung import *  # noqa: F401,F403
 LEVEL = ["auf_dem_amt", "post_abmeldung", "bank_darlehen", "versicherung_zinsen", "dinge_haushalt",
          "buerste_kamm", "raeume_moebel", "sauber_kaputt", "rohre_strom", "bauen_einbauen", "streichen_kleben",
          "wohnen_miete"]
+# Seit 13.11.2026 (Frage 6a) Recht und Behörden in Staat, Recht und Behörden
 SEKTION = {
-    "auf_dem_amt": "rechtbehoerden", "post_abmeldung": "rechtbehoerden", "bank_darlehen": "rechtbehoerden",
-    "versicherung_zinsen": "rechtbehoerden", "dinge_haushalt": "hauswohnung", "buerste_kamm": "hauswohnung",
+    "auf_dem_amt": "gesellschaftpolitik", "post_abmeldung": "gesellschaftpolitik", "bank_darlehen": "gesellschaftpolitik",
+    "versicherung_zinsen": "gesellschaftpolitik", "dinge_haushalt": "hauswohnung", "buerste_kamm": "hauswohnung",
     "raeume_moebel": "hauswohnung", "sauber_kaputt": "hauswohnung", "rohre_strom": "hauswohnung",
     "bauen_einbauen": "hauswohnung", "streichen_kleben": "hauswohnung", "wohnen_miete": "hauswohnung",
 }
@@ -77,8 +78,11 @@ AUCH = {
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
-    "podnosilac": ["podnositelj"], "koverta": ["kuverta"], "primalac": ["primatelj", "primatelji"],
+    "podnosilac": ["podnositelj"], "primalac": ["primatelj", "primatelji"],
     "pošiljalac": ["pošiljatelj"], "kabel": ["kabl"],
+    # koverat seit K2 (Ajdin K2, 20.11.2026, Karte V7-33 „nein“), dazu V7-37 und V7-43;
+    # šalter ist als eigenes Wort der Schalter im Amt
+    "koverta": ["kuverta", "koverat"], "pribor": ["escajg"], "prekidač": ["šalter"],
 }
 
 # Partner je Wort, wie im Paket.
@@ -128,4 +132,4 @@ def test_alte_verben_haben_ihr_gegenstueck(grunddaten, alt, neu):
 def test_amt_und_bank_in_recht_und_behoerden(grunddaten):
     sek = {k["id"]: k["sektion"] for k in grunddaten["kategorien"]}
     for i in ("auf_dem_amt", "post_abmeldung", "bank_darlehen", "versicherung_zinsen"):
-        assert sek[i] == "rechtbehoerden", i
+        assert sek[i] == "gesellschaftpolitik", i

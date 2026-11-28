@@ -15,7 +15,8 @@ Anführungszeichen, siehe gradle().
 Dieses Skript kopiert web/ dorthin nach www/, ruft Capacitor auf und baut
 das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
 
-    app_bauen.py                 Abgleich + Debug-Paket zum Aufspielen aufs Handy
+    app_bauen.py                 Abgleich + Debug-Paket zum Aufspielen aufs Handy,
+                                 immer mit Googles Testanzeigen (seit 1.5, K11)
     app_bauen.py --aab           Abgleich + signiertes Paket für Google Play
     app_bauen.py --aab --testwerbung
                                  dasselbe mit Googles Testanzeigen – nur für
@@ -28,13 +29,33 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
                                  oder schweren Fehlern (Ajdin, 10.10.2026).
                                  Ein normaler Bau überspringt Vielfache von
                                  100, siehe naechste_versionsnummer()
-    app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen
+    app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen - ebenfalls mit
+                                 Testanzeigen, denn daraus baut gradlew
+                                 assembleDebug die Test-App
     app_bauen.py --aab --ohne-anmeldung
                                  Paket für Google Play OHNE die Anmeldung.
                                  Seit v109 (28.10.2026) ist sie Pflicht, und
                                  --aab bricht ohne zmaj-android/
                                  cloud_zugang.json ab - sonst ginge still
                                  eine App ohne Anmeldung in den Store.
+    app_bauen.py --ios           Inhalt für die iOS-Hülle (30.10.2026, siehe
+                                 ios_bauen()): www/ in ../zmaj-huelle-ios,
+                                 Ton als AAC, die Werte aus ios_zugang.xcconfig,
+                                 dann npx cap sync ios. Gebaut wird in der
+                                 Cloud (kein Mac hier). Andere Hülle:
+                                 --huelle=PFAD. Für den Cloud-Bau --ios --ci:
+                                 ohne Emir, ohne Firebase, ohne AdMob-IDs.
+    app_bauen.py --ios --ci --vorfuehrung
+                                 dazu die Vorführung für die Bildschirmfotos
+                                 in der Cloud (30.10.2026, siehe
+                                 vorfuehrung_einsetzen()). Nur mit --ci.
+    app_bauen.py --immer-packen  Test-App, die die Cloud-Sicherung IMMER
+                                 gepackt schreibt (CLOUD_IMMER_PACKEN, seit
+                                 13.11.2026) - für den Handytest mit einem
+                                 Gerät mit 1.3, siehe Release\Entscheidungen_
+                                 2026-11-13\cloud_handytest.md. Nie mit --aab:
+                                 Schritt 2 kommt über die Quelle. Nicht mit
+                                 --ios: der iOS-Bau würde ihn übergehen.
 
 Ein unbekannter oder vertippter Schalter bricht ab, bevor etwas passiert
 (seit 10.10.2026, siehe schalter_lesen()).
@@ -54,6 +75,7 @@ Store-Version. Jeder Bau setzt sie in die Kopie www/index.html ein (Debug
 und --nur-abgleich mit "-test"); erst nach einem fertigen --aab steigt sie
 um eins (1.1 -> 1.2). Seit 30.10.2026, siehe versionsname_anheben().
 """
+import glob
 import io
 import json
 import re
@@ -79,7 +101,10 @@ BUILD_GRADLE = os.path.join(ANDROID, "app", "build.gradle")
 
 # Was in der App nichts verloren hat
 RAUS_ORDNER = {"_probe"}
-RAUS_DATEIEN = {"liesmich.txt"}
+# icon.ico (seit 1.5, Optimierung Punkt 5): das Symbol der Windows-
+# Verknuepfung und das Tab-Symbol von start.py und seite_bauen.py. Die App
+# laedt es nie, im Paket waren das 0,1 MB umsonst.
+RAUS_DATEIEN = {"liesmich.txt", "icon.ico"}
 RAUS_ENDUNGEN = (".sicherung", ".bak", ".orig", ".alt")
 # Sicherungen heissen index.html.vor_audio, .vor_lokal, .vor_sicherung und so
 # weiter - eine feste Liste vergisst man beim naechsten Umbau. Deshalb ein
@@ -93,15 +118,19 @@ RAUS_ENTHAELT = (".vor_",)
 RAUS_PRAEFIX = "_"
 
 
-def kopieren():
-    if not os.path.isdir(HUELLE):
-        raise SystemExit("Die Android-Hülle fehlt: %s" % HUELLE)
-    shutil.rmtree(WWW, ignore_errors=True)
+def kopieren(www=None):
+    """Kopiert web/ nach www/ der Hülle. www: das Ziel, Standard die
+    Android-Hülle; die iOS-Hülle gibt ihr eigenes www/ an (30.10.2026)."""
+    www = www or WWW
+    if not os.path.isdir(os.path.dirname(www)):
+        raise SystemExit("Die Hülle fehlt: %s" % os.path.dirname(www))
+    ziel_www = www
+    shutil.rmtree(ziel_www, ignore_errors=True)
     dateien = 0
     for wurzel, ordner, namen in os.walk(WEB):
         ordner[:] = [o for o in ordner
                      if o not in RAUS_ORDNER and not o.startswith(RAUS_PRAEFIX)]
-        ziel = os.path.join(WWW, os.path.relpath(wurzel, WEB))
+        ziel = os.path.join(ziel_www, os.path.relpath(wurzel, WEB))
         os.makedirs(ziel, exist_ok=True)
         for n in namen:
             klein = n.lower()
@@ -112,9 +141,9 @@ def kopieren():
             shutil.copy2(os.path.join(wurzel, n), os.path.join(ziel, n))
             dateien += 1
     groesse = sum(os.path.getsize(os.path.join(w, n))
-                  for w, _, ns in os.walk(WWW) for n in ns)
+                  for w, _, ns in os.walk(ziel_www) for n in ns)
     print("%d Dateien kopiert, %.1f MB" % (dateien, groesse / 1048576.0))
-    for zeile in maskottchen_groessen(os.path.join(WWW, "maskottchen")):
+    for zeile in maskottchen_groessen(os.path.join(ziel_www, "maskottchen")):
         print("   " + zeile)
     return dateien
 
@@ -169,7 +198,12 @@ def maskottchen_groessen(ordner):
 # Fehlt der Ordner - frischer Klon dieses Repos, die Demo, jemand anderes
 # baut -, aendert sich nichts.
 EMIR = os.path.join(HUELLE, "audio_emir")
-EMIR_DATEI = re.compile(r"w\d{4}\.mp3")
+# Vier oder fuenf Ziffern (21.11.2026): die K2-Liste und der Ton je
+# Bedeutung (ton_bedeutung.py) vergeben w10000 und hoeher. Mit \d{4} galt
+# w10059.mp3 als Geschichte: ton_filter() kuerzte die Stille nicht, und
+# emir_drueber() trug bei ihr kein "stimme": "emir" ein. ton_pruefen.py hielt
+# den Namen sogar fuer falsch und liess kein Paket zu.
+EMIR_DATEI = re.compile(r"w\d{4,5}\.mp3")
 
 
 def _liegt_in(pfad, ordner):
@@ -185,8 +219,11 @@ TESTWERBUNG_AUS = "const ADMOB_TEST = false;"
 TESTWERBUNG_AN = "const ADMOB_TEST = true;"
 
 
-def testwerbung_einschalten(pfad=None):
+def testwerbung_einschalten(pfad=None, test_app=False):
     """Schaltet in der KOPIE www/index.html auf Googles Testanzeigen um.
+
+    test_app: fuer die Test-App (Debug-Paket, --nur-abgleich), dort immer,
+    auch ohne --testwerbung (1.5, K11) - es aendert nur die Meldung.
 
     Fuer Pakete, die in den geschlossenen Test gehen. Seit admob_scharf.py
     stehen in web/index.html die echten Kennungen, und ein Tester, der aus
@@ -207,8 +244,36 @@ def testwerbung_einschalten(pfad=None):
                          % (TESTWERBUNG_AUS, pfad))
     with io.open(pfad, "w", encoding="utf-8", newline="") as f:
         f.write(text.replace(TESTWERBUNG_AUS, TESTWERBUNG_AN))
+    if test_app:
+        print("\nTESTWERBUNG: ADMOB_TEST = true - die Test-App zeigt nur Googles Testanzeigen.")
+        return
     print("\nTESTWERBUNG: ADMOB_TEST = true im Paket. Nur fuer den "
           "geschlossenen Test hochladen, NICHT in die Produktion.")
+
+
+PACKEN_AUS = "const CLOUD_IMMER_PACKEN = false;"
+PACKEN_AN = "const CLOUD_IMMER_PACKEN = true;"
+
+
+def immer_packen_einschalten(pfad=None):
+    """Schaltet in der KOPIE www/index.html CLOUD_IMMER_PACKEN ein.
+
+    Seit 13.11.2026 (Cloud-Sicherung, Weg A) schreibt 1.4 die Sicherung
+    erst gepackt, wenn die alte Form nicht mehr unter die Grenze passt - mit
+    dem Wortschatz von 1.4 kommt das bei niemandem vor. Damit der Handytest
+    den gepackten Weg trotzdem sieht, gibt es diese Test-App. Die Quelle
+    bleibt unberuehrt; Schritt 2 ("immer packen" fuer alle) kommt spaeter
+    ueber die Konstante in web/index.html, nicht ueber diesen Schalter.
+    """
+    pfad = pfad or os.path.join(WWW, "index.html")
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    if text.count(PACKEN_AUS) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (PACKEN_AUS, pfad))
+    with io.open(pfad, "w", encoding="utf-8", newline="") as f:
+        f.write(text.replace(PACKEN_AUS, PACKEN_AN))
+    print("\nIMMER PACKEN: Die Cloud-Sicherung wird immer gepackt geschrieben. "
+          "Nur fuer den Handytest.")
 
 
 DAUER_PLATZHALTER = "const DAUER_PRUEFWERT = '__DAUER_PRUEFWERT__';"
@@ -344,14 +409,53 @@ def anmeldung_pruefen(schalter, datei=None):
 
 # Tonspur im Paket als Opus statt MP3 (12.10.2026). Die 2.332 MP3s mit
 # 48 kbit/s machten 17,5 von 25,3 MB des AAB aus; Opus mit 24 kbit/s klingt
-# bei Sprache mindestens gleich gut und ist halb so gross. Nur die Kopie in
+# bei Sprache mindestens gleich gut und ist halb so gross (seit 1.5 20 kbit/s,
+# siehe TON_BITRATE). Nur die Kopie in
 # www/audio wird umgewandelt - web/audio bleibt MP3 fuer Web-Demo,
 # Datensatz und Anki. Der Zwischenspeicher in der Huelle haelt jede
 # umgewandelte Datei unter dem Hash ihrer MP3, damit nicht jeder Bau alle
 # Dateien neu durch ffmpeg schickt.
 FFMPEG = os.path.join(os.path.dirname(HUELLE), "werkzeuge", "ffmpeg", "bin", "ffmpeg.exe")
 TON_ZWISCHENSPEICHER = os.path.join(HUELLE, ".ton_opus")
-TON_BITRATE = "24k"
+# 20 statt 24 kbit/s seit 1.5 (Optimierung Punkt 8, zusammen mit TON_ENDE).
+# Blinde Hoerprobe am 20.11.2026, 14 Woerter und Saetze (Enden auf ć, č, š,
+# j, l, lj, eine Frage, lange Saetze): Ajdin "beide hoeren sich auf dem
+# laptop gleich an", dann mit Bluetooth-Kopfhoerern "hab es mit bluthoth
+# getestet passt". Die Bitrate allein spart 15,9 % (50 Emir-Aufnahmen).
+# Sie gilt fuer alles, was nach Opus geht, auch fuer die Geschichten. Deren
+# Wortzeiten "w" verschiebt das nicht: Pre-Skip 312 Samples wie bei 24k,
+# Laenge und Versatz auf das Sample gleich, nachgemessen an allen 32 am
+# 21.11.2026. iOS (AAC) hat seine eigene Bitrate in TON_CODECS.
+# Die Bitrate steckt im Schluessel des Zwischenspeichers (ton_schluessel()),
+# der naechste Bau wandelt also einmal alles neu um.
+TON_BITRATE = "20k"
+# iPhone und iPad (30.10.2026, iOS_Plan.md Entscheidung 5): AAC-LC als .m4a,
+# mono, 32 kbit/s. Ogg/Opus spielt WebKit erst ab iOS 18.4, und zu
+# decodeAudioData mit Opus ist dort ein Fehler offen - genau darueber laufen
+# die Woerter. AAC spielt jedes iPhone. Android bleibt bei Opus.
+# Je Codec: Endung, Bitrate und die ffmpeg-Schalter. Der Zwischenspeicher
+# fuer AAC liegt in der iOS-Huelle (.ton_aac), siehe ios_bauen().
+TON_CODECS = {
+    "opus": {"endung": ".ogg", "bitrate": TON_BITRATE,
+             "ffmpeg": ["-c:a", "libopus", "-vbr", "on", "-application", "audio"]},
+    "aac": {"endung": ".m4a", "bitrate": "32k",
+            "ffmpeg": ["-c:a", "aac", "-movflags", "+faststart"]},
+}
+
+
+def ffmpeg_finden():
+    """ffmpeg je nach Rechner (30.10.2026): ZMAJ_FFMPEG, dann der Ordner
+    werkzeuge neben den Projekten (ffmpeg.exe unter Windows, ffmpeg
+    sonst), dann der Suchpfad. None, wenn es keins gibt - dann bleibt die
+    Tonspur MP3 (ton_verkleinern)."""
+    if os.environ.get("ZMAJ_FFMPEG"):
+        return os.environ["ZMAJ_FFMPEG"]
+    if os.path.isfile(FFMPEG):
+        return FFMPEG
+    neben = os.path.join(os.path.dirname(FFMPEG), "ffmpeg")
+    if os.path.isfile(neben):
+        return neben
+    return shutil.which("ffmpeg")
 
 # Stille am Anfang kuerzen (22.10.2026). Ajdin: "der sprecher sagt viel zu
 # spaet die woerter oder saetze die muessen frueher kommen man wartet zu
@@ -374,8 +478,7 @@ TON_BITRATE = "24k"
 # die Kante also oft schon am Rauschen, und es wird weniger gekuerzt (im
 # Median 112 ms) - lieber das als ein Stueck vom Laut. Das betrifft im
 # Paket nur die zwei Goran-Woerter ohne Emir und wer ohne audio_emir baut.
-# Das Ende bleibt unberuehrt: der Nachlauf kam am 06.10.2026 gegen
-# abgeschnittene Wortenden hinein.
+# Das Ende kuerzt seit 1.5 TON_ENDE, aber nur auf Android (siehe dort).
 # Nur Woerter und Saetze (w####.mp3, wie EMIR_DATEI). Die Geschichten
 # nicht: ihre Wortzeiten "w" in index.json zaehlen ab Dateianfang, das
 # Mitlesen liefe sonst um den geschnittenen Betrag hinterher.
@@ -386,49 +489,93 @@ TON_BITRATE = "24k"
 TON_ANFANG = ("silenceremove=start_periods=1:start_threshold=-65dB:start_silence=0.03"
               ":detection=peak:window=0.001")
 
+# Stille am Ende kuerzen (1.5, Optimierung Punkt 8, zusammen mit TON_BITRATE
+# 20k). Nach dem letzten Laut lagen bei Emir im Median 0,59 s Stille: der
+# Nachlauf vom 06.10.2026 (emir_lauf.py, apad=pad_dur=0.5). Er kam damals
+# gegen abgeschnittene Wortenden hinein, die eigentliche Ursache war aber
+# der Punkt hinter dem Wort. In der App haengt am Ende des Tons nichts
+# (onended in ton.js und ton_abspielen.js), und der Hoeren-Knopf ist bei
+# Woertern nie gesperrt (aufgaben.js: stilleBitte(); speak(w.bs)) - der
+# Gewinn ist allein die Groesse (Pruefung 21.11.2026; bis dahin stand hier
+# "0,4 s frueher wieder frei"). Darum dieselbe vorsichtige Regel wie vorn,
+# nur rueckwaerts: was in 1 ms ueber -65 dB ausschlaegt (Spitze), zaehlt
+# als Laut, und danach bleiben 150 ms Stille stehen.
+# Freigabe nach der blinden Hoerprobe vom 20.11.2026, auch mit Bluetooth
+# (Ajdin: "hab es mit bluthoth getestet passt"), siehe TON_BITRATE.
+# Nachgemessen am 21.11.2026 an 50 Emir-Aufnahmen, Quelle gegen Ergebnis:
+# gekuerzt im Median 0,44 s (0,35 bis 0,51), der lauteste weggeschnittene
+# Wert hat -90 dBFS, und das Wortende ist auch nach Opus auf die
+# Millisekunde dasselbe (silencedetect -50 dB, 20k mit und ohne TON_ENDE).
+# silenceremove setzt rueckwaerts an der Kante zur stehengelassenen Stille
+# 1 bis 2 Samples direkt hinter dem letzten Laut um (eine 0 und den
+# letzten Wert doppelt), gemessen bis -49,9 dBFS (w2928, Pruefung
+# 21.11.2026; vorher stand hier "alle leiser als -57 dBFS"). TON_ANFANG
+# macht an seiner Kante dasselbe, seit dem 22.10.2026 in der App; hoerbar
+# ist das nicht. Die Stimme davor bleibt samplegleich. Die Dateien werden
+# mit Bitrate zusammen 24 % kleiner.
+# iOS nicht: AAC wird damit nur 1,2 % kleiner (Pruefung 20.11.2026), und
+# ton_filter() laesst dort alles wie vor 1.5, auch den Schluessel in .ton_aac.
+TON_ENDE = ("areverse,silenceremove=start_periods=1:start_threshold=-65dB:start_silence=0.15"
+            ":detection=peak:window=0.001,areverse")
 
-def ton_filter(name):
-    """Der ffmpeg-Filter fuer diese Datei: TON_ANFANG fuer Woerter und
-    Saetze, None fuer die Geschichten."""
-    return TON_ANFANG if EMIR_DATEI.fullmatch(name) else None
+
+def ton_filter(name, codec="opus"):
+    """Der ffmpeg-Filter fuer diese Datei: fuer Woerter und Saetze auf
+    Android (Opus) TON_ANFANG und TON_ENDE, auf iOS (AAC) nur TON_ANFANG,
+    None fuer die Geschichten."""
+    if not EMIR_DATEI.fullmatch(name):
+        return None
+    return TON_ANFANG + "," + TON_ENDE if codec == "opus" else TON_ANFANG
 
 
-def ton_schluessel(inhalt_hash, name):
+def ton_schluessel(inhalt_hash, name, codec="opus"):
     """Name im Zwischenspeicher: Inhalt und Bitrate, bei gekuerzten Dateien
-    dazu ein Kennzeichen des Filters ("-a" und 8 Zeichen seines Hashes)."""
+    dazu ein Kennzeichen des Filters ("-a" und 8 Zeichen seines Hashes).
+    Seit 30.10.2026 auch der Codec - aber nur, wenn es nicht Opus ist: so
+    behalten die Opus-Dateien in .ton_opus ihre Namen, und kein Android-Bau
+    wandelt deshalb alles neu um."""
     import hashlib
-    s = inhalt_hash[:32] + "-" + TON_BITRATE
-    f = ton_filter(name)
+    s = inhalt_hash[:32] + "-" + (TON_BITRATE if codec == "opus" else
+                                  TON_CODECS[codec]["bitrate"] + "-" + codec)
+    f = ton_filter(name, codec)
     if f:
         s += "-a" + hashlib.sha256(f.encode("ascii")).hexdigest()[:8]
     return s
 
 
-def ton_index_umschreiben(index):
-    """Ersetzt in index.json jede Endung .mp3 durch .ogg. Gibt die Zahl zurueck."""
+def ton_index_umschreiben(index, endung=".ogg"):
+    """Ersetzt in index.json jede Endung .mp3 durch endung (.ogg fuer
+    Android, .m4a fuer iOS). Gibt die Zahl zurueck."""
     n = 0
     for e in index.get("toene", []):
         d = e.get("datei", "")
         if d.lower().endswith(".mp3"):
-            e["datei"] = d[:-4] + ".ogg"
+            e["datei"] = d[:-4] + endung
             n += 1
     return n
 
 
-def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None):
+def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None, codec="opus"):
     """Wandelt www/audio/*.mp3 in Ogg/Opus um und passt index.json an.
+
+    codec="aac" (30.10.2026, iOS): AAC-LC als .m4a, siehe TON_CODECS. Neu
+    umgewandelt wird nur, was im Zwischenspeicher fehlt - der Schluessel ist
+    der Inhalt der MP3 (sha256), nicht ihr Datum: eine neue Aufnahme unter
+    altem Namen wird neu umgewandelt, ein blosses Kopieren nicht.
 
     Ohne ffmpeg bleibt die Tonspur MP3 (mit Hinweis) - die App spielt beides.
     Gibt (vorher, nachher) in Bytes zurueck.
     """
     import hashlib
     from concurrent.futures import ThreadPoolExecutor
+    art = TON_CODECS[codec]
+    endung = art["endung"]
     audio = audio or os.path.join(WWW, "audio")
-    ffmpeg = ffmpeg or os.environ.get("ZMAJ_FFMPEG") or FFMPEG
+    ffmpeg = ffmpeg or ffmpeg_finden() or FFMPEG
     zwischen = zwischen or TON_ZWISCHENSPEICHER
     if _liegt_in(audio, WEB):
         raise SystemExit("\nABBRUCH: %s liegt in web/. Umgewandelt wird nur die Kopie." % audio)
-    if not os.path.isfile(ffmpeg):
+    if not ffmpeg or not os.path.isfile(ffmpeg):
         print("\nHINWEIS: ffmpeg fehlt (%s) - die Tonspur bleibt MP3." % ffmpeg)
         return (0, 0)
     os.makedirs(zwischen, exist_ok=True)
@@ -441,47 +588,48 @@ def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None):
     schluessel = {}
     for name in mp3s:
         with open(os.path.join(audio, name), "rb") as f:
-            schluessel[name] = ton_schluessel(hashlib.sha256(f.read()).hexdigest(), name)
+            schluessel[name] = ton_schluessel(hashlib.sha256(f.read()).hexdigest(), name, codec)
     quelle_je_schluessel = {}
     for name in mp3s:
         quelle_je_schluessel.setdefault(schluessel[name], name)
 
     def umwandeln(paar):
         s, name = paar
-        fertig = os.path.join(zwischen, s + ".ogg")
+        fertig = os.path.join(zwischen, s + endung)
         if os.path.isfile(fertig) and os.path.getsize(fertig) > 0:
             return
-        tmp = fertig + ".tmp.ogg"
+        tmp = fertig + ".tmp" + endung
         # Gleicher Schluessel heisst gleicher Filter (er steckt im
         # Schluessel), also genuegt der Name der ersten Quelle.
-        f = ton_filter(name)
+        f = ton_filter(name, codec)
         r = subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y",
                             "-i", os.path.join(audio, name)]
                            + (["-af", f] if f else [])
-                           + ["-ac", "1", "-c:a", "libopus",
-                              "-b:a", TON_BITRATE, "-vbr", "on", "-application", "audio",
-                              tmp], capture_output=True)
+                           + ["-ac", "1"] + art["ffmpeg"] + ["-b:a", art["bitrate"], tmp],
+                           capture_output=True)
         if r.returncode != 0 or not os.path.isfile(tmp) or os.path.getsize(tmp) == 0:
             raise RuntimeError("%s: %s" % (name, r.stderr.decode("utf-8", "replace")[-300:]))
         os.replace(tmp, fertig)
 
-    print("\nTonspur nach Opus (%d Dateien, %s, %d davon mit gekuerzter Stille am Anfang) ..."
-          % (len(mp3s), TON_BITRATE, sum(1 for n in mp3s if ton_filter(n))))
+    print("\nTonspur nach %s (%d Dateien, %s, %d davon mit gekuerzter Stille am %s) ..."
+          % ("Opus" if codec == "opus" else codec.upper(), len(mp3s), art["bitrate"],
+             sum(1 for n in mp3s if ton_filter(n, codec)),
+             "Anfang und Ende" if codec == "opus" else "Anfang"))
     try:
         with ThreadPoolExecutor(max_workers=max(2, (os.cpu_count() or 4))) as pool:
             list(pool.map(umwandeln, sorted(quelle_je_schluessel.items())))
         groessen = []
         for name in mp3s:
             quelle = os.path.join(audio, name)
-            ziel = os.path.join(audio, name[:-4] + ".ogg")
-            shutil.copyfile(os.path.join(zwischen, schluessel[name] + ".ogg"), ziel)
+            ziel = os.path.join(audio, name[:-4] + endung)
+            shutil.copyfile(os.path.join(zwischen, schluessel[name] + endung), ziel)
             groessen.append((os.path.getsize(quelle), os.path.getsize(ziel)))
             os.remove(quelle)
     except (RuntimeError, OSError) as e:
         raise SystemExit("ABBRUCH: Umwandlung der Tonspur gescheitert: %s" % e)
     index_pfad = os.path.join(audio, "index.json")
     index = json.load(io.open(index_pfad, encoding="utf-8"))
-    umgeschrieben = ton_index_umschreiben(index)
+    umgeschrieben = ton_index_umschreiben(index, endung)
     fehlen = [e["datei"] for e in index.get("toene", [])
               if not os.path.isfile(os.path.join(audio, e["datei"]))]
     if fehlen:
@@ -496,8 +644,11 @@ def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None):
     return (vorher, nachher)
 
 
-def emir_drueber():
+def emir_drueber(www=None, emir=None):
     """Legt die Emir-Aufnahmen ueber die kopierte Tonspur in www/audio.
+
+    www und emir: Standard die Android-Huelle; die iOS-Huelle gibt ihre
+    eigenen an (30.10.2026), audio_emir/ liegt dort genauso im Repo.
 
     Getauscht wird nur, was gleich heisst und in index.json steht - eine
     Datei ohne Eintrag spielte die App nie ab. In der KOPIE von index.json
@@ -511,13 +662,14 @@ def emir_drueber():
     Gibt die Zahl der getauschten Dateien zurueck.
     """
     import ton_bauen
-    if not os.path.isdir(EMIR):
+    emir_ort = emir or EMIR
+    if not os.path.isdir(emir_ort):
         print("\nKein audio_emir/ in der Huelle - die Tonspur bleibt Azure.")
         if ton_bauen.nur_emir():
             print("   Ohne Ton bleiben %d Texte aus ton_nur_emir.json - die gibt es nur von Emir."
                   % len(ton_bauen.nur_emir()))
         return 0
-    audio = os.path.join(WWW, "audio")
+    audio = os.path.join(www or WWW, "audio")
     # Nie ins oeffentliche web/ schreiben - auch dann nicht, wenn ZMAJ_HUELLE
     # aus Versehen auf dieses Projekt zeigt. Dann lieber gar kein Paket.
     if _liegt_in(audio, WEB):
@@ -537,7 +689,7 @@ def emir_drueber():
     # pruefen()) hat beides schon geprueft; das hier ist die zweite Wache.
     nur_von_emir = 0
     for e in sorted(ton_bauen.nur_emir().values(), key=lambda e: e["datei"]):
-        quelle = os.path.join(EMIR, e["datei"])
+        quelle = os.path.join(emir_ort, e["datei"])
         if e["datei"] in eintraege:
             raise SystemExit("\nABBRUCH: %s steht in index.json (%s) und in ton_nur_emir.json (%s)."
                              % (e["datei"], eintraege[e["datei"]].get("text"), e["text"]))
@@ -551,10 +703,10 @@ def emir_drueber():
         nur_von_emir += 1
 
     getauscht, fremd, stumm = 0, [], []
-    for name in sorted(os.listdir(EMIR)):
+    for name in sorted(os.listdir(emir_ort)):
         if not EMIR_DATEI.fullmatch(name):
             continue                        # LIESMICH.txt und was sonst dort liegt
-        quelle = os.path.join(EMIR, name)
+        quelle = os.path.join(emir_ort, name)
         if name not in eintraege or not os.path.isfile(os.path.join(audio, name)):
             fremd.append(name)
             continue
@@ -589,10 +741,126 @@ def emir_drueber():
     return getauscht
 
 
+# ------------------------------------------------- Aufraeumen im Bau (1.5) ---
+# Optimierung Punkt 5 (Ajdin am 20.11.2026: "und räum auf"). Beides nur in der
+# KOPIE www/, web/ bleibt, wie es ist (Web-Demo, Datensatz, Tests).
+#
+# Die drei Standbilder des Drachen zeigt die App nur, wenn lottie fehlt
+# (zmaj() in drache.js). Als PNG wogen sie 0,5 MB, und PNG liegt im APK
+# ungepackt. Als WebP mit denselben Schaltern wie alle anderen Drachenbilder
+# (WEBP in haut_einbauen.py) sind es 0,14 MB. zmaj() nimmt je Bild erst
+# .webp, dann .png - welche Datei es gibt, sagt die Liste "maskottchen" in
+# inhalt/<sprache>.json, darum wird sie hier mit umgeschrieben.
+STANDBILDER = ("zmaj-frei", "zmaj-jubel", "zmaj-traurig")
+STANDBILD_WEBP = ["-pix_fmt", "bgra", "-c:v", "libwebp", "-lossless", "0", "-quality", "90",
+                  "-compression_level", "6", "-preset", "drawing"]
+
+
+def standbilder_als_webp(www=None, ffmpeg=None):
+    """Macht in www/maskottchen aus zmaj-frei/-jubel/-traurig.png je eine
+    .webp, nimmt die PNG heraus und traegt die neuen Namen in die Liste
+    "maskottchen" jeder www/inhalt/*.json ein. Ohne ffmpeg (oder ohne libwebp
+    darin) bleiben alle drei PNG, mit Hinweis - die App zeigt beides, und ein
+    halb umgestellter Satz kommt so nie heraus. Gibt die Zahl der Bilder
+    zurueck."""
+    www = www or WWW
+    if _liegt_in(www, WEB):
+        raise SystemExit("\nABBRUCH: %s liegt in web/. Umgewandelt wird nur die Kopie." % www)
+    ordner = os.path.join(www, "maskottchen")
+    pngs = [n for n in STANDBILDER if os.path.isfile(os.path.join(ordner, n + ".png"))]
+    if not pngs:
+        return 0
+    ffmpeg = ffmpeg or ffmpeg_finden()
+    if not ffmpeg or not os.path.isfile(ffmpeg):
+        print("\nHINWEIS: ffmpeg fehlt (%s) - die Standbilder bleiben PNG." % ffmpeg)
+        return 0
+    # Erst alle in .tmp.webp; getauscht wird erst, wenn alle gut sind.
+    fertig = []
+    for n in pngs:
+        quelle, tmp = os.path.join(ordner, n + ".png"), os.path.join(ordner, n + ".tmp.webp")
+        fertig.append(tmp)
+        r = subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y", "-i", quelle]
+                           + STANDBILD_WEBP + [tmp], capture_output=True)
+        kopf = b""
+        if os.path.isfile(tmp):
+            with open(tmp, "rb") as f:
+                kopf = f.read(12)
+        if r.returncode != 0 or kopf[:4] != b"RIFF" or kopf[8:12] != b"WEBP":
+            for d in fertig:
+                if os.path.isfile(d):
+                    os.remove(d)
+            print("\nWARNUNG: %s.png liess sich nicht nach WebP umwandeln - die Standbilder "
+                  "bleiben PNG. %s" % (n, r.stderr.decode("utf-8", "replace")[-300:].strip()))
+            return 0
+    vorher = nachher = 0
+    for n, tmp in zip(pngs, fertig):
+        quelle, ziel = os.path.join(ordner, n + ".png"), os.path.join(ordner, n + ".webp")
+        os.replace(tmp, ziel)
+        vorher += os.path.getsize(quelle)
+        nachher += os.path.getsize(ziel)
+        os.remove(quelle)
+    namen = {n + ".png": n + ".webp" for n in pngs}
+    for pfad in sorted(glob.glob(os.path.join(www, "inhalt", "*.json"))):
+        with io.open(pfad, encoding="utf-8") as f:
+            daten = json.load(f)
+        if not (isinstance(daten, dict) and isinstance(daten.get("maskottchen"), list)):
+            continue                        # liste.json
+        daten["maskottchen"] = [namen.get(d, d) for d in daten["maskottchen"]]
+        with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
+            f.write(json.dumps(daten, ensure_ascii=False, separators=(",", ":")))
+    print("\nStandbilder des Drachen als WebP: %d, %d KB -> %d KB"
+          % (len(pngs), vorher // 1024, nachher // 1024))
+    return len(pngs)
+
+
+# audio/index.json: Die App liest je Eintrag nur key, datei und w (ladeAudio()
+# in inhalt.js). "text" und "stimme" sind fuer Menschen und fuer den Bau -
+# emir_drueber() setzt "stimme" und zaehlt danach damit, ios_zahnarzt_entfernen()
+# und ton_verkleinern() lesen key und datei. Darum ist das Verschlanken der
+# LETZTE Schritt an www/, kurz vor capacitor(). Auf iOS bleibt "stimme": das
+# Pruefskript der iOS-Huelle (ios/store_helfer.py) zaehlt damit die
+# Emir-Aufnahmen im fertigen Paket.
+TON_FELDER = ("key", "datei", "w")
+TON_FELDER_IOS = TON_FELDER + ("stimme",)
+
+
+def ton_index_verschlanken(audio=None, felder=TON_FELDER):
+    """Laesst in www/audio/index.json je Eintrag nur `felder` stehen und
+    schreibt die Datei ohne Einrueckung. Alles ausserhalb von "toene"
+    (version) bleibt. Gibt (vorher, nachher) in Bytes zurueck."""
+    audio = audio or os.path.join(WWW, "audio")
+    if _liegt_in(audio, WEB):
+        raise SystemExit("\nABBRUCH: %s liegt in web/. Verschlankt wird nur die Kopie." % audio)
+    pfad = os.path.join(audio, "index.json")
+    if not os.path.isfile(pfad):
+        return (0, 0)
+    vorher = os.path.getsize(pfad)
+    with io.open(pfad, encoding="utf-8") as f:
+        index = json.load(f)
+    toene = index.get("toene", [])
+    kaputt = [e for e in toene if not (isinstance(e, dict) and e.get("key") and e.get("datei"))]
+    if kaputt:
+        raise SystemExit("ABBRUCH: %d Eintraege in %s ohne key oder datei, z. B. %r"
+                         % (len(kaputt), pfad, kaputt[0]))
+    index["toene"] = [{k: e[k] for k in felder if k in e} for e in toene]
+    with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(index, ensure_ascii=False, separators=(",", ":")))
+    nachher = os.path.getsize(pfad)
+    print("\naudio/index.json verschlankt (%s): %d KB -> %d KB"
+          % (", ".join(felder), vorher // 1024, nachher // 1024))
+    return (vorher, nachher)
+
+
 # Aus diesen Dateien baut inhalt_bauen.py die JSON-Dateien für das Handy.
 # Ändert sich eine davon, sind die JSON-Dateien veraltet.
+# inhalt.py, varianten.py und ton_bedeutung.* seit dem 21.11.2026: die
+# Prüfung von Ton je Bedeutung fand, dass eine geänderte ton_bedeutung.json
+# hier nicht auffiel. Das Handy hätte die alten Töne gespielt, am PC (frisch
+# gelesen) wäre alles richtig gewesen - derselbe Fall wie am 26.09.2026.
 INHALT_QUELLEN = ["sprachen.py", "vokabeln.py", "geschichten.py",
-                  "grammatik.py", "uebersetzungen.py", "zahnarzt.py"]
+                  "grammatik.py", "uebersetzungen.py", "zahnarzt.py",
+                  "inhalt.py", "varianten.py", "ton_bedeutung.py", "ton_bedeutung.json"]
+TON_VERALTET = "Ton je Bedeutung (ton_bedeutung.json)"
 
 
 def inhalt_aktuell():
@@ -622,13 +890,29 @@ def inhalt_aktuell():
     # er dort steht - kommt einer per haut_einbauen.py dazu und niemand baut
     # den Inhalt neu, bliebe die Farbe am Handy stillschweigend die alte
     # (Bild-Drache, 15.10.2026).
+    # Ton je Bedeutung (21.11.2026): nicht nur nach der Uhrzeit, auch nach
+    # dem Inhalt. Fehlen "ton" und "satzwort_ton" (gebaut vor dem 21.11.)
+    # oder passen sie nicht zur Tabelle, ist der Inhalt veraltet, auch wenn
+    # die Datei neuer ist - etwa nach einem Wechsel des Zweigs. Eine Datei
+    # reicht: der Ton ist in jeder Sprache gleich.
     import inhalt
-    for d in gebaut:
+    import ton_bedeutung
+    tabelle = ton_bedeutung.lade(os.path.join(HIER, "ton_bedeutung.json"))
+    maske = ton = False
+    for d in sorted(gebaut):
         with io.open(d, encoding="utf-8") as f:
             stand = json.load(f)
-        if isinstance(stand, dict) and "maskottchen" in stand:
+        if not isinstance(stand, dict):
+            continue
+        if not maske and "maskottchen" in stand:
+            maske = True
             if stand["maskottchen"] != inhalt.maskottchen_bilder():
                 veraltet.append("web/maskottchen")
+        if not ton and "kategorien" in stand:
+            ton = True
+            if not ton_bedeutung.stimmt(stand, tabelle) and "ton_bedeutung.json" not in veraltet:
+                veraltet.append(TON_VERALTET)
+        if maske and ton:
             break
     return veraltet
 
@@ -693,9 +977,9 @@ def plugins_flicken():
     return geflickt
 
 
-def capacitor():
-    print("\nCapacitor abgleichen ...")
-    e = subprocess.run("npx cap sync android", cwd=HUELLE, shell=True)
+def capacitor(plattform="android", huelle=None):
+    print("\nCapacitor abgleichen (%s) ..." % plattform)
+    e = subprocess.run("npx cap sync %s" % plattform, cwd=huelle or HUELLE, shell=True)
     if e.returncode != 0:
         raise SystemExit("Capacitor meldet einen Fehler – siehe oben.")
 
@@ -806,7 +1090,14 @@ def freigabe_aab():
 PFLICHT_SCHRITT = 100
 # Der hoechste versionCode, den Google Play annimmt.
 HOECHSTE_VERSIONSNUMMER = 2100000000
-SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich", "--ohne-anmeldung")
+SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich", "--ohne-anmeldung",
+            "--immer-packen", "--ios", "--ci", "--vorfuehrung")
+# Nur mit --ios: die iOS-Huelle an einem anderen Ort, --huelle=PFAD. 30.10.2026
+HUELLE_SCHALTER = "--huelle="
+# Was mit --ios nicht zusammengeht: das sind Schalter fuer Google Play.
+# --immer-packen (13.11.2026) gehoert zur Android-Test-App: ios_bauen()
+# schaltet CLOUD_IMMER_PACKEN nicht ein, mit --ios ginge er still unter.
+NUR_ANDROID = ("--aab", "--pflicht", "--nur-abgleich", "--ohne-anmeldung", "--immer-packen")
 
 
 def schalter_lesen(argv):
@@ -817,14 +1108,32 @@ def schalter_lesen(argv):
     Update, obwohl eine schwere Lücke sofort geschlossen werden soll. Dann
     lieber gar kein Paket.
     """
-    unbekannt = [a for a in argv if a not in SCHALTER]
+    unbekannt = [a for a in argv if a not in SCHALTER
+                 and not (a.startswith(HUELLE_SCHALTER) and len(a) > len(HUELLE_SCHALTER))]
     if unbekannt:
-        raise SystemExit("ABBRUCH: unbekannter Schalter %s - erlaubt sind %s. "
-                         "Nichts gebaut." % (", ".join(unbekannt), " ".join(SCHALTER)))
+        raise SystemExit("ABBRUCH: unbekannter Schalter %s - erlaubt sind %s %sPFAD. "
+                         "Nichts gebaut." % (", ".join(unbekannt), " ".join(SCHALTER), HUELLE_SCHALTER))
     schalter = set(argv)
+    if "--ios" in schalter:
+        falsch = sorted(schalter & set(NUR_ANDROID))
+        if falsch:
+            raise SystemExit("ABBRUCH: %s gilt nur fuer Google Play, nicht mit --ios. "
+                             "Nichts gebaut." % ", ".join(falsch))
+    elif "--ci" in schalter or any(a.startswith(HUELLE_SCHALTER) for a in schalter):
+        raise SystemExit("ABBRUCH: --ci und %sPFAD gibt es nur mit --ios. Nichts gebaut."
+                         % HUELLE_SCHALTER)
+    # Die Vorfuehrung oeffnet Schirme von selbst und setzt Platzhalter fuer
+    # Firebase ein - nur im Pruefbau der Cloud, nie in einem Bau fuer den
+    # Store (30.10.2026, siehe vorfuehrung_einsetzen()).
+    if "--vorfuehrung" in schalter and not {"--ios", "--ci"} <= schalter:
+        raise SystemExit("ABBRUCH: --vorfuehrung gibt es nur mit --ios --ci (Cloud-Pruefbau). "
+                         "Nichts gebaut.")
     if "--pflicht" in schalter and "--nur-abgleich" in schalter:
         raise SystemExit("ABBRUCH: --pflicht setzt den versionCode, --nur-abgleich "
                          "zählt ihn nicht hoch. Zusammen gäbe das kein Pflicht-Update.")
+    if "--immer-packen" in schalter and "--aab" in schalter:
+        raise SystemExit("ABBRUCH: --immer-packen ist nur fuer die Test-App. Fuer den "
+                         "Store kommt \"immer packen\" ueber CLOUD_IMMER_PACKEN in web/index.html.")
     return schalter
 
 
@@ -1047,11 +1356,334 @@ def versionsname_anheben(pfad=None):
     return alt, neu
 
 
+# ------------------------------------------------------------------- iOS ---
+# iPhone und iPad (30.10.2026, iOS_Plan.md 3.7, Entscheidungen von Ajdin vom
+# 30.10.2026). Dieselbe Seite in einer zweiten Huelle: Zweig "ios" des
+# privaten Repos zmaj-huelle, hier als eigener Arbeitsordner neben diesem
+# Projekt. Kompiliert wird in der Cloud (GitHub Actions, macOS) - auf diesem
+# Rechner gibt es kein Xcode. Was ios_bauen() anders macht als der
+# Android-Bau:
+#   - www/ und der AAC-Zwischenspeicher (.ton_aac) liegen in der iOS-Huelle.
+#   - KEIN Dauer-Pruefwert: den versteckten Schalter gibt es auf iOS nicht
+#     (Richtlinie 2.5.19 und 3.1.1). Steht in der Kopie schon ein Wert statt
+#     des Platzhalters, bricht der Bau ab (dauer_platzhalter_pruefen).
+#   - Die AdMob-Bloecke und die Apple-ID der App kommen aus
+#     ios/App/ios_zugang.xcconfig der Huelle (nicht im Repo, Vorlage
+#     ios_zugang.BEISPIEL.xcconfig) - wie cloud_zugang.json nur in die Kopie.
+#     Fehlt die Datei, bleiben Googles Test-Bloecke und kein App-Store-Link.
+#   - Firebase (cloud_zugang.json) wie bei Android; die Datei darf in der
+#     iOS-Huelle liegen oder in der Android-Huelle.
+#   - Kein Gradle, kein versionCode, keine Plugins zu flicken; am Ende
+#     npx cap sync ios.
+#   - Der versteckte Teil Beim Zahnarzt kommt nicht mit (Richtlinie 2.5.19),
+#     siehe ios_zahnarzt_entfernen(), 06.11.2026.
+#   - --ci (Cloud-Bau): nichts Geheimes und nichts Privates - kein Emir, kein
+#     Firebase (CLOUD_AN bleibt aus), keine AdMob-IDs; ohne ffmpeg bleibt der
+#     Ton MP3. cap sync macht dort der Ablauf selbst, nach npm ci.
+# www/ teilt sich die iOS-Huelle mit niemandem; die Android-Huelle hat ihre
+# eigene Kopie. Nacheinander bauen ist trotzdem besser: beide lesen web/.
+IOS_HUELLE_NAME = "zmaj-huelle-ios"
+IOS_ZUGANG = os.path.join("ios", "App", "ios_zugang.xcconfig")
+IOS_PBXPROJ = os.path.join("ios", "App", "App.xcodeproj", "project.pbxproj")
+# Die Zeilen in web/index.html, die ios_zugang_einsetzen() in der Kopie
+# tauscht. Genau so, mit Googles iOS-Test-Bloecken.
+IOS_ADMOB_ZEILEN = {
+    "ZMAJ_ADMOB_INTERSTITIAL": "  interstitial: 'ca-app-pub-3940256099942544/4411468910',",
+    "ZMAJ_ADMOB_BELOHNT": "  belohnt:      'ca-app-pub-3940256099942544/1712485313',",
+}
+IOS_APPLE_ID_ZEILE = "const APPLE_APP_ID = '__APPLE_ID__';"
+IOS_MUSTER = {
+    "ZMAJ_ADMOB_INTERSTITIAL": r"ca-app-pub-[0-9]{16}/[0-9]{10}",
+    "ZMAJ_ADMOB_BELOHNT": r"ca-app-pub-[0-9]{16}/[0-9]{10}",
+    "ZMAJ_APPLE_APP_ID": r"[0-9]{6,12}",
+}
+
+
+def ios_huelle(schalter):
+    """Der Ordner der iOS-Huelle: --huelle=PFAD, sonst ZMAJ_HUELLE_IOS, sonst
+    ../zmaj-huelle-ios neben diesem Projekt."""
+    for a in schalter:
+        if a.startswith(HUELLE_SCHALTER):
+            return os.path.abspath(a[len(HUELLE_SCHALTER):])
+    if os.environ.get("ZMAJ_HUELLE_IOS"):
+        return os.path.abspath(os.environ["ZMAJ_HUELLE_IOS"])
+    return os.path.join(os.path.dirname(HIER), IOS_HUELLE_NAME)
+
+
+def xcconfig_lesen(pfad):
+    """Die Werte aus einer xcconfig-Datei als dict. "//" beginnt einen
+    Kommentar, #include-Zeilen zaehlen nicht. Fehlt die Datei: {}."""
+    werte = {}
+    if not os.path.isfile(pfad):
+        return werte
+    with io.open(pfad, encoding="utf-8") as f:
+        for zeile in f:
+            zeile = zeile.split("//", 1)[0].strip()
+            if not zeile or zeile.startswith("#") or "=" not in zeile:
+                continue
+            name, wert = (x.strip() for x in zeile.split("=", 1))
+            if re.fullmatch(r"[A-Z_][A-Z0-9_]*", name):
+                werte[name] = wert
+    return werte
+
+
+def dauer_platzhalter_pruefen(pfad):
+    """Der iOS-Bau setzt keinen Dauer-Pruefwert ein. Steht in der Kopie
+    nicht genau einmal der Platzhalter, bricht er ab - dann haette jemand
+    einen echten Wert in web/ geschrieben, und der versteckte Schalter waere
+    auf dem iPhone scharf."""
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    if text.count(DAUER_PLATZHALTER) != 1:
+        raise SystemExit("ABBRUCH: In %s steht nicht genau einmal '%s' - der iOS-Bau "
+                         "nimmt keinen Dauer-Pruefwert mit." % (pfad, DAUER_PLATZHALTER))
+
+
+def ios_zugang_einsetzen(pfad, zugang):
+    """Setzt in der KOPIE www/index.html die AdMob-Bloecke fuer iOS und die
+    Apple-ID der App ein, soweit ios_zugang.xcconfig sie hat. Was fehlt,
+    bleibt, wie es ist (Googles Test-Bloecke, kein App-Store-Link). Ein Wert
+    in falscher Form bricht ab, ohne etwas zu schreiben. Die Werte selbst
+    erscheinen in keiner Meldung. Gibt die Namen der eingesetzten Werte
+    zurueck."""
+    if _liegt_in(pfad, WEB):
+        raise SystemExit("ABBRUCH: %s liegt in web/. Eingesetzt wird nur in die Kopie." % pfad)
+    werte = xcconfig_lesen(zugang)
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    zeilen = dict(IOS_ADMOB_ZEILEN, ZMAJ_APPLE_APP_ID=IOS_APPLE_ID_ZEILE)
+    for name, zeile in zeilen.items():
+        if text.count(zeile) != 1:
+            raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (zeile.strip(), pfad))
+    gesetzt = []
+    for name, zeile in zeilen.items():
+        wert = werte.get(name, "")
+        if not wert:
+            continue
+        if not re.fullmatch(IOS_MUSTER[name], wert):
+            raise SystemExit("ABBRUCH: %s in %s hat nicht die erwartete Form." % (name, zugang))
+        if name == "ZMAJ_APPLE_APP_ID":
+            neu = zeile.replace("__APPLE_ID__", wert)
+        else:
+            neu = re.sub(r"'ca-app-pub-[^']*'", "'%s'" % wert, zeile)
+        text = text.replace(zeile, neu)
+        gesetzt.append(name)
+    if ("ZMAJ_ADMOB_INTERSTITIAL" in gesetzt) != ("ZMAJ_ADMOB_BELOHNT" in gesetzt):
+        raise SystemExit("ABBRUCH: In %s steht nur einer der beiden Anzeigenbloecke." % zugang)
+    if werte.get("ZMAJ_ADMOB_INTERSTITIAL") and \
+            werte.get("ZMAJ_ADMOB_INTERSTITIAL") == werte.get("ZMAJ_ADMOB_BELOHNT"):
+        raise SystemExit("ABBRUCH: Beide Anzeigenbloecke in %s sind gleich." % zugang)
+    with io.open(pfad, "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+    print("  iOS-Werte: %s" % (", ".join(gesetzt) if gesetzt else
+                               "keine ios_zugang.xcconfig-Werte - Test-Anzeigen, kein App-Store-Link"))
+    return gesetzt
+
+
+def ios_version_lesen(huelle):
+    """MARKETING_VERSION aus project.pbxproj der iOS-Huelle (die Nummer, die
+    man im App Store sieht), oder None. Steht sie verschieden in Debug und
+    Release, bricht der Bau ab."""
+    pfad = os.path.join(huelle, IOS_PBXPROJ)
+    if not os.path.isfile(pfad):
+        return None
+    with io.open(pfad, encoding="utf-8") as f:
+        werte = set(re.findall(r"MARKETING_VERSION = ([^;\s]+);", f.read()))
+    if len(werte) > 1:
+        raise SystemExit("ABBRUCH: MARKETING_VERSION steht verschieden in %s: %s"
+                         % (pfad, ", ".join(sorted(werte))))
+    wert = werte.pop() if werte else None
+    return wert if wert and VERSIONSNAME_FORM.fullmatch(wert) else None
+
+
+def zwischen_ausblenden(ordner):
+    """Legt in den AAC-Zwischenspeicher eine .gitignore mit "*": Git sieht
+    den Ordner dann gar nicht, auch nicht mit "git add -A". Die .gitignore
+    der Huelle kennt bisher nur .ton_opus, und dort aendert dieser Bau
+    nichts. Soll der Zwischenspeicher spaeter ins private Repo (iOS_Plan.md
+    3.7, damit der Cloud-Bau ohne ffmpeg AAC hat), wird diese Datei
+    geloescht. 30.10.2026"""
+    os.makedirs(ordner, exist_ok=True)
+    pfad = os.path.join(ordner, ".gitignore")
+    if not os.path.exists(pfad):
+        with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
+            f.write("# Zwischenspeicher von app_bauen.py --ios, wird neu erzeugt\n*\n")
+
+
+# Die Vorfuehrung (30.10.2026, Stufe A8): Im Cloud-Bau kann niemand tippen,
+# also oeffnet die Seite Startseite, Lektion, Einstellungen, Kaufkasten und
+# Anmeldung selbst nacheinander, und ios-pruefung.yml der Huelle macht die
+# Bildschirmfotos. Was sie tut und was daran nicht echt ist, steht oben in
+# vorfuehrung_ios.js. Hier nur: die Datei neben die KOPIE legen, sie als
+# erstes Skript einhaengen und fuer Firebase Platzhalter einsetzen - in der
+# Form der echten Werte, damit die Anmeldeseite (CLOUD_AN) aussieht wie im
+# Store-Bau, aber erfunden. Der Schluessel wird zusammengesetzt, damit kein
+# Text im Repository aussieht wie ein Google-Schluessel (wie in den Tests).
+VORFUEHRUNG_QUELLE = os.path.join(HIER, "vorfuehrung_ios.js")
+VORFUEHRUNG_DATEI = "vorfuehrung.js"
+VORFUEHRUNG_ANKER = '<script src="lottie.min.js"></script>'
+VORFUEHRUNG_CLOUD = {
+    "projekt": "zmaj-vorfuehrung",
+    "schluessel": "AIza" + "Probe" * 7,
+    # Auch die Client-ID in Stuecken (tests/test_cloud.py sucht nach der Form).
+    "client": "000000000000" + "-vorfuehrungnurimcilauf" + ".apps." + "googleusercontent.com",
+}
+
+
+def vorfuehrung_einsetzen(www):
+    """Nur fuer --ios --ci --vorfuehrung: vorfuehrung_ios.js als
+    www/vorfuehrung.js, davor eingehaengt in www/index.html, und die
+    Firebase-Platzhalter mit CLOUD_AN an. Bricht ab, ohne zu schreiben, wenn
+    ein Anker nicht genau einmal da ist."""
+    index = os.path.join(www, "index.html")
+    if _liegt_in(index, WEB):
+        raise SystemExit("ABBRUCH: %s liegt in web/. Die Vorfuehrung kommt nur in die Kopie." % index)
+    with io.open(index, encoding="utf-8", newline="") as f:
+        text = f.read()
+    if text.count(VORFUEHRUNG_ANKER) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (VORFUEHRUNG_ANKER, index))
+    for name, platzhalter in CLOUD_PLATZHALTER.items():
+        if text.count(platzhalter) != 1:
+            raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (platzhalter, index))
+        wert = VORFUEHRUNG_CLOUD[name]
+        assert re.fullmatch(CLOUD_MUSTER[name], wert), name
+        text = text.replace(platzhalter, platzhalter.replace("__CLOUD_%s__" % name.upper(), wert))
+    if text.count(CLOUD_SCHALTER_AUS) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (CLOUD_SCHALTER_AUS, index))
+    text = text.replace(CLOUD_SCHALTER_AUS, CLOUD_SCHALTER_AN)
+    text = text.replace(VORFUEHRUNG_ANKER,
+                        '<script src="%s"></script>\n%s' % (VORFUEHRUNG_DATEI, VORFUEHRUNG_ANKER))
+    shutil.copyfile(VORFUEHRUNG_QUELLE, os.path.join(www, VORFUEHRUNG_DATEI))
+    with io.open(index, "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+    print("  Vorfuehrung: %s eingehaengt, Firebase-Platzhalter (erfunden), CLOUD_AN an."
+          % VORFUEHRUNG_DATEI)
+
+
+def keine_vorfuehrung(www):
+    """Der Gegencheck fuer jeden Bau ausser --vorfuehrung: weder die Datei
+    noch ein Verweis darauf. Sonst oeffnete die App im Store Schirme von
+    selbst und haette erfundene Firebase-Werte."""
+    with io.open(os.path.join(www, "index.html"), encoding="utf-8", newline="") as f:
+        text = f.read()
+    if VORFUEHRUNG_DATEI in text or os.path.exists(os.path.join(www, VORFUEHRUNG_DATEI)) \
+            or VORFUEHRUNG_CLOUD["projekt"] in text:
+        raise SystemExit("ABBRUCH: Die Vorfuehrung (%s) steckt in %s - die gehoert nur in den "
+                         "Cloud-Pruefbau." % (VORFUEHRUNG_DATEI, www))
+
+
+def ios_zahnarzt_entfernen(www):
+    """Nimmt den versteckten Teil Beim Zahnarzt aus der KOPIE www/ (06.11.2026).
+
+    Auf iPhone und iPad ist er aus (ladeDaten() in web/index.html). Apple
+    verbietet auch schlafende Funktionen im Paket ("hidden, dormant, or
+    undocumented", Richtlinie 2.5.19), also kommt sein Inhalt gar nicht erst
+    mit: kein Feld "zahnarzt" in www/inhalt/*.json und keine Aufnahme, die nur
+    er braucht. Spricht der Lernpfad denselben Text, bleibt die Aufnahme
+    (ton_bauen.sammle ohne den Teil). Vor ton_verkleinern(), sonst wuerde
+    umsonst umgewandelt. Gibt (Inhaltsdateien, Aufnahmen) zurueck."""
+    import glob
+    import ton_bauen
+    if _liegt_in(www, WEB):
+        raise SystemExit("ABBRUCH: %s liegt in web/. Entfernt wird nur in der Kopie." % www)
+    inhalte = 0
+    for pfad in sorted(glob.glob(os.path.join(www, "inhalt", "*.json"))):
+        with io.open(pfad, encoding="utf-8") as f:
+            daten = json.load(f)
+        if isinstance(daten, dict) and daten.pop("zahnarzt", None) is not None:
+            with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
+                json.dump(daten, f, ensure_ascii=False, separators=(",", ":"))
+            inhalte += 1
+    aufnahmen = 0
+    index_pfad = os.path.join(www, "audio", "index.json")
+    if os.path.isfile(index_pfad):
+        with io.open(index_pfad, encoding="utf-8") as f:
+            index = json.load(f)
+        nur_er = ({p["key"] for p in ton_bauen.sammle()}
+                  - {p["key"] for p in ton_bauen.sammle(mit_zahnarzt=False)})
+        bleiben = []
+        for e in index.get("toene", []):
+            if e.get("key") not in nur_er:
+                bleiben.append(e)
+                continue
+            datei = os.path.join(www, "audio", e["datei"])
+            if os.path.isfile(datei):
+                os.remove(datei)
+            aufnahmen += 1
+        if aufnahmen:
+            index["toene"] = bleiben
+            with io.open(index_pfad, "w", encoding="utf-8", newline="\n") as f:
+                f.write(json.dumps(index, ensure_ascii=False, indent=1))
+    print("  Beim Zahnarzt nicht im iOS-Bau: %d Inhaltsdateien, %d Aufnahmen." % (inhalte, aufnahmen))
+    return inhalte, aufnahmen
+
+
+def ios_bauen(schalter):
+    """Der ganze iOS-Bau, siehe oben. Gibt den Pfad zu www/ zurueck."""
+    ci = "--ci" in schalter
+    huelle = ios_huelle(schalter)
+    if not os.path.isdir(os.path.join(huelle, "ios", "App")):
+        raise SystemExit("ABBRUCH: Keine iOS-Huelle in %s (ios/App fehlt). Andere: --huelle=PFAD."
+                         % huelle)
+    www = os.path.join(huelle, "www")
+    if _liegt_in(www, WEB):
+        raise SystemExit("ABBRUCH: %s liegt in web/." % www)
+    print("iOS-Bau%s nach %s\n" % (" (Cloud, ohne Geheimnisse)" if ci else "", huelle))
+    print("Tonspur prüfen ...")
+    pruefen()
+    print("\nInhalt kopieren ...")
+    kopieren(www)
+    index = os.path.join(www, "index.html")
+    dauer_platzhalter_pruefen(index)
+    if ci:
+        print("  Cloud-Bau: ohne Emir, ohne Firebase, ohne AdMob-IDs.")
+        if "--vorfuehrung" in schalter:
+            vorfuehrung_einsetzen(www)
+        else:
+            keine_vorfuehrung(www)
+    else:
+        keine_vorfuehrung(www)
+        emir_drueber(www, os.path.join(huelle, "audio_emir"))
+        # cloud_zugang.json liegt meist nur in der Android-Huelle (ungetrackt).
+        datei = os.path.join(huelle, "cloud_zugang.json")
+        if not os.path.isfile(datei) and os.path.isfile(CLOUD_DATEI):
+            datei = CLOUD_DATEI
+        cloud_einsetzen(index, datei)
+        ios_zugang_einsetzen(index, os.path.join(huelle, IOS_ZUGANG))
+    ios_zahnarzt_entfernen(www)
+    version = ios_version_lesen(huelle)
+    if version:
+        version_einsetzen(version, test=ci, pfad=index)
+    else:
+        print("  MARKETING_VERSION nicht lesbar - die App zeigt die Nummer aus der Quelle.")
+    if "--testwerbung" in schalter:
+        testwerbung_einschalten(index)
+    zwischen = os.path.join(huelle, ".ton_aac")
+    zwischen_ausblenden(zwischen)
+    ton_verkleinern(os.path.join(www, "audio"), zwischen=zwischen, codec="aac")
+    # Aufraeumen wie auf Android, als Letztes an www/ (nach dem Zahnarzt und
+    # der Umwandlung, die beide noch key und datei lesen). "stimme" bleibt,
+    # siehe TON_FELDER_IOS.
+    standbilder_als_webp(www)
+    ton_index_verschlanken(os.path.join(www, "audio"), TON_FELDER_IOS)
+    if ci:
+        print("\nFertig. cap sync macht der Cloud-Bau nach npm ci.")
+    else:
+        capacitor("ios", huelle)
+        print("\nFertig: %s" % www)
+        print("Gebaut wird in der Cloud: Push auf den Zweig ios (Laufbuch ios/ci_laufbuch.md).")
+    return www
+
+
 def main(argv=None):
     # Erst die Schalter, dann alles andere: Ein vertippter Schalter oder
     # --pflicht mit --nur-abgleich bricht ab, bevor irgendetwas kopiert oder
     # hochgezaehlt ist. 10.10.2026.
     schalter = schalter_lesen(sys.argv[1:] if argv is None else argv)
+    # iPhone und iPad: ein eigener Ablauf, ohne Gradle, versionCode und
+    # Dauer-Pruefwert (30.10.2026, siehe ios_bauen()).
+    if "--ios" in schalter:
+        return ios_bauen(schalter)
     anmeldung_pruefen(schalter)
     aab = "--aab" in schalter
     nur = "--nur-abgleich" in schalter
@@ -1080,8 +1712,23 @@ def main(argv=None):
     version_einsetzen(version, test=not aab)
     # Nach Emir: dessen Aufnahmen sind MP3 und werden mit umgewandelt.
     ton_verkleinern()
-    if "--testwerbung" in schalter:
-        testwerbung_einschalten()
+    # Testanzeigen (1.5, K11; Pruefbericht 1.3, S29): Jedes Paket, das nicht
+    # fuer Google Play ist, nimmt Googles Testanzeigen, auch ohne den
+    # Schalter - das Debug-Paket, --nur-abgleich (daraus baut gradlew
+    # assembleDebug die Test-App), --immer-packen und --pflicht ohne --aab.
+    # Bis dahin tat das nur --testwerbung. Ohne ihn hatte die Test-App die
+    # echten Anzeigenbloecke, obwohl der Kopf dieses Skripts den Aufruf
+    # "Debug-Paket zum Aufspielen aufs Handy" nennt, und ein Tipp darauf ist
+    # ungueltiger Traffic fuer das AdMob-Konto. Echte Anzeigen gibt es nur
+    # noch mit --aab ohne --testwerbung.
+    if "--testwerbung" in schalter or not aab:
+        testwerbung_einschalten(test_app=not aab)
+    if "--immer-packen" in schalter:
+        immer_packen_einschalten()
+    # Aufraeumen (1.5, Optimierung Punkt 5), als Letztes an www/: Bis hier
+    # lesen emir_drueber() und ton_verkleinern() noch die vollen Eintraege.
+    standbilder_als_webp()
+    ton_index_verschlanken()
     # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst
     # Nummern verbrannt, ohne dass ein Paket entstand.
     nummer = None

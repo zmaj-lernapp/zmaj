@@ -51,11 +51,11 @@ Seit dem 22.10.2026 (unten ab "Stufen"):
 """
 import base64
 import datetime
-import io
 import json
 import os
 import re
 
+import app_quelle
 import pytest
 from conftest import WURZEL, Seite
 
@@ -563,10 +563,10 @@ def test_aufbau_bleibt_im_rahmen(browser, basis, heute_stand):
 # test_sicherung_haerten.py (Date.now steht, Zeitgeber laufen). Eine echte
 # Lektion laeuft damit nicht: DURCHSPIELEN wartet mit Date.now - die Tests
 # mit Lektion bleiben bei der Uhr des Rechners und der Schwelle 30.
+# Aus der ganzen App (app_quelle): seit 1.5 kann APP_START in web/js stehen.
 
-with io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8") as _f:
-    APP_START = datetime.date.fromisoformat(
-        re.search(r"const APP_START = '(\d{4}-\d{2}-\d{2})';", _f.read()).group(1))
+APP_START = datetime.date.fromisoformat(re.search(
+    r"const APP_START = '(\d{4}-\d{2}-\d{2})';", app_quelle.lesen(os.path.join(WURZEL, "web"))).group(1))
 SPAETER = APP_START + datetime.timedelta(days=400)
 
 # Der Farbfilter je Stufe und die Farbe ihres stillen Scheins, so wie Chrome
@@ -578,7 +578,8 @@ WEITE = {"blau": 0.2, "lila": 0.2, "gold": 0.3}
 STUFEN = [(29, ""), (30, "blau"), (99, "blau"), (100, "lila"), (364, "lila"), (365, "gold")]
 
 FUNKEN = """(wo) => [...document.querySelectorAll(wo + ' .funke')].map(x => { const s = getComputedStyle(x);
-  return {text: x.textContent, pos: s.position, name: s.animationName, opacity: s.opacity, verz: s.animationDelay,
+  const i = x.querySelector('img.sym');
+  return {text: x.textContent, bild: i && i.getAttribute('src'), pos: s.position, name: s.animationName, opacity: s.opacity, verz: s.animationDelay,
           laufend: x.getAnimations().map(a => a.animationName), aria: x.parentElement.getAttribute('aria-hidden')}; })"""
 
 # Jede Funke angehalten bei 40 % ihres Takts (nach ihrer Verzoegerung): dort
@@ -715,7 +716,8 @@ def test_funken_nur_brennend_mit_animationen(browser, basis, fall):
     try:
         _serie_starten(seite, tage, zustand, animationen=(fall != "gold_schalter"))
         funken = seite.js(FUNKEN, ".seriezahl")
-        assert [x["text"] for x in funken] == ["✨"] * 3
+        # Seit 14.11.2026 das gemalte Bild statt ✨ (Offen-Liste 5)
+        assert [(x["text"], x["bild"]) for x in funken] == [("", "symbole/funken.webp")] * 3
         assert all(x["pos"] == "absolute" and x["aria"] == "true" for x in funken), funken
         if fall == "gold_an":
             assert [x["laufend"] for x in funken] == [["flammeFunke"]] * 3, funken
@@ -796,7 +798,8 @@ def test_lektionsende_und_startseite_zeigen_dieselbe_flamme(browser, basis, heut
         assert st["box"] == "flammenbox" and st["aria"] == "true" and st["text"] == "" and st["funken"] == 3
         assert st["bild"] == BILD["an"] and st["alt"] == "" and not st["stapel"]
         assert abs(st["hoehe"] - STATISTIK) <= 0.05 and abs(st["breite"] / st["hoehe"] - SEITEN) <= 0.005, st
-        assert st["gleich"] and st["zahl"].strip().endswith(" 30"), st
+        # Seit 14.11.2026 sind die Funken Bilder, im Text steht nur noch die Zahl
+        assert st["gleich"] and st["zahl"].strip() == "30", st
         stat_html = seite.js(STAT_HTML)
         seite.js("() => document.getElementById('lPfad').click()")
         f = seite.js(FLAMME)
@@ -826,7 +829,7 @@ def test_wiederholungsrunde_zeigt_dieselbe_flamme(browser, basis, tage, stufe):
         seite.js(TOPF_ENDE)
         st = seite.js(STAT_FLAMME)
         assert st["klasse"] == st["soll"] == "flamme stufe-" + stufe, st
-        assert st["laufend"] == [] and st["gleich"] and st["zahl"].strip().endswith(" " + str(tage + 1)), st
+        assert st["laufend"] == [] and st["gleich"] and st["zahl"].strip() == str(tage + 1), st
         assert st["bild"] == BILD["an"] and not st["stapel"]
         funken = seite.js(FUNKEN, "#lBody .stat")
         laeuft = [["flammeFunke"]] * 3 if stufe == "gold" else [[]] * 3

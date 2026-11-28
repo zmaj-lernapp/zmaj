@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 295 levels, 7,997 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
+  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 297 levels, about 4,700 words and phrases, grammar, 32 stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
 </p>
 
 <h1 align="center">Zmaj – learn Bosnian</h1>
@@ -19,9 +19,9 @@
 </p>
 
 **An offline app for learning Bosnian, and the open Bosnian course behind it.**
-295 levels from the first *Merhaba* to an employment contract, about 4,700 words
-and phrases and about 3,300 example sentences with Bosnian audio, 26 grammar
-lessons, 12 graded reading stories, an interface in eight languages. Progress
+298 levels from the first *Merhaba* to an employment contract, about 4,800 words
+and phrases and about 3,400 example sentences with Bosnian audio, 26 grammar
+lessons, 32 graded reading stories, an interface in eight languages. Progress
 lives on the phone; since v109 the Android app has an
 account (Google or email, after the first lesson) that backs it up. All of the
 content is free to reuse as a dataset.
@@ -72,12 +72,12 @@ Everything the app teaches is exported to [`data/`](data/) under
 
 | | Count | Formats |
 |---|---:|---|
-| Words, phrases and example sentences, 31 sections, 295 levels | 7,997 | JSON, CSV, Anki (8 decks) |
+| Words, phrases and example sentences, 27 sections in four stages (A1 to B2), 298 levels | 8,191 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
-| Graded stories with glossary and questions | 12 | JSON |
-| Reading glossary | 406 | JSON |
+| Graded stories with glossary and questions | 32 | JSON |
+| Reading glossary | 1,519 | JSON |
 | Grammar lessons with exercises | 26 | JSON |
-| Synthetic Bosnian audio (MP3) | 2,411 | `web/audio/` |
+| Synthetic Bosnian audio (MP3) | 2,431 | `web/audio/` |
 | Parallel corpus for machine translation | 8,309 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
 
 Every item is translated into **German, English, Turkish, Swedish, Dutch,
@@ -109,14 +109,17 @@ Sprachsynthese zu trainieren. Mehr in data/DATASHEET.md. -->
 - **A level test** after each level, with review questions from the levels it
   builds on, and a **review pot** for what you got wrong.
 - **Grammar**: cases, verb endings, tenses, word order: 26 lessons, 175 exercises.
-- **Reading**: 12 stories, every word tappable, read aloud from start to end.
+- **Reading**: 32 stories, every word tappable. 12 are read aloud from start
+  to end; the 20 B1 stories get their audio in a later step.
 - **Audio for everything**, shipped with the app, so it works on devices with
   no Bosnian voice and without internet.
 - **Eight interface languages**; switching keeps your progress.
 - **Private by design**: no analytics, no remote fonts or scripts. Progress is
   stored on the device and can be exported to a file. Since v109 the Android
-  app has a mandatory account that backs progress up at most once a day to
-  Firebase (Cloud Firestore in Frankfurt); the web demo has no account.
+  app has a mandatory account that backs progress up to Firebase (Cloud
+  Firestore in Frankfurt): on opening it only checks whether another device
+  has written, and it uploads at most twice a day (after learning and on
+  leaving), plus on signing in and out; the web demo has no account.
 - **Funding, openly**: the Google Play build shows ads via Google AdMob behind
   Google's consent dialog, and an optional subscription removes them. Every
   exercise is free; nothing in the course is paywalled. What is sent to whom
@@ -130,14 +133,14 @@ output needs, so the app, the dataset and the demo can never disagree:
 ```mermaid
 flowchart LR
   subgraph src["Content (edited by hand)"]
-    V["vokabeln.py<br/>295 levels · 7,997 entries · 300 cloze sentences"]
+    V["vokabeln.py<br/>298 levels · 8,191 entries · 300 cloze sentences"]
     G["grammatik.py<br/>26 lessons"]
-    S["geschichten.py<br/>12 stories"]
+    S["geschichten.py<br/>32 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]
   end
   L{{"inhalt.lade_daten(lang)"}}
   V & G & S & U --> L
-  A[("web/audio/<br/>2,411 MP3")]
+  A[("web/audio/<br/>2,431 MP3")]
   L --> APP["web/inhalt/*.json<br/>Android app"]
   L --> DS["data/<br/>JSON · CSV · Anki TSV"]
   L --> DEMO["_site/<br/>web demo, no ads"]
@@ -238,9 +241,9 @@ Please cite as described in [CITATION.cff](CITATION.cff), DOI
 <details>
 <summary><b>Deutsch</b></summary>
 
-**Zmaj** ist eine Offline-App zum Bosnischlernen: 295 Level, rund 4.700 Wörter
-und Wendungen und rund 3.300 Beispielsätze mit bosnischer Tonspur,
-26 Grammatikeinheiten, 12 Lesegeschichten, Oberfläche in
+**Zmaj** ist eine Offline-App zum Bosnischlernen: 298 Level, rund 4.800 Wörter
+und Wendungen und rund 3.400 Beispielsätze mit bosnischer Tonspur,
+26 Grammatikeinheiten, 32 Lesegeschichten, Oberfläche in
 acht Sprachen. Der Lernstand liegt auf dem Gerät; die Android-App sichert ihn
 seit v109 in einem Konto, die Browser-Demo hat keins.
 Der gesamte Lerninhalt steht unter CC BY-SA 4.0 als Datensatz in

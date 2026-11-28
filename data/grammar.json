@@ -81,12 +81,12 @@
      {
       "frage": "„___ ideš?“ (Wohin gehst du?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Bewegung in eine Richtung: Kuda."
+      "tipp": "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje."
      },
      {
       "frage": "Ja/Nein-Frage: „Sprichst du Deutsch?“",
@@ -334,7 +334,7 @@
        "su"
       ],
       "richtig": "ste",
-      "tipp": "Höflich = vi → ste."
+      "tipp": "Höflich = Vi → ste."
      },
      {
       "frage": "Welcher Satz ist richtig?",
@@ -596,7 +596,7 @@
        ]
       ]
      },
-     "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.",
+     "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.",
      "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“."
     ],
     "uebungen": [
@@ -792,8 +792,8 @@
        ],
        [
         "Genitiv",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Akkusativ",
@@ -807,8 +807,8 @@
        ],
        [
         "Instrumental",
-        "s/sa, pod, iznad, ispod, između, pred, za (hinter)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, nad (über), pred, za (hinter), među",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -1010,7 +1010,7 @@
         "männlich",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (nach j, č, š, ž: + em: prijateljem)"
+        "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "weiblich",
@@ -1027,7 +1027,7 @@
       ]
      },
      "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).",
-     "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!)."
+     "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!)."
     ],
     "uebungen": [
      {
@@ -3240,12 +3240,12 @@
      {
       "frage": "“___ ideš?” (Where are you going?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Movement in a direction: Kuda."
+      "tipp": "Movement in a direction: Kuda. In speech often also Gdje."
      },
      {
       "frage": "Yes/no question: “Do you speak German?”",
@@ -3493,7 +3493,7 @@
        "su"
       ],
       "richtig": "ste",
-      "tipp": "Polite form = vi → ste."
+      "tipp": "Polite form = Vi → ste."
      },
      {
       "frage": "Which sentence is correct?",
@@ -3755,7 +3755,7 @@
        ]
       ]
      },
-     "Possessives and adjectives change along with the noun: “Volim svoju majku”, “Znam tvog brata”. “Svoj” means “my own” and is used when the owner is the subject of the sentence.",
+     "Possessives and adjectives change along with the noun: “Volim svoju majku”, “Znam tvog brata”. “Svoj” means “one's own” (my, your, his, her …) and is used when the owner is the subject of the sentence.",
      "Short pronouns in the accusative: me (me), te (you), ga (him), je (her), nas (us), vas (you, plural), ih (them). They take second position in the sentence: “Vidim te”, “Volim ga”."
     ],
     "uebungen": [
@@ -3951,8 +3951,8 @@
        ],
        [
         "Genitive",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Accusative",
@@ -3966,8 +3966,8 @@
        ],
        [
         "Instrumental",
-        "sa, pod, iznad, ispod, između, pred, za (behind)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, nad (above), pred, za (behind), među",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -4169,7 +4169,7 @@
         "masculine",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (after j, č, š, ž: + em: prijateljem)"
+        "+ om (after c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "feminine",
@@ -4186,7 +4186,7 @@
       ]
      },
      "Pronouns: sa mnom (with me), sa tobom (with you), s njim (with him), s njom (with her), sa nama (with us), sa vama (with you, plural).",
-     "Vocative = the form for addressing someone. Masculine usually adds -e (brate!, gospodine!, sine!), after j, č, š, ž it adds -u (prijatelju!). Feminine words in -a become -o (sestro!, nano!, gospođo!), pet names in -ica become -ice (Amrice!). Female first names in -a usually stay the same (Amina!), male first names take -e (Ajdine!, Emire!)."
+     "Vocative = the form for addressing someone. Masculine usually adds -e (brate!, gospodine!, sine!), after ć, č, j, lj, nj, š, ž, đ, dž it adds -u (mladiću!, prijatelju!). Feminine words in -a become -o (sestro!, nano!, gospođo!), pet names in -ica become -ice (Amrice!). Female first names in -a usually stay the same (Amina!), male first names take -e (Ajdine!, Emire!)."
     ],
     "uebungen": [
      {
@@ -4388,7 +4388,7 @@
        ],
        [
         "I",
-        "ću + Infinitiv",
+        "ću + infinitive",
         "Ja ću raditi. / Radit ću."
        ],
        [
@@ -6399,12 +6399,12 @@
      {
       "frage": "“___ ideš?” (Nereye gidiyorsun?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Bir yöne hareket: Kuda."
+      "tipp": "Bir yöne hareket: Kuda. Konuşmada çoğu zaman Gdje de denir."
      },
      {
       "frage": "Evet/hayır sorusu: “Almanca konuşuyor musun?”",
@@ -6652,7 +6652,7 @@
        "su"
       ],
       "richtig": "ste",
-      "tipp": "Kibar biçim = vi → ste."
+      "tipp": "Kibar biçim = Vi → ste."
      },
      {
       "frage": "Hangi cümle doğru?",
@@ -6914,7 +6914,7 @@
        ]
       ]
      },
-     "İyelik kelimeleri ve sıfatlar da birlikte değişir: “Volim svoju majku”, “Znam tvog brata”. “Svoj” “kendi” demektir ve sahibi cümlenin öznesi olduğunda kullanılır.",
+     "İyelik kelimeleri ve sıfatlar da birlikte değişir: “Volim svoju majku”, “Znam tvog brata”. “Svoj” “kendi” demektir (benim, senin, onun …) ve sahibi cümlenin öznesi olduğunda kullanılır.",
      "Akuzatifte kısa zamirler: me (beni), te (seni), ga (onu, erkek), je (onu, kadın), nas (bizi), vas (sizi), ih (onları). Cümlede ikinci sırada dururlar: “Vidim te”, “Volim ga”."
     ],
     "uebungen": [
@@ -7110,8 +7110,8 @@
        ],
        [
         "Genitif",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Akuzatif",
@@ -7125,8 +7125,8 @@
        ],
        [
         "İnstrumental",
-        "sa, pod, iznad, ispod, između, pred, za (arkasında)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, nad (üstünde), pred, za (arkasında), među",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -7328,7 +7328,7 @@
         "eril",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (j, č, š, ž harflerinden sonra: + em: prijateljem)"
+        "+ om (c, č, ć, dž, đ, j, lj, nj, š, ž harflerinden sonra: + em: prijateljem)"
        ],
        [
         "dişil",
@@ -7345,7 +7345,7 @@
       ]
      },
      "Zamirler: sa mnom (benimle), sa tobom (seninle), s njim (onunla, erkek), s njom (onunla, kadın), sa nama (bizimle), sa vama (sizinle).",
-     "Vokatif = hitap biçimi. Eril kelimeler genellikle + e alır (brate!, gospodine!, sine!), j, č, š, ž harflerinden sonra + u gelir (prijatelju!). -a ile biten dişil kelimeler -o olur (sestro!, nano!, gospođo!), -ica ile biten sevgi adları -ice olur (Amrice!). -a ile biten kadın adları çoğunlukla değişmez (Amina!), erkek adları -e alır (Ajdine!, Emire!)."
+     "Vokatif = hitap biçimi. Eril kelimeler genellikle + e alır (brate!, gospodine!, sine!), ć, č, j, lj, nj, š, ž, đ, dž harflerinden sonra + u gelir (mladiću!, prijatelju!). -a ile biten dişil kelimeler -o olur (sestro!, nano!, gospođo!), -ica ile biten sevgi adları -ice olur (Amrice!). -a ile biten kadın adları çoğunlukla değişmez (Amina!), erkek adları -e alır (Ajdine!, Emire!)."
     ],
     "uebungen": [
      {
@@ -7547,7 +7547,7 @@
        ],
        [
         "ben",
-        "ću + Infinitiv",
+        "ću + mastar",
         "Ja ću raditi. / Radit ću."
        ],
        [
@@ -9558,12 +9558,12 @@
      {
       "frage": "”___ ideš?” (Vart går du?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Rörelse åt ett håll: Kuda."
+      "tipp": "Rörelse åt ett håll: Kuda. I talspråk ofta även Gdje."
      },
      {
       "frage": "Ja/nej-fråga: ”Talar du tyska?”",
@@ -9811,7 +9811,7 @@
        "su"
       ],
       "richtig": "ste",
-      "tipp": "Artig form = vi → ste."
+      "tipp": "Artig form = Vi → ste."
      },
      {
       "frage": "Vilken mening är riktig?",
@@ -10073,7 +10073,7 @@
        ]
       ]
      },
-     "Possessiva ord och adjektiv ändras med: ”Volim svoju majku”, ”Znam tvog brata”. ”Svoj” betyder ”sin egen” och används när ägaren är meningens subjekt.",
+     "Possessiva ord och adjektiv ändras med: ”Volim svoju majku”, ”Znam tvog brata”. ”Svoj” betyder ”egen” (min, din, sin …) och används när ägaren är meningens subjekt.",
      "Korta pronomen i ackusativ: me (mig), te (dig), ga (honom), je (henne), nas (oss), vas (er), ih (dem). De står på andra plats i meningen: ”Vidim te”, ”Volim ga”."
     ],
     "uebungen": [
@@ -10269,8 +10269,8 @@
        ],
        [
         "Genitiv",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Ackusativ",
@@ -10284,8 +10284,8 @@
        ],
        [
         "Instrumentalis",
-        "sa, pod, iznad, ispod, između, pred, za (bakom)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, nad (över), pred, za (bakom), među",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -10487,7 +10487,7 @@
         "maskulinum",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (efter j, č, š, ž: + em: prijateljem)"
+        "+ om (efter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "femininum",
@@ -10504,7 +10504,7 @@
       ]
      },
      "Pronomen: sa mnom (med mig), sa tobom (med dig), s njim (med honom), s njom (med henne), sa nama (med oss), sa vama (med er).",
-     "Vokativ = tilltalsformen. Maskulina ord får oftast + e (brate!, gospodine!, sine!), efter j, č, š, ž blir det + u (prijatelju!). Feminina ord på -a blir -o (sestro!, nano!, gospođo!), smeknamn på -ica blir -ice (Amrice!). Kvinnonamn på -a är oftast oförändrade (Amina!), mansnamn får -e (Ajdine!, Emire!)."
+     "Vokativ = tilltalsformen. Maskulina ord får oftast + e (brate!, gospodine!, sine!), efter ć, č, j, lj, nj, š, ž, đ, dž blir det + u (mladiću!, prijatelju!). Feminina ord på -a blir -o (sestro!, nano!, gospođo!), smeknamn på -ica blir -ice (Amrice!). Kvinnonamn på -a är oftast oförändrade (Amina!), mansnamn får -e (Ajdine!, Emire!)."
     ],
     "uebungen": [
      {
@@ -10706,7 +10706,7 @@
        ],
        [
         "jag",
-        "ću + Infinitiv",
+        "ću + infinitiv",
         "Ja ću raditi. / Radit ću."
        ],
        [
@@ -12717,12 +12717,12 @@
      {
       "frage": "‘___ ideš?’ (Waar ga je heen?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Beweging in een richting: Kuda."
+      "tipp": "Beweging in een richting: Kuda. In de spreektaal vaak ook Gdje."
      },
      {
       "frage": "Ja/nee-vraag: ‘Spreek je Duits?’",
@@ -12970,7 +12970,7 @@
        "su"
       ],
       "richtig": "ste",
-      "tipp": "Beleefde vorm = vi → ste."
+      "tipp": "Beleefde vorm = Vi → ste."
      },
      {
       "frage": "Welke zin is goed?",
@@ -13232,7 +13232,7 @@
        ]
       ]
      },
-     "Bezittelijke woorden en bijvoeglijke naamwoorden veranderen mee: ‘Volim svoju majku’, ‘Znam tvog brata’. ‘Svoj’ betekent ‘zijn eigen’ en gebruik je als de bezitter het onderwerp van de zin is.",
+     "Bezittelijke woorden en bijvoeglijke naamwoorden veranderen mee: ‘Volim svoju majku’, ‘Znam tvog brata’. ‘Svoj’ betekent ‘eigen’ (mijn, jouw, zijn, haar …) en gebruik je als de bezitter het onderwerp van de zin is.",
      "Korte voornaamwoorden in de accusatief: me (mij), te (jou), ga (hem), je (haar), nas (ons), vas (jullie), ih (hen). Ze staan op de tweede plaats in de zin: ‘Vidim te’, ‘Volim ga’."
     ],
     "uebungen": [
@@ -13428,8 +13428,8 @@
        ],
        [
         "Genitief",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Accusatief",
@@ -13443,8 +13443,8 @@
        ],
        [
         "Instrumentalis",
-        "sa, pod, iznad, ispod, između, pred, za (achter)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, nad (boven), pred, za (achter), među",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -13646,7 +13646,7 @@
         "mannelijk",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (na j, č, š, ž: + em: prijateljem)"
+        "+ om (na c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "vrouwelijk",
@@ -13663,7 +13663,7 @@
       ]
      },
      "Voornaamwoorden: sa mnom (met mij), sa tobom (met jou), s njim (met hem), s njom (met haar), sa nama (met ons), sa vama (met jullie).",
-     "Vocatief = de aanspreekvorm. Mannelijke woorden krijgen meestal + e (brate!, gospodine!, sine!), na j, č, š, ž wordt het + u (prijatelju!). Vrouwelijke woorden op -a worden -o (sestro!, nano!, gospođo!), koosnamen op -ica worden -ice (Amrice!). Vrouwennamen op -a blijven meestal gelijk (Amina!), mannennamen krijgen -e (Ajdine!, Emire!)."
+     "Vocatief = de aanspreekvorm. Mannelijke woorden krijgen meestal + e (brate!, gospodine!, sine!), na ć, č, j, lj, nj, š, ž, đ, dž wordt het + u (mladiću!, prijatelju!). Vrouwelijke woorden op -a worden -o (sestro!, nano!, gospođo!), koosnamen op -ica worden -ice (Amrice!). Vrouwennamen op -a blijven meestal gelijk (Amina!), mannennamen krijgen -e (Ajdine!, Emire!)."
     ],
     "uebungen": [
      {
@@ -13865,7 +13865,7 @@
        ],
        [
         "ik",
-        "ću + Infinitiv",
+        "ću + infinitief",
         "Ja ću raditi. / Radit ću."
        ],
        [
@@ -15876,12 +15876,12 @@
      {
       "frage": "«___ ideš?» (Hvor skal du?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Bevegelse i en retning: Kuda."
+      "tipp": "Bevegelse i en retning: Kuda. I talespråket ofte også Gdje."
      },
      {
       "frage": "Ja/nei-spørsmål: «Snakker du tysk?»",
@@ -16129,7 +16129,7 @@
        "su"
       ],
       "richtig": "ste",
-      "tipp": "Høflig form = vi → ste."
+      "tipp": "Høflig form = Vi → ste."
      },
      {
       "frage": "Hvilken setning er riktig?",
@@ -16391,7 +16391,7 @@
        ]
       ]
      },
-     "Eiendomsord og adjektiv endrer seg med: «Volim svoju majku», «Znam tvog brata». «Svoj» betyr «sin egen» og brukes når eieren er setningens subjekt.",
+     "Eiendomsord og adjektiv endrer seg med: «Volim svoju majku», «Znam tvog brata». «Svoj» betyr «egen» (min, din, sin …) og brukes når eieren er setningens subjekt.",
      "Korte pronomen i akkusativ: me (meg), te (deg), ga (ham), je (henne), nas (oss), vas (dere), ih (dem). De står på andre plass i setningen: «Vidim te», «Volim ga»."
     ],
     "uebungen": [
@@ -16587,8 +16587,8 @@
        ],
        [
         "Genitiv",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Akkusativ",
@@ -16602,8 +16602,8 @@
        ],
        [
         "Instrumentalis",
-        "sa, pod, iznad, ispod, između, pred, za (bak)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, nad (over), pred, za (bak), među",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -16805,7 +16805,7 @@
         "hankjønn",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (etter j, č, š, ž: + em: prijateljem)"
+        "+ om (etter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "hunkjønn",
@@ -16822,7 +16822,7 @@
       ]
      },
      "Pronomen: sa mnom (med meg), sa tobom (med deg), s njim (med ham), s njom (med henne), sa nama (med oss), sa vama (med dere).",
-     "Vokativ = tiltaleformen. Hankjønnsord får som regel + e (brate!, gospodine!, sine!), etter j, č, š, ž blir det + u (prijatelju!). Hunkjønnsord på -a blir -o (sestro!, nano!, gospođo!), kjælenavn på -ica blir -ice (Amrice!). Kvinnenavn på -a er som regel uendret (Amina!), mannsnavn får -e (Ajdine!, Emire!)."
+     "Vokativ = tiltaleformen. Hankjønnsord får som regel + e (brate!, gospodine!, sine!), etter ć, č, j, lj, nj, š, ž, đ, dž blir det + u (mladiću!, prijatelju!). Hunkjønnsord på -a blir -o (sestro!, nano!, gospođo!), kjælenavn på -ica blir -ice (Amrice!). Kvinnenavn på -a er som regel uendret (Amina!), mannsnavn får -e (Ajdine!, Emire!)."
     ],
     "uebungen": [
      {
@@ -17024,7 +17024,7 @@
        ],
        [
         "jeg",
-        "ću + Infinitiv",
+        "ću + infinitiv",
         "Ja ću raditi. / Radit ću."
        ],
        [
@@ -19035,12 +19035,12 @@
      {
       "frage": "»___ ideš?« (Hvor skal du hen?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Bevægelse i en retning: Kuda."
+      "tipp": "Bevægelse i en retning: Kuda. I talesprog ofte også Gdje."
      },
      {
       "frage": "Ja/nej-spørgsmål: »Taler du tysk?«",
@@ -19288,7 +19288,7 @@
        "su"
       ],
       "richtig": "ste",
-      "tipp": "Høflig form = vi → ste."
+      "tipp": "Høflig form = Vi → ste."
      },
      {
       "frage": "Hvilken sætning er rigtig?",
@@ -19550,7 +19550,7 @@
        ]
       ]
      },
-     "Ejestedord og tillægsord ændrer sig med: »Volim svoju majku«, »Znam tvog brata«. »Svoj« betyder »sin egen« og bruges, når ejeren er sætningens subjekt.",
+     "Ejestedord og tillægsord ændrer sig med: »Volim svoju majku«, »Znam tvog brata«. »Svoj« betyder »egen« (min, din, sin …) og bruges, når ejeren er sætningens subjekt.",
      "Korte stedord i akkusativ: me (mig), te (dig), ga (ham), je (hende), nas (os), vas (jer), ih (dem). De står på andenpladsen i sætningen: »Vidim te«, »Volim ga«."
     ],
     "uebungen": [
@@ -19746,8 +19746,8 @@
        ],
        [
         "Genitiv",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Akkusativ",
@@ -19761,8 +19761,8 @@
        ],
        [
         "Instrumentalis",
-        "sa, pod, iznad, ispod, između, pred, za (bag)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, nad (over), pred, za (bag), među",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -19964,7 +19964,7 @@
         "hankøn",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (efter j, č, š, ž: + em: prijateljem)"
+        "+ om (efter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "hunkøn",
@@ -19981,7 +19981,7 @@
       ]
      },
      "Stedord: sa mnom (med mig), sa tobom (med dig), s njim (med ham), s njom (med hende), sa nama (med os), sa vama (med jer).",
-     "Vokativ = tiltaleformen. Hankønsord får som regel + e (brate!, gospodine!, sine!), efter j, č, š, ž bliver det + u (prijatelju!). Hunkønsord på -a bliver -o (sestro!, nano!, gospođo!), kælenavne på -ica bliver -ice (Amrice!). Kvindenavne på -a er som regel uændrede (Amina!), mandenavne får -e (Ajdine!, Emire!)."
+     "Vokativ = tiltaleformen. Hankønsord får som regel + e (brate!, gospodine!, sine!), efter ć, č, j, lj, nj, š, ž, đ, dž bliver det + u (mladiću!, prijatelju!). Hunkønsord på -a bliver -o (sestro!, nano!, gospođo!), kælenavne på -ica bliver -ice (Amrice!). Kvindenavne på -a er som regel uændrede (Amina!), mandenavne får -e (Ajdine!, Emire!)."
     ],
     "uebungen": [
      {
@@ -20183,7 +20183,7 @@
        ],
        [
         "jeg",
-        "ću + Infinitiv",
+        "ću + infinitiv",
         "Ja ću raditi. / Radit ću."
        ],
        [
@@ -22153,7 +22153,7 @@
         "Šta radiš? – Qu'est-ce que tu fais ?"
        ],
        [
-        "Où ?",
+        "Où (sans mouvement) ?",
         "Gdje?",
         "Gdje si? – Où es-tu ?"
        ],
@@ -22194,12 +22194,12 @@
      {
       "frage": "« ___ ideš? » (Vers où vas-tu ?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Mouvement dans une direction : Kuda."
+      "tipp": "Mouvement dans une direction : Kuda. À l'oral, souvent aussi Gdje."
      },
      {
       "frage": "Question par oui ou non : « Parles-tu allemand ? »",
@@ -22447,7 +22447,7 @@
        "su"
       ],
       "richtig": "ste",
-      "tipp": "Vouvoiement = vi → ste."
+      "tipp": "Vouvoiement = Vi → ste."
      },
      {
       "frage": "Quelle phrase est correcte ?",
@@ -22709,7 +22709,7 @@
        ]
       ]
      },
-     "Les possessifs et les adjectifs changent aussi : « Volim svoju majku », « Znam tvog brata ». « Svoj » veut dire « le sien propre » et s'emploie quand le possesseur est le sujet.",
+     "Les possessifs et les adjectifs changent aussi : « Volim svoju majku », « Znam tvog brata ». « Svoj » veut dire « propre » (mon, ton, son, leur …) et s'emploie quand le possesseur est le sujet.",
      "Pronoms courts à l'accusatif : me (me), te (te), ga (le), je (la), nas (nous), vas (vous), ih (les). Ils occupent la deuxième place dans la phrase : « Vidim te », « Volim ga »."
     ],
     "uebungen": [
@@ -22905,8 +22905,8 @@
        ],
        [
         "Génitif",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Accusatif",
@@ -22920,8 +22920,8 @@
        ],
        [
         "Instrumental",
-        "sa, pod, iznad, ispod, između, pred, za (derrière)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, nad (au-dessus de), pred, za (derrière), među",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -23123,7 +23123,7 @@
         "masculin",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (après j, č, š, ž : + em : prijateljem)"
+        "+ om (après c, č, ć, dž, đ, j, lj, nj, š, ž : + em : prijateljem)"
        ],
        [
         "féminin",
@@ -23140,7 +23140,7 @@
       ]
      },
      "Pronoms : sa mnom (avec moi), sa tobom (avec toi), s njim (avec lui), s njom (avec elle), sa nama (avec nous), sa vama (avec vous).",
-     "Vocatif = la forme d'adresse. Au masculin le plus souvent + e (brate!, gospodine!, sine!), après j, č, š, ž + u (prijatelju!). Au féminin en -a → -o (sestro!, nano!, gospođo!), les diminutifs en -ica → -ice (Amrice!). Les prénoms féminins en -a restent le plus souvent identiques (Amina!), les prénoms masculins prennent -e (Ajdine!, Emire!)."
+     "Vocatif = la forme d'adresse. Au masculin le plus souvent + e (brate!, gospodine!, sine!), après ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Au féminin en -a → -o (sestro!, nano!, gospođo!), les diminutifs en -ica → -ice (Amrice!). Les prénoms féminins en -a restent le plus souvent identiques (Amina!), les prénoms masculins prennent -e (Ajdine!, Emire!)."
     ],
     "uebungen": [
      {
@@ -23342,7 +23342,7 @@
        ],
        [
         "je",
-        "ću + Infinitiv",
+        "ću + infinitif",
         "Ja ću raditi. / Radit ću."
        ],
        [

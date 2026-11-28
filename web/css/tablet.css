@@ -1,0 +1,104 @@
+  /* ---------- Tablets (30.10.2026) ----------
+     Alles hier gilt nur mit html.gross, also ab 600 Punkten kleinstem
+     Seitenmass - das Skript oben im Kopf setzt die Klasse, den Massstab
+     --gross und die Masse --hoehe, --breite, --spalte. Am Handy greift
+     keine dieser Regeln.
+     zoom vergroessert jede px-Angabe. Auch vh und vw rechnet Chrome mit:
+     100vh waeren 1,3 Bildschirme, die Seite liesse sich immer ein Stueck
+     scrollen. Wo das stoert, steht deshalb --hoehe bzw. --breite (die
+     Bildschirmmasse in Punkten der vergroesserten Seite). Die fallenden
+     Blaetter und das Konfetti (110vh, 104vh) fallen nur weiter aus dem
+     Bild - die bleiben. */
+  html.gross{zoom:var(--gross)}
+  html.gross body{min-height:var(--hoehe)}
+  html.gross .wrap{max-width:var(--spalte)}
+  html.gross .einwilligungbox, html.gross .nachfragebox{max-height:calc(var(--hoehe) * .92)}
+  html.gross .livesbar .info{max-width:calc(var(--breite) - 40px)}
+  /* In Lektion, Test und Einstufung ist die Update-Leiste aus (nurHerz),
+     ihr Platz unter der Seite braucht es dann auch nicht - sonst liesse
+     sich die Lektion, die genau den Bildschirm fuellt, ein Stueck schieben. */
+  html.gross body.updDa.nurHerz{padding-bottom:48px}
+
+  /* Lektion, Wiederholen-Runde, Level-Test und Einstufung: Der Kasten
+     fuellt den Bildschirm. Vorher stand er oben, und darunter war die
+     halbe Flaeche leer (10 Zoll hochkant: rund 700 von 1280 Punkten).
+     Hoehe: Bildschirm minus 16 + 48 Rand der Seite und 56 fuer
+     "Lektion abbrechen" darunter. Passt mehr hinein, waechst er mit, wie
+     am Handy.
+     Quer (ohne .hoch, unter 840 Punkten Hoehe) bleibt der Inhalt so
+     aufgebaut wie am Handy, mit dem Drachen von 100 Punkten wie auf dem
+     S21 (siehe max-height:820px oben). Das Antwortfeld kommt nach der
+     Antwort in den Platz darunter.
+     Hochkant (.hoch) verteilt sich der Inhalt:
+       - Der Drache waechst mit der Hoehe (--drache, 136 bis 190 Punkte).
+       - Drache und Aufgabe stehen zusammen mittig im freien Platz
+         (margin-top:auto am Drachen), die Antworten unten (margin-top:auto
+         an .options, .mic bzw. an der Zeile mit Pruefen/Weiter).
+         Damit der Drache dabei mitgehen kann, ist das Aufgabenfeld
+         (#lBody ...) dort display:contents: seine Kinder stehen fuer das
+         Layout direkt im Kasten. Fuer das Skript aendert das nichts, es
+         sucht und horcht weiter im Aufgabenfeld (nur der Tipp in den
+         freien Platz, siehe weiterBeiTipp).
+       - Unter den Antworten bleibt Platz fuer Rueckmeldung, Loesung und
+         Weiter (--antwort, 170 Punkte, eine falsche Antwort mit zwei
+         Zeilen passt hinein). Kommt das .antwortfeld nach der Antwort,
+         nimmt es genau diesen Platz ein - die Knoepfe, die man gerade
+         getippt hat, bleiben stehen, statt nach oben zu springen. Pruefen
+         sitzt unten in dieser Hoehe, also da, wo danach Weiter erscheint.
+       - Der Ergebnisschirm steht als Ganzes in der Mitte.
+     Quer fehlt fuer diese Verteilung die Hoehe: der Platz fuer das
+     Antwortfeld haette Pruefen beim Satzbau unter den Bildrand geschoben.
+     Ausgeschrieben fuer alle drei Orte, ohne :is() - siehe .zmaj.mini oben.
+     :has() kennen Chrome ab 105 und Safari ab 15.4; ohne es fehlt nur die
+     Reserve fuer die Rueckmeldung, die Antworten ruecken dann beim
+     Antworten ein Stueck hoch. */
+  html.gross #lesson .card, html.gross #test .card, html.gross #einstufungView .card{min-height:calc(var(--hoehe) - 120px)}
+  /* iPad (06.11.2026): Die 120 Punkte oben kennen die Raender von iOS nicht
+     (html[data-plattform="ios"] body), die Lektion liesse sich dort sonst um
+     Statusleiste und Home-Leiste schieben. */
+  html[data-plattform="ios"].gross #lesson .card, html[data-plattform="ios"].gross #test .card,
+  html[data-plattform="ios"].gross #einstufungView .card{
+    min-height:calc(var(--hoehe) - 120px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))}
+  html.gross #lesson .zmaj.mini, html.gross #test .zmaj.mini, html.gross #einstufungView .zmaj.mini{width:100px; height:100px}
+  html.hoch{--drache:clamp(100px, calc(var(--hoehe) * .4 - 200px), 190px); --antwort:170px}
+  html.hoch #lesson .card, html.hoch #test .card, html.hoch #einstufungView .card{
+    display:flex; flex-direction:column; align-items:center}
+  html.hoch #lBody, html.hoch #tBody, html.hoch #eBody{display:contents}
+  /* Bloecke ueber die ganze Breite wie vorher, einzelne Knoepfe und das
+     Eingabefeld mittig (vorher per text-align, als Flex-Kind per align-self) */
+  html.hoch #lesson .card > *, html.hoch #test .card > *, html.hoch #einstufungView .card > *,
+  html.hoch #lBody > *, html.hoch #tBody > *, html.hoch #eBody > *{align-self:stretch}
+  html.hoch #lBody > button, html.hoch #tBody > button, html.hoch #eBody > button,
+  html.hoch #lBody > input, html.hoch #tBody > input, html.hoch #eBody > input{align-self:center}
+  html.hoch #lesson .zmaj.mini, html.hoch #test .zmaj.mini, html.hoch #einstufungView .zmaj.mini{
+    width:var(--drache); height:var(--drache); flex:none; align-self:center; margin-top:auto}
+  html.hoch #lBody > .ergebnis-titel, html.hoch #tBody > .ergebnis-titel, html.hoch #eBody > .ergebnis-titel{margin-top:auto}
+  html.hoch #lBody > .options:not(.kachelbank), html.hoch #tBody > .options:not(.kachelbank), html.hoch #eBody > .options:not(.kachelbank),
+  html.hoch #lBody > .mic, html.hoch #tBody > .mic, html.hoch #eBody > .mic{margin-top:auto}
+  html.hoch #lBody > .row, html.hoch #tBody > .row, html.hoch #eBody > .row{
+    margin-top:auto; min-height:var(--antwort); align-items:flex-end; align-content:flex-end}
+  html.hoch #lBody > .antwortfeld, html.hoch #tBody > .antwortfeld, html.hoch #eBody > .antwortfeld{
+    min-height:var(--antwort); display:flex; flex-direction:column; justify-content:flex-end}
+  /* Schreiben, Luecke, Satzbau: das Antwortfeld tritt an die Stelle der
+     Zeile mit Pruefen und uebernimmt deren automatischen Abstand */
+  html.hoch #lBody > .row[hidden] ~ .antwortfeld, html.hoch #tBody > .row[hidden] ~ .antwortfeld,
+  html.hoch #eBody > .row[hidden] ~ .antwortfeld{margin-top:auto}
+  /* Auswahl, Hoeren, Grammatik, Sprechen: der Platz fuer das Antwortfeld,
+     solange es noch nicht da ist - samt dessen 12 Punkten Abstand oben */
+  html.hoch #lBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after,
+  html.hoch #tBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after,
+  html.hoch #eBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after{
+    content:""; flex:none; height:calc(var(--antwort) + 12px)}
+  /* "Ueberspringen" verschwindet nach der Antwort, behaelt aber seinen
+     Platz - sonst ruckten die Antworten um seine Hoehe nach unten. Der
+     leere Platz rueckt ans Ende (order): beim Satzbau steht er unter
+     Pruefen, und Weiter soll genau dort erscheinen, wo Pruefen war. */
+  html.hoch #lBody:has(.weiterbox) > .skip, html.hoch #tBody:has(.weiterbox) > .skip{display:inline-block; visibility:hidden; order:1}
+  /* Ergebnis, "Keine Leben mehr": alles zusammen in der Mitte, die
+     Knopfreihen wie am Handy direkt darunter */
+  html.hoch #lBody > .ergebnis-titel ~ :last-child, html.hoch #tBody > .ergebnis-titel ~ :last-child,
+  html.hoch #eBody > .ergebnis-titel ~ :last-child{margin-bottom:auto}
+  html.hoch #lBody > .ergebnis-titel ~ .row, html.hoch #tBody > .ergebnis-titel ~ .row,
+  html.hoch #eBody > .ergebnis-titel ~ .row{margin-top:20px; min-height:0; align-items:stretch; align-content:normal}
+  html.hoch #lBody > .ergebnis-titel ~ .row.schmal, html.hoch #tBody > .ergebnis-titel ~ .row.schmal,
+  html.hoch #eBody > .ergebnis-titel ~ .row.schmal{margin-top:14px}

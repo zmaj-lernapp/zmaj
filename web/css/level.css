@@ -1,0 +1,337 @@
+  /* ---------- Level ---------- */
+  .level{background:var(--surface); border:2px solid var(--line); border-radius:var(--radius); padding:14px 18px; margin:4px 0 12px}
+  .level h2{font-family:var(--font-ui); font-weight:800; font-size:20px; margin:0; color:var(--primary)}
+  .level h2 small{font-weight:700; font-size:12px; color:var(--muted); margin-left:8px}
+  .level .tipp{font-size:13px; color:var(--muted); margin-top:4px}
+  .level .basis{font-size:12px; color:var(--muted); margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; align-items:center; font-weight:700}
+  .level .basis span{border:1.5px solid var(--line); border-radius:99px; padding:1px 8px}
+  .note{font-size:12px; color:var(--muted); margin-top:8px; font-weight:700}
+
+  .progress{margin:6px 0 12px}
+  .progress .bar{height:12px; background:var(--primary-soft); border-radius:99px; overflow:hidden; position:relative}
+  .progress .fill{height:100%; width:0; background:var(--accent); transition:width .5s ease}
+  /* Die Marke sitzt da, wo der Test aufgeht. Ihre Stelle kommt aus
+     TEST_FREI_AB und wird in updateProgress() gesetzt; steht die Schwelle bei
+     100, wäre sie das Balkenende und damit nur Beiwerk - dann bleibt sie weg. */
+  .progress .mark80{position:absolute; left:80%; top:-3px; width:3px; height:18px; background:var(--primary); border-radius:2px; opacity:.6}
+  .progress .cap{display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-top:6px; font-weight:700}
+
+  details{background:var(--surface); border:2px solid var(--line); border-radius:var(--radius); padding:0 16px; margin-bottom:10px}
+  details summary{cursor:pointer; font-weight:800; font-size:14px; padding:12px 0; list-style:none; display:flex; justify-content:space-between; align-items:center}
+  details summary::-webkit-details-marker{display:none}
+  /* "Nutzungsbedingungen" ist bei 200 % allein breiter als der Bildschirm.
+     Der Text steht ohne eigenes Element in der Zeile, deshalb anywhere:
+     es bricht nur, wenn das Wort sonst ueber den Rand ragte. 06.10.2026. */
+  details summary{overflow-wrap:anywhere}
+  details summary::after{content:'+'; color:var(--primary); font-size:20px; font-weight:800}
+  details[open] summary::after{content:'–'}
+  details .inner{padding:0 0 14px}
+  /* Sprachwahl: Kopfzeile mit Pfeil, darunter fahren alle Sprachen aus. */
+  .sprachwahl{position:relative}
+  .sprachkopf{display:flex; align-items:center; justify-content:space-between; gap:10px;
+    width:100%; text-align:left; cursor:pointer; font-family:inherit}
+  .sprachkopf .pfeil{transition:transform .18s ease; color:var(--muted); font-size:13px}
+  .sprachkopf[aria-expanded="true"] .pfeil{transform:rotate(180deg)}
+  .sprachliste{margin-top:6px; border:2px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; background:var(--surface); animation:sprachAuf .18s ease}
+  @keyframes sprachAuf{from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none}}
+  .sprachzeile{display:flex; align-items:center; gap:8px; width:100%; text-align:left;
+    background:none; border:0; border-bottom:1px solid var(--line); cursor:pointer;
+    font:600 15px var(--font-ui); color:var(--ink); padding:12px 14px}
+  .sprachzeile:last-child{border-bottom:0}
+  @media (hover:hover) and (pointer:fine){ .sprachzeile:hover{background:var(--primary-soft)} }
+  .sprachzeile.jetzt{background:var(--primary-soft); color:var(--primary)}
+  .sprachzeile .haken{margin-left:auto; color:var(--good-text)}
+  @media (prefers-reduced-motion:reduce){ .sprachliste{animation:none} }
+  /* Der Hinweis unter einer beantworteten Aufgabe. Er pulsiert leise,
+     damit klar ist, dass die App auf einen wartet und nicht haengt. */
+  /* Nach der Antwort ein richtiger Knopf mit Kasten statt des blossen
+     Hinweises "Tippen fuer die naechste Aufgabe". Ajdin am 18.09.2026.
+     Tippen irgendwo im Aufgabenfeld bringt weiterhin die naechste Aufgabe -
+     der Knopf ist das Sichtbare daran, nicht der einzige Weg. */
+  .weiterbox{margin-top:18px}
+  .weiterbox .btn{animation:weiterPuls 1.8s ease-in-out infinite}
+  @keyframes weiterPuls{0%,100%{filter:brightness(1)} 50%{filter:brightness(1.14)}}
+  @media (prefers-reduced-motion:reduce){ .weiterbox .btn{animation:none} }
+  .wordlist{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 14px; font-size:14px}
+  /* Höchstens zwei Zeilen: unbegrenzt war jede Zeile so hoch, wie ihr
+     längstes Wort es erzwang, und die Liste wirkte zerfasert. Mit nur einer
+     Zeile blieb bei langen Einträgen von beiden Texten fast nichts übrig, und
+     Haken und Lautsprecher, die mit im bosnischen Feld standen, wurden
+     mit abgeschnitten (Pruefbericht 1.3, G10). Sie haben jetzt ein festes
+     Feld am Ende der Zeile. */
+  .wordlist div{display:flex; justify-content:space-between; align-items:center; gap:8px;
+    min-width:0; min-height:30px; padding:3px 0; border-bottom:1px dashed var(--line)}
+  .wordlist .de, .wordlist .bs{overflow:hidden; overflow-wrap:break-word;
+    display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2}
+  .wordlist .de{flex:1 1 auto; min-width:0}
+  /* min-content: neben einer langen Bedeutung schrumpfte das bosnische Feld
+     sonst unter sein Wort, und aus "tetka" wurde "tetk" und "a". */
+  .wordlist .bs{flex:0 1 auto; min-width:min-content; font-family:var(--font-display);
+    color:var(--primary); font-weight:600}
+  .wordlist .bs.zu{color:var(--muted); opacity:.55; font-family:var(--font-ui)}
+  .wordlist .wortende{flex:none; display:flex; align-items:center; justify-content:flex-start; gap:2px; min-width:46px}
+  .wordlist .ok{color:var(--good-text); font-size:12px}
+  @media (max-width:480px){.wordlist{grid-template-columns:1fr}}
+
+  .card{background:var(--surface); border:2px solid var(--line); border-radius:var(--radius); padding:24px 20px; text-align:center}
+  .kicker{font-size:12px; color:var(--muted); margin-bottom:16px; font-weight:800; text-transform:uppercase; letter-spacing:.4px}
+  /* Am Ende einer Lektion, eines Tests oder einer Geschichte steht keine
+     Rubrik, sondern eine Ueberschrift. Klein, grau und in Grossbuchstaben
+     sah das aus wie eine Beschriftung und nicht wie ein Ergebnis.
+     Die Schrift ist die des Projekts fuer Bedeutungsvolles - dieselbe,
+     in der auch die bosnischen Woerter stehen. */
+  .ergebnis-titel{display:block; text-align:center; font-family:var(--font-display);
+    font-weight:700; font-size:26px; line-height:1.25; color:var(--ink);
+    letter-spacing:0; text-transform:none; margin:2px 0 12px}
+  @media (max-width:380px){ .ergebnis-titel{font-size:23px} }
+  .de{font-size:14px; color:var(--muted); margin-bottom:4px; font-weight:700}
+  .prompt{font-size:26px; font-weight:800; margin-bottom:20px; line-height:1.3}
+  .prompt.long{font-size:20px}
+  .big{font-family:var(--font-display); font-size:38px; font-weight:600; color:var(--primary); line-height:1.25; margin:4px 0 6px}
+  .big.long{font-size:24px}
+  .listen{
+    margin-top:12px; border:2px solid var(--line); background:var(--surface); color:var(--ink);
+    font-family:inherit; font-size:14px; font-weight:800; padding:8px 16px; border-radius:99px; cursor:pointer; display:inline-flex; gap:7px; align-items:center;
+  }
+  @media (hover:hover) and (pointer:fine){ .listen:hover{border-color:var(--primary); color:var(--primary)} }
+  .listen.bigplay{width:96px; height:96px; border-radius:50%; justify-content:center; font-size:40px; margin:6px auto 12px; background:var(--primary-fill); color:var(--on-fill); border:0; box-shadow:0 5px 0 var(--primary-fill-dark)}
+  .listen.bigplay:active{transform:translateY(3px); box-shadow:0 2px 0 var(--primary-dark)}
+
+  .row{display:flex; gap:10px; margin-top:20px; flex-wrap:wrap}   /* grosse Schrift: untereinander, siehe .wrap */
+  /* Nebenangebote – kleiner und leiser als der Hauptknopf darunter. */
+  .row.schmal{margin-top:14px}
+  .row.schmal .btn{font-size:13.5px; font-weight:700; padding:9px 10px; border-radius:11px}
+  .btn{
+    flex:1; border:0; font-family:inherit; font-size:15px; font-weight:800; padding:13px;
+    border-radius:14px; cursor:pointer; transition:.1s; letter-spacing:.2px;
+  }
+  .btn.know{background:var(--primary-fill); color:var(--on-fill); box-shadow:0 4px 0 var(--primary-fill-dark)}
+  .btn.again{background:var(--accent); color:var(--on-accent); box-shadow:0 4px 0 var(--accent-dark)}
+  .btn.ghost{background:var(--surface); border:2px solid var(--line); color:var(--muted); box-shadow:0 4px 0 var(--line)}
+  /* Solange vorgelesen wird, traegt derselbe Knopf "Stopp" und pulst leise,
+     damit man auf einen Blick sieht, woher der Ton kommt. */
+  .btn.laeuft{animation:tonPuls 1.6s ease-in-out infinite}
+  @keyframes tonPuls{0%,100%{filter:brightness(1)} 50%{filter:brightness(1.18)}}
+  @media (prefers-reduced-motion:reduce){ .btn.laeuft{animation:none} }
+  /* Der Lautsprecher in der Wort-Blase ist ein Knopf zum Nochmal-Hoeren.
+     flex:none, damit er bei langem Text in die naechste Zeile rutscht statt
+     die Blase ueber den Rand zu schieben. */
+  .wortton{flex:none; margin-left:auto; border:0; background:transparent; color:inherit; font:inherit; font-size:17px; line-height:1; padding:4px 6px; border-radius:8px; cursor:pointer; opacity:.8}
+  .wortton:active{opacity:1; transform:scale(.92)}
+  .btn:active{transform:translateY(3px); box-shadow:none}
+  .btn:disabled{opacity:.45; cursor:default; transform:none}
+  .skip{margin-top:14px; border:0; background:transparent; color:var(--muted); font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; text-decoration:underline dotted}
+  @media (hover:hover) and (pointer:fine){ .skip:hover{color:var(--primary)} }
+
+  .sentence{font-family:var(--font-display); font-size:24px; margin:6px 0 4px; line-height:1.4; font-weight:500}
+  .blank-input{font-family:var(--font-display); font-size:22px; color:var(--primary); text-align:center; border:0; border-bottom:3px dashed var(--muted); background:transparent; width:150px; padding:2px 4px}
+  .blank-input:focus{outline:none; border-bottom-color:var(--primary)}
+  .translation{font-size:14px; color:var(--muted); margin:14px 0 2px}
+  .feedback{min-height:22px; font-size:14px; font-weight:800; margin-top:14px}
+  .feedback.ok{color:var(--good-text)} .feedback.no{color:var(--bad-text)} .feedback.almost{color:var(--accent-text)}
+
+  /* Nach der Antwort: was das Bosnische heisst. Bisher stand bei den
+     Auswahlaufgaben nur da, welches Wort richtig gewesen waere - was es
+     bedeutet, erfuhr man nie. Ajdin am 18.09.2026: "der bosnische Satz oben
+     und die Uebersetzung unten drunter".
+     Eigene Klassennamen (lbs/lde), weil .de und .bs im Haus schon fuer die
+     Wortliste und die Aufgabenkoepfe vergeben sind. */
+  .loesung{margin-top:12px; padding:9px 12px; border-radius:12px; text-align:center;
+    background:var(--surface); border:1px solid var(--line)}
+  .loesung .lbs{display:block; font-family:var(--font-display); font-weight:600;
+    font-size:16px; color:var(--primary); line-height:1.35}
+  .loesung .lde{display:block; margin-top:2px; font-size:13.5px; color:var(--muted); font-weight:600}
+  /* "Auch richtig:" ueber der Hauptform (17.11.2026, Offen-Liste 7): steht oben
+     als Loesung eine andere richtige Form ("Richtig waere: Mnogo hvala"), sagt
+     diese Zeile, dass die Hauptform darunter genauso gilt. Klein wie .tempo .tlabel. */
+  .loesung .lauch{display:block; margin-bottom:1px; font-size:12px; font-weight:800; color:var(--muted)}
+  /* Hoeren im Lueckensatz, erst nach dem Pruefen (27.11.2026): unter der
+     Uebersetzung in der Loesung, kleiner als der Hoeren-Knopf eines neuen
+     Worts, damit Weiter am kleinen Handy im Bild bleibt. */
+  .loesung .satzton{margin-top:6px; padding:5px 14px; font-size:13px}
+  /* "jezero = See" hinter der Loesung einer Auswahl (27.11.2026): bricht als
+     Ganzes in die naechste Zeile statt zwischen Wort und Bedeutung. */
+  .feedback .gewaehlt{display:inline-block}
+
+  /* Tempo des Vorlesens. Steht unter dem Vorlese-Knopf der Geschichte und
+     noch einmal in den Einstellungen; beide zeigen denselben Wert. */
+  .tempo{display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+    gap:6px; margin-top:12px}
+  .tempo .tlabel{font-size:12px; font-weight:800; color:var(--muted); margin-right:2px}
+  .tempo button{border:2px solid var(--line); background:var(--surface); color:var(--muted);
+    font-family:inherit; font-size:12.5px; font-weight:800; padding:5px 10px;
+    border-radius:99px; cursor:pointer; min-width:46px}
+  .tempo button[aria-pressed="true"]{border-color:var(--primary); color:var(--primary);
+    background:var(--bg)}
+  .setting .tempo{justify-content:flex-start; margin-top:8px}
+  /* Punkt in der Farbe, um die es geht - direkt vor dem Namen. */
+  .farbtupfer{display:inline-block; width:13px; height:13px; border-radius:50%;
+    margin-right:7px; vertical-align:-1px; box-shadow:0 0 0 2px var(--surface), 0 0 0 3px var(--line)}
+  .ex-tipp{font-size:13px; color:var(--muted); margin-top:6px; min-height:18px}
+
+  .options{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px}
+  .options.one{grid-template-columns:1fr}
+  /* Untereinander darf ein Wort, das allein zu lang ist, auch brechen -
+     sonst schoebe es die eine Spalte ueber den Rand. 06.10.2026. */
+  .options.one .opt{overflow-wrap:anywhere}
+  /* Kurze Antworten stehen nebeneinander - drei Woerter brauchen keine
+     drei Zeilen. Passen sie nicht in eine Reihe, rutschen sie von selbst
+     um; deshalb flex mit Umbruch statt fester Spalten. */
+  .options.waagrecht{display:flex; flex-wrap:wrap; gap:10px}
+  .options.waagrecht .opt{flex:1 1 auto; min-width:0; padding:14px 12px}
+  .opt{
+    border:2px solid var(--line); background:var(--surface); color:var(--ink); font-family:var(--font-display);
+    font-size:20px; font-weight:600; padding:15px 10px; border-radius:14px; cursor:pointer; transition:.12s; line-height:1.3; box-shadow:0 3px 0 var(--line);
+  }
+  .opt.long{font-size:15px; font-family:var(--font-ui); font-weight:700}
+  /* Hervorheben unter dem Zeiger nur mit Maus (15.11.2026, Offen-Liste 5b).
+     Ajdin am iPhone: "manchmal ist wenn man 4 antwortmöglichkeiten hat der
+     unten rechts eine hellere farbe man würde denken das das richtig sei".
+     Am Handy bleibt :hover nach einem Tipp an der Stelle des Fingers
+     haengen, und WebKit gibt es nach dem Neuzeichnen an den Knopf weiter,
+     der jetzt dort liegt: nach "Weiter" eines neuen Worts der Antwortknopf
+     unten rechts, mit demselben hellen Grund wie "richtig". Deshalb hier
+     und bei allen anderen :hover nur fuer Geraete mit Maus; Tastatur zeigt
+     ihren Fokusring weiter ueber :focus-visible. Beantwortete (disabled)
+     Knoepfe leuchten auch mit Maus nicht mehr auf, sonst bekam der falsche
+     unter dem Zeiger den Grund von richtig. */
+  @media (hover:hover) and (pointer:fine){ .opt:not(:disabled):hover{border-color:var(--primary); background:var(--primary-soft)} }
+  .opt:active{transform:translateY(2px); box-shadow:none}
+  .opt.right{border-color:var(--good); background:var(--primary-soft); color:var(--good-text); box-shadow:0 3px 0 var(--good-dark)}
+  .opt.wrong{border-color:var(--bad); color:var(--bad-text); box-shadow:0 3px 0 var(--bad)}
+  .opt:disabled{cursor:default}
+  /* Satz aus Kacheln legen (13.10.2026, Wunsch einer Testerin). Oben die Zeile, in
+     die man legt: zwei Kachelreihen hoch, damit nichts springt, wenn die
+     zweite Reihe anfaengt. Leer steht dort, was zu tun ist - im Lektionskopf
+     ist der Aufgabentitel ausgeblendet. Darunter der Vorrat; eine gelegte
+     Kachel laesst dort einen leeren Platzhalter zurueck, sonst
+     rutschten die anderen nach und man tippte daneben. Kacheln sind kleiner
+     als Antwortknoepfe und strecken sich nicht, sonst passen bei 360 Punkten
+     Breite keine drei in eine Reihe. */
+  /* Linien wie im Heft, jede Kachelreihe steht auf ihrer eigenen (Ajdin,
+     14.10.2026: "die sind nicht auf der linie" - vorher hingen die Kacheln
+     oben und eine einzige gestrichelte Linie lag zwei Reihen tiefer). Dafuer
+     sind Kacheln genau --kh hoch und der Reihenabstand fest: dann ist der
+     Abstand der Linien immer --kh + 12px. --kh in em, damit Linien und
+     Kacheln gemeinsam mitwachsen, wenn das Handy die Schrift groesser
+     stellt; deshalb hat die Zeile dieselbe Schriftgroesse wie die Kacheln. */
+  .kachelzeile{--kh:2.35em; --kz-linie:var(--line); font-size:19px;
+    display:flex; flex-wrap:wrap; align-content:flex-start; align-items:flex-start; gap:12px 8px;
+    min-height:calc(2 * (var(--kh) + 12px)); padding:0 0 12px; margin-top:6px;
+    background:linear-gradient(to bottom, transparent calc(var(--kh) + 5px), var(--kz-linie) calc(var(--kh) + 5px),
+      var(--kz-linie) calc(var(--kh) + 7px), transparent calc(var(--kh) + 7px)) 0 0 / 100% calc(var(--kh) + 12px) repeat-y}
+  /* Der Hinweis steht mittig in der ersten Reihe, ueber deren Linie -
+     auch wenn er auf schmalen Handys zweizeilig wird. */
+  .kachelzeile:empty::before{content:attr(data-leer); flex:1 1 100%; min-height:44px; display:flex;
+    align-items:center; justify-content:center; padding:0 8px; text-align:center;
+    color:var(--muted); font-size:14px; font-weight:700; line-height:1.4}
+  .kachelzeile.ok{--kz-linie:var(--good)}
+  .kachelzeile.no{--kz-linie:var(--bad)}
+  .options.kachelbank{justify-content:center; gap:8px}
+  /* #test und #einstufungView: siehe .zmaj.mini oben - sonst machte die
+     Kastenregel fuer .opt die Kacheln in Test und Einstufung groesser
+     (19.10.2026). Ausgeschrieben aus demselben Grund wie dort. */
+  .opt.kachel, .options.waagrecht .opt.kachel, #lesson .opt.kachel, #test .opt.kachel, #einstufungView .opt.kachel{flex:0 0 auto; max-width:100%; height:2.35em;
+    font-size:19px; padding:0 12px; border-radius:12px; white-space:nowrap}
+  /* Der Platzhalter ist eine sichtbare leere Mulde, kein Loch: unsichtbar
+     sah eine einzelne Kachel im Vorrat aus, als sei sie verrutscht, und nach
+     acht gelegten Kacheln stand unter der Linie nur noch leere Flaeche
+     (Bildschirmfotos vom 13.10.2026). */
+  .opt.kachel.platz{color:transparent; background:var(--line); border-color:transparent; box-shadow:none;
+    transform:none; pointer-events:none}
+
+  .tbar{display:flex; gap:3px; margin-bottom:16px}
+  .tbar i{flex:1; margin:0; height:8px; border-radius:99px; background:var(--primary-soft)}
+  .tbar i.ok{background:var(--good)} .tbar i.no{background:var(--bad)} .tbar i.skip{background:var(--muted); opacity:.5} .tbar i.cur{background:var(--accent)} .tbar i.intro{background:var(--line)}
+  .rep{display:inline-block; font-size:11px; color:var(--on-accent); background:var(--accent); border-radius:99px; padding:1px 8px; text-transform:none; letter-spacing:0}
+  .rep.new{background:var(--primary-fill); color:var(--on-fill)}
+  .type-input{font-family:var(--font-display); font-size:24px; color:var(--primary); text-align:center; border:0; border-bottom:3px dashed var(--muted); background:transparent; width:100%; max-width:320px; padding:4px; margin-top:8px}
+  .type-input:focus{outline:none; border-bottom-color:var(--primary)}
+  .result-big{font-family:var(--font-ui); font-size:46px; font-weight:800; color:var(--primary); margin:6px 0}
+  .result-big.fail{color:var(--bad)}
+  .stats{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:14px 0 4px}
+  .stat{background:var(--primary-soft); border-radius:12px; padding:8px 12px; font-size:12px; color:var(--muted); font-weight:700}
+  .stat b{display:block; font-size:18px; color:var(--primary); font-weight:800}
+  .celebrate{display:flex; justify-content:center; margin-bottom:6px}
+
+  .mic{
+    width:88px; height:88px; border-radius:50%; border:0; cursor:pointer; margin:6px auto 0;
+    background:var(--primary-fill); color:var(--on-fill); display:flex; align-items:center; justify-content:center;
+    transition:.2s; box-shadow:0 5px 0 var(--primary-fill-dark);
+  }
+  .mic svg{width:34px; height:34px}
+  .mic.rec{background:var(--bad); box-shadow:0 5px 0 #9c2c26; animation:pulse 1.1s infinite}
+  @keyframes pulse{0%{outline:0 solid rgba(214,69,61,.4)}70%{outline:14px solid rgba(214,69,61,0)}100%{outline:0 solid rgba(214,69,61,0)}}
+  .heard{font-size:14px; color:var(--muted); min-height:20px; margin-top:14px}
+
+  .lesson{text-align:left}
+  .lesson p{font-size:15px; line-height:1.6; margin:0 0 12px}
+  .lesson table{width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px}
+  .lesson th,.lesson td{border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top}
+  .lesson th{background:var(--primary-soft); color:var(--primary); font-weight:800}
+  .lesson .tablewrap{overflow-x:auto}
+  .lesson b{color:var(--primary)}
+  .ex-q{font-size:20px; font-weight:800; margin:6px 0 4px; line-height:1.4}
+  .ex-q .ex-q-sub{display:block; font-size:15px; font-weight:600; color:var(--muted); margin-top:6px; line-height:1.35}
+
+  .story{text-align:left}
+  .story h3{font-family:var(--font-ui); font-weight:800; font-size:22px; margin:0 0 12px; color:var(--primary)}
+  .story .txt{font-family:var(--font-display); font-size:20px; line-height:1.75; font-weight:500; white-space:pre-line}
+  .story .w{cursor:pointer; border-bottom:2px dotted var(--line); border-radius:3px; transition:.12s}
+  @media (hover:hover) and (pointer:fine){ .story .w:hover{background:var(--accent-soft); color:var(--primary); border-bottom-color:var(--accent)} }
+  .story .w.on{background:var(--accent-soft); color:var(--primary); border-bottom-color:var(--accent)}
+  /* ---- Mitlesen (20.10.2026) ----
+     Wunsch einer Testerin: beim Vorlesen einer Geschichte zeigt die App das Wort,
+     das die Stimme gerade spricht, damit man im Text folgen kann. Ajdin
+     nach der Vorschau: "mach die buchstaben gelb nicht aussenrum" - also
+     nur die Schrift gelb, kein Kasten, kein Hintergrund. Und "das es
+     blasser wird": schon Gesprochenes wird blasser (.gelesen).
+     Gelb auf dem hellen Grund (#F6F7FE) laege bei 1,5:1 und waere nicht zu
+     lesen. Im Hellen deshalb --accent-text #876A00, dasselbe Gold wie
+     "Jetzt dran" am Geschichtenpfad: mindestens 4,8:1 auf der Flaeche
+     jeder der neun Sektionen, 4,6:1 auf dem Hellgelb eines angetippten
+     Worts. Im Dunkeln das volle --accent #FFD23F, mindestens 6,3:1.
+     Gelesen mit .65: in jeder Sektion hell mindestens 5,0:1, dunkel 4,6:1.
+     Die erste Fassung vom selben Tag hatte #A07D00 und .55 - ein wenig
+     heller golden, aber nur 3,6 und 3,7:1. axe meldete beides als ernst:
+     die Schrift ist 20px und nicht fett, gefordert sind 4,5:1, und das
+     ist seit dem 04.10.2026 der Massstab der App
+     (docs/barrierefreiheit-2026-10-04.md). Geprueft in
+     tests_e2e/test_mitlesen.py, test_axe_beim_mitlesen. Blasser als der
+     Rest bleibt Gelesenes auch mit .65 deutlich.
+     Keine andere Schriftstaerke: sonst wuerde der Text beim Mitlesen
+     springen. Steht NACH .w.on, damit ein angetipptes Wort, wenn die Stimme
+     es spricht, trotzdem gelb wird. Das transition von .w oben laesst die
+     Farbe sanft wechseln; ohne Animationen springt sie. */
+  .story{--mitlesen:var(--accent-text)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .story{--mitlesen:var(--accent)} }
+  :root[data-theme="dark"] .story{--mitlesen:var(--accent)}
+  .story .w.gelesen{opacity:.65}
+  .story .w.mitlesen{color:var(--mitlesen)}
+  .bubble{margin-top:14px; padding:10px 14px; border-radius:12px; background:var(--accent-soft); color:var(--ink); font-size:14px; min-height:40px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-weight:700}
+  .bubble b{font-family:var(--font-display); font-size:18px; color:var(--primary)}
+  .bubble.empty{color:var(--muted); background:transparent; border:2px dashed var(--line)}
+  /* Pruefbericht 1.4, V2 (14.11.2026): Die Blase stand hinter dem ganzen
+     Text, und die Seite scrollte nicht. Wer in einem langen Text oben ein
+     Wort antippte, sah nur die gelbe Markierung - in allen 20 B1-Texten bei
+     360 und 412 px, bei 360 px auch in "intervju" (Wort bei 463 px, Blase
+     bei 1544 px). sticky haelt sie unten im Bild fest, solange ihr Platz
+     unter dem Text noch nicht zu sehen ist; der Platz selbst bleibt, der
+     Text springt also nicht. Liegt das angetippte Wort darunter, schiebt
+     das Antippen die Seite so weit, dass es darueber steht (showStory),
+     und beim Vorlesen rueckt die Seite vor der Blase nach (mitlesenImBlick).
+     Ueber der Update-Leiste, wenn sie steht. */
+  #rBody .bubble{position:sticky; z-index:2; bottom:calc(12px + env(safe-area-inset-bottom, 0px));
+    box-shadow:0 6px 18px rgba(0,0,0,.18)}
+  body.updDa #rBody .bubble{bottom:calc(var(--upd-hoehe, 72px) + 28px + env(safe-area-inset-bottom, 0px))}
+  .trans{font-size:14px; color:var(--muted); line-height:1.6; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); white-space:pre-line}
+  /* Eigener Name, nicht .q - das ist die Zeile der Tagesaufgaben und
+     die steht auf display:flex. Damit lag hier alles nebeneinander. */
+  .fragenblock{margin-top:20px; padding-top:16px; border-top:1px solid var(--line)}
+  .fragenblock .ex-q{font-size:16px}
+
+  .nav{display:flex; justify-content:space-between; gap:10px; margin-top:16px}
+  .nav button{border:2px solid var(--line); background:var(--surface); color:var(--muted); font-family:inherit; font-size:13px; font-weight:800; padding:8px 12px; border-radius:99px; cursor:pointer}
+  .nav button:disabled{opacity:.4; cursor:default}
+

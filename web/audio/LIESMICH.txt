@@ -23,6 +23,11 @@ Die Wortzeiten der Geschichten (Feld "w" in index.json, seit 20.10.2026)
 holt wortzeiten_holen.py. Es braucht das Azure Speech SDK – wie man es
 einrichtet, steht oben in dem Skript.
 
+Seit dem 16.11.2026 spricht Azure nur noch die Geschichten (Stimme Vesna),
+Wörter und Sätze spricht Emir (ton_nur_emir.json). Für eine neue oder
+geänderte Geschichte also  ton_bauen.py --nur-geschichten  und danach
+wortzeiten_holen.py --holen.
+
 
 EIGENE AUFNAHMEN – so klingt die App wie ein Muttersprachler
 
@@ -38,7 +43,7 @@ Stück ersetzen, in eurem Tempo, und zwischendurch ist nie etwas kaputt.
 Erlaubte Endungen: .mp3 .m4a .wav .ogg .webm. Wenn du eine andere Endung
 nimmst, muss sie auch in index.json stehen.
 
-Bei einer Geschichte (g01.mp3 bis g12.mp3) in index.json zusätzlich das Feld
+Bei einer Geschichte (g01.mp3 bis g32.mp3) in index.json zusätzlich das Feld
 "w" dieses Eintrags löschen. Es hält fest, wann in der erzeugten Aufnahme
 welches Wort beginnt und endet – damit markiert die App beim Vorlesen das
 gesprochene Wort. Zu einer eigenen Aufnahme passt es nicht; ohne "w" liest
@@ -55,7 +60,7 @@ Das funktioniert nicht, und zwar aus drei Gründen:
   - Die App schneidet Satzzeichen ab, bevor sie sucht. Eine Datei mit
     Fragezeichen im Namen würde sie nie finden.
   - Die Geschichten werden am Stück vorgelesen. Ihr "Name" wäre der ganze
-    Text – bis zu 523 Zeichen. Das nimmt kein Dateisystem an.
+    Text – bis zu 1.109 Zeichen. Das nimmt kein Dateisystem an.
 
 Mit w0001.mp3 und index.json fällt das alles weg. Die Nummern werden einmal
 vergeben und nie wieder geändert. Kommt ein neues Wort dazu, bekommt es die

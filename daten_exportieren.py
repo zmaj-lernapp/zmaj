@@ -82,6 +82,9 @@ def sammeln():
         sektionen.append({
             "id": s["id"],
             "position": i + 1,
+            # Seit 13.11.2026: die Stufe (Reiter in der App). Die Nummer im
+            # Namen zaehlt je Stufe, "Sektion 1" gibt es also viermal.
+            "stage": s.get("stufe", ""),
             "label": {c: alle[c]["sektionen"][i]["label"] for c in codes},
             "description": {c: alle[c]["sektionen"][i].get("beschreibung", "") for c in codes},
         })
@@ -142,7 +145,14 @@ def sammeln():
             "translations": {c: alle[c]["woerterbuch"].get(bs, "") for c in codes},
         })
 
-    grammatik = {c: alle[c]["grammatik"] for c in codes}
+    # Ohne "ton" (eigener Ton je Bedeutung, 21.11.2026, ton_bedeutung.py): der
+    # Schlüssel zeigt auf eine Aufnahme, die es nur in der App gibt (Emir),
+    # nicht im Datensatz. Die übrigen Felder bleiben, wie sie waren.
+    grammatik = {c: {lid: dict(lek, uebungen=[{k: v for k, v in u.items() if k != "ton"}
+                                               for u in lek.get("uebungen", [])])
+                     if "uebungen" in lek else lek
+                     for lid, lek in alle[c]["grammatik"].items()}
+                 for c in codes}
 
     return {
         "codes": codes,

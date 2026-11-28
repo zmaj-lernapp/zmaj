@@ -29,6 +29,8 @@ import os
 import re
 import sys
 
+import app_quelle
+
 HIER = os.path.dirname(os.path.abspath(__file__))
 def _sprachen():
     """Die Sprachen aus web/inhalt/liste.json, Grundsprache zuerst - dieselbe
@@ -58,9 +60,17 @@ def texte_holen(sprache):
     return texte
 
 
-def main():
-    html = io.open(os.path.join(HIER, "web", "index.html"), encoding="utf-8").read()
+def app_text():
+    """Die ganze App als ein Text: index.html und, seit sie geteilt werden
+    kann (1.5), alle Dateien unter web/js und web/css an ihrer Stelle.
+    Nur index.html zu lesen, fände nach der Aufteilung still 84 statt 443
+    Schlüssel und meldete trotzdem "keine fehlenden Texte" (Aufgabe B,
+    20.11.2026)."""
+    return app_quelle.lesen(os.path.join(HIER, "web"))
 
+
+def verlangte_schluessel(html):
+    """{Schlüssel: {"data-t", "t()", "tp()"}} - was der Text der App anzeigen will."""
     # Kommentare weg, bevor gesucht wird. Über t() steht ein Kommentar, der
     # die Benutzung erklärt und dabei wörtlich t('schluessel') schreibt.
     # Ohne diesen Schritt meldet das Skript dieses Beispiel als fehlenden Text.
@@ -80,6 +90,11 @@ def main():
         merke(m.group(1), "t()")
     for m in re.finditer(r"\btp\(\s*'([^']+)'", html):
         merke(m.group(1), "tp()")
+    return verlangt
+
+
+def main():
+    verlangt = verlangte_schluessel(app_text())
 
     # Schlüssel, die erst zur Laufzeit zusammengesetzt werden, lassen sich
     # von außen nicht auflösen. Sie werden gezählt, aber nicht bemängelt.

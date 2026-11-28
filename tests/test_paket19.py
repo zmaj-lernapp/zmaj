@@ -77,10 +77,16 @@ AUCH = {
     "kritikovati": ["kritizirati"], "poređenje": ["usporedba"], "uporediti": ["usporediti"],
     "upoređivati": ["uspoređivati"],
 }
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten (B3/F14): das andere App-Wort gilt
+# beim Tippen mit, nur in dieser Richtung (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {"spojiti": ["povezati"]}
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
     "proizlaziti": ["proizilaziti"], "proizaći": ["proizići"],
+    # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V8-81 „nein“); položaj ist als
+    # eigenes Wort die Lage
+    "pozicija": ["položaj"],
 }
 
 # Partner je Wort, wie im Paket.

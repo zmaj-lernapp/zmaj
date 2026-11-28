@@ -1,0 +1,147 @@
+  /* ---------- Kopf ---------- */
+  /* Drei Spalten: links Herzen, Mitte Muenzen, rechts Knoepfe. Die beiden
+     aeusseren sind gleich breit (1fr), also sitzt die mittlere genau in der
+     Mitte der Zeile - unabhaengig davon, wie breit Herzen und Knoepfe gerade
+     sind. Mit dem alten Nebeneinander hing die Muenzpille an den Herzen und
+     stand 40 Punkte zu weit links. Ajdin am 18.09.2026. */
+  header{display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+    gap:6px; margin-bottom:14px; min-height:40px}
+  /* Alles in EINER Zeile, auch angemeldet (29.10.2026). Ajdin auf dem
+     S21 Ultra mit der v109-Testfassung: Herz links, Laden, "Ich" und
+     Zahnrad rechts, die Muenzen ("0 KM") allein in einer zweiten Zeile -
+     "das muss alles auf einer Leiste sein".
+     Ursache: Seit v109 steht nach der Anmeldung der Profilknopf in der
+     Leiste, mit Figur UND Namen ("Ich", 72 px breit). Vor v109 blieb er
+     ohne Server versteckt. Damit brauchte die Zeile 341 px, bei 360 px
+     Bildschirmbreite sind nach dem Rand 328 frei - kopfEng() schob die
+     Muenzen deshalb nach unten (header.eng), bei 384 px ab drei Stellen,
+     bei 412 px ab fuenf (gemessen mit dem Stand vor dieser Aenderung).
+     Jetzt traegt der Profilknopf nur die Figur wie Laden und Zahnrad (der
+     Name steht im title), alle drei sind runde 38-px-Knoepfe, und Luecken
+     und Polster sind etwas knapper (hier, .hbtns, .livesbar, .muenzbar).
+     Gemessen mit unbegrenzten Leben und 99 999 Muenzen: 307 px, passt also
+     ab 360 px. Bei 320 px rutschen die Muenzen ab vier Stellen weiter in
+     die zweite Zeile, ebenso bei sehr grosser Schrift - das ist der
+     Ausweg von kopfEng() und bleibt. tests_e2e/test_kopfleiste.py */
+  header .left{grid-column:1; justify-self:start; display:flex; align-items:center; gap:10px}
+  /* Kein Briefkopf mehr, auch nicht vor der Anmeldung (30.10.2026). Ajdin
+     auf der v109-Testfassung: "oben das logo ist noch das alte und die
+     schrift auch beim anmelden" - "die kannst du auch ganz raus lassen".
+     Flagge und Wortmarke "Zmaj." sind weg. #tag bleibt im DOM, weil viele
+     Ansichten ihn beschreiben, gezeigt wird er nirgends. */
+  header .left{display:none}
+  .hbtns{grid-column:3; justify-self:end}
+  .tag{font-size:12px; color:var(--muted); font-weight:700}
+  /* Auf der Anmeldeseite ist die Kopfzeile leer: Leiste und Knoepfe sind
+     aus, die Zurueck-Taste zeigt nur der Browser (am Handy dient die
+     Geraetetaste). Ohne Mindesthoehe faellt sie weg, und der grosse Titel
+     rueckt nach oben (30.10.2026). */
+  body.vorAnmeldung header{min-height:0; margin-bottom:0}
+  /* Die Fusszeile verweist auf das Zahnrad, das es vor der Anmeldung nicht
+     gibt (Ajdin, 30.10.2026: "obwohl man sie garnicht erreichen kann die
+     muss raus"). Die Version steht ausserdem in den Einstellungen. */
+  body.vorAnmeldung footer{display:none}
+  /* Große Überschrift auf der Anmeldeseite. Dort ist Platz dafür; im
+     Lernpfad bleibt der kleine Titel oben im Kopf, damit die Übungen
+     nicht nach unten rutschen. */
+  .seitentitel{font-family:var(--font-ui); font-size:30px; font-weight:800;
+    text-align:center; color:var(--text); margin:22px 0 18px; letter-spacing:-.4px; line-height:1.15}
+  @media (max-width:420px){
+    .seitentitel{font-size:25px; margin:16px 0 14px}
+    /* Am Handy nimmt der Drache sonst ein Drittel der Breite weg */
+    .hero{gap:8px}
+    .hero .zmaj{width:112px; height:112px; flex:0 0 112px}
+  }
+  .hbtns{display:flex; gap:4px}     /* 4 statt 6: eine Zeile, siehe header oben (29.10.2026) */
+  /* "← Geschichten" in einer Zeile. Im engen Kopf (header.eng) ist die
+     Spalte der Knoepfe schmaler, und der Pfeil stand ueber dem Wort - in
+     einer Pille von fester Hoehe ragte das Wort unten heraus. So ist die
+     Spalte so breit wie die Taste. Pruefbefund vom 24.10.2026, siehe
+     setzeZurueck(). */
+  .hbtns .back{white-space:nowrap}
+  /* In Lektion, Level-Test und Wiederholen-Runde gibt es keine Kopfzeile:
+     keine Muenzen, kein Laden, kein Zahnrad. Das Herz steht im Fragenkasten
+     neben den Fortschrittspunkten (.kastenkopf), der Kasten rueckt nach
+     oben, und der Drache darf groesser sein. Ajdin am 01.10.2026: "in den
+     lektionen ist nur das herz sichtbar", "mit den fragen in den kasten".
+     Der Satz unten verweist aufs Zahnrad oben rechts - das ist dann nicht
+     zu sehen, also weg damit. Die Klasse setzt nurHerz().
+     Seit 19.10.2026 auch in der Einstufung: dort standen Kopf und Fuss
+     noch da und schoben den Fragenkasten 54 px nach unten (siehe
+     einstufungStarten). */
+  body.nurHerz header, body.nurHerz footer{display:none}
+  .back{
+    border:2px solid var(--line); background:var(--surface); color:var(--ink); font-family:inherit; font-size:13px; font-weight:800;
+    padding:7px 12px; border-radius:99px; cursor:pointer; transition:.15s;
+  }
+  /* :hover nur mit Maus, siehe .opt (15.11.2026) */
+  @media (hover:hover) and (pointer:fine){ .back:hover{border-color:var(--primary); color:var(--primary)} }
+  /* ---- Gemalte Symbole statt Emojis (24.10.2026) ----
+     Ajdin am 23.10.2026: "die emojis die muessten mal anders gemacht
+     werden". Entschieden ist Symbol-Satz V1 aus web/symbole, komplett
+     ("nimm v1 komplett"), das Profil als Figur ("bei einem benutzer emoji
+     weiss man es direkt"). Gemalt hat sie Google Gemini im Stil des
+     Drachen. Die Emojis sahen je Handymarke anders aus und passten nicht
+     zum gemalten Drachen.
+     Eine Klasse fuer alle Orte; das Bild baut symbol() bzw. steht so im
+     Kopf. Die Seitenlaenge --sg ist in em der Schrift daneben, damit das
+     Symbol mit grosser Systemschrift mitwaechst. Breite gleich Hoehe wie
+     die Bilder (128 x 128): verzerrt wird nichts. vertical-align setzt die
+     Mitte des Bildes auf .35 em ueber der Grundlinie, die Mitte von
+     Ziffern und Grossbuchstaben (wie --zmitte bei der Flamme) - so steht
+     es in Text und Knoepfen mittig zur Schrift. In Flex-Zeilen
+     (Kopfleiste, Herz im Fragenkasten, Hoerknopf, Kreis der Level)
+     zentriert align-items, dort wirkt vertical-align nicht.
+     --sg je Ort darunter, etwa so gross wie vorher das Emoji. */
+  .sym{--sg:1.25em; display:inline-block; flex:none; width:var(--sg); height:var(--sg);
+       vertical-align:calc(.35em - var(--sg) / 2); object-fit:contain;
+       -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
+  /* ---- Selbst gezeichnete Zeichen (14.11.2026) ----
+     Ueberspringen, Pause, Stopp und Abbrechen (vorher ⏭ ⏸ ⏹ ✕) malte jedes
+     Handy anders, das iPhone als bunte Apple-Emojis. Ajdin: "das muss
+     einheitlich sein". Jetzt kleine Inline-SVG aus zeichen(), in der
+     Schriftfarbe des Knopfs (currentColor), so gross wie die Schrift und
+     mittig zu ihr wie .sym. Flaechen mit runden Ecken (der Strich ueber
+     den Rand), das Kreuz nur als Strich. */
+  .zei{display:inline-block; flex:none; width:1em; height:1em; vertical-align:calc(.35em - .5em); overflow:visible;
+       fill:currentColor; stroke:currentColor; stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; pointer-events:none}
+  .zei-zu{fill:none; stroke-width:2.6}
+  /* Das letzte Wort und das Konfetti danach (mitKonfetti, 15.11.2026)
+     brechen nicht auseinander. */
+  .amwort{white-space:nowrap}
+  /* Laden und Zahnrad tragen nur das Bild: etwas weniger Polster, damit
+     die Knoepfe trotz groesserem Symbol so breit bleiben wie vorher.
+     Seit 29.10.2026 auch der Profilknopf, und alle drei sind runde Knoepfe
+     von 38 px, so hoch wie die Pillen daneben: das Symbol ist hoechstens
+     30 px, passt also bei jeder Schrift hinein (siehe header oben). */
+  /* In der Kopfleiste nur bis 30 px: ihre Pillen sind fest 38 px hoch
+     ("Alles in der Kopfzeile gleich hoch"). Bei 200 % Schrift ragten
+     Einkaufstasche und Zahnrad sonst 3 px oben und unten heraus
+     (tests_e2e/test_symbole.py). Bis 130 % Schrift wachsen sie frei. */
+  .hbtns .back .sym{--sg:min(1.7em, 30px)}
+  /* Kein justify-content: die Knoepfe bekommen per style.display
+     'inline-block' und werden als Kinder von .hbtns (flex) zu block - das
+     Bild mittig setzt text-align des Knopfs (Pruefung 29.10.2026). */
+  .hbtns .back.nursymbol{width:38px; padding-left:0; padding-right:0; position:relative}
+  /* Zum Tippen groesser als der Kreis (Pruefung 29.10.2026): 38 x 38
+     lag unter den 44 px der Pruefliste und den 48 dp, die Android
+     empfiehlt - vor der einen Zeile waren Laden und Zahnrad 44 x 38.
+     Echte 44-px-Knoepfe braeuchten bei 99 999 KM und unbegrenzten Leben
+     325 von 328 px und rutschten bei 115 % Schrift wieder in zwei
+     Zeilen. Deshalb bleibt der Kreis 38 px, und eine unsichtbare Flaeche
+     darueber ist 48 hoch und 42 breit. Die 4 px Luecke teilen sich zwei
+     Nachbarn genau, nichts ueberlappt. Gerechnet ab der Innenkante des
+     2-px-Rands (Bezug von position:absolute), daher 7 und 4.
+     tests_e2e/test_kopfleiste.py prueft es. */
+  .hbtns .back.nursymbol::after{content:""; position:absolute; top:-7px; bottom:-7px; left:-4px; right:-4px}
+  .muenzbar .sym{--sg:min(1.35em, 30px)}
+  .livesbar .herz .sym{--sg:min(1.15em, 30px)}
+  .kastenherz .sym{--sg:1.1em}
+  .mode .sym{--sg:1.35em}
+  .node .circle .sym{--sg:1.4em}
+  .listen .sym{--sg:1.4em}
+  .listen.bigplay .sym{--sg:1.15em}
+  .wortton .sym{--sg:1.2em}
+  .stat .sym{--sg:1em}
+  .result-big .sym{--sg:.9em}
+

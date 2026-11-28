@@ -424,15 +424,17 @@ def test_hinweis_auch_bei_weiteren_richtigen_antworten(seite, heute_stand):
 def test_echte_woerter_bekommen_den_hinweis_ueberall(seite, heute_stand):
     """Bis zum 27.10.2026 hing es an der Aufgabe, was als echtes Wort galt
     und keinen Hinweis bekam (echteWoerter()). Jetzt bekommt jedes Wort einen
-    Tippfehler neben der Antwort "Fast richtig!": "crveno" fuer "crvena" in
+    Tippfehler neben der Antwort "Fast richtig!": "crvene" fuer "crvena" in
     der Schreibaufgabe, "mosta" fuer "košta" und "zvono" (Klingel) fuer
     "zvoni" (klingelt) im Lueckensatz - das Beispiel aus Ajdins Rueckfrage.
-    Die alten Pruefungen gibt es nicht mehr."""
+    Die alten Pruefungen gibt es nicht mehr. Bis zum 20.11.2026 stand hier
+    "crveno": seit K2 (Ajdin K2, varianten.py) zaehlen crven und crveno bei
+    „rot“ gleich als richtig."""
     seite.starten(stand=heute_stand())
     seite.js(STARTEN["Lx"])
     assert seite.js("() => [typeof echteWoerter, typeof nurVertippt, typeof nurEndung, typeof andereEndung]") == \
         ["undefined"] * 4
-    for typ, ziel, eingabe, richtig in (("type", "rot:crvena", "crveno", "crvena"),
+    for typ, ziel, eingabe, richtig in (("type", "rot:crvena", "crvene", "crvena"),
                                         ("gap", "Koliko ___?|košta", "mosta", "košta"),
                                         ("gap", "Komšinica ___ na vrata.|zvoni", "zvono", "zvoni")):
         leben = _legen(seite, "Lx", typ, ziel)
@@ -452,6 +454,7 @@ def test_fokus_kommt_nach_echtem_tipp_auf_pruefen_zurueck(seite, heute_stand):
                                          ("gap", "Ne ___.|razumijem", "razumijen", "razumijem")):
         leben = _legen(seite, "Lx", typ, ziel)
         seite.page.locator("#lBody #xIn").fill(vertippt)
+        seite.frisch_abwarten()
         seite.page.locator("#lBody #xCheck").click()
         seite.page.wait_for_timeout(250)
         _ist_hinweis(seite.js(LAGE, loesung), vertippt, leben)

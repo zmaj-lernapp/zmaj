@@ -31,7 +31,7 @@ ohne Anmeldung bauen will, schreibt `--ohne-anmeldung` dazu.
 |---|---|
 | Schalter, Platzhalter `CLOUD_PROJEKT`, `CLOUD_SCHLUESSEL`, `CLOUD_CLIENT` | `web/index.html`, Abschnitt CLOUD-SICHERUNG UND ANMELDUNG |
 | Firebase über REST, ohne Firebase-Bibliothek: Google, E-Mail/Passwort, Konto anlegen, Passwort vergessen, Bestätigungsmail | `cloudFirestore()` |
-| Abgleich: höchstens 1× schreiben am Tag, dazu beim An- und Abmelden | `cloudAbgleich()` |
+| Abgleich: bei jedem Öffnen nur die Revisionskennung nachsehen (höchstens alle 2 Minuten), höchstens 2× schreiben am Tag (nach dem Lernen und beim Verlassen), dazu beim An- und Abmelden | `cloudAbgleich()`, `cloudNachLernen()` |
 | Zusammenführen zweier Lernstände | `standZusammenfuehren()` |
 | Das Tor nach der ersten Lektion, die Anmeldeseite, Abmelden, Konto löschen | `anmeldungFaellig()`, `anmeldungZeigen()`, `cloudAbmeldenGanz()`, `cloudKontoLoeschen()` |
 | Plugin `ZmajAnmeldung`: Google über den Credential Manager, Kopie der Sitzung, Restore-Schlüssel | Hülle, `android/app/src/main/java/de/smartdragon/zmaj/ZmajAnmeldung.java` |
@@ -175,6 +175,17 @@ Die E-Mail-Adresse steht nicht in Firestore, nur bei Firebase
 Authentication. Nach dem Anheben die Regeln einmal neu veröffentlichen,
 sonst lehnt Firestore einen Stand über 400.000 Zeichen weiter ab.
 
+Seit 1.4 (13.11.2026) darf in `daten` der Stand auch gepackt stehen:
+weiter eine Sicherung mit `app`, `version` und `datum`, im Stand aber nur
+`gepackt1`, der gezippte Stand als Base64-Text. Die App packt nur, wenn die
+alte Form nicht mehr unter 900.000 Bytes passt (`CLOUD_IMMER_PACKEN` in
+`web/index.html`). Es bleibt ein Text in `daten`, die Regeln bleiben also
+gleich, und es muss **nichts neu veröffentlicht** werden. Kennt das Gerät
+schon ein `rev`, holt die App zuerst mit der Feldmaske
+`mask.fieldPaths=rev` nur dieses Feld, und den ganzen Stand nur, wenn ein
+anderes Gerät geschrieben hat. Das ist ein gewöhnliches `get` und zählt
+als ein Lesevorgang.
+
 Seit dem 28.10.2026 stehen in `firestore.rules` auch die Regeln für das
 Kontaktformular (`nachrichten/{uid}`, Abschnitt 15) mit dem Platzhalter
 `MELDER_UID`. Solange er dort steht und „Anonym“ aus ist, kann niemand
@@ -223,7 +234,8 @@ Nachrichten bleiben liegen.
    sein. Dabei auch prüfen, ob der Restore-Schlüssel ohne
    `assetlinks.json` angelegt wird.
 4. In der Konsole unter **Firestore Database** → **Nutzung** nachsehen, dass
-   es höchstens einen Schreibvorgang je Nutzer und Tag gibt.
+   es höchstens zwei Schreibvorgänge je Gerät und Tag gibt (nach dem Lernen
+   und beim Verlassen), dazu je einen beim An- und Abmelden.
 5. Danach den Freigabe-Bau (R8) aus dem internen Test einmal ganz
    durchspielen: Anmeldung, Kauf, Werbung, Erinnerung, Sprechaufgabe,
    Sicherung.
@@ -272,9 +284,14 @@ Kontos) wird von Hand bearbeitet, innerhalb von 30 Tagen:
 ## 13. Grenzen im Spark-Tarif
 
 - Firestore: 20.000 Schreibvorgänge und 50.000 Lesevorgänge am Tag für alle
-  zusammen. Die App schreibt höchstens einmal am Tag je Nutzer (dazu beim
-  An- und Abmelden) – eng wird es ab etwa 12.000 bis 15.000 täglich aktiven
-  Nutzern. Dann Blaze mit Budget-Warnung.
+  zusammen. Die App schreibt bis zu zweimal am Tag je Gerät (nach dem Lernen
+  und beim Verlassen, höchstens vier Versuche), dazu beim An- und Abmelden –
+  das trägt etwa 10.000 täglich aktive Geräte. Enger sind die Lesevorgänge:
+  Seit dem 17.11.2026 sieht die App bei jedem Öffnen nach (nur die
+  Revisionskennung, höchstens alle zwei Minuten, jedes Nachsehen ist ein
+  Lesevorgang), und vor jedem Schreiben liest sie einmal. Mit etwa
+  10 Lesevorgängen je Nutzer und Tag wird es ab etwa 5.000 täglich aktiven
+  Nutzern eng. Dann Blaze mit Budget-Warnung.
 - Authentication: 150 Mails zum Zurücksetzen und 1.000 Bestätigungsmails am
   Tag, 100 neue Konten je Stunde und IP-Adresse.
 - Wird eine Grenze überschritten, meldet Firebase `RESOURCE_EXHAUSTED` bzw.

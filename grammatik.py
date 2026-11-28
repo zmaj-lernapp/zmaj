@@ -33,7 +33,9 @@ GRAMMATIK = {
         ],
         "uebungen": [
             {"frage": "„___ stanuješ?“ (Wo wohnst du?)", "optionen": ["Gdje", "Kuda", "Kada"], "richtig": "Gdje", "tipp": "Gdje = wo (Ort), Kuda = wohin (Richtung)."},
-            {"frage": "„___ ideš?“ (Wohin gehst du?)", "optionen": ["Gdje", "Kuda", "Ko"], "richtig": "Kuda", "tipp": "Bewegung in eine Richtung: Kuda."},
+            # Bis zum 14.11.2026 stand Gdje als falsche Antwort da. Ajdin (Pruefbericht 1.4,
+            # V11/F7 a): Gdje gilt umgangssprachlich auch fuer "wohin". Seitdem Kada.
+            {"frage": "„___ ideš?“ (Wohin gehst du?)", "optionen": ["Kuda", "Kada", "Ko"], "richtig": "Kuda", "tipp": "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje."},
             {"frage": "Ja/Nein-Frage: „Sprichst du Deutsch?“", "optionen": ["Govoriš li njemački?", "Gdje govoriš njemački?", "Govoriš njemački li?"], "richtig": "Govoriš li njemački?", "tipp": "„li“ steht direkt hinter dem Verb."},
             {"frage": "„___ košta hljeb?“ (Wie viel kostet das Brot?)", "optionen": ["Koliko", "Kako", "Koji"], "richtig": "Koliko", "tipp": "Koliko = wie viel, Kako = wie, Koji = welcher."},
             {"frage": "„___ je to?“ (Wer ist das?)", "optionen": ["Ko", "Šta", "Čiji"], "richtig": "Ko", "tipp": "Ko fragt nach Personen, Šta nach Dingen."},
@@ -80,7 +82,7 @@ GRAMMATIK = {
             {"frage": "„Ti ___ dva brata.“ (Du hast zwei Brüder.)", "optionen": ["imam", "imaš", "ima"], "richtig": "imaš", "tipp": "ti → -š."},
             {"frage": "„Oni ___ u Sarajevu.“ (Sie arbeiten in Sarajevo.)", "optionen": ["radi", "radimo", "rade"], "richtig": "rade", "tipp": "oni → -e / -ju."},
             {"frage": "Wie sagt man „ich spreche“?", "optionen": ["govorim", "govoriš", "govori"], "richtig": "govorim", "tipp": "ja → -m."},
-            {"frage": "„Kako ___?“ (Wie geht es Ihnen? – höflich)", "optionen": ["si", "ste", "su"], "richtig": "ste", "tipp": "Höflich = vi → ste."},
+            {"frage": "„Kako ___?“ (Wie geht es Ihnen? – höflich)", "optionen": ["si", "ste", "su"], "richtig": "ste", "tipp": "Höflich = Vi → ste."},
             {"frage": "Welcher Satz ist richtig?", "optionen": ["Ja sam umoran.", "Sam ja umoran.", "Sam umoran ja."], "richtig": "Ja sam umoran.", "tipp": "„sam“ steht nie an erster Stelle."},
         ],
     },
@@ -137,7 +139,7 @@ GRAMMATIK = {
                          ["männlich, unbelebt", "hljeb, grad, auto", "hljeb, grad, auto", "bleibt gleich"],
                          ["weiblich", "sestra, kahva, kuća", "sestru, kahvu, kuću", "-a → -u"],
                          ["sächlich", "dijete, selo, more", "dijete, selo, more", "bleibt gleich"]]},
-            "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.",
+            "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.",
             "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.",
         ],
         "uebungen": [
@@ -177,10 +179,10 @@ GRAMMATIK = {
         "erklaerung": [
             "Jede Präposition verlangt einen bestimmten Fall. Die wichtigsten Gruppen:",
             {"tabelle": [["Fall", "Präpositionen", "Beispiel"],
-                         ["Genitiv", "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije", "iz grada, kod nane, poslije posla"],
+                         ["Genitiv", "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između", "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"],
                          ["Akkusativ", "za, kroz; u/na bei Bewegung (wohin?)", "za tebe, kroz grad, idem u grad, idem na pijacu"],
                          ["Lokativ", "u/na bei Ort (wo?), o (über), prema", "u gradu, na pijaci, o poslu"],
-                         ["Instrumental", "s/sa, pod, iznad, ispod, između, pred, za (hinter)", "s bratom, pod stolom, između kuća"]]},
+                         ["Instrumental", "s/sa, pod, nad (über), pred, za (hinter), među", "s bratom, pod stolom"]]},
             "Merke „u“ und „na“: Bewegung → Akkusativ (Idem u grad), Ort → Lokativ (Ja sam u gradu). Auf Deutsch ist das wie „in die Stadt“ und „in der Stadt“.",
             "„na“ statt „u“ bei: pijaca, posao, fakultet, more, Baščaršija, sto, ulica. Also „idem na posao“, „na pijaci“, „na moru“.",
         ],
@@ -220,11 +222,11 @@ GRAMMATIK = {
         "erklaerung": [
             "Instrumental = mit wem? womit? Nach „sa“ (mit) oder ohne Präposition beim Verkehrsmittel: „sa bratom“, „autom“, „vozom“.",
             {"tabelle": [["Geschlecht", "Nominativ", "Instrumental", "Regel"],
-                         ["männlich", "brat, auto, voz", "bratom, autom, vozom", "+ om (nach j, č, š, ž: + em: prijateljem)"],
+                         ["männlich", "brat, auto, voz", "bratom, autom, vozom", "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"],
                          ["weiblich", "sestra, kahva", "sestrom, kahvom", "-a → -om"],
                          ["sächlich", "selo, mlijeko", "selom, mlijekom", "-o → -om"]]},
             "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).",
-            "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).",
+            "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).",
         ],
         "uebungen": [
             {"frage": "„Idem s ___.“ (Ich gehe mit dem Bruder.)", "optionen": ["brata", "bratu", "bratom"], "richtig": "bratom", "tipp": "s/sa + Instrumental: + om."},

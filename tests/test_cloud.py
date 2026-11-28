@@ -95,11 +95,85 @@ def test_regeln_nur_das_eigene_dokument(wurzel):
     assert "hasOnly(['daten', 'rev'])" in code
 
 
+def test_schreiben_mit_antwortmaske_nicht_mit_updatemask(index_html):
+    """20.11.2026 (Optimierung Punkt 4): Das PATCH fragt mit der
+    Antwortmaske mask.fieldPaths=rev nur rev zurueck statt des ganzen
+    Dokuments. updateMask hiesse "nur rev schreiben" - daten bliebe alt.
+    Das Verhalten pruefen tests_e2e/test_cloud_antwortmaske.py."""
+    speichern = re.search(r"async speichern\(m, dok\)\{.*?\n    \},", index_html, re.S).group(0)
+    assert "senden(dokument(m.uid) + '?mask.fieldPaths=rev', {method: 'PATCH'," in speichern
+    assert "fields: {daten: {stringValue: dok.text}, rev: {stringValue: dok.rev}}" in speichern
+    # Nirgends in der App eine Adresse mit updateMask (nur der Kommentar nennt es).
+    assert not re.search(r"['\"`][^'\"`\n]*updateMask", index_html)
+
+
 def test_rev_ohne_geraetekennung(index_html):
     """28.10.2026: In der Cloud liegt keine Geraete-ID - rev ist ein
     Zufallswert je Schreiben (cloudRev)."""
     abgleich = re.search(r"async function cloudAbgleich\(.*?\n\}", index_html, re.S).group(0)
     assert "geraetId" not in abgleich and "cloudRev()" in abgleich
+
+
+def _funktion(index_html, name):
+    return re.search(r"\nfunction %s\(.*?\r?\n\}" % name, index_html, re.S).group(0)
+
+
+def test_nachsehen_bei_jedem_oeffnen_und_nach_dem_lernen(index_html):
+    """17.11.2026: Nachgesehen wird beim Start und bei jeder Rueckkehr in
+    den Vordergrund, hoechstens alle zwei Minuten, und geschrieben auch
+    gleich nach jedem Ergebnisschirm, auf dem ein Lerntag entstehen kann
+    (dazu der Sprung-Test). Das Verhalten pruefen
+    tests_e2e/test_cloud_nachsehen.py."""
+    assert index_html.count("let CLOUD_NACHSEHEN_MS = 2 * 60 * 1000;") == 1
+    horcher = re.search(r"if\(CLOUD_AN\)\{\r?\n  document\.addEventListener\('visibilitychange', \(\)=>\{(.*?)\}\);",
+                        index_html, re.S).group(1)
+    assert "cloudAbgleich('pause')" in horcher and horcher.index("return;") < horcher.index("cloudAbgleich('vorn')")
+    assert index_html.count("if(CLOUD_AN) cloudAbgleich('start');") == 1
+    for name in ("lessonEnd", "topfEnde", "showTestResult", "sprungEnde"):
+        assert _funktion(index_html, name).count("cloudNachLernen();") == 1, name
+    story = _funktion(index_html, "showStoryQ")
+    assert story.count("cloudNachLernen();") == 1 and story.index("saveProgress()") < story.index("cloudNachLernen()")
+    # Ohne CLOUD_AN tut es nichts, und es wartet nicht.
+    nach = _funktion(index_html, "cloudNachLernen")
+    assert "if(CLOUD_AN) setTimeout(() => cloudAbgleich('ende'), 0);" in nach
+    # Zwei Schreibvorgaenge am Tag hoechstens: m.tag (Verlassen oder
+    # Nachholen) und m.ende (nach dem Lernen), nie beide zugleich.
+    abgleich = re.search(r"async function cloudAbgleich\(.*?\n\}", index_html, re.S).group(0)
+    assert "if(nachLernen) m.ende = heute;" in abgleich
+    assert "else if(!erstes && !zuletzt) m.tag = heute;" in abgleich
+
+
+def test_nachbesserung_nach_dem_pruefbefund(index_html):
+    """Pruefbefund 17.11.2026 zum Nachsehen bei jedem Oeffnen, das Verhalten
+    pruefen tests_e2e/test_cloud_nachsehen.py und test_cloud_packen.py:
+      - hoechstens vier Schreibversuche am Tag, gezaehlt VOR dem Schreiben,
+        Anmelden und Abmelden ausgenommen;
+      - reines Einarbeiten gilt als hochgeladen (m.fp), nur wenn die Cloud
+        schon alles hatte, was das Geraet hat (cloudHatAlles);
+      - nur eine Ablehnung der Feldmaske (400) schaltet das Nachsehen sofort
+        ab, und dann nur fuer diesen Tag; Fehler des Ausweises nie."""
+    assert index_html.count("const CLOUD_SCHREIBVERSUCHE = 4;") == 1
+    assert index_html.count("const CLOUD_MASKE_FEHLER = 2;") == 1
+    assert "cloudMaskeKaputt" not in index_html
+    abgleich = re.search(r"async function cloudAbgleich\(.*?\n\}", index_html, re.S).group(0)
+    merken = "if(!erstes && !zuletzt){ m.versuche = {tag: heute, n: versucht() + 1}; cloudMerkerSetzen(m, true); }"
+    assert abgleich.count(merken) == 1
+    assert abgleich.index(merken) < abgleich.index("await adapter.speichern(m, {text, rev});")
+    assert "schreiben = frei && m.tag !== heute && geaendert();" in abgleich
+    assert "if(!frei || m.ende === heute || !geaendert()) return 'nichts';" in abgleich
+    assert "(anlass === 'pause' && m.tag !== heute && frei)" in abgleich
+    # Geprueft vor dem Einarbeiten, m.fp nur ohne Schreiben danach
+    pruefen = "if(s && !schreiben && m.rev) schonOben = cloudHatAlles(s, m.fremd);"
+    assert abgleich.count(pruefen) == 1
+    assert abgleich.index(pruefen) < abgleich.index("cloudUebernehmen(s, m.fremd, !m.rev)")
+    assert "if(schonOben) m.fp = cloudFingerabdruck(standAlsObjekt());" in abgleich
+    hat = _funktion(index_html, "cloudHatAlles")
+    assert "sicherungPlausibel(s)" in hat and "mit.getragen = nur.getragen;" in hat
+    maske = _funktion(index_html, "cloudMaskeAus")
+    assert "x.tag === today()" in maske
+    assert "if(e && typeof e === 'object' && e.status === 400) e.maske = true;" in index_html
+    assert "if(e && typeof e === 'object') e.ausweis = true;" in index_html
+    assert "f.status = r.status;" in index_html
 
 
 def test_anleitung_ohne_echte_werte(wurzel):
@@ -288,3 +362,59 @@ def test_main_ohne_zugang_bricht_vor_dem_bau_ab(monkeypatch, tmp_path):
     monkeypatch.setattr(app_bauen, "CLOUD_DATEI", str(tmp_path / "gibt-es-nicht.json"))
     with pytest.raises(SystemExit):
         app_bauen.main(["--aab"])
+
+
+# ---- Gepackt sichern, Weg A (Ajdin am 13.11.2026) ----
+# Schritt 1 (1.4): packen nur, wenn die alte Form nicht mehr passt. Schritt 2
+# ("immer packen", ein bis zwei Monate spaeter) kommt ueber die Quelle. Fuer
+# den Handytest mit einem Geraet mit 1.3 gibt es die Test-App mit
+# --immer-packen. Das Verhalten pruefen tests_e2e/test_cloud_packen.py.
+
+def test_packen_in_der_quelle_noch_schritt_1(index_html):
+    import app_bauen
+    assert index_html.count(app_bauen.PACKEN_AUS) == 1
+    assert app_bauen.PACKEN_AN not in index_html
+    assert index_html.count("const CLOUD_PACK_FELD = 'gepackt1';") == 1
+
+
+def test_immer_packen_nur_in_der_kopie(tmp_path):
+    import app_bauen
+    kopie = tmp_path / "index.html"
+    kopie.write_bytes(("a\r\n" + app_bauen.PACKEN_AUS + "\r\nb\n").encode("utf-8"))
+    app_bauen.immer_packen_einschalten(str(kopie))
+    assert kopie.read_bytes() == ("a\r\n" + app_bauen.PACKEN_AN + "\r\nb\n").encode("utf-8")
+    # Steht der Anker nicht genau einmal da, bricht der Bau ab, und die
+    # Datei bleibt, wie sie war.
+    for roh in (b"a\n", (app_bauen.PACKEN_AUS * 2).encode("utf-8")):
+        kopie.write_bytes(roh)
+        with pytest.raises(SystemExit):
+            app_bauen.immer_packen_einschalten(str(kopie))
+        assert kopie.read_bytes() == roh
+
+
+def test_immer_packen_nie_fuer_den_store():
+    import app_bauen
+    assert app_bauen.schalter_lesen(["--immer-packen"]) == {"--immer-packen"}
+    assert app_bauen.schalter_lesen(["--nur-abgleich", "--immer-packen"]) == {"--nur-abgleich", "--immer-packen"}
+    with pytest.raises(SystemExit) as fehler:
+        app_bauen.schalter_lesen(["--aab", "--immer-packen"])
+    assert "CLOUD_IMMER_PACKEN" in str(fehler.value)
+
+
+def test_immer_packen_im_bau_nach_dem_kopieren(monkeypatch):
+    """In die Kopie www/index.html, also nach kopieren() und vor capacitor() -
+    nur, was dann in www/ liegt, kommt ins Paket. Ohne den Schalter nie."""
+    import app_bauen
+    aufrufe = []
+    for name in ("anmeldung_pruefen", "versionsname_lesen", "pruefen", "kopieren", "emir_drueber",
+                 "dauer_einsetzen", "cloud_einsetzen", "version_einsetzen", "ton_verkleinern",
+                 "testwerbung_einschalten", "immer_packen_einschalten", "versionsnummer_hochzaehlen",
+                 "standbilder_als_webp", "ton_index_verschlanken",
+                 "capacitor", "plugins_flicken", "debug_apk", "freigabe_aab", "versionsname_anheben"):
+        monkeypatch.setattr(app_bauen, name, lambda *a, n=name, **k: aufrufe.append(n))
+    app_bauen.main(["--immer-packen"])
+    assert aufrufe.index("kopieren") < aufrufe.index("immer_packen_einschalten") < aufrufe.index("capacitor")
+    assert "debug_apk" in aufrufe and "freigabe_aab" not in aufrufe
+    aufrufe.clear()
+    app_bauen.main([])
+    assert "immer_packen_einschalten" not in aufrufe and "debug_apk" in aufrufe

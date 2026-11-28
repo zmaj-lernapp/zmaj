@@ -66,8 +66,8 @@ def test_alles_offen_hat_nichts_gelernt(sicherungen):
 def _app_grenzen(wurzel):
     """Muenzen je Lerntag und Preise des Zierrats, so wie web/index.html sie
     rechnet - nicht abgeschrieben, sonst merkt niemand, wenn sie wandern."""
-    with io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8") as f:
-        html = f.read()
+    import app_quelle   # die ganze App, auch wenn sie in web/js geteilt ist
+    html = app_quelle.lesen(os.path.join(wurzel, "web")).replace("\r\n", "\n")
     konst = {"MUENZEN_PRO_QUEST": int(re.search(r"const MUENZEN_PRO_QUEST = (\d+);", html).group(1))}
     formel = re.search(r"const MUENZEN_JE_TAG_HOECHSTENS = ([^;]+);", html).group(1)
     je_tag = 1

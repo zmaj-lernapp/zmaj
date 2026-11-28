@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Der versteckte Teil Beim Zahnarzt (06.11.2026): der Inhalt.
 
-Eine Zahnaerztin will mit Patienten reden koennen, die nur Bosnisch
+Gedacht fuer Praxisteams, die mit Patienten reden wollen, die nur Bosnisch
 sprechen. Bosnisch und Deutsch stehen genau so in Release\\Wortschatz\\paket_zahnarzt.json,
 von Ajdin am 06.11.2026 durchgesehen. Hier steht, was beim Einbau festgelegt wurde:
 
@@ -109,8 +109,8 @@ def test_auch_nur_wie_freigegeben(teil):
 
 
 def test_fuer_die_app_eigenes_feld_und_keine_zaehlung(grunddaten):
-    assert len(grunddaten["sektionen"]) == 31
-    assert len(grunddaten["kategorien"]) == 295
+    assert len(grunddaten["sektionen"]) == 27       # seit 13.11.2026 (Stufen-Reiter, B2 in neun)
+    assert len(grunddaten["kategorien"]) == 298     # seit 27.11.2026 (K7: Level Ordnungszahlen)
     z = grunddaten["zahnarzt"]
     assert z["sektion"]["id"] == "zahnarzt" and len(z["kategorien"]) == 7
     assert all(k["id"].startswith("za|") for k in z["kategorien"])
@@ -149,7 +149,7 @@ def test_uebersetzt_und_bosnisch_bleibt(code, teil):
 def test_ton_lueckenlos_in_der_reihenfolge_der_datei(teil):
     import ton_bauen
     emir = ton_bauen.nur_emir()
-    neu = sorted((e["datei"], k, e["text"]) for k, e in emir.items() if ERSTE <= int(e["datei"][1:5]) <= LETZTE)
+    neu = sorted((e["datei"], k, e["text"]) for k, e in emir.items() if ERSTE <= ton_bauen.dateinummer(e["datei"]) <= LETZTE)
     assert [n[0] for n in neu] == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
     nach = set(NACHGEKOMMEN)
     assert [n[2] for n in neu] == [w["bs"] for w in _alle(teil) if w["bs"] not in nach]
@@ -160,7 +160,7 @@ def test_ton_lueckenlos_in_der_reihenfolge_der_datei(teil):
     for w in _alle(teil):
         if w["bs"] in nach:
             k = ton_bauen.schluessel(w["bs"])
-            assert k in offen_p1020.TON or int(emir[k]["datei"][1:5]) > LETZTE, w["bs"]
+            assert k in offen_p1020.TON or ton_bauen.dateinummer(emir[k]["datei"]) > LETZTE, w["bs"]
     # zubar / stomatolog: dazu die erste Form aus der App, sie hat ihre eigene Aufnahme
     posten = {p["key"] for p in ton_bauen.sammle()}
     assert "zubar / stomatolog" in posten and "zubar" in posten

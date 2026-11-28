@@ -18,11 +18,20 @@ def index(wurzel):
 def test_ton_pruefen_meldet_nichts(wurzel, monkeypatch):
     """Seit dem 07.11.2026 ohne die Schluessel aus tests/offen_p1020.json: Emirs Ton fuer
     die Pakete 10 bis 20 kommt im eigenen Schritt. Alles andere muss vollstaendig sein."""
+    import offen_b1_teil2
+    import offen_lesetexte
     import offen_p1020
     import ton_bauen
     import ton_pruefen
     echt = ton_bauen.sammle
-    monkeypatch.setattr(ton_bauen, "sammle", lambda: [p for p in echt() if p["key"] not in offen_p1020.TON])
+    # 13.11.2026: die B1-Lesetexte (Pakete 1 und 2: tests/offen_lesetexte.json,
+    # Pakete 3 und 4: tests/offen_b1_teil2.py) warten noch auf ihren Ton. Seit
+    # dem 16.11.2026 liest Vesna die Texte vor, es warten nur noch die Woerter,
+    # die allein in diesen Texten stehen (Woerter spricht Emir).
+    # 27.11.2026: die Woerter und Saetze aus K2 und K7 warten auf den Ton-Schritt (k2_einbau.TON_OFFEN).
+    import k2_einbau
+    offen = offen_p1020.TON | offen_lesetexte.TON | offen_b1_teil2.ton_schluessel() | k2_einbau.TON_OFFEN
+    monkeypatch.setattr(ton_bauen, "sammle", lambda: [p for p in echt() if p["key"] not in offen])
     assert ton_pruefen.main() in (0, None)
 
 
@@ -61,10 +70,12 @@ def test_jedes_wort_findet_seine_aufnahme(grunddaten, index):
     import ton_bauen
     toene = {str(e["key"]).lower(): e["datei"]
              for e in index["toene"] + list(ton_bauen.nur_emir().values())}
+    import k2_einbau
     import offen_p1020
     ohne = [w["bs"] for k in grunddaten["kategorien"] for w in k["words"]
             if not de.ton_datei(w["bs"], toene)
-            and ton_bauen.schluessel(w["bs"]) not in offen_p1020.TON]      # Ton-Schritt, 07.11.2026
+            and ton_bauen.schluessel(w["bs"]) not in offen_p1020.TON      # Ton-Schritt, 07.11.2026
+            and ton_bauen.schluessel(w["bs"]) not in k2_einbau.TON_OFFEN]  # Ton-Schritt K2, 27.11.2026
     assert not ohne, ohne[:20]
 
 
@@ -96,18 +107,26 @@ const aufrufe = [];
 const geraet = (name, wirft) => class {
   constructor(...a){ aufrufe.push([name, ...a]); if(wirft(a)) throw new TypeError('nein'); this.name = name; }
 };
-const fall = fenster => {
+// ios/geste: iPhone, und ob gerade ein Fingertipp laeuft (15.11.2026: auf iOS
+// entsteht der Kontext nur in tonEntsperren(), siehe "Ton im Fingertipp").
+const fall = (fenster, ios = false, geste = false) => {
   aufrufe.length = 0;
-  const t = new Function('window', 'let actx = null;\n' + quelle + '\nreturn {tonKontext, lies: () => actx};')(fenster);
+  const t = new Function('window', 'let actx = null; const IST_IOS = ' + ios + '; let tonInGeste = ' + geste + ';\n' +
+                         'const neuGemeldet = []; function tonKontextNeu(c){ neuGemeldet.push(c.name); }\n' + quelle +
+                         '\nreturn {tonKontext, lies: () => actx, neuGemeldet};')(fenster);
   const eins = t.tonKontext(), bis_hier = aufrufe.slice(), zwei = t.tonKontext();
-  return {aufrufe: bis_hier, name: eins ? eins.name : null, derselbe: eins === zwei, gemerkt: t.lies() === eins};
+  return {aufrufe: bis_hier, name: eins ? eins.name : null, derselbe: eins === zwei, gemerkt: t.lies() === eins,
+          gemeldet: t.neuGemeldet};
 };
+const neu = () => ({AudioContext: geraet('neu', () => false)});
 console.log(JSON.stringify({
   neu: fall({AudioContext: geraet('neu', () => false), webkitAudioContext: geraet('alt', () => false)}),
   alt: fall({webkitAudioContext: geraet('alt', () => false)}),
   wirft_bei_option: fall({AudioContext: geraet('neu', a => a.length > 0)}),
   wirft_immer: fall({AudioContext: geraet('neu', () => true)}),
   keiner: fall({}),
+  ios_ohne_tipp: fall(neu(), true, false),
+  ios_im_tipp: fall(neu(), true, true),
 }));
 """
 
@@ -124,16 +143,23 @@ def test_tonkontext_nimmt_playback_und_faellt_zurueck(index_html):
                          capture_output=True, text=True, check=True).stdout
     r = json.loads(aus)
     option = {"latencyHint": "playback"}
-    assert r["neu"] == {"aufrufe": [["neu", option]], "name": "neu", "derselbe": True, "gemerkt": True}
-    assert r["alt"] == {"aufrufe": [["alt", option]], "name": "alt", "derselbe": True, "gemerkt": True}
+    assert r["neu"] == {"aufrufe": [["neu", option]], "name": "neu", "derselbe": True, "gemerkt": True,
+                        "gemeldet": []}
+    assert r["alt"] == {"aufrufe": [["alt", option]], "name": "alt", "derselbe": True, "gemerkt": True,
+                        "gemeldet": []}
     assert r["wirft_bei_option"] == {"aufrufe": [["neu", option], ["neu"]], "name": "neu",
-                                     "derselbe": True, "gemerkt": True}
+                                     "derselbe": True, "gemerkt": True, "gemeldet": []}
     assert r["wirft_immer"]["aufrufe"] == [["neu", option], ["neu"]]
     assert r["wirft_immer"]["name"] is None
-    assert r["keiner"] == {"aufrufe": [], "name": None, "derselbe": True, "gemerkt": True}
+    assert r["keiner"] == {"aufrufe": [], "name": None, "derselbe": True, "gemerkt": True, "gemeldet": []}
+    # Android meldet nichts weiter; das iPhone legt nur im Fingertipp an (15.11.2026)
+    assert r["neu"]["gemeldet"] == [] and r["wirft_immer"]["gemeldet"] == []
+    assert r["ios_ohne_tipp"] == {"aufrufe": [], "name": None, "derselbe": True, "gemerkt": True, "gemeldet": []}
+    assert r["ios_im_tipp"] == {"aufrufe": [["neu", option]], "name": "neu", "derselbe": True, "gemerkt": True,
+                                "gemeldet": ["neu"]}
 
 
-# Das Tempo (05.11.2026): bei Ajdins Frau stand es aus einer Geschichte auf
+# Das Tempo (05.11.2026): bei einer Testerin stand es aus einer Geschichte auf
 # 0,75x, und der Sprecher war dadurch in allen Lektionen langsam. Es gilt jetzt
 # nur noch beim Vorlesen einer Geschichte.
 def test_tempo_liest_nur_das_vorlesen_der_geschichte(index_html):
@@ -155,7 +181,7 @@ TEMPO_PROBE = r"""
 const quelle = process.argv[1];
 const bau = (datei, spielt) => new Function('datei', 'spielt', `
   let tempo = 0.75, pausiert = false, vorwaermen = null, tonMarke = 0, laeuftVor = null;
-  const hasTTS = true, raten = [];
+  const hasTTS = true, raten = [], IST_IOS = false;
   const spieler = {playbackRate: 1, muted: false, currentTime: 0, pause(){}, play(){ return spielt(); }};
   const waStopp = () => {}, fuerStimme = t => t, pickVoice = () => null, audioDatei = () => datei;
   class SpeechSynthesisUtterance { constructor(t){ this.text = t; } }

@@ -12,6 +12,7 @@ import os
 
 import pytest
 
+import offen_b1_teil2
 import ton_bauen
 import wortzeiten_holen as wz
 
@@ -26,11 +27,32 @@ def _geschichten():
     return geschichten.GESCHICHTEN
 
 
+# Geschichten, deren Aufnahme noch fehlt, siehe tests/offen_b1_teil2.py. Vom
+# 13.11.2026 an die B1-Lesetexte der Pakete 3 und 4, seit dem 16.11.2026 liest
+# Vesna alle Geschichten vor (Offen-Liste 6) und die Menge ist leer.
+WARTET_AUF_TON = offen_b1_teil2.GESCHICHTEN
+
+
+def test_wartet_auf_ton_ist_aktuell(index):
+    ids = {s["id"] for s in _geschichten()}
+    assert WARTET_AUF_TON <= ids, sorted(WARTET_AUF_TON - ids)
+    keys = {e["key"] for e in index["toene"]}
+    fertig = sorted(s["id"] for s in _geschichten()
+                    if s["id"] in WARTET_AUF_TON and ton_bauen.schluessel(s["text"]) in keys)
+    assert not fertig, "Aufnahme ist da - bitte aus tests/offen_b1_teil2.py streichen: %s" % fertig
+
+
 def test_jede_geschichte_hat_passende_wortzeiten(index):
+    import offen_lesetexte
     nach_key = {e["key"]: e for e in index["toene"]}
     fehler = []
     for s in _geschichten():
-        e = nach_key[ton_bauen.schluessel(s["text"])]
+        k = ton_bauen.schluessel(s["text"])
+        # Geschichten ohne Ton: Pakete 1 und 2 in tests/offen_lesetexte.json,
+        # Pakete 3 und 4 in tests/offen_b1_teil2.py (13.11.2026, seit 16.11.2026 leer)
+        if k in offen_lesetexte.GESCHICHTEN or s["id"] in WARTET_AUF_TON:
+            continue
+        e = nach_key[k]
         w = e.get("w")
         if not isinstance(w, list):
             fehler.append("%s: kein w" % e["datei"])
@@ -51,6 +73,43 @@ def test_jede_geschichte_hat_passende_wortzeiten(index):
                 fehler.append("%s: Paar %d nicht monoton" % (e["datei"], i))
             vorher = paar[1]
     assert not fehler, fehler[:20]
+
+
+def test_wortzeiten_gehoeren_zum_text(index):
+    """Die Zeiten "w" wurden genau zu diesem Text geholt (wortzeiten_passen()
+    vergleicht mit Gross- und Kleinschreibung, 20.10.2026). Sonst wirft der
+    naechste ton_bauen.py-Lauf sie weg. Ausgenommen ist nur, was in
+    WORTZEITEN_NEU (tests/offen_b1_teil2.py) auf die naechste Vesna-Runde wartet."""
+    import offen_lesetexte
+    nach_key = {e["key"]: e for e in index["toene"]}
+    falsch = sorted(s["id"] for s in _geschichten()
+                    if ton_bauen.schluessel(s["text"]) not in offen_lesetexte.GESCHICHTEN
+                    and s["id"] not in WARTET_AUF_TON
+                    and s["id"] not in offen_b1_teil2.WORTZEITEN_NEU
+                    and not ton_bauen.wortzeiten_passen(nach_key[ton_bauen.schluessel(s["text"])], s["text"]))
+    assert falsch == []
+
+
+def test_wortzeiten_neu_ist_aktuell(index):
+    """Was in WORTZEITEN_NEU steht: gleicher Schluessel, gleich viele Woerter,
+    die App markiert weiter richtig. Nur der Text, zu dem die Zeiten geholt
+    wurden, unterscheidet sich in Gross und klein, und wortzeiten_holen.py
+    --holen nimmt die Geschichte deshalb von selbst mit (_ziele(): alles,
+    wofuer wortzeiten_passen() nicht gilt). Passen die Zeiten wieder, aus
+    WORTZEITEN_NEU streichen. Bis zum 15.11.2026 opcina ("Hvala vam"), seit
+    "Hvala Vam" wieder dasteht, ist die Liste leer."""
+    nach_key = {e["key"]: e for e in index["toene"]}
+    ids = {s["id"] for s in _geschichten()}
+    assert offen_b1_teil2.WORTZEITEN_NEU <= ids
+    assert not offen_b1_teil2.WORTZEITEN_NEU & WARTET_AUF_TON
+    for s in _geschichten():
+        if s["id"] not in offen_b1_teil2.WORTZEITEN_NEU:
+            continue
+        e = nach_key[ton_bauen.schluessel(s["text"])]
+        assert not ton_bauen.wortzeiten_passen(e, s["text"]), \
+            "Wortzeiten passen wieder - aus WORTZEITEN_NEU streichen: %s" % s["id"]
+        assert e["text"] != s["text"] and e["text"].lower() == s["text"].lower(), s["id"]
+        assert len(e["w"]) == len(ton_bauen.textwoerter(s["text"])), s["id"]
 
 
 def test_wortzeiten_liegen_in_der_aufnahme(index, wurzel):
@@ -125,7 +184,7 @@ def test_schreibe_index_behaelt_w_in_einer_zeile(tmp_path, monkeypatch):
     assert zurueck == {"version": 1, "toene": [bekannt["g"], bekannt["a"]]}
 
 
-def _lauf(tmp_path, monkeypatch, eintrag, posten):
+def _lauf(tmp_path, monkeypatch, eintrag, posten, **optionen):
     """grosser_lauf() ohne Netz: ein Eintrag im Index, eine Datei, feste Posten."""
     audio = tmp_path / "audio"
     audio.mkdir()
@@ -141,7 +200,7 @@ def _lauf(tmp_path, monkeypatch, eintrag, posten):
         gerufen.append(text)
         return b"\xff" * 900
 
-    ton_bauen.grosser_lauf(dienst, {}, "wort-stimme", "gesch-stimme")
+    ton_bauen.grosser_lauf(dienst, {}, "wort-stimme", "gesch-stimme", **optionen)
     toene = json.load(io.open(str(audio / "index.json"), encoding="utf-8"))["toene"]
     return {e["datei"]: e for e in toene}, gerufen
 
@@ -178,3 +237,46 @@ def test_neue_geschichte_kommt_ohne_w(tmp_path, monkeypatch):
     assert gerufen == [ton_bauen.sprechtext(neu)]          # "Reks je veliki."
     assert "w" not in toene["g02.mp3"] and toene["g02.mp3"]["text"] == neu
     assert toene["g01.mp3"] == eintrag          # die alte Aufnahme behaelt ihre eigenen Zeiten
+
+
+def test_nur_geschichten_spricht_keine_woerter(tmp_path, monkeypatch):
+    """ton_bauen.py --nur-geschichten (16.11.2026): Woerter und Saetze spricht
+    Emir, Azure nur die Geschichten. Die neue Geschichte bekommt ihre Aufnahme
+    mit der Geschichtenstimme, das neue Wort keine und auch keine Nummer."""
+    alt = "Rex je mali."
+    eintrag = {"key": ton_bauen.schluessel(alt), "datei": "g01.mp3", "text": alt,
+               "stimme": "gesch-stimme", "w": [[100, 300], [320, 400], [420, 700]]}
+    neu = "Rex je veliki."
+    posten = [{"art": "geschichte", "key": ton_bauen.schluessel(alt), "text": alt},
+              {"art": "geschichte", "key": ton_bauen.schluessel(neu), "text": neu},
+              {"art": "wort", "key": "veliki", "text": "veliki"}]
+    # Ohne das echte ton_nur_emir.json: dort steht veliki seit dem 16.11.2026 (Emir,
+    # Woerter der B1-Lesetexte), und grosser_lauf() liesse es dann zu Recht aus.
+    monkeypatch.setattr(ton_bauen, "NUR_EMIR", str(tmp_path / "ton_nur_emir.json"))
+    toene, gerufen = _lauf(tmp_path, monkeypatch, dict(eintrag), posten, nur_geschichten=True)
+    assert gerufen == [ton_bauen.sprechtext(neu)]
+    assert sorted(toene) == ["g01.mp3", "g02.mp3"]
+    assert toene["g02.mp3"]["stimme"] == "gesch-stimme" and toene["g01.mp3"] == eintrag
+    assert list((tmp_path / "audio").glob("w*.mp3")) == []
+    # ohne die Option spricht derselbe Lauf auch das Wort, mit der Wortstimme
+    zwei = tmp_path / "zwei"
+    zwei.mkdir()
+    toene, gerufen = _lauf(zwei, monkeypatch, dict(eintrag), posten)
+    assert gerufen == [ton_bauen.sprechtext(neu), "veliki"]
+    assert [e["stimme"] for e in toene.values() if e["key"] == "veliki"] == ["wort-stimme"]
+
+
+def test_zugang_auch_ausserhalb_des_projekts(wurzel, tmp_path):
+    """ZMAJ_TTS_ZUGANG (16.11.2026) nennt die Zugangsdatei, wenn sie nicht neben
+    ton_bauen.py liegt - so muss der Schluessel nie ins Projekt kopiert werden.
+    Ohne die Variable bleibt es tts_zugang.json neben dem Skript."""
+    import subprocess
+    import sys
+    pfad = str(tmp_path / "zugang.json")
+    befehl = [sys.executable, "-c", "import ton_bauen; print(ton_bauen.ZUGANG)"]
+    umgebung = {k: v for k, v in os.environ.items() if k != "ZMAJ_TTS_ZUGANG"}
+    ohne = subprocess.run(befehl, cwd=wurzel, env=umgebung, capture_output=True, text=True, check=True)
+    assert ohne.stdout.strip() == os.path.join(wurzel, "tts_zugang.json")
+    mit = subprocess.run(befehl, cwd=wurzel, env=dict(umgebung, ZMAJ_TTS_ZUGANG=pfad),
+                         capture_output=True, text=True, check=True)
+    assert mit.stdout.strip() == pfad

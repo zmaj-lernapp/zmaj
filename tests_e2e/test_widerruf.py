@@ -41,7 +41,7 @@ def _einstellungen(browser, basis, heute_stand, sprache="de", plaene=MIT_PRODUKT
 
 
 def _mail(seite):
-    """Die mailto:-Aufrufe meldet Chromium als Anfrage, etwas spaeter als den Klick."""
+    """Die mailto:-Aufrufe meldet die SCHEMA_SPERRE (conftest.py) in fremd, etwas spaeter als den Klick."""
     for _ in range(80):
         treffer = [u for u in seite.fremd if u.startswith("mailto:" + ZMAJ_MAIL + "?")]
         if treffer:

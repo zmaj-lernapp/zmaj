@@ -842,7 +842,7 @@ KAESTEN = """() => {
           leerStern: leer && leer.querySelector('svg') && {rolle: leer.querySelector('svg').getAttribute('role'),
                                                           w: leer.querySelector('svg').getAttribute('width')},
           notizen: document.querySelectorAll('#topfHome .note').length,
-          weiter: w.style.display, weiterText: w.textContent};
+          weiter: w.style.display, weiterText: w.textContent.trim()};
 }"""
 
 
@@ -924,7 +924,7 @@ def test_weitermachen_knopf_unveraendert(seite, heute_stand):
     assert seite.js(KAESTEN)["weiter"] == "none", "nur Sterne: Weitermachen startet keine Markiert-Runde"
     seite.js(FUELLEN, [3, 4])
     k = seite.js(KAESTEN)
-    assert k["weiter"] == "" and k["weiterText"] == "▶ Weitermachen · Wiederholen"
+    assert k["weiter"] == "" and k["weiterText"] == "Weitermachen · Wiederholen"
     seite.page.click("#weiterKnopf")
     lage = seite.js("() => ({quelle: Lx.quelle, alleImTopf: Lx.queue.every(a => topfSchluessel(a) in topf)})")
     assert lage == {"quelle": "topf", "alleImTopf": True}
@@ -1190,3 +1190,129 @@ def test_axe_wiederholen_und_aufgabe_mit_stern(browser, basis, heute_stand, sche
         assert seite.fehler == []
     finally:
         ctx.close()
+
+
+# ---------------------------------------------------------------------------
+# Beim Zahnarzt (1.5, K1)
+# ---------------------------------------------------------------------------
+# Ajdin am 20.11.2026: "pack die zahnarzt woerter mit in den normalen stern topf
+# wo alle anderen drin sind ... nur stern funktion beim zahnarzt einfuegen mehr
+# nicht". Derselbe Topf und dieselbe Runde "Markiert", weiter kein Fehler-Topf
+# und keine Kartei. Auf dem iPhone gibt es den Teil nicht, dort bleiben solche
+# Sterne still im Stand (test_ios.py).
+
+ZA_AN = {"an": True, "z": 1000}
+
+# Eine Aufgabe aus Level k des Zahnarzt-Teils in dessen Lektion legen. Gibt den
+# Schluessel zurueck, den der Stern bekommen muss.
+ZA_LEGEN = """([typ, k]) => {
+  openLevel(CATEGORIES.length + k); startLesson();
+  const c = zaLevel()[k], w = c.words.find(x => typable(x)) || c.words[0];
+  Lx.queue = [{typ, w}]; Lx.i = 0; Lx.total = 1; Lx.results = []; Lx.right = 0;
+  showLessonTask();
+  return 'w:' + w.id;
+}"""
+
+
+def test_stern_beim_zahnarzt_in_der_lektion(seite, heute_stand):
+    seite.starten(stand=heute_stand(zahnarzt=ZA_AN))
+    k = seite.js(ZA_LEGEN, ["mc", 0])
+    assert k.startswith("w:za|")
+    knopf = seite.js(KNOPF, "lStern")
+    assert knopf["sichtbar"] and knopf["gedrueckt"] == "false" and knopf["name"] == "Markieren"
+    assert seite.js("() => document.getElementById('lStern').dataset.k") == k
+    seite.page.click("#lStern")
+    assert seite.js(KNOPF, "lStern")["gold"]
+    _ansage(seite, "Markiert")
+    assert k in _stand(seite), "sofort gespeichert"
+    assert seite.js("() => sternAnzahl()") == 1
+    # Falsch beantwortet: der Stern bleibt, Fehler-Topf und Kartei bleiben leer
+    seite.js(ANTWORTEN, [False, "Lx"])
+    assert seite.js("(k) => [!!stern[k], topfAnzahl(), Object.keys(kartei.w).length]", k) == [True, 0, 0]
+    # Auch die Einleitung eines neuen Wortes laesst sich markieren, wie im Lernpfad
+    k2 = seite.js(ZA_LEGEN, ["intro", 1])
+    assert seite.js("() => document.getElementById('lStern').dataset.k") == k2
+    assert seite.js(KNOPF, "lStern")["sichtbar"]
+    assert seite.fehler == []
+
+
+def test_stern_beim_zahnarzt_im_level_test(seite, heute_stand):
+    seite.starten(stand=heute_stand(zahnarzt=ZA_AN))
+    seite.js("""() => { openLevel(CATEGORIES.length); cur().words.forEach(w => known.add(w.id));
+        showLevelHome(); startTest(); }""")
+    seite.page.locator("#tBody .opt, #tBody #xIn").first.wait_for()
+    assert seite.js(KNOPF, "tStern")["sichtbar"]
+    k = seite.js("() => sternSchluessel(Tx.qs[Tx.i])")
+    assert k.startswith("w:za|") and seite.js("() => document.getElementById('tStern').dataset.k") == k
+    seite.page.click("#tStern")
+    assert seite.js("(k) => !!stern[k]", k)
+    seite.durchspielen("tBody", "Tx")
+    seite.page.locator("#tBody .result-big").wait_for()
+    assert seite.js("(k) => [!!stern[k], sternAnzahl(), topfAnzahl()]", k) == [True, 1, 0]
+    assert seite.fehler == []
+
+
+def test_markiert_runde_mit_woertern_vom_zahnarzt(seite, heute_stand):
+    """Der Kasten zaehlt sie mit, die Runde fragt sie ab, mit den Woertern ihres
+    Levels als Auswahl. Falsch kostet ein Leben und kommt am Ende noch einmal,
+    landet aber nicht im Fehler-Topf und nicht in der Kartei."""
+    seite.starten(stand=heute_stand())
+    za = seite.js("() => zaLevel()[0].words.slice(0, 2).map(w => w.id)")
+    normal = seite.js(WOERTER, 1)[0]
+    st = {"w:" + za[0]: {"z": 1000, "r": 0}, "w:" + za[1]: {"z": 1001, "r": 0}, "w:" + normal: {"z": 1002, "r": 0}}
+    seite.starten(stand=heute_stand(stern=st, zahnarzt=ZA_AN))
+    seite.js("() => { homeMode = 'topf'; showHome(); }")
+    assert seite.js("() => document.querySelector('#sternBox .topfzahl').textContent") == "3"
+    seite.page.click("#sternLos")
+    lage = seite.js("""() => { const za = Lx.queue.filter(a => istZa(a.w.id));
+        return {quelle: Lx.quelle, keys: Lx.queue.map(a => sternSchluessel(a)).sort(),
+                pool: za.every(a => a.pool === zaLevel()[0].words),
+                rep: za.every(a => a.rep === zaLevel()[0].label), typen: za.map(a => a.typ)}; }""")
+    assert lage["quelle"] == "stern" and lage["keys"] == sorted(st)
+    assert lage["pool"] and lage["rep"], lage
+    assert set(lage["typen"]) <= {"mc", "mcrev", "type", "listen"}, lage["typen"]
+    vorher = seite.js("() => ({leben: livesNow(), jetzt: Date.now()})")
+    for _ in range(3):
+        k = seite.js("() => sternSchluessel(Lx.queue[Lx.i])")
+        assert seite.js(KNOPF, "lStern")["gedrueckt"] == "true"
+        seite.js(ANTWORTEN, [not k.startswith("w:za|"), "Lx"])
+        seite.js(WEITER)
+    lage = seite.js("""() => ({leben: livesNow(), topf: Object.keys(topf),
+        kartei: Object.keys(kartei.w).filter(istZa), nochmal: Lx.queue.slice(3).map(a => sternSchluessel(a)).sort(),
+        r: Object.values(stern).map(e => e.r)})""")
+    assert lage["leben"] == vorher["leben"] - 2, "falsch kostet ein Leben"
+    assert lage["topf"] == [] and lage["kartei"] == [], "kein Fehler-Topf und keine Kartei"
+    assert lage["nochmal"] == sorted("w:" + x for x in za), "falsch kommt am Ende noch einmal"
+    assert all(r >= vorher["jetzt"] for r in lage["r"]), "jetzt geuebt"
+    while seite.js("() => Lx.i < Lx.queue.length"):
+        seite.js(ANTWORTEN, [True, "Lx"])
+        seite.js(WEITER)
+    seite.page.locator("#lBody .result-big").wait_for()
+    assert seite.js("() => document.querySelector('#lBody .stat').textContent") == "3markiert"
+    assert seite.js("() => [topfAnzahl(), Object.keys(kartei.w).filter(istZa).length]") == [0, 0]
+    assert sorted(_stand(seite)) == sorted(st)
+    assert seite.fehler == []
+
+
+def test_sterne_vom_zahnarzt_ohne_den_teil(seite, heute_stand):
+    """Ausgeblendet: nicht gezaehlt und nicht in der Runde, aber nicht geloescht -
+    wieder an, sind sie wieder da. Ein Wort, das es im Teil nicht mehr gibt, faellt
+    weg wie jedes andere, und nichts wird auf ein Wort des Lernpfads umgeschrieben
+    (zubar steht in beiden)."""
+    seite.starten(stand=heute_stand())
+    normal = seite.js(WOERTER, 1)[0]
+    za = "w:za|zubar / stomatolog"
+    st = {za: {"z": 1000, "r": 0}, "w:za|gibt es nicht": {"z": 1001, "r": 0}, "w:" + normal: {"z": 1002, "r": 0}}
+    seite.starten(stand=heute_stand(stern=st, gewusst=["zahnarzt:zubar"], zahnarzt={"an": False, "z": 1000}))
+    assert seite.js("() => Object.keys(stern).sort()") == sorted([za, "w:" + normal])
+    assert sorted(_stand(seite)) == sorted([za, "w:" + normal]), "aufgeraeumt und gleich gespeichert"
+    assert seite.js("() => [sternAnzahl(), sternRunde().map(a => sternSchluessel(a))]") == [1, ["w:" + normal]]
+    seite.js("() => { homeMode = 'topf'; showHome(); }")
+    assert seite.js("() => document.querySelector('#sternBox .topfzahl').textContent") == "1"
+    # Die Obergrenze zaehlt den stillen mit: so viele haelt sternPruefen() hoechstens
+    assert seite.js("() => Object.keys(stern).length") == 2
+    seite.js("() => { zaSchalter = {an: true, z: Date.now()}; homeMode = 'topf'; showHome(); }")
+    assert seite.js("() => [sternAnzahl(), sternRunde().length]") == [2, 2]
+    assert seite.js("() => document.querySelector('#sternBox .topfzahl').textContent") == "2"
+    assert seite.js("() => altenFortschrittUmschreiben()") is False
+    assert seite.fehler == []

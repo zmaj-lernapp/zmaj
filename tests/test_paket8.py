@@ -16,6 +16,7 @@ import re
 import pytest
 
 import offen_p1020
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 LEVEL = ["sein_wirken", "erscheinen_verschwinden", "miteinander_umgehen", "lieben_fuerchten", "wundern_beruhigen",
          "sich_bewegen", "losgehen_abbiegen", "kaempfen_angreifen", "schuetzen_strafen", "im_alltag_tun",
@@ -63,12 +64,17 @@ NUR_SATZ = {}
 AUCH = {
     "uticati": ["utjecati"],
 }
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten (B3/F14): das andere App-Wort gilt
+# beim Tippen mit, nur in dieser Richtung (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {"plašiti se": ["bojati se"], "poći": ["krenuti"]}
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
     # sadržavati ist seit Paket 19 (07.11.2026) das Gegenstueck zu sadržati (Ajdin, 06.11.2026)
     "učestvovati": ["sudjelovati"], "prijeći": ["preći"],
     "skrivati": ["sakrivati"], "naviknuti se": ["navići se"], "pakovati": ["pakirati"],
+    # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V4-32 „nein“)
+    "ljutiti se": ["nervirati se"],
 }
 
 # Partner je Wort, wie im Paket.
@@ -114,7 +120,7 @@ SEIT_P1020 = {"sadržati": "sadržavati", "sakriti": "sakrivati"}
 
 
 def _level(daten):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in LEVEL]
 
 
@@ -147,7 +153,7 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
 def test_auch_genau_nach_dem_paket(grunddaten):
     """Feld "auch" aus dem Paket, dazu die Formen aus "formen" (weiblich, saechlich)."""
     neu = {w["bs"]: w for w in _neu(grunddaten)}
-    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == AUCH
+    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == {**AUCH, **PRUEFBERICHT_AUCH}
     for w in neu.values():
         formen = [f.strip() for f in w["bs"].split(" / ")]
         for a in w.get("auch", []):

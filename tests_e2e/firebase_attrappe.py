@@ -11,11 +11,17 @@ Rechner. Sie kann, was die App braucht:
     E-Mail-Aufzaehlung: falsche Adresse und falsches Passwort heissen
     beide INVALID_LOGIN_CREDENTIALS,
   - mit Google anmelden (accounts:signInWithIdp, Token "google-probe"),
+  - mit Apple anmelden (signInWithIdp, Token "apple-probe", nonce
+    "nonce-probe") und Apples Token widerrufen (v2 accounts:revokeToken),
+    seit 30.10.2026 fuer die iOS-Fassung,
   - Mails anstossen (accounts:sendOobCode, PASSWORD_RESET und VERIFY_EMAIL;
     der Kopf X-Firebase-Locale wird mitgeschrieben),
   - den Ausweis erneuern (securetoken), auf Wunsch mit TOKEN_EXPIRED oder
     einem 503,
-  - je Konto ein Dokument users/{uid} lesen, schreiben, loeschen,
+  - je Konto ein Dokument users/{uid} lesen, schreiben, loeschen, beim
+    Lesen und Schreiben mit der Antwortmaske mask.fieldPaths und beim
+    Schreiben mit updateMask.fieldPaths (nur diese Felder schreiben) - beide
+    wie Firestore (20.11.2026),
   - Konten loeschen, auch mit CREDENTIAL_TOO_OLD_LOGIN_AGAIN,
   - und auf Wunsch jede Anfrage abbrechen wie ohne Netz (abbruch).
 Seit 01.11.2026 dazu das Feedback der App ueber das Kontaktformular
@@ -91,7 +97,14 @@ class Attrappe:
     "Erst einmal weiterlernen" auch bei Fehlern von Firebase).
     kontingent_weg: Firestore beantwortet alles mit 429 RESOURCE_EXHAUSTED,
     wie wenn das Tageskontingent des Projekts aufgebraucht ist
-    (Gegenpruefung 28.10.: Abmelden sagt dann nicht "brauchst Internet")."""
+    (Gegenpruefung 28.10.: Abmelden sagt dann nicht "brauchst Internet").
+    schreib_abbruch (17.11.2026): das Schreiben (PATCH) bricht ab wie in
+    einer App, die Android nach dem Wegwischen beendet - "verloren": es kommt
+    nie an, "angekommen": Firestore hat es, nur die Antwort fehlt.
+    maske_fehler und token_fehler_folge (Pruefbefund 17.11.2026): Statuscodes
+    wie 503, mit denen die naechsten Lesevorgaenge mit Feldmaske bzw. die
+    naechsten Anfragen an securetoken je einmal scheitern - ein Fehler, der
+    vorbeigeht, keine abgelehnte Maske."""
 
     def __init__(self):
         self.doks = {}
@@ -110,8 +123,13 @@ class Attrappe:
         self.token_fehler = None
         self.anmelde_fehler = None
         self.kontingent_weg = False
+        self.schreib_abbruch = None
         self.abbruch = False
         self.n = 0
+        # Mit Apple anmelden (iOS, 30.10.2026): Token "apple-probe" mit dem
+        # rohen nonce "nonce-probe"; widerrufen sammelt accounts:revokeToken.
+        self.widerrufen = []
+        self.widerruf_fehler = None
         # Feedback ueber das Formular (01.11.2026). Ohne anonym_neu bleibt
         # die anonyme Anmeldung, wie die Tests vom 19.10. sie kennen: das
         # Probekonto UID. Mit anonym_neu bekommt jede eine eigene uid
@@ -123,6 +141,17 @@ class Attrappe:
         self.anonyme = set()
         self.nachrichten = {}
         self.nachricht_fehler = None
+        # Je Lesen von users/{uid} die Feldmaske oder None (13.11.2026).
+        self.masken = []
+        # maske_abgelehnt: Firestore nimmt die Feldmaske nicht an (400).
+        self.maske_abgelehnt = False
+        # Je einmal scheitern, siehe oben (Pruefbefund 17.11.2026).
+        self.maske_fehler = []
+        self.token_fehler_folge = []
+        # Je Schreiben (PATCH) von users/{uid} (20.11.2026, Optimierung
+        # Punkt 4): die rohe Query, mask.fieldPaths, updateMask.fieldPaths
+        # (je None, wenn nicht gesetzt) und der Koerper der Antwort.
+        self.schreiben = []
 
     # Das Dokument des Probekontos UID - so lesen es die Tests vom 19.10.
     @property
@@ -213,6 +242,8 @@ class Attrappe:
             # Mit dem Schutz vor E-Mail-Aufzaehlung auch fuer unbekannte Adressen 200.
             return antwort(200, {"email": daten.get("email") or ""})
         if teile.netloc == "securetoken.googleapis.com":
+            if self.token_fehler_folge:
+                return fehler("UNAVAILABLE", self.token_fehler_folge.pop(0))
             if isinstance(self.token_fehler, int):
                 return fehler("UNAVAILABLE", self.token_fehler)
             if self.token_fehler:
@@ -224,8 +255,16 @@ class Attrappe:
             neu = "id-2" if uid == UID else self._ausweis(uid)
             return antwort(200, {"id_token": neu, "refresh_token": form["refresh_token"][0], "expires_in": "3600",
                                  "user_id": uid, "project_id": "1"})
+        if teile.path == "/v2/accounts:revokeToken":
+            self.widerrufen.append(daten)
+            if self.widerruf_fehler:
+                return fehler(self.widerruf_fehler)
+            if daten.get("idToken") not in self.gueltig:
+                return fehler("INVALID_ID_TOKEN")
+            return antwort(200, {})
         if teile.path == "/v1/accounts:signInWithIdp":
-            if daten.get("postBody") != "id_token=google-probe&providerId=google.com":
+            if daten.get("postBody") not in ("id_token=google-probe&providerId=google.com",
+                                             "id_token=apple-probe&providerId=apple.com&nonce=nonce-probe"):
                 return fehler("INVALID_IDP_RESPONSE")
             self.google_n += 1
             neu = "id-g%d" % self.google_n
@@ -285,11 +324,53 @@ class Attrappe:
             if token not in self.gueltig or self.id_uid.get(token) != uid:
                 return antwort(403, {"error": {"status": "PERMISSION_DENIED"}})
             if art == "GET":
-                return antwort(200, {"fields": self.doks[uid]}) if uid in self.doks \
-                    else antwort(404, {"error": {"status": "NOT_FOUND"}})
+                # Mit Feldmaske (13.11.2026, "erst nachsehen"): nur diese Felder,
+                # wie Firestore mit mask.fieldPaths.
+                maske = urllib.parse.parse_qs(teile.query).get("mask.fieldPaths")
+                self.masken.append(maske)
+                if maske is not None and self.maske_fehler:
+                    status = self.maske_fehler.pop(0)
+                    return antwort(status, {"error": {"code": status, "message": "Probe.", "status": "UNAVAILABLE"}})
+                if maske is not None and self.maske_abgelehnt:
+                    return antwort(400, {"error": {"code": 400, "message": "Invalid mask.",
+                                                   "status": "INVALID_ARGUMENT"}})
+                if uid not in self.doks:
+                    return antwort(404, {"error": {"status": "NOT_FOUND"}})
+                felder = self.doks[uid]
+                if maske is not None:
+                    felder = {k: v for k, v in felder.items() if k in maske}
+                return antwort(200, {"fields": felder} if felder else {})
             if art == "PATCH":
-                self.doks[uid] = json.loads(request.post_data)["fields"]
-                return antwort(200, {"fields": self.doks[uid]})
+                # Zwei aehnliche Parameter wie bei Firestore (20.11.2026,
+                # geprueft_netz.md B1): updateMask.fieldPaths schreibt NUR die
+                # genannten Felder (fehlt eins im Koerper, ist es weg), alle
+                # anderen bleiben, wie sie sind. mask.fieldPaths aendert am
+                # Schreiben nichts, es bestimmt nur, welche Felder die
+                # Antwort enthaelt. Ohne beide: ganz ersetzen, alles zurueck.
+                abfrage = urllib.parse.parse_qs(teile.query)
+                maske = abfrage.get("mask.fieldPaths")
+                schreibmaske = abfrage.get("updateMask.fieldPaths")
+                eintrag = {"query": teile.query, "mask": maske, "updateMask": schreibmaske, "antwort": None}
+                self.schreiben.append(eintrag)
+                if self.schreib_abbruch == "verloren":
+                    return route.abort()
+                neu = json.loads(request.post_data)["fields"]
+                if schreibmaske is None:
+                    felder = neu
+                else:
+                    felder = dict(self.doks.get(uid) or {})
+                    for feld in schreibmaske:
+                        if feld in neu:
+                            felder[feld] = neu[feld]
+                        else:
+                            felder.pop(feld, None)
+                self.doks[uid] = felder
+                if self.schreib_abbruch == "angekommen":
+                    return route.abort()
+                if maske is not None:
+                    felder = {k: v for k, v in felder.items() if k in maske}
+                eintrag["antwort"] = {"fields": felder} if felder else {}
+                return antwort(200, eintrag["antwort"])
             if art == "DELETE":
                 if self.dok_fehler:
                     return antwort(503, {"error": {"code": 503, "status": "UNAVAILABLE"}})

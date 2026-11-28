@@ -17,6 +17,7 @@ import re
 import pytest
 
 import offen_p1020
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 LEVEL = ["ort_raum", "richtung_mass", "menge_teil", "reihe_wert", "anfang_ende",
          "das_leben", "grund_folge", "nutzen_schaden", "denken_entscheiden", "wahrheit_zweifel",
@@ -65,6 +66,13 @@ AUCH = {
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
     "okolina": ["okolica"],
+    # K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karten V5-29, V5-30, V5-38, V5-43, V5-51 und
+    # V5-53 „nein“). središte, pravac, manjak, sat und lokacija sind eigene App-Wörter mit
+    # anderer Bedeutung, das lässt der Test unten zu.
+    # V5-29 „centar“: ["središte"] stand hier bis zum 21.11.2026. Dann Ajdin: „beide zählen“
+    # (Fragen vom 21.11.2026, 2), seitdem zählt središte bei „Zentrum“ (varianten.py).
+    "smjer": ["pravac"], "nedostatak": ["manjak"], "čas": ["sat"],
+    "prilika": ["šansa"], "položaj": ["lokacija"],
 }
 
 # Partner je Wort, wie im Paket.
@@ -77,7 +85,7 @@ NACHGEKOMMEN = ["rub", "ivica", "poteškoća"]
 
 
 def _level(daten):
-    k = {x["id"]: x for x in daten["kategorien"]}
+    k = {x["id"]: x for x in ohne_k2(daten)["kategorien"]}
     return [k[i] for i in LEVEL]
 
 
@@ -95,7 +103,8 @@ def _paare(k):
     return list(zip(liste[0::2], liste[1::2]))
 
 
-def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
+def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     for k in _level(grunddaten):
         assert k["reihenfolge"] is True, k["id"]
         assert 16 <= len(k["words"]) <= 40, k["id"]
@@ -225,9 +234,10 @@ def test_jedes_wort_und_jeder_satz_hat_emirs_ton(grunddaten, wurzel):
     assert not ohne, ohne[:20]
 
 
-def test_sektion_und_level(grunddaten):
+def test_sektion_und_level(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     s = grunddaten["sektionen"]
-    assert s[14]["id"] == "grundbegriffe" and s[14]["label"] == "Sektion 15 · Grundbegriffe"
+    assert s[15]["id"] == "grundbegriffe" and s[15]["label"] == "Sektion 7 · Grundbegriffe"  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
     assert [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "grundbegriffe"] == LEVEL
     ids = [k["id"] for k in grunddaten["kategorien"]]
     assert ids[ids.index("ort_raum") - 1] == "arbeitsplatz", "direkt hinter Sektion 14"

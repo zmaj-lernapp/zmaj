@@ -20,6 +20,7 @@ was beim Einbau festgelegt wurde:
 import re
 
 import pytest
+from k2_einbau import ohne_k2  # Level wie geliefert, ohne K2 und K7 (27.11.2026)
 
 # Die Woerter je Level in der Reihenfolge des Pakets, ohne die Beispielsaetze.
 # Bosnisch genau so, wie Ajdin es freigegeben hat - aendert sich hier etwas,
@@ -60,6 +61,16 @@ AUCH = {
     "dobivati": ["dobijati"],
     "hitna": ["vozilo hitne pomoći", "sanitet", "kola hitne pomoći"],
 }
+# Pruefbericht 1.4, V3 (14.11.2026): zwei Beispielsaetze nehmen beim Tippen auch
+# die andere richtige Fassung. Die Kennung bleibt (tests/test_pruefbericht14_antworten.py).
+SATZ_AUCH = {"Uspjela sam!": ["Uspio sam!"], "Šta se desilo?": ["Šta se dogodilo?"]}
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten (B3/F14): das andere App-Wort gilt
+# beim Tippen mit, nur in dieser Richtung (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {"pripremiti": ["spremiti"], "nedostajati": ["faliti"]}
+# K2 Wort-Alternativen (Ajdin K2, 20.11.2026, Karte V4-3 „nein“): diese Formen zaehlen
+# beim Tippen NICHT. prisjetiti se ist ein eigenes Wort mit eigener Bedeutung.
+ZAEHLT_NICHT = {"sjetiti se": ["prisjetiti se"]}
+EIGENES_WORT = {"prisjetiti se": "sich zurückerinnern"}
 
 # Gegenstuecke, die schon vor dem Paket in der App standen
 ALTE_PARTNER = {"dolaziti": "doći", "davati": "dati", "pomagati": "pomoći", "plaćati": "platiti",
@@ -71,17 +82,18 @@ ALTE_PARTNER = {"dolaziti": "doći", "davati": "dati", "pomagati": "pomoći", "p
 def _level(daten):
     """Die zehn Level aus Paket 1. Seit Paket 2 (31.10.2026) hat die Sektion
     vier Level mehr, die prueft tests/test_paket2.py."""
-    return [k for k in daten["kategorien"] if k["id"] in WOERTER]
+    return [k for k in ohne_k2(daten)["kategorien"] if k["id"] in WOERTER]
 
 
 def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektion_zehn_mit_zehn_leveln(grunddaten):
-    sektion = grunddaten["sektionen"][9]
+def test_sektion_zehn_mit_zehn_leveln(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
+    sektion = grunddaten["sektionen"][10]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
     assert sektion["id"] == "tunlassen"
-    assert sektion["label"] == "Sektion 10 · Tun und Lassen"
+    assert sektion["label"] == "Sektion 2 · Tun und Lassen" and sektion["stufe"] == "B1"
     level = _level(grunddaten)
     assert [k["id"] for k in level] == list(WOERTER)
     assert all(k["sektion"] == "tunlassen" for k in level)
@@ -103,7 +115,7 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
         for wort, satz in zip(woerter[0::2], woerter[1::2]):
             assert re.search(r"[.!?]$", satz["bs"]) and re.search(r"[.!?]$", satz["de"]), satz
             assert satz["bs"][:1].isupper() and satz["de"][:1].isupper(), satz
-            assert "partner" not in satz and "auch" not in satz, satz
+            assert "partner" not in satz and satz.get("auch") == SATZ_AUCH.get(satz["bs"]), satz
             assert satz["bs"] != wort["bs"], satz
 
 
@@ -113,10 +125,23 @@ def test_auch_formen_und_doppelformen(grunddaten):
         for a in w.get("auch", []):
             assert a not in formen, (w["bs"], a)     # steht schon im Wort, matches() trennt selbst
     neu = {w["bs"]: w for k in _level(grunddaten) for w in k["words"]}
-    for bs, auch in AUCH.items():
+    for bs, auch in {**AUCH, **SATZ_AUCH, **PRUEFBERICHT_AUCH}.items():
         assert neu[bs].get("auch") == auch, bs
     mit_auch = {bs for bs, w in neu.items() if w.get("auch")}
-    assert mit_auch == set(AUCH)
+    assert mit_auch == set(AUCH) | set(SATZ_AUCH) | set(PRUEFBERICHT_AUCH)
+
+
+@pytest.mark.parametrize("wort, form", sorted((w, f) for w, l in ZAEHLT_NICHT.items() for f in l))
+def test_was_ajdin_ausgeschlossen_hat_zaehlt_nicht(grunddaten, wort, form):
+    """Beim Tippen zaehlt das Wort, sein "auch", "auch_var" (varianten.py) und jedes
+    andere Wort mit derselben Bedeutung (annehmbar() in web/index.html). Die Form darf
+    in keinem davon stehen; als eigenes Wort mit anderer Bedeutung darf es sie geben."""
+    w = {x["bs"]: x for k in _level(grunddaten) for x in k["words"]}[wort]
+    assert form not in w.get("auch", []) + w.get("auch_var", []) and form not in w["bs"].split(" / ")
+    assert w.get("partner") != form
+    treffer = [x for x in _alle(grunddaten) if form in x["bs"].split(" / ") or form in x.get("auch", [])]
+    assert [x["de"] for x in treffer] == ([EIGENES_WORT[form]] if form in EIGENES_WORT else []), form
+    assert w["de"] != EIGENES_WORT.get(form)
 
 
 def test_partner_stehen_in_der_app(grunddaten):

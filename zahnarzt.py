@@ -2,7 +2,7 @@
 """
 zahnarzt.py  –  der versteckte Teil "Beim Zahnarzt"
 
-Eine Zahnärztin will mit Patienten reden können, die nur Bosnisch
+Gedacht für Praxisteams, die mit Patienten reden wollen, die nur Bosnisch
 sprechen. Ajdin am 05.11.2026: "das interssiert 1% der menschen", also versteckt:
 siebenmal auf die Versionszeile in den Einstellungen, dann das Wort "zahnarzt"
 (ZA_WORT in web/index.html). Das Wort darf öffentlich sein, es schaltet nichts

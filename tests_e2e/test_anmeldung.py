@@ -19,6 +19,7 @@ v109: test_ohne_projekt_alles_wie_heute.
 import datetime
 import json
 
+import pytest
 from conftest import DURCHSPIELEN
 from firebase_attrappe import CLIENT, FIREBASE, UID, Attrappe, dok_pfad, wege
 
@@ -193,6 +194,15 @@ def test_neu_erst_lektion_dann_nur_noch_anmeldung(seite, heute_stand, cloud_html
     attrappe = _starten(seite, cloud_html, stand=heute_stand())
     assert seite.js("() => [sichtbar('pfad'), anmeldungFaellig()]") == [True, False]
     assert _aufrufe(seite) == ["sitzungHolen", "restoreHolen"]
+    # Vor der ersten Lektion, noch ohne Konto: der Profilknopf ist da
+    # (14.11.2026), das Profil zeigt Erfolge und Lernserie, aber keinen
+    # Kasten mit Konto und Abmelden.
+    assert seite.js("() => document.getElementById('btnProfil').style.display") == "inline-block"
+    seite.js("() => document.getElementById('btnProfil').click()")
+    seite.page.wait_for_function("() => sichtbar('kontoView')")
+    assert seite.js("""() => ['erfolgLeiste', 'serieKasten', 'kontoKasten']
+                               .map(id => !document.getElementById(id).hidden)""") == [True, True, False]
+    seite.js("() => showHome()")
     seite.js("() => { openLevel(0); startLesson(); }")
     seite.durchspielen("lBody", "Lx")
     # Auf dem Ergebnisschirm nur noch "Weiter".
@@ -213,6 +223,7 @@ def test_neu_erst_lektion_dann_nur_noch_anmeldung(seite, heute_stand, cloud_html
                               document.getElementById('anmImp').textContent.includes(t('set.anbieter').split('<br>')[0]),
                               document.getElementById('btnSettings').style.display]""") \
         == [True, _t(seite, "anm.google"), True, True, _t(seite, "set.impressum"), True, "none"]
+    assert seite.js("() => document.getElementById('btnProfil').style.display") == "none"
     # Kein Weg daran vorbei.
     for weg in ("showHome()", "openLevel(0)", "showLaden()", "openStory(0)", "startLesson()",
                 "startTest()", "rundeStarten('topf')", "einstufungStarten()", "showView('pfad')"):
@@ -568,8 +579,11 @@ def test_neues_geraet_anmelden_behaelt_schutz_und_einstieg(seite, cloud_html):
     kennung = seite.js("() => CATEGORIES[50].id")
     level = seite.js("() => CATEGORIES.slice(50, 56).map(c => c.id)")
     tage = [(datetime.date.today() - datetime.timedelta(days=i)).isoformat() for i in range(3, 0, -1)]
+    # reiter: mit den Stufen-Reitern eingestuft (13.11.2026), sonst waeren die zwei
+    # Grundwort-Level davor "dran" (firstOpen)
     konto = {"schutz": {"anzahl": 2, "zeit": 0}, "bestanden": level, "gewusst": ["probe:konto"], "tage": tage,
-             "einstufung": {"tag": tage[0], "wahl": "gut", "bis": kennung, "richtig": 13, "fragen": 15}}
+             "einstufung": {"tag": tage[0], "wahl": "gut", "bis": kennung, "richtig": 13, "fragen": 15,
+                            "reiter": True}}
     attrappe.doks[UID] = {"daten": {"stringValue": json.dumps({"app": "zmaj", "version": 1, "stand": konto})},
                           "rev": {"stringValue": "altes-handy.1"}}
     seite.js("() => einstufungWahl()")
@@ -809,7 +823,8 @@ def test_abmelden(seite, heute_stand, cloud_html):
     _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
     _mail_anmelden(seite, "ich@probe.example", "geheim-123")
     seite.js("() => showKonto()")
-    assert seite.js("""() => [document.getElementById('setProfilMail').textContent,
+    assert seite.js("""() => [(document.querySelector('#setProfilMail img.sym-brief') ? '✉' : '')
+                              + document.getElementById('setProfilMail').textContent,
                               document.getElementById('setGesichert').textContent,
                               document.getElementById('setPwZeile').hidden,
                               document.getElementById('setProfilSub').hidden,
@@ -856,6 +871,93 @@ def test_abmelden(seite, heute_stand, cloud_html):
     assert seite.fehler == []
 
 
+# abstand: Luft zwischen Abmelde-Knopf und Meldezeile in px (Handytest 1.5,
+# Punkt 19, 28.11.2026: der Kreis klebte am Knopf, weil #setLogoutNote in
+# index.html style="margin:-4px 0 10px" traegt).
+LADEKREIS = """() => { const n = document.getElementById('setLogoutNote'), k = n.querySelector('.ladekreis');
+  const knopf = document.getElementById('setLogout');
+  return {kreis: !!k && !!k.offsetWidth, text: n.textContent, gesperrt: knopf.disabled,
+          stumm: k ? k.getAttribute('aria-hidden') : null, dreht: k ? getComputedStyle(k).animationName : null,
+          rolle: n.getAttribute('role'),
+          abstand: Math.round(n.getBoundingClientRect().top - knopf.getBoundingClientRect().bottom)}; }"""
+# Haelt das letzte Hochladen an, bis der Test weiter() ruft.
+ANHALTEN = """() => { const alt = cloudAbgleich;
+  window.weiter = null; const halt = new Promise(r => { window.weiter = r; });
+  cloudAbgleich = async (...a) => { if(a[0] === 'abmelden') await halt; return alt(...a); }; }"""
+
+
+@pytest.mark.parametrize("bewegung", [True, False])
+def test_abmelden_zeigt_einen_lade_kreis(seite, heute_stand, cloud_html, bewegung):
+    """1.5, K3 (Ajdin im Handytest am 19.11.2026: Abmelden dauert, man sieht
+    nichts). Solange die App ein letztes Mal hochlaedt, dreht unter dem Knopf ein
+    Kreis neben einem kurzen Text, und der Knopf ist gesperrt. Danach: die
+    Anmeldeseite, oder bei einem Fehler die Meldung statt des Kreises und der Knopf
+    wieder frei. Ohne Bewegung steht der Kreis still."""
+    attrappe = Attrappe()
+    attrappe.konto_anlegen("ich@probe.example", "geheim-123")
+    _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    if not bewegung:
+        seite.js("() => document.body.classList.add('no-anim')")
+    seite.js("() => showKonto()")
+    assert seite.js(LADEKREIS)["kreis"] is False
+    # Firestore lehnt ab: erst der Kreis, dann die Meldung an seiner Stelle
+    attrappe.kontingent_weg = True
+    seite.js(ANHALTEN)
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => !!window.weiter && abmeldenLaeuft")
+    z = seite.js(LADEKREIS)
+    assert z["kreis"] and z["gesperrt"] and z["stumm"] == "true" and z["rolle"] == "status", z
+    assert z["text"] == _t(seite, "set.abmelden_laeuft") == "Lernstand wird gesichert …"
+    assert z["dreht"] == ("ladekreis" if bewegung else "none"), z
+    # Der Kreis steht mit Luft unter dem Knopf (Punkt 19), nicht direkt daran
+    assert 14 <= z["abstand"] <= 30, z
+    # Ein zweiter Tipp startet nichts: der Knopf ist gesperrt, und es kommt keine Rueckfrage
+    seite.page.click("#setLogout", force=True)
+    assert seite.page.locator("#frJa").count() == 0
+    # Zurueck auf die Kontoseite, waehrend es laeuft: der Kreis bleibt
+    seite.js("() => showKonto()")
+    assert seite.js(LADEKREIS)["kreis"] is True
+    seite.js("() => weiter()")
+    seite.page.wait_for_function("(soll) => document.getElementById('setLogoutNote').textContent === soll",
+                                 arg=_t(seite, "konto.fehler_allgemein"))
+    _fertig(seite)
+    z_kreis = z
+    z = seite.js(LADEKREIS)
+    assert not z["kreis"] and not z["gesperrt"], z
+    # Die gewoehnliche Meldung behaelt ihren engen Platz aus index.html
+    assert z["abstand"] < z_kreis["abstand"], (z, z_kreis)
+    assert seite.js(ZUSTAND)["merker"] is not None, "angemeldet geblieben"
+    # Mit Netz: Kreis, dann die Anmeldeseite, und der Knopf ist fuers naechste Mal frei
+    attrappe.kontingent_weg = False
+    seite.js(ANHALTEN)
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => !!window.weiter && abmeldenLaeuft")
+    assert seite.js(LADEKREIS)["kreis"] is True
+    seite.js("() => weiter()")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    _fertig(seite)
+    assert seite.js(ZUSTAND)["merker"] is None
+    z = seite.js(LADEKREIS)
+    assert not z["kreis"] and not z["gesperrt"] and z["text"] == "", z
+    assert seite.fehler == []
+
+
+def test_abmelden_text_in_allen_sprachen(seite, heute_stand):
+    """Der Text unter dem Kreis steht in jeder Sprache und ist kurz."""
+    seite.starten(stand=heute_stand())
+    texte = seite.js("""async () => { const aus = {};
+        for(const code of SPRACHEN.map(s => s.code)){ await setzeSprache(code); aus[code] = t('set.abmelden_laeuft'); }
+        return aus; }""")
+    assert len(texte) == 8, texte
+    for code, text in texte.items():
+        assert text and text != "set.abmelden_laeuft" and len(text) <= 40 and text.endswith(" …"), (code, text)
+    assert len(set(texte.values())) == 8, texte
+    assert seite.fehler == []
+
+
 def test_abmelden_bei_ungueltiger_sitzung_bleibt_der_lernstand(seite, heute_stand, cloud_html):
     """Gegenpruefung 28.10.2026: Hat Firebase die Anmeldung schon fuer
     ungueltig erklaert (Passwort auf einem anderen Geraet geaendert), geht
@@ -866,13 +968,19 @@ def test_abmelden_bei_ungueltiger_sitzung_bleibt_der_lernstand(seite, heute_stan
     uid = attrappe.konto_anlegen("ich@probe.example", "geheim-123")
     _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
     _mail_anmelden(seite, "ich@probe.example", "geheim-123")
-    # Heute schon gelesen und geschrieben: der Start fragt Firebase nicht
-    # mehr, und der Ausweis im Speicher ist nach dem Neuladen weg.
+    # Heute schon gelesen und geschrieben, und der Ausweis im Speicher ist
+    # nach dem Neuladen weg. Seit 17.11.2026 sieht der Start trotzdem nach
+    # und merkte die ungueltige Anmeldung selbst - darum startet das Geraet
+    # hier ohne Netz: das Nachsehen scheitert still, man bleibt angemeldet.
     seite.js("""() => { const m = JSON.parse(localStorage.getItem('zmaj_cloud'));
                         m.gelesen = m.tag = today(); localStorage.setItem('zmaj_cloud', JSON.stringify(m)); }""")
     attrappe.token_fehler = "TOKEN_EXPIRED"
+    attrappe.abbruch = True
+    attrappe.anfragen.clear()
     _neu_laden(seite)
+    _warte(seite, lambda: any(a[0] == "ABBRUCH" for a in attrappe.anfragen))
     _fertig(seite)
+    attrappe.abbruch = False
     assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
     seite.js("() => { known.add('probe:abends'); showKonto(); }")
     attrappe.anfragen.clear()
@@ -963,6 +1071,103 @@ def test_konto_loeschen_mit_google_fragt_zuerst(seite, heute_stand, cloud_html):
     z = seite.js(ZUSTAND)
     assert z["merker"] is None and z["woerter"] == 0
     assert seite.js("() => document.getElementById('anmNote').textContent") == _t(seite, "set.konto_weg_fertig")
+    assert seite.fehler == []
+
+
+# Pruefbericht 1.4, V6 (14.11.2026): Nach "Konto loeschen" kamen weiter
+# Abendnachrichten, darunter "Ima li te? Deine 200 Woerter sind alle noch da."
+# Das Plugin der Huelle fuer Benachrichtigungen, nachgestellt. Was geplant
+# ist, liegt in sessionStorage - es uebersteht das Neuladen wie bei Android
+# die Wecker einen Neustart der App. Nach PLUGIN einhaengen, das setzt
+# window.Capacitor neu.
+BEN_PLUGIN = r"""
+(() => {
+  const ss = window.sessionStorage;
+  const lies = () => { try{ return JSON.parse(ss.getItem('probe_ben') || '[]'); }catch(e){ return []; } };
+  const merk = a => ss.setItem('probe_ben', JSON.stringify(a));
+  window.Capacitor = window.Capacitor || {Plugins: {}};
+  window.Capacitor.Plugins.LocalNotifications = {
+    checkPermissions: async () => ({display: 'granted'}),
+    requestPermissions: async () => ({display: 'granted'}),
+    getPending: async () => ({notifications: lies().map(n => ({id: n.id}))}),
+    cancel: async (o) => { const weg = new Set(o.notifications.map(n => n.id)); merk(lies().filter(n => !weg.has(n.id))); },
+    createChannel: async () => {},
+    checkExactNotificationSetting: async () => ({exact_alarm: 'denied'}),
+    schedule: async (o) => {
+      const neu = o.notifications.map(n => ({id: n.id, art: n.extra && n.extra.art, text: n.body}));
+      const ids = new Set(neu.map(n => n.id));
+      merk(lies().filter(n => !ids.has(n.id)).concat(neu)); },
+  };
+})();
+"""
+BEN_AN = """() => localStorage.setItem('zmaj_benachrichtigung',
+    JSON.stringify({gefragt: true, erinnerung: true, serie: true, leben: true}))"""
+GEPLANT = "() => JSON.parse(sessionStorage.getItem('probe_ben') || '[]')"
+BEN_STAND = "() => JSON.parse(localStorage.getItem('zmaj_benachrichtigung') || 'null')"
+
+
+def _ben_starten(seite, heute_stand, cloud_html):
+    """Angemeldet, drei Lerntage, alle drei Schalter an und schon geplant."""
+    attrappe = Attrappe()
+    attrappe.konto_anlegen("ich@probe.example", "geheim-123")
+    seite.page.add_init_script(PLUGIN)
+    seite.page.add_init_script(BEN_PLUGIN)
+    _starten(seite, cloud_html, stand=_gelernt(heute_stand, tage=3), attrappe=attrappe,
+             vorbereiten=BEN_AN, plugin=False)
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    seite.js("async () => { await benPlanen(); }")
+    vorher = seite.js(GEPLANT)
+    arten = [n["art"] for n in vorher]
+    assert "rueckhol" in arten and len(arten) >= 5, vorher
+    return attrappe
+
+
+def _ben_fertig(seite):
+    seite.page.wait_for_function("() => !benLaeuft")
+
+
+def test_konto_loeschen_sagt_alle_nachrichten_ab(seite, heute_stand, cloud_html):
+    """Die Datenschutzerklaerung (Abschnitt 10) verspricht, dass der Lernstand
+    sofort geloescht ist. Bis 1.4 sagte "Konto loeschen" die geplanten
+    Nachrichten nicht ab, und der naechste Start plante auf dem leeren Stand
+    neu. Jetzt ist alles abgesagt und alle drei Schalter sind aus - auch nach
+    einem Neustart kommt nichts."""
+    _ben_starten(seite, heute_stand, cloud_html)
+    seite.js("() => showKonto()")
+    seite.page.click("#setKontoWeg")
+    seite.page.fill("#wegPw", "geheim-123")
+    seite.page.click("#wegKnopf")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    _ben_fertig(seite)
+    assert seite.js(GEPLANT) == []
+    s = seite.js(BEN_STAND)
+    assert (s["erinnerung"], s["serie"], s["leben"], s["geplant"]) == (False, False, False, []), s
+    _neu_laden(seite)
+    _ben_fertig(seite)
+    seite.js("async () => { await benPlanen(); }")
+    assert seite.js(GEPLANT) == []
+    assert seite.fehler == []
+
+
+def test_abmelden_behaelt_die_erinnerungen_ohne_rueckhol(seite, heute_stand, cloud_html):
+    """Beim Abmelden bleiben die Erinnerungen mit Absicht - sie holen zur
+    Anmeldung zurueck. Die Rueckhol-Nachricht ("Deine Woerter sind alle noch
+    da") kommt aber nur, wenn es einen Lerntag gibt, nicht auf dem leeren
+    Stand nach dem Abmelden."""
+    _ben_starten(seite, heute_stand, cloud_html)
+    seite.js("() => showKonto()")
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    _neu_laden(seite)
+    _ben_fertig(seite)
+    seite.js("async () => { await benPlanen(); }")
+    arten = [n["art"] for n in seite.js(GEPLANT)]
+    assert arten and "rueckhol" not in arten, arten
+    assert set(arten) <= {"erinnerung", "serie"}, arten
+    s = seite.js(BEN_STAND)
+    assert (s["erinnerung"], s["serie"], s["leben"]) == (True, True, True), s
     assert seite.fehler == []
 
 

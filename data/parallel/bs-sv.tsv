@@ -84,7 +84,7 @@ brat	bror	word	bruder:brat
 sestra	syster	word	schwester:sestra
 sin	son	word	sohn:sin
 kćerka	dotter	word	tochter:kćerka
-dijete	barn	word	kind:dijete
+dijete	barn (ett)	word	kind:dijete
 djeca	barn (flera)	word	kinder:djeca
 žena	hustru	word	ehefrau:žena
 muž	make	word	ehemann:muž
@@ -127,6 +127,7 @@ jabuka	äpple	word	apfel:jabuka
 voće	frukt	word	obst:voće
 povrće	grönsaker	word	gemüse:povrće
 krompir	potatis	word	kartoffel:krompir
+pomfrit	pommes frites	word	pommes:pomfrit
 paradajz	tomat	word	tomate:paradajz
 luk	lök	word	zwiebel:luk
 riža	ris	word	reis:riža
@@ -135,6 +136,7 @@ so / sol	salt	word	salz:so / sol
 supa	soppa	word	suppe:supa
 pita	pita (inbakad filodegspaj)	word	pita (blätterteig-gericht):pita
 ćevapi	ćevapi (grillade köttkorvar)	word	ćevapi:ćevapi
+pica	pizza	word	pizza:pica
 doručak	frukost	word	frühstück:doručak
 ručak	lunch	word	mittagessen:ručak
 večera	middag	word	abendessen:večera
@@ -211,8 +213,11 @@ oblak	moln	word	wolke:oblak
 toplo	varmt	word	warm:toplo
 hladno	kallt	word	kalt:hladno
 vruće	hett	word	heiß:vruće
+sunčano	soligt	word	sonnig:sunčano
+oblačno	molnigt	word	bewölkt:oblačno
 Pada kiša	Det regnar	word	es regnet:Pada kiša
 Pada snijeg	Det snöar	word	es schneit:Pada snijeg
+kišobran	paraply	word	regenschirm:kišobran
 proljeće	vår	word	frühling:proljeće
 ljeto	sommar	word	sommer:ljeto
 jesen	höst	word	herbst:jesen
@@ -262,7 +267,8 @@ glavobolja	huvudvärk	word	kopfschmerzen:glavobolja
 temperatura	feber	word	fieber:temperatura
 lijek	medicin	word	medikament:lijek
 Brz oporavak	Krya på dig!	word	gute besserung!:Brz oporavak
-radnja	affär	word	geschäft:radnja
+radnja	affär (liten butik)	word	geschäft (kleiner laden):radnja
+trgovina	affär (stor butik)	word	geschäft (großer laden):trgovina
 tržni centar	köpcentrum	word	einkaufszentrum:tržni centar
 kasa	kassa	word	kasse:kasa
 cijena	pris	word	preis:cijena
@@ -273,13 +279,23 @@ torba	väska	word	tasche:torba
 odjeća	kläder	word	kleidung:odjeća
 košulja	skjorta	word	hemd:košulja
 majica	t-shirt	word	t-shirt:majica
-pantalone	byxor	word	hose:pantalone
+pantalone / hlače	byxor	word	hose:pantalone / hlače
+farmerke	jeans	word	jeans:farmerke
+trenerka	träningsoverall	word	trainingsanzug:trenerka
 jakna	jacka	word	jacke:jakna
+džemper	tröja	word	pullover:džemper
+kaput	kappa	word	mantel:kaput
 haljina	klänning	word	kleid:haljina
 suknja	kjol	word	rock:suknja
 cipele	skor	word	schuhe:cipele
+patike	gympaskor	word	turnschuhe:patike
+čizme	stövlar	word	stiefel:čizme
+papuče	tofflor	word	hausschuhe:papuče
 čarape	strumpor	word	socken:čarape
 kapa	mössa	word	mütze:kapa
+šešir	hatt	word	hut:šešir
+šal	halsduk	word	schal:šal
+rukavice	handskar	word	handschuhe:rukavice
 veličina	storlek	word	größe:veličina
 veliko	stor	word	groß:veliko
 malo	liten	word	klein:malo
@@ -468,6 +484,7 @@ loza	druvbrännvin	word	traubenbrand:loza
 šljivovica	plommonbrännvin (slivovits)	word	zwetschgenbrand:šljivovica
 mačak	hankatt	word	kater:mačak
 Naš mačak spava cijeli dan.	Vår hankatt sover hela dagen.	word	unser kater schläft den ganzen tag.:Naš mačak spava cijeli dan.
+mače	kattunge	word	kätzchen:mače
 kućni ljubimac	husdjur	word	haustier:kućni ljubimac
 životinja	djur	word	tier:životinja
 stoka	boskap / lantbruksdjur	word	vieh / nutztiere:stoka
@@ -572,154 +589,18 @@ livada	äng	word	wiese:livada
 grana	gren / kvist	word	ast / zweig:grana
 kamilica	kamomill	word	kamille:kamilica
 lipa	lind	word	linde:lipa
-nana (auch: metvica)	mynta	word	minze:nana (auch: metvica)
+nana / metvica	mynta	word	minze:nana / metvica
 biljka	växt	word	pflanze:biljka
 šljiva	plommon / plommonträd	word	pflaume / pflaumenbaum:šljiva
 orah	valnöt / valnötsträd	word	walnuss / walnussbaum:orah
 korijen	rot (växt)	word	wurzel:korijen
-rerna	ugn	word	backofen:rerna
-flaša	flaska	word	flasche:flaša
-viljuška	gaffel	word	gabel:viljuška
-zamrzivač	frys	word	gefrierschrank:zamrzivač
-suđe	disk (tallrikar och glas)	word	geschirr:suđe
-prati suđe	diska	word	geschirr spülen:prati suđe
-tava	stekpanna	word	pfanne:tava
-tanjir	tallrik	word	teller:tanjir
-lonac	kastrull	word	topf:lonac
-kesa	påse / plastpåse	word	tüte / plastiktüte:kesa
-posteljina	sängkläder	word	bettwäsche:posteljina
-deka	täcke (sängtäcke)	word	decke (bettdecke):deka
-jastuk	kudde	word	kissen:jastuk
-polica	hylla / hyllplan	word	regal / brett:polica
-ormar	skåp	word	schrank:ormar
-kauč	soffa	word	sofa:kauč
-zavjesa	gardin	word	vorhang:zavjesa
-tuš	dusch	word	dusche:tuš
-ogledalo	spegel	word	spiegel:ogledalo
-WC	toalett	word	toilette:WC
-toalet papir	toalettpapper	word	toilettenpapier:toalet papir
-lavabo	handfat	word	waschbecken:lavabo
-četkica za zube	tandborste	word	zahnbürste:četkica za zube
-pasta za zube	tandkräm	word	zahnpasta:pasta za zube
-pospremiti	städa upp	word	aufräumen:pospremiti
-metla	kvast	word	besen:metla
-pegla	strykjärn	word	bügeleisen:pegla
-peglati	stryka (kläder)	word	bügeln:peglati
-kanta	hink	word	eimer:kanta
-smeće	sopor	word	müll:smeće
-kanta za smeće	sophink / soptunna	word	mülleimer / mülltonne:kanta za smeće
-čisto	rent	word	sauber:čisto
-prljavo	smutsigt	word	schmutzig:prljavo
-usisivač	dammsugare	word	staubsauger:usisivač
-veš mašina	tvättmaskin	word	waschmaschine:veš mašina
-deterdžent	tvättmedel	word	waschmittel:deterdžent
-veš	tvätt	word	wäsche:veš
-štrik	klädstreck	word	wäscheleine:štrik
-lift	hiss	word	aufzug:lift
-poštansko sanduče	brevlåda	word	briefkasten:poštansko sanduče
-krov	tak	word	dach:krov
-tavan	vind (loft)	word	dachboden:tavan
-pod	golv	word	fußboden:pod
-domar	fastighetsskötare	word	hausmeister:domar
-podrum	källare	word	keller:podrum
-zvono	dörrklocka	word	klingel:zvono
-zvoniti	ringa på	word	klingeln:zvoniti
-komšinica	granne (kvinna)	word	nachbarin:komšinica
-zid	vägg	word	wand:zid
-ograda	staket	word	zaun:ograda
-ugasiti	stänga av / släcka	word	ausschalten / ausmachen:ugasiti
-bojler	varmvattenberedare	word	boiler / warmwasserspeicher:bojler
-drva	ved	word	brennholz:drva
-upaliti	sätta på / tända	word	einschalten / anmachen:upaliti
-Nema struje	Det finns ingen ström	word	es gibt keinen strom:Nema struje
-sijalica	glödlampa	word	glühbirne:sijalica
-grijanje	värme (uppvärmning)	word	heizung:grijanje
-ugalj	kol (bränsle)	word	kohle:ugalj
-svjetlo	ljus (belysning)	word	licht:svjetlo
-peć	kamin (för värme)	word	ofen (heizofen):peć
-osigurač	säkring	word	sicherung:osigurač
-utičnica	eluttag	word	steckdose:utičnica
-utikač	stickkontakt	word	stecker:utikač
-struja	el	word	strom:struja
-topla voda	varmt vatten	word	warmes wasser:topla voda
-Ne radi	Det fungerar inte	word	es funktioniert nicht:Ne radi
-Curi voda	Det läcker / det droppar	word	es läuft aus / es tropft:Curi voda
-čekić	hammare	word	hammer:čekić
-majstor	hantverkare / fackman	word	handwerker / fachmann:majstor
-pokvaren / pokvarena / pokvareno	trasigt	word	kaputt:pokvaren / pokvarena / pokvareno
-merdevine	stege	word	leiter:merdevine
-ekser	spik	word	nagel:ekser
-popraviti	reparera	word	reparieren:popraviti
-brava	lås (dörrlås)	word	schloss (türschloss):brava
-šaraf	skruv	word	schraube:šaraf
-slavina	vattenkran	word	wasserhahn:slavina
-alat	verktyg	word	werkzeug:alat
-gorivo	bränsle	word	kraftstoff / sprit:gorivo
-sipati gorivo	tanka	word	tanken:sipati gorivo
-guma	däck	word	reifen:guma
-Pukla mi je guma.	Jag har fått punktering.	word	ich habe einen platten.:Pukla mi je guma.
-kočnica	broms	word	bremse:kočnica
-motor	motor	word	motor:motor
-akumulator	bilbatteri	word	autobatterie:akumulator
-sigurnosni pojas	säkerhetsbälte	word	sicherheitsgurt:sigurnosni pojas
-parkiralište	parkeringsplats	word	parkplatz:parkiralište
-parkirati	parkera	word	parken:parkirati
-semafor	trafikljus	word	ampel:semafor
-raskrsnica	korsning	word	kreuzung:raskrsnica
-saobraćaj	trafik	word	verkehr:saobraćaj
-zastoj	bilkö	word	stau:zastoj
-kazna	böter	word	strafzettel / bußgeld:kazna
-registracija	registreringsskylt	word	kennzeichen (auto):registracija
-tehnički pregled	bilbesiktning	word	hauptuntersuchung (tüv):tehnički pregled
-autoservis	bilverkstad	word	autowerkstatt:autoservis
-šlep služba	bärgningstjänst	word	abschleppdienst:šlep služba
-pomoć na cesti	vägassistans	word	pannenhilfe:pomoć na cesti
-odvijač / šrafciger	skruvmejsel	word	schraubenzieher:odvijač / šrafciger
-kliješta	tång	word	zange:kliješta
-bušilica	borrmaskin	word	bohrmaschine:bušilica
-bušiti	borra	word	bohren:bušiti
-testera	såg	word	säge:testera
-francuski ključ	skiftnyckel	word	rollgabelschlüssel (engländer):francuski ključ
-metar	måttband	word	maßband / zollstock:metar
-ljepilo	lim	word	kleber:ljepilo
-produžni kabel	förlängningssladd	word	verlängerungskabel:produžni kabel
-radionica	verkstad	word	werkstatt:radionica
-punjač	laddare	word	ladegerät:punjač
-baterija	batteri	word	akku:baterija
-Baterija je prazna.	Batteriet är slut.	word	der akku ist leer.:Baterija je prazna.
-napuniti	ladda	word	aufladen:napuniti
-šifra / lozinka	lösenord	word	passwort:šifra / lozinka
-Koja je šifra za WiFi?	Vad är wifi-lösenordet?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
-internet	internet	word	internet:internet
-Nema signala.	Ingen täckning.	word	kein empfang.:Nema signala.
-poruka	meddelande	word	nachricht:poruka
-poslati poruku	skicka ett meddelande	word	eine nachricht schicken:poslati poruku
-nazvati	ringa (i telefon)	word	anrufen:nazvati
-aplikacija	app	word	app:aplikacija
-ekran	skärm	word	bildschirm:ekran
-tastatura	tangentbord	word	tastatur:tastatura
-štampač	skrivare	word	drucker:štampač
-slušalice	hörlurar	word	kopfhörer:slušalice
-slikati	fotografera	word	fotografieren:slikati
-ažurirati	uppdatera	word	aktualisieren:ažurirati
-mašina za suđe	diskmaskin	word	spülmaschine:mašina za suđe
-sušilica za veš	torktumlare	word	wäschetrockner:sušilica za veš
-mikrovalna	mikrovågsugn	word	mikrowelle:mikrovalna
-toster	brödrost	word	toaster:toster
-kuhalo za vodu	vattenkokare	word	wasserkocher:kuhalo za vodu
-fen	hårtork	word	föhn:fen
-klima	luftkonditionering	word	klimaanlage:klima
-ventilator	fläkt	word	ventilator:ventilator
-daljinski	fjärrkontroll	word	fernbedienung:daljinski
-aparat za kahvu / aparat za kafu	kaffebryggare	word	kaffeemaschine:aparat za kahvu / aparat za kafu
-uputstvo	bruksanvisning	word	bedienungsanleitung:uputstvo
-garancija	garanti	word	garantie:garancija
 Ko?	Vem?	word	wer?:Ko?
 Šta?	Vad?	word	was?:Šta?
 Gdje?	Var?	word	wo?:Gdje?
 Kuda?	Vart?	word	wohin?:Kuda?
 Odakle?	Varifrån?	word	woher?:Odakle?
 Kada?	När?	word	wann?:Kada?
+Otkad?	Sedan när?	word	seit wann?:Otkad?
 Zašto?	Varför?	word	warum?:Zašto?
 Kako?	Hur?	word	wie?:Kako?
 Koliko?	Hur mycket?	word	wie viel?:Koliko?
@@ -852,6 +733,26 @@ također	också	word	auch:također
 samo	bara	word	nur:samo
 već	redan	word	schon:već
 još ne	inte än	word	noch nicht:još ne
+ovdje	här	word	hier:ovdje
+tamo	där borta	word	dort:tamo
+tu	just här / här borta	word	da / hier:tu
+gore	uppe	word	oben:gore
+dolje	nere	word	unten:dolje
+onda	sedan	word	dann:onda
+zatim	därefter	word	danach:zatim
+prvo	först av allt	word	zuerst:prvo
+opet	igen	word	wieder:opet
+odmah	genast	word	sofort:odmah
+stalno	ständigt	word	ständig:stalno
+tako	så	word	so:tako
+vrlo / veoma	mycket (före egenskaper)	word	sehr (vor eigenschaften):vrlo / veoma
+rado	gärna	word	gern:rado
+kao	som / såsom	word	wie / als:kao
+pa	och sedan / alltså	word	und dann / also:pa
+evo	här är / där är	word	hier ist / da ist:evo
+taj	den där	word	dieser (da):taj
+sav	hel / all	word	ganz / all:sav
+cijeli	hel	word	ganz (der ganze):cijeli
 Vidim brata	Jag ser brodern	word	ich sehe den bruder:Vidim brata
 Vidim sestru	Jag ser systern	word	ich sehe die schwester:Vidim sestru
 Vidim dijete	Jag ser barnet	word	ich sehe das kind:Vidim dijete
@@ -881,6 +782,148 @@ mene / me	mig	word	mich:mene / me
 tebe / te	dig	word	dich:tebe / te
 njega / ga	honom	word	ihn:njega / ga
 nju / je	henne	word	sie (akkusativ):nju / je
+rerna	ugn	word	backofen:rerna
+flaša	flaska	word	flasche:flaša
+viljuška	gaffel	word	gabel:viljuška
+zamrzivač	frys	word	gefrierschrank:zamrzivač
+suđe	disk (tallrikar och glas)	word	geschirr:suđe
+prati suđe	diska	word	geschirr spülen:prati suđe
+tava	stekpanna	word	pfanne:tava
+tanjir	tallrik	word	teller:tanjir
+lonac	kastrull	word	topf:lonac
+kesa	påse / plastpåse	word	tüte / plastiktüte:kesa
+posteljina	sängkläder	word	bettwäsche:posteljina
+čaršaf	lakan	word	bettlaken:čaršaf
+deka	täcke (sängtäcke)	word	decke (bettdecke):deka
+jastuk	kudde	word	kissen:jastuk
+polica	hylla / hyllplan	word	regal / brett:polica
+ormar	skåp	word	schrank:ormar
+kauč	soffa	word	sofa:kauč
+zavjesa	gardin	word	vorhang:zavjesa
+tuš	dusch	word	dusche:tuš
+ogledalo	spegel	word	spiegel:ogledalo
+WC	toalett	word	toilette:WC
+toalet papir	toalettpapper	word	toilettenpapier:toalet papir
+lavabo	handfat	word	waschbecken:lavabo
+četkica za zube	tandborste	word	zahnbürste:četkica za zube
+pasta za zube	tandkräm	word	zahnpasta:pasta za zube
+pospremiti	städa upp	word	aufräumen:pospremiti
+metla	kvast	word	besen:metla
+spužva	tvättsvamp	word	schwamm:spužva
+pegla	strykjärn	word	bügeleisen:pegla
+peglati	stryka (kläder)	word	bügeln:peglati
+kanta	hink	word	eimer:kanta
+smeće	sopor	word	müll:smeće
+kanta za smeće	sophink / soptunna	word	mülleimer / mülltonne:kanta za smeće
+čisto	rent	word	sauber:čisto
+prljavo	smutsigt	word	schmutzig:prljavo
+usisivač	dammsugare	word	staubsauger:usisivač
+veš mašina	tvättmaskin	word	waschmaschine:veš mašina
+deterdžent	tvättmedel	word	waschmittel:deterdžent
+veš	tvätt	word	wäsche:veš
+štrik	klädstreck	word	wäscheleine:štrik
+lift	hiss	word	aufzug:lift
+poštansko sanduče	brevlåda	word	briefkasten:poštansko sanduče
+krov	tak	word	dach:krov
+tavan	vind (loft)	word	dachboden:tavan
+pod	golv	word	fußboden:pod
+domar	fastighetsskötare	word	hausmeister:domar
+podrum	källare	word	keller:podrum
+zvono	dörrklocka	word	klingel:zvono
+zvoniti	ringa på	word	klingeln:zvoniti
+komšinica	granne (kvinna)	word	nachbarin:komšinica
+zid	vägg	word	wand:zid
+ograda	staket	word	zaun:ograda
+ugasiti	stänga av / släcka	word	ausschalten / ausmachen:ugasiti
+bojler	varmvattenberedare	word	boiler / warmwasserspeicher:bojler
+drva	ved	word	brennholz:drva
+upaliti	sätta på / tända	word	einschalten / anmachen:upaliti
+Nema struje	Det finns ingen ström	word	es gibt keinen strom:Nema struje
+sijalica	glödlampa	word	glühbirne:sijalica
+grijanje	värme (uppvärmning)	word	heizung:grijanje
+ugalj	kol (bränsle)	word	kohle:ugalj
+svjetlo	ljus (belysning)	word	licht:svjetlo
+peć	kamin (för värme)	word	ofen (heizofen):peć
+osigurač	säkring	word	sicherung:osigurač
+utičnica	eluttag	word	steckdose:utičnica
+utikač	stickkontakt	word	stecker:utikač
+struja	el	word	strom:struja
+topla voda	varmt vatten	word	warmes wasser:topla voda
+Ne radi	Det fungerar inte	word	es funktioniert nicht:Ne radi
+Curi voda	Det läcker / det droppar	word	es läuft aus / es tropft:Curi voda
+čekić	hammare	word	hammer:čekić
+majstor	hantverkare / fackman	word	handwerker / fachmann:majstor
+pokvaren / pokvarena / pokvareno	trasigt	word	kaputt:pokvaren / pokvarena / pokvareno
+merdevine	stege	word	leiter:merdevine
+ekser	spik	word	nagel:ekser
+popraviti	reparera	word	reparieren:popraviti
+brava	lås (dörrlås)	word	schloss (türschloss):brava
+šaraf	skruv	word	schraube:šaraf
+slavina	vattenkran	word	wasserhahn:slavina
+alat	verktyg	word	werkzeug:alat
+gorivo	bränsle	word	kraftstoff / sprit:gorivo
+sipati gorivo	tanka	word	tanken:sipati gorivo
+guma	däck	word	reifen:guma
+Pukla mi je guma.	Jag har fått punktering.	word	ich habe einen platten.:Pukla mi je guma.
+kočnica	broms	word	bremse:kočnica
+motor	motor	word	motor:motor
+akumulator	bilbatteri	word	autobatterie:akumulator
+sigurnosni pojas	säkerhetsbälte	word	sicherheitsgurt:sigurnosni pojas
+parkiralište	parkeringsplats	word	parkplatz:parkiralište
+parkirati	parkera	word	parken:parkirati
+semafor	trafikljus	word	ampel:semafor
+raskrsnica	korsning	word	kreuzung:raskrsnica
+saobraćaj	trafik	word	verkehr:saobraćaj
+zastoj	bilkö	word	stau:zastoj
+kazna	böter	word	strafzettel / bußgeld:kazna
+registracija	registreringsskylt	word	kennzeichen (auto):registracija
+tehnički pregled	bilbesiktning	word	hauptuntersuchung (tüv):tehnički pregled
+autoservis	bilverkstad	word	autowerkstatt:autoservis
+šlep služba	bärgningstjänst	word	abschleppdienst:šlep služba
+pomoć na cesti	vägassistans	word	pannenhilfe:pomoć na cesti
+odvijač / šrafciger	skruvmejsel	word	schraubenzieher:odvijač / šrafciger
+kliješta	tång	word	zange:kliješta
+bušilica	borrmaskin	word	bohrmaschine:bušilica
+bušiti	borra	word	bohren:bušiti
+testera	såg	word	säge:testera
+francuski ključ	skiftnyckel	word	rollgabelschlüssel (engländer):francuski ključ
+metar	måttband	word	maßband / zollstock:metar
+ljepilo	lim	word	kleber:ljepilo
+produžni kabel	förlängningssladd	word	verlängerungskabel:produžni kabel
+radionica	verkstad	word	werkstatt:radionica
+punjač	laddare	word	ladegerät:punjač
+baterija	batteri	word	akku:baterija
+Baterija je prazna.	Batteriet är slut.	word	der akku ist leer.:Baterija je prazna.
+napuniti	ladda	word	aufladen:napuniti
+šifra / lozinka	lösenord	word	passwort:šifra / lozinka
+Koja je šifra za WiFi?	Vad är wifi-lösenordet?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
+internet	internet	word	internet:internet
+Nema signala.	Ingen täckning.	word	kein empfang.:Nema signala.
+poruka	meddelande	word	nachricht:poruka
+poslati poruku	skicka ett meddelande	word	eine nachricht schicken:poslati poruku
+mejl	mejl	word	e-mail:mejl
+nazvati	ringa (i telefon)	word	anrufen:nazvati
+aplikacija	app	word	app:aplikacija
+ekran	skärm	word	bildschirm:ekran
+tastatura	tangentbord	word	tastatur:tastatura
+laptop	bärbar dator	word	laptop:laptop
+štampač	skrivare	word	drucker:štampač
+slušalice	hörlurar	word	kopfhörer:slušalice
+zvučnik	högtalare	word	lautsprecher:zvučnik
+slikati	fotografera	word	fotografieren:slikati
+ažurirati	uppdatera	word	aktualisieren:ažurirati
+mašina za suđe	diskmaskin	word	spülmaschine:mašina za suđe
+sušilica za veš	torktumlare	word	wäschetrockner:sušilica za veš
+mikrovalna	mikrovågsugn	word	mikrowelle:mikrovalna
+toster	brödrost	word	toaster:toster
+kuhalo za vodu	vattenkokare	word	wasserkocher:kuhalo za vodu
+fen	hårtork	word	föhn:fen
+klima	luftkonditionering	word	klimaanlage:klima
+ventilator	fläkt	word	ventilator:ventilator
+daljinski	fjärrkontroll	word	fernbedienung:daljinski
+aparat za kahvu / aparat za kafu	kaffebryggare	word	kaffeemaschine:aparat za kahvu / aparat za kafu
+uputstvo	bruksanvisning	word	bedienungsanleitung:uputstvo
+garancija	garanti	word	garantie:garancija
 bez šećera	utan socker	word	ohne zucker:bez šećera
 bez mlijeka	utan mjölk	word	ohne milch:bez mlijeka
 iz Bosne	från Bosnien	word	aus bosnien:iz Bosne
@@ -1100,9 +1143,16 @@ Djeca se igraju	Barnen leker	word	die kinder spielen:Djeca se igraju
 brinuti se	oroa sig	word	sich sorgen machen:brinuti se
 ustajati	gå upp	word	aufstehen:ustajati
 Ustajem u sedam	Jag går upp klockan sju	word	ich stehe um sieben auf:Ustajem u sedam
+budilnik	väckarklocka	word	wecker:budilnik
+umivati se	tvätta ansiktet	word	sich (das gesicht) waschen:umivati se
+Umivam se	Jag tvättar ansiktet	word	ich wasche mir das gesicht:Umivam se
 tuširati se	duscha	word	sich duschen:tuširati se
 Tuširam se	Jag duschar	word	ich dusche mich:Tuširam se
+brijati se	raka sig	word	sich rasieren:brijati se
+Brijem se	Jag rakar mig	word	ich rasiere mich:Brijem se
 prati zube	borsta tänderna	word	zähne putzen:prati zube
+češljati se	kamma sig	word	sich kämmen:češljati se
+Češljam se	Jag kammar mig	word	ich kämme mich:Češljam se
 doručkovati	äta frukost	word	frühstücken:doručkovati
 Doručkujem	Jag äter frukost	word	ich frühstücke:Doručkujem
 ići na posao	gå till jobbet	word	zur arbeit gehen:ići na posao
@@ -1114,8 +1164,11 @@ Dolazim kući	Jag kommer hem	word	ich komme nach hause:Dolazim kući
 kuhati	laga mat	word	kochen:kuhati
 Kuham večeru	Jag lagar middag	word	ich koche abendessen:Kuham večeru
 gledati televiziju	titta på tv	word	fernsehen:gledati televiziju
+kupati se	bada	word	baden / sich baden:kupati se
+Kupam se	Jag badar	word	ich bade:Kupam se
 ići spavati	gå och lägga sig	word	schlafen gehen:ići spavati
 Idem spavati	Jag går och lägger mig	word	ich gehe schlafen:Idem spavati
+pidžama	pyjamas	word	schlafanzug:pidžama
 ići u kupovinu	gå och handla	word	einkaufen gehen:ići u kupovinu
 čistiti	städa	word	putzen:čistiti
 prati veš	tvätta kläder	word	wäsche waschen:prati veš
@@ -1129,6 +1182,26 @@ ujutro	på morgonen	word	am morgen:ujutro
 popodne	på eftermiddagen	word	am nachmittag:popodne
 navečer	på kvällen	word	am abend:navečer
 vikendom	på helgen	word	am wochenende:vikendom
+ime	namn	word	name:ime
+prezime	efternamn	word	nachname:prezime
+adresa	adress	word	adresse:adresa
+telefon	telefon	word	telefon:telefon
+roditelji	föräldrar	word	eltern:roditelji
+osoba	person	word	person:osoba
+hrana	mat / föda	word	essen / nahrung:hrana
+piće	dryck	word	getränk:piće
+lice	ansikte	word	gesicht:lice
+život	liv	word	das leben:život
+mjesto	plats / ställe	word	ort / platz:mjesto
+dio	del	word	teil:dio
+početak	början	word	anfang:početak
+kraj	slut	word	ende:kraj
+problem	problem	word	problem:problem
+slika	bild / foto	word	bild / foto:slika
+priča	berättelse	word	geschichte (erzählung):priča
+igra	spel	word	spiel (zum spielen):igra
+film	film	word	film:film
+broj	tal / nummer	word	zahl / nummer:broj
 velik / velika	stor (m/k)	word	groß (m/w):velik / velika
 veći	större	word	größer:veći
 najveći	störst	word	am größten:najveći
@@ -1230,6 +1303,7 @@ rezervisati sobu	boka ett rum	word	ein zimmer reservieren:rezervisati sobu
 rezervacija	bokning	word	reservierung:rezervacija
 autobuska stanica	busstation	word	busbahnhof:autobuska stanica
 taksi	taxi	word	taxi:taksi
+taksista	taxichaufför	word	taxifahrer:taksista
 vozač	förare	word	fahrer:vozač
 benzinska pumpa	bensinstation	word	tankstelle:benzinska pumpa
 benzin	bensin	word	benzin:benzin
@@ -1306,7 +1380,11 @@ ispit	prov	word	prüfung:ispit
 zadaća	läxa	word	hausaufgabe:zadaća
 knjiga	bok	word	buch:knjiga
 olovka	penna	word	stift:olovka
+hemijska olovka	kulspetspenna	word	kugelschreiber:hemijska olovka
+rezač	pennvässare	word	spitzer:rezač
+lenjir	linjal	word	lineal:lenjir
 papir	papper	word	papier:papir
+riječ	ord	word	wort:riječ
 računar	dator	word	computer:računar
 Imam dva brata	Jag har två bröder	word	ich habe zwei brüder:Imam dva brata
 Moja sestra ima pet godina	Min syster är fem år	word	meine schwester ist fünf jahre alt:Moja sestra ima pet godina
@@ -1398,6 +1476,7 @@ kiselo	surt	word	sauer:kiselo
 ljuto	starkt (kryddstarkt)	word	scharf:ljuto
 slatko	sött	word	süß:slatko
 premalo	för lite	word	zu wenig:premalo
+salveta	servett	word	serviette:salveta
 Zadržite kusur	Behåll växeln	word	behalten sie das rückgeld:Zadržite kusur
 odvojeno	separat	word	getrennt:odvojeno
 Svako plaća svoje	Var och en betalar för sig	word	jeder zahlt seins:Svako plaća svoje
@@ -1521,7 +1600,7 @@ Molim te, pričaj sporije	Prata långsammare, tack	word	sprich bitte langsamer:M
 Govoriš li bosanski?	Talar du bosniska?	word	sprichst du bosnisch?:Govoriš li bosanski?
 Šta to znači?	Vad betyder det?	word	was bedeutet das?:Šta to znači?
 Kako se to kaže na bosanskom?	Hur säger man det på bosniska?	word	wie sagt man das auf bosnisch?:Kako se to kaže na bosanskom?
-Alejkumu selam	(svar på det)	word	(antwort darauf):Alejkumu selam
+Alejkumu selam	svar på Selam alejkum	word	antwort auf selam alejkum:Alejkumu selam
 posjeta	besök	word	besuch:posjeta
 Hvala na svemu	Tack för allt	word	danke für alles:Hvala na svemu
 Da te upoznam: ...	Får jag presentera: ...	word	darf ich vorstellen: ...:Da te upoznam: ...
@@ -1546,7 +1625,7 @@ Poznajemo se	Vi känner varandra	word	wir kennen uns:Poznajemo se
 poznanik / poznanica	bekant	word	bekannter / bekannte:poznanik / poznanica
 raja	vänkrets / gänget	word	freundeskreis / die clique:raja
 domaćin	värd	word	gastgeber:domaćin
-koleginica	kollega (kvinna)	word	kollegin:koleginica
+kolegica	kollega (kvinna)	word	kollegin:kolegica
 jaran	polare (slang, särskilt i Sarajevo)	word	kumpel (slang, vor allem sarajevo):jaran
 drug / drugarica	kompis (vardagligt)	word	kumpel / kumpelin (locker):drug / drugarica
 komšije	grannar (plural)	word	nachbarn (mehrzahl):komšije
@@ -1568,6 +1647,7 @@ Sretan Bajram!	Glad Bajram!	word	frohes bajram!:Sretan Bajram!
 Bog	Gud	word	gott:Bog
 Hvala Bogu	Gud ske lov	word	gott sei dank:Hvala Bogu
 iftar	iftar (måltiden som bryter fastan)	word	iftar (fastenbrechen):iftar
+sehur	suhur (måltiden före gryningen under ramadan)	word	sehur (mahlzeit vor dem morgengrauen im ramadan):sehur
 inšallah	inšallah (om Gud vill)	word	inšallah (so gott will):inšallah
 mašallah	mašallah (vad vackert, må Gud bevara det)	word	mašallah (wie schön, gott schütze es):mašallah
 Ramazanski bajram / Kurban-bajram	ramadanfesten (id al-fitr) / offerhögtiden (id al-adha)	word	ramadanfest / opferfest:Ramazanski bajram / Kurban-bajram
@@ -2589,6 +2669,8 @@ potruditi se	anstränga sig	word	sich bemühen:potruditi se
 Potrudi se malo više!	Ansträng dig lite mer!	word	bemüh dich ein bisschen mehr!:Potrudi se malo više!
 pogađati se	förhandla (pris)	word	verhandeln (preis):pogađati se
 Još se pogađamo oko cijene stana.	Vi förhandlar fortfarande om lägenhetens pris.	word	wir verhandeln noch über den preis der wohnung.:Još se pogađamo oko cijene stana.
+šaliti se	skämta	word	scherzen / witze machen:šaliti se
+Ne ljuti se, samo se šalim.	Bli inte arg, jag skojar bara.	word	sei nicht böse, ich mache nur spaß.:Ne ljuti se, samo se šalim.
 ljubiti	kyssa	word	küssen:ljubiti
 Na Bajram ljubimo ruku nani.	På Bajram kysser vi mormors hand.	word	an bajram küssen wir oma die hand.:Na Bajram ljubimo ruku nani.
 poljubiti	kyssa	word	küssen:poljubiti
@@ -2951,6 +3033,12 @@ veseo	munter	word	fröhlich:veseo
 Uvijek je vesela i nasmijana.	Hon är alltid glad och skrattar.	word	sie ist immer fröhlich und lacht.:Uvijek je vesela i nasmijana.
 oprezan	försiktig	word	vorsichtig:oprezan
 Budi oprezan, vani je klizavo.	Var försiktig, det är halt ute.	word	sei vorsichtig, draußen ist es glatt.:Budi oprezan, vani je klizavo.
+zgodan	snygg	word	gutaussehend / hübsch:zgodan
+Tvoj brat je jako zgodan.	Din bror är väldigt snygg.	word	dein bruder sieht sehr gut aus.:Tvoj brat je jako zgodan.
+simpatičan	sympatisk	word	sympathisch / nett:simpatičan
+Nova komšinica je jako simpatična.	Den nya grannen är väldigt trevlig.	word	die neue nachbarin ist sehr sympathisch.:Nova komšinica je jako simpatična.
+dosadan	tråkig (den tråkige)	word	langweilig (der langweilige):dosadan
+Ovaj film je tako dosadan da sam zaspao.	Den här filmen är så tråkig att jag somnade.	word	dieser film ist so langweilig, dass ich eingeschlafen bin.:Ovaj film je tako dosadan da sam zaspao.
 ljubazan	vänlig	word	freundlich:ljubazan
 Prodavačica je bila jako ljubazna.	Expediten var väldigt vänlig.	word	die verkäuferin war sehr freundlich.:Prodavačica je bila jako ljubazna.
 pristojan	artig / anständig	word	höflich / anständig:pristojan
@@ -3037,7 +3125,6 @@ smrdjeti / smrditi	stinka / lukta illa	word	stinken:smrdjeti / smrditi
 Nešto smrdi u frižideru.	Det luktar illa i kylskåpet.	word	im kühlschrank stinkt etwas.:Nešto smrdi u frižideru.
 bljutav	fadd / smaklös	word	fad (ohne geschmack):bljutav
 Supa je bljutava, fali joj soli.	Soppan är fadd, det saknas salt.	word	die suppe ist fad, es fehlt salz.:Supa je bljutava, fali joj soli.
-lice	ansikte	word	gesicht:lice
 Imaš nešto na licu.	Du har något i ansiktet.	word	du hast etwas im gesicht.:Imaš nešto na licu.
 jezik	tunga	word	zunge:jezik
 Ugrizao sam se za jezik.	Jag bet mig i tungan.	word	ich habe mir auf die zunge gebissen.:Ugrizao sam se za jezik.
@@ -3113,6 +3200,8 @@ moždani udar	stroke	word	schlaganfall:moždani udar
 Komšija je imao moždani udar.	Grannen har fått en stroke.	word	der nachbar hatte einen schlaganfall.:Komšija je imao moždani udar.
 srčani udar / infarkt	hjärtinfarkt	word	herzinfarkt:srčani udar / infarkt
 Dedo je prošle godine imao srčani udar.	Morfar fick en hjärtinfarkt förra året.	word	opa hatte letztes jahr einen herzinfarkt.:Dedo je prošle godine imao srčani udar.
+prehlađen	förkyld	word	erkältet:prehlađen
+Prehlađen sam, ne mogu danas doći.	Jag är förkyld, jag kan inte komma i dag.	word	ich bin erkältet, ich kann heute nicht kommen.:Prehlađen sam, ne mogu danas doći.
 slomiti	bryta (ben, glas)	word	brechen (knochen, glas):slomiti
 Slomio je ruku na skijanju.	Han bröt armen när han åkte skidor.	word	er hat sich beim skifahren den arm gebrochen.:Slomio je ruku na skijanju.
 umor	trötthet	word	müdigkeit:umor
@@ -3143,6 +3232,8 @@ zubobolja	tandvärk	word	zahnschmerzen:zubobolja
 Imam strašnu zubobolju, moram kod zubara.	Jag har fruktansvärd tandvärk, jag måste till tandläkaren.	word	ich habe schlimme zahnschmerzen, ich muss zum zahnarzt.:Imam strašnu zubobolju, moram kod zubara.
 Muka mi je.	Jag mår illa.	word	mir ist übel.:Muka mi je.
 Stani malo, muka mi je.	Stanna lite, jag mår illa.	word	halt mal kurz an, mir ist übel.:Stani malo, muka mi je.
+kihati	nysa	word	niesen:kihati
+Od prašine stalno kišem.	Dammet får mig att nysa hela tiden.	word	vom staub muss ich ständig niesen.:Od prašine stalno kišem.
 kontrola	kontroll / återbesök	word	kontrolle / nachuntersuchung:kontrola
 Za dvije sedmice dođite na kontrolu.	Kom tillbaka på återbesök om två veckor.	word	kommen sie in zwei wochen zur kontrolle.:Za dvije sedmice dođite na kontrolu.
 pacijent	patient	word	patient:pacijent
@@ -3273,7 +3364,36 @@ budućnost	framtid	word	zukunft:budućnost
 U budućnosti želimo živjeti u Bosni.	I framtiden vill vi bo i Bosnien.	word	in zukunft wollen wir in bosnien leben.:U budućnosti želimo živjeti u Bosni.
 praznik	helgdag	word	feiertag:praznik
 Sutra je praznik, banke ne rade.	I morgon är det helgdag, bankerna har stängt.	word	morgen ist feiertag, die banken haben zu.:Sutra je praznik, banke ne rade.
-odmah	genast	word	sofort:odmah
+četvrti	den fjärde	word	der vierte:četvrti
+Živimo na četvrtom spratu, a lift ne radi.	Vi bor på fjärde våningen, och hissen fungerar inte.	word	wir wohnen im vierten stock, und der aufzug geht nicht.:Živimo na četvrtom spratu, a lift ne radi.
+peti	den femte	word	der fünfte:peti
+Platu dobivam petog u mjesecu.	Jag får min lön den femte varje månad.	word	mein gehalt bekomme ich am fünften des monats.:Platu dobivam petog u mjesecu.
+šesti	den sjätte	word	der sechste:šesti
+Moj sin ide u šesti razred.	Min son går i sjätte klass.	word	mein sohn geht in die sechste klasse.:Moj sin ide u šesti razred.
+sedmi	den sjunde	word	der siebte:sedmi
+Ovo je već sedmi put da kasniš!	Det är redan sjunde gången du kommer för sent!	word	das ist schon das siebte mal, dass du zu spät kommst!:Ovo je već sedmi put da kasniš!
+osmi	den åttonde	word	der achte:osmi
+Osmi mart je Dan žena.	Den åttonde mars är kvinnodagen.	word	der achte märz ist der frauentag.:Osmi mart je Dan žena.
+deveti	den nionde	word	der neunte:deveti
+Naša ekipa je na devetom mjestu u ligi.	Vårt lag ligger på nionde plats i ligan.	word	unsere mannschaft steht auf dem neunten platz in der liga.:Naša ekipa je na devetom mjestu u ligi.
+deseti	den tionde	word	der zehnte:deseti
+Rođen sam desetog oktobra.	Jag är född den tionde oktober.	word	ich bin am zehnten oktober geboren.:Rođen sam desetog oktobra.
+jedanaesti	den elfte	word	der elfte:jedanaesti
+Naša kancelarija je na jedanaestom spratu.	Vårt kontor ligger på elfte våningen.	word	unser büro ist im elften stock.:Naša kancelarija je na jedanaestom spratu.
+dvanaesti	den tolfte	word	der zwölfte:dvanaesti
+Decembar je dvanaesti mjesec u godini.	December är årets tolfte månad.	word	der dezember ist der zwölfte monat des jahres.:Decembar je dvanaesti mjesec u godini.
+dvadeseti	den tjugonde	word	der zwanzigste:dvadeseti
+Danas slavimo sestrin dvadeseti rođendan.	I dag firar vi min systers tjugonde födelsedag.	word	heute feiern wir den zwanzigsten geburtstag meiner schwester.:Danas slavimo sestrin dvadeseti rođendan.
+dvadeset prvi	den tjugoförsta	word	der einundzwanzigste:dvadeset prvi
+Živimo u dvadeset prvom stoljeću.	Vi lever på tjugoförsta århundradet.	word	wir leben im einundzwanzigsten jahrhundert.:Živimo u dvadeset prvom stoljeću.
+trideseti	den trettionde	word	der dreißigste:trideseti
+Kirija se plaća do tridesetog u mjesecu.	Hyran betalas senast den trettionde i månaden.	word	die miete wird bis zum dreißigsten des monats bezahlt.:Kirija se plaća do tridesetog u mjesecu.
+pedeseti	den femtionde	word	der fünfzigste:pedeseti
+Babo slavi pedeseti rođendan.	Pappa firar sin femtionde födelsedag.	word	papa feiert seinen fünfzigsten geburtstag.:Babo slavi pedeseti rođendan.
+stoti	den hundrade	word	der hundertste:stoti
+Ovo ti govorim već stoti put!	Det här säger jag till dig för hundrade gången!	word	das sage ich dir schon zum hundertsten mal!:Ovo ti govorim već stoti put!
+hiljaditi	den tusende	word	der tausendste:hiljaditi
+Bio je hiljaditi posjetilac i dobio je nagradu.	Han var den tusende besökaren och fick ett pris.	word	er war der tausendste besucher und hat einen preis bekommen.:Bio je hiljaditi posjetilac i dobio je nagradu.
 Odmah dolazim!	Jag kommer genast!	word	ich komme sofort!:Odmah dolazim!
 upravo	precis (nu)	word	gerade (eben):upravo
 Upravo sam stigla kući.	Jag har precis kommit hem.	word	ich bin gerade nach hause gekommen.:Upravo sam stigla kući.
@@ -3291,7 +3411,6 @@ tek	först	word	erst:tek
 Film počinje tek u devet.	Filmen börjar inte förrän nio.	word	der film fängt erst um neun an.:Film počinje tek u devet.
 još	fortfarande	word	noch:još
 Još spava, nemoj ga buditi.	Han sover fortfarande, väck honom inte.	word	er schläft noch, weck ihn nicht.:Još spava, nemoj ga buditi.
-opet	igen	word	wieder:opet
 Dođite nam opet!	Kom och hälsa på oss igen!	word	kommt uns wieder besuchen!:Dođite nam opet!
 zauvijek	för alltid	word	für immer:zauvijek
 Ovo ne može trajati zauvijek.	Det här kan inte fortsätta för evigt.	word	das kann nicht für immer so weitergehen.:Ovo ne može trajati zauvijek.
@@ -3337,6 +3456,16 @@ trening	träning	word	training:trening
 Imam trening u šest.	Jag har träning klockan sex.	word	ich habe um sechs training.:Imam trening u šest.
 vježbati	öva / träna	word	üben / trainieren:vježbati
 Moraš više vježbati.	Du måste öva mer.	word	du musst mehr üben.:Moraš više vježbati.
+golman	målvakt	word	torwart:golman
+Naš golman je najbolji u ligi.	Vår målvakt är bäst i ligan.	word	unser torwart ist der beste der liga.:Naš golman je najbolji u ligi.
+tenis	tennis	word	tennis:tenis
+Subotom igram tenis s prijateljem.	På lördagar spelar jag tennis med en vän.	word	samstags spiele ich mit einem freund tennis.:Subotom igram tenis s prijateljem.
+odbojka	volleyboll	word	volleyball:odbojka
+Ljeti na plaži igramo odbojku.	På sommaren spelar vi volleyboll på stranden.	word	im sommer spielen wir am strand volleyball.:Ljeti na plaži igramo odbojku.
+dres	matchtröja	word	trikot:dres
+Kupio sam sinu dres reprezentacije.	Jag köpte landslagströjan till min son.	word	ich habe meinem sohn das trikot der nationalmannschaft gekauft.:Kupio sam sinu dres reprezentacije.
+neriješeno	oavgjort	word	unentschieden:neriješeno
+Utakmica je završila neriješeno.	Matchen slutade oavgjort.	word	das spiel endete unentschieden.:Utakmica je završila neriješeno.
 hobi	hobby	word	hobby:hobi
 Imaš li neki hobi?	Har du någon hobby?	word	hast du ein hobby?:Imaš li neki hobi?
 slobodno vrijeme	fritid	word	freizeit:slobodno vrijeme
@@ -3349,7 +3478,6 @@ gitara	gitarr	word	gitarre:gitara
 Kćerka uči svirati gitaru.	Min dotter lär sig spela gitarr.	word	meine tochter lernt gitarre spielen.:Kćerka uči svirati gitaru.
 plesti	sticka	word	stricken:plesti
 Nana plete čarape za zimu.	Mormor stickar sockor till vintern.	word	oma strickt socken für den winter.:Nana plete čarape za zimu.
-slika	bild / foto	word	bild / foto:slika
 Pošalji mi sliku!	Skicka en bild till mig!	word	schick mir ein foto!:Pošalji mi sliku!
 izlet	utflykt	word	ausflug:izlet
 U nedjelju idemo na izlet na Vrelo Bosne.	På söndag gör vi en utflykt till Vrelo Bosne.	word	am sonntag machen wir einen ausflug zum vrelo bosne.:U nedjelju idemo na izlet na Vrelo Bosne.
@@ -3363,8 +3491,11 @@ muzej	museum	word	museum:muzej
 Djeca su s razredom bila u muzeju.	Barnen var på museum med klassen.	word	die kinder waren mit der klasse im museum.:Djeca su s razredom bila u muzeju.
 žurka	party	word	party:žurka
 Ko sve dolazi na žurku?	Vilka kommer på festen?	word	wer kommt alles zur party?:Ko sve dolazi na žurku?
-igra	spel	word	spiel (zum spielen):igra
 Hajmo igrati neku igru!	Kom så spelar vi ett spel!	word	lass uns ein spiel spielen!:Hajmo igrati neku igru!
+šah	schack	word	schach:šah
+Dedo me je naučio igrati šah.	Morfar lärde mig att spela schack.	word	opa hat mir schach beigebracht.:Dedo me je naučio igrati šah.
+igrica	tv-spel	word	handyspiel / videospiel:igrica
+Djeca cijeli dan igraju igrice na mobitelu.	Barnen spelar spel på mobilen hela dagen.	word	die kinder spielen den ganzen tag spiele auf dem handy.:Djeca cijeli dan igraju igrice na mobitelu.
 novine	tidning	word	zeitung:novine
 Dedo svako jutro čita novine.	Morfar läser tidningen varje morgon.	word	opa liest jeden morgen zeitung.:Dedo svako jutro čita novine.
 vijesti	nyheter	word	nachrichten (tv, zeitung):vijesti
@@ -3377,7 +3508,6 @@ reklama	reklam	word	werbung:reklama
 Opet reklame, idem po sok.	Reklam igen, jag hämtar en juice.	word	schon wieder werbung, ich hol mir einen saft.:Opet reklame, idem po sok.
 radio	radio	word	radio:radio
 U autu uvijek slušam radio.	I bilen lyssnar jag alltid på radio.	word	im auto höre ich immer radio.:U autu uvijek slušam radio.
-film	film	word	film:film
 Hoćemo li pogledati neki film?	Ska vi titta på en film?	word	wollen wir uns einen film anschauen?:Hoćemo li pogledati neki film?
 serija	serie	word	serie:serija
 Nana gleda svaku tursku seriju.	Mormor tittar på varenda turkisk serie.	word	oma schaut jede türkische serie.:Nana gleda svaku tursku seriju.
@@ -3395,6 +3525,8 @@ objaviti	publicera / lägga upp	word	veröffentlichen / posten:objaviti
 Objavila je slike s mora.	Hon har lagt upp bilder från havet.	word	sie hat fotos vom meer gepostet.:Objavila je slike s mora.
 glumac	skådespelare	word	schauspieler:glumac
 Taj glumac je iz Sarajeva.	Den här skådespelaren kommer från Sarajevo.	word	dieser schauspieler kommt aus sarajevo.:Taj glumac je iz Sarajeva.
+crtani film	tecknad film	word	zeichentrickfilm:crtani film
+Djeca svako jutro gledaju crtane filmove.	Barnen tittar på tecknade filmer varje morgon.	word	die kinder schauen jeden morgen zeichentrickfilme.:Djeca svako jutro gledaju crtane filmove.
 tramvaj	spårvagn	word	straßenbahn:tramvaj
 Tramvajem je najbrže do Baščaršije.	Med spårvagnen kommer man snabbast till Baščaršija.	word	mit der straßenbahn kommt man am schnellsten zur baščaršija.:Tramvajem je najbrže do Baščaršije.
 brod	fartyg	word	schiff:brod
@@ -3421,6 +3553,12 @@ rezervisati	boka	word	reservieren:rezervisati
 Rezervisala sam sto za subotu navečer.	Jag har bokat ett bord till lördag kväll.	word	ich habe für samstagabend einen tisch reserviert.:Rezervisala sam sto za subotu navečer.
 red vožnje	tidtabell	word	fahrplan:red vožnje
 Gdje mogu vidjeti red vožnje?	Var kan jag se tidtabellen?	word	wo kann ich den fahrplan sehen?:Gdje mogu vidjeti red vožnje?
+sunčane naočale	solglasögon	word	sonnenbrille:sunčane naočale
+Gdje su moje sunčane naočale?	Var är mina solglasögon?	word	wo ist meine sonnenbrille?:Gdje su moje sunčane naočale?
+kupaći kostim	baddräkt	word	badeanzug:kupaći kostim
+Spakuj kupaći kostim, idemo na more.	Packa ner baddräkten, vi åker till havet.	word	pack den badeanzug ein, wir fahren ans meer.:Spakuj kupaći kostim, idemo na more.
+čamac	båt	word	boot:čamac
+Unajmili smo čamac na jezeru.	Vi hyrde en båt på sjön.	word	wir haben auf dem see ein boot gemietet.:Unajmili smo čamac na jezeru.
 vrtić	förskola	word	kindergarten:vrtić
 Vodim sina u vrtić pa idem na posao.	Jag lämnar min son på förskolan och går sedan till jobbet.	word	ich bringe meinen sohn in den kindergarten und gehe dann zur arbeit.:Vodim sina u vrtić pa idem na posao.
 osnovna škola	grundskola	word	grundschule:osnovna škola
@@ -3451,6 +3589,8 @@ ponoviti	upprepa	word	wiederholen:ponoviti
 Ponovi za mnom!	Upprepa efter mig!	word	sprich mir nach!:Ponovi za mnom!
 ponavljati	upprepa	word	wiederholen:ponavljati
 Koliko puta ti moram ponavljati?	Hur många gånger måste jag upprepa det?	word	wie oft muss ich dir das noch wiederholen?:Koliko puta ti moram ponavljati?
+učitelj	lärare (lågstadiet)	word	lehrer (grundschule):učitelj
+Naš učitelj nas je naučio pisati.	Vår lärare lärde oss att skriva.	word	unser lehrer hat uns das schreiben beigebracht.:Naš učitelj nas je naučio pisati.
 zapamtiti	lägga på minnet	word	sich merken:zapamtiti
 Ne mogu zapamtiti njegovo ime.	Jag kan inte komma ihåg hans namn.	word	ich kann mir seinen namen nicht merken.:Ne mogu zapamtiti njegovo ime.
 pamtiti	lägga på minnet	word	sich merken:pamtiti
@@ -3513,6 +3653,10 @@ radnik	arbetare	word	arbeiter:radnik
 U fabrici radi petsto radnika.	Det jobbar femhundra arbetare på fabriken.	word	in der fabrik arbeiten fünfhundert arbeiter.:U fabrici radi petsto radnika.
 poštar	brevbärare	word	postbote:poštar
 Je li poštar već došao?	Har brevbäraren redan varit här?	word	ist der postbote schon gekommen?:Je li poštar već došao?
+keramičar	plattsättare	word	fliesenleger:keramičar
+Keramičar dolazi sutra da postavi pločice u kupatilu.	Plattsättaren kommer i morgon för att lägga kakel i badrummet.	word	der fliesenleger kommt morgen, um im bad die fliesen zu verlegen.:Keramičar dolazi sutra da postavi pločice u kupatilu.
+soboslikar	målare (byggnadsmålare)	word	maler (anstreicher):soboslikar
+Soboslikar dolazi u ponedjeljak da nam okreči stan.	Målaren kommer på måndag för att måla vår lägenhet.	word	der maler kommt am montag, um unsere wohnung zu streichen.:Soboslikar dolazi u ponedjeljak da nam okreči stan.
 smjena	skift	word	schicht:smjena
 Sutra radim noćnu smjenu.	I morgon jobbar jag nattskift.	word	morgen habe ich nachtschicht.:Sutra radim noćnu smjenu.
 gradilište	byggarbetsplats	word	baustelle:gradilište
@@ -3543,7 +3687,8 @@ praksa	praktik	word	praktikum:praksa
 Studenti moraju odraditi praksu.	Studenter måste göra praktik.	word	studenten müssen ein praktikum machen.:Studenti moraju odraditi praksu.
 radni dan	vardag	word	werktag:radni dan
 Radnim danima ustajem u šest.	På vardagar går jag upp klockan sex.	word	an werktagen stehe ich um sechs auf.:Radnim danima ustajem u šest.
-mjesto	plats / ställe	word	ort / platz:mjesto
+odmor	vila	word	erholung:odmor
+Poslije ovakve sedmice treba mi odmor.	Efter en sådan vecka behöver jag vila.	word	nach so einer woche brauche ich erholung.:Poslije ovakve sedmice treba mi odmor.
 Je li ovo mjesto slobodno?	Är den här platsen ledig?	word	ist dieser platz frei?:Je li ovo mjesto slobodno?
 strana	sida (riktning)	word	seite (richtung):strana
 Apoteka je na drugoj strani ulice.	Apoteket ligger på andra sidan gatan.	word	die apotheke ist auf der anderen straßenseite.:Apoteka je na drugoj strani ulice.
@@ -3593,9 +3738,7 @@ Dužina staze je pet kilometara.	Sträckans längd är fem kilometer.	word	die l
 Moramo izmjeriti širinu prozora.	Vi måste mäta fönstrets bredd.	word	wir müssen die breite des fensters messen.:Moramo izmjeriti širinu prozora.
 ivica	kant (bord, stol)	word	kante (tischkante, stuhlkante):ivica
 Čaša stoji na samoj ivici stola.	Glaset står precis på bordskanten.	word	das glas steht direkt an der tischkante.:Čaša stoji na samoj ivici stola.
-dio	del	word	teil:dio
 Drugi dio filma je bio bolji.	Filmens andra del var bättre.	word	der zweite teil des films war besser.:Drugi dio filma je bio bolji.
-broj	tal / nummer	word	zahl / nummer:broj
 Napiši mi svoj broj na papir.	Skriv upp ditt nummer på en lapp åt mig.	word	schreib mir deine nummer auf einen zettel.:Napiši mi svoj broj na papir.
 većina	majoritet	word	mehrheit:većina
 Većina mojih prijatelja živi u Njemačkoj.	De flesta av mina vänner bor i Tyskland.	word	die meisten meiner freunde leben in deutschland.:Većina mojih prijatelja živi u Njemačkoj.
@@ -3639,9 +3782,7 @@ razlika	skillnad	word	unterschied:razlika
 Koja je razlika između ove dvije riječi?	Vad är skillnaden mellan de här två orden?	word	was ist der unterschied zwischen diesen zwei wörtern?:Koja je razlika između ove dvije riječi?
 kilometar	kilometer	word	kilometer:kilometar
 Do škole ima samo jedan kilometar.	Det är bara en kilometer till skolan.	word	bis zur schule ist es nur ein kilometer.:Do škole ima samo jedan kilometar.
-početak	början	word	anfang:početak
 Na početku mi je bilo teško.	I början var det svårt för mig.	word	am anfang war es schwer für mich.:Na početku mi je bilo teško.
-kraj	slut	word	ende:kraj
 Pekara je na kraju ulice.	Bageriet ligger i slutet av gatan.	word	die bäckerei ist am ende der straße.:Pekara je na kraju ulice.
 period	tidsperiod	word	zeitraum:period
 To je bio težak period u mom životu.	Det var en svår tid i mitt liv.	word	das war eine schwere zeit in meinem leben.:To je bio težak period u mom životu.
@@ -3673,7 +3814,6 @@ faza	fas	word	phase:faza
 To je samo faza, proći će.	Det är bara en fas, det går över.	word	das ist nur eine phase, das geht vorbei.:To je samo faza, proći će.
 korak	steg	word	schritt:korak
 Prvi korak je uvijek najteži.	Första steget är alltid det svåraste.	word	der erste schritt ist immer der schwerste.:Prvi korak je uvijek najteži.
-život	liv	word	das leben:život
 Život na selu je miran.	Livet på landet är lugnt.	word	das leben auf dem dorf ist ruhig.:Život na selu je miran.
 smrt	död	word	tod:smrt
 Njegova smrt nas je sve potresla.	Hans död skakade oss alla.	word	sein tod hat uns alle erschüttert.:Njegova smrt nas je sve potresla.
@@ -3785,7 +3925,6 @@ pojam	begrepp / aning	word	begriff / ahnung:pojam
 Nemam pojma gdje su ključevi.	Jag har ingen aning om var nycklarna är.	word	ich habe keine ahnung, wo die schlüssel sind.:Nemam pojma gdje su ključevi.
 pamet	förstånd	word	verstand:pamet
 Ima novca, ali nema pameti.	Han har pengar men inget förstånd.	word	er hat geld, aber keinen verstand.:Ima novca, ali nema pameti.
-problem	problem	word	problem:problem
 To nije moj problem.	Det är inte mitt problem.	word	das ist nicht mein problem.:To nije moj problem.
 rješenje	lösning	word	lösung:rješenje
 Za svaki problem postoji rješenje.	Det finns en lösning på varje problem.	word	für jedes problem gibt es eine lösung.:Za svaki problem postoji rješenje.
@@ -3845,9 +3984,7 @@ aktivnost	aktivitet	word	aktivität:aktivnost
 Djeca imaju mnogo aktivnosti poslije škole.	Barnen har många aktiviteter efter skolan.	word	die kinder haben nach der schule viele aktivitäten.:Djeca imaju mnogo aktivnosti poslije škole.
 poteškoća	liten svårighet	word	kleine schwierigkeit:poteškoća
 Imam male poteškoće s internetom.	Jag har lite problem med internet.	word	ich habe kleine probleme mit dem internet.:Imam male poteškoće s internetom.
-osoba	person	word	person:osoba
 Rezervisao sam sto za četiri osobe.	Jag har bokat ett bord för fyra personer.	word	ich habe einen tisch für vier personen reserviert.:Rezervisao sam sto za četiri osobe.
-roditelji	föräldrar	word	eltern:roditelji
 Moji roditelji žive u Sarajevu.	Mina föräldrar bor i Sarajevo.	word	meine eltern leben in sarajevo.:Moji roditelji žive u Sarajevu.
 supruga	hustru (formellt)	word	ehefrau (förmlich):supruga
 Ovo je moja supruga, Amra.	Det här är min fru, Amra.	word	das ist meine frau, amra.:Ovo je moja supruga, Amra.
@@ -4102,19 +4239,12 @@ dova	muslimsk åkallan (dua)	word	muslimisches bittgebet:dova
 Moja nana svako veče uči dovu.	Min mormor ber en bön varje kväll.	word	meine oma spricht jeden abend ein bittgebet.:Moja nana svako veče uči dovu.
 mezarje	muslimsk begravningsplats	word	muslimischer friedhof:mezarje
 Mezarje je iznad sela.	Begravningsplatsen ligger ovanför byn.	word	der friedhof liegt oberhalb des dorfes.:Mezarje je iznad sela.
-hrana	mat / föda	word	essen / nahrung:hrana
 Domaća hrana je najbolja.	Hemlagad mat är bäst.	word	selbstgemachtes essen ist am besten.:Domaća hrana je najbolja.
-piće	dryck	word	getränk:piće
 Šta ćete za piće?	Vad vill ni dricka?	word	was möchten sie trinken?:Šta ćete za piće?
-ime	namn	word	name:ime
 Kako se piše tvoje ime?	Hur stavas ditt namn?	word	wie schreibt man deinen namen?:Kako se piše tvoje ime?
-prezime	efternamn	word	nachname:prezime
 Napišite ovdje svoje prezime.	Skriv ert efternamn här.	word	schreiben sie hier ihren nachnamen hin.:Napišite ovdje svoje prezime.
-adresa	adress	word	adresse:adresa
 Koja je tvoja nova adresa?	Vad är din nya adress?	word	wie lautet deine neue adresse?:Koja je tvoja nova adresa?
-telefon	telefon	word	telefon:telefon
 Ostavio sam telefon kod kuće.	Jag glömde telefonen hemma.	word	ich habe das telefon zu hause gelassen.:Ostavio sam telefon kod kuće.
-priča	berättelse	word	geschichte (erzählung):priča
 To je duga priča.	Det är en lång historia.	word	das ist eine lange geschichte.:To je duga priča.
 informacija	information	word	information:informacija
 Treba mi više informacija.	Jag behöver mer information.	word	ich brauche mehr informationen.:Treba mi više informacija.
@@ -4180,9 +4310,7 @@ negativan	negativ	word	negativ:negativan
 Nalaz je negativan, hvala Bogu.	Provsvaret är negativt, gudskelov.	word	der befund ist negativ, gott sei dank.:Nalaz je negativan, hvala Bogu.
 jasan	tydlig	word	klar:jasan
 Je li ti sada jasno?	Är det klart för dig nu?	word	ist es dir jetzt klar?:Je li ti sada jasno?
-sav	hel / all	word	ganz / all:sav
 Djeca su popila sav sok.	Barnen drack upp all saft.	word	die kinder haben den ganzen saft getrunken.:Djeca su popila sav sok.
-cijeli	hel	word	ganz (der ganze):cijeli
 Cijeli grad je bez struje.	Hela staden är utan el.	word	die ganze stadt ist ohne strom.:Cijeli grad je bez struje.
 mnogi	många	word	viele:mnogi
 Mnogi su otišli u Njemačku.	Många har åkt till Tyskland.	word	viele sind nach deutschland gegangen.:Mnogi su otišli u Njemačku.
@@ -4288,15 +4416,12 @@ hitan	brådskande	word	dringend:hitan
 Moram ti nešto hitno reći.	Jag måste säga dig något brådskande.	word	ich muss dir dringend etwas sagen.:Moram ti nešto hitno reći.
 čest	vanlig (ofta förekommande)	word	häufig:čest
 To je česta greška.	Det är ett vanligt fel.	word	das ist ein häufiger fehler.:To je česta greška.
-tu	just här / här borta	word	da / hier:tu
+prljav	smutsig (den smutsige)	word	schmutzig (der schmutzige):prljav
+Ne stavljaj prljav tanjir u ormar.	Ställ inte in en smutsig tallrik i skåpet.	word	stell keinen schmutzigen teller in den schrank.:Ne stavljaj prljav tanjir u ormar.
 Ostavi torbu tu, pored vrata.	Lämna väskan där, bredvid dörren.	word	lass die tasche da, neben der tür.:Ostavi torbu tu, pored vrata.
-ovdje	här	word	hier:ovdje
 Živim ovdje već deset godina.	Jag har bott här i tio år.	word	ich wohne hier schon seit zehn jahren.:Živim ovdje već deset godina.
-tamo	där borta	word	dort:tamo
 Bio sam tamo prošle godine.	Jag var där förra året.	word	ich war letztes jahr dort.:Bio sam tamo prošle godine.
-gore	uppe	word	oben:gore
 Djeca se igraju gore u sobi.	Barnen leker uppe på rummet.	word	die kinder spielen oben im zimmer.:Djeca se igraju gore u sobi.
-dolje	nere	word	unten:dolje
 Čekam te dolje, ispred zgrade.	Jag väntar på dig nere, framför byggnaden.	word	ich warte unten auf dich, vor dem gebäude.:Čekam te dolje, ispred zgrade.
 negdje	någonstans	word	irgendwo:negdje
 Negdje sam ostavio ključeve.	Jag har lämnat nycklarna någonstans.	word	ich habe die schlüssel irgendwo liegen lassen.:Negdje sam ostavio ključeve.
@@ -4306,9 +4431,7 @@ naprijed	framåt	word	vorwärts / nach vorne:naprijed
 Samo naprijed, ne boj se!	Bara på, var inte rädd!	word	nur zu, hab keine angst!:Samo naprijed, ne boj se!
 nazad	tillbaka	word	zurück:nazad
 Kad ideš nazad u Njemačku?	När åker du tillbaka till Tyskland?	word	wann gehst du zurück nach deutschland?:Kad ideš nazad u Njemačku?
-onda	sedan	word	dann:onda
 Prvo ručak, onda kahva.	Först lunch, sedan kaffe.	word	erst das mittagessen, dann der kaffee.:Prvo ručak, onda kahva.
-zatim	därefter	word	danach:zatim
 Večerali smo, a zatim smo gledali film.	Vi åt middag och därefter tittade vi på film.	word	wir haben zu abend gegessen und danach einen film geschaut.:Večerali smo, a zatim smo gledali film.
 nekad	ibland / förr	word	manchmal / früher:nekad
 Nekad smo živjeli u Tuzli.	Förr bodde vi i Tuzla.	word	früher haben wir in tuzla gelebt.:Nekad smo živjeli u Tuzli.
@@ -4316,19 +4439,15 @@ odjednom	plötsligt	word	plötzlich:odjednom
 Odjednom je nestala struja.	Plötsligt försvann strömmen.	word	plötzlich ist der strom ausgefallen.:Odjednom je nestala struja.
 davno	för länge sedan	word	vor langer zeit:davno
 To je bilo davno, ne sjećam se.	Det var länge sedan, jag minns inte.	word	das ist lange her, ich erinnere mich nicht.:To je bilo davno, ne sjećam se.
-stalno	ständigt	word	ständig:stalno
 Stalno mislim na tebe.	Jag tänker ständigt på dig.	word	ich denke ständig an dich.:Stalno mislim na tebe.
 trenutno	för tillfället / just nu	word	momentan / gerade:trenutno
 Trenutno nisam kod kuće.	Jag är inte hemma just nu.	word	ich bin gerade nicht zu hause.:Trenutno nisam kod kuće.
-prvo	först av allt	word	zuerst:prvo
 Prvo operi ruke, pa onda jedi.	Tvätta händerna först och ät sedan.	word	wasch dir zuerst die hände und iss dann.:Prvo operi ruke, pa onda jedi.
 skoro	nästan / snart	word	fast / bald:skoro
 Skoro sam zaboravio tvoj rođendan.	Jag hade nästan glömt din födelsedag.	word	ich hätte fast deinen geburtstag vergessen.:Skoro sam zaboravio tvoj rođendan.
-tako	så	word	so:tako
 Zašto tako kasno dolaziš kući?	Varför kommer du hem så sent?	word	warum kommst du so spät nach hause?:Zašto tako kasno dolaziš kući?
 ovako	så här	word	so (wie hier):ovako
 Gledaj, to se radi ovako.	Titta, så här gör man.	word	schau, das macht man so.:Gledaj, to se radi ovako.
-vrlo / veoma	mycket (före egenskaper)	word	sehr (vor eigenschaften):vrlo / veoma
 Ovo je vrlo važno za mene.	Det här är väldigt viktigt för mig.	word	das ist sehr wichtig für mich.:Ovo je vrlo važno za mene.
 toliko	så mycket	word	so viel:toliko
 Nano, ne mogu toliko pojesti!	Mormor, så mycket kan jag inte äta!	word	oma, so viel kann ich nicht essen!:Nano, ne mogu toliko pojesti!
@@ -4340,7 +4459,6 @@ nekako	på något sätt	word	irgendwie:nekako
 Nekako ćemo se snaći.	På något sätt klarar vi oss.	word	irgendwie kommen wir schon zurecht.:Nekako ćemo se snaći.
 pomalo	en liten aning	word	ein wenig:pomalo
 Već pomalo govorim bosanski.	Jag talar redan lite bosniska.	word	ich spreche schon ein wenig bosnisch.:Već pomalo govorim bosanski.
-rado	gärna	word	gern:rado
 Rado ću ti pomoći.	Jag hjälper dig gärna.	word	ich helfe dir gern.:Rado ću ti pomoći.
 otprilike	ungefär	word	ungefähr:otprilike
 Stižemo za otprilike sat vremena.	Vi kommer fram om ungefär en timme.	word	wir kommen in ungefähr einer stunde an.:Stižemo za otprilike sat vremena.
@@ -4372,9 +4490,7 @@ svakako	i alla fall	word	auf jeden fall:svakako
 Svakako ću ti se javiti.	Jag hör av mig till dig i alla fall.	word	ich melde mich auf jeden fall bei dir.:Svakako ću ti se javiti.
 valjda	väl / antagligen	word	wohl / vermutlich:valjda
 Valjda će sve biti dobro.	Det ordnar sig väl.	word	es wird wohl alles gut werden.:Valjda će sve biti dobro.
-kao	som / såsom	word	wie / als:kao
 Spavao sam kao beba.	Jag sov som en bebis.	word	ich habe wie ein baby geschlafen.:Spavao sam kao beba.
-pa	och sedan / alltså	word	und dann / also:pa
 Završi zadaću pa idi vani.	Gör klart läxan och gå sedan ut.	word	mach deine hausaufgaben fertig und geh dann raus.:Završi zadaću pa idi vani.
 što	vad / att (i bisats)	word	was / dass (im nebensatz):što
 Žao mi je što kasnim.	Jag är ledsen att jag är sen.	word	es tut mir leid, dass ich zu spät komme.:Žao mi je što kasnim.
@@ -4396,7 +4512,6 @@ pošto	eftersom / efter att	word	da / nachdem:pošto
 Pošto pada kiša, ostajemo kod kuće.	Eftersom det regnar stannar vi hemma.	word	da es regnet, bleiben wir zu hause.:Pošto pada kiša, ostajemo kod kuće.
 neka	må / ska	word	soll / möge:neka
 Neka sačeka pet minuta.	Han får vänta i fem minuter.	word	er soll fünf minuten warten.:Neka sačeka pet minuta.
-evo	här är / där är	word	hier ist / da ist:evo
 Evo ti ključevi od stana.	Här har du nycklarna till lägenheten.	word	hier hast du die wohnungsschlüssel.:Evo ti ključevi od stana.
 po	efter / per	word	nach / pro:po
 Ulaz košta pet maraka po osobi.	Inträdet kostar fem mark per person.	word	der eintritt kostet fünf mark pro person.:Ulaz košta pet maraka po osobi.
@@ -4428,7 +4543,6 @@ radi	på grund av / för ... skull	word	wegen / um … willen:radi
 Radi djece ostajemo ovdje.	För barnens skull stannar vi här.	word	der kinder wegen bleiben wir hier.:Radi djece ostajemo ovdje.
 sebe	sig	word	sich:sebe
 On misli samo na sebe.	Han tänker bara på sig själv.	word	er denkt nur an sich.:On misli samo na sebe.
-taj	den där	word	dieser (da):taj
 Ko je taj čovjek?	Vem är den där mannen?	word	wer ist dieser mann?:Ko je taj čovjek?
 svoj	egen (min, din, sin)	word	eigener (mein, dein, sein):svoj
 Uzmi svoju torbu, idemo!	Ta din väska, vi går!	word	nimm deine tasche, wir gehen!:Uzmi svoju torbu, idemo!
@@ -4787,6 +4901,10 @@ pohvala	beröm	word	lob:pohvala
 Ovaj učenik zaslužuje pohvalu.	Den här eleven förtjänar beröm.	word	dieser schüler verdient ein lob.:Ovaj učenik zaslužuje pohvalu.
 školovanje	skolgång	word	schulbildung:školovanje
 Školovanje djece košta mnogo novca.	Barnens skolgång kostar mycket pengar.	word	die schulbildung der kinder kostet viel geld.:Školovanje djece košta mnogo novca.
+pubertet	pubertet	word	pubertät:pubertet
+Naš sin je ušao u pubertet.	Vår son har kommit in i puberteten.	word	unser sohn ist in die pubertät gekommen.:Naš sin je ušao u pubertet.
+tinejdžer	tonåring	word	teenager:tinejdžer
+Kao tinejdžer sam stalno slušao muziku.	Som tonåring lyssnade jag på musik hela tiden.	word	als teenager habe ich ständig musik gehört.:Kao tinejdžer sam stalno slušao muziku.
 dom	hem / hemvist	word	heim / zuhause:dom
 Ovo je naš novi dom.	Det här är vårt nya hem.	word	das ist unser neues zuhause.:Ovo je naš novi dom.
 porijeklo	ursprung	word	herkunft:porijeklo
@@ -4825,6 +4943,24 @@ punica	svärmor (hustruns mor)	word	schwiegermutter (mutter der frau):punica
 Punica nas je pozvala na ručak.	Svärmor bjöd in oss på lunch.	word	die schwiegermutter hat uns zum mittagessen eingeladen.:Punica nas je pozvala na ručak.
 punac	svärfar (hustruns far)	word	schwiegervater (vater der frau):punac
 Punac i ja idemo zajedno na pecanje.	Min svärfar och jag går och fiskar tillsammans.	word	mein schwiegervater und ich gehen zusammen angeln.:Punac i ja idemo zajedno na pecanje.
+unuče	barnbarn (pojke eller flicka)	word	enkelkind:unuče
+Dobili smo prvo unuče.	Vi har fått vårt första barnbarn.	word	wir haben unser erstes enkelkind bekommen.:Dobili smo prvo unuče.
+udovac	änkling	word	witwer:udovac
+Dedo je udovac već deset godina.	Morfar har varit änkling i tio år.	word	opa ist schon seit zehn jahren witwer.:Dedo je udovac već deset godina.
+djever	svåger (makens bror)	word	schwager (bruder des ehemanns):djever
+Na svadbi je djever pratio mladu.	På bröllopet följde brudgummens bror bruden.	word	bei der hochzeit hat der bruder des bräutigams die braut begleitet.:Na svadbi je djever pratio mladu.
+šurjak	svåger (hustruns bror)	word	schwager (bruder der ehefrau):šurjak
+Moj šurjak radi u Njemačkoj.	Min frus bror arbetar i Tyskland.	word	der bruder meiner frau arbeitet in deutschland.:Moj šurjak radi u Njemačkoj.
+badžo	svåger (hustruns systers make)	word	schwager (mann der schwester der ehefrau):badžo
+S badžom svake subote idem na pecanje.	Varje lördag fiskar jag med min frus systers man.	word	mit dem mann der schwester meiner frau gehe ich jeden samstag angeln.:S badžom svake subote idem na pecanje.
+zaova	svägerska (makens syster)	word	schwägerin (schwester des ehemanns):zaova
+Moja žena se odlično slaže sa svojom zaovom.	Min fru kommer mycket bra överens med sin svägerska.	word	meine frau versteht sich sehr gut mit ihrer schwägerin.:Moja žena se odlično slaže sa svojom zaovom.
+jetrva	svägerska (makens brors fru)	word	schwägerin (frau des bruders des ehemanns):jetrva
+Moja žena i njena jetrva zajedno kuhaju za Bajram.	Min fru och hennes svägerska lagar mat tillsammans till Bajram.	word	meine frau und ihre schwägerin kochen zusammen für bajram.:Moja žena i njena jetrva zajedno kuhaju za Bajram.
+balduza	svägerska (hustruns syster)	word	schwägerin (schwester der ehefrau):balduza
+Balduza nam dolazi u goste za vikend.	Min frus syster kommer på besök i helgen.	word	die schwester meiner frau kommt am wochenende zu besuch.:Balduza nam dolazi u goste za vikend.
+šurnjaja	svägerska (hustruns brors fru)	word	schwägerin (frau des bruders der ehefrau):šurnjaja
+Šurnjaja nam je ispekla pitu.	Min frus brors fru bakade en pita åt oss.	word	die frau vom bruder meiner frau hat uns eine pita gebacken.:Šurnjaja nam je ispekla pitu.
 ljepota	skönhet	word	schönheit:ljepota
 Prava ljepota dolazi iznutra.	Äkta skönhet kommer inifrån.	word	wahre schönheit kommt von innen.:Prava ljepota dolazi iznutra.
 strast	passion	word	leidenschaft:strast
@@ -4855,6 +4991,18 @@ zabavljati se	ha kul / vara ett par	word	sich amüsieren / ein paar sein:zabavlj
 Zabavljali su se tri godine prije vjenčanja.	Före vigseln hade de varit ett par i tre år.	word	vor der trauung waren sie drei jahre ein paar.:Zabavljali su se tri godine prije vjenčanja.
 vjeridba	förlovning	word	verlobung:vjeridba
 Vjeridba je bila prošle subote.	Förlovningen var i lördags.	word	die verlobung war letzten samstag.:Vjeridba je bila prošle subote.
+prsten	ring	word	ring:prsten
+Izgubila je prsten na plaži.	Hon tappade sin ring på stranden.	word	sie hat ihren ring am strand verloren.:Izgubila je prsten na plaži.
+burma	vigselring	word	ehering:burma
+Nosi burmu na desnoj ruci.	Han bär vigselringen på höger hand.	word	er trägt den ehering an der rechten hand.:Nosi burmu na desnoj ruci.
+razvesti se	skilja sig	word	sich scheiden lassen:razvesti se
+Razveli su se prošle godine.	De skilde sig förra året.	word	sie haben sich letztes jahr scheiden lassen.:Razveli su se prošle godine.
+razveden	skild	word	geschieden:razveden
+Moj komšija je razveden i živi sam.	Min granne är frånskild och bor ensam.	word	mein nachbar ist geschieden und lebt allein.:Moj komšija je razveden i živi sam.
+zaprositi	fria	word	einen heiratsantrag machen:zaprositi
+Zaprosio sam je na Starom mostu.	Jag friade till henne på Gamla bron.	word	ich habe ihr auf der alten brücke einen heiratsantrag gemacht.:Zaprosio sam je na Starom mostu.
+prosidba	frieri	word	heiratsantrag:prosidba
+Prosidba je bila iznenađenje za cijelu porodicu.	Frieriet var en överraskning för hela familjen.	word	der heiratsantrag war eine überraschung für die ganze familie.:Prosidba je bila iznenađenje za cijelu porodicu.
 ljutnja	irritation	word	ärger:ljutnja
 Ljutnja mu je brzo prošla.	Hans irritation gick snabbt över.	word	sein ärger war schnell verflogen.:Ljutnja mu je brzo prošla.
 bijes	vrede	word	zorn:bijes
@@ -4935,6 +5083,10 @@ oduševljavati	hänföra	word	begeistern:oduševljavati
 Ova pjevačica uvijek oduševljava publiku.	Den här sångerskan hänför alltid publiken.	word	diese sängerin begeistert das publikum immer.:Ova pjevačica uvijek oduševljava publiku.
 obradovati	glädja	word	erfreuen:obradovati
 Tvoja poruka me je jako obradovala.	Ditt meddelande gladde mig mycket.	word	deine nachricht hat mich sehr gefreut.:Tvoja poruka me je jako obradovala.
+zavist	avund	word	neid:zavist
+Zavist je ružna osobina.	Avund är en ful egenskap.	word	neid ist eine hässliche eigenschaft.:Zavist je ružna osobina.
+zavidan	avundsjuk	word	neidisch:zavidan
+Nije zavidan, raduje se tuđem uspjehu.	Han är inte avundsjuk, han gläds åt andras framgång.	word	er ist nicht neidisch, er freut sich über den erfolg anderer.:Nije zavidan, raduje se tuđem uspjehu.
 ponašanje	beteende	word	verhalten:ponašanje
 Njegovo ponašanje me je iznenadilo.	Hans beteende överraskade mig.	word	sein verhalten hat mich überrascht.:Njegovo ponašanje me je iznenadilo.
 osobina	egenskap (hos en människa)	word	eigenschaft (eines menschen):osobina
@@ -4971,6 +5123,8 @@ zaslužiti	förtjäna (moraliskt)	word	verdienen (moralisch):zaslužiti
 Stvarno si zaslužila ovaj odmor.	Du har verkligen förtjänat den här semestern.	word	du hast dir diesen urlaub wirklich verdient.:Stvarno si zaslužila ovaj odmor.
 zasluživati	förtjäna (moraliskt)	word	verdienen (moralisch):zasluživati
 Ona zaslužuje bolji život.	Hon förtjänar ett bättre liv.	word	sie verdient ein besseres leben.:Ona zaslužuje bolji život.
+darežljiv	generös	word	großzügig:darežljiv
+Babo je uvijek bio darežljiv prema komšijama.	Pappa var alltid generös mot grannarna.	word	papa war immer großzügig zu den nachbarn.:Babo je uvijek bio darežljiv prema komšijama.
 preminuti	avlida	word	versterben:preminuti
 Preminuo je prošle sedmice u bolnici.	Han avled förra veckan på sjukhuset.	word	er ist letzte woche im krankenhaus verstorben.:Preminuo je prošle sedmice u bolnici.
 patnja	lidande	word	leid:patnja
@@ -5003,6 +5157,8 @@ saučešće	kondoleanser	word	beileid:saučešće
 Primite moje iskreno saučešće.	Ta emot mina uppriktiga kondoleanser.	word	nehmen sie mein aufrichtiges beileid entgegen.:Primite moje iskreno saučešće.
 suosjećanje	medkänsla	word	mitgefühl:suosjećanje
 Hvala Vam na suosjećanju i podršci.	Tack för er medkänsla och ert stöd.	word	danke für ihr mitgefühl und ihre unterstützung.:Hvala Vam na suosjećanju i podršci.
+oporuka	testamente	word	testament:oporuka
+Dedo je prije smrti napisao oporuku.	Morfar skrev ett testamente innan han dog.	word	opa hat vor seinem tod ein testament geschrieben.:Dedo je prije smrti napisao oporuku.
 susret	möte	word	begegnung:susret
 Naš prvi susret bio je u Sarajevu.	Vårt första möte var i Sarajevo.	word	unsere erste begegnung war in sarajevo.:Naš prvi susret bio je u Sarajevu.
 naselje	bostadsområde	word	siedlung:naselje
@@ -5384,6 +5540,8 @@ saopćenje / saopštenje	officiellt meddelande	word	offizielle mitteilung:saopć
 Policija je izdala saopćenje o nesreći.	Polisen har gett ut ett meddelande om olyckan.	word	die polizei hat eine mitteilung zum unfall herausgegeben.:Policija je izdala saopćenje o nesreći.
 novost	nyhet	word	neuigkeit:novost
 Ima li kakvih novosti?	Finns det något nytt?	word	gibt es etwas neues?:Ima li kakvih novosti?
+voditelj	programledare	word	moderator (fernsehen):voditelj
+Voditelj je pozdravio goste u studiju.	Programledaren hälsade gästerna i studion välkomna.	word	der moderator begrüßte die gäste im studio.:Voditelj je pozdravio goste u studiju.
 saopćiti / saopštiti	meddela officiellt	word	offiziell mitteilen:saopćiti / saopštiti
 Direktor će sutra saopćiti odluku.	Direktören tillkännager beslutet i morgon.	word	der direktor gibt morgen die entscheidung bekannt.:Direktor će sutra saopćiti odluku.
 saopćavati / saopštavati	meddela officiellt	word	offiziell mitteilen:saopćavati / saopštavati
@@ -5438,6 +5596,8 @@ privući	locka (intresse)	word	anziehen (interesse):privući
 Ta reklama mi je privukla pažnju.	Den här reklamen väckte min uppmärksamhet.	word	diese werbung hat meine aufmerksamkeit auf sich gezogen.:Ta reklama mi je privukla pažnju.
 privlačiti	locka (intresse)	word	anziehen (interesse):privlačiti
 Stari grad privlači mnogo turista.	Gamla stan lockar många turister.	word	die altstadt zieht viele touristen an.:Stari grad privlači mnogo turista.
+plakat	affisch	word	plakat:plakat
+Na zidu je visio plakat za koncert.	På väggen hängde en affisch för konserten.	word	an der wand hing ein plakat für das konzert.:Na zidu je visio plakat za koncert.
 festival	festival	word	festival:festival
 Ljeti idemo na filmski festival u Sarajevo.	På sommaren åker vi till filmfestivalen i Sarajevo.	word	im sommer fahren wir zum filmfestival nach sarajevo.:Ljeti idemo na filmski festival u Sarajevo.
 scena	scen / scenbild	word	bühne / szene:scena
@@ -5598,6 +5758,10 @@ zagrijavanje	uppvärmning	word	erwärmung:zagrijavanje
 Globalno zagrijavanje je ozbiljan problem.	Den globala uppvärmningen är ett allvarligt problem.	word	die globale erwärmung ist ein ernstes problem.:Globalno zagrijavanje je ozbiljan problem.
 biće	levande varelse / väsen	word	lebewesen / wesen:biće
 Čovjek je društveno biće.	Människan är en social varelse.	word	der mensch ist ein soziales wesen.:Čovjek je društveno biće.
+plastika	plast	word	plastik:plastika
+Plastika zagađuje rijeke i more.	Plast förorenar floder och havet.	word	plastik verschmutzt flüsse und das meer.:Plastika zagađuje rijeke i more.
+reciklaža	återvinning	word	recycling:reciklaža
+Reciklaža štedi energiju i sirovine.	Återvinning sparar energi och råvaror.	word	recycling spart energie und rohstoffe.:Reciklaža štedi energiju i sirovine.
 pandemija	pandemi	word	pandemie:pandemija
 Tokom pandemije sam radio od kuće.	Under pandemin arbetade jag hemifrån.	word	während der pandemie habe ich von zu hause gearbeitet.:Tokom pandemije sam radio od kuće.
 poplava	översvämning	word	überschwemmung:poplava
@@ -5988,6 +6152,10 @@ raskid	hävning (avtal)	word	auflösung (vertrag):raskid
 Raskid ugovora košta sto maraka.	Hävningen av avtalet kostar hundra mark.	word	die vertragsauflösung kostet hundert mark.:Raskid ugovora košta sto maraka.
 posjedovati	äga	word	besitzen:posjedovati
 On posjeduje tri kuće.	Han äger tre hus.	word	er besitzt drei häuser.:On posjeduje tri kuće.
+nasljedstvo	arv	word	erbschaft:nasljedstvo
+Kuću su dobili u nasljedstvo.	Huset har de ärvt.	word	das haus haben sie geerbt.:Kuću su dobili u nasljedstvo.
+naslijediti	ärva	word	erben:naslijediti
+Naslijedio je stan od tetke.	Han ärvde lägenheten efter sin moster.	word	er hat die wohnung von seiner tante geerbt.:Naslijedio je stan od tetke.
 prijava	anmälan / jobbansökan	word	anmeldung / bewerbung:prijava
 Rok za prijavu je do petka.	Anmälningstiden löper till fredag.	word	die anmeldefrist läuft bis freitag.:Rok za prijavu je do petka.
 boravak	vistelse	word	aufenthalt:boravak
@@ -6136,6 +6304,8 @@ Uzmi lopatu i očisti snijeg.	Ta skyffeln och skotta bort snön.	word	nimm die s
 Djeca se ne smiju igrati šibicama.	Barn får inte leka med tändstickor.	word	kinder dürfen nicht mit streichhölzern spielen.:Djeca se ne smiju igrati šibicama.
 češalj	kam	word	kamm:češalj
 Uvijek nosim češalj u džepu.	Jag har alltid en kam i fickan.	word	ich habe immer einen kamm in der tasche.:Uvijek nosim češalj u džepu.
+makaze	sax	word	schere:makaze
+Daj mi makaze da otvorim paket.	Ge mig saxen så att jag kan öppna paketet.	word	gib mir die schere, damit ich das paket aufmache.:Daj mi makaze da otvorim paket.
 prostorija	rum (lokal)	word	raum:prostorija
 Ova prostorija nema prozora.	Det här rummet har inga fönster.	word	dieser raum hat keine fenster.:Ova prostorija nema prozora.
 prag	tröskel	word	türschwelle:prag
@@ -6726,6 +6896,10 @@ seminar	seminarium	word	seminar:seminar
 Sutra idem na seminar o marketingu.	I morgon går jag på ett seminarium om marknadsföring.	word	morgen gehe ich zu einem seminar über marketing.:Sutra idem na seminar o marketingu.
 citirati	citera	word	zitieren:citirati
 Citirao je poznatog pisca.	Han citerade en känd författare.	word	er hat einen bekannten schriftsteller zitiert.:Citirao je poznatog pisca.
+menza	studentrestaurang	word	mensa:menza
+Ručamo u studentskoj menzi.	Vi äter lunch i studentrestaurangen.	word	wir essen in der mensa zu mittag.:Ručamo u studentskoj menzi.
+studentski dom	studentbostad	word	studentenwohnheim:studentski dom
+Prve godine sam živio u studentskom domu.	Första året bodde jag i en studentbostad.	word	im ersten jahr habe ich im studentenwohnheim gewohnt.:Prve godine sam živio u studentskom domu.
 stipendija	stipendium	word	stipendium:stipendija
 Dobila je stipendiju za studij.	Hon fick ett stipendium för studierna.	word	sie hat ein stipendium für das studium bekommen.:Dobila je stipendiju za studij.
 predavač	föreläsare	word	dozent:predavač
@@ -7078,6 +7252,8 @@ Koristim javni prijevoz svaki dan.	Jag åker kollektivt varje dag.	word	ich nutz
 Željeznička stanica je blizu centra.	Järnvägsstationen ligger nära centrum.	word	der bahnhof ist nahe am zentrum.:Željeznička stanica je blizu centra.
 prijelaz / prelaz	övergång / korsning	word	übergang / kreuzung:prijelaz / prelaz
 Prijelaz preko rijeke je zatvoren.	Övergången över floden är avstängd.	word	der übergang über den fluss ist gesperrt.:Prijelaz preko rijeke je zatvoren.
+kaciga	hjälm	word	helm:kaciga
+Bez kacige ne sjedaj na motor.	Sätt dig inte på motorcykeln utan hjälm.	word	ohne helm setz dich nicht aufs motorrad.:Bez kacige ne sjedaj na motor.
 automobil	automobil	word	automobil:automobil
 Kupili smo polovan automobil.	Vi har köpt en begagnad bil.	word	wir haben ein gebrauchtes auto gekauft.:Kupili smo polovan automobil.
 servis	verkstad / service	word	werkstatt / kundendienst:servis
@@ -7280,6 +7456,14 @@ mužjak	hane	word	männchen:mužjak
 Mužjak je veći od ženke.	Hanen är större än honan.	word	das männchen ist größer als das weibchen.:Mužjak je veći od ženke.
 deva	kamel	word	kamel:deva
 Deva može dugo bez vode.	En kamel klarar sig länge utan vatten.	word	ein kamel kommt lange ohne wasser aus.:Deva može dugo bez vode.
+ajkula	haj	word	hai:ajkula
+U Jadranskom moru rijetko ima ajkula.	I Adriatiska havet finns det sällan hajar.	word	im adriatischen meer gibt es selten haie.:U Jadranskom moru rijetko ima ajkula.
+krokodil	krokodil	word	krokodil:krokodil
+Krokodil je ležao na obali rijeke.	Krokodilen låg på flodstranden.	word	das krokodil lag am flussufer.:Krokodil je ležao na obali rijeke.
+žirafa	giraff	word	giraffe:žirafa
+Žirafa ima jako dug vrat.	Giraffen har en väldigt lång hals.	word	die giraffe hat einen sehr langen hals.:Žirafa ima jako dug vrat.
+papagaj	papegoja	word	papagei:papagaj
+Komšijin papagaj zna nekoliko riječi.	Grannens papegoja kan några ord.	word	der papagei des nachbarn kann ein paar wörter.:Komšijin papagaj zna nekoliko riječi.
 plod	frukt (på trädet)	word	frucht:plod
 Ovo drvo daje slatke plodove.	Det här trädet bär söta frukter.	word	dieser baum trägt süße früchte.:Ovo drvo daje slatke plodove.
 stablo	trädstam / träd	word	baumstamm / baum:stablo
@@ -7306,6 +7490,8 @@ uzgajati	odla / föda upp	word	anbauen / züchten:uzgajati
 Komšija uzgaja jagode u plasteniku.	Grannen odlar jordgubbar i växthuset.	word	der nachbar baut erdbeeren im gewächshaus an.:Komšija uzgaja jagode u plasteniku.
 uzgojiti	odla / föda upp	word	anbauen / züchten:uzgojiti
 Sami smo uzgojili ovaj paradajz.	De här tomaterna har vi odlat själva.	word	diese tomaten haben wir selbst gezogen.:Sami smo uzgojili ovaj paradajz.
+suncokret	solros	word	sonnenblume:suncokret
+Polje je bilo puno suncokreta.	Fältet var fullt av solrosor.	word	das feld war voller sonnenblumen.:Polje je bilo puno suncokreta.
 breza	björk	word	birke:breza
 Pored kuće raste stara breza.	Bredvid huset växer en gammal björk.	word	neben dem haus wächst eine alte birke.:Pored kuće raste stara breza.
 žito	spannmål	word	getreide:žito
@@ -7332,6 +7518,14 @@ gnojivo / đubrivo	gödsel	word	dünger:gnojivo / đubrivo
 Bašti treba prirodno gnojivo.	Trädgården behöver naturlig gödsel.	word	der garten braucht natürlichen dünger.:Bašti treba prirodno gnojivo.
 žetva	spannmålsskörd	word	getreideernte:žetva
 U julu počinje žetva pšenice.	I juli börjar veteskörden.	word	im juli beginnt die weizenernte.:U julu počinje žetva pšenice.
+bukva	bok (träd)	word	buche:bukva
+Bukva je najčešće drvo u bosanskim šumama.	Boken är det vanligaste trädet i de bosniska skogarna.	word	die buche ist der häufigste baum in den bosnischen wäldern.:Bukva je najčešće drvo u bosanskim šumama.
+smreka	gran	word	fichte:smreka
+Na planini rastu visoke smreke.	På berget växer höga granar.	word	auf dem berg wachsen hohe fichten.:Na planini rastu visoke smreke.
+lala	tulpan	word	tulpe:lala
+U proljeće u bašti cvjetaju lale.	På våren blommar tulpaner i trädgården.	word	im frühling blühen im garten tulpen.:U proljeće u bašti cvjetaju lale.
+jela	ädelgran	word	tanne:jela
+Jela ostaje zelena i u zimi.	Ädelgranen är grön även på vintern.	word	die tanne bleibt auch im winter grün.:Jela ostaje zelena i u zimi.
 uhvatiti	fånga / ta tag i	word	fangen / ergreifen:uhvatiti
 Uhvatio je loptu jednom rukom.	Han fångade bollen med en hand.	word	er hat den ball mit einer hand gefangen.:Uhvatio je loptu jednom rukom.
 hvatati	fånga / ta tag i	word	fangen / ergreifen:hvatati
@@ -8289,7 +8483,7 @@ Moja vjera je važna.	Min tro är viktig.	sentence	s0290
 Da te upoznam: moj brat.	Får jag presentera: min bror.	sentence	s0291
 Hoću da te posjetim.	Jag vill besöka dig.	sentence	s0292
 Molim te, oprosti mi.	Snälla, förlåt mig.	sentence	s0293
-Ovo je moja koleginica.	Det här är min kollega.	sentence	s0294
+Ovo je moja kolegica.	Det här är min kollega.	sentence	s0294
 Moj babo je dobar domaćin.	Min pappa är en bra värd.	sentence	s0295
 Nana svira harmoniku.	Mormor spelar dragspel.	sentence	s0296
 Plešemo kolo.	Vi dansar kolo.	sentence	s0297

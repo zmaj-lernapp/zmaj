@@ -401,11 +401,30 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: 31 Sektionen, 295 Levels
+## Der Lernpfad: fünf Reiter, 27 Sektionen, 298 Levels
 
-Der Lernpfad zeigt einunddreißig Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
-Ein Level antippen öffnet die Übungen. Bestandene Levels und Sektionen bleiben
-offen und können jederzeit wieder gespielt werden.
+Seit dem 13.11.2026 steht der Lernpfad in Reitern je Stufe: **A1 · A2 · B1 ·
+B2 · C1** (C1 noch leer, „bald“). Jeder Reiter zeigt seine Sektionen mit ihren
+Levels, ähnlich wie bei Duolingo. Sektionsnummern, Levelnummern und Farben
+fangen in jedem Reiter neu an. Ein Level antippen öffnet die Übungen.
+Bestandene Levels und Sektionen bleiben offen und können jederzeit wieder
+gespielt werden.
+
+Freigeschaltet wird weiter in einer Kette über alle Reiter: Ein Reiter geht
+auf, wenn der vorige fertig ist. Vorher geht es mit dem **Sprung-Test** auf der
+Karte des Reiters: 15 Fragen aus dem vorigen Reiter, ab 12 richtigen ist er
+offen. Jede falsche Antwort kostet ein Leben wie im Level-Test; übersprungene
+Levels sind offen, aber nicht bestanden. Angefangene Levels bleiben immer offen.
+Ohne Leben zeigt die Karte dieselben Wege zu einem Leben wie der Level-Test
+(Video oder Münzen); geht mitten im Test das letzte Leben weg, kommt derselbe
+Schirm wie dort.
+Die zwei Grundwort-Level („Kleine Wörter“, „Wörter für jeden Tag“) sind für
+alle „dran“, die schon weiter sind, auch wenn sie vor 1.4 hinter ihnen
+eingestuft wurden. Wer mit den Reitern eingestuft wird, steigt dort ein, wo
+der Ergebnisschirm es sagt.
+Der Pfad öffnet sich in dem Reiter, in dem „Weitermachen“ steht.
+
+### A1 (30 Levels)
 
 **Sektion 1 · Grundlagen & Alltag** (15 Levels): Grundlagen, Zahlen, Farben,
 Familie, Essen & Trinken, Wochentage, Monate, Zeit, Zuhause, Wetter & Natur,
@@ -418,31 +437,42 @@ Vorrat & Getränke.
 **Sektion 3 · Tiere & Natur** (4 Levels): Tiere, Tiere draußen, Rund ums Tier,
 Natur & Pflanzen.
 
-**Sektion 4 · Zuhause** (5 Levels): Küche & Bad, Putzen & Nachbarschaft,
-Technik & Reparatur, Auto & Werkstatt, Handy, Computer & Geräte.
+**Sektion 4 · Sätze bauen 1** (7 Levels): Fragen stellen, Geschlecht: on, ona,
+ono, Verben beugen, Mehrzahl, Nebensätze & Verneinung, Kleine Wörter, Fälle 1:
+Nominativ & Akkusativ. „Kleine Wörter“ ist seit dem 13.11.2026 neu: 20
+Grundwörter wie ovdje, tamo, onda, tako und kao, die vorher erst in B1 als Karte
+kamen. Die Einträge sind nur umgezogen, Kennung, Ton und Lernstand bleiben.
 
-**Sektion 5 · Sätze bauen** (22 Levels): Fragen stellen, Geschlecht: on, ona,
-ono, Verben beugen, Mehrzahl, Nebensätze & Verneinung, Fälle 1: Nominativ &
-Akkusativ, Fälle 2: Genitiv, Präpositionen, Fälle 3: Dativ & Lokativ, Fälle 4:
-Instrumental & Vokativ, Vergangenheit, Zukunft & Pläne, Können, müssen,
-wollen, Reflexive Verben (se), Tagesablauf, Vergleichen & Beschreiben, Zahlen
-im Satz, Gefühle & Meinungen, Reisen & Verkehr, Feste & Traditionen, Arbeit &
-Schule, Ganze Sätze.
+### A2 (31 Levels)
 
-**Sektion 6 · Einkaufen & Essen gehen** (4 Levels): Einkaufen & Orte, Im
+**Sektion 1 · Zuhause** (5 Levels): Küche & Bad, Putzen & Nachbarschaft,
+Technik & Reparatur, Auto & Werkstatt, Handy, Computer & Geräte. Bis zum
+12.11.2026 stand Zuhause vor „Sätze bauen“.
+
+**Sektion 2 · Sätze bauen 2** (17 Levels): Fälle 2: Genitiv, Präpositionen,
+Fälle 3: Dativ & Lokativ, Fälle 4: Instrumental & Vokativ, Vergangenheit,
+Zukunft & Pläne, Können, müssen, wollen, Reflexive Verben (se), Tagesablauf,
+Wörter für jeden Tag, Vergleichen & Beschreiben, Zahlen im Satz, Gefühle &
+Meinungen, Reisen & Verkehr, Feste & Traditionen, Arbeit & Schule, Ganze Sätze.
+„Wörter für jeden Tag“ ist seit dem 13.11.2026 neu: 20 Grundwörter wie ime,
+adresa, telefon, roditelji und hrana, ebenfalls aus B1 umgezogen.
+
+**Sektion 3 · Einkaufen & Essen gehen** (4 Levels): Einkaufen & Orte, Im
 Restaurant: ankommen, Im Restaurant: essen & zahlen, Essen gehen & Mengen.
 
-**Sektion 7 · Bosnien & Herkunft** (3 Levels): Bosnische Küche, Länder &
+**Sektion 4 · Bosnien & Herkunft** (3 Levels): Bosnische Küche, Länder &
 Herkunft, Nationalitäten & Sprachen.
 
-**Sektion 8 · Menschen & Kultur** (2 Levels): Vorstellen & Kennenlernen,
+**Sektion 5 · Menschen & Kultur** (2 Levels): Vorstellen & Kennenlernen,
 Musik, Glaube & Gastfreundschaft.
 
-**Sektion 9 · Amt & Verträge** (6 Levels): Höflich & Formell, Amt & Behörde,
+### B1 (107 Levels)
+
+**Sektion 1 · Amt & Verträge** (6 Levels): Höflich & Formell, Amt & Behörde,
 Bank & Geld, Wohnung & Hauskauf, Arbeitsvertrag & Bewerbung, Arzt &
 Versicherung.
 
-**Sektion 10 · Tun und Lassen** (39 Levels, seit 31.10.2026, Wortschatz-Pakete
+**Sektion 2 · Tun und Lassen** (39 Levels, seit 31.10.2026, Wortschatz-Pakete
 1 bis 3, 7 und 8): Kommen und gehen, Geben, nehmen, kaufen, Sagen und denken, Verstehen
 und erinnern, Anfangen und aufhören, Tun und machen, Stellen, legen, sitzen,
 Alltag und Leben, Paare: geben und nehmen, Paare: sagen und denken, Paare:
@@ -457,128 +487,122 @@ einer Auswahl, und wer beim Tippen das andere Verb des Paares schreibt,
 bekommt einmal „Fast richtig!“ mit einem Hinweis statt eines Fehlers. Eine
 zehnte Farbe gibt es noch nicht, die Sektion trägt wieder die erste.
 
-**Sektion 11 · Wie etwas ist** (7 Levels, seit 31.10.2026, Wortschatz-Paket
+**Sektion 3 · Wie etwas ist** (7 Levels, seit 31.10.2026, Wortschatz-Paket
 2): Lang und kurz, Voll und leer, Möglich und unmöglich, Wie jemand ist, Wie
 man sich benimmt, Glück und Sorgen, Die fünf Sinne. Vor allem Adjektive,
 jedes mit seinem Beispielsatz. Gezeigt wird die männliche Form (*dug*), die
 weibliche und die sächliche (*duga*, *dugo*) zählen beim Tippen genauso.
-Die Sektion trägt die zweite Farbe.
+Die Sektion trägt die dritte Farbe.
 
-**Sektion 12 · Körper und Gesundheit** (8 Levels, seit 01.11.2026,
-Wortschatz-Paket 3): Von Kopf bis Fuß, Haut, Knochen und Organe, Krank sein,
-Beschwerden, In der Arztpraxis, Untersuchen und heilen, In der Apotheke,
-Gesund leben. Dritte Farbe.
+**Sektion 4 · Arzt & Gesundheit** (8 Levels, seit 01.11.2026,
+Wortschatz-Paket 3; bis 14.11.2026 „Körper und Gesundheit“): Von Kopf bis
+Fuß, Haut, Knochen und Organe, Krank sein, Beschwerden, In der Arztpraxis,
+Untersuchen und heilen, In der Apotheke, Gesund leben. Vierte Farbe.
 
-**Sektion 13 · Zeit und Freizeit** (6 Levels, seit 01.11.2026,
+**Sektion 5 · Zeit und Freizeit** (6 Levels, seit 01.11.2026,
 Wortschatz-Paket 4): Zeitangaben, Sofort, gerade, endlich, Sport und Spiel,
 Hobbys und Ausgehen, Zeitung, Fernsehen, Internet, Reisen und Urlaub. Vierte
 Farbe.
 
-**Sektion 14 · Lernen und Arbeiten** (4 Levels, seit 01.11.2026,
+**Sektion 6 · Lernen und Arbeiten** (4 Levels, seit 01.11.2026,
 Wortschatz-Paket 4): In der Schule, Lernen und studieren, Berufe, Am
-Arbeitsplatz. Fünfte Farbe.
+Arbeitsplatz. Sechste Farbe.
 
-**Sektion 15 · Grundbegriffe** (12 Levels, seit 06.11.2026, Wortschatz-Paket
+**Sektion 7 · Grundbegriffe** (12 Levels, seit 06.11.2026, Wortschatz-Paket
 5): Ort und Raum, Richtung und Maß, Menge und Teil, Art, Wert und Unterschied,
 Anfang und Ende, Das Leben, Grund und Folge, Nutzen und Schaden, Denken und
 entscheiden, Wahrheit und Zweifel, Dinge regeln, Hilfe und Hindernisse. Sechste
 Farbe.
 
-**Sektion 16 · Menschen und Gesellschaft** (13 Levels, seit 06.11.2026,
+**Sektion 8 · Menschen und Gesellschaft** (13 Levels, seit 06.11.2026,
 Wortschatz-Paket 6): Menschen, Wer ist wer, Beziehungen, Stimmung und Streit,
 Staat und Politik, Gemeinde und Gesellschaft, Krieg und Recht, Wirtschaft,
 Technik und Energie, Kultur und Bildung, Glaube und Gedenken, Alltag und
-Information, Gruppe, Netz und Gebäude. Siebte Farbe.
+Information, Gruppe, Netz und Gebäude. Achte Farbe.
 
-**Sektion 17 · Wie, wo und wann** (12 Levels, seit 06.11.2026, Wortschatz-Paket
+**Sektion 9 · Wie, wo und wann** (12 Levels, seit 06.11.2026, Wortschatz-Paket
 9): Wichtig und bekannt, Ganz und viele, Früher und später, Innen und außen,
 Sauber, warm, gefährlich, Hier und dort, Wann und wie oft, Wie sehr, Wie man es
-meint, Sätze verbinden, Noch mehr Präpositionen, Fürwörter. Achte Farbe.
+meint, Sätze verbinden, Noch mehr Präpositionen, Fürwörter. Neunte Farbe.
 
 Ab Sektion 18 kommt Stufe B2 aus dem Ausbauplan, in eigenen Sektionen hinter
 B1, damit nichts davon in die ersten Sektionen rutscht (Wortschatz-Pakete 10
-bis 20, von Ajdin am 07.11.2026 durchgesehen). Die Farben gehen reihum weiter.
+bis 20, von Ajdin am 07.11.2026 durchgesehen). Die Farben fangen im Reiter B2
+wieder bei der ersten an.
 
-**Sektion 18 · Denken und Meinen** (12 Levels, seit 07.11.2026,
-Wortschatz-Paket 10): Grundlage und Rahmen, Arten und Einzelheiten, Forschen
-und verstehen, Überlegen und einschätzen, Vorhersehen und erkennen, Meinung und
-Kritik, Sagen und hervorheben, Daher, damit und bevor, Einerseits und
-andererseits, Trotz und dank, Vor allem und angeblich, Wie man etwas beurteilt.
-Neunte Farbe.
+### B2 (129 Levels, 9 Sektionen)
 
-**Sektion 19 · Menschen und Beziehungen** (10 Levels, seit 07.11.2026,
-Wortschatz-Paket 11): Erziehung und Aufwachsen, Familie und Generationen, Liebe
-und Ehe, Streit und Versöhnung, Reue und Enttäuschung, Gefühle genauer,
-Charakter, Trauer und Beileid, Begegnen und versammeln, Nachbarn und
-Miteinander. Erste Farbe.
+Seit dem 13.11.2026 (Frage 6a, „ja“) hat B2 neun Sektionen statt vierzehn,
+eine je Farbe, damit im Reiter keine Farbe doppelt vorkommt. Zusammengelegt
+wurden die alten Sektionen 18+19, 21+22, 23+24, 28+29 und 30+31; die
+Reihenfolge der Levels blieb, und der Lernstand hängt nicht an der Sektion.
 
-**Sektion 20 · Arbeit und Wirtschaft** (12 Levels, seit 07.11.2026,
+**Sektion 1 · Denken, Fühlen und Beziehungen** (22 Levels, seit 07.11.2026,
+Wortschatz-Pakete 10 und 11): Grundlage und Rahmen, Arten und Einzelheiten,
+Forschen und verstehen, Überlegen und einschätzen, Vorhersehen und erkennen,
+Meinung und Kritik, Sagen und hervorheben, Daher, damit und bevor, Einerseits
+und andererseits, Trotz und dank, Vor allem und angeblich, Wie man etwas
+beurteilt, Erziehung und Aufwachsen, Familie und Generationen, Liebe und Ehe,
+Streit und Versöhnung, Reue und Enttäuschung, Gefühle genauer, Charakter,
+Trauer und Beileid, Begegnen und versammeln, Nachbarn und Miteinander. Erste
+Farbe.
+
+**Sektion 2 · Arbeit und Wirtschaft** (12 Levels, seit 07.11.2026,
 Wortschatz-Paket 12): Firma und Leitung, Abteilung und Mitarbeiter, Produktion
 und Handel, Liefern und beschaffen, Geld und Preise, Wachstum und Rückgang,
 Schulden und Verluste, Anlegen und Vermögen, Investieren und beitragen, Beruf
 und Karriere, Aufstieg und Weiterbildung, Rechte bei der Arbeit. Zweite Farbe.
 
-**Sektion 21 · Medien und Kultur** (8 Levels, seit 07.11.2026, Wortschatz-Paket
-13): Zeitung und Fernsehen, Berichten und verbreiten, Werbung, Theater und
-Musik, Regie und Premiere, Bücher und Kunst, Literatur und Malerei, Geschichte.
-Dritte Farbe.
+**Sektion 3 · Medien, Kultur und Technik** (11 Levels, seit 07.11.2026,
+Wortschatz-Paket 13): Zeitung und Fernsehen, Berichten und verbreiten, Werbung,
+Theater und Musik, Regie und Premiere, Bücher und Kunst, Literatur und Malerei,
+Geschichte, Klima und Energie, Naturkatastrophen, Computer und Dateien. Dritte
+Farbe.
 
-**Sektion 22 · Umwelt und Technik** (3 Levels, seit 07.11.2026,
-Wortschatz-Paket 13): Klima und Energie, Naturkatastrophen, Computer und
-Dateien. Vierte Farbe.
+**Sektion 4 · Staat, Recht und Behörden** (14 Levels, seit 07.11.2026,
+Wortschatz-Pakete 14 und 15): Staat und Institutionen, Wahlen und Parlament,
+Krieg und Frieden, Bürger und Rechte, Religion und Gemeinschaft, Gericht,
+Polizei und Anzeige, Ämter und Zuständigkeit, Bescheid und Einspruch, Verträge,
+Auf dem Amt, Post und Abmeldung, Bank und Darlehen, Versicherung und Zinsen.
+Vierte Farbe.
 
-**Sektion 23 · Gesellschaft und Politik** (5 Levels, seit 07.11.2026,
-Wortschatz-Paket 14): Staat und Institutionen, Wahlen und Parlament, Krieg und
-Frieden, Bürger und Rechte, Religion und Gemeinschaft. Fünfte Farbe.
-
-**Sektion 24 · Recht und Behörden** (9 Levels, seit 07.11.2026,
-Wortschatz-Pakete 14 und 15): Gericht, Polizei und Anzeige, Ämter und
-Zuständigkeit, Bescheid und Einspruch, Verträge, Auf dem Amt, Post und
-Abmeldung, Bank und Darlehen, Versicherung und Zinsen. Sechste Farbe.
-
-**Sektion 25 · Haus und Wohnung** (8 Levels, seit 07.11.2026, Wortschatz-Paket
+**Sektion 5 · Haus und Wohnung** (8 Levels, seit 07.11.2026, Wortschatz-Paket
 15): Dinge im Haushalt, Bürste und Kamm, Räume und Möbel, Sauber und kaputt,
 Rohre, Strom und Schäden, Bauen und einbauen, Färben, kleben, nähen, Wohnen und
-Miete. Siebte Farbe.
+Miete. Fünfte Farbe.
 
-**Sektion 26 · Gesundheit und Sport** (14 Levels, seit 07.11.2026,
+**Sektion 6 · Gesundheit und Sport** (14 Levels, seit 07.11.2026,
 Wortschatz-Paket 16): Der Körper genauer, Von der Augenbraue bis zum Knöchel,
 Krankheiten, Asthma, Migräne, Bruch, Ärzte und Krankenhaus, Chirurgie und
 Pflege, Leiden und lindern, Geburt und Behandlung, Psyche und Wohlbefinden,
 Stress und Erschöpfung, Sport und Wettkampf, Trainieren und siegen, Ernährung,
-Kalorien und Gewürze. Achte Farbe.
+Kalorien und Gewürze. Sechste Farbe.
 
-**Sektion 27 · Schule und Wissen** (12 Levels, seit 07.11.2026,
+**Sektion 7 · Schule und Wissen** (12 Levels, seit 07.11.2026,
 Wortschatz-Paket 17): Schule und Klasse, Abitur und Klassenfahrt, An der
 Universität, Abschluss und Titel, Fächer und Wissensgebiete, Forschen und
 messen, Entdecken und erfinden, Lesen und aussprechen, Sprache und Grammatik,
 Reden und sich verständigen, Beschreiben und erklären, Begründen und
-zusammenfassen. Neunte Farbe.
+zusammenfassen. Siebte Farbe.
 
-**Sektion 28 · Stadt, Verkehr und Reisen** (7 Levels, seit 07.11.2026,
+**Sektion 8 · Stadt, Land und unterwegs** (13 Levels, seit 07.11.2026,
 Wortschatz-Paket 18): In der Stadt, Straßen und Bahn, Kreisverkehr und Fähre,
-Autofahren, Unfälle und Pannen, Reisen und Unterkunft, Ankommen und ansehen.
-Erste Farbe.
+Autofahren, Unfälle und Pannen, Reisen und Unterkunft, Ankommen und ansehen,
+Landschaft und Boden, Ozean und Schlucht, Jagen und fischen, Tiere genauer,
+Pflanzen und Anbau, Ernten und pflanzen. Achte Farbe.
 
-**Sektion 29 · Land, Tiere und Pflanzen** (6 Levels, seit 07.11.2026,
-Wortschatz-Paket 18): Landschaft und Boden, Ozean und Schlucht, Jagen und
-fischen, Tiere genauer, Pflanzen und Anbau, Ernten und pflanzen. Zweite Farbe.
-
-**Sektion 30 · Handeln und verändern** (11 Levels, seit 07.11.2026,
-Wortschatz-Paket 19): Bewegen und verschieben, Folgen und bewältigen,
+**Sektion 9 · Handeln und genauer sagen** (23 Levels, seit 07.11.2026,
+Wortschatz-Pakete 19 und 20): Bewegen und verschieben, Folgen und bewältigen,
 Durchführen und schaffen, Anpassen und verstärken, Stärken und verbessern,
 Verbinden und trennen, Bestimmen und hindern, Mit Menschen umgehen, Erkennen
-und ausdrücken, Paare: zu bekannten Verben, Entwicklung und Vergleich. Dritte
-Farbe.
+und ausdrücken, Paare: zu bekannten Verben, Entwicklung und Vergleich, Wie
+sicher, Ganz oder teilweise, Wie man etwas tut, Wann und wie lange, Schon immer
+und in Zukunft, Wo und wohin, Gut oder schlecht, Fest und sichtbar, Streng und
+zuverlässig, Feste Wendungen, Keine Ahnung und alle Achtung, Mengen und Maße.
+Neunte Farbe.
 
-**Sektion 31 · Genauer sagen** (12 Levels, seit 07.11.2026, Wortschatz-Paket
-20): Wie sicher, Ganz oder teilweise, Wie man etwas tut, Wann und wie lange,
-Schon immer und in Zukunft, Wo und wohin, Gut oder schlecht, Fest und sichtbar,
-Streng und zuverlässig, Feste Wendungen, Keine Ahnung und alle Achtung, Mengen
-und Maße. Vierte Farbe.
-
-Auch in den Sektionen 12 bis 31 steht jedes Wort direkt vor seinem
-Beispielsatz. Was Ajdin als zweite Form freigegeben hat (*nogomet* bei
+Auch in B1 ab „Arzt & Gesundheit“ und in ganz B2 steht jedes Wort direkt
+vor seinem Beispielsatz. Was Ajdin als zweite Form freigegeben hat (*nogomet* bei
 *fudbal*, *naočare* bei *naočale*), zählt beim Tippen; was er ausgeschlossen
 hat (*ranac*, *grudi*, *rentgen*, *prepisati*), zählt nicht.
 
@@ -616,32 +640,57 @@ lässt: eine kurze Erklärung mit Tabelle, zum Beispiel alle Endungen eines
 Falls. Die dazugehörigen Übungsaufgaben kommen in der Lektion und im
 Level-Test dran, mit Tipp bei Fehlern. Die Lektionen stehen in `grammatik.py`.
 
-## Der Geschichten-Pfad: 12 Geschichten
+## Der Geschichten-Pfad: 32 Geschichten
 
-Die Geschichten sind wie Levels aufgebaut und werden von vorn nach hinten
-schwerer:
+Die Geschichten stehen in Stufen wie der Lernpfad, mit denselben Reitern
+A1 bis C1 (seit 17.11.2026; vorher nach Thema, „Kinderbuch“ bis
+„Amtssprache“). In jeder Stufe werden sie von vorn nach hinten schwerer.
+B2 und C1 haben noch keine Geschichten und zeigen „bald“. Die Folge steht in
+`geschichten.py` unter `REIHENFOLGE`:
 
-| Nr. | Titel              | Stufe           | Passt zu Level          |
-|-----|--------------------|-----------------|-------------------------|
-| 1   | Mira i Rex         | Kinderbuch      | Farben                  |
-| 2   | Naša kuća          | Kinderbuch      | Zuhause                 |
-| 3   | Moja porodica      | Einfach         | Familie                 |
-| 4   | Na pijaci          | Einfach         | Einkaufen & Kleidung    |
-| 5   | Moj dan            | Einfach         | Tagesablauf             |
-| 6   | U gradu            | Mittel          | Präpositionen           |
-| 7   | Jučer              | Mittel          | Vergangenheit           |
-| 8   | Put u Bosnu        | Mittel          | Reisen & Verkehr        |
-| 9   | Pismo nani         | Fortgeschritten | Zukunft & Pläne         |
-| 10  | Na općini          | Amtssprache     | Amt & Behörde           |
-| 11  | Kupujemo kuću      | Amtssprache     | Wohnung & Hauskauf      |
-| 12  | Razgovor za posao  | Amtssprache     | Arbeitsvertrag & Bewerbung |
+| Stufe | Nr. | Titel                         | Passt zu Level             |
+|-------|-----|-------------------------------|----------------------------|
+| A1    | 1   | Mira i Rex                    | Farben                     |
+| A1    | 2   | Moja porodica                 | Familie                    |
+| A1    | 3   | Naša kuća                     | Zuhause                    |
+| A1    | 4   | Na pijaci                     | Einkaufen & Kleidung       |
+| A1    | 5   | Moj dan                       | Tagesablauf                |
+| A2    | 1   | Na općini                     | Amt & Behörde              |
+| A2    | 2   | Jučer                         | Vergangenheit              |
+| A2    | 3   | U gradu                       | Präpositionen              |
+| A2    | 4   | Kupujemo kuću                 | Wohnung & Hauskauf         |
+| A2    | 5   | Put u Bosnu                   | Reisen & Verkehr           |
+| A2    | 6   | Pismo nani                    | Zukunft & Pläne            |
+| B1    | 1   | Vrijeme za vikend             | Wetter & Natur             |
+| B1    | 2   | Voz Sarajevo–Mostar           | Reisen und Urlaub          |
+| B1    | 3   | Izdajem stan                  | Wohnung & Hauskauf         |
+| B1    | 4   | Ljeto kod nane na selu        | Familie                    |
+| B1    | 5   | Svadba i kolo                 | Feste & Traditionen        |
+| B1    | 6   | Rafting na Uni                | Sport und Spiel            |
+| B1    | 7   | Rođendansko iznenađenje       | Feste & Traditionen        |
+| B1    | 8   | Kod doktora                   | In der Arztpraxis          |
+| B1    | 9   | Prvi dan na poslu             | Am Arbeitsplatz            |
+| B1    | 10  | Jahorina                      | Sport und Spiel            |
+| B1    | 11  | Utakmica                      | Sport und Spiel            |
+| B1    | 12  | Komšiluk bez struje           | Miteinander umgehen        |
+| B1    | 13  | Zmaj uči bosanski             | Lernen und studieren       |
+| B1    | 14  | Nanina pita                   | Bosnische Küche            |
+| B1    | 15  | Kahva kod komšinice           | Miteinander umgehen        |
+| B1    | 16  | Dijaspora prvi put u Sarajevu | Reisen und Urlaub          |
+| B1    | 17  | Izgubljeni telefon            | Handy, Computer & Geräte   |
+| B1    | 18  | Dedo i nana se sele           | Erledigen und umziehen     |
+| B1    | 19  | Stari zanat na Baščaršiji     | Am Arbeitsplatz            |
+| B1    | 20  | Mejl rođaku                   | Reisen und Urlaub          |
+| B1    | 21  | Razgovor za posao             | Arbeitsvertrag & Bewerbung |
 
 Regeln: Nur die erste Geschichte ist offen. Eine Geschichte gilt als gelesen,
 wenn alle Fragen zum Text richtig beantwortet sind. Dann öffnet sich die
-nächste. Jedes Wort im Text lässt sich antippen und zeigt die Übersetzung, die
-ganze Übersetzung kann eingeblendet werden, „Vorlesen“ nutzt die
-Computerstimme. Gelesene Geschichten bleiben offen. Mit `?alle=1` sind auch
-hier alle Geschichten frei.
+nächste, auch über die Stufe hinweg. Was in der Folge bis zum 17.11.2026
+offen war, bleibt offen (`GESCH_ALTE_FOLGE` in `web/index.html`). Der Reiter
+Geschichten öffnet die Stufe der nächsten ungelesenen Geschichte. Jedes Wort
+im Text lässt sich antippen und zeigt die Übersetzung, die ganze Übersetzung
+kann eingeblendet werden, „Vorlesen“ nutzt die Computerstimme. Gelesene
+Geschichten bleiben offen. Mit `?alle=1` sind auch hier alle Geschichten frei.
 
 Die Geschichten und das Wörterbuch stehen in `geschichten.py`. Fehlt ein Wort
 aus einem Geschichtentext im Wörterbuch, meldet das `start.py` beim Start,
@@ -1237,7 +1286,7 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 7997 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 8191 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, außer
   den Aspektpaaren (*ostati* / *ostajati*), die mit Absicht gleich heißen.
   Keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
@@ -1259,7 +1308,7 @@ Der Grund: dasselbe bosnische Wort kann zwei Bedeutungen haben. `sto` ist die
 Zahl hundert und der Tisch, `oko` das Auge und „um herum“. Vorher merkte sich
 die App nur `sto` – wer die Zahl konnte, bei dem galt auch das Möbelstück als
 gelernt, und Level 9 startete bei 4 % statt bei 0 %. Dasselbe galt für `malo`,
-`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 295 Levels bei
+`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der Levels bei
 0 %, und man sieht in einer Sicherung auf einen Blick, welche Bedeutung
 gemeint ist.
 

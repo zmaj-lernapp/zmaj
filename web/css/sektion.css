@@ -1,0 +1,320 @@
+  /* ---- Die ganze App traegt die Farbe der laufenden Sektion ----
+     data-sek steht am Wurzelelement und wird in sektionsFarbe() gesetzt.
+     Diese vier Zeilen biegen --primary und seine zwei Begleiter um; alle
+     45 Stellen, die var(--primary) benutzen, folgen damit von selbst -
+     Knoepfe, Ueberschriften, Geschichten, Einstellungen.
+     Gelb bleibt unangetastet. Es ist der Akzent, die zweite Farbe der
+     Fahne, und es traegt "Jetzt dran", die Muenzen und die Balken in den
+     Levels. Waere es die Farbe einer Sektion, gaebe es diese Anker nicht
+     mehr.
+     Sektion 1 traegt genau die Werte, die die App vorher fest hatte. */
+  /* Nicht nur die Hauptfarbe: auch der Grund nimmt den Ton an.
+     Die Helligkeiten sind genau die, die die App vorher fest hatte -
+     Grund 12, Flaeche 18, Linie 28, gedaempft 74 Prozent in der
+     dunklen Fassung. Nur der Farbton wandert, deshalb bleibt der
+     Kontrast ueberall gleich.
+     Ajdin am 26.09.2026: "das hintergrund soll die farbe annehmen
+     nicht nur dieser rand". */
+  :root[data-sek="1"]{
+    --primary:var(--sek1); --primary-dark:var(--sek1-dunkel);
+    --primary-soft:var(--sek1-sanft); --bg:var(--sek1-grund);
+    --primary-fill:var(--sek1-fuell); --primary-fill-dark:var(--sek1-fuell-dunkel);
+    --surface:var(--sek1-flaeche); --line:var(--sek1-linie);
+    --muted:var(--sek1-matt);
+  }
+  :root[data-sek="2"]{
+    --primary:var(--sek2); --primary-dark:var(--sek2-dunkel);
+    --primary-soft:var(--sek2-sanft); --bg:var(--sek2-grund);
+    --primary-fill:var(--sek2-fuell); --primary-fill-dark:var(--sek2-fuell-dunkel);
+    --surface:var(--sek2-flaeche); --line:var(--sek2-linie);
+    --muted:var(--sek2-matt);
+  }
+  :root[data-sek="3"]{
+    --primary:var(--sek3); --primary-dark:var(--sek3-dunkel);
+    --primary-soft:var(--sek3-sanft); --bg:var(--sek3-grund);
+    --primary-fill:var(--sek3-fuell); --primary-fill-dark:var(--sek3-fuell-dunkel);
+    --surface:var(--sek3-flaeche); --line:var(--sek3-linie);
+    --muted:var(--sek3-matt);
+  }
+  :root[data-sek="4"]{
+    --primary:var(--sek4); --primary-dark:var(--sek4-dunkel);
+    --primary-soft:var(--sek4-sanft); --bg:var(--sek4-grund);
+    --primary-fill:var(--sek4-fuell); --primary-fill-dark:var(--sek4-fuell-dunkel);
+    --surface:var(--sek4-flaeche); --line:var(--sek4-linie);
+    --muted:var(--sek4-matt);
+  }
+  :root[data-sek="5"]{
+    --primary:var(--sek5); --primary-dark:var(--sek5-dunkel);
+    --primary-soft:var(--sek5-sanft); --bg:var(--sek5-grund);
+    --primary-fill:var(--sek5-fuell); --primary-fill-dark:var(--sek5-fuell-dunkel);
+    --surface:var(--sek5-flaeche); --line:var(--sek5-linie);
+    --muted:var(--sek5-matt);
+  }
+  :root[data-sek="6"]{
+    --primary:var(--sek6); --primary-dark:var(--sek6-dunkel);
+    --primary-soft:var(--sek6-sanft); --bg:var(--sek6-grund);
+    --primary-fill:var(--sek6-fuell); --primary-fill-dark:var(--sek6-fuell-dunkel);
+    --surface:var(--sek6-flaeche); --line:var(--sek6-linie);
+    --muted:var(--sek6-matt);
+  }
+  :root[data-sek="7"]{
+    --primary:var(--sek7); --primary-dark:var(--sek7-dunkel);
+    --primary-soft:var(--sek7-sanft); --bg:var(--sek7-grund);
+    --primary-fill:var(--sek7-fuell); --primary-fill-dark:var(--sek7-fuell-dunkel);
+    --surface:var(--sek7-flaeche); --line:var(--sek7-linie);
+    --muted:var(--sek7-matt);
+  }
+  :root[data-sek="8"]{
+    --primary:var(--sek8); --primary-dark:var(--sek8-dunkel);
+    --primary-soft:var(--sek8-sanft); --bg:var(--sek8-grund);
+    --primary-fill:var(--sek8-fuell); --primary-fill-dark:var(--sek8-fuell-dunkel);
+    --surface:var(--sek8-flaeche); --line:var(--sek8-linie);
+    --muted:var(--sek8-matt);
+  }
+  :root[data-sek="9"]{
+    --primary:var(--sek9); --primary-dark:var(--sek9-dunkel);
+    --primary-soft:var(--sek9-sanft); --bg:var(--sek9-grund);
+    --primary-fill:var(--sek9-fuell); --primary-fill-dark:var(--sek9-fuell-dunkel);
+    --surface:var(--sek9-flaeche); --line:var(--sek9-linie);
+    --muted:var(--sek9-matt);
+  }
+
+  /* ---- Weicher Uebergang beim Sektionswechsel ----
+     Wenn die naechste Sektion dran ist, soll die neue Farbe hineinlaufen
+     statt umzuspringen.
+     Die Regel gilt nur, solange die Klasse farbwechsel gesetzt ist. Stuende
+     sie immer, zoege auch die Rueckmeldung auf eine Antwort traege
+     hinterher - gruen fuer richtig soll sofort da sein. sektionsFarbe()
+     setzt die Klasse und nimmt sie nach einer Dreiviertelsekunde weg.
+     --bg selbst laesst sich nicht ueberblenden. Was sich ueberblenden
+     laesst, ist das, was daraus wird: die Hintergrundfarbe des Elements.
+     Deshalb steht hier background-color und nicht --bg.
+     !important, weil .btn eine eigene, schnellere Ueberblendung hat und
+     sonst als die genauere Regel gewaenne.
+     Die Regel fuer "weniger Bewegung" steht weiter unten im Stil und
+     gewinnt gegen diese hier - das soll so sein. */
+  :root.farbwechsel, :root.farbwechsel *{
+    transition: background-color .55s ease, background-image .55s ease,
+                color .55s ease, border-color .55s ease,
+                box-shadow .55s ease, fill .55s ease !important;
+  }
+
+  /* ---- Auf- und Zuklappen ----
+     Es ist immer genau eine Sektion offen. Die anderen zeigen nur ihren
+     Kopf. Das kuerzt den Lernpfad von fast viertausend Pixeln auf gut
+     einen Bildschirm und macht das Aufklappen zu der Geste, an der die
+     Farbe der App haengt. */
+  .skopf{cursor:pointer; -webkit-user-select:none; user-select:none;
+         position:relative; padding-right:24px}
+  /* Das Dreieck ist gezeichnet, nicht als Zeichen gesetzt. Als Schriftzeichen
+     kam es je nach Geraet als duenner Strich heraus. Aus vier Raendern
+     gebaut sieht es ueberall gleich aus.
+     Es dreht sich, statt dass zwei Formen getauscht werden: so ist die
+     Bewegung sichtbar. */
+  .skopf::after{content:''; position:absolute; right:2px; top:10px;
+                width:0; height:0; border:6px solid transparent;
+                border-top-color:var(--muted); transition:transform .25s}
+  .section:not(.zu) > .skopf::after{transform:rotate(180deg)}
+  .skopf:focus-visible{outline:3px solid var(--accent); outline-offset:3px;
+                       border-radius:8px}
+  /* Eingeklappt faellt die Beschreibung weg, nicht nur die Level: sonst
+     waere der Kopf immer noch drei Zeilen hoch. */
+  .section.zu > .skopf .desc, .section.zu .levels{display:none}
+  .section.zu{padding-bottom:14px}
+
+  .section.sek1, .section.sek2, .section.sek3, .section.sek4, .section.sek5, .section.sek6, .section.sek7, .section.sek8, .section.sek9{ position:relative }
+  /* Der Streifen laeuft von der eigenen Farbe in die der naechsten Sektion.
+     Scrollt man den Lernpfad hinunter, gehen die Farben ineinander ueber,
+     statt hart zu springen. Bei der letzten bleibt er einfarbig, dafuer
+     sorgt renderPath().
+     Ein Rahmen kann keinen Verlauf tragen, deshalb ein eigenes Element.
+     Es liegt zwei Pixel weiter links und oben, damit es den Rahmen der
+     Karte an dieser Seite ueberdeckt statt neben ihm zu stehen. */
+  .section.sek1::before, .section.sek2::before, .section.sek3::before, .section.sek4::before, .section.sek5::before, .section.sek6::before, .section.sek7::before, .section.sek8::before, .section.sek9::before{
+    content:''; position:absolute; left:-2px; top:-2px; bottom:-2px; width:5px;
+    border-radius:var(--radius) 0 0 var(--radius);
+    background:linear-gradient(180deg, var(--sek), var(--sek-next, var(--sek)));
+  }
+  .section.sek1{--sek:var(--sek1)}
+  .section.sek2{--sek:var(--sek2)}
+  .section.sek3{--sek:var(--sek3)}
+  .section.sek4{--sek:var(--sek4)}
+  .section.sek5{--sek:var(--sek5)}
+  .section.sek6{--sek:var(--sek6)}
+  .section.sek7{--sek:var(--sek7)}
+  .section.sek8{--sek:var(--sek8)}
+  .section.sek9{--sek:var(--sek9)}
+  /* Bis zum 26.09.2026 stand hier opacity:.6 - die gesperrten Sektionen
+     waren also zu 40 Prozent durchsichtig, und der Grund schien hindurch.
+     Der Tester am selben Tag: "weil die Boxen durchsichtig sind mischt
+     sich ihr Dunkelgrau mit dem Hintergrund und deshalb wirken die Farben
+     so matt". Er hatte recht, und opacity faerbt ausserdem alles mit -
+     Schrift, Rahmen, Balken.
+     Jetzt bleibt der Kasten blickdicht, und gesperrt wird ueber die Farbe
+     gesagt: gedaempfte Schrift, blasserer Rand. */
+  .section.locked{border-color:var(--primary-soft)}
+  .section.locked h2, .section.locked .skopf::after{color:var(--muted)}
+  .section.locked .sbar i{background:var(--muted)}
+  .section h2{font-family:var(--font-ui); font-weight:800; font-size:18px; margin:0 0 2px; color:var(--sek, var(--primary))}
+  .section .desc{font-size:13px; color:var(--muted); margin-bottom:10px}
+  .section .sbar{height:8px; background:var(--primary-soft); border-radius:99px; overflow:hidden; margin-bottom:6px}
+  .section .sbar i{display:block; height:100%; background:var(--sek, var(--accent)); width:0; transition:width .4s}
+  .section .scap{font-size:12px; color:var(--muted); margin-bottom:6px; font-weight:700}
+  /* ---- Stufen-Reiter A1 bis C1 (13.11.2026) ----
+     Nach dem Entwurf reiter_mock.png: fuenf gleich breite Kaesten, oben die
+     Stufe gross, darunter der Stand, unten ein duenner Balken. Der gewaehlte
+     Reiter ist gefuellt wie die Lernpfad-Leiste darueber; zu ist gedaempft,
+     C1 ("bald") gestrichelt. Die Schrift des Stands wird auf schmalen
+     Handys kleiner.
+     Pruefung vom 13.11.2026: bei 360 px schnitt die Leiste den Stand an
+     beiden Seiten ab - als Flex-Kasten mit justify-content:center laeuft
+     zu langer Text links und rechts hinaus, und text-overflow greift dort
+     nicht. Aus "30 içinden 29" wurde "0 içinden 2", aus "112 von 129"
+     "112 von 12": falsche Zahlen statt Puenktchen. Darum steht der Stand
+     jetzt kurz als "112/129" in allen Sprachen (der ganze Satz geht an den
+     Bildschirmleser, aria-label), und .sz ist ein Block mit text-align,
+     damit ein zu langes Wort wenigstens in Puenktchen endet. Geprueft fuer
+     alle acht Sprachen in tests_e2e/test_reiter.py. */
+  .reiterleiste{display:flex; gap:6px; margin:0 0 12px}
+  .reiterleiste button{flex:1 1 0; min-width:0; position:relative; overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; gap:1px;
+    border:2px solid var(--line); background:var(--surface); color:var(--primary);
+    border-radius:var(--radius); padding:7px 2px 10px; font-family:inherit; cursor:pointer}
+  .reiterleiste .st{font-family:var(--font-ui); font-weight:800; font-size:19px; line-height:1.15}
+  .reiterleiste .sz{display:block; align-self:stretch; text-align:center; min-width:0;
+    font-size:clamp(8.5px, 2.75vw, 11.5px); font-weight:800; color:var(--muted);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .reiterleiste .sz .sym{--sg:1.15em}
+  /* Passt die Zeile auch mit 7 px nicht, nur ✓ bzw. das Schloss
+     (reiterLeisteEinpassen, zweite Pruefung vom 13.11.2026) */
+  .reiterleiste .sz.nurzeichen .wort{display:none}
+  .reiterleiste .sb{position:absolute; left:10px; right:10px; bottom:4px; height:3px;
+    border-radius:99px; background:var(--primary-soft); overflow:hidden}
+  .reiterleiste .sb i{display:block; height:100%; background:var(--accent)}
+  .reiterleiste .fertig .sb i{background:var(--good)}
+  .reiterleiste button[aria-selected="true"]{background:var(--primary-fill); border-color:var(--primary-fill); color:var(--on-fill)}
+  .reiterleiste button[aria-selected="true"] .sz{color:var(--on-fill)}
+  .reiterleiste .zu .st, .reiterleiste .bald .st{color:var(--muted)}
+  .reiterleiste .bald{border-style:dashed; background:transparent}
+  /* Auf hellem Grund verschwand die gestrichelte Linie fast (Bild vom
+     13.11.2026). Wo color-mix fehlt (WebView vor 111), bleibt --line. */
+  .reiterleiste .bald{border-color:color-mix(in srgb, var(--muted) 55%, transparent)}
+  .reiterleiste button[aria-selected="true"].zu .st, .reiterleiste button[aria-selected="true"].bald .st{color:var(--on-fill)}
+  .reiterleiste button:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  /* Die Karte eines Reiters, der noch zu ist (Sprung-Test) */
+  .reiterzu{text-align:center; padding:16px 16px 14px}
+  .reiterzu .schloss .sym{--sg:2.2em}
+  .reiterzu h2{color:var(--primary)}
+  .reiterzu .txt{font-size:14px; color:var(--muted); font-weight:700; margin:4px 0 12px}
+  .reiterzu .btn{width:100%; margin:0}
+  .reiterzu .regel{font-size:12px; color:var(--muted); font-weight:700; margin-top:8px}
+  .reiterzu .regel:empty{display:none}
+  .node{
+    display:flex; align-items:center; gap:14px; width:100%; text-align:left;
+    border:0; background:transparent; color:var(--ink); font-family:inherit; padding:10px 2px; cursor:pointer;
+    border-top:1px solid var(--line);
+  }
+  @media (hover:hover) and (pointer:fine){ .node:hover .circle{transform:scale(1.06)} }
+  .node .circle{
+    flex:0 0 44px; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:15px; border:3px solid var(--line); color:var(--muted); background:var(--surface); transition:.15s;
+    box-shadow:0 3px 0 var(--line);
+  }
+  /* Erledigte Level: blasse Scheibe mit kraeftigem Rand. Der Rand bleibt
+     --primary, sonst verschwaemme der Kreis auf dem hellen Grund. */
+  .node.done .circle{background:var(--primary-fill); border-color:var(--primary); color:var(--on-fill); box-shadow:0 3px 0 var(--primary-fill-dark)}
+  .node.current .circle{background:var(--accent); border-color:var(--accent); color:var(--on-accent); box-shadow:0 3px 0 var(--accent-dark)}
+  .node.locked{cursor:not-allowed}
+  .node.locked .label{color:var(--muted)}
+  .node .txt{flex:1; min-width:0}
+  .node .label{font-weight:800; font-size:15px}
+  /* Titel und Schwierigkeit (Geschichtenliste). Am 18.09.2026 wollte Ajdin
+     beides in EINER Zeile - "Razgovor za posao" rutschte als einziger um,
+     die Liste wirkte zerfasert -, dafuer kuerzte der Titel ab. Bei der
+     Pruefung am 14.11.2026 stand davon in Franzoesisch bei 360 px bei 14
+     von 32 Geschichten nur noch "Na op..." oder "Razgo..." da (Pruefbericht
+     1.4, B14). Ajdin hat entschieden (E3, Weg a): der Titel ist immer ganz
+     zu lesen, das Schildchen rutscht in die Zeile darunter, wenn es daneben
+     keinen Platz hat.
+     Deshalb Fliesstext statt Flexbox: ein langer Titel bricht wie Text um,
+     und das Schildchen steht hinter seinem letzten Wort, wenn es dort
+     hinpasst, sonst vorn in der Zeile darunter. Der Abstand ist ein
+     Leerzeichen (.luecke, 8 Punkte breit) und kein Rand: am Zeilenende
+     faellt ein Leerzeichen weg, ein Rand bliebe stehen und rueckte das
+     umgebrochene Schildchen ein. Wo alles in eine Zeile passt, steht es
+     da wie vorher. Pruefung: test_pruefbericht14_oberflaeche.py (B14).
+     Grosse Schrift (06.10.2026, siehe .wrap): vorher verschwand der Titel
+     dort ganz, wenn neben dem Schildchen keine 48 Punkte blieben; jetzt
+     bricht er einfach um.
+     Ist das Schildchen allein breiter als die Zeile, bricht es in sich um
+     statt abzukuerzen: "Langue administrative" neben "A faire maintenant"
+     bei 360 px stand sonst als "Langue admini..." da. Bei normaler Schrift
+     kommt das nur dort vor. */
+  .node .label.mitstufe .luecke{font-size:0; word-spacing:8px}
+  .node .label.mitstufe .stufe{margin-left:0; max-width:100%; text-align:center}
+  .node .tipp{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .node .mini{height:5px; background:var(--primary-soft); border-radius:99px; margin-top:6px; overflow:hidden; width:120px; max-width:100%}
+  .node .mini i{display:block; height:100%; background:var(--accent); width:0}
+  /* Bei 200 % nahm "A faire maintenant" der Zeile allen Platz, vom Titel
+     blieben 3 Punkte. Hoechstens die halbe Zeile, darueber bricht es um -
+     bei normaler Schrift ist jeder Zustand kuerzer. 06.10.2026, siehe .wrap. */
+  .node .state{font-size:12px; color:var(--muted); font-weight:800; max-width:50%}
+  .node.current .state{color:var(--accent-text)}
+  .node.done .state{color:var(--good-text)}
+
+  /* Regeln fürs Passwort: hakt ab, was schon erfüllt ist */
+  .pwregeln{font-size:12px; color:var(--muted); line-height:1.9; margin:-2px 0 2px}
+  .pwregeln b{display:block; font-weight:700; margin-bottom:2px}
+  .pwregeln span{display:inline-block; margin-right:12px; white-space:nowrap}
+  .pwregeln span::before{content:"○ "; font-weight:700}
+  /* Gruen und Rot in den Toenen fuer den Seitengrund, siehe :root
+     (29.10.2026): mit --good-text waren es dort nur 3,4:1. */
+  .pwregeln span.ok{color:var(--good-text-grund)}
+  .pwregeln span.ok::before{content:"✓ "}
+  /* Nach einem Tipp auf "Konto anlegen" rot, was noch fehlt; "nicht deine
+     E-Mail" rot mit Kreuz, sobald das Passwort sie enthaelt (29.10.2026,
+     zeigeRegeln). */
+  .pwregeln span.fehlt, .pwregeln span.nein{color:var(--bad-text-grund)}
+  .pwregeln span.nein::before{content:"✗ "}
+  /* Die Zeile unter dem Formular und unter der Wahl steht auch auf dem
+     Grund, nicht auf einer Karte (29.10.2026). */
+  .kontoform .note.feedback.ok, #anmNote.feedback.ok{color:var(--good-text-grund)}
+  .kontoform .note.feedback.no, #anmNote.feedback.no{color:var(--bad-text-grund)}
+  /* Werbung: ganzseitig über allem, damit sie nicht mit der App verwechselt
+     wird. Der Rahmen und das Wort "Anzeige" sind Pflicht. */
+  /* Deckend, nicht durchscheinend. Vorher sah man die Lektion durch die
+     Werbung hindurch – das wirkte, als hinge das Fenster nur davor. */
+  .werbung{position:fixed; inset:0; z-index:999; background:#060C20;
+    display:flex; align-items:center; justify-content:center; padding:18px}
+  /* --surface, nicht --card: eine Farbe dieses Namens gibt es hier nicht,
+     und ein unbekannter Wert macht die Flaeche unsichtbar statt bunt. */
+  .werbebox{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; width:100%; max-width:420px; text-align:center}
+  .werbemarke{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:10px}
+  .werbeflaeche{min-height:230px; display:flex; align-items:center; justify-content:center;
+    border:2px dashed var(--line); border-radius:12px; color:var(--muted);
+    font-size:13px; padding:16px; line-height:1.5}
+  .werbenote{font-size:12px; color:var(--muted); font-weight:700; margin-top:10px; min-height:16px}
+  .werbebox .btn{width:100%; margin-top:10px}
+  .werbebox .skip{margin-top:8px}
+  /* Eine kurze Meldung, die von selbst wieder geht. Gebraucht wird sie,
+     seit die Anzeige auf dem Geraet ausfallen darf: wer auf „Video
+     ansehen“ tippt und ohne Netz ist, sah sonst gar nichts. P8, 28.09.2026. */
+  .kurznote, .meldenote{position:fixed; left:50%; bottom:86px; transform:translateX(-50%);
+    z-index:1001; max-width:min(92vw,420px); padding:12px 16px; text-align:center;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,.35); color:var(--ink);
+    font-size:14px; font-weight:700; line-height:1.4;
+    opacity:0; transition:opacity .25s}
+  .kurznote.an, .meldenote.an{opacity:1}
+  /* "Anzeige melden" nach einer Vollbildanzeige (nur iOS, 30.10.2026):
+     dieselbe Leiste, eine eigene Klasse, damit kurzMeldung() sie nicht
+     ueberschreibt, und etwas hoeher, falls beide zugleich stehen. */
+  .meldenote{bottom:140px; padding:8px 16px}
+  .meldenote .abolink{font-size:14px}
+  /* Nur fuer Screenreader (17.10.2026): auf dem Bildschirm nicht zu sehen,
+     im Vorlesebaum aber da. Nicht display:none und nicht hidden - das nimmt
+     den Inhalt auch dem Screenreader weg. Gebraucht fuer #ansage. */
+  .nurleser{position:absolute!important; width:1px; height:1px; margin:-1px; padding:0; border:0;
+    overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap}

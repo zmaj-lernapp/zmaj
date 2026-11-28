@@ -27,7 +27,19 @@ GESPERRT = [("ziehen:vući", "ziehen / zurückziehen:povlačiti"),
             ("dokument:dokument", "bescheinigung:potvrda"),
             ("alles gut:Sve je dobro", "was gibt's? / wie läuft's?:Šta ima?"),
             ("wesentlich / wichtig:bitan", "wichtig (der wichtige):važan"),
-            ("nach (einem ereignis):nakon", "nach / pro:po")]
+            ("nach (einem ereignis):nakon", "nach / pro:po"),
+            # Pruefbericht 1.4 (14.11.2026), V4: Molim ist die uebliche Antwort auf
+            # Hvala; dići / dizati sind die Kurzformen von podići / podizati.
+            ("bitte (höflich, allgemein):Molim", "gern geschehen:Nema na čemu"),
+            ("hochheben / aufheben / abheben:podići / podignuti", "anheben / aufheben (umgangssprachlich):dići"),
+            ("hochheben / aufheben / abheben:podići / podignuti", "anheben / aufheben (umgangssprachlich):dizati"),
+            ("hochheben / aufheben / abheben:podizati", "anheben / aufheben (umgangssprachlich):dići"),
+            ("hochheben / aufheben / abheben:podizati", "anheben / aufheben (umgangssprachlich):dizati"),
+            # B8: beide "Darlehen", beide "Kumpel", im selben Level.
+            ("darlehen / anleihe:zajam", "darlehen (privat):pozajmica"),
+            ("kumpel (slang, vor allem sarajevo):jaran", "kumpel / kumpelin (locker):drug / drugarica")]
+# B5: Ćao ist auch „Hallo“ (F16). Bis zum 14.11.2026 stand hier Zdravo / Ćao; seitdem nimmt
+# Zdravo Ćao beim Tippen (Offen-Liste, Punkt 2), siehe test_cao_nie_neben_hallo_und_zaehlt_dort.
 
 # Frage und falscher Knopf im selben Level: Heisst die Frage genau wie ein Teil
 # des Knopfs, muss das andere Wort aus der Auswahl heraus sein. Verglichen wird
@@ -35,14 +47,25 @@ GESPERRT = [("ziehen:vući", "ziehen / zurückziehen:povlačiti"),
 # sind" (oni su) neben "ihr seid / Sie sind" (vi ste) auf, und auf Daenisch "de er"
 # neben "I er / De er". Das bleibt: Die Grossschreibung trennt die beiden richtig,
 # und genau diesen Unterschied uebt das Level Konjugation.
+#
+# Pruefbericht 1.4 (14.11.2026), V5: Die Klammer am Ende des Knopfs wird vor dem
+# Vergleich abgetrennt. Auf Englisch stand bei der Frage "How are you?" (Kako si?)
+# Kako ste mit "How are you? (formal)" als falscher Knopf, in 185 von 400
+# Ziehungen - und "How are you?" passt auf beide. Nur die Frage ohne Klammer ist
+# das Problem: hat auch sie eine ("How are you? (informal)"), trennen die beiden
+# Klammern richtig. Eine Klammer mitten in der Bedeutung bleibt stehen, sie gehoert
+# zur Wendung: "to wake (someone) up" (buditi) ist nicht "to wake up" (buditi se).
 UNTERSCHIED_GEWOLLT = {"oni su", "vi ste"}
 TEIL_DER_FRAGE = r"""
 () => {
   const paare = [];
+  // Je Form die Klammer(n) am Ende weg, dann wie _bedeutung:
+  // "How are you? (formal)" -> "how are you", "Où (vers où) ?" -> "où".
+  const ohneKlammer = s => _formen(s).map(f => _bedeutung(f.replace(/(\s*\([^)]*\))+(?=[\s.!?…]*$)/, '')));
   for(const c of CATEGORIES){
     for(const w of c.words){
       const frage = _bedeutung(w.de);
-      const mitTeil = c.words.filter(x => x.bs !== w.bs && _formen(x.de).length > 1 && _formen(x.de).includes(frage));
+      const mitTeil = c.words.filter(x => x.bs !== w.bs && ohneKlammer(x.de).includes(frage));
       if(!mitTeil.length) continue;
       const gesperrt = new Set(geschwister(w).map(x => x.bs));
       mitTeil.filter(x => !gesperrt.has(x.bs)).forEach(x => paare.push([c.id, w.bs, w.de, x.bs, x.de]));
@@ -118,14 +141,36 @@ ALLE_EINTRAEGE = r"""
 """
 
 
+# K2 (Ajdin K2, 20.11.2026, varianten.py): zajam und pozajmica zaehlen beim Tippen
+# fureinander, beide heissen „Darlehen“. In der Auswahl bleiben sie gesperrt.
+BEIM_TIPPEN_GLEICH = {frozenset(("darlehen / anleihe:zajam", "darlehen (privat):pozajmica"))}
+
+
 @pytest.mark.parametrize("wort, anderes", GESPERRT)
 def test_gesperrte_paare_nie_in_derselben_auswahl(seite, heute_stand, wort, anderes):
     seite.starten(stand=heute_stand())
+    gleich = frozenset((wort, anderes)) in BEIM_TIPPEN_GLEICH
     for a, b in ((wort, anderes), (anderes, wort)):
         e = seite.js(AUSWAHL, [a, b, 200])
         assert e["gesehen"] == 0, (a, b, e)
-        # Gesperrt heisst nicht gleichwertig: beim Tippen aendert sich nichts.
-        assert e["geschwister"] and not e["annehmbar"], (a, b, e)
+        # Gesperrt heisst nicht gleichwertig: beim Tippen aendert sich nichts
+        # (ausser bei BEIM_TIPPEN_GLEICH).
+        assert e["geschwister"] and e["annehmbar"] == gleich, (a, b, e)
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("hallo", ["hallo:Merhaba", "hallo (neutral, überall):Zdravo"])
+def test_cao_nie_neben_hallo_und_zaehlt_dort(seite, heute_stand, hallo):
+    """Pruefbericht 1.4, B5 (F16 ja): Ćao ist auch „Hallo“. Bei Merhaba und seit dem
+    14.11.2026 auch bei Zdravo steht es im "auch": nie in derselben Auswahl, beim Tippen
+    richtig. Ćao selbst ("Tschüss") nimmt Merhaba nicht, Zdravo seit K2 schon (Ajdin
+    K2, 20.11.2026, Karte V1-77 „ja“, varianten.py)."""
+    seite.starten(stand=heute_stand())
+    hin = seite.js(AUSWAHL, [hallo, "tschüss:Ćao", 200])
+    her = seite.js(AUSWAHL, ["tschüss:Ćao", hallo, 200])
+    assert hin["gesehen"] == 0 and her["gesehen"] == 0, (hin, her)
+    assert hin["geschwister"] and her["geschwister"], (hin, her)
+    assert hin["annehmbar"] and her["annehmbar"] == (hallo == "hallo (neutral, überall):Zdravo"), (hin, her)
     assert seite.fehler == []
 
 
@@ -133,7 +178,7 @@ def test_gesperrte_paare_nie_in_derselben_auswahl(seite, heute_stand, wort, ande
 def test_frage_ist_nie_ein_teil_eines_falschen_knopfs(seite, heute_stand, sprache):
     seite.starten(stand=heute_stand(), sprache=sprache)
     rest = [p for p in seite.js(TEIL_DER_FRAGE) if not {p[1], p[3]} == UNTERSCHIED_GEWOLLT]
-    assert rest == []
+    assert rest == [], rest
     assert seite.fehler == []
 
 
