@@ -6,6 +6,35 @@ are in the Play Store listing. Format:
 
 ## [Unreleased]
 
+### Android 1.5 (Google Play, versionCode 118, store package built 28.11.2026)
+
+What learners notice compared with 1.4. The details of each change are in the
+commits on `sammeln-v113`.
+- 97 new words, 66 of them with an example sentence, such as *patike*
+  (sneakers), and a new B1 level "Ordinal numbers" after "Time expressions"
+  (*četvrti* to *hiljaditi*; feminine and neuter forms and "4." count when
+  typing): 298 levels.
+- "Trousers" is now *pantalone / hlače*, *radnja* is the small shop and the new
+  *trgovina* the big one. Progress, stars and review boxes move along.
+- Typing: 954 more forms with the same meaning count as right (Croatian or
+  Serbian standard forms, everyday Bosnian forms and synonyms such as
+  *krumpir*, *tjedan*, *kava*). The app still shows and teaches only its own
+  form, and the forms the maintainer rejected stay wrong.
+- New recordings for eleven words (*kuća*, *grad*, *most*, *more* …), and words
+  spelled the same get a recording for each meaning (*sam* "am" no longer
+  sounds like *sam* "alone").
+- Gap sentences: after "Check", "Listen" plays the whole sentence again, and a
+  wrong choice shows what the chosen word means (*jezero* = lake).
+- Review tab: "Due today" comes first, and a red counter on the tab shows how
+  many words are due today.
+- "Sign out" shows a spinning circle with "Saving your progress …" until the
+  last upload is done; the button is locked meanwhile.
+- The back key on the start page puts the app away instead of closing it.
+- A double tap after the last word card no longer costs a heart, lessons in
+  late levels start faster, and the app is about 12 MB smaller (audio at 20
+  instead of 24 kbit/s, shorter silence after each word).
+- "At the dentist": words can be starred and come up in the round "Marked".
+
 ### Added
 - Achievements (approved by the maintainer on 13.11.2026): 18 badges for
   learning days (7, 30, 100, 365, 1000), the longest streak (blue 30, purple
