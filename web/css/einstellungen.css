@@ -19,7 +19,11 @@
      ein letztes Mal hochlaedt - groesser und dunkler als eine gewoehnliche
      .note, damit man sieht, dass etwas passiert. Ohne Bewegung (.no-anim in
      grund.css, prefers-reduced-motion unten) steht der Kreis still. */
-  .note.abmeldewarten{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink)}
+  /* margin-top (Handytest 1.5, 28.11.2026, Ajdin: „der ladekreis an sich passt
+     nur ... muss der etwas weiter runter“): der Kreis klebte direkt unter dem Knopf.
+     !important, weil #setLogoutNote in index.html style="margin:-4px 0 10px" traegt
+     (gilt weiter fuer die normalen Meldungen dort). */
+  .note.abmeldewarten{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink); margin-top:18px !important}
   .ladekreis{flex:0 0 auto; width:22px; height:22px; box-sizing:border-box; border-radius:50%;
     border:3px solid var(--line); border-top-color:var(--primary); animation:ladekreis .8s linear infinite}
   @keyframes ladekreis{to{transform:rotate(360deg)}}

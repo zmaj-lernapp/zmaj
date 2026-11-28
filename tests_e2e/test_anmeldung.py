@@ -871,10 +871,15 @@ def test_abmelden(seite, heute_stand, cloud_html):
     assert seite.fehler == []
 
 
+# abstand: Luft zwischen Abmelde-Knopf und Meldezeile in px (Handytest 1.5,
+# Punkt 19, 28.11.2026: der Kreis klebte am Knopf, weil #setLogoutNote in
+# index.html style="margin:-4px 0 10px" traegt).
 LADEKREIS = """() => { const n = document.getElementById('setLogoutNote'), k = n.querySelector('.ladekreis');
-  return {kreis: !!k && !!k.offsetWidth, text: n.textContent, gesperrt: document.getElementById('setLogout').disabled,
+  const knopf = document.getElementById('setLogout');
+  return {kreis: !!k && !!k.offsetWidth, text: n.textContent, gesperrt: knopf.disabled,
           stumm: k ? k.getAttribute('aria-hidden') : null, dreht: k ? getComputedStyle(k).animationName : null,
-          rolle: n.getAttribute('role')}; }"""
+          rolle: n.getAttribute('role'),
+          abstand: Math.round(n.getBoundingClientRect().top - knopf.getBoundingClientRect().bottom)}; }"""
 # Haelt das letzte Hochladen an, bis der Test weiter() ruft.
 ANHALTEN = """() => { const alt = cloudAbgleich;
   window.weiter = null; const halt = new Promise(r => { window.weiter = r; });
@@ -906,6 +911,8 @@ def test_abmelden_zeigt_einen_lade_kreis(seite, heute_stand, cloud_html, bewegun
     assert z["kreis"] and z["gesperrt"] and z["stumm"] == "true" and z["rolle"] == "status", z
     assert z["text"] == _t(seite, "set.abmelden_laeuft") == "Lernstand wird gesichert …"
     assert z["dreht"] == ("ladekreis" if bewegung else "none"), z
+    # Der Kreis steht mit Luft unter dem Knopf (Punkt 19), nicht direkt daran
+    assert 14 <= z["abstand"] <= 30, z
     # Ein zweiter Tipp startet nichts: der Knopf ist gesperrt, und es kommt keine Rueckfrage
     seite.page.click("#setLogout", force=True)
     assert seite.page.locator("#frJa").count() == 0
@@ -916,8 +923,11 @@ def test_abmelden_zeigt_einen_lade_kreis(seite, heute_stand, cloud_html, bewegun
     seite.page.wait_for_function("(soll) => document.getElementById('setLogoutNote').textContent === soll",
                                  arg=_t(seite, "konto.fehler_allgemein"))
     _fertig(seite)
+    z_kreis = z
     z = seite.js(LADEKREIS)
     assert not z["kreis"] and not z["gesperrt"], z
+    # Die gewoehnliche Meldung behaelt ihren engen Platz aus index.html
+    assert z["abstand"] < z_kreis["abstand"], (z, z_kreis)
     assert seite.js(ZUSTAND)["merker"] is not None, "angemeldet geblieben"
     # Mit Netz: Kreis, dann die Anmeldeseite, und der Knopf ist fuers naechste Mal frei
     attrappe.kontingent_weg = False
