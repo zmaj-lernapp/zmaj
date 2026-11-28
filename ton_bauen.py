@@ -312,18 +312,22 @@ def sammle(mit_zahnarzt=True):
     # Der versteckte Teil Beim Zahnarzt (06.11.2026, zahnarzt.py). Spricht nur
     # Emir, der große Lauf erzeugt nichts. Ganz am Ende, damit die vergebenen
     # Nummern bleiben.
-    if not mit_zahnarzt:
-        return posten
-    for kat in _modul("zahnarzt").KATEGORIEN:
-        for w in kat["words"]:
-            k = schluessel(w["bs"])
-            if k and k not in gesehen:
-                gesehen.add(k)
-                posten.append({"art": "wort", "key": k, "text": w["bs"]})
-            k = schluessel_alle(w["bs"])
-            if " / " in w["bs"] and k not in gesehen:
-                gesehen.add(k)
-                posten.append({"art": "wort", "key": k, "text": w["bs"], "alle": True})
+    # Nur DIESEN Block auslassen (28.11.2026): Bis dahin stand hier ein frühes
+    # "return posten", und sammle(mit_zahnarzt=False) verlor damit auch die
+    # Grammatik-Antworten darunter. ios_zahnarzt_entfernen() hielt sie für
+    # „nur Zahnarzt“ und löschte 204 statt 127 Aufnahmen aus dem iOS-Bau –
+    # auf dem iPhone blieb z. B. „braća“ (w8965) nach der Antwort stumm.
+    if mit_zahnarzt:
+        for kat in _modul("zahnarzt").KATEGORIEN:
+            for w in kat["words"]:
+                k = schluessel(w["bs"])
+                if k and k not in gesehen:
+                    gesehen.add(k)
+                    posten.append({"art": "wort", "key": k, "text": w["bs"]})
+                k = schluessel_alle(w["bs"])
+                if " / " in w["bs"] and k not in gesehen:
+                    gesehen.add(k)
+                    posten.append({"art": "wort", "key": k, "text": w["bs"], "alle": True})
 
     # Die Antworten der Grammatik-Uebungen (15.11.2026). Nach der Antwort spricht die App
     # g.richtig, wenn sie bosnisch ist (gramAntwortBosnisch in index.html: keine Klammer

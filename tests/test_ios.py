@@ -700,6 +700,40 @@ def test_zahnarzt_nimmt_nur_der_ios_bau_heraus(wurzel):
     assert len(ton_bauen.sammle()) > len(ton_bauen.sammle(mit_zahnarzt=False))
 
 
+def test_ios_bau_verliert_nur_zahnarzt_aufnahmen():
+    """Fehler im iPhone-Bau seit 1.4, gefunden am 28.11.2026: sammle(mit_zahnarzt=False)
+    kehrte vor dem Zahnarzt-Block zurueck und liess so auch die Grammatik-Antworten
+    dahinter weg. ios_zahnarzt_entfernen() loeschte sie mit (204 statt 127 Aufnahmen),
+    auf dem iPhone blieb z. B. "braća" nach der Antwort stumm. Jetzt fehlt in
+    sammle(False) nur, was aus zahnarzt.py kommt, und jede Grammatik-Antwort mit
+    eigener Aufnahme steht auch dort."""
+    import grammatik
+    import ton_bauen
+    import zahnarzt
+    alle = {p["key"] for p in ton_bauen.sammle()}
+    ohne = {p["key"] for p in ton_bauen.sammle(mit_zahnarzt=False)}
+    vom_zahnarzt = set()
+    for kat in zahnarzt.KATEGORIEN:
+        for w in kat["words"]:
+            vom_zahnarzt.add(ton_bauen.schluessel(w["bs"]))
+            if " / " in w["bs"]:
+                vom_zahnarzt.add(ton_bauen.schluessel_alle(w["bs"]))
+    assert alle - ohne <= vom_zahnarzt
+    assert ohne <= alle                       # nichts ohne vergebene Nummer
+    antworten = set()
+    for lektion in grammatik.GRAMMATIK.values():
+        for ue in lektion.get("uebungen", []):
+            r = ue.get("richtig", "")
+            if re.search(r"\((on|ona|ono)\)\s*$", r):
+                continue
+            k = ton_bauen.schluessel_alle(r) if " / " in r else ton_bauen.schluessel(r)
+            kurz = re.sub(r"[.!?…]+$", "", r.split(" / ")[0]).strip().lower()
+            antworten |= {k, ton_bauen.schluessel(r), kurz} & alle
+    assert len(antworten) > 90
+    assert antworten <= ohne, sorted(antworten - ohne)[:10]
+    assert {"braća", "bismo", "babova", "aminina", "auto mog brata", "bili smo u bosni."} <= ohne
+
+
 def test_zahnarzt_entfernen_nie_in_web(wurzel):
     import app_bauen
     with pytest.raises(SystemExit):
